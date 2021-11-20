@@ -1,0 +1,28 @@
+### macos—eclipse上常用的快捷键
+
+- start new line: 开始新的一行，并跳到新的一行：shift+enter / shift+command+enter
+- inherited members:展示当前类的所有属性和方法：command+o
+- recent files:展示当前项目的所有类和文件，可以随意切换：command+e
+- 修改方法名(引用也会同时修改)：？？？
+- 为方法自动赋值变量：？？？
+- 移动当前行/方法：option+方向键
+- 格式化当前代码：shift+command+F
+- 组织类的import导入：shift+command+O (去除没有的import，添加类的import，添加没法起作用)
+- 复制当前行：option+command+方向键
+- 从光标处开始选择内容：shift+方向
+- 选择光标到指向方向的所有内容：shift+command+方向
+- 选择光标到指定方向的一个单位的内容：shift+alt+方向
+- 搜索对话框，从当前项目/模块/包/域里搜索：control+H
+- 查找全局的files，class等：shift+command+R / double shift(查找所有)/ shift+command+T
+- 在当前行添加断点：shift+command+B
+- 修改方法名、属性名、文件名：shift+alt+R
+- 跳到最后一次修改的方法：control+Q
+- 跳到方法（导入的包）的引用：f3
+- 跳到方法的调用处：shift+command+G
+- 打开preferences进行配置：command+，
+- 运行：shift+control+X
+- debug：shift+control+D
+- next method：shift+control+方向键下
+- previous method：shift+control+方向键上
+- onverride method:shift+0
+- 多行处理：option+方向键
