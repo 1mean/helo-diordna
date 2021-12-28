@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+
+    <color name="colorPrimary">@color/color_white_lucency</color>
+    <color name="colorPrimaryDark">@color/color_white_lucency</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!-- 首页底部  -->
+    <color name="color_btn_homepage_normal">#717474</color>
+    <color name="color_btn_homepage_pressed">#DFE7E7</color>
+    <color name="colorrrrrr">#95000000</color>
+    <color name="color_RadioGroup_bg_homepage">#00000000</color>
+    <color name="color_bg_bottom_gb">#00000000</color>
+    <color name="color_groupbutton_text">#a3a3a3</color>
+
+    <!--room-->
+    <color name="color_room_tab_bg">#F5F5FF</color>
+    <color name="color_room_tabitem">#676771</color>
+    <color name="color_room_tabindicator">#D6AE85</color>
+    <color name="color_text_bg">#C69868</color>
+    <color name="color_bg_item2">#FBFAFE</color>
+    <color name="color_text_desc">#BB946B</color>
+    <color name="color_desc_bg">#FAF0E3</color>
+    <color name="color_content_bg">#F5F5FF</color>
+    <color name="color_indicator">#D5D3D5</color>
+    <color name="color_indicator_select">#888689</color>
+    <color name="color_indicator_bg">#E4CAAD</color>
+
+    <!--self-->
+    <color name="color_black_80">#80000000</color>
+    <color name="color_black_20">#20000000</color>
+    <color name="color_txt_tab">#999999</color>
+    <color name="color_txt_tab_select">#333333</color>
+    <color name="color_bg_divider">#E5E5E5</color>
+    <color name="color_bg_rv">#f2fdff</color>
+
+    <!--eye-->
+    <color name="color_eye_view_bg">#ededed</color>
+    <color name="color_txt_item_name">#b6b6b6</color>
+
 </resources>

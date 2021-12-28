@@ -13,7 +13,7 @@
 - 选择光标到指向方向的所有内容：shift+command+方向
 - 选择光标到指定方向的一个单位的内容：shift+alt+方向
 - 搜索对话框，从当前项目/模块/包/域里搜索：control+H
-- 查找全局的files，class等：shift+command+R / double shift(查找所有)/ shift+command+T
+- 查找全局的files，class等：shift+command+R (go to file) / double shift(查找所有)/ shift+command+T
 - 在当前行添加断点：shift+command+B
 - 修改方法名、属性名、文件名：shift+alt+R
 - 跳到最后一次修改的方法：control+Q

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- dimens.xml命名规范：模块_具体作用名 -->
+
+    <!-- 普通文字 @auther dongyiming -->
+    <dimen name="common_sz_9_dimens">9sp</dimen>
+    <dimen name="common_sz_10_dimens">10sp</dimen>
+    <dimen name="common_sz_11_dimens">11sp</dimen>
+    <dimen name="common_sz_12_dimens">12sp</dimen>
+    <dimen name="common_sz_13_dimens">13sp</dimen>
+    <dimen name="common_sz_14_dimens">14sp</dimen>
+    <dimen name="common_sz_15_dimens">15sp</dimen>
+    <dimen name="common_sz_16_dimens">16sp</dimen>
+    <dimen name="common_sz_17_dimens">17sp</dimen>
+    <dimen name="common_sz_18_dimens">18sp</dimen>
+    <dimen name="common_sz_25_dimens">25sp</dimen>
+
+    <!-- 普通长度 @auther dongyiming -->
+    <dimen name="common_lh_0_dimens">0.5dp</dimen>
+    <dimen name="common_lh_2_dimens">2dp</dimen>
+    <dimen name="common_lh_3_dimens">3dp</dimen>
+    <dimen name="common_lh_4_dimens">4dp</dimen>
+    <dimen name="common_lh_5_dimens">5dp</dimen>
+    <dimen name="common_lh_6_dimens">6dp</dimen>
+    <dimen name="common_lh_8_dimens">8dp</dimen>
+    <dimen name="common_lh_18_dimens">18dp</dimen>
+    <dimen name="common_lh_22_dimens">22dp</dimen>
+    <dimen name="common_lh_26_dimens">26dp</dimen>
+    <dimen name="common_lh_25_dimens">25dp</dimen>
+    <dimen name="common_lh_35_dimens">35dp</dimen>
+
+
+    <!-- homepage底部规范-->
+    <dimen name="activity_bottom_height_dimens">45dp</dimen>
+    <dimen name="activity_bottom_paddingTop_dimens">5.7dp</dimen>
+    <dimen name="activity_bottom_paddingBottom_dimens">3dp</dimen>
+    <dimen name="activity_bottom_drawablePadding_dimens">2dp</dimen>
+
+
+    <!-- recommend page roll viewpager -->
+    <dimen name="viewpager_height">140dp</dimen>
+
+    <!--recommend page-->
+    <dimen name="fragment_daily_recimmend_dimens">101dp</dimen>
+
+    <!--eyes dimens-->
+    <dimen name="rollpager_height_dimens">209dp</dimen>
+    <dimen name="rollpager_maginbottom_dimens">7dp</dimen>
+
+
+    <!--common dimens-->
+    <dimen name="dimen_0">0dp</dimen>
+
+    <!-- room fragment -->
+    <dimen name="room_decoration_dimen">9dp</dimen>
+</resources>
