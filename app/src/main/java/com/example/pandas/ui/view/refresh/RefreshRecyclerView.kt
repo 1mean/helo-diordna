@@ -76,7 +76,6 @@ public class RefreshRecyclerView : RecyclerView {
     override fun onScrollStateChanged(state: Int) {
         super.onScrollStateChanged(state)
 
-        Log.e("aaaan", "onScrollStateChanged: state: $state")
         if (state == RecyclerView.SCROLL_STATE_IDLE && mOnRefreshLoadListener != null && !isFreshing && !isLoadingData) {
 
             var lastVisibleItemPosition = 0
@@ -96,16 +95,12 @@ public class RefreshRecyclerView : RecyclerView {
             val total = wrapAdapter!!.realCount()
             val childCount = layoutManager!!.childCount // 未隐藏的数目 childCount = count - hiddenCount
 
-            Log.e(
-                "aaaan",
-                "lastVisibleItemPosition: $lastVisibleItemPosition, total: $total, childCount: $childCount, isFreshing: $isFreshing, isNoMore: $isNoMore"
-            )
             if (childCount > 0 && lastVisibleItemPosition >= total - 1 && total > childCount
 
                 && !isFreshing && !isNoMore
             ) {
                 isLoadingData = true
-                postDelayed(Runnable { mOnRefreshLoadListener!!.onLoadMore() }, 10000)
+                mOnRefreshLoadListener!!.onLoadMore()
 
             }
         }
@@ -171,7 +166,6 @@ public class RefreshRecyclerView : RecyclerView {
 
         override fun onBindViewHolder(holder: BaseEmptyViewHolder, position: Int) {
 
-            Log.e("aaabbb","position: $position, type: " + getItemViewType(position))
             if (getItemViewType(position) != TYPE_FOOTER) {
                 adapter.onBindViewHolder(holder, position)
             }
@@ -245,7 +239,7 @@ public class RefreshRecyclerView : RecyclerView {
         fun onLoadMore()
     }
 
-    fun isFreshing(freshing: Boolean) {
+    public fun isFreshing(freshing: Boolean) {
         isFreshing = freshing
     }
 

@@ -52,4 +52,9 @@ public class RoomPandaFragment : Fragment() {
         }
         return list
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

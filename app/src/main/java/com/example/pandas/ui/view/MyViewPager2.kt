@@ -1,6 +1,6 @@
 package com.example.pandas.ui.view
 
-import ImageViewHolder
+import com.example.pandas.ui.adapter.viewholder.ImageViewHolder
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
@@ -10,7 +10,6 @@ import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.ViewPager2

@@ -37,4 +37,13 @@
         <item name="android:singleLine">true</item>
         <item name="android:layout_weight">1.0</item>
     </style>
+
+    <!--self-tablayout-->
+    <style name="SelfTabLayoutTextStyle">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="VideoTabLayoutTextStyle">
+        <item name="android:textSize">13sp</item>
+    </style>
 </resources>

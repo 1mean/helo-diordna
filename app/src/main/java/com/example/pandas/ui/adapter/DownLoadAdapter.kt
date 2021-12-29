@@ -13,7 +13,7 @@ import com.example.pandas.databinding.AdapterDownloadBinding
  * @date: 2021/12/19 12:30 上午
  * @version: v1.0
  */
-public class DownLoadAdapte() : RecyclerView.Adapter<DownLoadAdapte.MyViewHolder>() {
+public class DownLoadAdapter() : RecyclerView.Adapter<DownLoadAdapter.MyViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

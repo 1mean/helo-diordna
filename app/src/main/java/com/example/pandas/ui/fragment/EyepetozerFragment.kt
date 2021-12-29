@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.bean.eyes.EyepetozerBean
 import com.example.pandas.biz.controller.EyepetozerController
@@ -53,7 +52,7 @@ public class EyepetozerFragment : Fragment() {
             override fun onResult(t: MutableList<EyepetozerBean>) {
 
                 mAdapter = EyepetozerAdapter(t)
-                recyclerView?.setRefreshAdapter(mAdapter!!,listener)
+                recyclerView?.setRefreshAdapter(mAdapter!!, listener)
             }
 
             override fun onFailure(e: String) {
@@ -72,33 +71,28 @@ public class EyepetozerFragment : Fragment() {
             R.color.green
         )
         refreshLayout.setOnRefreshListener {
+
             refreshLayout.isRefreshing = true
+            recyclerView?.isFreshing(true)
+            controller.initData(object : ICommonInvokeResult<MutableList<EyepetozerBean>, String> {
+                override fun onResult(t: MutableList<EyepetozerBean>) {
+
+                    refreshLayout.isRefreshing = false
+                    recyclerView?.isFreshing(false)
+                    mAdapter?.refresh(t)
+                }
+
+                override fun onFailure(e: String) {
+                    refreshLayout.isRefreshing = false
+                    recyclerView?.isFreshing(false)
+                }
+
+                override fun onCompleted() {
+                    refreshLayout.isRefreshing = false
+                    recyclerView?.isFreshing(false)
+                }
+            })
         }
-
-//        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//
-//
-//            }
-//
-//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-//                when(newState){
-//                    RecyclerView.SCROLL_STATE_IDLE -> {
-//                        val totalCount =  mAdapter?.itemCount
-//                        Log.e("mean1","count: " + mAdapter?.itemCount)
-//                        val position = layoutManager.findLastVisibleItemPosition()
-//                        Log.e("mean1","position: $position")
-//                        if (!refreshLayout.isRefreshing && position == totalCount!! - 1) {
-//
-//                        }
-//
-//                    }
-//                }
-//
-//            }
-//        })
-
     }
 
     val listener = object : ILoadMoreListener {
@@ -123,5 +117,10 @@ public class EyepetozerFragment : Fragment() {
                 })
         }
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

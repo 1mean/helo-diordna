@@ -1,11 +1,15 @@
 package com.example.pandas.bean.eyes
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 /**
  * 去掉大部分不符合项目的冗余字段，重构成一张新的表
  * @author: dongyiming
  * @date: 2021/12/22 7:04 下午
  * @version: v1.0
  */
+@Parcelize
 data class EyepetozerBean(
 
     //squareCardCollection数据不做保存
@@ -30,4 +34,4 @@ data class EyepetozerBean(
     var horizontalCardList: MutableList<String>? = null,//HorizontalScrollCard的url
 
     var user: EyepetozerUser? = null
-)
+):Parcelable

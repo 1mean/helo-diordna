@@ -23,6 +23,7 @@
         </activity>
 
         <activity android:name=".ui.activity.BehaviorActivity" />
+        <activity android:name=".ui.activity.VideoPlayingActivity" />
 
     </application>
 

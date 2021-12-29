@@ -1,5 +1,4 @@
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.example.pandas.R
 import com.example.pandas.databinding.AdapterPandaItem1Binding
 import com.example.pandas.databinding.AdapterPandaItem2Binding
+import com.example.pandas.ui.adapter.viewholder.RoomViewHolder
 
 
 /**
@@ -54,8 +54,6 @@ public class PandaAdapter(val context: Context, private val pandas: MutableList<
     }
 
     override fun onBindViewHolder(holder: RoomViewHolder, position: Int) {
-
-        Log.e("1mean", "position: $position")
 
         when (getItemViewType(position)) {
             0 -> {

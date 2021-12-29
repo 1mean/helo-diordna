@@ -1,9 +1,8 @@
 package com.example.pandas.ui.view
 
-import ImageViewHolder
+import com.example.pandas.ui.adapter.viewholder.ImageViewHolder
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.view.ViewGroup
@@ -165,10 +164,6 @@ public class Banner : RelativeLayout {
         }
 
         override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-            Log.e(
-                "11mean", "wapAdapter_position = $position, " +
-                        "adapter_position = " + realPosition(position)
-            )
             mAdapter.onBindViewHolder(holder, realPosition(position))
         }
 
@@ -196,7 +191,6 @@ public class Banner : RelativeLayout {
 
         //每次执行刷新adapter时调用，第一次添加adapter时不会执行
         override fun onChanged() {
-            Log.e("11mean","AdapterDataObserver onchange")
             startViewPager(realPosition(tempPosition))
         }
 
@@ -237,7 +231,6 @@ public class Banner : RelativeLayout {
     private fun setCurrentPage(position: Int, smoothScroll: Boolean) {
 
         tempPosition = position + sidePage
-        Log.e("1mean", "position: $position, tempPosition: $tempPosition")
         mViewPager.setCurrentItem(tempPosition, smoothScroll)
     }
 
@@ -291,12 +284,9 @@ public class Banner : RelativeLayout {
         override fun onPageScrollStateChanged(state: Int) {
             if (state == ViewPager2.SCROLL_STATE_DRAGGING) {
 
-                Log.e("2mean", "tempPosition: $tempPosition")
                 if (tempPosition == sidePage - 1) {
-                    Log.e("2111mean", "tempPosition: $tempPosition")
                     mViewPager.setCurrentItem(getRealCount() + tempPosition, false)
                 } else if (tempPosition == getRealCount() + sidePage) {
-                    Log.e("2mean", "tempPosition: $tempPosition")
                     mViewPager.setCurrentItem(sidePage, false)
                 }
             }

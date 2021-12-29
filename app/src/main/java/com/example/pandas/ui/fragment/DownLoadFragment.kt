@@ -32,7 +32,7 @@ public class DownLoadFragment : Fragment(R.layout.fragment_download) {
         val layoutManager = GridLayoutManager(context, 2)
         mRecyclerView.layoutManager = layoutManager
         mRecyclerView.addItemDecoration(DownLoadItemDecoration(requireContext()))
-        mRecyclerView.adapter = DownLoadAdapte()
+        mRecyclerView.adapter = DownLoadAdapter()
     }
 
 }

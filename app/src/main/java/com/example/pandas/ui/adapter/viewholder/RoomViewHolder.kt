@@ -1,3 +1,5 @@
+package com.example.pandas.ui.adapter.viewholder
+
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView

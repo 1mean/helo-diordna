@@ -38,4 +38,14 @@
     <color name="color_eye_view_bg">#ededed</color>
     <color name="color_txt_item_name">#b6b6b6</color>
 
+    <!--video-->
+    <color name="color_tab_text_selected">#F26E9A</color>
+    <color name="color_tab_text">#757575</color>
+    <color name="color_tab_indicator">#FE689A</color>
+    <color name="color_caption_bg">#F1F2F4</color>
+    <color name="color_vedio_info_text">#94999B</color>
+    <color name="color_unfollow_bg">#fe679a</color>
+    <color name="color_follow_bg">#E4E5E7</color>
+    <color name="color_name_txt">#FF669B</color>
+
 </resources>
