@@ -47,5 +47,7 @@
     <color name="color_unfollow_bg">#fe679a</color>
     <color name="color_follow_bg">#E4E5E7</color>
     <color name="color_name_txt">#FF669B</color>
+    <color name="color_video_name_txt">#161A1C</color>
+    <color name="color_video_comment_txt">#989C9F</color>
 
 </resources>

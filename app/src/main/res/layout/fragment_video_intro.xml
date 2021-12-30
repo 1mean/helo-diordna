@@ -1,67 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <RelativeLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:divider="@drawable/shape_video_diver"
+            app:showDividers="end">
 
-        <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_head"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginStart="12dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_author"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="8dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_name"
-                android:layout_width="wrap_content"
-                android:layout_height="18dp"
-                android:layout_marginTop="9dp"
-                android:layout_toEndOf="@id/img_head"
-                android:layout_marginStart="20dp"
-                android:textSize="14sp"
-                android:gravity="center_vertical"
-                android:textColor="@color/color_name_txt"
-                android:textStyle="bold" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_fans"
-                android:layout_width="wrap_content"
-                android:layout_height="14dp"
-                android:textColor="@color/color_vedio_info_text"
-                android:textSize="11sp"
-                android:gravity="center_vertical"
-                android:layout_alignStart="@id/txt_name" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_counts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/color_vedio_info_text"
-                android:gravity="center_vertical"
-                android:textSize="11sp"
-                android:layout_alignTop="@id/txt_fans"
-                android:layout_toEndOf="@id/txt_fans"
-                android:layout_marginStart="11dp" />
-
-        <RelativeLayout
-                android:layout_width="66dp"
-                android:layout_height="24dp"
-                android:background="@color/color_unfollow_bg"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="13dp"
-                >
             <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_head"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintTop_toTopOf="@id/cl_author"
+                    app:layout_constraintBottom_toBottomOf="@id/cl_author"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_author"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="12dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_name"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="18dp"
+                    android:layout_marginTop="9dp"
+                    app:layout_constraintTop_toTopOf="@id/cl_author"
+                    app:layout_constraintBottom_toBottomOf="@id/cl_author"
+                    app:layout_constraintLeft_toRightOf="@id/img_head"
+                    android:layout_marginStart="20dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/color_name_txt"
+                    android:gravity="center"
+                    android:textStyle="bold" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_fans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_vedio_info_text"
+                    app:layout_constraintTop_toBottomOf="@id/txt_name"
+                    app:layout_constraintLeft_toLeftOf="@id/txt_name"
+                    android:textSize="11sp"
+                    android:gravity="center" />
 
-        </RelativeLayout>
-    </RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_counts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_vedio_info_text"
+                    android:gravity="center"
+                    android:textSize="11sp"
+                    app:layout_constraintBaseline_toBaselineOf="@id/txt_fans"
+                    app:layout_constraintLeft_toRightOf="@id/txt_fans"
+                    android:layout_marginStart="11dp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="66dp"
+                    android:layout_height="24dp"
+                    android:background="@color/color_unfollow_bg"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="@id/cl_author"
+                    app:layout_constraintBottom_toBottomOf="@id/cl_author"
+                    app:layout_constraintRight_toRightOf="@id/cl_author"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="13dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="11dp"
+                        android:src="@mipmap/img_add" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:textSize="14sp"
+                        android:text="@string/txt_follow" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_video_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:maxEms="16"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="我和我的组合，若撒打开加拿大队你睡觉的军事基地就啊快点结束快点就撒开的"
+                    android:textColor="@color/color_video_name_txt" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/ib_comment"
+                    android:layout_width="50dp"
+                    android:layout_height="15dp"
+                    android:text="2055"
+                    android:textSize="10sp"
+                    android:background="@null"
+                    android:textStyle="normal"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="4dp"
+                    android:drawableStart="@mipmap/img_comment"
+                    app:layout_constraintTop_toBottomOf="@id/txt_video_name"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_desc"
+                    android:clickable="false"
+                    android:textColor="@color/color_video_comment_txt" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_video_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:layout_marginStart="11dp"
+                    app:layout_constraintLeft_toRightOf="@id/ib_comment"
+                    app:layout_constraintTop_toTopOf="@id/ib_comment"
+                    app:layout_constraintBottom_toBottomOf="@id/ib_comment"
+                    app:layout_constraintBaseline_toBaselineOf="@id/ib_comment"
+                    android:text="2013-05-20 17:32"
+                    android:textColor="@color/color_video_comment_txt"
+                    tools:ignore="SmallSp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/img_like"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:textSize="11sp"
+                        android:textColor="@color/color_video_comment_txt"
+                        android:text="1.1万" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/img_unlike"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:textSize="11sp"
+                        android:textColor="@color/color_video_comment_txt"
+                        android:text="不喜欢" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/img_load"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:textSize="11sp"
+                        android:textColor="@color/color_video_comment_txt"
+                        android:text="缓存" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/img_collect"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_collect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:textSize="11sp"
+                        android:textColor="@color/color_video_comment_txt"
+                        android:text="3268" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/img_share"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:textSize="11sp"
+                        android:textColor="@color/color_video_comment_txt"
+                        android:text="4098" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_video"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.core.widget.NestedScrollView>

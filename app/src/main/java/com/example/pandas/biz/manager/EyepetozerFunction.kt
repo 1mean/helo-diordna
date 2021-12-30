@@ -26,7 +26,10 @@ public class EyepetozerFunction : Function<Eyepetozer, MutableList<EyepetozerBea
                         list.add(buildHeader(item))
                     }
                     "video" -> {
-                        list.add(buildVideo(item))
+                        list.add(buildVideo(item,true))
+                    }
+                    "videoSmallCard" -> {
+                        list.add(buildVideo(item,false))
                     }
                 }
             }
@@ -69,7 +72,7 @@ public class EyepetozerFunction : Function<Eyepetozer, MutableList<EyepetozerBea
      * @date: 2021/12/22 10:18 下午
      * @version: v1.0
      */
-    private fun buildVideo(item: Item): EyepetozerBean {
+    private fun buildVideo(item: Item, flag: Boolean): EyepetozerBean {
 
         val eyeBean = EyepetozerBean()
         val data = item.data
@@ -77,7 +80,7 @@ public class EyepetozerFunction : Function<Eyepetozer, MutableList<EyepetozerBea
         val author = data.author
         val playList = data.playInfo
         val cover = data.cover
-        eyeBean.type = 3
+        if (flag) eyeBean.type = 3 else eyeBean.type = 4
         eyeBean.title = data.title
         eyeBean.coverUrl = cover.feed
         eyeBean.videoId = data.id

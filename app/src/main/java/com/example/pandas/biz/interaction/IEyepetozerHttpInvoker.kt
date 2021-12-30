@@ -25,4 +25,9 @@ interface IEyepetozerHttpInvoker {
         count: Int,
         subscriber: ResourceObserver<MutableList<EyepetozerBean>>
     )
+
+    fun getRecommendVideos(
+        videoId: Int,
+        subscriber: ResourceObserver<MutableList<EyepetozerBean>>
+    )
 }

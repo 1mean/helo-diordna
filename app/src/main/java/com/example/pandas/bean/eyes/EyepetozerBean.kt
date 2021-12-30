@@ -13,7 +13,7 @@ import kotlinx.parcelize.Parcelize
 data class EyepetozerBean(
 
     //squareCardCollection数据不做保存
-    //type: horizontalScrollCard/textHeader/video/squareCardCollection
+    //type: horizontalScrollCard/textHeader/video/squareCardCollection/
     var type: Int = 0,
     var videoId: Int = 0,//videoId,通过id可以请求到相关评论
     var title: String? = null,//名称
@@ -34,4 +34,5 @@ data class EyepetozerBean(
     var horizontalCardList: MutableList<String>? = null,//HorizontalScrollCard的url
 
     var user: EyepetozerUser? = null
+
 ):Parcelable

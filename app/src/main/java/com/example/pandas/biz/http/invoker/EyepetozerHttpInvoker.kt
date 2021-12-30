@@ -49,4 +49,13 @@ public class EyepetozerHttpInvoker : IEyepetozerHttpInvoker {
             ?.subscribe(subscriber)
     }
 
+    override fun getRecommendVideos(
+        videoId: Int,
+        subscriber: ResourceObserver<MutableList<EyepetozerBean>>
+    ) {
+        eyepetozerService?.getRecommendVideo(videoId)?.map(EyepetozerFunction())?.subscribeOn(Schedulers.io())
+            ?.unsubscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribe(subscriber)
+    }
+
 }
