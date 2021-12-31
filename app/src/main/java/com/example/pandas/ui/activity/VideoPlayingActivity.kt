@@ -3,6 +3,8 @@ package com.example.pandas.ui.activity
 import VideoFragmentAdapter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.example.pandas.R
 import com.example.pandas.bean.eyes.EyepetozerBean
 import com.example.pandas.databinding.ActivityVideoBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -25,6 +27,7 @@ public class VideoPlayingActivity : AppCompatActivity() {
         binding = ActivityVideoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        StatusBarUtils.setStatusBarMode(this,false,R.color.black)
 
         val eyepetozerBean = getIntent().getParcelableExtra<EyepetozerBean>("EyepetozerBean")
 

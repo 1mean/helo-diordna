@@ -26,7 +26,7 @@ data class Item(
 data class Data(
     val ad: Boolean,
     val adTrack: Any,
-    val author: Author,
+    val author: Author? =null,
     val brandWebsiteInfo: Any,
     val campaign: Any,
     val category: String,

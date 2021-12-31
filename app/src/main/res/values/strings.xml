@@ -26,6 +26,8 @@
     <string name="string_nomore">没有更多数据!!!</string>
     <string name="string_load_finished">加载完成</string>
     <string name="txt_follow">关注</string>
+    <string name="no_comment_string">看看下面～来发评论吧</string>
+    <string name="keeping_nice_string">发一条友善的评论～</string>
 
 
 </resources>

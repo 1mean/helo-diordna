@@ -98,7 +98,7 @@ public class EyepetozerAdapter(
         val user = bean.user
         val videoHolder = holder as VideoHolder
         videoHolder.userName.text = user?.userName
-        videoHolder.descripetion.text = bean.description
+        videoHolder.descripetion.text = bean.title
         Glide.with(context).load(bean.coverUrl).into(videoHolder.cover)
         Glide.with(context).load(user?.userIcon).apply(
             RequestOptions.bitmapTransform(

@@ -49,5 +49,8 @@
     <color name="color_name_txt">#FF669B</color>
     <color name="color_video_name_txt">#161A1C</color>
     <color name="color_video_comment_txt">#989C9F</color>
+    <color name="color_video_item_title">#171a1c</color>
+    <color name="color_video_item_name">#95999f</color>
+    <color name="color_video_divider">#E5E6E6</color>
 
 </resources>

@@ -89,8 +89,10 @@ public class EyepetozerFunction : Function<Eyepetozer, MutableList<EyepetozerBea
         eyeBean.shareCount = consumption.shareCount
         eyeBean.replyCount = consumption.replyCount
         eyeBean.realCollectionCount = consumption.realCollectionCount
-        eyeBean.userCode = author.id
-        eyeBean.user = createAuthor(author)
+        if (author != null) {
+            eyeBean.userCode = author.id
+            eyeBean.user = createAuthor(author)
+        }
         eyeBean.playUrl = data.playUrl
         eyeBean.duration = data.duration
         eyeBean.videoType = data.type

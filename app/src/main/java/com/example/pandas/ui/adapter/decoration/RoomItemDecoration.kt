@@ -16,7 +16,7 @@ public class RoomItemDecoration(context: Context) : RecyclerView.ItemDecoration(
     private var padding: Int = context.resources.getDimension(R.dimen.room_decoration_dimen).toInt()
 
     /**
-     * <绘制背景的效果，内容在上面，即在padding区域作画>
+     * <绘制背景的效果，内容在上面，即在getItemOffsets的padding区域作画>
      * @param:
      * @version: v1.0
      */

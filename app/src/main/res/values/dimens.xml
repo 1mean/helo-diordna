@@ -54,4 +54,8 @@
 
     <!-- room fragment -->
     <dimen name="room_decoration_dimen">9dp</dimen>
+
+
+    <dimen name="video_divider_height_dimen">0.5dp</dimen>
+    <dimen name="video_divider_left_dimen">12dp</dimen>
 </resources>

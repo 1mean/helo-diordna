@@ -6,7 +6,7 @@
  */
 public interface CommonResultListener<T> {
 
-    fun onResult(t: T)
+    fun onResult(data: T)
 
     fun onFailure(errorMessage: String)
 }
