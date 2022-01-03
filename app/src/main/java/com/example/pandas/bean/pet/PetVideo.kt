@@ -2,18 +2,14 @@ package com.example.pandas.bean.pet
 
 data class PetVideo(
 
-    var videoUrl: String? = null,//视频路径
-    var fileName: String? = null,//本地文件名，需要拼接
-    var filePath: String? = null,//视频原始转载地址，标注一下
-    /**
-     * 视频特征：用于搜索
-     *    1，天气：冬天，下雪
-     *    2，宠物是宝贝
-     *
-     * @version: v1.0
-     */
-    var tag: String? = null,
-    var isBabyCute: Boolean,//是否是宠物宝宝
-
+    var code: Int? = 0,//视频ID，用id和本地路径拼接，找到视频本地url
+    var title: String? = null,//视频名字
+    var description: String? = null,//视频描述
+    var url: String? = null,//视频网络路径
+    var originalUrl: String? = null,//视频原始转载地址，标注一下
+    var tags: String? = null,//标签，用于分类
+    var releaseTime: Long? = 0,//视频的发布时间
+    var duration: Int? = 0,//视频时长
+    var cover: String? = null,//封面路径
 
 )

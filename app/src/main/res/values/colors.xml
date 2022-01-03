@@ -53,4 +53,10 @@
     <color name="color_video_item_name">#95999f</color>
     <color name="color_video_divider">#E5E6E6</color>
 
+    <!--home fragment-->
+    <color name="color_search_text">#acb3b8</color>
+    <color name="color_home_tab_text">#61656B</color>
+
+
+
 </resources>

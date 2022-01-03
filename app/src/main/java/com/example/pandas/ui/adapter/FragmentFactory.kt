@@ -23,7 +23,7 @@ public class FragmentFactory {
 
             if (mFragment == null) {
                 when (page) {
-                    PAGE_ONE -> mFragment = Fragment()
+                    PAGE_ONE -> mFragment = HomeFragment()
                     PAGE_TWO -> mFragment = RoomFragment()
                     PAGE_THREE -> mFragment = EyepetozerFragment()
                     PAGE_FOUR -> mFragment = SelfFragment()
