@@ -8,6 +8,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.R
 import com.example.pandas.databinding.FragmentHomeBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
 /**
  * @description: TODO
@@ -19,6 +20,7 @@ public class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val tabTitles = arrayListOf<String>("推荐", "动物", "北极熊", "老虎", "小熊猫")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +40,15 @@ public class HomeFragment : Fragment() {
                 CircleCrop()
             )
         ).into(binding.imgHead)
+
+        val viewpager = binding.viewpager
+        viewpager.adapter = HomePagerAdapter(tabTitles, requireActivity())
+        viewpager.offscreenPageLimit = 1
+        TabLayoutMediator(
+            binding.tab, viewpager, true
+        ) { tab, position ->
+            tab.text = tabTitles[position]
+        }.attach()
     }
 
     override fun onDestroyView() {

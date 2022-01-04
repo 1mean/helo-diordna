@@ -19,7 +19,7 @@ public class FragmentFactory {
 
         fun buildFragment(page: Int): Fragment {
 
-            var mFragment = fragments.get(page)
+            var mFragment = fragments[page]
 
             if (mFragment == null) {
                 when (page) {
@@ -28,7 +28,7 @@ public class FragmentFactory {
                     PAGE_THREE -> mFragment = EyepetozerFragment()
                     PAGE_FOUR -> mFragment = SelfFragment()
                 }
-                fragments.put(page, mFragment!!)
+                fragments[page] = mFragment!!
             }
             return mFragment
         }

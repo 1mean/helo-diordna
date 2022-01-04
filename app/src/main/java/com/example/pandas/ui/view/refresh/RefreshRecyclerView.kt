@@ -67,6 +67,9 @@ public class RefreshRecyclerView : RecyclerView {
         observer.onChanged()
     }
 
+    override fun setLayoutManager(layout: LayoutManager?) {
+        super.setLayoutManager(layout)
+    }
     /**
      * 滑动状态改变的回调
      * @author: dongyiming
@@ -216,10 +219,23 @@ public class RefreshRecyclerView : RecyclerView {
             super.onAttachedToRecyclerView(recyclerView)
             val manager = recyclerView.layoutManager
             if (manager is GridLayoutManager) {
-                manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                    override fun getSpanSize(position: Int): Int =
-                        if (isFooter(position)) 1 else manager.spanCount
+
+                val space = object : GridLayoutManager.SpanSizeLookup() {
+                    override fun getSpanSize(position: Int): Int {
+                        Log.e("1mean","position: $position ,spanCount: " + manager.spanCount)
+                        if (isFooter(position)) {
+                            return 2
+                        } else {
+                            return 1
+                        }
+                    }
                 }
+                manager.spanSizeLookup = space
+//                manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+//                    override fun getSpanSize(position: Int): Int =
+//                        if (isFooter(position)) 1 else manager.spanCount
+//                }
+
 //            }else if(manager is StaggeredGridLayoutManager){
 //                manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
 //                    override fun getSpanSize(position: Int): Int =

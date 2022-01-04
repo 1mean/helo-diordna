@@ -56,7 +56,6 @@
     <!--home fragment-->
     <color name="color_search_text">#acb3b8</color>
     <color name="color_home_tab_text">#61656B</color>
-
-
-
+    <color name="color_viewpager_bg">#F1F2F4</color>
+    <color name="color_card_name">#939aa0</color>
 </resources>

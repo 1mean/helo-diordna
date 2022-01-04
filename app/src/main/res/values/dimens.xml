@@ -58,4 +58,8 @@
 
     <dimen name="video_divider_height_dimen">0.5dp</dimen>
     <dimen name="video_divider_left_dimen">12dp</dimen>
+
+    <!--home-->
+    <dimen name="item_home_padding">7dp</dimen>
+
 </resources>

@@ -1,64 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/bar"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_head"
-                android:layout_width="37dp"
-                android:layout_height="37dp"
-                android:scaleType="fitXY"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="14dp" />
+        <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                app:layout_scrollFlags="scroll">
 
-        <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edit"
-                android:layout_width="144dp"
-                android:layout_height="30dp"
-                android:drawableStart="@mipmap/img_home_search"
-                android:background="@drawable/shape_home_search"
-                android:textSize="13sp"
-                android:drawablePadding="6dp"
-                android:paddingStart="12dp"
-                android:textColor="@color/color_search_text"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:hint="奇闻观察室"
-                tools:ignore="RtlSymmetry" />
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_head"
+                    android:layout_width="37dp"
+                    android:layout_height="37dp"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="14dp" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/ib_message"
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:src="@mipmap/img_message"
-                android:background="@null"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="102dp"
-                tools:ignore="RtlHardcoded" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edit"
+                    android:layout_width="144dp"
+                    android:layout_height="30dp"
+                    android:drawableStart="@mipmap/img_home_search"
+                    android:background="@drawable/shape_home_search"
+                    android:textSize="13sp"
+                    android:drawablePadding="6dp"
+                    android:paddingStart="12dp"
+                    android:textColor="@color/color_search_text"
+                    android:textColorHint="@color/color_search_text"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:hint="奇闻观察室"
+                    tools:ignore="RtlSymmetry" />
 
-    <com.google.android.material.tabs.TabLayout
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ib_message"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:src="@mipmap/img_message"
+                    android:background="@null"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="102dp"
+                    tools:ignore="RtlHardcoded" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                app:tabMaxWidth="0dp"
+                app:tabMode="fixed"
+                app:tabRippleColor="@android:color/transparent"
+                app:tabTextColor="@color/color_home_tab_text"
+                app:tabIndicatorColor="@color/color_tab_indicator"
+                app:tabSelectedTextColor="@color/color_tab_text_selected"
+                app:tabTextAppearance="@style/VideoTabLayoutTextStyle"
+                app:tabIndicator="@drawable/layer_video_indicator">
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+        </com.google.android.material.tabs.TabLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
-            app:tabMaxWidth="0dp"
-            android:paddingBottom="5dp"
-            app:tabRippleColor="@android:color/transparent"
-            app:tabTextColor="@color/color_home_tab_text"
-            app:tabIndicatorColor="@color/color_tab_indicator"
-            app:tabSelectedTextColor="@color/color_tab_text_selected"
-            app:tabTextAppearance="@style/VideoTabLayoutTextStyle"
-            app:tabIndicator="@drawable/layer_video_indicator">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
 
-
-    </com.google.android.material.tabs.TabLayout>
-
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
