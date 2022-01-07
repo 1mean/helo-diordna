@@ -13,6 +13,8 @@ data class PetVideo(
     var duration: Int = 0,//视频时长
     var cover: String? = null,//封面路径
     var type: Int = 0,//数据类型
-    var authorName: String? = null//发布者信息
+    var authorName: String? = null,//发布者信息
+    var period: Int = 0,//对应PetType
+    var isStar:Boolean = false,//明星熊猫
 
 )
