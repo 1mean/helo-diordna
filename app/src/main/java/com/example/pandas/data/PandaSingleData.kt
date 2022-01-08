@@ -8,7 +8,7 @@ import com.example.pandas.bean.pet.PetVideo
  * @date: 1/8/22 12:38 上午
  * @version: v1.0
  */
-public class PandaData3 {
+public class PandaSingleData {
 
     private val list = mutableListOf<PetVideo>()
 

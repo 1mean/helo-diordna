@@ -1,0 +1,95 @@
+
+1，对视频详情页面，用xpath进行解析html文件
+2，对收藏列表界面，直接从页面开发工具network里获取name为list开头的收藏数据的路径，通过对该路径里的json数据进行解析即可
+
+代码简单，写的十分潦草，能拿到我的数据就行
+
+----------------------------解析详情界面-----------------------
+import requests
+from lxml import etree
+
+i = 8
+duration = 30
+a = str(1 + i)
+code = 180 + i
+url = "https://www.bilibili.com/video/BV1cg411K799?spm_id_from=333.999.0.0"
+
+a = "panda" + a
+c = "panda_baby_" + a
+html = requests.get(url)
+
+tree = etree.HTML(html.text)
+title = tree.xpath("//title/text()")
+title = title[0].split("_哔哩哔哩_bilibili")[0]
+time = tree.xpath("//meta[@itemprop='uploadDate']/@content")[0]
+# print(time[0])
+url = tree.xpath("//meta[@itemprop='url']/@content")[0]
+# print(url[0])
+author = tree.xpath("//meta[@itemprop='author']/@content")[0]
+# print(author[0])
+image = tree.xpath("//meta[@itemprop='image']/@content")[0]
+# print(image[0])
+print("val " + a + " = PetVideo()")
+print(a + ".type = PetType.PANDA.ordinal")
+print(a + ".fileName = \"" + c + "\"")
+print(a + ".code = " + str(code))
+print(a + ".duration =" + str(duration))
+print(a + ".period = PeriodType.MOM.ordinal")
+print(a + ".isStar = false")
+print(a + ".title = " + "\"" + title + "\"")
+print(a + ".releaseTime = " + "\"" + time + "\"")
+print(a + ".originalUrl = " + "\"" + url + "\"")
+print(a + ".tags = \"和花,萌宠,萌萌哒,可爱,动物圈\"")
+print(a + ".authorName = " + "\"" + author + "\"")
+print(a + ".cover = " + "\"" + image + "\"")
+print("list.add(" + a + ")")
+
+----------------------------解析收藏界面-----------------------
+from datetime import datetime
+
+import requests
+
+pn = 1
+a = 110
+code = 357
+# 新的一页只要pn值递增,新的收藏类别也只需要换media_id就能开始新的分页
+for i in range(6):
+    url1 = "https://api.bilibili.com/x/v3/fav/resource/list?media_id=1462197889&pn=" + str(
+        pn) + "&ps=20&keyword=&order=mtime&type=0&tid=0&platform=web&jsonp=jsonp"
+    response = requests.get(url1)
+    datas = response.json()['data']['medias']
+    pn += 1
+    index = 0
+    for data in datas:
+        if (index < 22):  # 每次总会输出两次，超过20的就不输出了
+            print("================================================")
+            title = data['title']
+            cover = data['cover']
+            duration = data['duration']
+            name = data['upper']['name']
+            time = data['pubtime']
+            bvid = data['bvid']
+            path = "https://www.bilibili.com/video/" + str(bvid)
+            date = datetime.fromtimestamp(time)
+
+            pandaName = "panda" + str(a)
+            c = "panda_mom_panda" + str(a)
+            print("val " + pandaName + " = PetVideo()")
+            print(pandaName + ".type = PetType.PANDA.ordinal")
+            print(pandaName + ".fileName = \"" + c + "\"")
+            print(pandaName + ".code = " + str(code))
+            print(pandaName + ".duration =" + str(duration))
+            print(pandaName + ".period = PeriodType.MOM.ordinal")
+            print(pandaName + ".isStar = false")
+            print(pandaName + ".title = " + "\"" + title + "\"")
+            print(pandaName + ".releaseTime = " + "\"" + str(date) + "\"")
+            print(pandaName + ".originalUrl = " + "\"" + path + "\"")
+            print(pandaName + ".tags = \"和花,萌宠,萌萌哒,可爱,动物圈\"")
+            print(pandaName + ".authorName = " + "\"" + name + "\"")
+            print(pandaName + ".cover = " + "\"" + cover + "\"")
+            print("list.add(" + pandaName + ")")
+
+            index += 1
+            a += 1
+            code += 1
+            print("================================================")
