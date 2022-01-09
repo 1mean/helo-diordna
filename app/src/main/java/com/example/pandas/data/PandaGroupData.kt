@@ -14,21 +14,6 @@ public class PandaGroupData {
 
     fun getData() {
 
-        val panda = PetVideo()
-        panda.type = PetType.PANDA.ordinal
-        panda.fileName = "panda_group_panda1"
-        panda.code = 337
-        panda.duration = 34
-        panda.period = PeriodType.GROUP.ordinal
-        panda.isStar = false
-        panda.title = "北川绝美睡颜"
-        panda.releaseTime = "2020-09-21 18:29:20"
-        panda.originalUrl = "https://www.bilibili.com/video/BV17h411X7sH/"
-        panda.tags = "北川,萌宠,萌萌哒,可爱,动物圈"
-        panda.authorName = "迩後咩"
-        panda.cover = "http://i2.hdslb.com/bfs/archive/310d407ea7a93e5cd90ffa41da847dc607e1eeca.jpg"
-        list.add(panda)
-
         val panda1 = PetVideo()
         panda1.type = PetType.PANDA.ordinal
         panda1.fileName = "panda_group_panda1"
@@ -216,5 +201,79 @@ public class PandaGroupData {
         list.add(panda11)
 
 
+        val panda12 = PetVideo()
+        panda12.type = PetType.PANDA.ordinal
+        panda12.fileName = "panda_group_panda12"
+        panda12.code = 68
+        panda12.duration = 67
+        panda12.period = PeriodType.GROUP.ordinal
+        panda12.title = "【大熊猫和花】爷爷等等我，我偶尔也是可以倍速播放的"
+        panda12.releaseTime = "2022-01-02 22:23:43"
+        panda12.originalUrl = "https://www.bilibili.com/video/BV11b4y1n7yd?share_source=copy_web"
+        panda12.tags = "萌宠,和花,动物,熊猫"
+        panda12.authorName = "胖哒哒不月半"
+        panda12.cover =
+            "http://i2.hdslb.com/bfs/archive/711945b30d6bdd958b5140e5954c68d6b0f52f1e.jpg"
+        list.add(panda12)
+
+        val panda13 = PetVideo()
+        panda13.type = PetType.PANDA.ordinal
+        panda13.fileName = "panda_group_panda13"
+        panda13.code = 69
+        panda13.duration = 68
+        panda13.period = PeriodType.GROUP.ordinal
+        panda13.title = "熊猫和花:回家 or 继续耍，这或许是个问题"
+        panda13.releaseTime = "2022-01-04 22:09:05"
+        panda13.originalUrl = "https://www.bilibili.com/video/BV1RR4y1u7Kc?share_source=copy_web"
+        panda13.tags = "萌宠,和花,动物,熊猫"
+        panda13.authorName = "胖哒哒不月半"
+        panda13.cover =
+            "http://i1.hdslb.com/bfs/archive/7ad9900d155d8047999fa4c581b2a15eba641e21.jpg"
+        list.add(panda13)
+
+        val panda14 = PetVideo()
+        panda14.type = PetType.PANDA.ordinal
+        panda14.fileName = "panda_group_panda14"
+        panda14.code = 70
+        panda14.duration = 113
+        panda14.period = PeriodType.GROUP.ordinal
+        panda14.title = "【大熊猫和花】任凭爷爷呼喊依然慢吞吞的花花"
+        panda14.releaseTime = "2022-01-05 01:17:44"
+        panda14.originalUrl = "https://www.bilibili.com/video/BV1Fm4y1D7je?share_source=copy_web"
+        panda14.tags = "萌宠,和花,动物,熊猫"
+        panda14.authorName = "胖哒哒不月半"
+        panda14.cover =
+            "http://i1.hdslb.com/bfs/archive/6659f4f5221f6d004c015ce5d44e9788957decb5.jpg"
+        list.add(panda14)
+
+        val panda15 = PetVideo()
+        panda15.type = PetType.PANDA.ordinal
+        panda15.fileName = "panda_group_panda15"
+        panda15.code = 71
+        panda15.duration = 133
+        panda15.period = PeriodType.GROUP.ordinal
+        panda15.title = "和花现在不仅跑得快，还会“急刹”"
+        panda15.releaseTime = "2022-01-04 23:08:40"
+        panda15.originalUrl = "https://www.bilibili.com/video/BV1qD4y1F7Rd?share_source=copy_web"
+        panda15.tags = "大熊猫和花、和叶、艾玖、润玥"
+        panda15.authorName = "胖哒哒不月半"
+        panda15.cover =
+            "http://i0.hdslb.com/bfs/archive/6c8a7b2c45bd204a1f2698e9ff88439f902f7ba0.jpg"
+        list.add(panda15)
+
+        val panda16 = PetVideo()
+        panda16.type = PetType.PANDA.ordinal
+        panda16.fileName = "panda_group_panda16"
+        panda16.code = 337
+        panda16.duration = 34
+        panda16.period = PeriodType.GROUP.ordinal
+        panda16.isStar = true
+        panda16.title = "北川绝美睡颜"
+        panda16.releaseTime = "2020-09-21 18:29:20"
+        panda16.originalUrl = "https://www.bilibili.com/video/BV17h411X7sH/"
+        panda16.tags = "北川,萌宠,萌萌哒,可爱,动物圈"
+        panda16.authorName = "迩後咩"
+        panda16.cover = "http://i2.hdslb.com/bfs/archive/310d407ea7a93e5cd90ffa41da847dc607e1eeca.jpg"
+        list.add(panda16)
     }
 }
