@@ -1,6 +1,4 @@
-import com.example.pandas.bean.pet.PeriodType
-import com.example.pandas.bean.pet.PetType
-import com.example.pandas.bean.pet.PetVideo
+import com.example.pandas.sql.entity.PetVideo
 
 /**
  * @description: TODO

@@ -1,11 +1,16 @@
 package com.example.pandas.ui.activity
 
 import HomeAdapter
+import android.Manifest
 import android.os.Build
 import android.os.Bundle
-import android.view.View
+import android.os.Environment
+import android.util.Log
 import android.widget.RadioGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.example.pandas.R
 import com.example.pandas.databinding.ActivityHomeBinding
 
@@ -19,6 +24,23 @@ import com.example.pandas.databinding.ActivityHomeBinding
 public class HomeActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListener {
 
     private lateinit var binding: ActivityHomeBinding
+
+    private val permissions = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
+
+    private val requestPermissions =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+
+            val grantedList = it.filterValues { it }.mapNotNull { it.key } //通过的权限
+            val isAllGranted = grantedList.size == it.size
+            val list = (it - grantedList).map { it.key }//未通过的权限
+            //拒绝的权限
+            val deniedList =
+                list.filter { ActivityCompat.shouldShowRequestPermissionRationale(this, it) }
+            val alwaysDeniedList = list - deniedList
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +56,13 @@ public class HomeActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListe
         binding.vpHome.setCurrentItem(0, false)
         binding.vpHome.isUserInputEnabled = false //禁止滑动
 
+        requestPermissions.launch(permissions)
         //状态栏沉浸
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 //            window.decorView.systemUiVisibility =
 //                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 //        }
+
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {

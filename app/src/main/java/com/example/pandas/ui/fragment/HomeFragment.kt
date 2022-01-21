@@ -20,7 +20,7 @@ public class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val tabTitles = arrayListOf<String>("推荐", "动物", "北极熊", "老虎", "小熊猫")
+    private val tabTitles = arrayListOf<String>("大熊猫", "推荐", "北极熊", "老虎", "小熊猫")
 
     override fun onCreateView(
         inflater: LayoutInflater,

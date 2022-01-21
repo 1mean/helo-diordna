@@ -23,6 +23,9 @@ public class HomePagerAdapter(private val tabList: List<String>, fragment: Fragm
                 "推荐" -> {
                     RecommendFragment()
                 }
+                "大熊猫" -> {
+                    PandaFragment()
+                }
                 "老虎" -> {
                     Fragment()
                 }

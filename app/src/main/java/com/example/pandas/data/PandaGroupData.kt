@@ -1,6 +1,6 @@
-import com.example.pandas.bean.pet.PeriodType
+import com.example.pandas.sql.entity.PeriodType
 import com.example.pandas.bean.pet.PetType
-import com.example.pandas.bean.pet.PetVideo
+import com.example.pandas.sql.entity.PetVideo
 
 /**
  * @description: TODO
@@ -8,11 +8,11 @@ import com.example.pandas.bean.pet.PetVideo
  * @date: 2022/1/8 3:27 下午
  * @version: v1.0
  */
-public class PandaGroupData {
+object PandaGroupData {
 
     private val list = mutableListOf<PetVideo>()
 
-    fun getData() {
+    fun getData():MutableList<PetVideo> {
 
         val panda1 = PetVideo()
         panda1.type = PetType.PANDA.ordinal
@@ -275,5 +275,7 @@ public class PandaGroupData {
         panda16.authorName = "迩後咩"
         panda16.cover = "http://i2.hdslb.com/bfs/archive/310d407ea7a93e5cd90ffa41da847dc607e1eeca.jpg"
         list.add(panda16)
+
+        return list
     }
 }

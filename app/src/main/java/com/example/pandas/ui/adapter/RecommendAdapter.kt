@@ -1,7 +1,7 @@
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pandas.bean.pet.PetVideo
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.databinding.CardItemLayoutBinding
 
 /**

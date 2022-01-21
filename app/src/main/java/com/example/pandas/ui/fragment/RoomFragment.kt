@@ -9,7 +9,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
-import com.example.pandas.ui.view.MyViewPager2
+import com.example.pandas.ui.view.viewpager.MyViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 

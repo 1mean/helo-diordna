@@ -9,17 +9,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.*
 import com.example.pandas.R
-import kotlinx.coroutines.Runnable
 
 /**
  * @description: TODO
  * @author: dongyiming
- * @date: 12/27/21 6:30 下午
+ * @date: 12/27/19 6:30 下午
  * @version: v1.0
  */
 public class RefreshRecyclerView : RecyclerView {
@@ -70,6 +68,7 @@ public class RefreshRecyclerView : RecyclerView {
     override fun setLayoutManager(layout: LayoutManager?) {
         super.setLayoutManager(layout)
     }
+
     /**
      * 滑动状态改变的回调
      * @author: dongyiming
@@ -79,6 +78,7 @@ public class RefreshRecyclerView : RecyclerView {
     override fun onScrollStateChanged(state: Int) {
         super.onScrollStateChanged(state)
 
+        Log.e("1111mean", "isLoadingData: $isLoadingData")
         if (state == RecyclerView.SCROLL_STATE_IDLE && mOnRefreshLoadListener != null && !isFreshing && !isLoadingData) {
 
             var lastVisibleItemPosition = 0
@@ -98,6 +98,12 @@ public class RefreshRecyclerView : RecyclerView {
             val total = wrapAdapter!!.realCount()
             val childCount = layoutManager!!.childCount // 未隐藏的数目 childCount = count - hiddenCount
 
+            Log.e(
+                "1111mean", "childCount: $childCount, " +
+                        "lastVisibleItemPosition: $lastVisibleItemPosition, " +
+                        "(total - 1 ): " + (total - 1) + ", " +
+                        "isFreshing: $isFreshing, isNoMore: $isNoMore"
+            )
             if (childCount > 0 && lastVisibleItemPosition >= total - 1 && total > childCount
 
                 && !isFreshing && !isNoMore
@@ -160,7 +166,8 @@ public class RefreshRecyclerView : RecyclerView {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
 
             if (viewType == TYPE_FOOTER) {
-                _footer = LayoutInflater.from(parent.context).inflate(R.layout.footer_recyclerview,parent,false)
+                _footer = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.footer_recyclerview, parent, false)
                 return FooterViewHolder(footer)
             } else {
                 return adapter.onCreateViewHolder(parent, viewType)
@@ -222,7 +229,7 @@ public class RefreshRecyclerView : RecyclerView {
 
                 val space = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
-                        Log.e("1mean","position: $position ,spanCount: " + manager.spanCount)
+                        //Log.e("1mean","position: $position ,spanCount: " + manager.spanCount)
                         if (isFooter(position)) {
                             return 2
                         } else {
@@ -244,7 +251,7 @@ public class RefreshRecyclerView : RecyclerView {
             }
         }
 
-        inner class FooterViewHolder(itemView:View):BaseEmptyViewHolder(itemView){
+        inner class FooterViewHolder(itemView: View) : BaseEmptyViewHolder(itemView) {
 
             val progressBar = itemView.findViewById<ProgressBar>(R.id.progressBar)
             val txtFooter = itemView.findViewById<AppCompatTextView>(R.id.txt_footer)
@@ -255,7 +262,7 @@ public class RefreshRecyclerView : RecyclerView {
         fun onLoadMore()
     }
 
-    public fun isFreshing(freshing: Boolean) {
+    fun isFreshing(freshing: Boolean) {
         isFreshing = freshing
     }
 

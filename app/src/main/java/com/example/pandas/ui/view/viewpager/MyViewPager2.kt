@@ -1,4 +1,4 @@
-package com.example.pandas.ui.view
+package com.example.pandas.ui.view.viewpager
 
 import com.example.pandas.ui.adapter.viewholder.ImageViewHolder
 import android.content.Context

@@ -1,4 +1,4 @@
-package com.example.pandas.bean.pet
+package com.example.pandas.sql.entity
 
 /**
  *  特征提取，用于分析

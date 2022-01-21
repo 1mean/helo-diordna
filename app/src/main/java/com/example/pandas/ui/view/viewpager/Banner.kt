@@ -1,6 +1,5 @@
-package com.example.pandas.ui.view
+package com.example.pandas.ui.view.viewpager
 
-import com.example.pandas.ui.adapter.viewholder.ImageViewHolder
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.example.pandas.ui.adapter.viewholder.ImageViewHolder
 import kotlin.math.abs
 
 /**
@@ -49,6 +49,7 @@ public class Banner : RelativeLayout {
     private var lastX = 0f
     private var lastY = 0f
 
+    private var indicator: Indicator? = null
     private val autoTime: Long = 5000
 
     constructor(context: Context) : this(context, null) {
@@ -79,6 +80,20 @@ public class Banner : RelativeLayout {
         addView(_mViewPager)
     }
 
+    //设置轮播指示器
+    fun setIndicator(mIndicator: Indicator, attachToBanner: Boolean): Banner {
+
+        if (indicator != null) {
+            removeView(indicator?.getView())
+        }
+
+        this.indicator = mIndicator
+        if (attachToBanner) {
+            addView(indicator?.getView(), indicator?.getParams())
+        }
+        return this
+    }
+
     /**
      * 开始运行viewpager
      * @date: 2021/12/24 1:13 下午
@@ -88,7 +103,18 @@ public class Banner : RelativeLayout {
         //wrapAdapter?.notifyDataSetChanged()
         setCurrentPage(startPosition, false)
 
-        //TODO:初始化轮播图
+        if (isAutoPlayed()) {
+            startPlaying()
+        }
+    }
+
+    fun startViewPager(startPosition: Int, color: Int) {
+
+        //wrapAdapter?.notifyDataSetChanged()
+        setCurrentPage(startPosition, false)
+
+        indicator?.initIndicator(getRealCount(), color)
+
         if (isAutoPlayed()) {
             startPlaying()
         }
@@ -272,6 +298,18 @@ public class Banner : RelativeLayout {
      * @version: v1.0
      */
     private inner class MyOnPageChangeCallback : ViewPager2.OnPageChangeCallback() {
+
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
+
+            val realPosition: Int = realPosition(position)
+            if (indicator != null) {
+                indicator!!.onPageScrolled(realPosition, positionOffset, positionOffsetPixels)
+            }
+        }
 
         override fun onPageSelected(position: Int) {
 

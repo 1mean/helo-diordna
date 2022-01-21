@@ -1,4 +1,4 @@
-package com.example.pandas.bean.pet
+package com.example.pandas.sql.entity
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

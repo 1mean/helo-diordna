@@ -18,7 +18,6 @@ public class RetrofitBuilder private constructor() {
     private var httpclentBuilder: OkHttpClient.Builder? = null
     private val DEFAULT_TIMEOUT = 5L
 
-
     companion object {
         val instance = Holder.holder
     }

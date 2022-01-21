@@ -15,7 +15,7 @@ public class TimeUtils {
         @SuppressLint("SimpleDateFormat")
         fun getDuration(duration:Long):String {
 
-            val formatter = SimpleDateFormat("mm:ss")
+            val formatter = SimpleDateFormat("m:ss")
             return formatter.format(Date(duration*1000))
         }
 

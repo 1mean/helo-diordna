@@ -1,6 +1,6 @@
-import com.example.pandas.bean.pet.PeriodType
+import com.example.pandas.sql.entity.PeriodType
 import com.example.pandas.bean.pet.PetType
-import com.example.pandas.bean.pet.PetVideo
+import com.example.pandas.sql.entity.PetVideo
 
 /**
  * @description: TODO
@@ -8,11 +8,18 @@ import com.example.pandas.bean.pet.PetVideo
  * @date: 1/8/22 12:22 上午
  * @version: v1.0
  */
-public class PandaMomData {
+object PandaMomData {
 
-    private val list = mutableListOf<PetVideo>()
+    private var list = mutableListOf<PetVideo>()
 
-    fun getPanda() {
+    fun getAll():MutableList<PetVideo>{
+
+        getPanda()
+        get()
+        gethehuaheye()
+        return list
+    }
+    fun getPanda():MutableList<PetVideo> {
 
         val panda1 = PetVideo()
         panda1.type = PetType.PANDA.ordinal
@@ -1992,10 +1999,10 @@ public class PandaMomData {
         panda118.cover =
             "http://i1.hdslb.com/bfs/archive/190faa750dbc72f3323b131db6142184e5f3d567.jpg"
         list.add(panda118)
-
+        return list
     }
 
-    fun get() {
+    fun get() :MutableList<PetVideo>{
 
         val panda = PetVideo()
         panda.type = PetType.PANDA.ordinal
@@ -2371,10 +2378,10 @@ public class PandaMomData {
         panda25.cover =
             "http://i1.hdslb.com/bfs/archive/43e3a383e0fc799627fcf617dfaaca1b2d3a2965.jpg"
         list.add(panda25)
-
+        return list
     }
 
-    fun gethehuaheye() {
+    fun gethehuaheye() :MutableList<PetVideo>{
         val panda = PetVideo()
         panda.type = PetType.PANDA.ordinal
         panda.fileName = "panda_mom_panda144"
@@ -3106,6 +3113,6 @@ public class PandaMomData {
             "http://i2.hdslb.com/bfs/archive/399ef29fbe879e4fd78a6cc0b5712f7867acd334.jpg"
         list.add(panda43)
 
-
+        return list
     }
 }

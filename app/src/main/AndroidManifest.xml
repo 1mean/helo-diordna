@@ -23,18 +23,15 @@
         </activity>
 
         <activity android:name=".ui.activity.BehaviorActivity" />
+       <!-- <activity android:name=".ui.activity.HomeActivity" />-->
         <activity
                 android:name=".ui.activity.VideoPlayingActivity"
                 android:configChanges="orientation" />
 
     </application>
 
-    <uses-permission
-            android:name="android.permission.INTERNET"
-            tools:ignore="ManifestOrder" />
-    <uses-permission
-            android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-            tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>

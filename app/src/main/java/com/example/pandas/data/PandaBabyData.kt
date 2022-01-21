@@ -1,6 +1,6 @@
-import com.example.pandas.bean.pet.PeriodType
+import com.example.pandas.sql.entity.PeriodType
 import com.example.pandas.bean.pet.PetType
-import com.example.pandas.bean.pet.PetVideo
+import com.example.pandas.sql.entity.PetVideo
 
 /**
  * @description: TODO
@@ -8,11 +8,11 @@ import com.example.pandas.bean.pet.PetVideo
  * @date: 1/4/22 9:10 下午
  * @version: v1.0
  */
-public class PandaBabyData {
+object PandaBabyData {
 
-    private val list = mutableListOf<PetVideo>()
+    private var list = mutableListOf<PetVideo>()
 
-    fun getBabyHeHua() {
+    fun getBabyHeHua(): MutableList<PetVideo> {
 
         val panda = PetVideo()
         panda.type = PetType.PANDA.ordinal
@@ -3517,5 +3517,6 @@ public class PandaBabyData {
             "http://i0.hdslb.com/bfs/archive/98c1bc654f067025b177396274d315e744c1cd5b.jpg"
         list.add(panda220)
 
+        return list
     }
 }

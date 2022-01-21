@@ -2,7 +2,7 @@
 1，对视频详情页面，用xpath进行解析html文件
 2，对收藏列表界面，直接从页面开发工具network里获取name为list开头的收藏数据的路径，通过对该路径里的json数据进行解析即可
 
-代码简单，写的十分潦草，能拿到我的数据就行
+代码简单，写的十分潦草，时间有限，能拿到数据就行
 
 ----------------------------解析详情界面-----------------------
 import requests
@@ -93,3 +93,73 @@ for i in range(6):
             a += 1
             code += 1
             print("================================================")
+
+----------------------------拿到收藏界面的所有视频数据，批量下载并转换格式-----------------------
+import os
+import requests
+
+# 删除xml弹幕文件
+def deleteList():
+    filePath = "/Users/dongyiming/Desktop/pet/pandas/hehua/"
+    list = os.listdir(filePath)
+    for file in list:
+        path = os.path.join(filePath, file)
+        if (os.path.isdir(path)):
+            print("..........")
+        else:
+            if (os.path.splitext(path)[1] == ".xml"):
+                os.remove(path)
+
+
+#格式转换 convert flv to mp4
+# ffmpeg -i /Users/dongyiming/Desktop/pet/pandas/hehua/panda_1.flv /Users/dongyiming/Desktop/pet/pandas/hehua/panda_1.mp4
+def convertFLV2MP4():
+    filePath = "/Users/dongyiming/Desktop/pet/pandas/hehua/"
+    list = os.listdir(filePath)
+    for file in list:
+        pathName = os.path.join(filePath, file)
+        if (os.path.splitext(file)[1] == ".flv"):
+            name = os.path.splitext(file)[0]
+            print(name)
+            command = "ffmpeg -i " + pathName + " /Users/dongyiming/Desktop/pet/pandas/hehua/" + name + ".mp4"
+            os.system(command)
+
+//下载所有文件
+def download():
+    list = getAllFilePath()
+    for url in list:
+        try:
+            command = "you-get --format=flv -o /Users/dongyiming/Desktop/pet/pandas/hehua "
+            command = command + url
+            print(command)
+            os.system(command)
+        except Exception:
+            command = "you-get --format=flv720 -o /Users/dongyiming/Desktop/pet/pandas/hehua "
+            command = command + url
+            print("下载失败：" + command)
+            os.system(command)
+
+
+def getAllFilePath():
+    list = []
+    pn = 1
+    for i in range(2):
+        url1 = "https://api.bilibili.com/x/v3/fav/resource/list?media_id=1462197889&pn=" + str(
+            pn) + "&ps=20&keyword=&order=mtime&type=0&tid=0&platform=web&jsonp=jsonp"
+        response = requests.get(url1)
+        datas = response.json()['data']['medias']
+        index = 0
+        for data in datas:
+            if (index < 22):
+                bvid = data['bvid']
+                path = "https://www.bilibili.com/video/" + str(bvid)
+                list.append(path)
+                index += 1
+        pn += 1
+    return list
+
+
+if __name__ == '__main__':
+    convertFLV2MP4()
+
+

@@ -1,7 +1,5 @@
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
@@ -15,7 +13,7 @@ import com.example.pandas.databinding.ItemTitleEyeBinding
 import com.example.pandas.databinding.ItemVideoEyeBinding
 import com.example.pandas.databinding.ItemVpEyeBinding
 import com.example.pandas.ui.activity.VideoPlayingActivity
-import com.example.pandas.ui.view.Banner
+import com.example.pandas.ui.view.viewpager.Banner
 
 /**
  * @description: TODO

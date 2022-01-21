@@ -4,8 +4,6 @@ import android.util.DisplayMetrics
 import android.view.WindowManager
 
 
-
-
 /**
  * @description: TODO
  * @author: dongyiming
@@ -15,6 +13,10 @@ import android.view.WindowManager
 public class ScreenUtil {
 
     companion object {
+
+        fun dip2px(context: Context, dpValue: Float): Int {
+            return (dpValue * context.resources.displayMetrics.density).toInt()
+        }
 
         fun dp2px(context: Context, dpValue: Float): Int {
 

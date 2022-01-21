@@ -1,4 +1,4 @@
-package com.example.pandas.bean.pet
+package com.example.pandas.sql.entity
 
 /**
  * 宠物所处时段，视频如果有多角色，通过名字判断主角
