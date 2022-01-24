@@ -29,14 +29,12 @@ public class RecoViewPagerAdapter(private val list: MutableList<PetViewData>) :
         (holder as MyHolder).handle(position)
     }
 
-    override fun getItemCount(): Int {
-        return list.size
-    }
+    override fun getItemCount(): Int = list.size
 
     inner class MyHolder(binding: ViewpagerRecommendBinding) : BaseEmptyViewHolder(binding.root) {
 
-        val cover = binding.imgBg
-        val title = binding.txtTitle
+        val cover = binding.imgRecommendBg
+        val title = binding.txtRecommendTitle
 
         fun handle(position: Int) {
 
@@ -44,7 +42,9 @@ public class RecoViewPagerAdapter(private val list: MutableList<PetViewData>) :
             val url = data.cover.replace("http", "https")
             Glide.with(itemView.context).load(url)
                 .into(cover)
-            title.text = data.title
+            if (position != 0) {
+                title.text = data.title
+            }
         }
     }
 }

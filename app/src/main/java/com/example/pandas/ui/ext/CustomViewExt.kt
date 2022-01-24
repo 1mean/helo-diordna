@@ -15,9 +15,9 @@ fun RefreshRecyclerView.initReco(
     manger: RecyclerView.LayoutManager,
     bindAdapter: RecyclerView.Adapter<BaseEmptyViewHolder>,
     listener: ILoadMoreListener
-    ):RefreshRecyclerView{
+): RefreshRecyclerView {
     this.layoutManager = manger
-    setRefreshAdapter(bindAdapter,listener)
+    setRefreshAdapter(bindAdapter, listener)
     addItemDecoration(RecommendDecoration(context))
     return this
 }
@@ -26,9 +26,9 @@ fun RefreshRecyclerView.initPanda(
     manger: RecyclerView.LayoutManager,
     bindAdapter: RecyclerView.Adapter<BaseEmptyViewHolder>,
     listener: ILoadMoreListener
-):RefreshRecyclerView{
+): RefreshRecyclerView {
     this.layoutManager = manger
-    setRefreshAdapter(bindAdapter,listener)
+    setRefreshAdapter(bindAdapter, listener)
     addItemDecoration(PandaDecoration(context))
     return this
 }

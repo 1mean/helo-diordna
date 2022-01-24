@@ -2,12 +2,15 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.pandas.R
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.databinding.CardItemLayoutBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.databinding.ItemRecommendVideoBinding
+import com.example.pandas.ui.view.viewpager.Indicator
 
 /**
  * @description: TODO
@@ -47,9 +50,9 @@ public class RecommendAdapter(private val data: RecommendData<PetViewData>) :
 
     @SuppressLint("NotifyDataSetChanged")
     fun addData(recommendData: RecommendData<PetViewData>) {
-        if (recommendData.bannerList.isNotEmpty()) {
+        if (recommendData.itemList.isNotEmpty()) {
             data.itemList.addAll(recommendData.itemList)
-            notifyDataSetChanged()
+            notifyItemRangeInserted((data.itemList.size + 1), recommendData.itemList.size)
         }
     }
 
@@ -117,6 +120,8 @@ public class RecommendAdapter(private val data: RecommendData<PetViewData>) :
         val title = binding.txtTitle
 
         fun handle(position: Int) {
+
+            Log.e("11111111111111111mean", "$position")
             val petVideo = data.itemList[position - 1]
             val duration = TimeUtils.getDuration(petVideo.duration.toLong())
 
@@ -139,10 +144,15 @@ public class RecommendAdapter(private val data: RecommendData<PetViewData>) :
             //轮播图数据
             val list = data.bannerList
 
-            Log.e("1mean", "list: " + list)
+            val indicator = Indicator(itemView.context)
+            indicator.initIndicator(
+                list.size,
+                ContextCompat.getColor(itemView.context, R.color.white)
+            )
             val adapter = RecoViewPagerAdapter(list)
             this.banner.setAdapter(adapter)
-
+                .setIndicator(indicator, true)
+                .setAutoPlayed(true)
         }
     }
 

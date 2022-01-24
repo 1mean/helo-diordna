@@ -1,4 +1,5 @@
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
 import com.example.pandas.bean.pet.PetViewData
@@ -49,6 +50,7 @@ public class RecommendFragment : BaseFragment<PetViewModel, FragmentRecommendBin
                     }
                     //加载更多
                     else -> {
+                        Log.e("1mean","adapter addData")
                         binding.rview.loadMoreFinished()
                         mAdapter.addData(it.recoData)
                     }

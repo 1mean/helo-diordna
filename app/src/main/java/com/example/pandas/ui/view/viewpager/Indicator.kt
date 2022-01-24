@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
@@ -23,12 +24,14 @@ public class Indicator : View, Iindicator {
     private var pageCount: Int = 0
 
     //距离参数，选中和未选中一样大小
-    private val indicatorItemPadding: Int = ScreenUtil.dip2px(context, 5f) //间隔
-    private val indicatorRadius: Int = ScreenUtil.dip2px(context, 2.5f) //间隔
+    private val indicatorItemPadding: Int = ScreenUtil.dip2px(context, 4f) //间隔
+    private val indicatorRadius: Int = ScreenUtil.dip2px(context, 2.7f) //半径
 
     private var mPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var selectColor: Int? = null
-    private var indiColor: Int = ContextCompat.getColor(context, R.color.color_indicator)
+    private var indiColor: Int = ContextCompat.getColor(context, R.color.color_home_viewpager_bg)
+
+    private var params: RelativeLayout.LayoutParams? = null
 
     constructor(context: Context) : this(context, null)
 
@@ -61,15 +64,18 @@ public class Indicator : View, Iindicator {
     }
 
     override fun getParams(): RelativeLayout.LayoutParams {
-        val params = RelativeLayout.LayoutParams(
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
-        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-        params.bottomMargin = ScreenUtil.dip2px(context, 8f)
-        params.rightMargin = ScreenUtil.dip2px(context, 8f)
-        return params
+
+        if (params == null) {
+            params = RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            params?.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+            params?.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+            params?.bottomMargin = ScreenUtil.dip2px(context, 8f)
+            params?.rightMargin = ScreenUtil.dip2px(context, 8f)
+        }
+        return params!!
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -82,30 +88,32 @@ public class Indicator : View, Iindicator {
         var measureHeight: Int = 0
 
         //获取测量值
-        when (w_mode) {
-            MeasureSpec.EXACTLY -> {
-                measureWidth = w_size
-            }
-            MeasureSpec.AT_MOST -> {
-            }
-            MeasureSpec.UNSPECIFIED -> {
-
-                val paddingWidths = (pageCount - 1) * indicatorItemPadding
-                val itemWidths = indicatorRadius * 2 * pageCount
-                measureWidth = paddingLeft + paddingRight + itemWidths + paddingWidths
-            }
-        }
-
-        when (h_mode) {
-            MeasureSpec.EXACTLY -> {
-                measureHeight = h_size
-            }
-            MeasureSpec.AT_MOST -> {
-            }
-            MeasureSpec.UNSPECIFIED -> {
-                measureHeight = paddingTop + paddingBottom + indicatorRadius * 2
-            }
-        }
+//        when (w_mode) {
+//            MeasureSpec.EXACTLY -> {
+//                measureWidth = w_size
+//            }
+//            MeasureSpec.AT_MOST -> {
+//            }
+//            MeasureSpec.UNSPECIFIED -> {
+//                val paddingWidths = (pageCount - 1) * indicatorItemPadding
+//                val itemWidths = indicatorRadius * 2 * pageCount
+//                measureWidth = paddingLeft + paddingRight + itemWidths + paddingWidths
+//            }
+//        }
+//        when (h_mode) {
+//            MeasureSpec.EXACTLY -> {
+//                measureHeight = h_size
+//            }
+//            MeasureSpec.AT_MOST -> {
+//            }
+//            MeasureSpec.UNSPECIFIED -> {
+//                measureHeight = paddingTop + paddingBottom + indicatorRadius * 2
+//            }
+//        }
+        val paddingWidths = (pageCount - 1) * indicatorItemPadding
+        val itemWidths = indicatorRadius * 2 * pageCount
+        measureWidth = paddingLeft + paddingRight + itemWidths + paddingWidths
+        measureHeight = paddingTop + paddingBottom + indicatorRadius * 2
         setMeasuredDimension(measureWidth, measureHeight)
     }
 

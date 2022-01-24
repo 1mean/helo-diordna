@@ -60,6 +60,7 @@ class PetViewModel : BaseViewModel() {
 
         if (isRefresh) {
             pageNo = 0
+            startIndex = 0
         }
         viewModelScope.launch {
 

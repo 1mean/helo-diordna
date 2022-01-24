@@ -50,7 +50,7 @@ public class Banner : RelativeLayout {
     private var lastY = 0f
 
     private var indicator: Indicator? = null
-    private val autoTime: Long = 5000
+    private val autoTime: Long = 2500
 
     constructor(context: Context) : this(context, null) {
     }
@@ -80,49 +80,9 @@ public class Banner : RelativeLayout {
         addView(_mViewPager)
     }
 
-    //设置轮播指示器
-    fun setIndicator(mIndicator: Indicator, attachToBanner: Boolean): Banner {
-
-        if (indicator != null) {
-            removeView(indicator?.getView())
-        }
-
-        this.indicator = mIndicator
-        if (attachToBanner) {
-            addView(indicator?.getView(), indicator?.getParams())
-        }
-        return this
-    }
-
-    /**
-     * 开始运行viewpager
-     * @date: 2021/12/24 1:13 下午
-     */
-    fun startViewPager(startPosition: Int) {
-
-        //wrapAdapter?.notifyDataSetChanged()
-        setCurrentPage(startPosition, false)
-
-        if (isAutoPlayed()) {
-            startPlaying()
-        }
-    }
-
-    fun startViewPager(startPosition: Int, color: Int) {
-
-        //wrapAdapter?.notifyDataSetChanged()
-        setCurrentPage(startPosition, false)
-
-        indicator?.initIndicator(getRealCount(), color)
-
-        if (isAutoPlayed()) {
-            startPlaying()
-        }
-    }
-
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        if (isAutoPlayed()) {
+        if (isAutoPlayed() && getRealCount() > 1) {
             startPlaying()
         }
     }
@@ -186,15 +146,21 @@ public class Banner : RelativeLayout {
         private lateinit var mAdapter: RecyclerView.Adapter<BaseEmptyViewHolder>
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
+
             return mAdapter.onCreateViewHolder(parent, viewType)
         }
 
         override fun onBindViewHolder(holder: BaseEmptyViewHolder, position: Int) {
+
             mAdapter.onBindViewHolder(holder, realPosition(position))
         }
 
-        override fun getItemCount(): Int =
-            if (mAdapter.itemCount > 1) getRealCount() + addPage else getRealCount()
+        override fun getItemCount(): Int {
+
+            val count = if (mAdapter.itemCount > 1) getRealCount() + addPage else getRealCount()
+            return count
+        }
+
 
         override fun getItemId(position: Int): Long {
             return mAdapter.getItemId(realPosition(position))
@@ -213,11 +179,11 @@ public class Banner : RelativeLayout {
      * 数据改变或刷新时执行
      * @date: 2021/12/24 5:40 下午
      */
-    val adapterObserver = object : RecyclerView.AdapterDataObserver() {
+    private val adapterObserver = object : RecyclerView.AdapterDataObserver() {
 
         //每次执行刷新adapter时调用，第一次添加adapter时不会执行
         override fun onChanged() {
-            startViewPager(realPosition(tempPosition))
+            //startViewPager(realPosition(tempPosition))
         }
 
         //减少一页时，触发了
@@ -235,18 +201,7 @@ public class Banner : RelativeLayout {
         }
     }
 
-    fun setAdapter(adapter: RecyclerView.Adapter<BaseEmptyViewHolder>) {
-
-        wrapAdapter = BannerAdapterWrapper()
-        wrapAdapter!!.registerAdapter(adapter)
-        mViewPager.adapter = wrapAdapter
-
-        mViewPager.offscreenPageLimit = 1
-
-        startViewPager(0)
-    }
-
-    public fun setCurrentPage(position: Int) {
+    private fun setCurrentPage(position: Int) {
         setCurrentPage(position, true)
     }
 
@@ -280,8 +235,6 @@ public class Banner : RelativeLayout {
         return realPosition
     }
 
-    private fun getRealCount(): Int = wrapAdapter!!.getRealCount()
-
     /**
      * <监听page滑动>
      *     onPageScrolled：position和移动距离的回调，如从0到1会回调很多次
@@ -304,7 +257,6 @@ public class Banner : RelativeLayout {
             positionOffset: Float,
             positionOffsetPixels: Int
         ) {
-
             val realPosition: Int = realPosition(position)
             if (indicator != null) {
                 indicator!!.onPageScrolled(realPosition, positionOffset, positionOffsetPixels)
@@ -320,7 +272,7 @@ public class Banner : RelativeLayout {
 
         //实现无限循环，系统默认是无法在首/尾位置左滑/右滑
         override fun onPageScrollStateChanged(state: Int) {
-            if (state == ViewPager2.SCROLL_STATE_DRAGGING) {
+            if (state == ViewPager2.SCROLL_STATE_DRAGGING) {//自动模式下不会调用
 
                 if (tempPosition == sidePage - 1) {
                     mViewPager.setCurrentItem(getRealCount() + tempPosition, false)
@@ -331,10 +283,42 @@ public class Banner : RelativeLayout {
         }
     }
 
+
+    private val task: Runnable by lazy {
+        object : Runnable {
+            override fun run() {
+                if (isAutoPlayed()) {
+                    //实际位置
+                    tempPosition++
+
+                    //自动模式下实现最两边的切换
+                    if (tempPosition == getRealCount() + sidePage + 1) {
+                        mViewPager.setCurrentItem(sidePage, false)
+                        post(this)
+                    } else {
+                        mViewPager.currentItem = tempPosition
+                        postDelayed(this, autoTime)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun isAutoPlayed(): Boolean = isAutoPlay && getRealCount() > 1
+
+    private fun getRealCount(): Int = wrapAdapter!!.getRealCount()
+
+
+    private fun addPageTransformer(transformer: ViewPager2.PageTransformer): Banner {
+        compositePageTransformer?.addTransformer(transformer)
+        return this
+    }
+
     private fun startPlaying() {
 
         stopPlaying()
         postDelayed(task, autoTime)
+        isTaskPostDelayed = true
     }
 
     private fun stopPlaying() {
@@ -345,34 +329,7 @@ public class Banner : RelativeLayout {
         }
     }
 
-    private val task: Runnable = object : Runnable {
-        override fun run() {
-            if (isAutoPlayed()) {
-                tempPosition++
-                if (tempPosition == getRealCount() + sidePage + 1) {
-                    mViewPager.setCurrentItem(sidePage, false)
-                    post(this)
-                } else {
-                    mViewPager.currentItem = tempPosition
-                    postDelayed(this, autoTime)
-                }
-            }
-        }
-    }
-
-    /**
-     * 设置自由轮播
-     * @date: 2021/12/24 12:39 下午
-     */
-    fun setAutoPlayed(autoPlay: Boolean): Banner {
-        isAutoPlay = autoPlay
-        if (isAutoPlay && getRealCount() > 1) {
-            startPlaying()
-        }
-        return this
-    }
-
-    fun isAutoPlayed(): Boolean = isAutoPlay && getRealCount() > 1
+    /* --对外暴露的方法--------------------------------------------------------------------------- */
 
     /**
      * 设置一屏3页
@@ -403,8 +360,48 @@ public class Banner : RelativeLayout {
         return this
     }
 
-    fun addPageTransformer(transformer: ViewPager2.PageTransformer): Banner {
-        compositePageTransformer?.addTransformer(transformer)
+    //设置轮播指示器
+    fun setIndicator(mIndicator: Indicator, attachToBanner: Boolean): Banner {
+
+        if (indicator != null) {
+            removeView(indicator?.getView())
+        }
+
+        this.indicator = mIndicator
+        if (attachToBanner) {
+            addView(indicator?.getView(), indicator?.getParams())
+        }
+        return this
+    }
+
+    /**
+     * 传入的adapter
+     * @return:
+     * @date: 1/24/22 3:13 下午
+     * @version: v1.0
+     */
+    fun setAdapter(adapter: RecyclerView.Adapter<BaseEmptyViewHolder>): Banner {
+
+        wrapAdapter = BannerAdapterWrapper()
+        wrapAdapter!!.registerAdapter(adapter)
+        mViewPager.adapter = wrapAdapter
+
+        mViewPager.offscreenPageLimit = 1
+
+        setCurrentPage(0, false)
+        return this
+    }
+
+    /**
+     * 设置自由轮播
+     * @date: 2021/12/24 12:39 下午
+     */
+    fun setAutoPlayed(autoPlay: Boolean): Banner {
+        isAutoPlay = autoPlay
+        if (isAutoPlay && getRealCount() > 1) {
+            //onAttachedToWindow里执行了开始轮播
+            //startPlaying()
+        }
         return this
     }
 }

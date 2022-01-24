@@ -5,17 +5,17 @@
         android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_bg"
+            android:id="@+id/img_recommend_bg"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            android:scaleType="fitXY" />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_title"
+            android:id="@+id/txt_recommend_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"

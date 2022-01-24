@@ -1,5 +1,4 @@
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -36,7 +35,7 @@ public class PandasAdapter(private val list: MutableList<PetViewData>) :
         if (data.isNotEmpty()) {
             list.addAll(data)
         }
-        notifyDataSetChanged()
+        notifyItemRangeInserted(list.size, data.size)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
