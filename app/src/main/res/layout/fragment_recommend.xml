@@ -5,6 +5,7 @@
         android:background="@color/color_viewpager_bg">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_reco"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

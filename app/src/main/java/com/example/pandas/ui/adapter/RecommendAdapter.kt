@@ -1,8 +1,13 @@
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pandas.sql.entity.PetVideo
+import com.bumptech.glide.Glide
+import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.databinding.CardItemLayoutBinding
+import com.example.pandas.databinding.ItemBannerRecommendBinding
+import com.example.pandas.databinding.ItemRecommendVideoBinding
 
 /**
  * @description: TODO
@@ -10,24 +15,48 @@ import com.example.pandas.databinding.CardItemLayoutBinding
  * @date: 1/4/22 3:27 下午
  * @version: v1.0
  */
-public class RecommendAdapter(private val list: MutableList<PetVideo>) :
+public class RecommendAdapter(private val data: RecommendData<PetViewData>) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
-    private final val TYPE_VIEWPAGER = 1
-    private final val TYPE_CARD = 2
-    private final val TYPE_VIDEO = 3
+    private val TYPE_BANNER = 1//轮播图
+    private val TYPE_ITEM = 2//普通视频，一行2列
+    private val TYPE_VIDEO = 3//横屏视频，一行一列
 
     override fun getItemViewType(position: Int): Int {
-        if (list.isNotEmpty()) {
-            return list[position].type
+
+        if (position == 0) {
+            return TYPE_BANNER
+        } else if (position % 11 == 0) {
+            return TYPE_VIDEO
+        } else {
+            return TYPE_ITEM
         }
-        return 0
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun refreshData(recommendData: RecommendData<PetViewData>) {
+
+        if (recommendData.itemList.isNotEmpty() || recommendData.bannerList.isNotEmpty()) {
+            data.bannerList.clear()
+            data.itemList.clear()
+            data.bannerList = recommendData.bannerList
+            data.itemList = recommendData.itemList
+            notifyDataSetChanged()
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addData(recommendData: RecommendData<PetViewData>) {
+        if (recommendData.bannerList.isNotEmpty()) {
+            data.itemList.addAll(recommendData.itemList)
+            notifyDataSetChanged()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
 
         when (viewType) {
-            TYPE_CARD -> {
+            TYPE_ITEM -> {//普通视频
                 val binding = CardItemLayoutBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
@@ -35,13 +64,22 @@ public class RecommendAdapter(private val list: MutableList<PetVideo>) :
                 )
                 return CardHolder(binding)
             }
-            else -> {
-                val binding = CardItemLayoutBinding.inflate(
+            TYPE_BANNER -> {//轮播图视频
+
+                val binding = ItemBannerRecommendBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
-                return CardHolder(binding)
+                return BannerHolder(binding)
+            }
+            else -> {//横屏视频
+                val binding = ItemRecommendVideoBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+                return VideoHolder(binding)
             }
         }
     }
@@ -50,20 +88,78 @@ public class RecommendAdapter(private val list: MutableList<PetVideo>) :
 
         when (getItemViewType(position)) {
 
-            TYPE_CARD -> {
+            TYPE_ITEM -> {
                 (holder as CardHolder).handle(position)
+            }
+            TYPE_BANNER -> {
+                (holder as BannerHolder).handle()
+            }
+            TYPE_VIDEO -> {
+                (holder as VideoHolder).handle(position)
             }
         }
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int {
+
+        if (data.bannerList.isEmpty() && data.itemList.isEmpty()) {
+            return 0
+        } else {
+            return data.itemList.size + 1
+        }
+    }
 
     inner class CardHolder(binding: CardItemLayoutBinding) : BaseEmptyViewHolder(binding.root) {
 
+        val cover = binding.imgCover
+        val duration = binding.txtDuration
+        val name = binding.txtName
+        val title = binding.txtTitle
+
         fun handle(position: Int) {
+            val petVideo = data.itemList[position - 1]
+            val duration = TimeUtils.getDuration(petVideo.duration.toLong())
 
+            //把http图片换成https就能加载出来
+            val url = petVideo.cover.replace("http", "https")
+            Glide.with(itemView.context).load(url)
+                .into(cover)
+            this.duration.text = duration
+            name.text = petVideo.authorName
+            title.text = petVideo.title
+        }
+    }
 
+    inner class BannerHolder(binding: ItemBannerRecommendBinding) :
+        BaseEmptyViewHolder(binding.root) {
+
+        private val banner = binding.banner
+
+        fun handle() {
+            //轮播图数据
+            val list = data.bannerList
+
+            Log.e("1mean", "list: " + list)
+            val adapter = RecoViewPagerAdapter(list)
+            this.banner.setAdapter(adapter)
 
         }
     }
+
+    inner class VideoHolder(binding: ItemRecommendVideoBinding) :
+        BaseEmptyViewHolder(binding.root) {
+
+        val cover = binding.imgVideo
+        val title = binding.txtTitle
+
+        fun handle(position: Int) {
+            val petVideo = data.itemList[position - 1]
+            //把http图片换成https就能加载出来
+            val url = petVideo.cover.replace("http", "https")
+            Glide.with(itemView.context).load(url)
+                .into(cover)
+            title.text = petVideo.title
+        }
+    }
+
 }

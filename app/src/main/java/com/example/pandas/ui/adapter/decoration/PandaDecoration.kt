@@ -7,10 +7,10 @@ import com.example.pandas.R
 /**
  * @description: TODO
  * @author: dongyiming
- * @date: 1/4/22 6:02 下午
+ * @date: 1/24/22 2:31 上午
  * @version: v1.0
  */
-public class RecommendDecoration(private val context:Context):RecyclerView.ItemDecoration() {
+public class PandaDecoration(private val context: Context): RecyclerView.ItemDecoration() {
 
     private var padding: Int = context.resources.getDimension(R.dimen.item_home_padding).toInt()
 
@@ -23,15 +23,7 @@ public class RecommendDecoration(private val context:Context):RecyclerView.ItemD
         super.getItemOffsets(outRect, view, parent, state)
 
         val position = parent.getChildAdapterPosition(view)
-        if (position == 0) {
-            outRect.left = padding
-        } else if(position % 11 == 0){
-            outRect.left = padding
-        } else if(position % 2 == 1){
-            outRect.left = padding
-        } else {
-            outRect.left = 0
-        }
+        if (position % 2 == 0) outRect.left = padding else outRect.left = 0
         outRect.top = padding
         outRect.right = padding
     }

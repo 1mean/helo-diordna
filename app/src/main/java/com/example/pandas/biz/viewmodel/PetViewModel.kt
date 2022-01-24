@@ -1,6 +1,10 @@
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.pandas.bean.pet.PetViewData
+import com.example.pandas.biz.ext.loge
+import com.example.pandas.biz.http.exception.ExceptionHandle
+import kotlinx.coroutines.launch
 
 /**
  * @description: TODO
@@ -8,23 +12,27 @@ import com.example.pandas.bean.pet.PetViewData
  * @date: 1/18/22 6:07 下午
  * @version: v1.0
  */
-public class PetViewModel : BaseViewModel() {
+class PetViewModel : BaseViewModel() {
 
     var pageNo = 0 //分页获取数据
+    var startIndex = 0//分页起始
 
     //获取所有宠物的输出
     var petDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> = MutableLiveData()
+
+    var recommendDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> = MutableLiveData()
+
 
     fun getPagePet(isRefresh: Boolean) {
 
         if (isRefresh) {
             pageNo = 0
         }
-        Log.e("1mean", "pageNo: $pageNo")
-        request({ PetManagerCoroutine.getPetByPage(pageNo) },
+        request({ PetManagerCoroutine.getPetByPage(startIndex) },
             {
                 //请求数据成功
-                pageNo += 20
+                startIndex += 20
+                pageNo++
 
                 val dataList = UIDataWrapper<PetViewData>(
                     isSuccess = true,
@@ -34,9 +42,6 @@ public class PetViewModel : BaseViewModel() {
                     isFirstEmpty = isRefresh && it.isEmpty(),
                     listData = it
                 )
-                it.forEach {
-                    Log.e("1mean", "code: " + it.code)
-                }
                 petDataWrapper.value = dataList
             },
             {
@@ -47,9 +52,44 @@ public class PetViewModel : BaseViewModel() {
                     isRefresh = isRefresh,
                     listData = mutableListOf<PetViewData>()
                 )
-                Log.e("1mean", "error: " + it.errorMsg)
                 petDataWrapper.value = dataList
             })
     }
 
+    fun getRecommendData(isRefresh: Boolean) {
+
+        if (isRefresh) {
+            pageNo = 0
+        }
+        viewModelScope.launch {
+
+            kotlin.runCatching {
+                PetManagerCoroutine.getRecommendByPage(startIndex)
+            }.onSuccess {
+                if (startIndex == 0) startIndex += 10 else startIndex += 11
+                pageNo++
+                val dataList = UIDataWrapper<PetViewData>(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    isEmpty = it.itemList.isEmpty() && it.bannerList.isEmpty(),
+                    hasMore = (it.itemList.size + it.bannerList.size) == 11,
+                    isFirstEmpty = isRefresh && it.itemList.isEmpty() && it.bannerList.isEmpty(),
+                    recoData = it
+                )
+                recommendDataWrapper.value = dataList
+            }.onFailure {
+
+                it.message?.loge()
+                it.printStackTrace()
+                val exception = ExceptionHandle.handleException(it)
+                val dataList = UIDataWrapper<PetViewData>(
+                    isSuccess = false,
+                    errMessage = exception.errorMsg,
+                    isRefresh = isRefresh,
+                    recoData = RecommendData()
+                )
+                recommendDataWrapper.value = dataList
+            }
+        }
+    }
 }

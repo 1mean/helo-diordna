@@ -1,6 +1,6 @@
 package com.example.pandas.ui.activity
 
-import BaseAdapter
+import BaseViewAdapter
 import BaseViewHolder
 import android.content.Context
 import android.os.Build
@@ -50,7 +50,7 @@ public class BehaviorActivity : AppCompatActivity() {
     }
 
     class MyAdapter(val context: Context, val datas: MutableList<String>) :
-        BaseAdapter(context, datas) {
+        BaseViewAdapter(context, datas) {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
 

@@ -12,9 +12,9 @@ import com.example.pandas.ui.adapter.viewholder.ImageViewHolder
  * @version: v1.0
  */
 public class EyeViewPagerAdapter(val list: MutableList<String>) :
-    RecyclerView.Adapter<ImageViewHolder>() {
+    RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
 
         val image = AppCompatImageView(parent.context)
         val layoutParams = ViewGroup.LayoutParams(
@@ -23,16 +23,19 @@ public class EyeViewPagerAdapter(val list: MutableList<String>) :
         )
         image.layoutParams = layoutParams
         image.scaleType = ImageView.ScaleType.CENTER_CROP
-        return ImageViewHolder(image)
+        return MyHolder(image)
 
     }
 
-    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseEmptyViewHolder, position: Int) {
 
-        Glide.with(holder.itemView).load(list[position]).into(holder.imageView!!)
+        Glide.with(holder.itemView).load(list[position]).into((holder as MyHolder).itemView as AppCompatImageView)
 
     }
 
     override fun getItemCount(): Int = list.size
 
+    inner class MyHolder(private val itemView:AppCompatImageView):BaseEmptyViewHolder(itemView){
+
+    }
 }

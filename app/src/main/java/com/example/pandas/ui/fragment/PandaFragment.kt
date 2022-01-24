@@ -1,9 +1,7 @@
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.databinding.FragmentPandasBinding
-import com.example.pandas.ui.ext.init
+import com.example.pandas.ui.ext.initPanda
 
 /**
  * @description: TODO
@@ -18,15 +16,13 @@ public class PandaFragment : BaseFragment<PetViewModel, FragmentPandasBinding>()
 
     override fun initView(savedInstanceState: Bundle?) {
 
-
         binding.refreshLayoutPanda.setOnRefreshListener {
             binding.refreshLayoutPanda.isRefreshing = true
             binding.recyclerViewPanda.isFreshing(true)
             mViewModel.getPagePet(true)
         }
 
-        binding.recyclerViewPanda.init(GridLayoutManager(activity, 2), pandasAdapter, this)
-            .addItemDecoration(RecommendDecoration(requireActivity()))
+        binding.recyclerViewPanda.initPanda(GridLayoutManager(activity, 2), pandasAdapter, this)
 
     }
 
@@ -45,13 +41,11 @@ public class PandaFragment : BaseFragment<PetViewModel, FragmentPandasBinding>()
                     it.isRefresh -> {
                         binding.refreshLayoutPanda.isRefreshing = false
                         binding.recyclerViewPanda.isFreshing(false)
-                        Log.e("1mean","刷新")
                         pandasAdapter.refreshData(it.listData)
                     }
                     //加载更多
                     else -> {
                         binding.recyclerViewPanda.loadMoreFinished()
-                        Log.e("1mean","加载更多")
                         pandasAdapter.addData(it.listData)
                     }
                 }

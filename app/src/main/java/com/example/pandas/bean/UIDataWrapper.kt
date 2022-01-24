@@ -7,7 +7,7 @@
 data class UIDataWrapper<T>(
 
     //是否请求成功
-    val isSuccess: Boolean,
+    val isSuccess: Boolean = false,
     //错误消息 isSuccess为false才会有
     val errMessage: String = "",
     //是否为刷新
@@ -19,6 +19,8 @@ data class UIDataWrapper<T>(
     //是第一页且没有数据
     val isFirstEmpty: Boolean = false,
     //列表数据
-    val listData: MutableList<T> = mutableListOf()
+    val listData: MutableList<T> = mutableListOf(),
+    //推荐页数据
+    val recoData: RecommendData<T> = RecommendData()
 
 )

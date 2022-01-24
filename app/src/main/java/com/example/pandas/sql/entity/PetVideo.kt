@@ -12,7 +12,7 @@ data class PetVideo(
     @ColumnInfo
     var fileName: String? = null,//file name
     @ColumnInfo
-    var title: String? = null,//视频名字
+    var title: String? = null,//视频标题
     @ColumnInfo
     var description: String? = null,//视频描述
     @ColumnInfo
@@ -28,12 +28,14 @@ data class PetVideo(
     @ColumnInfo
     var cover: String? = null,//封面路径
     @ColumnInfo
-    var type: Int = 0,//数据类型
+    var type: Int = 0,//动物类型
     @ColumnInfo
     var authorName: String? = null,//发布者信息
     @ColumnInfo
     var period: Int = 0,//对应PetType
     @ColumnInfo
     var isStar: Boolean = false,//明星熊猫
+    @ColumnInfo
+    var videoType: Int = 0//视频展示类型 0为普通视频，1为轮播图视频，2为横屏视频
 
 )

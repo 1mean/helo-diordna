@@ -6,11 +6,11 @@ import com.example.pandas.sql.entity.PetVideo
  * @date: 1/8/22 12:38 上午
  * @version: v1.0
  */
-public class PandaSingleData {
+object PandaSingleData {
 
     private val list = mutableListOf<PetVideo>()
 
-    fun getData() {
+    fun getData():MutableList<PetVideo> {
 
         //来一个使用code=187
 //        val panda = PetVideo()
@@ -27,6 +27,6 @@ public class PandaSingleData {
 //        panda.authorName = "迩後咩"
 //        panda.cover = "http://i2.hdslb.com/bfs/archive/310d407ea7a93e5cd90ffa41da847dc607e1eeca.jpg"
 //        list.add(panda)
-
+        return list
     }
 }

@@ -1,5 +1,6 @@
 package com.example.pandas.ui.view.viewpager
 
+import BaseEmptyViewHolder
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -10,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.example.pandas.ui.adapter.viewholder.ImageViewHolder
 import kotlin.math.abs
 
 /**
@@ -181,15 +181,15 @@ public class Banner : RelativeLayout {
      * 1页3屏，预展示页面数为1，预加载page position = 0,1,2,3,4 设置currentitem=2顺序2，3，4，1，0
      * @date: 2021/12/24 11:30 上午
      */
-    private inner class BannerAdapterWrapper : RecyclerView.Adapter<ImageViewHolder>() {
+    private inner class BannerAdapterWrapper : RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
-        private lateinit var mAdapter: RecyclerView.Adapter<ImageViewHolder>
+        private lateinit var mAdapter: RecyclerView.Adapter<BaseEmptyViewHolder>
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
             return mAdapter.onCreateViewHolder(parent, viewType)
         }
 
-        override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: BaseEmptyViewHolder, position: Int) {
             mAdapter.onBindViewHolder(holder, realPosition(position))
         }
 
@@ -202,7 +202,7 @@ public class Banner : RelativeLayout {
 
         fun getRealCount(): Int = mAdapter.itemCount
 
-        fun registerAdapter(adapter: RecyclerView.Adapter<ImageViewHolder>) {
+        fun registerAdapter(adapter: RecyclerView.Adapter<BaseEmptyViewHolder>) {
 
             mAdapter = adapter
             mAdapter.registerAdapterDataObserver(adapterObserver)
@@ -235,7 +235,7 @@ public class Banner : RelativeLayout {
         }
     }
 
-    fun setAdapter(adapter: RecyclerView.Adapter<ImageViewHolder>) {
+    fun setAdapter(adapter: RecyclerView.Adapter<BaseEmptyViewHolder>) {
 
         wrapAdapter = BannerAdapterWrapper()
         wrapAdapter!!.registerAdapter(adapter)

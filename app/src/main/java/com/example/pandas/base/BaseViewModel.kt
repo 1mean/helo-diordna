@@ -1,4 +1,3 @@
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.biz.ext.loge
@@ -13,14 +12,13 @@ import kotlinx.coroutines.launch
  * @date: 1/19/22 1:16 下午
  * @version: v1.0
  */
-open class BaseViewModel:ViewModel() {
-
+open class BaseViewModel : ViewModel() {
 
     fun <T> request(
-        block:suspend() -> MutableList<T>,
-        success:(MutableList<T>) -> Unit,
-        error:(AppException) ->Unit ={}
-    ):Job{
+        block: suspend () -> MutableList<T>,
+        success: (MutableList<T>) -> Unit,
+        error: (AppException) -> Unit = {}
+    ): Job {
         return viewModelScope.launch {
             runCatching {
                 block()

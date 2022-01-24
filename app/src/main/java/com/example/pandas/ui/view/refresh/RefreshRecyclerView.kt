@@ -78,7 +78,7 @@ public class RefreshRecyclerView : RecyclerView {
     override fun onScrollStateChanged(state: Int) {
         super.onScrollStateChanged(state)
 
-        Log.e("1111mean", "isLoadingData: $isLoadingData")
+        //Log.e("1111mean", "isLoadingData: $isLoadingData")
         if (state == RecyclerView.SCROLL_STATE_IDLE && mOnRefreshLoadListener != null && !isFreshing && !isLoadingData) {
 
             var lastVisibleItemPosition = 0
@@ -98,12 +98,12 @@ public class RefreshRecyclerView : RecyclerView {
             val total = wrapAdapter!!.realCount()
             val childCount = layoutManager!!.childCount // 未隐藏的数目 childCount = count - hiddenCount
 
-            Log.e(
-                "1111mean", "childCount: $childCount, " +
-                        "lastVisibleItemPosition: $lastVisibleItemPosition, " +
-                        "(total - 1 ): " + (total - 1) + ", " +
-                        "isFreshing: $isFreshing, isNoMore: $isNoMore"
-            )
+//            Log.e(
+//                "1111mean", "childCount: $childCount, " +
+//                        "lastVisibleItemPosition: $lastVisibleItemPosition, " +
+//                        "(total - 1 ): " + (total - 1) + ", " +
+//                        "isFreshing: $isFreshing, isNoMore: $isNoMore"
+//            )
             if (childCount > 0 && lastVisibleItemPosition >= total - 1 && total > childCount
 
                 && !isFreshing && !isNoMore
@@ -181,7 +181,10 @@ public class RefreshRecyclerView : RecyclerView {
             }
         }
 
-        override fun getItemCount(): Int = adapter.itemCount + 1
+        override fun getItemCount(): Int {
+            val count = adapter.itemCount
+            return if (count == 0) 0 else count + 1
+        }
 
         fun close() {
             //footer.close()
@@ -229,8 +232,9 @@ public class RefreshRecyclerView : RecyclerView {
 
                 val space = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
-                        //Log.e("1mean","position: $position ,spanCount: " + manager.spanCount)
                         if (isFooter(position)) {
+                            return 2
+                        } else if (getItemViewType(position) == 1 || getItemViewType(position) == 3) {//轮播图和横屏
                             return 2
                         } else {
                             return 1
@@ -238,16 +242,6 @@ public class RefreshRecyclerView : RecyclerView {
                     }
                 }
                 manager.spanSizeLookup = space
-//                manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-//                    override fun getSpanSize(position: Int): Int =
-//                        if (isFooter(position)) 1 else manager.spanCount
-//                }
-
-//            }else if(manager is StaggeredGridLayoutManager){
-//                manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-//                    override fun getSpanSize(position: Int): Int =
-//                        if (isFooter(position)) 1 else manager.spanCount
-//                }
             }
         }
 

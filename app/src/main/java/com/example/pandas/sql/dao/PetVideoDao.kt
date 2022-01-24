@@ -75,10 +75,19 @@ interface PetVideoDao {
      *     - 使用 fun queryByPage(page: Int): LiveData<ArrayList<PetViewData>> 编译失败
      *     - 使用 fun queryByPage(page: Int): MutableLiveData<ArrayList<PetViewData>> 编译失败
      *    - 解决办法：
-     *     - 使用MutableList代替ArrayList，就解决了问题
+     *     - 组装出现了问题
      *     - 这里修改sql语句和修改存储PetViewData为PetVideo同样是这个编译错误
      */
-    @Query("select code,title,cover,authorName,duration from pet_video limit (:page),20")
-    fun queryByPage(page: Int): MutableList<PetViewData>
+    //@Query("select code,title,cover,authorName,duration from pet_video limit (:startIndex),20")
+    @Query("select code,title,cover,authorName,duration,videoType from pet_video limit (:startIndex),20")
+    suspend fun queryByPage(startIndex: Int): MutableList<PetViewData>
 
+    @Query("select code,title,cover,authorName,duration,videoType from pet_video where type = (:type)")
+    suspend fun queryByType(type: Int): MutableList<PetViewData>
+
+    @Query("select code,title,cover,authorName,duration,videoType from pet_video where videoType = (:type)")
+    suspend fun queryByVideoType(type: Int): MutableList<PetViewData>
+
+    @Query("select code,title,cover,authorName,duration,videoType from pet_video where isStar=1 limit (:startIndex),(:count)")
+    suspend fun queryStarByPage(startIndex: Int, count: Int): MutableList<PetViewData>
 }

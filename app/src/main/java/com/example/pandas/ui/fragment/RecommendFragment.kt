@@ -1,11 +1,9 @@
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.R
+import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.databinding.FragmentRecommendBinding
+import com.example.pandas.ui.ext.initReco
 
 /**
  * @description: TODO
@@ -13,45 +11,57 @@ import com.example.pandas.databinding.FragmentRecommendBinding
  * @date: 1/4/22 3:05 下午
  * @version: v1.0
  */
-public class RecommendFragment : Fragment(),ILoadMoreListener {
+public class RecommendFragment : BaseFragment<PetViewModel, FragmentRecommendBinding>(),
+    ILoadMoreListener {
 
-    private var _binding: FragmentRecommendBinding? = null
-    private val binding get() = _binding!!
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    private val mAdapter: RecommendAdapter by lazy { RecommendAdapter(RecommendData<PetViewData>()) }
 
-        _binding = FragmentRecommendBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun initView(savedInstanceState: Bundle?) {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        val recyclerView = binding.rview
-        recyclerView.layoutManager = GridLayoutManager(activity, 2)
-        recyclerView.setRefreshAdapter(RecommendAdapter(initData()),this)
-        recyclerView.addItemDecoration(RecommendDecoration(requireActivity()))
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    fun initData(): MutableList<PetVideo> {
-        val list = mutableListOf<PetVideo>()
-        for (i in 0 until 20) {
-
-            val pet = PetVideo()
-            pet.type = 2
-            list.add(pet)
+        binding.rview.initReco(GridLayoutManager(activity, 2), mAdapter, this)
+        binding.refreshReco.run {
+            setColorSchemeResources(R.color.green)
+            setOnRefreshListener {
+                mViewModel.getRecommendData(true)
+            }
         }
-        return list
     }
 
     override fun onLoadMore() {
+        mViewModel.getRecommendData(false)
+    }
 
+    override fun createObserver() {
+
+        mViewModel.recommendDataWrapper.observe(viewLifecycleOwner) {
+            if (it.isSuccess) {//成功
+                when {
+                    //没有数据
+                    it.isFirstEmpty -> {
+                        binding.refreshReco.isRefreshing = false
+                        binding.rview.isFreshing(false)
+                    }
+                    //刷新的第一页
+                    it.isRefresh -> {
+                        binding.refreshReco.isRefreshing = false
+                        binding.rview.isFreshing(false)
+                        mAdapter.refreshData(it.recoData)
+                    }
+                    //加载更多
+                    else -> {
+                        binding.rview.loadMoreFinished()
+                        mAdapter.addData(it.recoData)
+                    }
+                }
+            } else {//失败
+                binding.refreshReco.isRefreshing = false
+            }
+        }
+    }
+
+    override fun lazyLoadData() {
+        binding.refreshReco.isRefreshing = true
+        binding.rview.isFreshing(true)
+        mViewModel.getRecommendData(true)
     }
 }
