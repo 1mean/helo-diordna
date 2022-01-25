@@ -1,114 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/refresh_pet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_room_tab_bg"
-        tools:viewBindingIgnore="true">
+        android:background="@color/color_room_tab_bg">
 
-    <!--一个垂直的linearlayout，配合导航栏和标题栏达到折叠滚动效果-->
-    <!--内部子view提供滚动行为，布局设置layout_scrollFlags-->
-    <!--需要一个单独滚动的同级布局，如常用的NestedScrollView，以便知道何时去滚动-->
-    <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/abl"
-            android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <!--子布局，实现视差伸缩滑动效果-->
-        <!--scroll - 设置滚动-->
-        <!--enterAlways - 当向下移动时，立即显示View-->
-        <!--exitUntilCollapsed - 向上滚动时收缩View，但可以固定Toolbar一直在上面-->
-        <!--enterAlwaysCollapsed - 当你的View已经设置minHeight属性又使用此标志时，你的View只能以最小高度进入，只有当滚动视图到达顶部时才扩大到完整高度-->
-        <!--contentScrim:折叠(收缩)后的背景颜色-->
-        <!--scrimAnimationDuration:控制toolbar收缩时，颜色变化的动画持续时间-->
-        <!--expandedTitleMarginStart:置扩张时候(还没有收缩时)title向左填充的距离-->
-        <!--titleEnable:为true的时候，在toolbar展开的时候，显示大标题，toolbar收缩时，显示为toolbar上面的小标题-->
-        <!--expandedTitleGravity:指定toolbar展开时，title所在的位置,似的还有expandedTitleMargin、collapsedTitleGravity这些属性-->
-        <!--collapsedTitleTextAppearance:指定toolbar收缩时，标题字体的样式，类似的还有expandedTitleText-->
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:contentScrim="@color/white">
-            <!--在ImageView控件中使用到的属性 layout_collapseMode (折叠模式) - 有两个值-->
-            <!--pin：设置为这个模式时，当CollapsingToolbarLayout完全收缩后，Toolbar还可以保留在屏幕上-->
-            <!--parallax：在内容滚动时，CollapsingToolbarLayout中的View（比如ImageView)也可以同时滚动
-            ，实现视差滚动效果，通常和layout_collapseParallaxMultiplier(设置视差因子)搭配使用-->
-            <!--layout_collapseParallaxMultiplier(视差因子) - 设置视差滚动因子，值为：0~1-->
-            <com.example.pandas.ui.view.viewpager.MyViewPager2
-                    android:id="@+id/vp_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_collapseMode="parallax"
-                    android:background="@color/color_room_tab_bg"
-                    app:layout_collapseParallaxMultiplier="0.5" />
-
-            <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/tb_room"
-                    android:layout_width="match_parent"
-                    android:layout_height="44.3dp"
-                    app:layout_collapseMode="pin"
-                    android:layout_marginTop="33.7dp">
-
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        android:gravity="center"
-                        android:paddingTop="20dp"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <!--app:tabRippleColor 设置点击后的背景涟漪颜色为透明-->
-    <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tl_room"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            app:tabMaxWidth="0dp"
-            app:tabTextColor="@color/color_room_tabitem"
-            app:tabIndicator="@drawable/layer_tab_indicator"
-            app:tabRippleColor="@android:color/transparent"
-            android:paddingBottom="5dp"
-            app:tabSelectedTextColor="@color/color_room_tabindicator"
-            app:tabIndicatorColor="@color/color_room_tabindicator"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <com.google.android.material.tabs.TabItem
-                android:id="@+id/ti_1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-        <com.google.android.material.tabs.TabItem
-                android:id="@+id/ti_2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-        <com.google.android.material.tabs.TabItem
-                android:id="@+id/ti_3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-        <com.google.android.material.tabs.TabItem
-                android:id="@+id/ti_4"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-        <com.google.android.material.tabs.TabItem
-                android:id="@+id/ti_5"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vp_content"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="44dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:background="@color/color_room_tab_bg">
+        <!--一个垂直的linearlayout，配合导航栏和标题栏达到折叠滚动效果-->
+        <!--内部子view提供滚动行为，布局设置layout_scrollFlags-->
+        <!--需要一个单独滚动的同级布局，如常用的NestedScrollView，以便知道何时去滚动-->
+        <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/abl"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <!--子布局，实现视差伸缩滑动效果-->
+            <!--scroll - 设置滚动-->
+            <!--enterAlways - 当向下移动时，立即显示View-->
+            <!--exitUntilCollapsed - 向上滚动时收缩View，但可以固定Toolbar一直在上面-->
+            <!--enterAlwaysCollapsed - 当你的View已经设置minHeight属性又使用此标志时，你的View只能以最小高度进入，只有当滚动视图到达顶部时才扩大到完整高度-->
+            <!--contentScrim:折叠(收缩)后的背景颜色-->
+            <!--scrimAnimationDuration:控制toolbar收缩时，颜色变化的动画持续时间-->
+            <!--expandedTitleMarginStart:置扩张时候(还没有收缩时)title向左填充的距离-->
+            <!--titleEnable:为true的时候，在toolbar展开的时候，显示大标题，toolbar收缩时，显示为toolbar上面的小标题-->
+            <!--expandedTitleGravity:指定toolbar展开时，title所在的位置,似的还有expandedTitleMargin、collapsedTitleGravity这些属性-->
+            <!--collapsedTitleTextAppearance:指定toolbar收缩时，标题字体的样式，类似的还有expandedTitleText-->
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:contentScrim="@color/white">
+                <!--在ImageView控件中使用到的属性 layout_collapseMode (折叠模式) - 有两个值-->
+                <!--pin：设置为这个模式时，当CollapsingToolbarLayout完全收缩后，Toolbar还可以保留在屏幕上-->
+                <!--parallax：在内容滚动时，CollapsingToolbarLayout中的View（比如ImageView)也可以同时滚动
+                ，实现视差滚动效果，通常和layout_collapseParallaxMultiplier(设置视差因子)搭配使用-->
+                <!--layout_collapseParallaxMultiplier(视差因子) - 设置视差滚动因子，值为：0~1-->
+                <com.example.pandas.ui.view.viewpager.MyViewPager2
+                        android:id="@+id/vp_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_collapseMode="parallax"
+                        android:background="@color/color_room_tab_bg"
+                        app:layout_collapseParallaxMultiplier="0.5" />
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/tb_room"
+                        android:layout_width="match_parent"
+                        android:layout_height="44.3dp"
+                        app:layout_collapseMode="pin"
+                        android:layout_marginTop="33.7dp">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            android:gravity="center"
+                            android:paddingTop="20dp"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!--app:tabRippleColor 设置点击后的背景涟漪颜色为透明-->
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tl_room"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                app:tabMaxWidth="0dp"
+                app:tabTextColor="@color/color_room_tabitem"
+                app:tabIndicator="@drawable/layer_tab_indicator"
+                app:tabRippleColor="@android:color/transparent"
+                android:paddingBottom="5dp"
+                app:tabSelectedTextColor="@color/color_room_tabindicator"
+                app:tabIndicatorColor="@color/color_room_tabindicator"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="44dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

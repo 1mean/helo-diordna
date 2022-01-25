@@ -113,14 +113,17 @@ public class EyepetozerFragment : Fragment() {
 
                     override fun onCompleted() {
                     }
-
                 })
         }
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        StatusBarUtils.updataStatus(requireActivity(), true, false, R.color.color_white_lucency)
     }
 }

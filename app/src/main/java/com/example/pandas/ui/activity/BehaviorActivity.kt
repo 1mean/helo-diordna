@@ -1,7 +1,5 @@
 package com.example.pandas.ui.activity
 
-import BaseViewAdapter
-import BaseViewHolder
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -12,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
+import com.example.pandas.base.BaseViewAdapter
+import com.example.pandas.base.BaseViewHolder
 import com.example.pandas.databinding.ActivityBehaviorBinding
 
 /**

@@ -1,3 +1,5 @@
+package com.example.pandas.base
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.biz.ext.loge

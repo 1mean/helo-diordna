@@ -56,7 +56,6 @@ public class SelfFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         Glide.with(this).load(R.mipmap.ou).apply(RequestOptions.bitmapTransform(CircleCrop()))
             .into(binding.imgAuthor)
 
@@ -68,6 +67,11 @@ public class SelfFragment : Fragment(), View.OnClickListener {
             tab.text = tablist[position]
         }.attach()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        StatusBarUtils.updataStatus(requireActivity(), false, true, R.color.color_white_lucency)
     }
 
     override fun onClick(view: View?) {

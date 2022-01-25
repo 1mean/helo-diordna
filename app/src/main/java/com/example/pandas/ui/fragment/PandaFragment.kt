@@ -1,5 +1,6 @@
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.databinding.FragmentPandasBinding
 import com.example.pandas.ui.ext.initPanda
 
@@ -9,7 +10,7 @@ import com.example.pandas.ui.ext.initPanda
  * @date: 1/12/22 7:35 下午
  * @version: v1.0
  */
-public class PandaFragment : BaseFragment<PetViewModel, FragmentPandasBinding>(),
+public class PandaFragment : BaseFragment<HomePageViewModel, FragmentPandasBinding>(),
     ILoadMoreListener {
 
     private val pandasAdapter: PandasAdapter by lazy { PandasAdapter(arrayListOf()) }
@@ -56,9 +57,12 @@ public class PandaFragment : BaseFragment<PetViewModel, FragmentPandasBinding>()
 
     }
 
-    override fun lazyLoadData() {
+    override fun firstOnResume() {
         binding.refreshLayoutPanda.isRefreshing = true
         mViewModel.getPagePet(true)
+    }
+
+    override fun againOnResume() {
     }
 
     override fun onLoadMore() {

@@ -2,6 +2,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
+import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.databinding.FragmentRecommendBinding
 import com.example.pandas.ui.ext.initReco
@@ -12,7 +13,7 @@ import com.example.pandas.ui.ext.initReco
  * @date: 1/4/22 3:05 下午
  * @version: v1.0
  */
-public class RecommendFragment : BaseFragment<PetViewModel, FragmentRecommendBinding>(),
+public class RecommendFragment : BaseFragment<HomePageViewModel, FragmentRecommendBinding>(),
     ILoadMoreListener {
 
     private val mAdapter: RecommendAdapter by lazy { RecommendAdapter(RecommendData<PetViewData>()) }
@@ -61,9 +62,19 @@ public class RecommendFragment : BaseFragment<PetViewModel, FragmentRecommendBin
         }
     }
 
-    override fun lazyLoadData() {
+    override fun firstOnResume() {
         binding.refreshReco.isRefreshing = true
         binding.rview.isFreshing(true)
         mViewModel.getRecommendData(true)
+    }
+
+    override fun againOnResume() {
+    }
+
+    //当banner可见时，滑动到左右两个item，还是在运行， 超过1个的会触发onDetachedFromWindow
+    //当切换到homeFragment外也是触发超过1个的会触发onDetachedFromWindow
+    override fun onPause() {
+        super.onPause()
+
     }
 }

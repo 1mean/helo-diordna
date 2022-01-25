@@ -1,7 +1,7 @@
 package com.example.pandas.base.interaction
 
-import BaseViewHolder
 import android.view.ViewGroup
+import com.example.pandas.base.BaseViewHolder
 
 /**
  * @description: TODO
@@ -11,7 +11,7 @@ import android.view.ViewGroup
  */
 public interface IBaseAdapter {
 
-    fun createViewHolder(parent: ViewGroup, viewType: Int):BaseViewHolder
+    fun createViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder
 
     fun handleViewHolder(holder: BaseViewHolder, position: Int)
 

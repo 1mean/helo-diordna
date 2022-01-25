@@ -5,7 +5,7 @@
 
     <!-- homepage 底部radiogroup-->
     <string name="home_button1">首 页</string>
-    <string name="home_button2">发 现</string>
+    <string name="home_button2">萌 宠</string>
     <string name="home_button3">关 注</string>
     <string name="home_button4">我 的</string>
 
@@ -19,7 +19,6 @@
 
     <!-- behavior -->
     <string name="behavior_textview">com.example.pandas.ui.view.MyBehavior</string>
-
 
 
     <string name="string_loading">正在加载中…</string>

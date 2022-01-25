@@ -1,9 +1,10 @@
+package com.example.pandas.base.fragment
+
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.example.pandas.base.BaseViewModel
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.ParameterizedType
 
@@ -92,7 +94,12 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        onVisible()
+
+        if (isFirstShow) {
+            onVisible()
+        } else {
+            againOnResume()
+        }
     }
 
     override fun onDestroyView() {
@@ -106,11 +113,11 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
      */
     private fun onVisible() {
 
-        if (lifecycle.currentState == Lifecycle.State.STARTED && isFirstShow) {
+        if (lifecycle.currentState == Lifecycle.State.STARTED) {
 
             // 延迟加载 防止 切换动画还没执行完毕时数据就已经加载好了，这时页面会有渲染卡顿
             mHandler.postDelayed({
-                lazyLoadData()
+                firstOnResume()
                 isFirstShow = false
             }, lazyLoadTime())
         }
@@ -170,9 +177,14 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
     abstract fun createObserver()
 
     /**
-     * 懒加载
+     * 第一次展示界面
      */
-    abstract fun lazyLoadData()
+    abstract fun firstOnResume()
+
+    /**
+     * 再一次展示界面，不是第一次
+     */
+    abstract fun againOnResume()
 
     /**
      * 延迟加载 防止 切换动画还没执行完毕时数据就已经加载好了，这时页面会有渲染卡顿  bug

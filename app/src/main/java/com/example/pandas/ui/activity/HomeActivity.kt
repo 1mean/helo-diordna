@@ -1,14 +1,12 @@
 package com.example.pandas.ui.activity
 
 import HomeAdapter
+import StatusBarUtils
 import android.Manifest
-import android.os.Build
+import android.graphics.Color
 import android.os.Bundle
-import android.os.Environment
-import android.util.Log
 import android.widget.RadioGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.pandas.R
@@ -45,6 +43,8 @@ public class HomeActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        StatusBarUtils.updataStatus(this, true, false, R.color.color_white_lucency)
+
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -57,11 +57,6 @@ public class HomeActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListe
         binding.vpHome.isUserInputEnabled = false //禁止滑动
 
         requestPermissions.launch(permissions)
-        //状态栏沉浸
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            window.decorView.systemUiVisibility =
-//                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-//        }
 
     }
 

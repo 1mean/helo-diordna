@@ -1,12 +1,10 @@
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.R
+import com.example.pandas.base.BaseViewModel
+import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.databinding.FragmentHomeBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -16,24 +14,13 @@ import com.google.android.material.tabs.TabLayoutMediator
  * @date: 1/3/22 11:42 下午
  * @version: v1.0
  */
-public class HomeFragment : Fragment() {
+public class HomeFragment : BaseFragment<BaseViewModel, FragmentHomeBinding>() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
-    private val tabTitles = arrayListOf<String>("大熊猫", "推荐", "北极熊", "老虎", "小熊猫")
+    private val tabTitles by lazy { arrayListOf("大熊猫", "推荐", "萌宠", "老虎", "小熊猫", "音乐", "动漫") }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun lazyLoadTime(): Long = 0
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun initView(savedInstanceState: Bundle?) {
 
         Glide.with(requireContext()).load(R.mipmap.jia).apply(
             RequestOptions.bitmapTransform(
@@ -51,8 +38,14 @@ public class HomeFragment : Fragment() {
         }.attach()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun createObserver() {
     }
+
+    override fun firstOnResume() {
+    }
+
+    override fun againOnResume() {
+        StatusBarUtils.updataStatus(requireActivity(), true, false, R.color.color_white_lucency)
+    }
+
 }

@@ -1,6 +1,6 @@
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.pandas.base.BaseViewModel
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.ExceptionHandle
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
  * @date: 1/18/22 6:07 下午
  * @version: v1.0
  */
-class PetViewModel : BaseViewModel() {
+class HomePageViewModel : BaseViewModel() {
 
     var pageNo = 0 //分页获取数据
     var startIndex = 0//分页起始

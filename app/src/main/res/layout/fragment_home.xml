@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 app:tabMaxWidth="0dp"
-                app:tabMode="fixed"
+                app:tabMode="scrollable"
                 app:tabRippleColor="@android:color/transparent"
                 app:tabTextColor="@color/color_home_tab_text"
                 app:tabIndicatorColor="@color/color_tab_indicator"

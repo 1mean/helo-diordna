@@ -3,6 +3,7 @@ package com.example.pandas.ui.view.viewpager
 import BaseEmptyViewHolder
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.view.ViewGroup
@@ -90,6 +91,7 @@ public class Banner : RelativeLayout {
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         if (isAutoPlayed()) {
+            Log.e("1111111111111111111","onDetachedFromWindow")
             stopPlaying()
         }
     }
@@ -324,10 +326,13 @@ public class Banner : RelativeLayout {
     private fun stopPlaying() {
 
         if (isTaskPostDelayed) {
+
+            Log.e("1111111111111111111","stopPlaying")
             removeCallbacks(task)
             isTaskPostDelayed = false
         }
     }
+
 
     /* --对外暴露的方法--------------------------------------------------------------------------- */
 

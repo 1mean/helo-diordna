@@ -66,7 +66,7 @@ object StatusBarUtils {
         //Android6.0（API 23）以上，系统方法
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val window = activity.window
-            window.statusBarColor = ContextCompat.getColor(activity,colorId)
+            window.statusBarColor = ContextCompat.getColor(activity, colorId)
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //使用SystemBarTint库使4.4版本状态栏变色，需要先将状态栏设置为透明
             setTranslucentStatus(activity)
@@ -91,13 +91,56 @@ object StatusBarUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //6.0以上，调用系统方法
             val window = activity.window
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             if (isTextDark) {
                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            } else {
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
             }
         }
     }
+
+    /**
+     * 符合我当前系统的设置状态栏的方式，一步到位
+     *      - Android6.0（API 23）以上，系统方法
+     *      - 4.4以上才可以改文字图标颜色
+     *   - 修改状态栏颜色：window.statusBarColor
+     *   - 文字图标颜色：
+     *      - 设置背景是浅色，字体颜色就为黑：View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR，
+     *      - 默认：View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+     * @param:
+     * @author: dongyiming
+     * @date: 1/25/22 7:36 下午
+     * @version: v1.0
+     */
+    fun updataStatus(activity: Activity, isTextDark: Boolean, isFullScreend: Boolean, colorId: Int) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val window = activity.window
+            window.statusBarColor = ContextCompat.getColor(activity, colorId)//设置状态栏背景色
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            var status: Int = -1
+            if (isFullScreend) {//设置侵入状态栏
+                if (isTextDark) {
+                    status =
+                        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                } else {
+                    status =
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                }
+            } else {
+                if (isTextDark) {
+                    status = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                } else {
+                    status = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                }
+            }
+            window.decorView.systemUiVisibility = status
+        }
+    }
+
 
     //<editor-fold desc="沉侵">
     fun /*@@maxkfq@@*/immersive(activity:/*@@xldgvz@@*/Activity) {
