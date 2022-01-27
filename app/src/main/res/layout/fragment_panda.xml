@@ -4,7 +4,7 @@
         android:layout_height="match_parent"
         android:background="@color/color_bg_rv">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.example.pandas.ui.view.refresh.RefreshRecyclerView
             android:id="@+id/rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

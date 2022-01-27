@@ -1,4 +1,3 @@
-import android.util.Log
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.sql.dao.PetVideoDao
 import com.example.pandas.sql.database.AppDataBase
@@ -44,6 +43,30 @@ class PetManager {
                 recommendData.itemList = petDao.queryStarByPage(startIndex, 11)
             }
             recommendData
+        }
+    }
+
+    /**
+     * 通过videoType获取轮播图数据
+     * @date: 1/26/22 5:27 下午
+     * @version: v1.0
+     */
+    suspend fun getCutePetBannerData(): MutableList<PetViewData> {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryByVideoType(3)
+        }
+    }
+
+    /**
+     * 通过type获取轮播图数据
+     * @date: 1/26/22 5:27 下午
+     * @version: v1.0
+     */
+    suspend fun getCutePetByType(type: Int, startIndex: Int): MutableList<PetViewData> {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryByTypeAndPage(type, startIndex)
         }
     }
 }

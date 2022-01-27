@@ -51,7 +51,6 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, FragmentRecomme
                     }
                     //加载更多
                     else -> {
-                        Log.e("1mean","adapter addData")
                         binding.rview.loadMoreFinished()
                         mAdapter.addData(it.recoData)
                     }

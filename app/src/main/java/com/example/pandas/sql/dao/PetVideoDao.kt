@@ -27,7 +27,7 @@ interface PetVideoDao {
     fun delete(video: PetVideo)
 
     @Delete
-    fun deleteAll(vararg videos: PetVideo)
+    fun deleteAll(list: MutableList<PetVideo>)
 
 
     /* -----------更新------------------------------------- */
@@ -85,9 +85,15 @@ interface PetVideoDao {
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where type = (:type)")
     suspend fun queryByType(type: Int): MutableList<PetViewData>
 
+    @Query("select code,title,cover,authorName,duration,videoType from pet_video where type = (:type) limit (:startIndex),10")
+    suspend fun queryByTypeAndPage(type: Int, startIndex: Int): MutableList<PetViewData>
+
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where videoType = (:type)")
     suspend fun queryByVideoType(type: Int): MutableList<PetViewData>
 
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where isStar=1 limit (:startIndex),(:count)")
     suspend fun queryStarByPage(startIndex: Int, count: Int): MutableList<PetViewData>
+
+    @Query("select * from pet_video where videoType = (:videoType)")
+    fun queryVideoType(videoType: Int): MutableList<PetVideo>
 }

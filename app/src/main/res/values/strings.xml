@@ -10,12 +10,12 @@
     <string name="home_button4">我 的</string>
 
     <!--room tab item-->
-    <string name="string_room_tab_item1">精选</string>
-    <string name="string_room_tab_item2">手机</string>
-    <string name="string_room_tab_item3">电脑</string>
-    <string name="string_room_tab_item4">家电</string>
-    <string name="string_room_tab_item5">美妆</string>
-    <string name="string_room_tab_item6">精选</string>
+    <string name="string_room_tab_item1">灵狐</string>
+    <string name="string_room_tab_item2">国鸟</string>
+    <string name="string_room_tab_item3">小熊猫</string>
+    <string name="string_room_tab_item4">老虎</string>
+    <string name="string_room_tab_item5">北极熊</string>
+    <string name="string_room_tab_item6">狮子</string>
 
     <!-- behavior -->
     <string name="behavior_textview">com.example.pandas.ui.view.MyBehavior</string>

@@ -19,4 +19,6 @@ enum class PetType {
     HUMAN,//人类
     MUSIC,//音乐
     CHINA,//中国
+    BIRD,//鸟
+    DEER,//鹿
 }

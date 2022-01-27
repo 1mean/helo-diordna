@@ -83,15 +83,18 @@ public class Banner : RelativeLayout {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        if (isAutoPlayed() && getRealCount() > 1) {
+        Log.e("1mean", "banner onAttachedToWindow ")
+        if (isAutoPlayed() && getRealCount() > 1 && !isTaskPostDelayed) {
+            Log.e("1mean", "banner onAttachedToWindow startPlay")
             startPlaying()
         }
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
+
+        Log.e("1mean", "banner onDetachedFromWindow " + isAutoPlayed())
         if (isAutoPlayed()) {
-            Log.e("1111111111111111111","onDetachedFromWindow")
             stopPlaying()
         }
     }
@@ -183,7 +186,7 @@ public class Banner : RelativeLayout {
      */
     private val adapterObserver = object : RecyclerView.AdapterDataObserver() {
 
-        //每次执行刷新adapter时调用，第一次添加adapter时不会执行
+        //每次执行adapter notifyDataSetChanged 时调用，第一次添加adapter时不会执行
         override fun onChanged() {
             //startViewPager(realPosition(tempPosition))
         }
@@ -327,7 +330,6 @@ public class Banner : RelativeLayout {
 
         if (isTaskPostDelayed) {
 
-            Log.e("1111111111111111111","stopPlaying")
             removeCallbacks(task)
             isTaskPostDelayed = false
         }
@@ -402,10 +404,11 @@ public class Banner : RelativeLayout {
      * @date: 2021/12/24 12:39 下午
      */
     fun setAutoPlayed(autoPlay: Boolean): Banner {
+        Log.e("1mean","setAutoPlayed")
         isAutoPlay = autoPlay
         if (isAutoPlay && getRealCount() > 1) {
             //onAttachedToWindow里执行了开始轮播
-            //startPlaying()
+            startPlaying()
         }
         return this
     }

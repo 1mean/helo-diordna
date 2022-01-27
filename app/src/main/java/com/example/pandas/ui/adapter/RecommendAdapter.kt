@@ -121,7 +121,6 @@ public class RecommendAdapter(private val data: RecommendData<PetViewData>) :
 
         fun handle(position: Int) {
 
-            Log.e("11111111111111111mean", "$position")
             val petVideo = data.itemList[position - 1]
             val duration = TimeUtils.getDuration(petVideo.duration.toLong())
 

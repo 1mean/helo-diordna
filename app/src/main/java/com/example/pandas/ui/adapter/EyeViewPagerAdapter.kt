@@ -3,7 +3,6 @@ import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.pandas.ui.adapter.viewholder.ImageViewHolder
 
 /**
  * @description: TODO

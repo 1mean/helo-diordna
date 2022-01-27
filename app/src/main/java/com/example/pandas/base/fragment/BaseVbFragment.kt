@@ -1,5 +1,3 @@
-package com.example.pandas.base.fragment
-
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
@@ -12,22 +10,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.example.pandas.base.BaseViewModel
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.ParameterizedType
 
-
 /**
- * @description: Fragment基类，Fragment+ViewModel+ViewBinding
+ * @description: TODO
  * @author: dongyiming
- * @date: 1/19/22 1:11 下午
+ * @date: 1/27/22 5:25 下午
  * @version: v1.0
  */
-abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
-
-    lateinit var mViewModel: VM
+public abstract class BaseVbFragment<VB : ViewBinding> : Fragment() {
 
     private var _binding: VB? = null
     val binding: VB get() = _binding!!
@@ -61,7 +57,7 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
         try {
             val superclass = javaClass.genericSuperclass
             //获得父类的泛型参数的实际类型
-            val aClass = (superclass as ParameterizedType).actualTypeArguments[1] as Class<VB>
+            val aClass = (superclass as ParameterizedType).actualTypeArguments[0] as Class<VB>
             //获取inflate方法 传入相应的参数
             val method = aClass.getDeclaredMethod(
                 "inflate",
@@ -84,9 +80,7 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
 
         isFirstShow = true
 
-        val superclass = javaClass.genericSuperclass
-        val aClass = (superclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
-        mViewModel = ViewModelProvider(this)[aClass]
+        initViewModel()
         initView(savedInstanceState)
         createObserver()
     }
@@ -169,6 +163,9 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
      * 初始化view
      */
     abstract fun initView(savedInstanceState: Bundle?)
+
+
+    abstract fun initViewModel()
 
     /**
      * 创建观察者

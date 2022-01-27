@@ -1,4 +1,5 @@
 import android.os.Bundle
+import android.util.Log
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
@@ -21,6 +22,8 @@ public class HomeFragment : BaseFragment<BaseViewModel, FragmentHomeBinding>() {
     override fun lazyLoadTime(): Long = 0
 
     override fun initView(savedInstanceState: Bundle?) {
+
+        StatusBarUtils.updataStatus(requireActivity(), true, false, R.color.color_white_lucency)
 
         Glide.with(requireContext()).load(R.mipmap.jia).apply(
             RequestOptions.bitmapTransform(
@@ -45,6 +48,7 @@ public class HomeFragment : BaseFragment<BaseViewModel, FragmentHomeBinding>() {
     }
 
     override fun againOnResume() {
+        Log.e("1mean","againOnResume")
         StatusBarUtils.updataStatus(requireActivity(), true, false, R.color.color_white_lucency)
     }
 

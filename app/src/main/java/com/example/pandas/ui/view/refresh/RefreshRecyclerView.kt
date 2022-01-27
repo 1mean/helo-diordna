@@ -2,10 +2,10 @@ package com.example.pandas.ui.view.refresh
 
 import BaseEmptyViewHolder
 import ILoadMoreListener
+import android.R.attr
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +13,7 @@ import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.*
 import com.example.pandas.R
+
 
 /**
  * @description: TODO
@@ -47,6 +48,16 @@ public class RefreshRecyclerView : RecyclerView {
 
     private fun init() {
         itemAnimator = DefaultItemAnimator() //设置默认ItemAnimator
+    }
+
+    override fun canScrollVertically(direction: Int): Boolean {
+        // check if scrolling up
+        // check if scrolling up
+        if (attr.direction < 1) {
+            val original = super.canScrollVertically(attr.direction)
+            return !original && getChildAt(0) != null && getChildAt(0).top < 0 || original
+        }
+        return super.canScrollVertically(attr.direction)
     }
 
     /**
@@ -148,6 +159,8 @@ public class RefreshRecyclerView : RecyclerView {
         private var _footer: View? = null
         private val footer get() = _footer!!
 
+        private var holder: FooterViewHolder? = null
+
         fun isFooter(position: Int): Boolean {
 
             return position == itemCount - 1
@@ -168,7 +181,8 @@ public class RefreshRecyclerView : RecyclerView {
             if (viewType == TYPE_FOOTER) {
                 _footer = LayoutInflater.from(parent.context)
                     .inflate(R.layout.footer_recyclerview, parent, false)
-                return FooterViewHolder(footer)
+                holder = FooterViewHolder(footer)
+                return holder!!
             } else {
                 return adapter.onCreateViewHolder(parent, viewType)
             }
@@ -191,7 +205,7 @@ public class RefreshRecyclerView : RecyclerView {
         }
 
         fun noMore() {
-            //footer.noMore()
+            holder?.handle()
         }
 
         fun loading() {
@@ -249,6 +263,11 @@ public class RefreshRecyclerView : RecyclerView {
 
             val progressBar = itemView.findViewById<ProgressBar>(R.id.progressBar)
             val txtFooter = itemView.findViewById<AppCompatTextView>(R.id.txt_footer)
+
+            fun handle() {
+                progressBar.visibility = GONE
+                txtFooter.visibility = VISIBLE
+            }
         }
     }
 
@@ -262,7 +281,6 @@ public class RefreshRecyclerView : RecyclerView {
 
     fun loadMoreFinished() {
 
-        isLoadingData = false
         isLoadingData = false
         wrapAdapter?.close()
     }

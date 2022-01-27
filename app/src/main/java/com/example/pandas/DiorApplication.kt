@@ -3,6 +3,8 @@ package com.example.pandas
 import android.app.Application
 import android.content.Context
 import com.example.pandas.data.AppData
+import com.example.pandas.data.CutePetBannerData
+import com.example.pandas.data.FoxData
 import com.example.pandas.sql.database.AppDataBase
 import kotlin.properties.Delegates
 
@@ -26,7 +28,9 @@ class DiorApplication : Application() {
 
         Thread{
             val petDao = AppDataBase.getInstance().petVideoDao()
-            val list = AppData.getAll()
+            //val list = petDao.queryVideoType(3)
+
+            val list = FoxData.getFoxData()
             petDao.insertAll(list)
         }.start()
     }
