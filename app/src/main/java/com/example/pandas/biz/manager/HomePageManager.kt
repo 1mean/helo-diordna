@@ -1,6 +1,8 @@
+import com.example.pandas.bean.pet.MyLoveData
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.sql.dao.PetVideoDao
 import com.example.pandas.sql.database.AppDataBase
+import com.example.pandas.sql.entity.MusicVo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -69,4 +71,31 @@ class PetManager {
             petDao.queryByTypeAndPage(type, startIndex)
         }
     }
+
+    /**
+     * 通过type获取轮播图数据
+     * @date: 1/26/22 5:27 下午
+     * @version: v1.0
+     */
+    suspend fun getLoveData(): MyLoveData {
+
+        return withContext(Dispatchers.IO) {
+
+            val data = MyLoveData()
+            val songs = petDao.queryMusicByPage(0, 5)
+            data.songs = songs
+            data
+        }
+    }
+
+    /**
+     * 获取分页的music数据
+     */
+    suspend fun getPageMusic(startIndex: Int, counts: Int): MutableList<MusicVo> {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryMusicByPage(startIndex, counts)
+        }
+    }
+
 }

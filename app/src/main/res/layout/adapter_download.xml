@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="223dp"
         android:background="@color/white"
@@ -49,6 +50,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"
                 android:textSize="9sp"
-                android:text="自由与和平" />
+                android:text="自由与和平"
+                tools:ignore="SmallSp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

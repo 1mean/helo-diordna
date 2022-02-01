@@ -2,6 +2,7 @@ package com.example.pandas.sql.dao
 
 import androidx.room.*
 import com.example.pandas.bean.pet.PetViewData
+import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
 
 /**
@@ -20,6 +21,9 @@ interface PetVideoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(videos: MutableList<PetVideo>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertMusics(songs: MutableList<MusicVo>)
 
     /* -----------删------------------------------------- */
 
@@ -95,5 +99,9 @@ interface PetVideoDao {
     suspend fun queryStarByPage(startIndex: Int, count: Int): MutableList<PetViewData>
 
     @Query("select * from pet_video where videoType = (:videoType)")
-    fun queryVideoType(videoType: Int): MutableList<PetVideo>
+    suspend fun queryVideoType(videoType: Int): MutableList<PetVideo>
+
+    @Query("select * from music limit (:startIndex),(:count)")
+    suspend fun queryMusicByPage(startIndex: Int, count: Int): MutableList<MusicVo>
+
 }

@@ -1,4 +1,5 @@
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.databinding.FragmentPandasBinding
@@ -58,6 +59,7 @@ public class PandaFragment : BaseFragment<HomePageViewModel, FragmentPandasBindi
     }
 
     override fun firstOnResume() {
+
         binding.refreshLayoutPanda.isRefreshing = true
         mViewModel.getPagePet(true)
     }

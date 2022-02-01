@@ -59,4 +59,9 @@
     <color name="color_viewpager_bg">#F1F2F4</color>
     <color name="color_card_name">#939aa0</color>
     <color name="color_home_viewpager_bg">#99989C9F</color>
+
+    <!--love  -->
+    <color name="color_txt_love_pet">#111111</color>
+    <color name="color_txt_singer">#888888</color>
+
 </resources>

@@ -1,9 +1,11 @@
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.BaseViewModel
+import com.example.pandas.bean.pet.MyLoveData
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.ExceptionHandle
+import com.example.pandas.ui.ext.getHorVideos
 import kotlinx.coroutines.launch
 
 /**
@@ -18,9 +20,11 @@ class HomePageViewModel : BaseViewModel() {
     var startIndex = 0//分页起始
 
     //获取所有宠物的输出
-    var petDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> = MutableLiveData()
+    val petDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
 
-    var recommendDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> = MutableLiveData()
+    val recommendDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
+
+    val loveDataWrapper: MutableLiveData<UIDataWrapper<MyLoveData>> by lazy { MutableLiveData() }
 
 
     fun getPagePet(isRefresh: Boolean) {
@@ -92,5 +96,39 @@ class HomePageViewModel : BaseViewModel() {
                 recommendDataWrapper.value = dataList
             }
         }
+    }
+
+    fun getLoveData(isRefresh: Boolean){
+
+        viewModelScope.launch {
+
+            kotlin.runCatching {
+                PetManagerCoroutine.getLoveData()
+            }.onSuccess {
+                if (startIndex == 0) startIndex += 10 else startIndex += 11
+                pageNo++
+                val data = getHorizontalVideos(it)
+                val dataList = UIDataWrapper<MyLoveData>(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    loveData = data
+                )
+                loveDataWrapper.value = dataList
+            }.onFailure {
+
+                it.message?.loge()
+                it.printStackTrace()
+                val exception = ExceptionHandle.handleException(it)
+                val dataList = UIDataWrapper<MyLoveData>(
+                    isSuccess = false,
+                    errMessage = exception.errorMsg,
+                    isRefresh = isRefresh,
+                )
+                loveDataWrapper.value = dataList
+            }
+        }
+    }
+    fun getHorizontalVideos(data:MyLoveData):MyLoveData{
+        return getHorVideos(data)
     }
 }

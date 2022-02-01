@@ -39,8 +39,7 @@ public class RecoViewPagerAdapter(private val list: MutableList<PetViewData>) :
         fun handle(position: Int) {
 
             val data = list[position]
-            val url = data.cover.replace("http", "https")
-            Glide.with(itemView.context).load(url)
+            Glide.with(itemView.context).load(data.cover)
                 .into(cover)
             if (position != 0) {
                 title.text = data.title

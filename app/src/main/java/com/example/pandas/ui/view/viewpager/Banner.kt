@@ -83,9 +83,8 @@ public class Banner : RelativeLayout {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        Log.e("1mean", "banner onAttachedToWindow ")
+        Log.e("1mean", "onAttachedToWindow")
         if (isAutoPlayed() && getRealCount() > 1 && !isTaskPostDelayed) {
-            Log.e("1mean", "banner onAttachedToWindow startPlay")
             startPlaying()
         }
     }
@@ -295,7 +294,6 @@ public class Banner : RelativeLayout {
                 if (isAutoPlayed()) {
                     //实际位置
                     tempPosition++
-
                     //自动模式下实现最两边的切换
                     if (tempPosition == getRealCount() + sidePage + 1) {
                         mViewPager.setCurrentItem(sidePage, false)
@@ -319,24 +317,26 @@ public class Banner : RelativeLayout {
         return this
     }
 
-    private fun startPlaying() {
+
+    /* --对外暴露的方法--------------------------------------------------------------------------- */
+
+    fun startPlaying() {
 
         stopPlaying()
+        Log.e("1mean", "startPlaying")
         postDelayed(task, autoTime)
         isTaskPostDelayed = true
     }
 
-    private fun stopPlaying() {
+    fun stopPlaying() {
 
+        Log.e("1mean", "stopPlaying: $isTaskPostDelayed")
         if (isTaskPostDelayed) {
 
             removeCallbacks(task)
             isTaskPostDelayed = false
         }
     }
-
-
-    /* --对外暴露的方法--------------------------------------------------------------------------- */
 
     /**
      * 设置一屏3页
@@ -404,7 +404,7 @@ public class Banner : RelativeLayout {
      * @date: 2021/12/24 12:39 下午
      */
     fun setAutoPlayed(autoPlay: Boolean): Banner {
-        Log.e("1mean","setAutoPlayed")
+        Log.e("1mean", "setAutoPlayed")
         isAutoPlay = autoPlay
         if (isAutoPlay && getRealCount() > 1) {
             //onAttachedToWindow里执行了开始轮播

@@ -46,4 +46,22 @@
     <style name="VideoTabLayoutTextStyle">
         <item name="android:textSize">13sp</item>
     </style>
+
+    <!-- home activity RadioButtom style -->
+    <style name="styles_txt_love_classify">
+        <item name="android:textSize">11sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/color_txt_love_pet</item>
+    </style>
+
+    <style name="styles_img_love_classify">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
 </resources>

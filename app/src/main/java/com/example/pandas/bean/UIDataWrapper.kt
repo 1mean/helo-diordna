@@ -1,3 +1,5 @@
+import com.example.pandas.bean.pet.MyLoveData
+
 /**
  * @description: TODO
  * @author: dongyiming
@@ -21,6 +23,8 @@ data class UIDataWrapper<T>(
     //列表数据
     val listData: MutableList<T> = mutableListOf(),
     //推荐页数据
-    val recoData: RecommendData<T> = RecommendData()
+    val recoData: RecommendData<T> = RecommendData(),
+    //喜欢页数据
+    val loveData: MyLoveData = MyLoveData()
 
 )

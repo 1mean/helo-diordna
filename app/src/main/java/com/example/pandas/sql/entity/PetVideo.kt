@@ -36,6 +36,6 @@ data class PetVideo(
     @ColumnInfo
     var isStar: Boolean = false,//明星熊猫
     @ColumnInfo
-    var videoType: Int = 0//视频展示类型 0为普通视频，1为轮播图视频，2为横屏视频  3为cutepet页面轮播图
+    var videoType: Int = 0,//视频展示类型 0为普通视频，1为轮播图视频，2为横屏视频  3为cutepet页面轮播图
 
 )

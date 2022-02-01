@@ -65,8 +65,7 @@ public class PandasAdapter(private val list: MutableList<PetViewData>) :
             val duration = TimeUtils.getDuration(petVideo.duration.toLong())
 
             //把http图片换成https就能加载出来
-            val url = petVideo.cover.replace("http", "https")
-            Glide.with(holder.itemView).load(url)
+            Glide.with(holder.itemView).load(petVideo.cover)
                 .into(holder.cover)
             holder.duration.text = duration
             holder.name.text = petVideo.authorName

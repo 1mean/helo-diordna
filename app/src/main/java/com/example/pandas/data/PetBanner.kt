@@ -27,7 +27,7 @@ object PetBanner {
         panda4.tags = "熊猫,冰雪"
         panda4.authorName = "北京2022年冬奥会"
         panda4.cover =
-            "http://i1.hdslb.com/bfs/archive/8c551b4ec8aad66ddafc523dbef16b180b85d27d.jpg"
+            "https://i1.hdslb.com/bfs/archive/8c551b4ec8aad66ddafc523dbef16b180b85d27d.jpg"
         list.add(panda4)
 
         val panda3 = PetVideo()
@@ -42,7 +42,7 @@ object PetBanner {
         panda3.tags = "中国,湖南,橘子洲头,雪"
         panda3.authorName = "中国青年报"
         panda3.cover =
-            "http://i2.hdslb.com/bfs/archive/96ab6c6fc7474a67de916c75397161fcc9297095.jpg"
+            "https://i2.hdslb.com/bfs/archive/96ab6c6fc7474a67de916c75397161fcc9297095.jpg"
         list.add(panda3)
 
         val panda1 = PetVideo()
@@ -58,7 +58,7 @@ object PetBanner {
         panda1.tags = "企鹅"
         panda1.authorName = "冻冻sama"
         panda1.cover =
-            "http://i2.hdslb.com/bfs/archive/a27db041ca7af069e12ead43c35e11a45a44bb86.jpg"
+            "https://i2.hdslb.com/bfs/archive/a27db041ca7af069e12ead43c35e11a45a44bb86.jpg"
         list.add(panda1)
 
 
@@ -74,7 +74,7 @@ object PetBanner {
         panda2.tags = "四月,飞天"
         panda2.authorName = "摄影师黄永强"
         panda2.cover =
-            "http://i0.hdslb.com/bfs/archive/21dc90239bd1e237ef080604e7295dc9a59088be.jpg"
+            "https://i0.hdslb.com/bfs/archive/21dc90239bd1e237ef080604e7295dc9a59088be.jpg"
         list.add(panda2)
 
         return list

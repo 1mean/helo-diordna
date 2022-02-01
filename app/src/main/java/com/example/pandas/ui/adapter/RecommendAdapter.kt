@@ -1,5 +1,4 @@
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -24,6 +23,10 @@ public class RecommendAdapter(private val data: RecommendData<PetViewData>) :
     private val TYPE_BANNER = 1//轮播图
     private val TYPE_ITEM = 2//普通视频，一行2列
     private val TYPE_VIDEO = 3//横屏视频，一行一列
+
+    fun closeBanner() {
+
+    }
 
     override fun getItemViewType(position: Int): Int {
 
@@ -125,8 +128,8 @@ public class RecommendAdapter(private val data: RecommendData<PetViewData>) :
             val duration = TimeUtils.getDuration(petVideo.duration.toLong())
 
             //把http图片换成https就能加载出来
-            val url = petVideo.cover.replace("http", "https")
-            Glide.with(itemView.context).load(url)
+            //val url = petVideo.cover.replace("http", "https")
+            Glide.with(itemView.context).load(petVideo.cover)
                 .into(cover)
             this.duration.text = duration
             name.text = petVideo.authorName
@@ -138,20 +141,24 @@ public class RecommendAdapter(private val data: RecommendData<PetViewData>) :
         BaseEmptyViewHolder(binding.root) {
 
         private val banner = binding.banner
-
+        var indicator: Indicator? = null
         fun handle() {
             //轮播图数据
             val list = data.bannerList
 
-            val indicator = Indicator(itemView.context)
-            indicator.initIndicator(
-                list.size,
-                ContextCompat.getColor(itemView.context, R.color.white)
-            )
-            val adapter = RecoViewPagerAdapter(list)
-            this.banner.setAdapter(adapter)
-                .setIndicator(indicator, true)
-                .setAutoPlayed(true)
+            //避免重复创建，刷新banner位置到起始位
+            if (indicator == null) {
+                indicator = Indicator(itemView.context)
+                indicator!!.initIndicator(
+                    list.size,
+                    ContextCompat.getColor(itemView.context, R.color.white)
+                )
+                val adapter = RecoViewPagerAdapter(list)
+
+                this.banner.setAdapter(adapter)
+                    .setIndicator(indicator!!, true)
+                    .setAutoPlayed(true)
+            }
         }
     }
 
@@ -164,8 +171,8 @@ public class RecommendAdapter(private val data: RecommendData<PetViewData>) :
         fun handle(position: Int) {
             val petVideo = data.itemList[position - 1]
             //把http图片换成https就能加载出来
-            val url = petVideo.cover.replace("http", "https")
-            Glide.with(itemView.context).load(url)
+            //val url = petVideo.cover.replace("http", "https")
+            Glide.with(itemView.context).load(petVideo.cover)
                 .into(cover)
             title.text = petVideo.title
         }

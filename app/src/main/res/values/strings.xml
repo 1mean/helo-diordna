@@ -29,4 +29,12 @@
     <string name="keeping_nice_string">发一条友善的评论～</string>
 
 
+    <!--   love   -->
+    <string name="string_love_pet">宠物</string>
+    <string name="string_love_tv">影视</string>
+    <string name="string_love_music">歌曲</string>
+    <string name="string_love_talk">相声</string>
+    <string name="string_love_other">未知</string>
+
+
 </resources>

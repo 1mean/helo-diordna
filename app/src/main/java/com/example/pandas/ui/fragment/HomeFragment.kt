@@ -17,7 +17,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  */
 public class HomeFragment : BaseFragment<BaseViewModel, FragmentHomeBinding>() {
 
-    private val tabTitles by lazy { arrayListOf("大熊猫", "推荐", "萌宠", "老虎", "小熊猫", "音乐", "动漫") }
+    private val tabTitles by lazy { arrayListOf("大熊猫", "推荐", "最爱", "老虎", "小熊猫", "音乐", "动漫") }
 
     override fun lazyLoadTime(): Long = 0
 
@@ -33,7 +33,8 @@ public class HomeFragment : BaseFragment<BaseViewModel, FragmentHomeBinding>() {
 
         val viewpager = binding.viewpager
         viewpager.adapter = HomePagerAdapter(tabTitles, requireActivity())
-        viewpager.offscreenPageLimit = 1
+        viewpager.offscreenPageLimit = tabTitles.size
+        viewpager.setCurrentItem(1, false)
         TabLayoutMediator(
             binding.tab, viewpager, true
         ) { tab, position ->
@@ -48,7 +49,7 @@ public class HomeFragment : BaseFragment<BaseViewModel, FragmentHomeBinding>() {
     }
 
     override fun againOnResume() {
-        Log.e("1mean","againOnResume")
+        Log.e("1mean", "againOnResume")
         StatusBarUtils.updataStatus(requireActivity(), true, false, R.color.color_white_lucency)
     }
 

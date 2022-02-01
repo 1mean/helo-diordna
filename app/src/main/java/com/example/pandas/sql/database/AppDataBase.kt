@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.pandas.DiorApplication
 import com.example.pandas.sql.dao.PetVideoDao
+import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
 
 /**
@@ -17,7 +18,7 @@ import com.example.pandas.sql.entity.PetVideo
  * @date: 2022/1/11 12:51 上午
  * @version: v1.0
  */
-@Database(entities = [PetVideo::class], version = 1, exportSchema = false)
+@Database(entities = [PetVideo::class,MusicVo::class], version = 1, exportSchema = false)
 public abstract class AppDataBase : RoomDatabase() {
 
     abstract fun petVideoDao(): PetVideoDao

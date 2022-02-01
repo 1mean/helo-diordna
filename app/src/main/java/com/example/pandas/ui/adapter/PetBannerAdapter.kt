@@ -41,11 +41,10 @@ public class PetBannerAdapter(private var data: MutableList<PetViewData>) :
     inner class MyViewHolder(binding: LayoutImageBinding) : BaseEmptyViewHolder(binding.root) {
         val image = binding.imgView
         fun handle(position: Int) {
-            val url = data[position].cover.replace("http", "https")
             //Glide.with(itemView.context).load(url).into(image)
             when(position){
                 0->{
-                    Glide.with(itemView.context).load("https://i0.hdslb.com/bfs/archive/968efacd13d8ca3800396eab67e5c99e31fae4a6.jpg").into(image)
+                    Glide.with(itemView.context).load("https://bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/8fe5bfdaa212439a7d3332add8b3afc7.jpg").into(image)
                 }
                 1->{
                     Glide.with(itemView.context).load("https://i1.hdslb.com/bfs/archive/58d301c56e86fd2cf7316c023daa1aca9480f21d.jpg").into(image)
@@ -57,7 +56,7 @@ public class PetBannerAdapter(private var data: MutableList<PetViewData>) :
                     Glide.with(itemView.context).load("https://i0.hdslb.com/bfs/archive/213435510f2714c4e42323a2ae1111e9e7a27898.jpg").into(image)
                 }
                 else ->{
-                    Glide.with(itemView.context).load(url).into(image)
+                    Glide.with(itemView.context).load(data[position].cover).into(image)
                 }
             }
         }

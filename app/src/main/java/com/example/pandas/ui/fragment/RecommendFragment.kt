@@ -1,11 +1,13 @@
 import android.os.Bundle
 import android.util.Log
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.databinding.FragmentRecommendBinding
 import com.example.pandas.ui.ext.initReco
+import com.example.pandas.ui.view.viewpager.Banner
 
 /**
  * @description: TODO
@@ -68,6 +70,11 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, FragmentRecomme
     }
 
     override fun againOnResume() {
+
+        val view = binding.rview.getChildAt(0)
+        if (view is CardView && view.getChildAt(0) is Banner) {
+            (view.getChildAt(0) as Banner).startPlaying()
+        }
     }
 
     //当banner可见时，滑动到左右两个item，还是在运行， 超过1个的会触发onDetachedFromWindow
@@ -75,5 +82,9 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, FragmentRecomme
     override fun onPause() {
         super.onPause()
 
+        val view = binding.rview.getChildAt(0)
+        if (view is CardView && view.getChildAt(0) is Banner) {
+            (view.getChildAt(0) as Banner).stopPlaying()
+        }
     }
 }

@@ -27,7 +27,7 @@ object PandaGroupData {
         panda1.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda1.authorName = "央视网"
         panda1.cover =
-            "http://i2.hdslb.com/bfs/archive/ff7209ffe040bfe58e81bce9950f72334cf3724b.jpg"
+            "https://i2.hdslb.com/bfs/archive/ff7209ffe040bfe58e81bce9950f72334cf3724b.jpg"
         list.add(panda1)
 
 
@@ -44,7 +44,7 @@ object PandaGroupData {
         panda2.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda2.authorName = "胖哒哒不月半"
         panda2.cover =
-            "http://i0.hdslb.com/bfs/archive/7bf5b95b50ddc225413847c814a7583657bbed6b.jpg"
+            "https://i0.hdslb.com/bfs/archive/7bf5b95b50ddc225413847c814a7583657bbed6b.jpg"
         list.add(panda2)
 
 
@@ -61,7 +61,7 @@ object PandaGroupData {
         panda3.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda3.authorName = "胖哒哒不月半"
         panda3.cover =
-            "http://i2.hdslb.com/bfs/archive/631d52fb6cb66511bfdeedd8ceb2912c84c02192.jpg"
+            "https://i2.hdslb.com/bfs/archive/631d52fb6cb66511bfdeedd8ceb2912c84c02192.jpg"
         list.add(panda3)
 
 
@@ -78,7 +78,7 @@ object PandaGroupData {
         panda4.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda4.authorName = "胖哒哒不月半"
         panda4.cover =
-            "http://i1.hdslb.com/bfs/archive/1b2d898871b249104d7ab6bdf39e0893abed194c.jpg"
+            "https://i1.hdslb.com/bfs/archive/1b2d898871b249104d7ab6bdf39e0893abed194c.jpg"
         list.add(panda4)
 
 
@@ -95,7 +95,7 @@ object PandaGroupData {
         panda5.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda5.authorName = "胖哒哒不月半"
         panda5.cover =
-            "http://i2.hdslb.com/bfs/archive/1b0b52e04a2994128778f15badcb602960c50743.jpg"
+            "https://i2.hdslb.com/bfs/archive/1b0b52e04a2994128778f15badcb602960c50743.jpg"
         list.add(panda5)
 
 
@@ -112,7 +112,7 @@ object PandaGroupData {
         panda6.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda6.authorName = "胖哒哒不月半"
         panda6.cover =
-            "http://i2.hdslb.com/bfs/archive/fb370b20b460aa0f6844164a1edaf49720d9da10.jpg"
+            "https://i2.hdslb.com/bfs/archive/fb370b20b460aa0f6844164a1edaf49720d9da10.jpg"
         list.add(panda6)
 
 
@@ -129,7 +129,7 @@ object PandaGroupData {
         panda7.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda7.authorName = "胖哒哒不月半"
         panda7.cover =
-            "http://i0.hdslb.com/bfs/archive/9fdaa22ecb5c5c0051c848fe8c47f671829c23d6.jpg"
+            "https://i0.hdslb.com/bfs/archive/9fdaa22ecb5c5c0051c848fe8c47f671829c23d6.jpg"
         list.add(panda7)
 
 
@@ -146,7 +146,7 @@ object PandaGroupData {
         panda8.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda8.authorName = "胖哒哒不月半"
         panda8.cover =
-            "http://i2.hdslb.com/bfs/archive/289847f714f70eb3e1ab69ecec942a415a111f19.jpg"
+            "https://i2.hdslb.com/bfs/archive/289847f714f70eb3e1ab69ecec942a415a111f19.jpg"
         list.add(panda8)
 
 
@@ -163,7 +163,7 @@ object PandaGroupData {
         panda9.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda9.authorName = "胖哒哒不月半"
         panda9.cover =
-            "http://i0.hdslb.com/bfs/archive/631e360291bec14ff01be22b126f2c22803df56f.jpg"
+            "https://i0.hdslb.com/bfs/archive/631e360291bec14ff01be22b126f2c22803df56f.jpg"
         list.add(panda9)
 
 
@@ -180,7 +180,7 @@ object PandaGroupData {
         panda10.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda10.authorName = "iPanda熊猫频道"
         panda10.cover =
-            "http://i2.hdslb.com/bfs/archive/0a8f7a3d92d730dee574d325b35ed2325e13e961.jpg"
+            "https://i2.hdslb.com/bfs/archive/0a8f7a3d92d730dee574d325b35ed2325e13e961.jpg"
         list.add(panda10)
 
 
@@ -197,7 +197,7 @@ object PandaGroupData {
         panda11.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda11.authorName = "婕玉玉儿"
         panda11.cover =
-            "http://i1.hdslb.com/bfs/archive/05adfbb412c872e52c95beb9d7204928ddb8feae.jpg"
+            "https://i1.hdslb.com/bfs/archive/05adfbb412c872e52c95beb9d7204928ddb8feae.jpg"
         list.add(panda11)
 
 
@@ -213,7 +213,7 @@ object PandaGroupData {
         panda12.tags = "萌宠,和花,动物,熊猫"
         panda12.authorName = "胖哒哒不月半"
         panda12.cover =
-            "http://i2.hdslb.com/bfs/archive/711945b30d6bdd958b5140e5954c68d6b0f52f1e.jpg"
+            "https://i2.hdslb.com/bfs/archive/711945b30d6bdd958b5140e5954c68d6b0f52f1e.jpg"
         list.add(panda12)
 
         val panda13 = PetVideo()
@@ -228,7 +228,7 @@ object PandaGroupData {
         panda13.tags = "萌宠,和花,动物,熊猫"
         panda13.authorName = "胖哒哒不月半"
         panda13.cover =
-            "http://i1.hdslb.com/bfs/archive/7ad9900d155d8047999fa4c581b2a15eba641e21.jpg"
+            "https://i1.hdslb.com/bfs/archive/7ad9900d155d8047999fa4c581b2a15eba641e21.jpg"
         list.add(panda13)
 
         val panda14 = PetVideo()
@@ -243,7 +243,7 @@ object PandaGroupData {
         panda14.tags = "萌宠,和花,动物,熊猫"
         panda14.authorName = "胖哒哒不月半"
         panda14.cover =
-            "http://i1.hdslb.com/bfs/archive/6659f4f5221f6d004c015ce5d44e9788957decb5.jpg"
+            "https://i1.hdslb.com/bfs/archive/6659f4f5221f6d004c015ce5d44e9788957decb5.jpg"
         list.add(panda14)
 
         val panda15 = PetVideo()
@@ -258,7 +258,7 @@ object PandaGroupData {
         panda15.tags = "大熊猫和花、和叶、艾玖、润玥"
         panda15.authorName = "胖哒哒不月半"
         panda15.cover =
-            "http://i0.hdslb.com/bfs/archive/6c8a7b2c45bd204a1f2698e9ff88439f902f7ba0.jpg"
+            "https://i0.hdslb.com/bfs/archive/6c8a7b2c45bd204a1f2698e9ff88439f902f7ba0.jpg"
         list.add(panda15)
 
         val panda16 = PetVideo()
@@ -273,7 +273,7 @@ object PandaGroupData {
         panda16.originalUrl = "https://www.bilibili.com/video/BV17h411X7sH/"
         panda16.tags = "北川,萌宠,萌萌哒,可爱,动物圈"
         panda16.authorName = "迩後咩"
-        panda16.cover = "http://i2.hdslb.com/bfs/archive/310d407ea7a93e5cd90ffa41da847dc607e1eeca.jpg"
+        panda16.cover = "https://i2.hdslb.com/bfs/archive/310d407ea7a93e5cd90ffa41da847dc607e1eeca.jpg"
         list.add(panda16)
 
         return list
