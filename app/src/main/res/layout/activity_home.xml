@@ -1,54 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_home"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintVertical_weight="1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/rg_home"/>
+            android:layout_weight="1" />
 
     <RadioGroup
             android:id="@+id/rg_home"
             android:layout_width="match_parent"
             android:layout_height="@dimen/activity_bottom_height_dimens"
-            android:background="@color/color_RadioGroup_bg_homepage"
-            android:orientation="horizontal"
-            app:layout_constraintVertical_weight="1"
-            app:layout_constraintTop_toBottomOf="@+id/vp_home"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:background="@color/white"
+            android:orientation="horizontal">
 
         <RadioButton
                 android:id="@+id/rb_name1"
                 style="@style/styles_homepage_radiobuttom"
                 android:drawableTop="@drawable/selector_button_catfound"
-                android:text="@string/home_button1"/>
+                android:text="@string/home_button1" />
 
         <RadioButton
                 android:id="@+id/rb_name2"
                 style="@style/styles_homepage_radiobuttom"
                 android:drawableTop="@drawable/selector_button_catfound"
-                android:text="@string/home_button2"/>
+                android:text="@string/home_button2" />
 
         <RadioButton
                 android:id="@+id/rb_name3"
                 style="@style/styles_homepage_radiobuttom"
                 android:drawableTop="@drawable/selector_button_catfound"
-                android:text="@string/home_button3"/>
+                android:text="@string/home_button3" />
 
         <RadioButton
                 android:id="@+id/rb_name4"
                 style="@style/styles_homepage_radiobuttom"
                 android:drawableTop="@drawable/selector_button_catfound"
-                android:text="@string/home_button4"/>
+                android:text="@string/home_button4" />
     </RadioGroup>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
