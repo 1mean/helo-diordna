@@ -1,26 +1,23 @@
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.R
-import com.example.pandas.bean.pet.MyLoveData
-import com.example.pandas.databinding.CardImageBinding
-import com.example.pandas.databinding.CardItemClassifyBinding
-import com.example.pandas.databinding.CardItemHorizontalBinding
-import com.example.pandas.databinding.CardItemMusicBinding
+import com.example.pandas.bean.pet.PageCommonData
+import com.example.pandas.databinding.*
 import com.example.pandas.sql.entity.MusicVo
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * @description: TODO
@@ -30,23 +27,23 @@ import kotlinx.coroutines.withContext
  */
 public class MyLoveFragmentAdapter(
     private val owner: LifecycleOwner,
-    private var data: MyLoveData
+    private var data: PageCommonData
 ) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
     private val TYPE_IMAGE = 1 //图片展示
     private val TYPE_CLASSIFY = 2 //分类 /动物/TV/音乐/
     private val TYPE_HORIZONTAL = 3 //水平滑动
-    private val TYPE_TV = 4 //我爱的电视剧
+    private val TYPE_SLEEP = 4 //我爱的电视剧
     private val TYPE_MUSIC = 5 //热门音乐
     private val TYPE_TALK = 6 //热门相声
     private val TYPE_COMMON = 7 //普通列表
 
-    private val startIndex = 0
+    private var startIndex = 5
     private val pageItems = 5
 
     @SuppressLint("NotifyDataSetChanged")
-    fun refresh(newData: MyLoveData) {
+    fun refresh(newData: PageCommonData) {
         data = newData
         notifyDataSetChanged()
     }
@@ -58,7 +55,7 @@ public class MyLoveFragmentAdapter(
             0 -> TYPE_IMAGE
             1 -> TYPE_CLASSIFY
             2 -> TYPE_HORIZONTAL
-            4 -> TYPE_TV
+            4 -> TYPE_SLEEP
             3 -> TYPE_MUSIC
             5 -> TYPE_TALK
             else -> TYPE_COMMON
@@ -90,7 +87,14 @@ public class MyLoveFragmentAdapter(
                     )
                 return HorizontalViewHolder(binding)
             }
-            TYPE_TV -> {
+            TYPE_SLEEP -> {
+                val binding =
+                    LayoutSleepBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                return SleepViewHolder(binding)
             }
             TYPE_MUSIC -> {
                 val binding =
@@ -98,6 +102,9 @@ public class MyLoveFragmentAdapter(
                 return MusicHolder(binding)
             }
             TYPE_TALK -> {
+                val binding =
+                    LayoutTalkBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return TalkViewHolder(binding)
             }
             TYPE_COMMON -> {
             }
@@ -118,14 +125,14 @@ public class MyLoveFragmentAdapter(
             TYPE_HORIZONTAL -> {
                 (holder as HorizontalViewHolder).handle()
             }
-            TYPE_TV -> {
-                (holder as ImageViewHolder).handle(position)
+            TYPE_SLEEP -> {
+                (holder as SleepViewHolder).handle(position)
             }
             TYPE_MUSIC -> {
                 (holder as MusicHolder).handle()
             }
             TYPE_TALK -> {
-                (holder as ImageViewHolder).handle(position)
+                (holder as TalkViewHolder).handle(position)
             }
             TYPE_COMMON -> {
                 (holder as ImageViewHolder).handle(position)
@@ -215,8 +222,9 @@ public class MyLoveFragmentAdapter(
                 }
                 next.setOnClickListener {
                     owner.apply {
-                        lifecycleScope.launch{
+                        lifecycleScope.launch {
                             getNextSongs().collect { value ->
+                                startIndex += pageItems
                                 mAdapter!!.insertList(value)
                             }
                         }
@@ -225,6 +233,52 @@ public class MyLoveFragmentAdapter(
             }
         }
     }
+
+    private inner class SleepViewHolder(binding: LayoutSleepBinding) :
+        BaseEmptyViewHolder(binding.root) {
+
+        val titleLayout = binding.layoutSleepTitle
+        val recyclerView = binding.recyclerSleepVideo
+        var mAdapter: SleepVideoItemAdapter? = null
+
+        fun handle(position: Int) {
+
+            val videos = data.sleepModel.videos
+            val audios = data.sleepModel.audios
+
+            if (mAdapter == null && videos.isNotEmpty() && audios.isNotEmpty()) {
+                mAdapter = SleepVideoItemAdapter(videos)
+                recyclerView.run {
+                    addItemDecoration(SleepVideosItemDecoration(itemView.context))
+                    layoutManager = GridLayoutManager(itemView.context, 2)
+                    adapter = mAdapter
+                }
+            }
+        }
+    }
+
+    private inner class TalkViewHolder(binding: LayoutTalkBinding) :
+        BaseEmptyViewHolder(binding.root) {
+
+        val loadMore = binding.layoutTalkMore
+        val recyclerView = binding.recyclerTalk
+        var mAdapter: TalkAudioItemAdapter? = null
+        val padding = itemView.context.resources.getDimension(R.dimen.common_sz_12_dimens).toInt()
+
+        fun handle(position: Int) {
+
+            val audios = data.talkAudios
+            if (mAdapter == null && audios.isNotEmpty()) {
+                mAdapter = TalkAudioItemAdapter(audios)
+                recyclerView.run {
+                    addItemDecoration(TopItemDecoration(padding))
+                    layoutManager = LinearLayoutManager(itemView.context)
+                    adapter = mAdapter
+                }
+            }
+        }
+    }
+
 
     private fun getNextSongs(): Flow<MutableList<MusicVo>> = flow {
         val list = PetManagerCoroutine.getPageMusic(startIndex, pageItems)

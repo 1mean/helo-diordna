@@ -1,7 +1,7 @@
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.BaseViewModel
-import com.example.pandas.bean.pet.MyLoveData
+import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.ExceptionHandle
@@ -24,7 +24,7 @@ class HomePageViewModel : BaseViewModel() {
 
     val recommendDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
 
-    val loveDataWrapper: MutableLiveData<UIDataWrapper<MyLoveData>> by lazy { MutableLiveData() }
+    val loveDataWrapper: MutableLiveData<UIDataWrapper<PageCommonData>> by lazy { MutableLiveData() }
 
 
     fun getPagePet(isRefresh: Boolean) {
@@ -108,7 +108,7 @@ class HomePageViewModel : BaseViewModel() {
                 if (startIndex == 0) startIndex += 10 else startIndex += 11
                 pageNo++
                 val data = getHorizontalVideos(it)
-                val dataList = UIDataWrapper<MyLoveData>(
+                val dataList = UIDataWrapper<PageCommonData>(
                     isSuccess = true,
                     isRefresh = isRefresh,
                     loveData = data
@@ -119,7 +119,7 @@ class HomePageViewModel : BaseViewModel() {
                 it.message?.loge()
                 it.printStackTrace()
                 val exception = ExceptionHandle.handleException(it)
-                val dataList = UIDataWrapper<MyLoveData>(
+                val dataList = UIDataWrapper<PageCommonData>(
                     isSuccess = false,
                     errMessage = exception.errorMsg,
                     isRefresh = isRefresh,
@@ -128,7 +128,7 @@ class HomePageViewModel : BaseViewModel() {
             }
         }
     }
-    fun getHorizontalVideos(data:MyLoveData):MyLoveData{
+    fun getHorizontalVideos(data:PageCommonData):PageCommonData{
         return getHorVideos(data)
     }
 }

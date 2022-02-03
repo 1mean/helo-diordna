@@ -1,11 +1,11 @@
 package com.example.pandas.ui.ext;
 
 import com.example.pandas.base.BaseViewModel
-import com.example.pandas.bean.pet.MyLoveData
+import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.PetViewData
 
 
-fun BaseViewModel.getHorVideos(data: MyLoveData): MyLoveData {
+fun BaseViewModel.getHorVideos(data: PageCommonData): PageCommonData {
 
     val list = mutableListOf<PetViewData>()
     val pandaUrl = "https://i1.hdslb.com/bfs/archive/e6e38cd16c7050cfbd510b8d44eb2e82919a78f9.jpg"

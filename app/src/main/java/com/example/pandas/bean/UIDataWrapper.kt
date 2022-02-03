@@ -1,4 +1,4 @@
-import com.example.pandas.bean.pet.MyLoveData
+import com.example.pandas.bean.pet.PageCommonData
 
 /**
  * @description: TODO
@@ -25,6 +25,6 @@ data class UIDataWrapper<T>(
     //推荐页数据
     val recoData: RecommendData<T> = RecommendData(),
     //喜欢页数据
-    val loveData: MyLoveData = MyLoveData()
+    val loveData: PageCommonData = PageCommonData()
 
 )

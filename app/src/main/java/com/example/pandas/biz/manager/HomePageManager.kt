@@ -1,5 +1,6 @@
-import com.example.pandas.bean.pet.MyLoveData
+import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.PetViewData
+import com.example.pandas.bean.pet.SleepModel
 import com.example.pandas.sql.dao.PetVideoDao
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.sql.entity.MusicVo
@@ -77,13 +78,20 @@ class PetManager {
      * @date: 1/26/22 5:27 下午
      * @version: v1.0
      */
-    suspend fun getLoveData(): MyLoveData {
+    suspend fun getLoveData(): PageCommonData {
 
         return withContext(Dispatchers.IO) {
 
-            val data = MyLoveData()
+            val data = PageCommonData()
             val songs = petDao.queryMusicByPage(0, 5)
             data.songs = songs
+
+            val sleepModel = SleepModel()
+            sleepModel.videos = petDao.queryByCounts(4)
+            sleepModel.audios = petDao.queryMusicByPage(0, 5)
+            data.sleepModel = sleepModel
+
+            data.talkAudios = petDao.queryMusicByPage(0, 5)
             data
         }
     }

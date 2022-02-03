@@ -63,5 +63,7 @@
     <!--love  -->
     <color name="color_txt_love_pet">#111111</color>
     <color name="color_txt_singer">#888888</color>
+    <color name="color_txt_sleep_more">#cdcdcd</color>
+    <color name="color_talk_name">#333333</color>
 
 </resources>

@@ -32,7 +32,7 @@
 
 
     <!-- homepage底部规范-->
-    <dimen name="activity_bottom_height_dimens">45dp</dimen>
+    <dimen name="activity_bottom_height_dimens">50dp</dimen>
     <dimen name="activity_bottom_paddingTop_dimens">5.7dp</dimen>
     <dimen name="activity_bottom_paddingBottom_dimens">3dp</dimen>
     <dimen name="activity_bottom_drawablePadding_dimens">2dp</dimen>

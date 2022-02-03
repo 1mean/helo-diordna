@@ -1,7 +1,7 @@
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.bean.pet.MyLoveData
+import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.databinding.LayoutRefreshBinding
 
 /**
@@ -12,7 +12,7 @@ import com.example.pandas.databinding.LayoutRefreshBinding
  */
 public class MyLoveFragment : BaseFragment<HomePageViewModel, LayoutRefreshBinding>() {
 
-    private val mAdapter: MyLoveFragmentAdapter by lazy { MyLoveFragmentAdapter(viewLifecycleOwner,MyLoveData()) }
+    private val mAdapter: MyLoveFragmentAdapter by lazy { MyLoveFragmentAdapter(viewLifecycleOwner,PageCommonData()) }
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.refreshHot.setOnRefreshListener {
@@ -23,6 +23,7 @@ public class MyLoveFragment : BaseFragment<HomePageViewModel, LayoutRefreshBindi
             adapter = mAdapter
             layoutManager = LinearLayoutManager(mActivity)
             addItemDecoration(MyLoveItemDecoration(mActivity))
+
         }
     }
 

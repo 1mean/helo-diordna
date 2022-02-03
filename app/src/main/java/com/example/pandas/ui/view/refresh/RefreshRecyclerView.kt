@@ -6,13 +6,12 @@ import android.R.attr
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.*
 import com.example.pandas.R
+import kotlin.math.abs
 
 
 /**
@@ -48,16 +47,6 @@ public class RefreshRecyclerView : RecyclerView {
 
     private fun init() {
         itemAnimator = DefaultItemAnimator() //设置默认ItemAnimator
-    }
-
-    override fun canScrollVertically(direction: Int): Boolean {
-        // check if scrolling up
-        // check if scrolling up
-        if (attr.direction < 1) {
-            val original = super.canScrollVertically(attr.direction)
-            return !original && getChildAt(0) != null && getChildAt(0).top < 0 || original
-        }
-        return super.canScrollVertically(attr.direction)
     }
 
     /**
