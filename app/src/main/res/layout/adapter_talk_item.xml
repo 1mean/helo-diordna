@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layout_talk_item"
         android:layout_width="match_parent"
         android:layout_height="24dp"
         android:orientation="horizontal">
@@ -7,6 +8,7 @@
     <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:src="@mipmap/img_talk_play" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -15,6 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textSize="13sp"
+            android:layout_marginStart="16dp"
             android:textColor="@color/color_talk_name"
             android:maxLines="1" />
 </androidx.appcompat.widget.LinearLayoutCompat>

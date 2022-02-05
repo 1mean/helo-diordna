@@ -1,4 +1,5 @@
 import com.example.pandas.bean.pet.PageCommonData
+import com.example.pandas.bean.pet.PetType
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.bean.pet.SleepModel
 import com.example.pandas.sql.dao.PetVideoDao
@@ -103,6 +104,19 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
             petDao.queryMusicByPage(startIndex, counts)
+        }
+    }
+
+    suspend fun getLandscapeData(startIndex: Int, counts: Int): LandscapeData {
+
+        return withContext(Dispatchers.IO) {
+
+            val itemList = petDao.queryVideoByType(PetType.LANDSCAPE.ordinal, startIndex, counts)
+            var bannerList = mutableListOf<PetViewData>()
+            if (startIndex == 0) {
+                bannerList = petDao.queryBannerByType(PetType.LANDSCAPE.ordinal)
+            }
+            LandscapeData(bannerList, itemList)
         }
     }
 

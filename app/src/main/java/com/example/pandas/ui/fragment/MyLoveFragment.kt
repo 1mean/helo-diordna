@@ -15,11 +15,11 @@ public class MyLoveFragment : BaseFragment<HomePageViewModel, LayoutRefreshBindi
     private val mAdapter: MyLoveFragmentAdapter by lazy { MyLoveFragmentAdapter(viewLifecycleOwner,PageCommonData()) }
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.refreshHot.setOnRefreshListener {
+        binding.swipLayout.setOnRefreshListener {
 
         }
 
-        binding.recyclerHot.run {
+        binding.recyclerLayout.run {
             adapter = mAdapter
             layoutManager = LinearLayoutManager(mActivity)
             addItemDecoration(MyLoveItemDecoration(mActivity))

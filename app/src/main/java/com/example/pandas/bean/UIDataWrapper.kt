@@ -25,6 +25,8 @@ data class UIDataWrapper<T>(
     //推荐页数据
     val recoData: RecommendData<T> = RecommendData(),
     //喜欢页数据
-    val loveData: PageCommonData = PageCommonData()
+    val loveData: PageCommonData = PageCommonData(),
+    //山水数据
+    val landscapeData: LandscapeData = LandscapeData()
 
 )

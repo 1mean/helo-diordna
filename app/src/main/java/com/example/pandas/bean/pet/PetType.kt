@@ -21,4 +21,5 @@ enum class PetType {
     CHINA,//中国
     BIRD,//鸟
     DEER,//鹿
+    LANDSCAPE,//山水
 }

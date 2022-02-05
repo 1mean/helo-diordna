@@ -29,6 +29,9 @@ public class HomePagerAdapter(private val tabList: List<String>, fragment: Fragm
                 "最爱" -> {
                     MyLoveFragment()
                 }
+                "热门" -> {
+                    LandscapeFragment()
+                }
                 else -> {
                     Fragment()
                 }

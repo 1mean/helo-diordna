@@ -1,7 +1,6 @@
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -55,9 +54,9 @@ public class MyLoveFragmentAdapter(
             0 -> TYPE_IMAGE
             1 -> TYPE_CLASSIFY
             2 -> TYPE_HORIZONTAL
-            4 -> TYPE_SLEEP
-            3 -> TYPE_MUSIC
-            5 -> TYPE_TALK
+            3 -> TYPE_SLEEP
+            5 -> TYPE_MUSIC
+            4 -> TYPE_TALK
             else -> TYPE_COMMON
         }
     }
@@ -271,7 +270,12 @@ public class MyLoveFragmentAdapter(
             if (mAdapter == null && audios.isNotEmpty()) {
                 mAdapter = TalkAudioItemAdapter(audios)
                 recyclerView.run {
-                    addItemDecoration(TopItemDecoration(padding))
+                    addItemDecoration(
+                        OneDirectionItemDecoration(
+                            isBottom = true,
+                            padding = padding
+                        )
+                    )
                     layoutManager = LinearLayoutManager(itemView.context)
                     adapter = mAdapter
                 }

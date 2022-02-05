@@ -26,6 +26,8 @@ class HomePageViewModel : BaseViewModel() {
 
     val loveDataWrapper: MutableLiveData<UIDataWrapper<PageCommonData>> by lazy { MutableLiveData() }
 
+    val landScapeDataWrapper: MutableLiveData<UIDataWrapper<LandscapeData>> by lazy { MutableLiveData() }
+
 
     fun getPagePet(isRefresh: Boolean) {
 
@@ -98,7 +100,7 @@ class HomePageViewModel : BaseViewModel() {
         }
     }
 
-    fun getLoveData(isRefresh: Boolean){
+    fun getLoveData(isRefresh: Boolean) {
 
         viewModelScope.launch {
 
@@ -128,7 +130,45 @@ class HomePageViewModel : BaseViewModel() {
             }
         }
     }
-    fun getHorizontalVideos(data:PageCommonData):PageCommonData{
+
+    fun getHorizontalVideos(data: PageCommonData): PageCommonData {
         return getHorVideos(data)
+    }
+
+
+    fun getLandScapeData(isRefresh: Boolean) {
+
+        if (isRefresh) {
+            startIndex = 0
+        }
+        viewModelScope.launch {
+
+            kotlin.runCatching {
+                PetManagerCoroutine.getLandscapeData(startIndex, 10)
+            }.onSuccess {
+                startIndex += 10
+                val dataList = UIDataWrapper<LandscapeData>(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    isEmpty = it.itemList.isEmpty() && it.bannerList.isEmpty(),
+                    hasMore = it.itemList.size == 10,
+                    isFirstEmpty = isRefresh && it.itemList.isEmpty() && it.bannerList.isEmpty(),
+                    landscapeData = it
+                )
+                landScapeDataWrapper.value = dataList
+            }.onFailure {
+
+                it.message?.loge()
+                it.printStackTrace()
+                val exception = ExceptionHandle.handleException(it)
+                val dataList = UIDataWrapper<LandscapeData>(
+                    isSuccess = false,
+                    errMessage = exception.errorMsg,
+                    isRefresh = isRefresh,
+                    landscapeData = LandscapeData()
+                )
+                landScapeDataWrapper.value = dataList
+            }
+        }
     }
 }
