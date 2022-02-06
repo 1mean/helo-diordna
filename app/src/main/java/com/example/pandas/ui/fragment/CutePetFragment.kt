@@ -34,7 +34,7 @@ public class CutePetFragment : BaseFragment<CutePetViewModel, FragmentRoomBindin
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.updataStatus(requireActivity(), true, true, R.color.color_white_lucency)
+        //StatusBarUtils.updataStatus(requireActivity(), true, true, R.color.color_white_lucency)
 
         binding.refreshPet.run {
             setProgressViewEndTarget(true, 300)
@@ -103,6 +103,6 @@ public class CutePetFragment : BaseFragment<CutePetViewModel, FragmentRoomBindin
     }
 
     override fun againOnResume() {
-        StatusBarUtils.updataStatus(requireActivity(), true, true, R.color.color_white_lucency)
+        //StatusBarUtils.updataStatus(requireActivity(), true, true, R.color.color_white_lucency)
     }
 }

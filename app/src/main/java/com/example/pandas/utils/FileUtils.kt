@@ -1,6 +1,9 @@
 import android.content.Context
 import android.os.Environment
 import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.IOException
 
 /**
  * @description: 基于分区存储的文件处理
@@ -67,6 +70,32 @@ object FileUtils {
             return File(fileDir, name)
         }
         return null
+    }
+
+    /**
+     * 读取文件到指定目录
+     * @version: v1.0
+     */
+    fun copy(source: File?, target: File?) {
+        var fileInputStream: FileInputStream? = null
+        var fileOutputStream: FileOutputStream? = null
+        try {
+            fileInputStream = FileInputStream(source)
+            fileOutputStream = FileOutputStream(target)
+            val buffer = ByteArray(1024)
+            while (fileInputStream.read(buffer) > 0) {
+                fileOutputStream.write(buffer)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            try {
+                fileInputStream?.close()
+                fileOutputStream?.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
     }
 
 }

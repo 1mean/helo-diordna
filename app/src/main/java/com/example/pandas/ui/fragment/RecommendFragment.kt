@@ -1,5 +1,4 @@
 import android.os.Bundle
-import android.util.Log
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
@@ -7,6 +6,7 @@ import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.databinding.FragmentRecommendBinding
 import com.example.pandas.ui.ext.initReco
+import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 import com.example.pandas.ui.view.viewpager.Banner
 
 /**
@@ -16,7 +16,7 @@ import com.example.pandas.ui.view.viewpager.Banner
  * @version: v1.0
  */
 public class RecommendFragment : BaseFragment<HomePageViewModel, FragmentRecommendBinding>(),
-    ILoadMoreListener {
+    LoadMoreRecyclerView.ILoadMoreListener {
 
     private val mAdapter: RecommendAdapter by lazy { RecommendAdapter(RecommendData<PetViewData>()) }
 
@@ -26,6 +26,7 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, FragmentRecomme
         binding.refreshReco.run {
             setColorSchemeResources(R.color.green)
             setOnRefreshListener {
+                binding.rview.isFreshing(true)
                 mViewModel.getRecommendData(true)
             }
         }

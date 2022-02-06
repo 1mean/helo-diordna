@@ -1,3 +1,4 @@
+import com.example.pandas.bean.CoverDownLoad
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.PetType
 import com.example.pandas.bean.pet.PetViewData
@@ -117,6 +118,13 @@ class PetManager {
                 bannerList = petDao.queryBannerByType(PetType.LANDSCAPE.ordinal)
             }
             LandscapeData(bannerList, itemList)
+        }
+    }
+
+    suspend fun getAllPetCoverUrl(): MutableList<CoverDownLoad> {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryAllPetCovers()
         }
     }
 

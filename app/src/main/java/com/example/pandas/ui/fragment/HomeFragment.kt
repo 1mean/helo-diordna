@@ -23,8 +23,10 @@ public class HomeFragment : BaseFragment<BaseViewModel, FragmentHomeBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.updataStatus(requireActivity(), true, false, R.color.color_white_lucency)
+        //StatusBarUtils.updataStatus(requireActivity(), true, false, R.color.color_white_lucency)
 
+        Log.e("1mean","height: " + StatusBarUtils.getStatusBarHeight(mActivity))
+//        StatusBarUtils.setHeightAndPadding(mActivity, binding.clayoutHome)
         Glide.with(requireContext()).load(R.mipmap.jia).apply(
             RequestOptions.bitmapTransform(
                 CircleCrop()
@@ -50,7 +52,7 @@ public class HomeFragment : BaseFragment<BaseViewModel, FragmentHomeBinding>() {
 
     override fun againOnResume() {
         Log.e("1mean", "againOnResume")
-        StatusBarUtils.updataStatus(requireActivity(), true, false, R.color.color_white_lucency)
+        //StatusBarUtils.updataStatus(requireActivity(), true, false, R.color.color_white_lucency)
     }
 
 }

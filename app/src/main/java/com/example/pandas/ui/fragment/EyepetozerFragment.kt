@@ -10,7 +10,7 @@ import com.example.pandas.bean.eyes.EyepetozerBean
 import com.example.pandas.biz.controller.EyepetozerController
 import com.example.pandas.biz.interaction.ICommonInvokeResult
 import com.example.pandas.databinding.FragmentEyesBinding
-import com.example.pandas.ui.view.refresh.RefreshRecyclerView
+import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 
 /**
  * @description: TODO
@@ -25,7 +25,7 @@ public class EyepetozerFragment : Fragment() {
     private var _binding: FragmentEyesBinding? = null
     private val binding get() = _binding!!
     private var mAdapter: EyepetozerAdapter? = null
-    private var recyclerView: RefreshRecyclerView? = null
+    private var recyclerView: LoadMoreRecyclerView? = null
 
     //{ http://baobab.kaiyanapp.com/api/v4/discovery/hot?start=20&num=20 }
     private var start: Int = 20
@@ -95,7 +95,7 @@ public class EyepetozerFragment : Fragment() {
         }
     }
 
-    val listener = object : ILoadMoreListener {
+    val listener = object : LoadMoreRecyclerView.ILoadMoreListener {
         override fun onLoadMore() {
             controller.loadMore(
                 start,
@@ -124,6 +124,6 @@ public class EyepetozerFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        StatusBarUtils.updataStatus(requireActivity(), true, false, R.color.color_white_lucency)
+        //StatusBarUtils.updataStatus(requireActivity(), true, false, R.color.color_white_lucency)
     }
 }

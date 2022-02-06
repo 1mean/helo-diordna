@@ -1,9 +1,9 @@
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.databinding.FragmentPandasBinding
 import com.example.pandas.ui.ext.initPanda
+import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 
 /**
  * @description: TODO
@@ -12,7 +12,7 @@ import com.example.pandas.ui.ext.initPanda
  * @version: v1.0
  */
 public class PandaFragment : BaseFragment<HomePageViewModel, FragmentPandasBinding>(),
-    ILoadMoreListener {
+    LoadMoreRecyclerView.ILoadMoreListener {
 
     private val pandasAdapter: PandasAdapter by lazy { PandasAdapter(arrayListOf()) }
 

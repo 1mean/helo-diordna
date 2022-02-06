@@ -3,13 +3,13 @@ package com.example.pandas.ui.activity
 import HomeAdapter
 import StatusBarUtils
 import android.Manifest
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.RadioGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.pandas.R
+import com.example.pandas.biz.ext.downLoadVideoCovers
 import com.example.pandas.databinding.ActivityHomeBinding
 
 
@@ -43,7 +43,7 @@ public class HomeActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        StatusBarUtils.updataStatus(this, true, false, R.color.color_white_lucency)
+        StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -58,6 +58,7 @@ public class HomeActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListe
 
         requestPermissions.launch(permissions)
 
+        //downLoadVideoCovers(this,this)
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {

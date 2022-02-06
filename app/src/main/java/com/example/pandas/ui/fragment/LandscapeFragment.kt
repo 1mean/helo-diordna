@@ -3,6 +3,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.databinding.LayoutRefreshBinding
+import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 
 /**
  * @description: TODO
@@ -11,7 +12,7 @@ import com.example.pandas.databinding.LayoutRefreshBinding
  * @version: v1.0
  */
 public class LandscapeFragment : BaseFragment<HomePageViewModel, LayoutRefreshBinding>(),
-    ILoadMoreListener {
+    LoadMoreRecyclerView.ILoadMoreListener {
 
     private val mAdapter: LandscapeAdapter by lazy { LandscapeAdapter(LandscapeData()) }
 

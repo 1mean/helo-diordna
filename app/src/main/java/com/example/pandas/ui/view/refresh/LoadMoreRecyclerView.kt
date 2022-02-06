@@ -1,26 +1,28 @@
 package com.example.pandas.ui.view.refresh
 
 import BaseEmptyViewHolder
-import ILoadMoreListener
-import android.R.attr
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.pandas.R
-import kotlin.math.abs
 
 
 /**
- * @description: TODO
+ * @description: 加载更多
  * @author: dongyiming
  * @date: 12/27/19 6:30 下午
  * @version: v1.0
  */
-public class RefreshRecyclerView : RecyclerView {
+public class LoadMoreRecyclerView : RecyclerView {
 
     private val TYPE_FOOTER = 999
     private var wrapAdapter: WrapAdapter? = null
@@ -30,24 +32,13 @@ public class RefreshRecyclerView : RecyclerView {
 
     private var mOnRefreshLoadListener: ILoadMoreListener? = null
 
-    constructor(context: Context) : this(context, null) {
-
-    }
-
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0) {
-    }
-
+    constructor(context: Context) : this(context, null)
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(
         context,
         attrs,
         defStyle
-    ) {
-        init()
-    }
-
-    private fun init() {
-        itemAnimator = DefaultItemAnimator() //设置默认ItemAnimator
-    }
+    )
 
     /**
      * 设置adapter
@@ -293,5 +284,10 @@ public class RefreshRecyclerView : RecyclerView {
             }
         }
         return max
+    }
+
+    interface ILoadMoreListener {
+
+        fun onLoadMore()
     }
 }

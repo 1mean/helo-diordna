@@ -1,32 +1,31 @@
 package com.example.pandas.ui.ext;
 
 import BaseEmptyViewHolder
-import ILoadMoreListener
 import PandaDecoration
 import RecommendDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pandas.ui.view.refresh.RefreshRecyclerView
+import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 
 
 /**
  * 绑定上拉加载RecyclerView
  */
-fun RefreshRecyclerView.initReco(
+fun LoadMoreRecyclerView.initReco(
     manger: RecyclerView.LayoutManager,
     bindAdapter: RecyclerView.Adapter<BaseEmptyViewHolder>,
-    listener: ILoadMoreListener
-): RefreshRecyclerView {
+    listener: LoadMoreRecyclerView.ILoadMoreListener
+): LoadMoreRecyclerView {
     this.layoutManager = manger
     setRefreshAdapter(bindAdapter, listener)
     addItemDecoration(RecommendDecoration(context))
     return this
 }
 
-fun RefreshRecyclerView.initPanda(
+fun LoadMoreRecyclerView.initPanda(
     manger: RecyclerView.LayoutManager,
     bindAdapter: RecyclerView.Adapter<BaseEmptyViewHolder>,
-    listener: ILoadMoreListener
-): RefreshRecyclerView {
+    listener: LoadMoreRecyclerView.ILoadMoreListener
+): LoadMoreRecyclerView {
     this.layoutManager = manger
     setRefreshAdapter(bindAdapter, listener)
     addItemDecoration(PandaDecoration(context))

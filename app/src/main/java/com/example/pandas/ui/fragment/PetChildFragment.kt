@@ -1,9 +1,8 @@
 import android.os.Bundle
-import android.util.Log
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.databinding.FragmentPandaBinding
+import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 
 /**
  * @description: TODO
@@ -12,7 +11,7 @@ import com.example.pandas.databinding.FragmentPandaBinding
  * @version: v1.0
  */
 public class PetChildFragment() :
-    BaseFragment<CutePetViewModel,FragmentPandaBinding>(), ILoadMoreListener {
+    BaseFragment<CutePetViewModel,FragmentPandaBinding>(), LoadMoreRecyclerView.ILoadMoreListener {
 
     private val mAdapter: PandasAdapter by lazy { PandasAdapter(mutableListOf()) }
 

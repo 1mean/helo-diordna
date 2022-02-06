@@ -71,7 +71,7 @@ public class SelfFragment : Fragment(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-        StatusBarUtils.updataStatus(requireActivity(), false, true, R.color.color_white_lucency)
+        //StatusBarUtils.updataStatus(requireActivity(), false, true, R.color.color_white_lucency)
     }
 
     override fun onClick(view: View?) {

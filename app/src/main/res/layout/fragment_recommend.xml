@@ -9,7 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <com.example.pandas.ui.view.refresh.RefreshRecyclerView
+        <com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
                 android:id="@+id/rview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

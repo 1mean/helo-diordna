@@ -110,11 +110,15 @@ object StatusBarUtils {
      *      - 设置背景是浅色，字体颜色就为黑：View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR，
      *      - 默认：View.SYSTEM_UI_FLAG_LAYOUT_STABLE
      * @param:
-     * @author: dongyiming
      * @date: 1/25/22 7:36 下午
      * @version: v1.0
      */
-    fun updataStatus(activity: Activity, isTextDark: Boolean, isFullScreend: Boolean, colorId: Int) {
+    fun updataStatus(
+        activity: Activity,
+        isTextDark: Boolean,
+        isFullScreend: Boolean,
+        colorId: Int
+    ) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val window = activity.window
@@ -141,6 +145,46 @@ object StatusBarUtils {
         }
     }
 
+    /**
+     * 获取状态栏高度
+     *
+     * @date: 2/6/22 11:42 下午
+     * @version: v1.0
+     */
+    fun getStatusBarHeight(context: Context): Int {
+        var result = 24
+        val resId = context.resources.getIdentifier("status_bar_height", "dimen", "android")
+        result = if (resId > 0) {
+            context.resources.getDimensionPixelSize(resId)
+        } else {
+            TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                result.toFloat(), Resources.getSystem().displayMetrics
+            ).toInt()
+        }
+        return result
+    }
+
+    /**
+     * 增加View的高度以及paddingTop,增加的值为状态栏高度.一般是在沉浸式全屏给ToolBar用的
+     *
+     * @date: 2/6/22 11:43 下午
+     * @version: v1.0
+     */
+    fun setHeightAndPadding(context: Context, view: View) {
+        if (Build.VERSION.SDK_INT >= MIN_API) {
+            val lp = view.layoutParams
+            lp.height += getStatusBarHeight(context)
+            view.setPadding(
+                view.paddingLeft,
+                view.paddingTop + getStatusBarHeight(
+                    context
+                ),
+                view.paddingRight,
+                view.paddingBottom
+            )
+        }
+    }
 
     //<editor-fold desc="沉侵">
     fun /*@@maxkfq@@*/immersive(activity:/*@@xldgvz@@*/Activity) {
@@ -305,22 +349,6 @@ object StatusBarUtils {
         }
     }
 
-    /** 增加View的高度以及paddingTop,增加的值为状态栏高度.一般是在沉浸式全屏给ToolBar用的  */
-    fun setHeightAndPadding(context: Context, view: View) {
-        if (Build.VERSION.SDK_INT >= MIN_API) {
-            val lp = view.layoutParams
-            lp.height += getStatusBarHeight(context) //增高
-            view.setPadding(
-                view.paddingLeft,
-                view.paddingTop + getStatusBarHeight(
-                    context
-                ),
-                view.paddingRight,
-                view.paddingBottom
-            )
-        }
-    }
-
     /** 增加View上边距（MarginTop）一般是给高度为 WARP_CONTENT 的小控件用的 */
     fun setMargin(context: Context, view: View) {
         if (Build.VERSION.SDK_INT >= MIN_API) {
@@ -362,20 +390,6 @@ object StatusBarUtils {
         return color and 0x00ffffff or ((a * alpha).toInt() shl 24)
     }
 
-    /** 获取状态栏高度  */
-    fun getStatusBarHeight(context: Context): Int {
-        var result = 24
-        val resId = context.resources.getIdentifier("status_bar_height", "dimen", "android")
-        result = if (resId > 0) {
-            context.resources.getDimensionPixelSize(resId)
-        } else {
-            TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                result.toFloat(), Resources.getSystem().displayMetrics
-            ).toInt()
-        }
-        return result
-    }
 
     /**
      * 设置Flyme4+的darkMode,darkMode时候字体颜色及icon变黑

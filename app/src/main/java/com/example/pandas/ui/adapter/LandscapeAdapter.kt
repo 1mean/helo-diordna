@@ -1,13 +1,10 @@
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.R
+import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.databinding.AdapterItemTitleBinding
 import com.example.pandas.databinding.AdapterLandscapeItemBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
@@ -149,8 +146,8 @@ public class LandscapeAdapter(private var data: LandscapeData) :
         fun handle(position: Int) {
 
             val video = data.itemList[position - 2]
-            val options = RequestOptions.bitmapTransform(RoundedCorners(10))
-            Glide.with(itemView.context).load(video.cover).apply(options).into(cover)
+
+            loadRoundedCornerImage(itemView.context, 10, video.cover, cover)
             duration.text = TimeUtils.getMMDuration(video.duration.toLong())
             title.text = video.title
             name.text = video.authorName
