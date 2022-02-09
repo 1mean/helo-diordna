@@ -1,24 +1,27 @@
 package com.example.pandas.data
 
-import PandaBabyData
-import PandaGroupData
-import PandaMomData
-import PandaSingleData
-import PetBanner
+import MultiVideoData
+import PetGroupPandaData
+import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
 
 object AppData {
 
-    fun getAll(): MutableList<PetVideo> {
+    fun getPetVideoData(): MutableList<PetVideo> {
 
-        var list = mutableListOf<PetVideo>()
-        list.addAll(PandaBabyData.getBabyHeHua())
-        list.addAll(PandaGroupData.getData())
-        list.addAll(PandaMomData.getAll())
-        list.addAll(PandaSingleData.getData())
-        list.addAll(PetBanner.getAllBanner())
-        list.addAll(PetHorData.getAll())
-        return list
+        return mutableListOf<PetVideo>().apply {
+
+            addAll(MultiVideoData.getAll())
+            addAll(PetBabyPandaData.getPetBabyPanda())
+            addAll(PetBirdData.getPetBirdData())
+            addAll(PetGroupPandaData.getPetGroupPandaData())
+            addAll(PetMomPandaData.getPetMomPandaData())
+            addAll(MusicVideoData.getMusicVideoData())
+        }
     }
 
+    fun getMusicData(): MutableList<MusicVo> {
+
+        return MusicData.getMusic()
+    }
 }

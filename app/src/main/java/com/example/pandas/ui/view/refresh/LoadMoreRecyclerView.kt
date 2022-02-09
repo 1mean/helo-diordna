@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +23,7 @@ import com.example.pandas.R
  * @date: 12/27/19 6:30 下午
  * @version: v1.0
  */
-public class LoadMoreRecyclerView : RecyclerView {
+class LoadMoreRecyclerView : RecyclerView {
 
     private val TYPE_FOOTER = 999
     private var wrapAdapter: WrapAdapter? = null
@@ -30,7 +31,7 @@ public class LoadMoreRecyclerView : RecyclerView {
     private var isFreshing = false //正在下拉刷新数据中
     private var isNoMore = false //是否没有更多数据
 
-    private var mOnRefreshLoadListener: ILoadMoreListener? = null
+    private var mListener: ILoadMoreListener? = null
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -48,16 +49,12 @@ public class LoadMoreRecyclerView : RecyclerView {
      */
     fun setRefreshAdapter(adapter: Adapter<BaseEmptyViewHolder>, listener: ILoadMoreListener) {
 
-        mOnRefreshLoadListener = listener
+        mListener = listener
         wrapAdapter = WrapAdapter(adapter)
         setAdapter(wrapAdapter)
         val observer = DataObserver()
         adapter.registerAdapterDataObserver(observer)
         observer.onChanged()
-    }
-
-    override fun setLayoutManager(layout: LayoutManager?) {
-        super.setLayoutManager(layout)
     }
 
     /**
@@ -69,44 +66,40 @@ public class LoadMoreRecyclerView : RecyclerView {
     override fun onScrollStateChanged(state: Int) {
         super.onScrollStateChanged(state)
 
-        //Log.e("1111mean", "isLoadingData: $isLoadingData")
-        if (state == RecyclerView.SCROLL_STATE_IDLE && mOnRefreshLoadListener != null && !isFreshing && !isLoadingData) {
+        if (state == SCROLL_STATE_IDLE && mListener != null && !isFreshing && !isLoadingData) {
 
-            var lastVisibleItemPosition = 0
-            if (layoutManager is GridLayoutManager) {
-                lastVisibleItemPosition =
-                    (layoutManager as GridLayoutManager).findLastVisibleItemPosition()
+            val lastVisibleItemPosition = if (layoutManager is GridLayoutManager) {
+                (layoutManager as GridLayoutManager).findLastVisibleItemPosition()
             } else if (layoutManager is StaggeredGridLayoutManager) {
 
                 val manager = layoutManager as StaggeredGridLayoutManager
                 val array = IntArray(manager.spanCount)
                 manager.findLastVisibleItemPositions(array)
-                lastVisibleItemPosition = findMax(array)
+                findMax(array)
             } else {
-                lastVisibleItemPosition =
-                    (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
             }
-            val total = wrapAdapter!!.realCount()
-            val childCount = layoutManager!!.childCount // 未隐藏的数目 childCount = count - hiddenCount
+            wrapAdapter?.let {
+                val total = wrapAdapter!!.realCount()
+                layoutManager?.let {
+                    val childCount =
+                        layoutManager!!.childCount // 未隐藏的数目 childCount = count - hiddenCount
+                    if (childCount > 0 && lastVisibleItemPosition >= total - 1 && total > childCount
 
-//            Log.e(
-//                "1111mean", "childCount: $childCount, " +
-//                        "lastVisibleItemPosition: $lastVisibleItemPosition, " +
-//                        "(total - 1 ): " + (total - 1) + ", " +
-//                        "isFreshing: $isFreshing, isNoMore: $isNoMore"
-//            )
-            if (childCount > 0 && lastVisibleItemPosition >= total - 1 && total > childCount
+                        && !isFreshing && !isNoMore
+                    ) {
+                        isLoadingData = true
+                        mListener!!.onLoadMore()
 
-                && !isFreshing && !isNoMore
-            ) {
-                isLoadingData = true
-                mOnRefreshLoadListener!!.onLoadMore()
-
+                    }
+                }
             }
         }
     }
 
     inner class DataObserver : AdapterDataObserver() {
+
+        //每次执行adapter notifyDataSetChanged 时调用，第一次添加adapter时不会执行
         @SuppressLint("NotifyDataSetChanged")
         override fun onChanged() {
             wrapAdapter?.notifyDataSetChanged()
@@ -136,11 +129,6 @@ public class LoadMoreRecyclerView : RecyclerView {
     inner class WrapAdapter(private val adapter: Adapter<BaseEmptyViewHolder>) :
         Adapter<BaseEmptyViewHolder>() {
 
-        private var _footer: View? = null
-        private val footer get() = _footer!!
-
-        private var holder: FooterViewHolder? = null
-
         fun isFooter(position: Int): Boolean {
 
             return position == itemCount - 1
@@ -159,10 +147,9 @@ public class LoadMoreRecyclerView : RecyclerView {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
 
             if (viewType == TYPE_FOOTER) {
-                _footer = LayoutInflater.from(parent.context)
+                val footer = LayoutInflater.from(parent.context)
                     .inflate(R.layout.footer_recyclerview, parent, false)
-                holder = FooterViewHolder(footer)
-                return holder!!
+                return FooterViewHolder(footer)
             } else {
                 return adapter.onCreateViewHolder(parent, viewType)
             }
@@ -172,24 +159,14 @@ public class LoadMoreRecyclerView : RecyclerView {
 
             if (getItemViewType(position) != TYPE_FOOTER) {
                 adapter.onBindViewHolder(holder, position)
+            } else {
+                (holder as FooterViewHolder).handle()
             }
         }
 
         override fun getItemCount(): Int {
             val count = adapter.itemCount
             return if (count == 0) 0 else count + 1
-        }
-
-        fun close() {
-            //footer.close()
-        }
-
-        fun noMore() {
-            holder?.handle()
-        }
-
-        fun loading() {
-            //footer.loading()
         }
 
         override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
@@ -224,7 +201,7 @@ public class LoadMoreRecyclerView : RecyclerView {
             val manager = recyclerView.layoutManager
             if (manager is GridLayoutManager) {
 
-                val space = object : GridLayoutManager.SpanSizeLookup() {
+                manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
                         if (isFooter(position)) {
                             return 2
@@ -235,45 +212,25 @@ public class LoadMoreRecyclerView : RecyclerView {
                         }
                     }
                 }
-                manager.spanSizeLookup = space
             }
         }
 
         inner class FooterViewHolder(itemView: View) : BaseEmptyViewHolder(itemView) {
 
-            val progressBar = itemView.findViewById<ProgressBar>(R.id.progressBar)
-            val txtFooter = itemView.findViewById<AppCompatTextView>(R.id.txt_footer)
+            private val progressBar: ProgressBar = itemView.findViewById(R.id.progressBar)
+            private val txtFooter: AppCompatTextView = itemView.findViewById(R.id.txt_footer)
+            private val footer: ConstraintLayout = itemView.findViewById(R.id.footer)
 
             fun handle() {
-                progressBar.visibility = GONE
-                txtFooter.visibility = VISIBLE
+                if (isNoMore) {//没有更多数据
+                    progressBar.visibility = GONE
+                    txtFooter.visibility = VISIBLE
+                } else {
+                    progressBar.visibility = VISIBLE
+                    txtFooter.visibility = GONE
+                }
             }
         }
-    }
-
-    interface OnRefreshLoadListener {
-        fun onLoadMore()
-    }
-
-    fun isFreshing(freshing: Boolean) {
-        isFreshing = freshing
-    }
-
-    fun loadMoreFinished() {
-
-        isLoadingData = false
-        wrapAdapter?.close()
-    }
-
-    fun noMoreData(isNoMore: Boolean) {
-        this.isNoMore = isNoMore
-        isLoadingData = false
-        if (isNoMore) {
-            wrapAdapter?.noMore()
-        } else {
-            wrapAdapter?.close()
-        }
-
     }
 
     private fun findMax(lastPositions: IntArray): Int {
@@ -286,8 +243,26 @@ public class LoadMoreRecyclerView : RecyclerView {
         return max
     }
 
-    interface ILoadMoreListener {
+    /*--提供调用方法------------------------------------------------------------------------------*/
 
+    fun isFreshing(freshing: Boolean) {
+        isFreshing = freshing
+        isLoadingData = false
+        isNoMore = false
+    }
+
+    fun loadMoreFinished() {
+        isLoadingData = false
+        isNoMore = false
+    }
+
+    fun noMoreData() {
+        isNoMore = true
+        isLoadingData = false
+    }
+
+    interface ILoadMoreListener {
         fun onLoadMore()
     }
+
 }

@@ -2,7 +2,7 @@ package com.example.pandas.data
 
 import com.example.pandas.sql.entity.MusicVo
 
-object LoveData {
+object MusicData {
 
     private var list = mutableListOf<MusicVo>()
 

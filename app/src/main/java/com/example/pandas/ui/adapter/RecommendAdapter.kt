@@ -17,16 +17,14 @@ import com.example.pandas.ui.view.viewpager.Indicator
  * @date: 1/4/22 3:27 下午
  * @version: v1.0
  */
-public class RecommendAdapter(private val data: RecommendData<PetViewData>) :
+public class RecommendAdapter(private var data: RecommendData<PetViewData>) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
     private val TYPE_BANNER = 1//轮播图
     private val TYPE_ITEM = 2//普通视频，一行2列
     private val TYPE_VIDEO = 3//横屏视频，一行一列
+    private var isBannerFresh = true //是否刷新banner
 
-    fun closeBanner() {
-
-    }
 
     override fun getItemViewType(position: Int): Int {
 
@@ -43,11 +41,14 @@ public class RecommendAdapter(private val data: RecommendData<PetViewData>) :
     fun refreshData(recommendData: RecommendData<PetViewData>) {
 
         if (recommendData.itemList.isNotEmpty() || recommendData.bannerList.isNotEmpty()) {
-            data.bannerList.clear()
-            data.itemList.clear()
-            data.bannerList = recommendData.bannerList
-            data.itemList = recommendData.itemList
-            notifyDataSetChanged()
+            if (data != recommendData) {
+                isBannerFresh = true
+                if (data.bannerList == recommendData.bannerList) {
+                    isBannerFresh = false
+                }
+                data = recommendData
+                notifyDataSetChanged()
+            }
         }
     }
 
@@ -141,22 +142,21 @@ public class RecommendAdapter(private val data: RecommendData<PetViewData>) :
         BaseEmptyViewHolder(binding.root) {
 
         private val banner = binding.banner
-        var indicator: Indicator? = null
         fun handle() {
-            //轮播图数据
-            val list = data.bannerList
 
-            //避免重复创建，刷新banner位置到起始位
-            if (indicator == null) {
-                indicator = Indicator(itemView.context)
-                indicator!!.initIndicator(
+            if (isBannerFresh) {//避免重复刷新
+                //轮播图数据
+                val list = data.bannerList
+                //避免重复创建，刷新banner位置到起始位
+                val indicator = Indicator(itemView.context)
+                indicator.initIndicator(
                     list.size,
                     ContextCompat.getColor(itemView.context, R.color.white)
                 )
                 val adapter = RecoViewPagerAdapter(list)
 
                 this.banner.setAdapter(adapter)
-                    .setIndicator(indicator!!, true)
+                    .setIndicator(indicator, true)
                     .setAutoPlayed(true)
             }
         }

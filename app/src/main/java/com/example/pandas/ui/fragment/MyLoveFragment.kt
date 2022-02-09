@@ -1,6 +1,7 @@
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pandas.base.fragment.BaseFragment
+import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.databinding.LayoutRefreshBinding
 
@@ -10,13 +11,19 @@ import com.example.pandas.databinding.LayoutRefreshBinding
  * @date: 1/28/22 8:51 下午
  * @version: v1.0
  */
-public class MyLoveFragment : BaseFragment<HomePageViewModel, LayoutRefreshBinding>() {
+public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutRefreshBinding>() {
 
-    private val mAdapter: MyLoveFragmentAdapter by lazy { MyLoveFragmentAdapter(viewLifecycleOwner,PageCommonData()) }
+    private val mAdapter: MyLoveFragmentAdapter by lazy {
+        MyLoveFragmentAdapter(
+            viewLifecycleOwner,
+            PageCommonData()
+        )
+    }
+
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.swipLayout.setOnRefreshListener {
-
+            mViewModel.getLoveData(true)
         }
 
         binding.recyclerLayout.run {
@@ -31,16 +38,23 @@ public class MyLoveFragment : BaseFragment<HomePageViewModel, LayoutRefreshBindi
 
         mViewModel.loveDataWrapper.observe(viewLifecycleOwner) {
             if (it.isSuccess) {
-                mAdapter.refresh(it.loveData)
+
+                when{
+                    it.isRefresh ->{
+                        mAdapter.refresh(it.loveData)
+                        binding.swipLayout.isRefreshing = false
+                    }
+                }
+
+                binding.swipLayout.visibility = View.VISIBLE
+
             }
         }
     }
 
     override fun firstOnResume() {
         mViewModel.getLoveData(true)
-    }
-
-    override fun againOnResume() {
+        binding.swipLayout.isRefreshing = true
     }
 
 }

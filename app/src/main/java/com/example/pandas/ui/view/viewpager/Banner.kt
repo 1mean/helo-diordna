@@ -43,7 +43,7 @@ public class Banner : RelativeLayout {
     private var tempPosition: Int = 0//
 
     private var isAutoPlay = false
-    private var isTaskPostDelayed = false
+    private var isStartPlaying = false
 
     private var startX = 0f
     private var startY = 0f
@@ -71,20 +71,22 @@ public class Banner : RelativeLayout {
     private fun initView(context: Context) {
 
         scaledTouchSlop = ViewConfiguration.get(context).scaledTouchSlop shr 1
+        compositePageTransformer = CompositePageTransformer()
 
         _mViewPager = ViewPager2(context)
-        mViewPager.layoutParams =
-            ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-        compositePageTransformer = CompositePageTransformer()
-        mViewPager.setPageTransformer(compositePageTransformer)
-        mViewPager.registerOnPageChangeCallback(MyOnPageChangeCallback())
+        mViewPager.run {
+            layoutParams =
+                ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+            setPageTransformer(compositePageTransformer)
+            registerOnPageChangeCallback(MyOnPageChangeCallback())
+        }
         addView(_mViewPager)
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         Log.e("1mean", "onAttachedToWindow")
-        if (isAutoPlayed() && getRealCount() > 1 && !isTaskPostDelayed) {
+        if (isAutoPlayed() && getRealCount() > 1 && !isStartPlaying) {
             startPlaying()
         }
     }
@@ -100,7 +102,7 @@ public class Banner : RelativeLayout {
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
 
-        if (isAutoPlayed() && mViewPager.isUserInputEnabled) {
+        if (isAutoPlayed() && mViewPager.isUserInputEnabled) {//能人为滑动viewpager2
             val action = ev.action
             if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_OUTSIDE) {
                 startPlaying()
@@ -112,6 +114,13 @@ public class Banner : RelativeLayout {
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
+
+        val doNotNeedIntercept = (!mViewPager.isUserInputEnabled
+                || (mViewPager.adapter != null
+                && mViewPager.adapter!!.itemCount <= 1))
+        if (doNotNeedIntercept) {
+            return super.onInterceptTouchEvent(ev)
+        }
 
         val action = ev.action
         if (action == MotionEvent.ACTION_DOWN) {
@@ -134,7 +143,8 @@ public class Banner : RelativeLayout {
                 parent.requestDisallowInterceptTouchEvent(disallowIntercept)
             }
         } else if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
-            return abs(lastX - startX) > scaledTouchSlop || abs(lastY - startY) > scaledTouchSlop
+//            return abs(lastX - startX) > scaledTouchSlop || abs(lastY - startY) > scaledTouchSlop
+            parent.requestDisallowInterceptTouchEvent(false)
         }
         return super.onInterceptTouchEvent(ev)
     }
@@ -161,8 +171,7 @@ public class Banner : RelativeLayout {
 
         override fun getItemCount(): Int {
 
-            val count = if (mAdapter.itemCount > 1) getRealCount() + addPage else getRealCount()
-            return count
+            return if (mAdapter.itemCount > 1) getRealCount() + addPage else getRealCount()
         }
 
 
@@ -287,7 +296,11 @@ public class Banner : RelativeLayout {
         }
     }
 
-
+    /**
+     * 自动轮播情况下切换位置
+     * @date: 2/8/22 3:32 下午
+     * @version: v1.0
+     */
     private val task: Runnable by lazy {
         object : Runnable {
             override fun run() {
@@ -325,16 +338,15 @@ public class Banner : RelativeLayout {
         stopPlaying()
         Log.e("1mean", "startPlaying")
         postDelayed(task, autoTime)
-        isTaskPostDelayed = true
+        isStartPlaying = true
     }
 
     fun stopPlaying() {
 
-        Log.e("1mean", "stopPlaying: $isTaskPostDelayed")
-        if (isTaskPostDelayed) {
-
+        Log.e("1mean", "stopPlaying: $isStartPlaying")
+        if (isStartPlaying) {
             removeCallbacks(task)
-            isTaskPostDelayed = false
+            isStartPlaying = false
         }
     }
 
@@ -393,7 +405,7 @@ public class Banner : RelativeLayout {
         wrapAdapter!!.registerAdapter(adapter)
         mViewPager.adapter = wrapAdapter
 
-        mViewPager.offscreenPageLimit = 1
+        mViewPager.offscreenPageLimit = adapter.itemCount
 
         setCurrentPage(0, false)
         return this

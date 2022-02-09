@@ -22,4 +22,5 @@ enum class PetType {
     BIRD,//鸟
     DEER,//鹿
     LANDSCAPE,//山水
+    SLEEP,//助眠
 }

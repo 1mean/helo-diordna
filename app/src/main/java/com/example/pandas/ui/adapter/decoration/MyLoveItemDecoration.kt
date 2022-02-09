@@ -24,7 +24,7 @@ public class MyLoveItemDecoration(private val context: Context) : RecyclerView.I
 
         when (parent.getChildAdapterPosition(view)) {
             0 -> outRect.set(padding, padding, padding, padding)
-            2 -> outRect.set(0, 0, 0, padding)
+            1 -> outRect.set(0, 0, 0, padding)
             else -> outRect.set(padding, 0, padding, padding)
         }
     }

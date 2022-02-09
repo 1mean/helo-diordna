@@ -18,6 +18,7 @@
                 android:layout_height="50dp">
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_sleep"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="@id/layout_sleep_title"
@@ -26,7 +27,6 @@
                     android:layout_marginStart="16dp"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:text="助眠"
                     android:textColor="@color/black" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -54,7 +54,8 @@
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_sleep_video"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.cardview.widget.CardView>

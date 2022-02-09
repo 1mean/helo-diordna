@@ -1,18 +1,14 @@
-import com.example.pandas.sql.entity.PeriodType
+package com.example.pandas.data
+
 import com.example.pandas.bean.pet.PetType
+import com.example.pandas.sql.entity.PeriodType
 import com.example.pandas.sql.entity.PetVideo
 
-/**
- * @description: TODO
- * @author: dongyiming
- * @date: 1/4/22 9:10 下午
- * @version: v1.0
- */
-object PandaBabyData {
+object PetBabyPandaData {
 
-    private var list = mutableListOf<PetVideo>()
+    private val list = mutableListOf<PetVideo>()
 
-    fun getBabyHeHua(): MutableList<PetVideo> {
+    fun getPetBabyPanda():MutableList<PetVideo>{
 
         val panda = PetVideo()
         panda.type = PetType.PANDA.ordinal
@@ -3533,8 +3529,8 @@ object PandaBabyData {
         panda221.cover = "http://i0.hdslb.com/bfs/archive/53646e3dd9f5de2159fbf2933d834b7c832a5f2e.jpg"
         panda221.videoType = 0
         list.add(panda221)
-        
-        
+
+
         val panda222 = PetVideo()
         panda222.type = PetType.PANDA.ordinal
         panda222.fileName = "panda_baby_panda222"
@@ -3550,8 +3546,8 @@ object PandaBabyData {
         panda222.cover = "http://i2.hdslb.com/bfs/archive/75ba29120a20d86d4b6b2235c1269ff2caf58aa0.jpg"
         panda222.videoType = 0
         list.add(panda222)
-        
-        
+
+
         val panda223 = PetVideo()
         panda223.type = PetType.PANDA.ordinal
         panda223.fileName = "panda_baby_panda223"
@@ -3567,8 +3563,8 @@ object PandaBabyData {
         panda223.cover = "http://i2.hdslb.com/bfs/archive/38ca9e0f1be728017936a9b5806cde290891d034.jpg"
         panda223.videoType = 0
         list.add(panda223)
-        
-        
+
+
         val panda224 = PetVideo()
         panda224.type = PetType.PANDA.ordinal
         panda224.fileName = "panda_baby_panda224"
@@ -3584,8 +3580,8 @@ object PandaBabyData {
         panda224.cover = "http://i2.hdslb.com/bfs/archive/4525b4a347d56068832f29c01df28a3074c04435.jpg"
         panda224.videoType = 0
         list.add(panda224)
-        
-        
+
+
         val panda225 = PetVideo()
         panda225.type = PetType.PANDA.ordinal
         panda225.fileName = "panda_baby_panda225"
@@ -3601,8 +3597,8 @@ object PandaBabyData {
         panda225.cover = "http://i2.hdslb.com/bfs/archive/f259c0e522abbb35150c2819157f9c5e43ec77ee.jpg"
         panda225.videoType = 0
         list.add(panda225)
-        
-        
+
+
         val panda226 = PetVideo()
         panda226.type = PetType.PANDA.ordinal
         panda226.fileName = "panda_baby_panda226"
@@ -3618,8 +3614,8 @@ object PandaBabyData {
         panda226.cover = "http://i2.hdslb.com/bfs/archive/ff1d3fa058a4c94df8bdb87e2576ad1bdb657dac.jpg"
         panda226.videoType = 0
         list.add(panda226)
-        
-        
+
+
         val panda227 = PetVideo()
         panda227.type = PetType.PANDA.ordinal
         panda227.fileName = "panda_baby_panda227"
@@ -3635,8 +3631,8 @@ object PandaBabyData {
         panda227.cover = "http://i1.hdslb.com/bfs/archive/ecbee0dfd213aa625e9d8491c556b99c5e426d0e.jpg"
         panda227.videoType = 0
         list.add(panda227)
-        
-        
+
+
         val panda228 = PetVideo()
         panda228.type = PetType.PANDA.ordinal
         panda228.fileName = "panda_baby_panda228"
@@ -3652,8 +3648,8 @@ object PandaBabyData {
         panda228.cover = "http://i1.hdslb.com/bfs/archive/25303fa8dbaef3c7df352f928a3b1cbf8438720e.jpg"
         panda228.videoType = 0
         list.add(panda228)
-        
-        
+
+
         val panda229 = PetVideo()
         panda229.type = PetType.PANDA.ordinal
         panda229.fileName = "panda_baby_panda229"
@@ -3669,8 +3665,8 @@ object PandaBabyData {
         panda229.cover = "http://i0.hdslb.com/bfs/archive/464e06783b41c3ec282b643fe4c916e5198c9da0.jpg"
         panda229.videoType = 0
         list.add(panda229)
-        
-        
+
+
         val panda230 = PetVideo()
         panda230.type = PetType.PANDA.ordinal
         panda230.fileName = "panda_baby_panda230"
@@ -3686,8 +3682,8 @@ object PandaBabyData {
         panda230.cover = "http://i1.hdslb.com/bfs/archive/f650d1cf7fd7c5c4761289e26c6403d7c4aa7927.jpg"
         panda230.videoType = 0
         list.add(panda230)
-        
-        
+
+
         val panda231 = PetVideo()
         panda231.type = PetType.PANDA.ordinal
         panda231.fileName = "panda_baby_panda231"
@@ -3703,8 +3699,8 @@ object PandaBabyData {
         panda231.cover = "http://i1.hdslb.com/bfs/archive/562323eccb4fd60f8e573ab8c0dd6e3f401e12bf.jpg"
         panda231.videoType = 0
         list.add(panda231)
-        
-        
+
+
         val panda232 = PetVideo()
         panda232.type = PetType.PANDA.ordinal
         panda232.fileName = "panda_baby_panda232"
@@ -3720,8 +3716,8 @@ object PandaBabyData {
         panda232.cover = "http://i0.hdslb.com/bfs/archive/87479ef6fa9b37486994ce0fdc6310c894952ce4.jpg"
         panda232.videoType = 0
         list.add(panda232)
-        
-        
+
+
         val panda233 = PetVideo()
         panda233.type = PetType.PANDA.ordinal
         panda233.fileName = "panda_baby_panda233"
@@ -3737,8 +3733,8 @@ object PandaBabyData {
         panda233.cover = "http://i1.hdslb.com/bfs/archive/622feacc7e8f29ea0ce4eb9fee698c1ac356a8a7.jpg"
         panda233.videoType = 0
         list.add(panda233)
-        
-        
+
+
         val panda234 = PetVideo()
         panda234.type = PetType.PANDA.ordinal
         panda234.fileName = "panda_baby_panda234"
@@ -3754,8 +3750,8 @@ object PandaBabyData {
         panda234.cover = "http://i2.hdslb.com/bfs/archive/9f815532a84f6f366077334aaa83f01b88117bc2.jpg"
         panda234.videoType = 0
         list.add(panda234)
-        
-        
+
+
         val panda235 = PetVideo()
         panda235.type = PetType.PANDA.ordinal
         panda235.fileName = "panda_baby_panda235"
@@ -3771,8 +3767,8 @@ object PandaBabyData {
         panda235.cover = "http://i2.hdslb.com/bfs/archive/e576ace52070cde381da2191dea2bbdd0c6d4521.jpg"
         panda235.videoType = 0
         list.add(panda235)
-        
-        
+
+
         val panda236 = PetVideo()
         panda236.type = PetType.PANDA.ordinal
         panda236.fileName = "panda_baby_panda236"
@@ -3788,8 +3784,8 @@ object PandaBabyData {
         panda236.cover = "http://i2.hdslb.com/bfs/archive/44279fa7d4490d4cf3b9e02143872c7ff172d05d.jpg"
         panda236.videoType = 0
         list.add(panda236)
-        
-        
+
+
         val panda237 = PetVideo()
         panda237.type = PetType.PANDA.ordinal
         panda237.fileName = "panda_baby_panda237"
@@ -3805,8 +3801,8 @@ object PandaBabyData {
         panda237.cover = "http://i0.hdslb.com/bfs/archive/cf992dedbdba9a53a3541f51453013294d2386f1.jpg"
         panda237.videoType = 0
         list.add(panda237)
-        
-        
+
+
         val panda238 = PetVideo()
         panda238.type = PetType.PANDA.ordinal
         panda238.fileName = "panda_baby_panda238"
@@ -3822,8 +3818,8 @@ object PandaBabyData {
         panda238.cover = "http://i1.hdslb.com/bfs/archive/5fbe0848f97d13bd91a2a96cb5c5fb7c335a27ca.jpg"
         panda238.videoType = 0
         list.add(panda238)
-        
-        
+
+
         val panda239 = PetVideo()
         panda239.type = PetType.PANDA.ordinal
         panda239.fileName = "panda_baby_panda239"
@@ -3839,8 +3835,8 @@ object PandaBabyData {
         panda239.cover = "http://i0.hdslb.com/bfs/archive/92c23087e863f6f817aa972d07a844e836f13286.jpg"
         panda239.videoType = 0
         list.add(panda239)
-        
-        
+
+
         val panda240 = PetVideo()
         panda240.type = PetType.PANDA.ordinal
         panda240.fileName = "panda_baby_panda240"
@@ -3856,8 +3852,8 @@ object PandaBabyData {
         panda240.cover = "http://i1.hdslb.com/bfs/archive/4ab55a522703f6ac4c2c15aa05bfb7275a8b7f49.jpg"
         panda240.videoType = 0
         list.add(panda240)
-        
-        
+
+
         val panda241 = PetVideo()
         panda241.type = PetType.PANDA.ordinal
         panda241.fileName = "panda_baby_panda241"
@@ -3873,8 +3869,8 @@ object PandaBabyData {
         panda241.cover = "http://i2.hdslb.com/bfs/archive/b8c6d93736fa264003dc52215cbe8ba94b0315c6.jpg"
         panda241.videoType = 0
         list.add(panda241)
-        
-        
+
+
         val panda242 = PetVideo()
         panda242.type = PetType.PANDA.ordinal
         panda242.fileName = "panda_baby_panda242"
@@ -3890,8 +3886,8 @@ object PandaBabyData {
         panda242.cover = "http://i1.hdslb.com/bfs/archive/d0ffcf872d007d2eae42a20a82be95d20fc6dce6.jpg"
         panda242.videoType = 0
         list.add(panda242)
-        
-        
+
+
         val panda243 = PetVideo()
         panda243.type = PetType.PANDA.ordinal
         panda243.fileName = "panda_baby_panda243"
@@ -3907,8 +3903,8 @@ object PandaBabyData {
         panda243.cover = "http://i2.hdslb.com/bfs/archive/981ccbf70b01fed09cbc9a6c502ab88c85476994.jpg"
         panda243.videoType = 0
         list.add(panda243)
-        
-        
+
+
         val panda244 = PetVideo()
         panda244.type = PetType.PANDA.ordinal
         panda244.fileName = "panda_baby_panda244"
@@ -3924,8 +3920,8 @@ object PandaBabyData {
         panda244.cover = "http://i0.hdslb.com/bfs/archive/cf992dedbdba9a53a3541f51453013294d2386f1.jpg"
         panda244.videoType = 0
         list.add(panda244)
-        
-        
+
+
         val panda245 = PetVideo()
         panda245.type = PetType.PANDA.ordinal
         panda245.fileName = "panda_baby_panda245"
@@ -3941,8 +3937,8 @@ object PandaBabyData {
         panda245.cover = "http://i0.hdslb.com/bfs/archive/a28e66d2ba3e0aa406c2268db94ddd91ef6f5913.jpg"
         panda245.videoType = 0
         list.add(panda245)
-        
-        
+
+
         val panda246 = PetVideo()
         panda246.type = PetType.PANDA.ordinal
         panda246.fileName = "panda_baby_panda246"
@@ -3958,8 +3954,8 @@ object PandaBabyData {
         panda246.cover = "http://i0.hdslb.com/bfs/archive/b5bb8a383efbf9d1fceb2341dcff40806148dbb2.jpg"
         panda246.videoType = 0
         list.add(panda246)
-        
-        
+
+
         val panda247 = PetVideo()
         panda247.type = PetType.PANDA.ordinal
         panda247.fileName = "panda_baby_panda247"
@@ -3975,8 +3971,8 @@ object PandaBabyData {
         panda247.cover = "http://i0.hdslb.com/bfs/archive/8d9796db4aff8c333596ac146059bfc3232943e8.jpg"
         panda247.videoType = 0
         list.add(panda247)
-        
-        
+
+
         val panda248 = PetVideo()
         panda248.type = PetType.PANDA.ordinal
         panda248.fileName = "panda_baby_panda248"
@@ -3992,8 +3988,8 @@ object PandaBabyData {
         panda248.cover = "http://i0.hdslb.com/bfs/archive/30c44858c32f504b31bd91c036f94653a79a08d0.jpg"
         panda248.videoType = 0
         list.add(panda248)
-        
-        
+
+
         val panda249 = PetVideo()
         panda249.type = PetType.PANDA.ordinal
         panda249.fileName = "panda_baby_panda249"
@@ -4009,8 +4005,8 @@ object PandaBabyData {
         panda249.cover = "http://i1.hdslb.com/bfs/archive/b6e6812ced64bc18f86e8922f8439688f19d4125.jpg"
         panda249.videoType = 0
         list.add(panda249)
-        
-        
+
+
         val panda250 = PetVideo()
         panda250.type = PetType.PANDA.ordinal
         panda250.fileName = "panda_baby_panda250"
@@ -4026,8 +4022,8 @@ object PandaBabyData {
         panda250.cover = "http://i2.hdslb.com/bfs/archive/ed0909a0c44cbca495dc3692c2950982e6982aa1.jpg"
         panda250.videoType = 0
         list.add(panda250)
-        
-        
+
+
         val panda251 = PetVideo()
         panda251.type = PetType.PANDA.ordinal
         panda251.fileName = "panda_baby_panda251"
@@ -4043,8 +4039,8 @@ object PandaBabyData {
         panda251.cover = "http://i0.hdslb.com/bfs/archive/587b7a76ac68645c56735324f8f3ac7a57fe0ea6.jpg"
         panda251.videoType = 0
         list.add(panda251)
-        
-        
+
+
         val panda252 = PetVideo()
         panda252.type = PetType.PANDA.ordinal
         panda252.fileName = "panda_baby_panda252"
@@ -4060,8 +4056,8 @@ object PandaBabyData {
         panda252.cover = "http://i2.hdslb.com/bfs/archive/de6c585511264f104e5da9d401d79390ce3f2c30.jpg"
         panda252.videoType = 0
         list.add(panda252)
-        
-        
+
+
         val panda253 = PetVideo()
         panda253.type = PetType.PANDA.ordinal
         panda253.fileName = "panda_baby_panda253"
@@ -4077,8 +4073,8 @@ object PandaBabyData {
         panda253.cover = "http://i1.hdslb.com/bfs/archive/e24c4f095c4ecd23744c5914fb9184af566e819a.jpg"
         panda253.videoType = 0
         list.add(panda253)
-        
-        
+
+
         val panda254 = PetVideo()
         panda254.type = PetType.PANDA.ordinal
         panda254.fileName = "panda_baby_panda254"
@@ -4094,8 +4090,8 @@ object PandaBabyData {
         panda254.cover = "http://i2.hdslb.com/bfs/archive/e9f15f428319c38ceb1f4f3b0538c15f3a1bee4e.jpg"
         panda254.videoType = 0
         list.add(panda254)
-        
-        
+
+
         val panda255 = PetVideo()
         panda255.type = PetType.PANDA.ordinal
         panda255.fileName = "panda_baby_panda255"
@@ -4111,8 +4107,8 @@ object PandaBabyData {
         panda255.cover = "http://i1.hdslb.com/bfs/archive/871dbea66e4ea9535079e2b84606100a524d01b3.jpg"
         panda255.videoType = 0
         list.add(panda255)
-        
-        
+
+
         val panda256 = PetVideo()
         panda256.type = PetType.PANDA.ordinal
         panda256.fileName = "panda_baby_panda256"
@@ -4128,8 +4124,8 @@ object PandaBabyData {
         panda256.cover = "http://i2.hdslb.com/bfs/archive/d854b27fda663a0bdd4404dabbe01347d4292a42.jpg"
         panda256.videoType = 0
         list.add(panda256)
-        
-        
+
+
         val panda257 = PetVideo()
         panda257.type = PetType.PANDA.ordinal
         panda257.fileName = "panda_baby_panda257"
@@ -4145,8 +4141,8 @@ object PandaBabyData {
         panda257.cover = "http://i0.hdslb.com/bfs/archive/07768b2649ca14101de53e57437f279292056f0c.jpg"
         panda257.videoType = 0
         list.add(panda257)
-        
-        
+
+
         val panda258 = PetVideo()
         panda258.type = PetType.PANDA.ordinal
         panda258.fileName = "panda_baby_panda258"
@@ -4162,8 +4158,8 @@ object PandaBabyData {
         panda258.cover = "http://i2.hdslb.com/bfs/archive/eea9d64d3527798331f4c9a3ee0f162040545a0f.jpg"
         panda258.videoType = 0
         list.add(panda258)
-        
-        
+
+
         val panda259 = PetVideo()
         panda259.type = PetType.PANDA.ordinal
         panda259.fileName = "panda_baby_panda259"
@@ -4179,8 +4175,8 @@ object PandaBabyData {
         panda259.cover = "http://i1.hdslb.com/bfs/archive/d72d99d61f26d0da7683d6dded089e2c8ce4ae55.jpg"
         panda259.videoType = 0
         list.add(panda259)
-        
-        
+
+
         val panda260 = PetVideo()
         panda260.type = PetType.PANDA.ordinal
         panda260.fileName = "panda_baby_panda260"
@@ -4196,8 +4192,8 @@ object PandaBabyData {
         panda260.cover = "http://i0.hdslb.com/bfs/archive/ab8046a6f1ff7f7c5c1cd88ad3ac638830da2a3c.jpg"
         panda260.videoType = 0
         list.add(panda260)
-        
-        
+
+
         val panda261 = PetVideo()
         panda261.type = PetType.PANDA.ordinal
         panda261.fileName = "panda_baby_panda261"
@@ -4213,8 +4209,8 @@ object PandaBabyData {
         panda261.cover = "http://i1.hdslb.com/bfs/archive/6a748f3edd0101d7d1daa24423cd1b1c9a2d6955.jpg"
         panda261.videoType = 0
         list.add(panda261)
-        
-        
+
+
         val panda262 = PetVideo()
         panda262.type = PetType.PANDA.ordinal
         panda262.fileName = "panda_baby_panda262"
@@ -4230,8 +4226,8 @@ object PandaBabyData {
         panda262.cover = "http://i1.hdslb.com/bfs/archive/4aba73c6375fca4884bf326612e393317d8ed90a.jpg"
         panda262.videoType = 0
         list.add(panda262)
-        
-        
+
+
         val panda263 = PetVideo()
         panda263.type = PetType.PANDA.ordinal
         panda263.fileName = "panda_baby_panda263"
@@ -4247,8 +4243,8 @@ object PandaBabyData {
         panda263.cover = "http://i1.hdslb.com/bfs/archive/ad7cbf983ef2086a02306042f7d68d93d8205563.jpg"
         panda263.videoType = 0
         list.add(panda263)
-        
-        
+
+
         val panda264 = PetVideo()
         panda264.type = PetType.PANDA.ordinal
         panda264.fileName = "panda_baby_panda264"
@@ -4264,8 +4260,8 @@ object PandaBabyData {
         panda264.cover = "http://i1.hdslb.com/bfs/archive/3c5e47c43ea072a899db6331387d8ac9b34fe2e0.jpg"
         panda264.videoType = 0
         list.add(panda264)
-        
-        
+
+
         val panda265 = PetVideo()
         panda265.type = PetType.PANDA.ordinal
         panda265.fileName = "panda_baby_panda265"
@@ -4281,8 +4277,8 @@ object PandaBabyData {
         panda265.cover = "http://i0.hdslb.com/bfs/archive/5c7a5f2d8d6d2a07855659a4d7275b3d4b87f719.jpg"
         panda265.videoType = 0
         list.add(panda265)
-        
-        
+
+
         val panda266 = PetVideo()
         panda266.type = PetType.PANDA.ordinal
         panda266.fileName = "panda_baby_panda266"
@@ -4298,8 +4294,8 @@ object PandaBabyData {
         panda266.cover = "http://i2.hdslb.com/bfs/archive/8d22f332c267a52bca65ddd216e2f890db6c6e5a.jpg"
         panda266.videoType = 0
         list.add(panda266)
-        
-        
+
+
         val panda267 = PetVideo()
         panda267.type = PetType.PANDA.ordinal
         panda267.fileName = "panda_baby_panda267"
@@ -4315,8 +4311,8 @@ object PandaBabyData {
         panda267.cover = "http://i2.hdslb.com/bfs/archive/1b3bd7474901ee50da8a66073ecfb06e918c2596.jpg"
         panda267.videoType = 0
         list.add(panda267)
-        
-        
+
+
         val panda268 = PetVideo()
         panda268.type = PetType.PANDA.ordinal
         panda268.fileName = "panda_baby_panda268"
@@ -4332,8 +4328,8 @@ object PandaBabyData {
         panda268.cover = "http://i0.hdslb.com/bfs/archive/619108c1cfbbb1bdaeaa15fceb4d05573a4df633.png"
         panda268.videoType = 0
         list.add(panda268)
-        
-        
+
+
         val panda269 = PetVideo()
         panda269.type = PetType.PANDA.ordinal
         panda269.fileName = "panda_baby_panda269"
@@ -4349,8 +4345,8 @@ object PandaBabyData {
         panda269.cover = "http://i2.hdslb.com/bfs/archive/05b23dd9fedc53d0606bf52c411a7882e05451cf.jpg"
         panda269.videoType = 0
         list.add(panda269)
-        
-        
+
+
         val panda270 = PetVideo()
         panda270.type = PetType.PANDA.ordinal
         panda270.fileName = "panda_baby_panda270"
@@ -4366,8 +4362,8 @@ object PandaBabyData {
         panda270.cover = "http://i1.hdslb.com/bfs/archive/67cbb9901366c22d5e16aeac7a16735afcf17ba8.jpg"
         panda270.videoType = 0
         list.add(panda270)
-        
-        
+
+
         val panda271 = PetVideo()
         panda271.type = PetType.PANDA.ordinal
         panda271.fileName = "panda_baby_panda271"
@@ -4383,8 +4379,8 @@ object PandaBabyData {
         panda271.cover = "http://i1.hdslb.com/bfs/archive/abc5900f8cf4fa0c4a0436496e662fba9292ae55.png"
         panda271.videoType = 0
         list.add(panda271)
-        
-        
+
+
         val panda272 = PetVideo()
         panda272.type = PetType.PANDA.ordinal
         panda272.fileName = "panda_baby_panda272"
@@ -4400,8 +4396,8 @@ object PandaBabyData {
         panda272.cover = "http://i2.hdslb.com/bfs/archive/b62d07ce237e35bec06fbb98cee03db28d833b41.jpg"
         panda272.videoType = 0
         list.add(panda272)
-        
-        
+
+
         val panda273 = PetVideo()
         panda273.type = PetType.PANDA.ordinal
         panda273.fileName = "panda_baby_panda273"
@@ -4417,8 +4413,8 @@ object PandaBabyData {
         panda273.cover = "http://i1.hdslb.com/bfs/archive/5591255f5b0f74b8f13dcefcbb759cfb327188dd.jpg"
         panda273.videoType = 0
         list.add(panda273)
-        
-        
+
+
         val panda274 = PetVideo()
         panda274.type = PetType.PANDA.ordinal
         panda274.fileName = "panda_baby_panda274"
@@ -4434,8 +4430,8 @@ object PandaBabyData {
         panda274.cover = "http://i0.hdslb.com/bfs/archive/7f72385dd0a4f9fe13a978c1821efb72a9b16289.jpg"
         panda274.videoType = 0
         list.add(panda274)
-        
-        
+
+
         val panda275 = PetVideo()
         panda275.type = PetType.PANDA.ordinal
         panda275.fileName = "panda_baby_panda275"
@@ -4451,8 +4447,8 @@ object PandaBabyData {
         panda275.cover = "http://i2.hdslb.com/bfs/archive/2672f6549ef5866131d7feb2891b092b82ad9fbd.jpg"
         panda275.videoType = 0
         list.add(panda275)
-        
-        
+
+
         val panda276 = PetVideo()
         panda276.type = PetType.PANDA.ordinal
         panda276.fileName = "panda_baby_panda276"
@@ -4468,8 +4464,8 @@ object PandaBabyData {
         panda276.cover = "http://i0.hdslb.com/bfs/archive/3aea208b6e6572b0c9d49ebd95df0cc926146fc9.jpg"
         panda276.videoType = 0
         list.add(panda276)
-        
-        
+
+
         val panda277 = PetVideo()
         panda277.type = PetType.PANDA.ordinal
         panda277.fileName = "panda_baby_panda277"
@@ -4485,8 +4481,8 @@ object PandaBabyData {
         panda277.cover = "http://i0.hdslb.com/bfs/archive/bbfcbb6b167359a3b4c07fcb96b14b33d035e56e.jpg"
         panda277.videoType = 0
         list.add(panda277)
-        
-        
+
+
         val panda278 = PetVideo()
         panda278.type = PetType.PANDA.ordinal
         panda278.fileName = "panda_baby_panda278"
@@ -4502,8 +4498,8 @@ object PandaBabyData {
         panda278.cover = "http://i1.hdslb.com/bfs/archive/fbe3d92c2a712b6adeea8311b210b019840d60ae.jpg"
         panda278.videoType = 0
         list.add(panda278)
-        
-        
+
+
         val panda279 = PetVideo()
         panda279.type = PetType.PANDA.ordinal
         panda279.fileName = "panda_baby_panda279"
@@ -4519,8 +4515,8 @@ object PandaBabyData {
         panda279.cover = "http://i2.hdslb.com/bfs/archive/6ea28ea9a42f72842e8daff5d8ea0f5f178c120c.jpg"
         panda279.videoType = 0
         list.add(panda279)
-        
-        
+
+
         val panda280 = PetVideo()
         panda280.type = PetType.PANDA.ordinal
         panda280.fileName = "panda_baby_panda280"
@@ -4536,8 +4532,8 @@ object PandaBabyData {
         panda280.cover = "http://i1.hdslb.com/bfs/archive/daa3ddb66966ff19614718c5a656284cae817e5d.jpg"
         panda280.videoType = 0
         list.add(panda280)
-        
-        
+
+
         val panda281 = PetVideo()
         panda281.type = PetType.PANDA.ordinal
         panda281.fileName = "panda_baby_panda281"
@@ -4553,8 +4549,8 @@ object PandaBabyData {
         panda281.cover = "http://i2.hdslb.com/bfs/archive/70d2ebb2ac42dbb63697e7b64841dec3948e72f6.jpg"
         panda281.videoType = 0
         list.add(panda281)
-        
-        
+
+
         val panda282 = PetVideo()
         panda282.type = PetType.PANDA.ordinal
         panda282.fileName = "panda_baby_panda282"
@@ -4570,8 +4566,8 @@ object PandaBabyData {
         panda282.cover = "http://i1.hdslb.com/bfs/archive/3cca640bc4f6354fc0613fbe1dcdf384df21ec2a.jpg"
         panda282.videoType = 0
         list.add(panda282)
-        
-        
+
+
         val panda283 = PetVideo()
         panda283.type = PetType.PANDA.ordinal
         panda283.fileName = "panda_baby_panda283"
@@ -4587,8 +4583,8 @@ object PandaBabyData {
         panda283.cover = "http://i2.hdslb.com/bfs/archive/7eff431527b8a75f6930bfbb3021a859646ea7f9.jpg"
         panda283.videoType = 0
         list.add(panda283)
-        
-        
+
+
         val panda284 = PetVideo()
         panda284.type = PetType.PANDA.ordinal
         panda284.fileName = "panda_baby_panda284"
@@ -4604,8 +4600,8 @@ object PandaBabyData {
         panda284.cover = "http://i0.hdslb.com/bfs/archive/337a8453125a03060e8f3e1a11b07ec52d933fb0.jpg"
         panda284.videoType = 0
         list.add(panda284)
-        
-        
+
+
         val panda285 = PetVideo()
         panda285.type = PetType.PANDA.ordinal
         panda285.fileName = "panda_baby_panda285"
@@ -4621,8 +4617,8 @@ object PandaBabyData {
         panda285.cover = "http://i0.hdslb.com/bfs/archive/1fbf9f583f6e73cf2964167e614b189cbee5c795.jpg"
         panda285.videoType = 0
         list.add(panda285)
-        
-        
+
+
         val panda286 = PetVideo()
         panda286.type = PetType.PANDA.ordinal
         panda286.fileName = "panda_baby_panda286"
@@ -4638,8 +4634,8 @@ object PandaBabyData {
         panda286.cover = "http://i0.hdslb.com/bfs/archive/a86b58c1ab06fd56348ce442228b584e924ef05e.jpg"
         panda286.videoType = 0
         list.add(panda286)
-        
-        
+
+
         val panda287 = PetVideo()
         panda287.type = PetType.PANDA.ordinal
         panda287.fileName = "panda_baby_panda287"
@@ -4655,8 +4651,8 @@ object PandaBabyData {
         panda287.cover = "http://i0.hdslb.com/bfs/archive/a6ebd4fbcfe922d66296e7bb74192cc821d28dc2.jpg"
         panda287.videoType = 0
         list.add(panda287)
-        
-        
+
+
         val panda288 = PetVideo()
         panda288.type = PetType.PANDA.ordinal
         panda288.fileName = "panda_baby_panda288"
@@ -4672,8 +4668,8 @@ object PandaBabyData {
         panda288.cover = "http://i1.hdslb.com/bfs/archive/bd159679b881bd304c6788f423db4c9303d5f125.jpg"
         panda288.videoType = 0
         list.add(panda288)
-        
-        
+
+
         val panda289 = PetVideo()
         panda289.type = PetType.PANDA.ordinal
         panda289.fileName = "panda_baby_panda289"
@@ -4689,8 +4685,8 @@ object PandaBabyData {
         panda289.cover = "http://i1.hdslb.com/bfs/archive/644736f0653ca7d9e075de85c553c8f37d3263e8.jpg"
         panda289.videoType = 0
         list.add(panda289)
-        
-        
+
+
         val panda290 = PetVideo()
         panda290.type = PetType.PANDA.ordinal
         panda290.fileName = "panda_baby_panda290"
@@ -4706,8 +4702,8 @@ object PandaBabyData {
         panda290.cover = "http://i0.hdslb.com/bfs/archive/b5099cb4376ad190840a486b7e0b23a7737a5b1d.jpg"
         panda290.videoType = 0
         list.add(panda290)
-        
-        
+
+
         val panda291 = PetVideo()
         panda291.type = PetType.PANDA.ordinal
         panda291.fileName = "panda_baby_panda291"
@@ -4723,8 +4719,8 @@ object PandaBabyData {
         panda291.cover = "http://i2.hdslb.com/bfs/archive/2a203c03ea55aa5c9f041fc0714407124b993a5b.jpg"
         panda291.videoType = 0
         list.add(panda291)
-        
-        
+
+
         val panda292 = PetVideo()
         panda292.type = PetType.PANDA.ordinal
         panda292.fileName = "panda_baby_panda292"
@@ -4740,8 +4736,8 @@ object PandaBabyData {
         panda292.cover = "http://i1.hdslb.com/bfs/archive/c47f9e155223b9cf9099cef8926c7728efa72c18.jpg"
         panda292.videoType = 0
         list.add(panda292)
-        
-        
+
+
         val panda293 = PetVideo()
         panda293.type = PetType.PANDA.ordinal
         panda293.fileName = "panda_baby_panda293"
@@ -4757,8 +4753,8 @@ object PandaBabyData {
         panda293.cover = "http://i2.hdslb.com/bfs/archive/d688eee5e4d02ce82ad60970823be788022a48eb.jpg"
         panda293.videoType = 0
         list.add(panda293)
-        
-        
+
+
         val panda294 = PetVideo()
         panda294.type = PetType.PANDA.ordinal
         panda294.fileName = "panda_baby_panda294"
@@ -4774,8 +4770,8 @@ object PandaBabyData {
         panda294.cover = "http://i2.hdslb.com/bfs/archive/8db1625a31b28c5f447664334a372858febf9d61.jpg"
         panda294.videoType = 0
         list.add(panda294)
-        
-        
+
+
         val panda295 = PetVideo()
         panda295.type = PetType.PANDA.ordinal
         panda295.fileName = "panda_baby_panda295"
@@ -4791,8 +4787,8 @@ object PandaBabyData {
         panda295.cover = "http://i0.hdslb.com/bfs/archive/b9b940a2f9e7b58a02c0b25fb6195bca719a5f78.jpg"
         panda295.videoType = 0
         list.add(panda295)
-        
-        
+
+
         val panda296 = PetVideo()
         panda296.type = PetType.PANDA.ordinal
         panda296.fileName = "panda_baby_panda296"
@@ -4808,8 +4804,8 @@ object PandaBabyData {
         panda296.cover = "http://i1.hdslb.com/bfs/archive/a764051e44b7addbdf2a0f7613e3e37c3bf6beff.jpg"
         panda296.videoType = 0
         list.add(panda296)
-        
-        
+
+
         val panda297 = PetVideo()
         panda297.type = PetType.PANDA.ordinal
         panda297.fileName = "panda_baby_panda297"
@@ -4825,8 +4821,8 @@ object PandaBabyData {
         panda297.cover = "http://i0.hdslb.com/bfs/archive/6ea24d366f60cf3fb09e9aee2d16e684070a0b18.jpg"
         panda297.videoType = 0
         list.add(panda297)
-        
-        
+
+
         val panda298 = PetVideo()
         panda298.type = PetType.PANDA.ordinal
         panda298.fileName = "panda_baby_panda298"
@@ -4842,8 +4838,8 @@ object PandaBabyData {
         panda298.cover = "http://i0.hdslb.com/bfs/archive/fd116aea34ed2c465382979127c4b9e5c1b45e8e.jpg"
         panda298.videoType = 0
         list.add(panda298)
-        
-        
+
+
         val panda299 = PetVideo()
         panda299.type = PetType.PANDA.ordinal
         panda299.fileName = "panda_baby_panda299"
@@ -4859,8 +4855,8 @@ object PandaBabyData {
         panda299.cover = "http://i1.hdslb.com/bfs/archive/e0a07d9b96bf203f36f3af14e035ad955c48ee7f.jpg"
         panda299.videoType = 0
         list.add(panda299)
-        
-        
+
+
         val panda300 = PetVideo()
         panda300.type = PetType.PANDA.ordinal
         panda300.fileName = "panda_baby_panda300"
@@ -4876,8 +4872,8 @@ object PandaBabyData {
         panda300.cover = "http://i2.hdslb.com/bfs/archive/ee165abea316ec0ed39513fb4659534df2853c12.jpg"
         panda300.videoType = 0
         list.add(panda300)
-        
-        
+
+
         val panda301 = PetVideo()
         panda301.type = PetType.PANDA.ordinal
         panda301.fileName = "panda_baby_panda301"
@@ -4893,8 +4889,8 @@ object PandaBabyData {
         panda301.cover = "http://i1.hdslb.com/bfs/archive/0e2c257a4d097bef5217577f93d31eabec58fda1.jpg"
         panda301.videoType = 0
         list.add(panda301)
-        
-        
+
+
         val panda302 = PetVideo()
         panda302.type = PetType.PANDA.ordinal
         panda302.fileName = "panda_baby_panda302"
@@ -4910,8 +4906,8 @@ object PandaBabyData {
         panda302.cover = "http://i2.hdslb.com/bfs/archive/2da65a6dc1f4030cf0a674de0b2b49286c237d4b.jpg"
         panda302.videoType = 0
         list.add(panda302)
-        
-        
+
+
         val panda303 = PetVideo()
         panda303.type = PetType.PANDA.ordinal
         panda303.fileName = "panda_baby_panda303"
@@ -4927,8 +4923,8 @@ object PandaBabyData {
         panda303.cover = "http://i2.hdslb.com/bfs/archive/68c90b440a1fb9eaf0272de98b1cd998ee587bd6.jpg"
         panda303.videoType = 0
         list.add(panda303)
-        
-        
+
+
         val panda304 = PetVideo()
         panda304.type = PetType.PANDA.ordinal
         panda304.fileName = "panda_baby_panda304"
@@ -4944,8 +4940,8 @@ object PandaBabyData {
         panda304.cover = "http://i2.hdslb.com/bfs/archive/9e0daaae30bd7cefe4332f1974d19bd9b5baf975.jpg"
         panda304.videoType = 0
         list.add(panda304)
-        
-        
+
+
         val panda305 = PetVideo()
         panda305.type = PetType.PANDA.ordinal
         panda305.fileName = "panda_baby_panda305"
@@ -4961,8 +4957,8 @@ object PandaBabyData {
         panda305.cover = "http://i1.hdslb.com/bfs/archive/b998d1738afd5f35f5d44a636dde0bec92630a82.jpg"
         panda305.videoType = 0
         list.add(panda305)
-        
-        
+
+
         val panda306 = PetVideo()
         panda306.type = PetType.PANDA.ordinal
         panda306.fileName = "panda_baby_panda306"
@@ -4978,8 +4974,8 @@ object PandaBabyData {
         panda306.cover = "http://i2.hdslb.com/bfs/archive/d7a154988029f0a2b27878e9dd02db2f809b464b.jpg"
         panda306.videoType = 0
         list.add(panda306)
-        
-        
+
+
         val panda307 = PetVideo()
         panda307.type = PetType.PANDA.ordinal
         panda307.fileName = "panda_baby_panda307"
@@ -4995,8 +4991,8 @@ object PandaBabyData {
         panda307.cover = "http://i1.hdslb.com/bfs/archive/342c1610ca098c5a3b0be19114497f0ae993eebb.jpg"
         panda307.videoType = 0
         list.add(panda307)
-        
-        
+
+
         val panda308 = PetVideo()
         panda308.type = PetType.PANDA.ordinal
         panda308.fileName = "panda_baby_panda308"
@@ -5012,8 +5008,8 @@ object PandaBabyData {
         panda308.cover = "http://i0.hdslb.com/bfs/archive/f1add48e0e159e61343e9b83dc9f44bd175d9204.jpg"
         panda308.videoType = 0
         list.add(panda308)
-        
-        
+
+
         val panda309 = PetVideo()
         panda309.type = PetType.PANDA.ordinal
         panda309.fileName = "panda_baby_panda309"
@@ -5029,8 +5025,8 @@ object PandaBabyData {
         panda309.cover = "http://i0.hdslb.com/bfs/archive/13a46c1884f4f87e470b092476738bec81e12478.jpg"
         panda309.videoType = 0
         list.add(panda309)
-        
-        
+
+
         val panda310 = PetVideo()
         panda310.type = PetType.PANDA.ordinal
         panda310.fileName = "panda_baby_panda310"
@@ -5046,8 +5042,8 @@ object PandaBabyData {
         panda310.cover = "http://i0.hdslb.com/bfs/archive/1d8b1eebb16c44ae518ac1553971c6163391da07.jpg"
         panda310.videoType = 0
         list.add(panda310)
-        
-        
+
+
         val panda311 = PetVideo()
         panda311.type = PetType.PANDA.ordinal
         panda311.fileName = "panda_baby_panda311"
@@ -5063,8 +5059,8 @@ object PandaBabyData {
         panda311.cover = "http://i0.hdslb.com/bfs/archive/ff8a1763ff523ae26614ed50d3d3431fe5bdac45.jpg"
         panda311.videoType = 0
         list.add(panda311)
-        
-        
+
+
         val panda312 = PetVideo()
         panda312.type = PetType.PANDA.ordinal
         panda312.fileName = "panda_baby_panda312"
@@ -5080,8 +5076,8 @@ object PandaBabyData {
         panda312.cover = "http://i2.hdslb.com/bfs/archive/3f42eb623b6c4afd2bbf70e3b0d5d97c41c777e6.jpg"
         panda312.videoType = 0
         list.add(panda312)
-        
-        
+
+
         val panda313 = PetVideo()
         panda313.type = PetType.PANDA.ordinal
         panda313.fileName = "panda_baby_panda313"
@@ -5097,8 +5093,8 @@ object PandaBabyData {
         panda313.cover = "http://i0.hdslb.com/bfs/archive/c4cc1d1ea18a9d3e26e7ff23d8b6ee1269c12d08.jpg"
         panda313.videoType = 0
         list.add(panda313)
-        
-        
+
+
         val panda314 = PetVideo()
         panda314.type = PetType.PANDA.ordinal
         panda314.fileName = "panda_baby_panda314"
@@ -5114,8 +5110,8 @@ object PandaBabyData {
         panda314.cover = "http://i1.hdslb.com/bfs/archive/4ad2317872f47183e5a69966e43c99e96d64af44.jpg"
         panda314.videoType = 0
         list.add(panda314)
-        
-        
+
+
         val panda315 = PetVideo()
         panda315.type = PetType.PANDA.ordinal
         panda315.fileName = "panda_baby_panda315"
@@ -5131,8 +5127,8 @@ object PandaBabyData {
         panda315.cover = "http://i1.hdslb.com/bfs/archive/46e2736b93a8a0abd5e218b29f4cdcb58c1f5f09.jpg"
         panda315.videoType = 0
         list.add(panda315)
-        
-        
+
+
         val panda316 = PetVideo()
         panda316.type = PetType.PANDA.ordinal
         panda316.fileName = "panda_baby_panda316"
@@ -5148,8 +5144,8 @@ object PandaBabyData {
         panda316.cover = "http://i2.hdslb.com/bfs/archive/790a6d845a7437734caa365f6e50f9749e11aa29.jpg"
         panda316.videoType = 0
         list.add(panda316)
-        
-        
+
+
         val panda317 = PetVideo()
         panda317.type = PetType.PANDA.ordinal
         panda317.fileName = "panda_baby_panda317"
@@ -5165,8 +5161,8 @@ object PandaBabyData {
         panda317.cover = "http://i1.hdslb.com/bfs/archive/23f8dd7e6bc169b8ce77922ea60d2c14784038c9.jpg"
         panda317.videoType = 0
         list.add(panda317)
-        
-        
+
+
         val panda318 = PetVideo()
         panda318.type = PetType.PANDA.ordinal
         panda318.fileName = "panda_baby_panda318"
@@ -5182,8 +5178,8 @@ object PandaBabyData {
         panda318.cover = "http://i2.hdslb.com/bfs/archive/36b3513c959089f27b94bf53890f04996a304fc0.jpg"
         panda318.videoType = 0
         list.add(panda318)
-        
-        
+
+
         val panda319 = PetVideo()
         panda319.type = PetType.PANDA.ordinal
         panda319.fileName = "panda_baby_panda319"
@@ -5199,8 +5195,8 @@ object PandaBabyData {
         panda319.cover = "http://i1.hdslb.com/bfs/archive/625309c08969d8fd503d87a3cb26cbc3cece529f.jpg"
         panda319.videoType = 0
         list.add(panda319)
-        
-        
+
+
         val panda320 = PetVideo()
         panda320.type = PetType.PANDA.ordinal
         panda320.fileName = "panda_baby_panda320"
@@ -5216,8 +5212,8 @@ object PandaBabyData {
         panda320.cover = "http://i1.hdslb.com/bfs/archive/f5f93990b9eac6029304ccdb046fda115914d3fc.jpg"
         panda320.videoType = 0
         list.add(panda320)
-        
-        
+
+
         val panda321 = PetVideo()
         panda321.type = PetType.PANDA.ordinal
         panda321.fileName = "panda_baby_panda321"
@@ -5233,8 +5229,8 @@ object PandaBabyData {
         panda321.cover = "http://i0.hdslb.com/bfs/archive/5e1ac7384a53e658100110947e06f8c5b2562648.jpg"
         panda321.videoType = 0
         list.add(panda321)
-        
-        
+
+
         val panda322 = PetVideo()
         panda322.type = PetType.PANDA.ordinal
         panda322.fileName = "panda_baby_panda322"
@@ -5250,8 +5246,8 @@ object PandaBabyData {
         panda322.cover = "http://i2.hdslb.com/bfs/archive/31ea8c61f266d90d2cc4c41718991c8bdf3b6424.jpg"
         panda322.videoType = 0
         list.add(panda322)
-        
-        
+
+
         val panda323 = PetVideo()
         panda323.type = PetType.PANDA.ordinal
         panda323.fileName = "panda_baby_panda323"
@@ -5267,8 +5263,8 @@ object PandaBabyData {
         panda323.cover = "http://i1.hdslb.com/bfs/archive/7fa8ab6936c673a7a41d9cdf59ca4260ee972310.jpg"
         panda323.videoType = 0
         list.add(panda323)
-        
-        
+
+
         val panda324 = PetVideo()
         panda324.type = PetType.PANDA.ordinal
         panda324.fileName = "panda_baby_panda324"
@@ -5284,8 +5280,8 @@ object PandaBabyData {
         panda324.cover = "http://i1.hdslb.com/bfs/archive/c28a9b36cc1fca0b2a59ec496943be46b9c1b70b.jpg"
         panda324.videoType = 0
         list.add(panda324)
-        
-        
+
+
         val panda325 = PetVideo()
         panda325.type = PetType.PANDA.ordinal
         panda325.fileName = "panda_baby_panda325"
@@ -5301,8 +5297,8 @@ object PandaBabyData {
         panda325.cover = "http://i1.hdslb.com/bfs/archive/02a6a6b6553f2545bd4efcc2129f99a51b0d8d13.jpg"
         panda325.videoType = 0
         list.add(panda325)
-        
-        
+
+
         val panda326 = PetVideo()
         panda326.type = PetType.PANDA.ordinal
         panda326.fileName = "panda_baby_panda326"
@@ -5318,8 +5314,8 @@ object PandaBabyData {
         panda326.cover = "http://i1.hdslb.com/bfs/archive/47f8bcbb0cfc6418abad026e8b604519c89fd244.jpg"
         panda326.videoType = 0
         list.add(panda326)
-        
-        
+
+
         val panda327 = PetVideo()
         panda327.type = PetType.PANDA.ordinal
         panda327.fileName = "panda_baby_panda327"
@@ -5335,8 +5331,8 @@ object PandaBabyData {
         panda327.cover = "http://i2.hdslb.com/bfs/archive/2206e1a8f17e8386674d624b78319131d3bafb02.jpg"
         panda327.videoType = 0
         list.add(panda327)
-        
-        
+
+
         val panda328 = PetVideo()
         panda328.type = PetType.PANDA.ordinal
         panda328.fileName = "panda_baby_panda328"
@@ -5352,8 +5348,8 @@ object PandaBabyData {
         panda328.cover = "http://i1.hdslb.com/bfs/archive/5d701e2b353c753f6e39a2c19360b6a38ae1ea42.jpg"
         panda328.videoType = 0
         list.add(panda328)
-        
-        
+
+
         val panda329 = PetVideo()
         panda329.type = PetType.PANDA.ordinal
         panda329.fileName = "panda_baby_panda329"
@@ -5369,8 +5365,8 @@ object PandaBabyData {
         panda329.cover = "http://i1.hdslb.com/bfs/archive/d7f8bffabbe36d89f3dfebccfb59f94bb9b5460d.jpg"
         panda329.videoType = 0
         list.add(panda329)
-        
-        
+
+
         val panda330 = PetVideo()
         panda330.type = PetType.PANDA.ordinal
         panda330.fileName = "panda_baby_panda330"
@@ -5386,8 +5382,8 @@ object PandaBabyData {
         panda330.cover = "http://i1.hdslb.com/bfs/archive/5ebe0a3bbf4880ab6439a1cf499112256041c3ed.jpg"
         panda330.videoType = 0
         list.add(panda330)
-        
-        
+
+
         val panda331 = PetVideo()
         panda331.type = PetType.PANDA.ordinal
         panda331.fileName = "panda_baby_panda331"
@@ -5403,8 +5399,8 @@ object PandaBabyData {
         panda331.cover = "http://i0.hdslb.com/bfs/archive/dfc0b2ecebabd954a181ccc80006adfaf864aed3.jpg"
         panda331.videoType = 0
         list.add(panda331)
-        
-        
+
+
         val panda332 = PetVideo()
         panda332.type = PetType.PANDA.ordinal
         panda332.fileName = "panda_baby_panda332"
@@ -5420,8 +5416,8 @@ object PandaBabyData {
         panda332.cover = "http://i0.hdslb.com/bfs/archive/86bf67a60b47831cc90d9ac02fa705f095c20f0d.jpg"
         panda332.videoType = 0
         list.add(panda332)
-        
-        
+
+
         val panda333 = PetVideo()
         panda333.type = PetType.PANDA.ordinal
         panda333.fileName = "panda_baby_panda333"
@@ -5437,8 +5433,8 @@ object PandaBabyData {
         panda333.cover = "http://i2.hdslb.com/bfs/archive/17e5dc96a14c2652a7d8267b24eb796f0b63d799.jpg"
         panda333.videoType = 0
         list.add(panda333)
-        
-        
+
+
         val panda334 = PetVideo()
         panda334.type = PetType.PANDA.ordinal
         panda334.fileName = "panda_baby_panda334"
@@ -5454,8 +5450,8 @@ object PandaBabyData {
         panda334.cover = "http://i1.hdslb.com/bfs/archive/45a48272962f4bb5e999a2f889e8d64540410a90.jpg"
         panda334.videoType = 0
         list.add(panda334)
-        
-        
+
+
         val panda335 = PetVideo()
         panda335.type = PetType.PANDA.ordinal
         panda335.fileName = "panda_baby_panda335"
@@ -5471,8 +5467,8 @@ object PandaBabyData {
         panda335.cover = "http://i2.hdslb.com/bfs/archive/c3a2c7a05a7b141b02f39c47567809bbcc759abe.jpg"
         panda335.videoType = 0
         list.add(panda335)
-        
-        
+
+
         val panda336 = PetVideo()
         panda336.type = PetType.PANDA.ordinal
         panda336.fileName = "panda_baby_panda336"
@@ -5488,8 +5484,8 @@ object PandaBabyData {
         panda336.cover = "http://i1.hdslb.com/bfs/archive/e786b80e6c0c6f27c71ebb148fe53d984924330a.jpg"
         panda336.videoType = 0
         list.add(panda336)
-        
-        
+
+
         val panda337 = PetVideo()
         panda337.type = PetType.PANDA.ordinal
         panda337.fileName = "panda_baby_panda337"
@@ -5505,8 +5501,8 @@ object PandaBabyData {
         panda337.cover = "http://i1.hdslb.com/bfs/archive/86ddef75ab10cc7605b63f8fdbcb80e0876bb406.jpg"
         panda337.videoType = 0
         list.add(panda337)
-        
-        
+
+
         val panda338 = PetVideo()
         panda338.type = PetType.PANDA.ordinal
         panda338.fileName = "panda_baby_panda338"
@@ -5522,8 +5518,8 @@ object PandaBabyData {
         panda338.cover = "http://i2.hdslb.com/bfs/archive/f8eee9a8efb9237989de7c2f9ecbd372c639e42d.jpg"
         panda338.videoType = 0
         list.add(panda338)
-        
-        
+
+
         val panda339 = PetVideo()
         panda339.type = PetType.PANDA.ordinal
         panda339.fileName = "panda_baby_panda339"
@@ -5539,8 +5535,8 @@ object PandaBabyData {
         panda339.cover = "http://i1.hdslb.com/bfs/archive/a3135e17a1e5e229366c8902c4b8792fbe1557e9.jpg"
         panda339.videoType = 0
         list.add(panda339)
-        
-        
+
+
         val panda340 = PetVideo()
         panda340.type = PetType.PANDA.ordinal
         panda340.fileName = "panda_baby_panda340"
@@ -5556,8 +5552,8 @@ object PandaBabyData {
         panda340.cover = "http://i0.hdslb.com/bfs/archive/ff8180f26c37083ef08c6958a7aab00f695664cc.jpg"
         panda340.videoType = 0
         list.add(panda340)
-        
-        
+
+
         val panda341 = PetVideo()
         panda341.type = PetType.PANDA.ordinal
         panda341.fileName = "panda_baby_panda341"
@@ -5573,8 +5569,8 @@ object PandaBabyData {
         panda341.cover = "http://i0.hdslb.com/bfs/archive/019c08b21d4e4dcd85095057a19a2de2ffb69690.jpg"
         panda341.videoType = 0
         list.add(panda341)
-        
-        
+
+
         val panda342 = PetVideo()
         panda342.type = PetType.PANDA.ordinal
         panda342.fileName = "panda_baby_panda342"
@@ -5590,8 +5586,8 @@ object PandaBabyData {
         panda342.cover = "http://i1.hdslb.com/bfs/archive/45328cf68cb5174981f256cafa3dd3abd680d2d8.jpg"
         panda342.videoType = 0
         list.add(panda342)
-        
-        
+
+
         val panda343 = PetVideo()
         panda343.type = PetType.PANDA.ordinal
         panda343.fileName = "panda_baby_panda343"
@@ -5607,8 +5603,8 @@ object PandaBabyData {
         panda343.cover = "http://i2.hdslb.com/bfs/archive/47e970b77d7d0cf63a9c92ebafd4a8e88a39d475.jpg"
         panda343.videoType = 0
         list.add(panda343)
-        
-        
+
+
         val panda344 = PetVideo()
         panda344.type = PetType.PANDA.ordinal
         panda344.fileName = "panda_baby_panda344"
@@ -5624,8 +5620,8 @@ object PandaBabyData {
         panda344.cover = "http://i1.hdslb.com/bfs/archive/959f0f8ca58f8ee47991b72aa5c3585b36667808.jpg"
         panda344.videoType = 0
         list.add(panda344)
-        
-        
+
+
         val panda345 = PetVideo()
         panda345.type = PetType.PANDA.ordinal
         panda345.fileName = "panda_baby_panda345"
@@ -5641,8 +5637,8 @@ object PandaBabyData {
         panda345.cover = "http://i1.hdslb.com/bfs/archive/f5ee34cd7021473d290ee96a521d0f5f5061508f.jpg"
         panda345.videoType = 0
         list.add(panda345)
-        
-        
+
+
         val panda346 = PetVideo()
         panda346.type = PetType.PANDA.ordinal
         panda346.fileName = "panda_baby_panda346"
@@ -5658,8 +5654,8 @@ object PandaBabyData {
         panda346.cover = "http://i1.hdslb.com/bfs/archive/eead8b5cfa33a985a1b94205a76def0982d42341.jpg"
         panda346.videoType = 0
         list.add(panda346)
-        
-        
+
+
         val panda347 = PetVideo()
         panda347.type = PetType.PANDA.ordinal
         panda347.fileName = "panda_baby_panda347"
@@ -5675,8 +5671,8 @@ object PandaBabyData {
         panda347.cover = "http://i1.hdslb.com/bfs/archive/0d5675b059a163f73f92093c16aa5f3adabbcee3.jpg"
         panda347.videoType = 0
         list.add(panda347)
-        
-        
+
+
         val panda348 = PetVideo()
         panda348.type = PetType.PANDA.ordinal
         panda348.fileName = "panda_baby_panda348"
@@ -5692,8 +5688,8 @@ object PandaBabyData {
         panda348.cover = "http://i1.hdslb.com/bfs/archive/44ee69d4c3a56e2041893c1be6742b8fec680425.jpg"
         panda348.videoType = 0
         list.add(panda348)
-        
-        
+
+
         val panda349 = PetVideo()
         panda349.type = PetType.PANDA.ordinal
         panda349.fileName = "panda_baby_panda349"
@@ -5709,8 +5705,8 @@ object PandaBabyData {
         panda349.cover = "http://i0.hdslb.com/bfs/archive/4c8a0bfa1748680b4bab3af1e99f584545ee7e1e.jpg"
         panda349.videoType = 0
         list.add(panda349)
-        
-        
+
+
         val panda350 = PetVideo()
         panda350.type = PetType.PANDA.ordinal
         panda350.fileName = "panda_baby_panda350"
@@ -5726,8 +5722,8 @@ object PandaBabyData {
         panda350.cover = "http://i2.hdslb.com/bfs/archive/2e584ad24c0239b48d434c96aec8f7aafed0779a.jpg"
         panda350.videoType = 0
         list.add(panda350)
-        
-        
+
+
         val panda351 = PetVideo()
         panda351.type = PetType.PANDA.ordinal
         panda351.fileName = "panda_baby_panda351"
@@ -5743,8 +5739,8 @@ object PandaBabyData {
         panda351.cover = "http://i0.hdslb.com/bfs/archive/eb89f84cab8f94d9ade38bd5c9f18857e71d7648.jpg"
         panda351.videoType = 0
         list.add(panda351)
-        
-        
+
+
         val panda352 = PetVideo()
         panda352.type = PetType.PANDA.ordinal
         panda352.fileName = "panda_baby_panda352"
@@ -5760,8 +5756,8 @@ object PandaBabyData {
         panda352.cover = "http://i1.hdslb.com/bfs/archive/3b900a9f0f4731531841870b938c226f849c28a4.jpg"
         panda352.videoType = 0
         list.add(panda352)
-        
-        
+
+
         val panda353 = PetVideo()
         panda353.type = PetType.PANDA.ordinal
         panda353.fileName = "panda_baby_panda353"
@@ -5777,8 +5773,8 @@ object PandaBabyData {
         panda353.cover = "http://i1.hdslb.com/bfs/archive/d333956c0acc0c8fe372affd6b488fa0f02850b0.jpg"
         panda353.videoType = 0
         list.add(panda353)
-        
-        
+
+
         val panda354 = PetVideo()
         panda354.type = PetType.PANDA.ordinal
         panda354.fileName = "panda_baby_panda354"
@@ -5794,8 +5790,8 @@ object PandaBabyData {
         panda354.cover = "http://i2.hdslb.com/bfs/archive/aa1a9c493f279c51793404aa64cd295a68617a4e.jpg"
         panda354.videoType = 0
         list.add(panda354)
-        
-        
+
+
         val panda355 = PetVideo()
         panda355.type = PetType.PANDA.ordinal
         panda355.fileName = "panda_baby_panda355"
@@ -5811,8 +5807,8 @@ object PandaBabyData {
         panda355.cover = "http://i0.hdslb.com/bfs/archive/72c563126f3f5d10a761cebc5983ecec1397f374.jpg"
         panda355.videoType = 0
         list.add(panda355)
-        
-        
+
+
         val panda356 = PetVideo()
         panda356.type = PetType.PANDA.ordinal
         panda356.fileName = "panda_baby_panda356"
@@ -5828,8 +5824,8 @@ object PandaBabyData {
         panda356.cover = "http://i2.hdslb.com/bfs/archive/9b084820bd12178c101f06323a5180f582201767.jpg"
         panda356.videoType = 0
         list.add(panda356)
-        
-        
+
+
         val panda357 = PetVideo()
         panda357.type = PetType.PANDA.ordinal
         panda357.fileName = "panda_baby_panda357"
@@ -5845,8 +5841,8 @@ object PandaBabyData {
         panda357.cover = "http://i1.hdslb.com/bfs/archive/4bf14f8243f25e34245047e26d8c944f9a5cdd33.jpg"
         panda357.videoType = 0
         list.add(panda357)
-        
-        
+
+
         val panda358 = PetVideo()
         panda358.type = PetType.PANDA.ordinal
         panda358.fileName = "panda_baby_panda358"
@@ -5862,8 +5858,8 @@ object PandaBabyData {
         panda358.cover = "http://i0.hdslb.com/bfs/archive/7d4f4474e4372f511b217c93a09237f97f784dbf.jpg"
         panda358.videoType = 0
         list.add(panda358)
-        
-        
+
+
         val panda359 = PetVideo()
         panda359.type = PetType.PANDA.ordinal
         panda359.fileName = "panda_baby_panda359"
@@ -5879,7 +5875,6 @@ object PandaBabyData {
         panda359.cover = "http://i0.hdslb.com/bfs/archive/b3dab0bf9ef2c596b5257242e500d7812e4f4ae6.jpg"
         panda359.videoType = 0
         list.add(panda359)
-        
 
         return list
     }

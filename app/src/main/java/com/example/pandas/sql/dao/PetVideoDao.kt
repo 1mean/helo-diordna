@@ -90,11 +90,14 @@ interface PetVideoDao {
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where type = (:type)")
     suspend fun queryByType(type: Int): MutableList<PetViewData>
 
-    @Query("select code,title,cover,authorName,duration,videoType from pet_video where type = (:type) limit (:startIndex),10")
-    suspend fun queryByTypeAndPage(type: Int, startIndex: Int): MutableList<PetViewData>
+    @Query("select code,title,cover,authorName,duration,videoType from pet_video where type = (:type) limit (:startIndex),(:count)")
+    suspend fun queryByTypeAndPage(type: Int, startIndex: Int, count: Int): MutableList<PetViewData>
 
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where videoType = (:type)")
     suspend fun queryByVideoType(type: Int): MutableList<PetViewData>
+
+    @Query("select code,title,cover,authorName,duration,videoType from pet_video where videoType = (:type) limit 0,4")
+    suspend fun queryRecoBanner(type: Int): MutableList<PetViewData>
 
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where isStar=1 limit (:startIndex),(:count)")
     suspend fun queryStarByPage(startIndex: Int, count: Int): MutableList<PetViewData>
@@ -102,8 +105,8 @@ interface PetVideoDao {
     @Query("select * from pet_video where videoType = (:videoType)")
     suspend fun queryVideoType(videoType: Int): MutableList<PetVideo>
 
-    @Query("select * from music limit (:startIndex),(:count)")
-    suspend fun queryMusicByPage(startIndex: Int, count: Int): MutableList<MusicVo>
+    @Query("select * from music where type=(:type) limit (:startIndex),(:count)")
+    suspend fun queryMusicByPage(type: Int, startIndex: Int, count: Int): MutableList<MusicVo>
 
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where isStar=1 limit 0,(:counts)")
     suspend fun queryByCounts(counts: Int): MutableList<PetViewData>
@@ -113,6 +116,13 @@ interface PetVideoDao {
 
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryVideoByType(type: Int, startIndex: Int, count: Int): MutableList<PetViewData>
+
+    @Query("select code,title,cover,authorName,duration,videoType from pet_video where videoType=(:videoType) limit (:startIndex),(:count)")
+    suspend fun queryVideoByVideoType(
+        videoType: Int,
+        startIndex: Int,
+        count: Int
+    ): MutableList<PetViewData>
 
     @Query("select cover,fileName from pet_video")
     suspend fun queryAllPetCovers(): MutableList<CoverDownLoad>

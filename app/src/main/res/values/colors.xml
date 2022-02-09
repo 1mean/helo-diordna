@@ -67,5 +67,6 @@
     <color name="color_talk_name">#333333</color>
     <color name="color_talk_item_pressed">#f46844</color>
     <color name="color_landscape_item_author">#babdbf</color>
+    <color name="color_bg_love">#f5f5f5</color>
 
 </resources>

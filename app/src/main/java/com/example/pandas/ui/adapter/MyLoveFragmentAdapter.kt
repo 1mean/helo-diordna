@@ -31,8 +31,8 @@ public class MyLoveFragmentAdapter(
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
     private val TYPE_IMAGE = 1 //图片展示
-    private val TYPE_CLASSIFY = 2 //分类 /动物/TV/音乐/
-    private val TYPE_HORIZONTAL = 3 //水平滑动
+    private val TYPE_HORIZONTAL = 2 //水平滑动
+    private val TYPE_MOVIE = 3 //歌曲视频
     private val TYPE_SLEEP = 4 //我爱的电视剧
     private val TYPE_MUSIC = 5 //热门音乐
     private val TYPE_TALK = 6 //热门相声
@@ -47,15 +47,15 @@ public class MyLoveFragmentAdapter(
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = 6
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
             0 -> TYPE_IMAGE
-            1 -> TYPE_CLASSIFY
-            2 -> TYPE_HORIZONTAL
-            3 -> TYPE_SLEEP
-            5 -> TYPE_MUSIC
+            1 -> TYPE_HORIZONTAL
+            2 -> TYPE_MOVIE
+            5 -> TYPE_SLEEP
+            3 -> TYPE_MUSIC
             4 -> TYPE_TALK
             else -> TYPE_COMMON
         }
@@ -68,15 +68,6 @@ public class MyLoveFragmentAdapter(
                     CardImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return ImageViewHolder(binding)
             }
-            TYPE_CLASSIFY -> {
-                val binding =
-                    CardItemClassifyBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
-                return ClassifyViewHolder(binding)
-            }
             TYPE_HORIZONTAL -> {
                 val binding =
                     CardItemHorizontalBinding.inflate(
@@ -86,6 +77,16 @@ public class MyLoveFragmentAdapter(
                     )
                 return HorizontalViewHolder(binding)
             }
+            TYPE_MOVIE -> {
+                val binding =
+                    LayoutSleepBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                return MovieViewHolder(binding)
+            }
+
             TYPE_SLEEP -> {
                 val binding =
                     LayoutSleepBinding.inflate(
@@ -118,11 +119,11 @@ public class MyLoveFragmentAdapter(
             TYPE_IMAGE -> {
                 (holder as ImageViewHolder).handle(position)
             }
-            TYPE_CLASSIFY -> {
-                (holder as ClassifyViewHolder).handle(position)
-            }
             TYPE_HORIZONTAL -> {
                 (holder as HorizontalViewHolder).handle()
+            }
+            TYPE_MOVIE -> {
+                (holder as MovieViewHolder).handle(position)
             }
             TYPE_SLEEP -> {
                 (holder as SleepViewHolder).handle(position)
@@ -177,7 +178,6 @@ public class MyLoveFragmentAdapter(
     private inner class HorizontalViewHolder(binding: CardItemHorizontalBinding) :
         BaseEmptyViewHolder(binding.root) {
 
-        val title = binding.textHorinzontalTitle
         val recyclerView = binding.recyclerViewHorizontalLove
         private var mAdapter: HorizontalVideoAdapter? = null
         val padding =
@@ -187,7 +187,6 @@ public class MyLoveFragmentAdapter(
             val videos = data.horizontalVideos
 
             if (videos.isNotEmpty() && mAdapter == null) {
-                title.text = "热门萌宠"
                 mAdapter = HorizontalVideoAdapter(videos)
                 recyclerView.run {
                     layoutManager =
@@ -233,19 +232,42 @@ public class MyLoveFragmentAdapter(
         }
     }
 
+    private inner class MovieViewHolder(binding: LayoutSleepBinding) :
+        BaseEmptyViewHolder(binding.root) {
+
+        val titleLayout = binding.layoutSleepTitle
+        val recyclerView = binding.recyclerSleepVideo
+        val title = binding.txtSleep
+        var mAdapter: SleepVideoItemAdapter? = null
+
+        fun handle(position: Int) {
+
+            title.text = "歌曲视频"
+            val videos = data.movieModel
+            if (mAdapter == null && videos.isNotEmpty()) {
+                mAdapter = SleepVideoItemAdapter(videos)
+                recyclerView.run {
+                    addItemDecoration(SleepVideosItemDecoration(itemView.context))
+                    layoutManager = GridLayoutManager(itemView.context, 2)
+                    adapter = mAdapter
+                }
+            }
+        }
+    }
+
     private inner class SleepViewHolder(binding: LayoutSleepBinding) :
         BaseEmptyViewHolder(binding.root) {
 
+        val title = binding.txtSleep
         val titleLayout = binding.layoutSleepTitle
         val recyclerView = binding.recyclerSleepVideo
         var mAdapter: SleepVideoItemAdapter? = null
 
         fun handle(position: Int) {
 
-            val videos = data.sleepModel.videos
-            val audios = data.sleepModel.audios
-
-            if (mAdapter == null && videos.isNotEmpty() && audios.isNotEmpty()) {
+            title.text = "助眠"
+            val videos = data.sleepModel
+            if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
                 recyclerView.run {
                     addItemDecoration(SleepVideosItemDecoration(itemView.context))

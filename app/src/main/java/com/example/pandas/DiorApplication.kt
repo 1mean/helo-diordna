@@ -27,11 +27,10 @@ class DiorApplication : Application() {
 
         Thread{
             val petDao = AppDataBase.getInstance().petVideoDao()
-            //val list = petDao.queryVideoType(3)
-//            val list1 = AppData.getAll()
-//            val list = LoveData.getMusic()
-            val list = LandScapeData.getAll()
-            petDao.insertAll(list)
+            val list1 = AppData.getMusicData()
+            val list2 = AppData.getPetVideoData()
+            petDao.insertAll(list2)
+            petDao.insertMusics(list1)
         }.start()
     }
 }

@@ -1,5 +1,3 @@
-package com.example.pandas.base.fragment
-
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
@@ -18,14 +16,13 @@ import com.example.pandas.base.BaseViewModel
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.ParameterizedType
 
-
 /**
- * @description: Fragment基类，Fragment+ViewModel+ViewBinding
+ * @description: TODO
  * @author: dongyiming
- * @date: 1/19/22 1:11 下午
+ * @date: 2/8/22 9:31 下午
  * @version: v1.0
  */
-abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
+public abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
 
     lateinit var mViewModel: VM
 
@@ -96,8 +93,6 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
 
         if (isFirstShow) {
             onVisible()
-        } else {
-            againOnResume()
         }
     }
 
@@ -179,11 +174,6 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
      * 第一次展示界面
      */
     abstract fun firstOnResume()
-
-    /**
-     * 再一次展示界面，不是第一次
-     */
-    abstract fun againOnResume()
 
     /**
      * 延迟加载 防止 切换动画还没执行完毕时数据就已经加载好了，这时页面会有渲染卡顿  bug

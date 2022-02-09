@@ -4,7 +4,8 @@
         android:id="@+id/swip_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:visibility="gone"
+        android:background="@color/color_bg_love">
 
     <com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
             android:id="@+id/recycler_layout"

@@ -11,7 +11,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 public class HomePagerAdapter(private val tabList: List<String>, fragment: FragmentActivity) :
     FragmentStateAdapter(fragment) {
 
-    private var fragments: HashMap<Int, Fragment> = HashMap<Int, Fragment>()
+    private var fragments: HashMap<Int, Fragment> = HashMap()
 
     override fun getItemCount(): Int = tabList.size
 
@@ -29,7 +29,7 @@ public class HomePagerAdapter(private val tabList: List<String>, fragment: Fragm
                 "最爱" -> {
                     MyLoveFragment()
                 }
-                "热门" -> {
+                "山水" -> {
                     LandscapeFragment()
                 }
                 else -> {

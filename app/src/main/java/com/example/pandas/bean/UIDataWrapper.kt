@@ -17,7 +17,7 @@ data class UIDataWrapper<T>(
     //是否为空
     val isEmpty: Boolean = false,
     //是否还有更多
-    val hasMore: Boolean = false,
+    var hasMore: Boolean = false,
     //是第一页且没有数据
     val isFirstEmpty: Boolean = false,
     //列表数据

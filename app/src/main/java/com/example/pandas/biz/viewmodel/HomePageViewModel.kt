@@ -5,11 +5,10 @@ import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.ExceptionHandle
-import com.example.pandas.ui.ext.getHorVideos
 import kotlinx.coroutines.launch
 
 /**
- * @description: TODO
+ * @description: homefragment viewmodel
  * @author: dongyiming
  * @date: 1/18/22 6:07 下午
  * @version: v1.0
@@ -19,7 +18,20 @@ class HomePageViewModel : BaseViewModel() {
     var pageNo = 0 //分页获取数据
     var startIndex = 0//分页起始
 
-    //获取所有宠物的输出
+    /***********************************************************************************
+     * LiveData是不可变的，MutableLiveData是可变的
+     * - 官方框架里：ViewModel内部使用了private的MutableLiveData实例，但对外暴露的是LiveData类型
+     * *
+     *   private val _user =  MutableLiveData<User>()
+     *   val user:LiveData<User> = _user
+     *   init{
+     *       viewModelScope.launch{
+     *               _user.value = dao.getUser(userId)
+     *       }
+     *   }
+     ************************************************************************************/
+
+
     val petDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
 
     val recommendDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
@@ -62,10 +74,16 @@ class HomePageViewModel : BaseViewModel() {
             })
     }
 
+    /**
+     *  首页-推荐
+     *
+     * @author: dongyiming
+     * @date: 2/7/22 5:26 下午
+     * @version: v1.0
+     */
     fun getRecommendData(isRefresh: Boolean) {
 
         if (isRefresh) {
-            pageNo = 0
             startIndex = 0
         }
         viewModelScope.launch {
@@ -73,17 +91,16 @@ class HomePageViewModel : BaseViewModel() {
             kotlin.runCatching {
                 PetManagerCoroutine.getRecommendByPage(startIndex)
             }.onSuccess {
-                if (startIndex == 0) startIndex += 10 else startIndex += 11
-                pageNo++
-                val dataList = UIDataWrapper<PetViewData>(
+                startIndex += if (startIndex == 0) 10 else 11
+                val wrapper = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = isRefresh,
                     isEmpty = it.itemList.isEmpty() && it.bannerList.isEmpty(),
-                    hasMore = (it.itemList.size + it.bannerList.size) == 11,
+                    hasMore = if (isRefresh) it.itemList.size == 10 else it.itemList.size == 11,
                     isFirstEmpty = isRefresh && it.itemList.isEmpty() && it.bannerList.isEmpty(),
                     recoData = it
                 )
-                recommendDataWrapper.value = dataList
+                recommendDataWrapper.value = wrapper
             }.onFailure {
 
                 it.message?.loge()
@@ -105,15 +122,13 @@ class HomePageViewModel : BaseViewModel() {
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getLoveData()
+                PetManagerCoroutine.getLoveData(isRefresh, startIndex)
             }.onSuccess {
-                if (startIndex == 0) startIndex += 10 else startIndex += 11
-                pageNo++
-                val data = getHorizontalVideos(it)
+                startIndex += if (startIndex == 0) 10 else 11
                 val dataList = UIDataWrapper<PageCommonData>(
                     isSuccess = true,
                     isRefresh = isRefresh,
-                    loveData = data
+                    loveData = it
                 )
                 loveDataWrapper.value = dataList
             }.onFailure {
@@ -130,11 +145,6 @@ class HomePageViewModel : BaseViewModel() {
             }
         }
     }
-
-    fun getHorizontalVideos(data: PageCommonData): PageCommonData {
-        return getHorVideos(data)
-    }
-
 
     fun getLandScapeData(isRefresh: Boolean) {
 

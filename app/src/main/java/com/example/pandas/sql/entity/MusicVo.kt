@@ -19,6 +19,8 @@ data class MusicVo(
     var cover: String? = null,//歌曲封面
     //var duration: String? = null,//歌曲时长
     @ColumnInfo
-    var isLike: Boolean = false//是否喜欢
+    var isLike: Boolean = false,//是否喜欢
+    @ColumnInfo
+    var type: Int = 0,//歌曲类型，0为普通歌曲，1为相声音频
 
 )

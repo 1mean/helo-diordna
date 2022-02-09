@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.pandas.R
-import com.example.pandas.base.fragment.BaseFragment
+import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.databinding.FragmentRoomBinding
 import com.example.pandas.ui.view.viewpager.Indicator
 import com.google.android.material.appbar.AppBarLayout
@@ -17,7 +17,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  * @date: 2021/11/27 8:10 上午
  * @version: v1.0
  */
-public class CutePetFragment : BaseFragment<CutePetViewModel, FragmentRoomBinding>() {
+public class CutePetFragment : BaseLazyFragment<CutePetViewModel, FragmentRoomBinding>() {
 
     private var fragments: MutableList<Fragment> = mutableListOf()
     //private val bannerAdapter by lazy { PetBannerAdapter(mutableListOf<PetViewData>()) }
@@ -33,8 +33,6 @@ public class CutePetFragment : BaseFragment<CutePetViewModel, FragmentRoomBindin
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-
-        //StatusBarUtils.updataStatus(requireActivity(), true, true, R.color.color_white_lucency)
 
         binding.refreshPet.run {
             setProgressViewEndTarget(true, 300)
@@ -102,7 +100,4 @@ public class CutePetFragment : BaseFragment<CutePetViewModel, FragmentRoomBindin
         mViewModel.getBannerData()
     }
 
-    override fun againOnResume() {
-        //StatusBarUtils.updataStatus(requireActivity(), true, true, R.color.color_white_lucency)
-    }
 }

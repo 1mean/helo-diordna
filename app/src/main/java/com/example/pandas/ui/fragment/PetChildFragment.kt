@@ -1,6 +1,6 @@
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.pandas.base.fragment.BaseFragment
+import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.databinding.FragmentPandaBinding
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 
@@ -11,7 +11,7 @@ import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
  * @version: v1.0
  */
 public class PetChildFragment() :
-    BaseFragment<CutePetViewModel,FragmentPandaBinding>(), LoadMoreRecyclerView.ILoadMoreListener {
+    BaseLazyFragment<CutePetViewModel,FragmentPandaBinding>(), LoadMoreRecyclerView.ILoadMoreListener {
 
     private val mAdapter: PandasAdapter by lazy { PandasAdapter(mutableListOf()) }
 
@@ -52,7 +52,7 @@ public class PetChildFragment() :
                         mAdapter.addData(it.listData)
                         binding.rv.loadMoreFinished()
                         if (!it.hasMore) {//没有更多数据了
-                            binding.rv.noMoreData(true)
+                            binding.rv.noMoreData()
                         }
                     }
                 }
@@ -65,9 +65,6 @@ public class PetChildFragment() :
 
     override fun firstOnResume() {
         mViewModel.getDataByPage(true, type)
-    }
-
-    override fun againOnResume() {
     }
 
     override fun onLoadMore() {

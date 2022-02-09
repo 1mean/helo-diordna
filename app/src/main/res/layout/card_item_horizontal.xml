@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="138dp"
-        android:background="@color/white"
-        app:cardElevation="0.5dp"
-        app:cardCornerRadius="5dp">
+        android:layout_height="150dp"
+        android:background="@color/color_bg_love"
+        android:orientation="vertical">
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:layout_marginStart="9dp"
+            android:layout_height="45dp"
             android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_horinzontal_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
+                android:layout_marginStart="16dp"
                 android:layout_gravity="center_vertical"
+                android:text="@string/str_hot_pet"
                 android:textColor="@color/color_video_item_title" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -27,6 +25,6 @@
     <com.example.pandas.base.view.DispatchRecyclerView
             android:id="@+id/recyclerView_horizontal_love"
             android:layout_width="match_parent"
-            android:layout_height="95dp"
-            android:layout_gravity="bottom" />
-</androidx.cardview.widget.CardView>
+            android:layout_height="95dp" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
