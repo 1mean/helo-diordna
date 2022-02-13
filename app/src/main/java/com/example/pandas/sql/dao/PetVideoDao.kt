@@ -5,6 +5,7 @@ import com.example.pandas.bean.CoverDownLoad
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
+import kotlinx.coroutines.flow.Flow
 
 /**
  * @description:
@@ -90,7 +91,7 @@ interface PetVideoDao {
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where type = (:type)")
     suspend fun queryByType(type: Int): MutableList<PetViewData>
 
-    @Query("select code,title,cover,authorName,duration,videoType from pet_video where type = (:type) limit (:startIndex),(:count)")
+    @Query("select code,title,cover,authorName,duration,videoType from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryByTypeAndPage(type: Int, startIndex: Int, count: Int): MutableList<PetViewData>
 
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where videoType = (:type)")
@@ -127,4 +128,6 @@ interface PetVideoDao {
     @Query("select cover,fileName from pet_video")
     suspend fun queryAllPetCovers(): MutableList<CoverDownLoad>
 
+    @Query("select * from pet_video where code=(:code)")
+    fun queryVideoByCode(code: Int): Flow<PetVideo>
 }

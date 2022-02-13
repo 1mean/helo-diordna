@@ -2,85 +2,142 @@ package com.example.pandas.ui.activity
 
 import StatusBarUtils
 import VideoFragmentAdapter
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.pandas.R
-import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.base.activity.BaseActivity
+import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.ActivityVideoBinding
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.util.DebugTextViewHelper
 import com.google.android.exoplayer2.util.EventLogger
 import com.google.android.exoplayer2.util.Util
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.launch
+
 
 /**
- * @description: TODO
+ * @description: video播放界面
  * @author: dongyiming
  * @date: 12/29/21 3:48 下午
  * @version: v1.0
  */
-public class VideoPlayingActivity : AppCompatActivity() {
+public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBinding>() {
 
-    private lateinit var binding: ActivityVideoBinding
-    private val tabNames = arrayListOf<String>("简介", "评论")
+    private val tabNames = arrayListOf("简介", "评论")
     private var _mPlayer: ExoPlayer? = null
     private val mPlayer get() = _mPlayer!!
 
     private var vedioUrl: String? = null
+    private var code: Int = -1
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-        binding = ActivityVideoBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun initView(savedInstanceState: Bundle?) {
 
         StatusBarUtils.setStatusBarMode(this, false, R.color.black)
 
-        val eyepetozerBean = getIntent().getParcelableExtra<EyepetozerBean>("EyepetozerBean")
-        vedioUrl = eyepetozerBean?.playUrl
-        val viewPager = binding.vpVideo
+//        val eyepetozerBean = getIntent().getParcelableExtra<EyepetozerBean>("EyepetozerBean")
+//        vedioUrl = eyepetozerBean?.playUrl
 
-        viewPager.adapter = VideoFragmentAdapter(this)
-        viewPager.offscreenPageLimit = 1
+        code = intent.getIntExtra("code", -1)
 
-        TabLayoutMediator(
-            binding.tabView, viewPager, true
-        ) { tab, position ->
-            tab.text = tabNames[position]
-        }.attach()
+        lifecycleScope.launch {
+
+            val viewPager = binding.vpVideo
+            viewPager.adapter = VideoFragmentAdapter(this@VideoPlayingActivity)
+            viewPager.offscreenPageLimit = 1
+
+            TabLayoutMediator(
+                binding.tabView, viewPager, true
+            ) { tab, position ->
+                tab.text = tabNames[position]
+            }.attach()
+        }
     }
 
-    private fun initPlayer(playUri: String?) {
+    override fun onStart() {
+        super.onStart()
+        if (Util.SDK_INT > 23) {
+            initPlayer()
+        }
+    }
 
-        if (playUri == null) {
-            Log.d("ExoTest", "playUri is null!")
+    override fun onResume() {
+        super.onResume()
+        if (Util.SDK_INT <= 23) {
+            initPlayer()
+        }
+    }
+
+    override fun createObserver() {
+        mViewModel.videoInfo.observe(this) {
+
+            if (_mPlayer == null) {
+
+                val file = mViewModel.getUrl(this, it.fileName!!)
+
+                //1.创建SimpleExoPlayer实例
+                _mPlayer = ExoPlayer.Builder(this).build()
+                binding.playView.player = mPlayer
+
+                //2.创建播放菜单并添加到播放器
+                val firstLocalMediaItem = MediaItem.fromUri(Uri.fromFile(file))
+
+                mPlayer.run {
+                    addListener(listener)
+                    addMediaItem(firstLocalMediaItem)
+                    playWhenReady = true//3.设置播放方式为自动播放
+                    prepare()//设置播放器状态为prepare
+                }
+
+            }
+        }
+    }
+
+    private fun initPlayer() {
+
+        if (code == -1) {
+            Log.d("Pandas", "playUri is null!")
             return
         }
 
-        if (_mPlayer == null) {
+        mViewModel.getVideoInfo(code)
+    }
 
-            /* 1.创建SimpleExoPlayer实例 */
-            _mPlayer = ExoPlayer.Builder(this).build()
-            binding.playView.player = mPlayer
+    private val listener = object : Player.Listener {
 
-            /* 2.创建播放菜单并添加到播放器 */
-            val firstLocalMediaItem = MediaItem.fromUri(playUri)
-            mPlayer.addMediaItem(firstLocalMediaItem)
+        override fun onPlayWhenReadyChanged(
+            playWhenReady: Boolean,
+            reason: Int
+        ) {//playWhenReady标志来指示用户打算播放
+            super.onPlayWhenReadyChanged(playWhenReady, reason)
+        }
 
-            /* 3.设置播放方式为自动播放 */
-            mPlayer.playWhenReady = true
+        override fun onPlaybackStateChanged(playbackState: Int) {
+            when (playbackState) {
+                Player.STATE_READY -> {//player 可以立即从当前位置进行播放
+                }
+                Player.STATE_IDLE -> {//这是初始状态，播放器停止时的状态以及播放失败时的状态
+                }
+                Player.STATE_BUFFERING -> {//player 无法立即从当前位置进行播放。这主要是因为需要加载更多数据
+                }
+                Player.STATE_ENDED -> {//播放器播放完所有媒体
+                }
+            }
+        }
 
-            /* 4.将SimpleExoPlayer实例设置到StyledPlayerView中 */
-            //mPlayerView.player = mPlayer
+        override fun onIsPlayingChanged(isPlaying: Boolean) {
+            super.onIsPlayingChanged(isPlaying)
+        }
 
-            /* 5，设置播放器状态为prepare */
-            mPlayer.prepare()
+        override fun onPlayerError(error: PlaybackException) {
+
         }
     }
 
@@ -104,29 +161,6 @@ public class VideoPlayingActivity : AppCompatActivity() {
         /* 扩展：使用exoplayer自带的debug helper来显示实时调试信息 */
         val debugViewHelper = DebugTextViewHelper(mPlayer, debugTextView)
         debugViewHelper.start()
-    }
-
-
-    override fun onStart() {
-        super.onStart()
-        if (Util.SDK_INT > 23) {
-            Log.e("1mean","onStart")
-            initPlayer(vedioUrl)
-//            if (playerView != null) {
-//                playerView.onResume()
-//            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (Util.SDK_INT <= 23) {
-            Log.e("1mean","onResume")
-            initPlayer(vedioUrl)
-//            if (playerView != null) {
-//                playerView.onResume()
-//            }
-        }
     }
 
     override fun onPause() {
@@ -154,6 +188,7 @@ public class VideoPlayingActivity : AppCompatActivity() {
         mPlayer.release()
     }
 
+
     /*
     *
     * 想以本地流的方式来调试exoplayer，
@@ -162,4 +197,5 @@ public class VideoPlayingActivity : AppCompatActivity() {
     * 获取该关联目录的代码是：context.getExternalFilesDir()，关联目录对应的路径大致如下：
     *  /storage/emulated/0/Android/data/<包名>/files
     * */
+
 }

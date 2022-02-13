@@ -20,7 +20,9 @@ object MultiVideoData {
         getPandaKnowledge()
         getLandScapeData()
         getPenguinData()
-        getBearData()
+        getbearData()
+        getMonkey()
+        getRedPanda()
         return list
     }
 
@@ -57,25 +59,23 @@ object MultiVideoData {
             "https://i2.hdslb.com/bfs/archive/96ab6c6fc7474a67de916c75397161fcc9297095.jpg"
         list.add(panda3)
 
-        val panda1 = PetVideo()
-        panda1.type = PetType.PENGUIN.ordinal
-        panda1.fileName = "video_banner3"
-        panda1.code = 425
-        panda1.duration = 58
-        panda1.period = PeriodType.BABY.ordinal
-        panda1.videoType = 1
-        panda1.title = "揣进毛茸茸的小裤兜"
-        panda1.releaseTime = "2021-09-27 12:10:17"
-        panda1.originalUrl = "https://www.bilibili.com/video/BV1iQ4y1z7RK"
-        panda1.tags = "企鹅"
-        panda1.authorName = "冻冻sama"
-        panda1.cover =
-            "https://i2.hdslb.com/bfs/archive/a27db041ca7af069e12ead43c35e11a45a44bb86.jpg"
-        list.add(panda1)
-
+        val banner1 = PetVideo()
+        banner1.type = PetType.PANDA.ordinal
+        banner1.fileName = "video_banner3"
+        banner1.code = 425
+        banner1.duration = 86
+        banner1.videoType = 1
+        banner1.title = "冬奥味儿的神仙年画：如果关公会滑雪"
+        banner1.releaseTime = "2022-01-25 17:31:10"
+        banner1.originalUrl = "https://www.bilibili.com/video/BV1HL411F7J8"
+        banner1.tags = "年画画年,最农记忆,冬奥"
+        banner1.authorName = "央视农业"
+        banner1.cover =
+            "https://i1.hdslb.com/bfs/archive/7dc1b9731969d1e1b4d492d51efbfe51f3e310ca.jpg"
+        list.add(banner1)
 
         val panda2 = PetVideo()
-        panda2.type = PetType.HUMAN.ordinal
+        panda2.type = PetType.BEAUTY.ordinal
         panda2.fileName = "video_banner4"
         panda2.code = 426
         panda2.duration = 62
@@ -125,7 +125,6 @@ object MultiVideoData {
         panda8.authorName = "力度PowerC"
         panda8.cover =
             "https://i1.hdslb.com/bfs/archive/30b259a24c170e6e27d9eeb315cce28345cec181.jpg"
-        panda8.videoType = 3
         list.add(panda8)
 
         val panda2 = PetVideo()
@@ -142,7 +141,6 @@ object MultiVideoData {
         panda2.authorName = "Once-a-king"
         panda2.cover =
             "https://i2.hdslb.com/bfs/archive/b391bf0f6672ecfc749ed1c665a41848a79f1ecb.jpg"
-        panda2.videoType = 3
         list.add(panda2)
 
         val panda9 = PetVideo()
@@ -159,7 +157,6 @@ object MultiVideoData {
         panda9.authorName = "哔哩动物乐园"
         panda9.cover =
             "https://i0.hdslb.com/bfs/archive/8f526c9802ddc0bdc52b514751a984fe0a68633e.jpg"
-        panda9.videoType = 3
         list.add(panda9)
 
         val panda1 = PetVideo()
@@ -176,7 +173,6 @@ object MultiVideoData {
         panda1.authorName = "爱福西西一级学者"
         panda1.cover =
             "https://i2.hdslb.com/bfs/archive/b6d08e30536827c139ee059e8f165ccb732a2aed.jpg"
-        panda1.videoType = 3
         list.add(panda1)
 
         return list
@@ -1404,6 +1400,111 @@ object MultiVideoData {
         landscape41.videoType = 0
         list.add(landscape41)
 
+        val landscape43 = PetVideo()
+        landscape43.type = PetType.LANDSCAPE.ordinal
+        landscape43.fileName = "landscape_43"
+        landscape43.code = 1363
+        landscape43.duration = 213
+        landscape43.isStar = true
+        landscape43.title = "冬奥会开幕式24节气倒计时[4K50P无水印纯净版]<北京龙江波影视>"
+        landscape43.releaseTime = "2022-02-05 02:15:15"
+        landscape43.originalUrl = "https://www.bilibili.com/video/BV17q4y1b793"
+        landscape43.tags = "山水,风景,中国美景"
+        landscape43.authorName = "不能苟的刘宗"
+        landscape43.cover =
+            "https://i2.hdslb.com/bfs/archive/1044cd84bcd188bbc1ad7f76ad4b60103c749cb8.jpg"
+        list.add(landscape43)
+
+        val landscape44 = PetVideo()
+        landscape44.type = PetType.LANDSCAPE.ordinal
+        landscape44.fileName = "landscape_44"
+        landscape44.code = 1364
+        landscape44.duration = 121
+        landscape44.isStar = true
+        landscape44.title = "双奥之城城市之光第九部正片《北京再相逢》正式发布！"
+        landscape44.releaseTime = "2022-01-31 10:00:03"
+        landscape44.originalUrl = "https://www.bilibili.com/video/BV1zS4y1V77j"
+        landscape44.tags = "山水,风景,中国美景"
+        landscape44.authorName = "北京2022年冬奥会"
+        landscape44.cover =
+            "https://i1.hdslb.com/bfs/archive/eea1a56b5a32bf25049620454c67897804ee9a84.jpg"
+        list.add(landscape44)
+
+        val landscape45 = PetVideo()
+        landscape45.type = PetType.LANDSCAPE.ordinal
+        landscape45.fileName = "landscape_45"
+        landscape45.code = 1365
+        landscape45.duration = 19
+        landscape45.isStar = true
+        landscape45.title = "来看看暴雨后的早晨，会出现什么奇观，50公里外的津沽棒清晰可见！"
+        landscape45.releaseTime = "2021-09-25 16:46:42"
+        landscape45.originalUrl = "https://www.bilibili.com/video/BV1bq4y1o7vq"
+        landscape45.tags = "山水,风景,中国美景"
+        landscape45.authorName = "小贺ZHANG"
+        landscape45.cover =
+            "https://i2.hdslb.com/bfs/archive/3a90b77d949d8efa5a3dd2607fd1d1f79c0cccab.jpg"
+        list.add(landscape45)
+
+        val landscape46 = PetVideo()
+        landscape46.type = PetType.LANDSCAPE.ordinal
+        landscape46.fileName = "landscape_46"
+        landscape46.code = 1366
+        landscape46.duration = 33
+        landscape46.isStar = true
+        landscape46.title = "武汉暴雨后天地相连"
+        landscape46.releaseTime = "2019-08-02 13:23:02"
+        landscape46.originalUrl = "https://www.bilibili.com/video/BV1Dt411F7xi"
+        landscape46.tags = "山水,风景,中国美景"
+        landscape46.authorName = "摄影师-CHACHA"
+        landscape46.cover =
+            "https://i2.hdslb.com/bfs/archive/e5f0f6209d4db9500cebe0d85c5e4165e6162c2a.jpg"
+        list.add(landscape46)
+
+        val landscape47 = PetVideo()
+        landscape47.type = PetType.LANDSCAPE.ordinal
+        landscape47.fileName = "landscape_47"
+        landscape47.code = 1367
+        landscape47.duration = 12
+        landscape47.isStar = true
+        landscape47.title = "这是末日来临吗？不，这只是武汉下雨🌧️"
+        landscape47.releaseTime = "2021-05-10 16:49:49"
+        landscape47.originalUrl = "https://www.bilibili.com/video/BV1bq4y177hY"
+        landscape47.tags = "山水,风景,中国美景"
+        landscape47.authorName = "一只BD熊"
+        landscape47.cover =
+            "https://i0.hdslb.com/bfs/archive/b60f5de9c1863b1c4acac7cc5b144ccb99c354ec.png"
+        list.add(landscape47)
+
+        val landscape48 = PetVideo()
+        landscape48.type = PetType.LANDSCAPE.ordinal
+        landscape48.fileName = "landscape_48"
+        landscape48.code = 1368
+        landscape48.duration = 64
+        landscape48.isStar = true
+        landscape48.title = "仲夏武汉：遇到超级魔幻的云"
+        landscape48.releaseTime = "2019-08-07 20:57:54"
+        landscape48.originalUrl = "https://www.bilibili.com/video/BV1tt411T7WY"
+        landscape48.tags = "山水,风景,中国美景"
+        landscape48.authorName = "8KRAW"
+        landscape48.cover =
+            "https://i1.hdslb.com/bfs/archive/ae64672828caf571ab4317927b12f631a1993a60.jpg"
+        list.add(landscape48)
+
+        val landscape49 = PetVideo()
+        landscape49.type = PetType.LANDSCAPE.ordinal
+        landscape49.fileName = "landscape_49"
+        landscape49.code = 1369
+        landscape49.duration = 154
+        landscape49.isStar = true
+        landscape49.title = "【4K治愈】真实存在的动漫场景，在新疆！《伊犁的童话II：鹰的国》"
+        landscape49.releaseTime = "2021-07-17 12:30:09"
+        landscape49.originalUrl = "https://www.bilibili.com/video/BV1Hv411n7oc"
+        landscape49.tags = "山水,风景,中国美景"
+        landscape49.authorName = "练凌飞lkemon"
+        landscape49.cover =
+            "https://i1.hdslb.com/bfs/archive/f82e94c3ae55ce3e8dd91b541f484976d8a77a24.jpg"
+        list.add(landscape49)
+
         return list
     }
 
@@ -1896,7 +1997,6 @@ object MultiVideoData {
         penguin1.videoType = 0
         list.add(penguin1)
 
-
         val penguin2 = PetVideo()
         penguin2.type = PetType.PENGUIN.ordinal
         penguin2.fileName = "penguin2"
@@ -1913,7 +2013,6 @@ object MultiVideoData {
             "https://i2.hdslb.com/bfs/archive/dcb820099163630466517b25c233e9f6acb2d8f4.jpg"
         penguin2.videoType = 0
         list.add(penguin2)
-
 
         val penguin3 = PetVideo()
         penguin3.type = PetType.PENGUIN.ordinal
@@ -1932,7 +2031,6 @@ object MultiVideoData {
         penguin3.videoType = 0
         list.add(penguin3)
 
-
         val penguin4 = PetVideo()
         penguin4.type = PetType.PENGUIN.ordinal
         penguin4.fileName = "penguin4"
@@ -1949,7 +2047,6 @@ object MultiVideoData {
             "https://i1.hdslb.com/bfs/archive/00130c00af27f4990266b0a84d1ad120fb823fce.jpg"
         penguin4.videoType = 0
         list.add(penguin4)
-
 
         val penguin5 = PetVideo()
         penguin5.type = PetType.PENGUIN.ordinal
@@ -1968,7 +2065,6 @@ object MultiVideoData {
         penguin5.videoType = 0
         list.add(penguin5)
 
-
         val penguin6 = PetVideo()
         penguin6.type = PetType.PENGUIN.ordinal
         penguin6.fileName = "penguin6"
@@ -1986,7 +2082,6 @@ object MultiVideoData {
         penguin6.videoType = 0
         list.add(penguin6)
 
-
         val penguin7 = PetVideo()
         penguin7.type = PetType.PENGUIN.ordinal
         penguin7.fileName = "penguin7"
@@ -2003,7 +2098,6 @@ object MultiVideoData {
             "https://i1.hdslb.com/bfs/archive/a3406b59885a8d40dad1ad06ded30a1a0062286e.png"
         penguin7.videoType = 0
         list.add(penguin7)
-
 
         val penguin8 = PetVideo()
         penguin8.type = PetType.PENGUIN.ordinal
@@ -2023,7 +2117,6 @@ object MultiVideoData {
         penguin8.videoType = 0
         list.add(penguin8)
 
-
         val penguin9 = PetVideo()
         penguin9.type = PetType.PENGUIN.ordinal
         penguin9.fileName = "penguin9"
@@ -2040,7 +2133,6 @@ object MultiVideoData {
             "https://i1.hdslb.com/bfs/archive/2c30d7177fd06d937671eb473ee0e7331f945247.jpg"
         penguin9.videoType = 0
         list.add(penguin9)
-
 
         val penguin10 = PetVideo()
         penguin10.type = PetType.PENGUIN.ordinal
@@ -2059,7 +2151,6 @@ object MultiVideoData {
         penguin10.videoType = 0
         list.add(penguin10)
 
-
         val penguin11 = PetVideo()
         penguin11.type = PetType.PENGUIN.ordinal
         penguin11.fileName = "penguin11"
@@ -2076,7 +2167,6 @@ object MultiVideoData {
             "https://i2.hdslb.com/bfs/archive/dd5b65514801d3aefe2b88bd6a4bf498948dc431.jpg"
         penguin11.videoType = 0
         list.add(penguin11)
-
 
         val penguin12 = PetVideo()
         penguin12.type = PetType.PENGUIN.ordinal
@@ -2095,7 +2185,6 @@ object MultiVideoData {
         penguin12.videoType = 0
         list.add(penguin12)
 
-
         val penguin13 = PetVideo()
         penguin13.type = PetType.PENGUIN.ordinal
         penguin13.fileName = "penguin13"
@@ -2112,7 +2201,6 @@ object MultiVideoData {
             "https://i1.hdslb.com/bfs/archive/6f69bc26f782882c25897e19996b1dabe7e17b89.jpg"
         penguin13.videoType = 0
         list.add(penguin13)
-
 
         val penguin14 = PetVideo()
         penguin14.type = PetType.PENGUIN.ordinal
@@ -2131,7 +2219,6 @@ object MultiVideoData {
         penguin14.videoType = 0
         list.add(penguin14)
 
-
         val penguin15 = PetVideo()
         penguin15.type = PetType.PENGUIN.ordinal
         penguin15.fileName = "penguin15"
@@ -2148,7 +2235,6 @@ object MultiVideoData {
             "https://i1.hdslb.com/bfs/archive/a6cf9cee1d99141c99741c86146e18398c620539.jpg"
         penguin15.videoType = 0
         list.add(penguin15)
-
 
         val penguin16 = PetVideo()
         penguin16.type = PetType.PENGUIN.ordinal
@@ -2167,554 +2253,616 @@ object MultiVideoData {
         penguin16.videoType = 0
         list.add(penguin16)
 
+        val penguin17 = PetVideo()
+        penguin17.type = PetType.PENGUIN.ordinal
+        penguin17.fileName = "penguin17"
+        penguin17.code = 1370
+        penguin17.duration = 58
+        penguin17.period = PeriodType.BABY.ordinal
+        penguin17.title = "揣进毛茸茸的小裤兜"
+        penguin17.releaseTime = "2021-09-27 12:10:17"
+        penguin17.originalUrl = "https://www.bilibili.com/video/BV1iQ4y1z7RK"
+        penguin17.tags = "企鹅"
+        penguin17.authorName = "冻冻sama"
+        penguin17.cover =
+            "https://i2.hdslb.com/bfs/archive/a27db041ca7af069e12ead43c35e11a45a44bb86.jpg"
+        list.add(penguin17)
         return list
     }
 
-    private fun getBearData(): MutableList<PetVideo> {
+    private fun getbearData(): MutableList<PetVideo> {
 
-        val BEAR1 = PetVideo()
-        BEAR1.type = PetType.BEAR.ordinal
-        BEAR1.fileName = "pet_bear1"
-        BEAR1.code = 1077
-        BEAR1.duration = 261
-        BEAR1.period = PeriodType.GROUP.ordinal
-        BEAR1.isStar = false
-        BEAR1.title = "北极熊妈携幼崽艰难度日，漫长的无冰夏季让生存挑战愈发严峻！"
-        BEAR1.releaseTime = "2022-01-27 17:10:08"
-        BEAR1.originalUrl = "https://www.bilibili.com/video/BV1Sr4y1e7J6"
-        BEAR1.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR1.authorName = "纪录片之家爱自然"
-        BEAR1.cover =
+        val bear1 = PetVideo()
+        bear1.type = PetType.BEAR.ordinal
+        bear1.fileName = "pet_bear1"
+        bear1.code = 1077
+        bear1.duration = 261
+        bear1.period = PeriodType.GROUP.ordinal
+        bear1.isStar = false
+        bear1.title = "北极熊妈携幼崽艰难度日，漫长的无冰夏季让生存挑战愈发严峻！"
+        bear1.releaseTime = "2022-01-27 17:10:08"
+        bear1.originalUrl = "https://www.bilibili.com/video/BV1Sr4y1e7J6"
+        bear1.tags = "熊,北极熊,萌宠,动物圈"
+        bear1.authorName = "纪录片之家爱自然"
+        bear1.cover =
             "https://i2.hdslb.com/bfs/archive/40bc615010991450f3c41e0d2c76258b44d65058.jpg"
-        BEAR1.videoType = 0
-        list.add(BEAR1)
+        bear1.videoType = 0
+        list.add(bear1)
 
-        val BEAR2 = PetVideo()
-        BEAR2.type = PetType.BEAR.ordinal
-        BEAR2.fileName = "pet_bear2"
-        BEAR2.code = 1078
-        BEAR2.duration = 98
-        BEAR2.period = PeriodType.GROUP.ordinal
-        BEAR2.isStar = false
-        BEAR2.title = "【白熊】小北极熊：我不想起床呀"
-        BEAR2.releaseTime = "2021-11-09 00:25:01"
-        BEAR2.originalUrl = "https://www.bilibili.com/video/BV1xv411M7YK"
-        BEAR2.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR2.authorName = "饿了想吃小熊"
-        BEAR2.cover =
+        val bear2 = PetVideo()
+        bear2.type = PetType.BEAR.ordinal
+        bear2.fileName = "pet_bear2"
+        bear2.code = 1078
+        bear2.duration = 98
+        bear2.period = PeriodType.GROUP.ordinal
+        bear2.isStar = false
+        bear2.title = "【白熊】小北极熊：我不想起床呀"
+        bear2.releaseTime = "2021-11-09 00:25:01"
+        bear2.originalUrl = "https://www.bilibili.com/video/BV1xv411M7YK"
+        bear2.tags = "熊,北极熊,萌宠,动物圈"
+        bear2.authorName = "饿了想吃小熊"
+        bear2.cover =
             "https://i1.hdslb.com/bfs/archive/326f3ac22b4dce00a42a2ca81955c1321d90cc78.jpg"
-        BEAR2.videoType = 0
-        list.add(BEAR2)
+        bear2.videoType = 0
+        list.add(bear2)
 
-        val BEAR3 = PetVideo()
-        BEAR3.type = PetType.BEAR.ordinal
-        BEAR3.fileName = "pet_bear3"
-        BEAR3.code = 1079
-        BEAR3.duration = 75
-        BEAR3.period = PeriodType.GROUP.ordinal
-        BEAR3.isStar = false
-        BEAR3.title = "40℃的高温天气下，北极熊的命都是冰块给的！"
-        BEAR3.releaseTime = "2017-07-25 16:47:14"
-        BEAR3.originalUrl = "https://www.bilibili.com/video/BV1Lx411q7PS"
-        BEAR3.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR3.authorName = "gaoli3008"
-        BEAR3.cover =
+        val bear3 = PetVideo()
+        bear3.type = PetType.BEAR.ordinal
+        bear3.fileName = "pet_bear3"
+        bear3.code = 1079
+        bear3.duration = 75
+        bear3.period = PeriodType.GROUP.ordinal
+        bear3.isStar = false
+        bear3.title = "40℃的高温天气下，北极熊的命都是冰块给的！"
+        bear3.releaseTime = "2017-07-25 16:47:14"
+        bear3.originalUrl = "https://www.bilibili.com/video/BV1Lx411q7PS"
+        bear3.tags = "熊,北极熊,萌宠,动物圈"
+        bear3.authorName = "gaoli3008"
+        bear3.cover =
             "https://i2.hdslb.com/bfs/archive/871b0d4be50779212b4db2ebac9a019d79613c17.jpg"
-        BEAR3.videoType = 0
-        list.add(BEAR3)
+        bear3.videoType = 0
+        list.add(bear3)
 
-        val BEAR4 = PetVideo()
-        BEAR4.type = PetType.BEAR.ordinal
-        BEAR4.fileName = "pet_bear4"
-        BEAR4.code = 1080
-        BEAR4.duration = 57
-        BEAR4.period = PeriodType.GROUP.ordinal
-        BEAR4.isStar = false
-        BEAR4.title = "饲养员给北极熊准备了一桶冰 给熊高兴坏了"
-        BEAR4.releaseTime = "2019-01-24 12:32:20"
-        BEAR4.originalUrl = "https://www.bilibili.com/video/BV1Et411b73k"
-        BEAR4.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR4.authorName = "肉山大魔王酱酱菌"
-        BEAR4.cover =
+        val bear4 = PetVideo()
+        bear4.type = PetType.BEAR.ordinal
+        bear4.fileName = "pet_bear4"
+        bear4.code = 1080
+        bear4.duration = 57
+        bear4.period = PeriodType.GROUP.ordinal
+        bear4.isStar = false
+        bear4.title = "饲养员给北极熊准备了一桶冰 给熊高兴坏了"
+        bear4.releaseTime = "2019-01-24 12:32:20"
+        bear4.originalUrl = "https://www.bilibili.com/video/BV1Et411b73k"
+        bear4.tags = "熊,北极熊,萌宠,动物圈"
+        bear4.authorName = "肉山大魔王酱酱菌"
+        bear4.cover =
             "https://i0.hdslb.com/bfs/archive/1cec5ac9f3ab7a5fcb12838e440e04b4b75a94de.jpg"
-        BEAR4.videoType = 0
-        list.add(BEAR4)
+        bear4.videoType = 0
+        list.add(bear4)
 
-        val BEAR5 = PetVideo()
-        BEAR5.type = PetType.BEAR.ordinal
-        BEAR5.fileName = "pet_bear5"
-        BEAR5.code = 1081
-        BEAR5.duration = 121
-        BEAR5.period = PeriodType.GROUP.ordinal
-        BEAR5.isStar = false
-        BEAR5.title = "【北极熊】麻麻在挖洞 我在旁边乖乖的"
-        BEAR5.releaseTime = "2020-09-27 19:30:49"
-        BEAR5.originalUrl = "https://www.bilibili.com/video/BV1Vk4y117Te"
-        BEAR5.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR5.authorName = "饿了想吃小熊"
-        BEAR5.cover =
+        val bear5 = PetVideo()
+        bear5.type = PetType.BEAR.ordinal
+        bear5.fileName = "pet_bear5"
+        bear5.code = 1081
+        bear5.duration = 121
+        bear5.period = PeriodType.GROUP.ordinal
+        bear5.isStar = false
+        bear5.title = "【北极熊】麻麻在挖洞 我在旁边乖乖的"
+        bear5.releaseTime = "2020-09-27 19:30:49"
+        bear5.originalUrl = "https://www.bilibili.com/video/BV1Vk4y117Te"
+        bear5.tags = "熊,北极熊,萌宠,动物圈"
+        bear5.authorName = "饿了想吃小熊"
+        bear5.cover =
             "https://i1.hdslb.com/bfs/archive/46ab34d5e472476e1f362b71107ab46898da597b.jpg"
-        BEAR5.videoType = 0
-        list.add(BEAR5)
+        bear5.videoType = 0
+        list.add(bear5)
 
-        val BEAR6 = PetVideo()
-        BEAR6.type = PetType.BEAR.ordinal
-        BEAR6.fileName = "pet_bear6"
-        BEAR6.code = 1082
-        BEAR6.duration = 162
-        BEAR6.period = PeriodType.GROUP.ordinal
-        BEAR6.isStar = false
-        BEAR6.title = "北极熊牌靠枕"
-        BEAR6.releaseTime = "2021-08-16 17:24:54"
-        BEAR6.originalUrl = "https://www.bilibili.com/video/BV1N3411677y"
-        BEAR6.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR6.authorName = "乌苏里熊"
-        BEAR6.cover =
+        val bear6 = PetVideo()
+        bear6.type = PetType.BEAR.ordinal
+        bear6.fileName = "pet_bear6"
+        bear6.code = 1082
+        bear6.duration = 162
+        bear6.period = PeriodType.GROUP.ordinal
+        bear6.isStar = false
+        bear6.title = "北极熊牌靠枕"
+        bear6.releaseTime = "2021-08-16 17:24:54"
+        bear6.originalUrl = "https://www.bilibili.com/video/BV1N3411677y"
+        bear6.tags = "熊,北极熊,萌宠,动物圈"
+        bear6.authorName = "乌苏里熊"
+        bear6.cover =
             "https://i1.hdslb.com/bfs/archive/d33fcbbd98287bb502486ec55f3af9bd490fb504.jpg"
-        BEAR6.videoType = 0
-        list.add(BEAR6)
+        bear6.videoType = 0
+        list.add(bear6)
 
-        val BEAR7 = PetVideo()
-        BEAR7.type = PetType.BEAR.ordinal
-        BEAR7.fileName = "pet_bear7"
-        BEAR7.code = 1083
-        BEAR7.duration = 68
-        BEAR7.period = PeriodType.GROUP.ordinal
-        BEAR7.isStar = false
-        BEAR7.title = "小北极熊纳努和她的弟弟"
-        BEAR7.releaseTime = "2021-10-06 11:43:55"
-        BEAR7.originalUrl = "https://www.bilibili.com/video/BV1tP4y187kt"
-        BEAR7.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR7.authorName = "八步金"
-        BEAR7.cover =
+        val bear7 = PetVideo()
+        bear7.type = PetType.BEAR.ordinal
+        bear7.fileName = "pet_bear7"
+        bear7.code = 1083
+        bear7.duration = 68
+        bear7.period = PeriodType.GROUP.ordinal
+        bear7.isStar = false
+        bear7.title = "小北极熊纳努和她的弟弟"
+        bear7.releaseTime = "2021-10-06 11:43:55"
+        bear7.originalUrl = "https://www.bilibili.com/video/BV1tP4y187kt"
+        bear7.tags = "熊,北极熊,萌宠,动物圈"
+        bear7.authorName = "八步金"
+        bear7.cover =
             "https://i2.hdslb.com/bfs/archive/f1b2103c7c0229bf56ebd1c379834336a588b5bf.png"
-        BEAR7.videoType = 0
-        list.add(BEAR7)
+        bear7.videoType = 0
+        list.add(bear7)
 
-        val BEAR8 = PetVideo()
-        BEAR8.type = PetType.BEAR.ordinal
-        BEAR8.fileName = "pet_bear8"
-        BEAR8.code = 1084
-        BEAR8.duration = 106
-        BEAR8.period = PeriodType.GROUP.ordinal
-        BEAR8.isStar = false
-        BEAR8.title = "两岁的小北极熊纳努终于被妈妈赶走了"
-        BEAR8.releaseTime = "2021-11-09 15:52:50"
-        BEAR8.originalUrl = "https://www.bilibili.com/video/BV15q4y1k75D"
-        BEAR8.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR8.authorName = "八步金"
-        BEAR8.cover =
+        val bear8 = PetVideo()
+        bear8.type = PetType.BEAR.ordinal
+        bear8.fileName = "pet_bear8"
+        bear8.code = 1084
+        bear8.duration = 106
+        bear8.period = PeriodType.GROUP.ordinal
+        bear8.isStar = false
+        bear8.title = "两岁的小北极熊纳努终于被妈妈赶走了"
+        bear8.releaseTime = "2021-11-09 15:52:50"
+        bear8.originalUrl = "https://www.bilibili.com/video/BV15q4y1k75D"
+        bear8.tags = "熊,北极熊,萌宠,动物圈"
+        bear8.authorName = "八步金"
+        bear8.cover =
             "https://i2.hdslb.com/bfs/archive/821de6e05667ae5443031d86e2af979ccb63209e.jpg"
-        BEAR8.videoType = 0
-        list.add(BEAR8)
+        bear8.videoType = 0
+        list.add(bear8)
 
-        val BEAR9 = PetVideo()
-        BEAR9.type = PetType.BEAR.ordinal
-        BEAR9.fileName = "pet_bear9"
-        BEAR9.code = 1085
-        BEAR9.duration = 107
-        BEAR9.period = PeriodType.GROUP.ordinal
-        BEAR9.isStar = false
-        BEAR9.title = "小海豹宝宝被北极熊一口叼走，小海豹妈妈只能眼睁睁的看着"
-        BEAR9.releaseTime = "2020-03-07 18:58:50"
-        BEAR9.originalUrl = "https://www.bilibili.com/video/BV15E411p7kC"
-        BEAR9.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR9.authorName = "爱丽卡与卡洛茜"
-        BEAR9.cover =
+        val bear9 = PetVideo()
+        bear9.type = PetType.BEAR.ordinal
+        bear9.fileName = "pet_bear9"
+        bear9.code = 1085
+        bear9.duration = 107
+        bear9.period = PeriodType.GROUP.ordinal
+        bear9.isStar = false
+        bear9.title = "小海豹宝宝被北极熊一口叼走，小海豹妈妈只能眼睁睁的看着"
+        bear9.releaseTime = "2020-03-07 18:58:50"
+        bear9.originalUrl = "https://www.bilibili.com/video/BV15E411p7kC"
+        bear9.tags = "熊,北极熊,萌宠,动物圈"
+        bear9.authorName = "爱丽卡与卡洛茜"
+        bear9.cover =
             "https://i1.hdslb.com/bfs/archive/dbd247e8d301b05359e74ca70f727faee7b8eab4.jpg"
-        BEAR9.videoType = 0
-        list.add(BEAR9)
+        bear9.videoType = 0
+        list.add(bear9)
 
-        val BEAR10 = PetVideo()
-        BEAR10.type = PetType.BEAR.ordinal
-        BEAR10.fileName = "pet_bear10"
-        BEAR10.code = 1086
-        BEAR10.duration = 239
-        BEAR10.period = PeriodType.GROUP.ordinal
-        BEAR10.isStar = false
-        BEAR10.title = "熊妈妈亲自带宝宝打野   熊宝宝吃了100条鱼"
-        BEAR10.releaseTime = "2021-01-02 01:51:09"
-        BEAR10.originalUrl = "https://www.bilibili.com/video/BV16y4y1U7CS"
-        BEAR10.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR10.authorName = "狗熊の尾巴"
-        BEAR10.cover =
+        val bear10 = PetVideo()
+        bear10.type = PetType.BEAR.ordinal
+        bear10.fileName = "pet_bear10"
+        bear10.code = 1086
+        bear10.duration = 239
+        bear10.period = PeriodType.GROUP.ordinal
+        bear10.isStar = false
+        bear10.title = "熊妈妈亲自带宝宝打野   熊宝宝吃了100条鱼"
+        bear10.releaseTime = "2021-01-02 01:51:09"
+        bear10.originalUrl = "https://www.bilibili.com/video/BV16y4y1U7CS"
+        bear10.tags = "熊,北极熊,萌宠,动物圈"
+        bear10.authorName = "狗熊の尾巴"
+        bear10.cover =
             "https://i2.hdslb.com/bfs/archive/e96235347ae6899681f70357cc3b351330a108d3.jpg"
-        BEAR10.videoType = 0
-        list.add(BEAR10)
+        bear10.videoType = 0
+        list.add(bear10)
 
-        val BEAR11 = PetVideo()
-        BEAR11.type = PetType.BEAR.ordinal
-        BEAR11.fileName = "pet_bear11"
-        BEAR11.code = 1087
-        BEAR11.duration = 157
-        BEAR11.period = PeriodType.GROUP.ordinal
-        BEAR11.isStar = false
-        BEAR11.title = "北极熊妈妈带着两崽子找到一头死去的大鲸鱼，放开吃"
-        BEAR11.releaseTime = "2020-04-26 11:21:51"
-        BEAR11.originalUrl = "https://www.bilibili.com/video/BV1q5411x7Hd"
-        BEAR11.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR11.authorName = "小修是条狗"
-        BEAR11.cover =
+        val bear11 = PetVideo()
+        bear11.type = PetType.BEAR.ordinal
+        bear11.fileName = "pet_bear11"
+        bear11.code = 1087
+        bear11.duration = 157
+        bear11.period = PeriodType.GROUP.ordinal
+        bear11.isStar = false
+        bear11.title = "北极熊妈妈带着两崽子找到一头死去的大鲸鱼，放开吃"
+        bear11.releaseTime = "2020-04-26 11:21:51"
+        bear11.originalUrl = "https://www.bilibili.com/video/BV1q5411x7Hd"
+        bear11.tags = "熊,北极熊,萌宠,动物圈"
+        bear11.authorName = "小修是条狗"
+        bear11.cover =
             "https://i0.hdslb.com/bfs/archive/aca8c7e447ebc866f318557765ff16f96a61d12f.png"
-        BEAR11.videoType = 0
-        list.add(BEAR11)
+        bear11.videoType = 0
+        list.add(bear11)
 
-        val BEAR12 = PetVideo()
-        BEAR12.type = PetType.BEAR.ordinal
-        BEAR12.fileName = "pet_bear12"
-        BEAR12.code = 1088
-        BEAR12.duration = 111
-        BEAR12.period = PeriodType.GROUP.ordinal
-        BEAR12.isStar = false
-        BEAR12.title = "冬眠结束~三只北极熊宝宝第一次爬出雪洞看世界！！！"
-        BEAR12.releaseTime = "2020-03-20 18:02:48"
-        BEAR12.originalUrl = "https://www.bilibili.com/video/BV1AE411N7be"
-        BEAR12.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR12.authorName = "和嵐Sama甩甩尾巴"
-        BEAR12.cover =
+        val bear12 = PetVideo()
+        bear12.type = PetType.BEAR.ordinal
+        bear12.fileName = "pet_bear12"
+        bear12.code = 1088
+        bear12.duration = 111
+        bear12.period = PeriodType.GROUP.ordinal
+        bear12.isStar = false
+        bear12.title = "冬眠结束~三只北极熊宝宝第一次爬出雪洞看世界！！！"
+        bear12.releaseTime = "2020-03-20 18:02:48"
+        bear12.originalUrl = "https://www.bilibili.com/video/BV1AE411N7be"
+        bear12.tags = "熊,北极熊,萌宠,动物圈"
+        bear12.authorName = "和嵐Sama甩甩尾巴"
+        bear12.cover =
             "https://i2.hdslb.com/bfs/archive/4aa6f7f0bcf67bea70930a6725b6cb41afcafd93.jpg"
-        BEAR12.videoType = 0
-        list.add(BEAR12)
+        bear12.videoType = 0
+        list.add(bear12)
 
-        val BEAR13 = PetVideo()
-        BEAR13.type = PetType.BEAR.ordinal
-        BEAR13.fileName = "pet_bear13"
-        BEAR13.code = 1089
-        BEAR13.duration = 299
-        BEAR13.period = PeriodType.GROUP.ordinal
-        BEAR13.isStar = false
-        BEAR13.title = "【精彩片段】北极熊猎杀白鲸，鲸肉大餐！"
-        BEAR13.releaseTime = "2020-08-15 22:24:52"
-        BEAR13.originalUrl = "https://www.bilibili.com/video/BV1x54y1i7sZ"
-        BEAR13.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR13.authorName = "真理豹"
-        BEAR13.cover =
+        val bear13 = PetVideo()
+        bear13.type = PetType.BEAR.ordinal
+        bear13.fileName = "pet_bear13"
+        bear13.code = 1089
+        bear13.duration = 299
+        bear13.period = PeriodType.GROUP.ordinal
+        bear13.isStar = false
+        bear13.title = "【精彩片段】北极熊猎杀白鲸，鲸肉大餐！"
+        bear13.releaseTime = "2020-08-15 22:24:52"
+        bear13.originalUrl = "https://www.bilibili.com/video/BV1x54y1i7sZ"
+        bear13.tags = "熊,北极熊,萌宠,动物圈"
+        bear13.authorName = "真理豹"
+        bear13.cover =
             "https://i1.hdslb.com/bfs/archive/e9ba25ef685a9153c5dafaecdba46a708075bd62.jpg"
-        BEAR13.videoType = 0
-        list.add(BEAR13)
+        bear13.videoType = 0
+        list.add(bear13)
 
-        val BEAR14 = PetVideo()
-        BEAR14.type = PetType.BEAR.ordinal
-        BEAR14.fileName = "pet_bear14"
-        BEAR14.code = 1090
-        BEAR14.duration = 312
-        BEAR14.period = PeriodType.GROUP.ordinal
-        BEAR14.isStar = false
-        BEAR14.title = "北极熊开阔水面爆头秒杀白鲸"
-        BEAR14.releaseTime = "2022-01-18 22:18:36"
-        BEAR14.originalUrl = "https://www.bilibili.com/video/BV1mR4y1M7si"
-        BEAR14.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR14.authorName = "博物wiki"
-        BEAR14.cover =
+        val bear14 = PetVideo()
+        bear14.type = PetType.BEAR.ordinal
+        bear14.fileName = "pet_bear14"
+        bear14.code = 1090
+        bear14.duration = 312
+        bear14.period = PeriodType.GROUP.ordinal
+        bear14.isStar = false
+        bear14.title = "北极熊开阔水面爆头秒杀白鲸"
+        bear14.releaseTime = "2022-01-18 22:18:36"
+        bear14.originalUrl = "https://www.bilibili.com/video/BV1mR4y1M7si"
+        bear14.tags = "熊,北极熊,萌宠,动物圈"
+        bear14.authorName = "博物wiki"
+        bear14.cover =
             "https://i1.hdslb.com/bfs/archive/21ade638a8ef8cb3a30c8bb63fd30232f64afa66.jpg"
-        BEAR14.videoType = 0
-        list.add(BEAR14)
+        bear14.videoType = 0
+        list.add(bear14)
 
-        val BEAR15 = PetVideo()
-        BEAR15.type = PetType.BEAR.ordinal
-        BEAR15.fileName = "pet_bear15"
-        BEAR15.code = 1091
-        BEAR15.duration = 310
-        BEAR15.period = PeriodType.GROUP.ordinal
-        BEAR15.isStar = false
-        BEAR15.title = "北极熊活吃鞍背海豹"
-        BEAR15.releaseTime = "2019-11-16 19:00:10"
-        BEAR15.originalUrl = "https://www.bilibili.com/video/BV1CE411e7CB"
-        BEAR15.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR15.authorName = "满PING都是马赛克"
-        BEAR15.cover =
+        val bear15 = PetVideo()
+        bear15.type = PetType.BEAR.ordinal
+        bear15.fileName = "pet_bear15"
+        bear15.code = 1091
+        bear15.duration = 310
+        bear15.period = PeriodType.GROUP.ordinal
+        bear15.isStar = false
+        bear15.title = "北极熊活吃鞍背海豹"
+        bear15.releaseTime = "2019-11-16 19:00:10"
+        bear15.originalUrl = "https://www.bilibili.com/video/BV1CE411e7CB"
+        bear15.tags = "熊,北极熊,萌宠,动物圈"
+        bear15.authorName = "满PING都是马赛克"
+        bear15.cover =
             "https://i0.hdslb.com/bfs/archive/96467d1ae71df72da62d0e7cf65320e2c99bae4f.jpg"
-        BEAR15.videoType = 0
-        list.add(BEAR15)
+        bear15.videoType = 0
+        list.add(bear15)
 
-        val BEAR16 = PetVideo()
-        BEAR16.type = PetType.BEAR.ordinal
-        BEAR16.fileName = "pet_bear16"
-        BEAR16.code = 1092
-        BEAR16.duration = 59
-        BEAR16.period = PeriodType.GROUP.ordinal
-        BEAR16.isStar = false
-        BEAR16.title = "小灰熊和小北极熊一起玩耍"
-        BEAR16.releaseTime = "2021-09-29 02:13:51"
-        BEAR16.originalUrl = "https://www.bilibili.com/video/BV1Sr4y1173H"
-        BEAR16.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR16.authorName = "乌苏里熊"
-        BEAR16.cover =
+        val bear16 = PetVideo()
+        bear16.type = PetType.BEAR.ordinal
+        bear16.fileName = "pet_bear16"
+        bear16.code = 1092
+        bear16.duration = 59
+        bear16.period = PeriodType.GROUP.ordinal
+        bear16.isStar = false
+        bear16.title = "小灰熊和小北极熊一起玩耍"
+        bear16.releaseTime = "2021-09-29 02:13:51"
+        bear16.originalUrl = "https://www.bilibili.com/video/BV1Sr4y1173H"
+        bear16.tags = "熊,北极熊,萌宠,动物圈"
+        bear16.authorName = "乌苏里熊"
+        bear16.cover =
             "https://i1.hdslb.com/bfs/archive/c687747a1f86aef92dc4bf13339844019f6c34f8.jpg"
-        BEAR16.videoType = 0
-        list.add(BEAR16)
+        bear16.videoType = 0
+        list.add(bear16)
 
-        val BEAR17 = PetVideo()
-        BEAR17.type = PetType.BEAR.ordinal
-        BEAR17.fileName = "pet_bear17"
-        BEAR17.code = 1093
-        BEAR17.duration = 66
-        BEAR17.period = PeriodType.GROUP.ordinal
-        BEAR17.isStar = false
-        BEAR17.title = "#北极熊# 啊啊啊可爱坏了！北极熊宝宝被突然钻出来的海豹吓到"
-        BEAR17.releaseTime = "2019-10-12 18:56:28"
-        BEAR17.originalUrl = "https://www.bilibili.com/video/BV14E411Z7nx"
-        BEAR17.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR17.authorName = "Once-a-king"
-        BEAR17.cover =
+        val bear17 = PetVideo()
+        bear17.type = PetType.BEAR.ordinal
+        bear17.fileName = "pet_bear17"
+        bear17.code = 1093
+        bear17.duration = 66
+        bear17.period = PeriodType.GROUP.ordinal
+        bear17.isStar = false
+        bear17.title = "#北极熊# 啊啊啊可爱坏了！北极熊宝宝被突然钻出来的海豹吓到"
+        bear17.releaseTime = "2019-10-12 18:56:28"
+        bear17.originalUrl = "https://www.bilibili.com/video/BV14E411Z7nx"
+        bear17.tags = "熊,北极熊,萌宠,动物圈"
+        bear17.authorName = "Once-a-king"
+        bear17.cover =
             "https://i2.hdslb.com/bfs/archive/b391bf0f6672ecfc749ed1c665a41848a79f1ecb.jpg"
-        BEAR17.videoType = 0
-        list.add(BEAR17)
+        bear17.videoType = 0
+        list.add(bear17)
 
-        val BEAR18 = PetVideo()
-        BEAR18.type = PetType.BEAR.ordinal
-        BEAR18.fileName = "pet_bear18"
-        BEAR18.code = 1094
-        BEAR18.duration = 415
-        BEAR18.period = PeriodType.GROUP.ordinal
-        BEAR18.isStar = false
-        BEAR18.title = "[奥狄斯X亚历山大]北极熊篇-《你打算萌死我吗》-莫如归原著"
-        BEAR18.releaseTime = "2021-01-25 02:41:10"
-        BEAR18.originalUrl = "https://www.bilibili.com/video/BV1Ro4y1o7md"
-        BEAR18.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR18.authorName = "-茉莉奶绿-"
-        BEAR18.cover =
+        val bear18 = PetVideo()
+        bear18.type = PetType.BEAR.ordinal
+        bear18.fileName = "pet_bear18"
+        bear18.code = 1094
+        bear18.duration = 415
+        bear18.period = PeriodType.GROUP.ordinal
+        bear18.isStar = false
+        bear18.title = "[奥狄斯X亚历山大]北极熊篇-《你打算萌死我吗》-莫如归原著"
+        bear18.releaseTime = "2021-01-25 02:41:10"
+        bear18.originalUrl = "https://www.bilibili.com/video/BV1Ro4y1o7md"
+        bear18.tags = "熊,北极熊,萌宠,动物圈"
+        bear18.authorName = "-茉莉奶绿-"
+        bear18.cover =
             "https://i2.hdslb.com/bfs/archive/6e863bf83b61823887944e60a4c12b08f9357790.jpg"
-        BEAR18.videoType = 0
-        list.add(BEAR18)
+        bear18.videoType = 0
+        list.add(bear18)
 
-        val BEAR19 = PetVideo()
-        BEAR19.type = PetType.BEAR.ordinal
-        BEAR19.fileName = "pet_bear19"
-        BEAR19.code = 1095
-        BEAR19.duration = 306
-        BEAR19.period = PeriodType.GROUP.ordinal
-        BEAR19.isStar = false
-        BEAR19.title = "你听过小北极熊的叫声吗？"
-        BEAR19.releaseTime = "2019-12-05 16:09:53"
-        BEAR19.originalUrl = "https://www.bilibili.com/video/BV1PJ411i7yk"
-        BEAR19.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR19.authorName = "小张-小张自有主张"
-        BEAR19.cover =
+        val bear19 = PetVideo()
+        bear19.type = PetType.BEAR.ordinal
+        bear19.fileName = "pet_bear19"
+        bear19.code = 1095
+        bear19.duration = 306
+        bear19.period = PeriodType.GROUP.ordinal
+        bear19.isStar = false
+        bear19.title = "你听过小北极熊的叫声吗？"
+        bear19.releaseTime = "2019-12-05 16:09:53"
+        bear19.originalUrl = "https://www.bilibili.com/video/BV1PJ411i7yk"
+        bear19.tags = "熊,北极熊,萌宠,动物圈"
+        bear19.authorName = "小张-小张自有主张"
+        bear19.cover =
             "https://i2.hdslb.com/bfs/archive/b90941e8f5a06346e679e96bd903fa2122038f7a.jpg"
-        BEAR19.videoType = 0
-        list.add(BEAR19)
+        bear19.videoType = 0
+        list.add(bear19)
 
-        val BEAR20 = PetVideo()
-        BEAR20.type = PetType.BEAR.ordinal
-        BEAR20.fileName = "pet_bear20"
-        BEAR20.code = 1096
-        BEAR20.duration = 114
-        BEAR20.period = PeriodType.GROUP.ordinal
-        BEAR20.isStar = false
-        BEAR20.title = "北极熊：北极熊宝宝是黏在妈妈屁股上的小跟屁"
-        BEAR20.releaseTime = "2021-10-18 17:09:06"
-        BEAR20.originalUrl = "https://www.bilibili.com/video/BV1kU4y1F7Dk"
-        BEAR20.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR20.authorName = "嗑叔磕动物"
-        BEAR20.cover =
+        val bear20 = PetVideo()
+        bear20.type = PetType.BEAR.ordinal
+        bear20.fileName = "pet_bear20"
+        bear20.code = 1096
+        bear20.duration = 114
+        bear20.period = PeriodType.GROUP.ordinal
+        bear20.isStar = false
+        bear20.title = "北极熊：北极熊宝宝是黏在妈妈屁股上的小跟屁"
+        bear20.releaseTime = "2021-10-18 17:09:06"
+        bear20.originalUrl = "https://www.bilibili.com/video/BV1kU4y1F7Dk"
+        bear20.tags = "熊,北极熊,萌宠,动物圈"
+        bear20.authorName = "嗑叔磕动物"
+        bear20.cover =
             "https://i2.hdslb.com/bfs/archive/f1242657c843475898357e783da668d4201d78e7.jpg"
-        BEAR20.videoType = 0
-        list.add(BEAR20)
+        bear20.videoType = 0
+        list.add(bear20)
 
-        val BEAR21 = PetVideo()
-        BEAR21.type = PetType.BEAR.ordinal
-        BEAR21.fileName = "pet_bear21"
-        BEAR21.code = 1097
-        BEAR21.duration = 90
-        BEAR21.period = PeriodType.GROUP.ordinal
-        BEAR21.isStar = false
-        BEAR21.title = "男鹿水族馆 水边玩耍的北极熊"
-        BEAR21.releaseTime = "2022-01-25 01:25:06"
-        BEAR21.originalUrl = "https://www.bilibili.com/video/BV19Z4y1f7Kw"
-        BEAR21.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR21.authorName = "伊奈那岐"
-        BEAR21.cover =
+        val bear21 = PetVideo()
+        bear21.type = PetType.BEAR.ordinal
+        bear21.fileName = "pet_bear21"
+        bear21.code = 1097
+        bear21.duration = 90
+        bear21.period = PeriodType.GROUP.ordinal
+        bear21.isStar = false
+        bear21.title = "男鹿水族馆 水边玩耍的北极熊"
+        bear21.releaseTime = "2022-01-25 01:25:06"
+        bear21.originalUrl = "https://www.bilibili.com/video/BV19Z4y1f7Kw"
+        bear21.tags = "熊,北极熊,萌宠,动物圈"
+        bear21.authorName = "伊奈那岐"
+        bear21.cover =
             "https://i2.hdslb.com/bfs/archive/89ea440974c0a5f4eb3107af9eb433bd05ff95e6.jpg"
-        BEAR21.videoType = 0
-        list.add(BEAR21)
+        bear21.videoType = 0
+        list.add(bear21)
 
-        val BEAR22 = PetVideo()
-        BEAR22.type = PetType.BEAR.ordinal
-        BEAR22.fileName = "pet_bear22"
-        BEAR22.code = 1098
-        BEAR22.duration = 184
-        BEAR22.period = PeriodType.GROUP.ordinal
-        BEAR22.isStar = false
-        BEAR22.title = "【北极熊】饲养员给白熊宝宝jiojio抹护肤霜"
-        BEAR22.releaseTime = "2021-10-31 17:41:20"
-        BEAR22.originalUrl = "https://www.bilibili.com/video/BV1Rb4y1b7sH"
-        BEAR22.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR22.authorName = "终极本能"
-        BEAR22.cover =
+        val bear22 = PetVideo()
+        bear22.type = PetType.BEAR.ordinal
+        bear22.fileName = "pet_bear22"
+        bear22.code = 1098
+        bear22.duration = 184
+        bear22.period = PeriodType.GROUP.ordinal
+        bear22.isStar = false
+        bear22.title = "【北极熊】饲养员给白熊宝宝jiojio抹护肤霜"
+        bear22.releaseTime = "2021-10-31 17:41:20"
+        bear22.originalUrl = "https://www.bilibili.com/video/BV1Rb4y1b7sH"
+        bear22.tags = "熊,北极熊,萌宠,动物圈"
+        bear22.authorName = "终极本能"
+        bear22.cover =
             "https://i1.hdslb.com/bfs/archive/f76e963519bc0fc584c11a4694cd9e2675ebbed9.jpg"
-        BEAR22.videoType = 0
-        list.add(BEAR22)
+        bear22.videoType = 0
+        list.add(bear22)
 
-        val BEAR23 = PetVideo()
-        BEAR23.type = PetType.BEAR.ordinal
-        BEAR23.fileName = "pet_bear23"
-        BEAR23.code = 1099
-        BEAR23.duration = 152
-        BEAR23.period = PeriodType.GROUP.ordinal
-        BEAR23.isStar = false
-        BEAR23.title = "【白熊】小北极熊熊生第一次看到雪！"
-        BEAR23.releaseTime = "2022-01-10 18:00:11"
-        BEAR23.originalUrl = "https://www.bilibili.com/video/BV17u411D7Ux"
-        BEAR23.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR23.authorName = "饿了想吃小熊"
-        BEAR23.cover =
+        val bear23 = PetVideo()
+        bear23.type = PetType.BEAR.ordinal
+        bear23.fileName = "pet_bear23"
+        bear23.code = 1099
+        bear23.duration = 152
+        bear23.period = PeriodType.GROUP.ordinal
+        bear23.isStar = false
+        bear23.title = "【白熊】小北极熊熊生第一次看到雪！"
+        bear23.releaseTime = "2022-01-10 18:00:11"
+        bear23.originalUrl = "https://www.bilibili.com/video/BV17u411D7Ux"
+        bear23.tags = "熊,北极熊,萌宠,动物圈"
+        bear23.authorName = "饿了想吃小熊"
+        bear23.cover =
             "https://i2.hdslb.com/bfs/archive/2716e989f2b91b7f63ce42161a1947a334a9cd74.jpg"
-        BEAR23.videoType = 0
-        list.add(BEAR23)
+        bear23.videoType = 0
+        list.add(bear23)
 
-        val BEAR24 = PetVideo()
-        BEAR24.type = PetType.BEAR.ordinal
-        BEAR24.fileName = "pet_bear24"
-        BEAR24.code = 1100
-        BEAR24.duration = 15
-        BEAR24.period = PeriodType.GROUP.ordinal
-        BEAR24.isStar = false
-        BEAR24.title = "【小熊】熊熊玛尼娅 摆出了有些诱惑的姿势"
-        BEAR24.releaseTime = "2022-01-07 18:30:13"
-        BEAR24.originalUrl = "https://www.bilibili.com/video/BV1MM4y1w79d"
-        BEAR24.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR24.authorName = "饿了想吃小熊"
-        BEAR24.cover =
+        val bear24 = PetVideo()
+        bear24.type = PetType.BEAR.ordinal
+        bear24.fileName = "pet_bear24"
+        bear24.code = 1100
+        bear24.duration = 15
+        bear24.period = PeriodType.GROUP.ordinal
+        bear24.isStar = false
+        bear24.title = "【小熊】熊熊玛尼娅 摆出了有些诱惑的姿势"
+        bear24.releaseTime = "2022-01-07 18:30:13"
+        bear24.originalUrl = "https://www.bilibili.com/video/BV1MM4y1w79d"
+        bear24.tags = "熊,北极熊,萌宠,动物圈"
+        bear24.authorName = "饿了想吃小熊"
+        bear24.cover =
             "https://i1.hdslb.com/bfs/archive/e7b87673791665f77549e1a2621b6861fa2470e6.jpg"
-        BEAR24.videoType = 0
-        list.add(BEAR24)
+        bear24.videoType = 0
+        list.add(bear24)
 
-        val BEAR25 = PetVideo()
-        BEAR25.type = PetType.BEAR.ordinal
-        BEAR25.fileName = "pet_bear25"
-        BEAR25.code = 1101
-        BEAR25.duration = 104
-        BEAR25.period = PeriodType.GROUP.ordinal
-        BEAR25.isStar = false
-        BEAR25.title = "【白熊】没办法 孩子太可爱了 必须要抱在怀里疯狂rua"
-        BEAR25.releaseTime = "2020-09-25 19:31:00"
-        BEAR25.originalUrl = "https://www.bilibili.com/video/BV1wh41197Ej"
-        BEAR25.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR25.authorName = "饿了想吃小熊"
-        BEAR25.cover =
+        val bear25 = PetVideo()
+        bear25.type = PetType.BEAR.ordinal
+        bear25.fileName = "pet_bear25"
+        bear25.code = 1101
+        bear25.duration = 104
+        bear25.period = PeriodType.GROUP.ordinal
+        bear25.isStar = false
+        bear25.title = "【白熊】没办法 孩子太可爱了 必须要抱在怀里疯狂rua"
+        bear25.releaseTime = "2020-09-25 19:31:00"
+        bear25.originalUrl = "https://www.bilibili.com/video/BV1wh41197Ej"
+        bear25.tags = "熊,北极熊,萌宠,动物圈"
+        bear25.authorName = "饿了想吃小熊"
+        bear25.cover =
             "https://i2.hdslb.com/bfs/archive/948414b4de1fe54dac8daba54fffc6bc28faf7d1.jpg"
-        BEAR25.videoType = 0
-        list.add(BEAR25)
+        bear25.videoType = 0
+        list.add(bear25)
 
-        val BEAR26 = PetVideo()
-        BEAR26.type = PetType.BEAR.ordinal
-        BEAR26.fileName = "pet_bear26"
-        BEAR26.code = 1102
-        BEAR26.duration = 69
-        BEAR26.period = PeriodType.GROUP.ordinal
-        BEAR26.isStar = false
-        BEAR26.title = "小北极熊：贴紧我的麻麻～"
-        BEAR26.releaseTime = "2021-01-08 17:57:45"
-        BEAR26.originalUrl = "https://www.bilibili.com/video/BV1ii4y1F7Rt"
-        BEAR26.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR26.authorName = "乌苏里熊"
-        BEAR26.cover =
+        val bear26 = PetVideo()
+        bear26.type = PetType.BEAR.ordinal
+        bear26.fileName = "pet_bear26"
+        bear26.code = 1102
+        bear26.duration = 69
+        bear26.period = PeriodType.GROUP.ordinal
+        bear26.isStar = false
+        bear26.title = "小北极熊：贴紧我的麻麻～"
+        bear26.releaseTime = "2021-01-08 17:57:45"
+        bear26.originalUrl = "https://www.bilibili.com/video/BV1ii4y1F7Rt"
+        bear26.tags = "熊,北极熊,萌宠,动物圈"
+        bear26.authorName = "乌苏里熊"
+        bear26.cover =
             "https://i0.hdslb.com/bfs/archive/00abde84752a34cc57df624d67d40b68f8d3d2e3.jpg"
-        BEAR26.videoType = 0
-        list.add(BEAR26)
+        bear26.videoType = 0
+        list.add(bear26)
 
-        val BEAR27 = PetVideo()
-        BEAR27.type = PetType.BEAR.ordinal
-        BEAR27.fileName = "pet_bear27"
-        BEAR27.code = 1103
-        BEAR27.duration = 16
-        BEAR27.period = PeriodType.GROUP.ordinal
-        BEAR27.isStar = false
-        BEAR27.title = "海豹不小心吓到了北极熊宝宝，太可爱了"
-        BEAR27.releaseTime = "2020-08-19 17:40:13"
-        BEAR27.originalUrl = "https://www.bilibili.com/video/BV1Dt4y1U73T"
-        BEAR27.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR27.authorName = "纱雾画画素材库"
-        BEAR27.cover =
+        val bear27 = PetVideo()
+        bear27.type = PetType.BEAR.ordinal
+        bear27.fileName = "pet_bear27"
+        bear27.code = 1103
+        bear27.duration = 16
+        bear27.period = PeriodType.GROUP.ordinal
+        bear27.isStar = false
+        bear27.title = "海豹不小心吓到了北极熊宝宝，太可爱了"
+        bear27.releaseTime = "2020-08-19 17:40:13"
+        bear27.originalUrl = "https://www.bilibili.com/video/BV1Dt4y1U73T"
+        bear27.tags = "熊,北极熊,萌宠,动物圈"
+        bear27.authorName = "纱雾画画素材库"
+        bear27.cover =
             "https://i2.hdslb.com/bfs/archive/dd4a99a29fdcbf12fb8b8386b0282e1d4906c505.png"
-        BEAR27.videoType = 0
-        list.add(BEAR27)
+        bear27.videoType = 0
+        list.add(bear27)
 
-        val BEAR28 = PetVideo()
-        BEAR28.type = PetType.BEAR.ordinal
-        BEAR28.fileName = "pet_bear28"
-        BEAR28.code = 1104
-        BEAR28.duration = 66
-        BEAR28.period = PeriodType.GROUP.ordinal
-        BEAR28.isStar = false
-        BEAR28.title = "小北极熊第一次玩冰块，场面一发不可收拾，憋住千万别笑！"
-        BEAR28.releaseTime = "2022-01-04 19:23:25"
-        BEAR28.originalUrl = "https://www.bilibili.com/video/BV13Z4y1S7G2"
-        BEAR28.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR28.authorName = "小猪动物说"
-        BEAR28.cover =
+        val bear28 = PetVideo()
+        bear28.type = PetType.BEAR.ordinal
+        bear28.fileName = "pet_bear28"
+        bear28.code = 1104
+        bear28.duration = 66
+        bear28.period = PeriodType.GROUP.ordinal
+        bear28.isStar = false
+        bear28.title = "小北极熊第一次玩冰块，场面一发不可收拾，憋住千万别笑！"
+        bear28.releaseTime = "2022-01-04 19:23:25"
+        bear28.originalUrl = "https://www.bilibili.com/video/BV13Z4y1S7G2"
+        bear28.tags = "熊,北极熊,萌宠,动物圈"
+        bear28.authorName = "小猪动物说"
+        bear28.cover =
             "https://i1.hdslb.com/bfs/archive/ce0200642e76a2b558cac7d78ae80f7665a12f48.jpg"
-        BEAR28.videoType = 0
-        list.add(BEAR28)
+        bear28.videoType = 0
+        list.add(bear28)
 
-        val BEAR29 = PetVideo()
-        BEAR29.type = PetType.BEAR.ordinal
-        BEAR29.fileName = "pet_bear29"
-        BEAR29.code = 1105
-        BEAR29.duration = 120
-        BEAR29.period = PeriodType.GROUP.ordinal
-        BEAR29.isStar = false
-        BEAR29.title = "小熊：我有狗了！"
-        BEAR29.releaseTime = "2021-12-28 11:10:04"
-        BEAR29.originalUrl = "https://www.bilibili.com/video/BV1MR4y1s73f"
-        BEAR29.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR29.authorName = "大熊苏尔"
-        BEAR29.cover =
+        val bear29 = PetVideo()
+        bear29.type = PetType.BEAR.ordinal
+        bear29.fileName = "pet_bear29"
+        bear29.code = 1105
+        bear29.duration = 120
+        bear29.period = PeriodType.GROUP.ordinal
+        bear29.isStar = false
+        bear29.title = "小熊：我有狗了！"
+        bear29.releaseTime = "2021-12-28 11:10:04"
+        bear29.originalUrl = "https://www.bilibili.com/video/BV1MR4y1s73f"
+        bear29.tags = "熊,北极熊,萌宠,动物圈"
+        bear29.authorName = "大熊苏尔"
+        bear29.cover =
             "https://i1.hdslb.com/bfs/archive/8d0ff486edf3139b899e463d441dac43a609c728.jpg"
-        BEAR29.videoType = 0
-        list.add(BEAR29)
+        bear29.videoType = 0
+        list.add(bear29)
 
-        val BEAR30 = PetVideo()
-        BEAR30.type = PetType.BEAR.ordinal
-        BEAR30.fileName = "pet_bear30"
-        BEAR30.code = 1106
-        BEAR30.duration = 76
-        BEAR30.period = PeriodType.GROUP.ordinal
-        BEAR30.isStar = false
-        BEAR30.title = "出生不久的小狮子和小老虎，发出的声音很有趣"
-        BEAR30.releaseTime = "2020-05-21 19:39:15"
-        BEAR30.originalUrl = "https://www.bilibili.com/video/BV14t4y1C7UF"
-        BEAR30.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR30.authorName = "克里米亚野生动物园"
-        BEAR30.cover =
+        val bear30 = PetVideo()
+        bear30.type = PetType.BEAR.ordinal
+        bear30.fileName = "pet_bear30"
+        bear30.code = 1106
+        bear30.duration = 76
+        bear30.period = PeriodType.GROUP.ordinal
+        bear30.isStar = false
+        bear30.title = "出生不久的小狮子和小老虎，发出的声音很有趣"
+        bear30.releaseTime = "2020-05-21 19:39:15"
+        bear30.originalUrl = "https://www.bilibili.com/video/BV14t4y1C7UF"
+        bear30.tags = "熊,北极熊,萌宠,动物圈"
+        bear30.authorName = "克里米亚野生动物园"
+        bear30.cover =
             "https://i0.hdslb.com/bfs/archive/ee88a5da1360deb386231fdc315adeb46fc7f3b0.jpg"
-        BEAR30.videoType = 0
-        list.add(BEAR30)
+        bear30.videoType = 0
+        list.add(bear30)
 
-        val BEAR31 = PetVideo()
-        BEAR31.type = PetType.BEAR.ordinal
-        BEAR31.fileName = "pet_bear31"
-        BEAR31.code = 1107
-        BEAR31.duration = 132
-        BEAR31.period = PeriodType.GROUP.ordinal
-        BEAR31.isStar = false
-        BEAR31.title = "【白熊】小北极熊Nora 出生7天到83天的变化"
-        BEAR31.releaseTime = "2020-12-26 17:00:09"
-        BEAR31.originalUrl = "https://www.bilibili.com/video/BV1di4y1c74e"
-        BEAR31.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR31.authorName = "饿了想吃小熊"
-        BEAR31.cover =
+        val bear31 = PetVideo()
+        bear31.type = PetType.BEAR.ordinal
+        bear31.fileName = "pet_bear31"
+        bear31.code = 1107
+        bear31.duration = 132
+        bear31.period = PeriodType.GROUP.ordinal
+        bear31.isStar = false
+        bear31.title = "【白熊】小北极熊Nora 出生7天到83天的变化"
+        bear31.releaseTime = "2020-12-26 17:00:09"
+        bear31.originalUrl = "https://www.bilibili.com/video/BV1di4y1c74e"
+        bear31.tags = "熊,北极熊,萌宠,动物圈"
+        bear31.authorName = "饿了想吃小熊"
+        bear31.cover =
             "https://i2.hdslb.com/bfs/archive/059fbfb596156bcefea25632fe6934981cd9f5c6.jpg"
-        BEAR31.videoType = 0
-        list.add(BEAR31)
+        bear31.videoType = 0
+        list.add(bear31)
 
-        val BEAR32 = PetVideo()
-        BEAR32.type = PetType.BEAR.ordinal
-        BEAR32.fileName = "pet_bear32"
-        BEAR32.code = 1108
-        BEAR32.duration = 166
-        BEAR32.period = PeriodType.GROUP.ordinal
-        BEAR32.isStar = false
-        BEAR32.title = "北极熊也太可爱了吧？毛茸茸的大白狗"
-        BEAR32.releaseTime = "2021-12-13 11:18:01"
-        BEAR32.originalUrl = "https://www.bilibili.com/video/BV1kr4y1D7iQ"
-        BEAR32.tags = "熊,北极熊,萌宠,动物圈"
-        BEAR32.authorName = "姜不错ya"
-        BEAR32.cover =
+        val bear32 = PetVideo()
+        bear32.type = PetType.BEAR.ordinal
+        bear32.fileName = "pet_bear32"
+        bear32.code = 1108
+        bear32.duration = 166
+        bear32.period = PeriodType.GROUP.ordinal
+        bear32.isStar = false
+        bear32.title = "北极熊也太可爱了吧？毛茸茸的大白狗"
+        bear32.releaseTime = "2021-12-13 11:18:01"
+        bear32.originalUrl = "https://www.bilibili.com/video/BV1kr4y1D7iQ"
+        bear32.tags = "熊,北极熊,萌宠,动物圈"
+        bear32.authorName = "姜不错ya"
+        bear32.cover =
             "https://i0.hdslb.com/bfs/archive/c51ac2fbe69775fbacc724d5251fb288d53e721f.jpg"
-        BEAR32.videoType = 0
-        list.add(BEAR32)
+        bear32.videoType = 0
+        list.add(bear32)
+
+        val bear33 = PetVideo()
+        bear33.type = PetType.BEAR.ordinal
+        bear33.fileName = "pet_bear33"
+        bear33.code = 1356
+        bear33.duration = 441
+        bear33.period = PeriodType.GROUP.ordinal
+        bear33.isStar = false
+        bear33.title = "【小熊】胆小的小公主普扎"
+        bear33.releaseTime = "2020-12-10 17:10:08"
+        bear33.originalUrl = "https://www.bilibili.com/video/BV1Xf4y1v7GW"
+        bear33.tags = "熊,萌宠,动物圈"
+        bear33.authorName = "饿了想吃小熊"
+        bear33.cover =
+            "https://i1.hdslb.com/bfs/archive/e0658ec7719630ef16437eb7d88becf7729466ee.jpg"
+        list.add(bear33)
+
+        val bear34 = PetVideo()
+        bear34.type = PetType.BEAR.ordinal
+        bear34.fileName = "pet_bear34"
+        bear34.code = 1357
+        bear34.duration = 32
+        bear34.period = PeriodType.GROUP.ordinal
+        bear34.isStar = false
+        bear34.title = "贴好秋膘啦，准备过冬噜"
+        bear34.releaseTime = "2019-10-13 21:08:45"
+        bear34.originalUrl = "https://www.bilibili.com/video/BV1JE411d7VM"
+        bear34.tags = "熊,萌宠,动物圈"
+        bear34.authorName = "肉山大魔王酱酱菌"
+        bear34.cover =
+            "https://i1.hdslb.com/bfs/archive/bb3197adffa1e89a498b9e1a3d8ed03c70c89bd0.jpg"
+        list.add(bear34)
+
+        val bear35 = PetVideo()
+        bear35.type = PetType.BEAR.ordinal
+        bear35.fileName = "pet_bear35"
+        bear35.code = 1358
+        bear35.duration = 72
+        bear35.period = PeriodType.GROUP.ordinal
+        bear35.isStar = false
+        bear35.title = "【熊】当肥肥姐妹花向你拱来......"
+        bear35.releaseTime = "2021-11-13 18:00:10"
+        bear35.originalUrl = "https://www.bilibili.com/video/BV13q4y1k7hj"
+        bear35.tags = "熊,萌宠,动物圈"
+        bear35.authorName = "饿了想吃小熊"
+        bear35.cover =
+            "https://i0.hdslb.com/bfs/archive/edbd812750c730711e0118be825ce30a1396acd9.jpg"
+        list.add(bear35)
 
         return list
     }
@@ -2732,7 +2880,7 @@ object MultiVideoData {
         monkey1.title = "侏儒狨猴：世界上最小的猴子，可以让你体验佛祖的感受"
         monkey1.releaseTime = "2021-11-24 18:33:10"
         monkey1.originalUrl = "https://www.bilibili.com/video/BV18r4y1Q7g2"
-        monkey1.tags = "熊,北极熊,萌宠,动物圈"
+        monkey1.tags = "金丝猴,萌宠,动物圈"
         monkey1.authorName = "嗑叔磕动物"
         monkey1.cover =
             "https://i1.hdslb.com/bfs/archive/2ad38cda9d445f82250eaa3746760e4ac822401e.jpg"
@@ -2749,7 +2897,7 @@ object MultiVideoData {
         monkey2.title = "【金丝猴】这 意 境 绝 了，不 愧 是 国 宝"
         monkey2.releaseTime = "2020-02-25 22:58:08"
         monkey2.originalUrl = "https://www.bilibili.com/video/BV1u7411M7u6"
-        monkey2.tags = "熊,北极熊,萌宠,动物圈"
+        monkey2.tags = "金丝猴,萌宠,动物圈"
         monkey2.authorName = "邹空文"
         monkey2.cover =
             "https://i0.hdslb.com/bfs/archive/6bb9554e8b9615019b4be1e9aa8aef621b1f0588.jpg"
@@ -2761,16 +2909,14 @@ object MultiVideoData {
         monkey3.fileName = "pet_monkey3"
         monkey3.code = 1111
         monkey3.duration = 122
-        monkey3.period = PeriodType.GROUP.ordinal
         monkey3.isStar = true
         monkey3.title = "可能是全站最好看的金丝猴宝宝优雅吃苹果，猴中皇族的颜值巅峰"
         monkey3.releaseTime = "2021-02-21 11:28:27"
         monkey3.originalUrl = "https://www.bilibili.com/video/BV1Xh411r7Zk"
-        monkey3.tags = "熊,北极熊,萌宠,动物圈"
+        monkey3.tags = "金丝猴,萌宠,动物圈"
         monkey3.authorName = "野生摄像-萌萌小动物"
         monkey3.cover =
             "https://i2.hdslb.com/bfs/archive/281155469f15e365115b763c5b25cebf610de300.jpg"
-        monkey3.videoType = 0
         list.add(monkey3)
 
         val monkey4 = PetVideo()
@@ -2778,16 +2924,14 @@ object MultiVideoData {
         monkey4.fileName = "pet_monkey4"
         monkey4.code = 1112
         monkey4.duration = 129
-        monkey4.period = PeriodType.GROUP.ordinal
         monkey4.isStar = true
         monkey4.title = "川金丝猴：集灵秀、高贵和仙气于一身"
         monkey4.releaseTime = "2020-08-18 23:41:22"
         monkey4.originalUrl = "https://www.bilibili.com/video/BV1Ei4y1M71d"
-        monkey4.tags = "熊,北极熊,萌宠,动物圈"
+        monkey4.tags = "金丝猴,萌宠,动物圈"
         monkey4.authorName = "糖霜虎皮卷"
         monkey4.cover =
             "https://i2.hdslb.com/bfs/archive/8553500fb6b7b8281b19231e3c71e643267e5c40.jpg"
-        monkey4.videoType = 0
         list.add(monkey4)
 
         val monkey5 = PetVideo()
@@ -2795,17 +2939,608 @@ object MultiVideoData {
         monkey5.fileName = "pet_monkey5"
         monkey5.code = 1113
         monkey5.duration = 51
-        monkey5.period = PeriodType.GROUP.ordinal
         monkey5.isStar = true
         monkey5.title = "猴中贵族，国宝美猴王- 金丝猴"
         monkey5.releaseTime = "2020-10-16 12:08:44"
         monkey5.originalUrl = "https://www.bilibili.com/video/BV1ei4y1j7xt"
-        monkey5.tags = "熊,北极熊,萌宠,动物圈"
+        monkey5.tags = "金丝猴,萌宠,动物圈"
         monkey5.authorName = "哇喔Wow-"
         monkey5.cover =
             "https://i0.hdslb.com/bfs/archive/99be7b3338cec4ae64a3bc5fa560f95d4ba2677b.jpg"
-        monkey5.videoType = 0
         list.add(monkey5)
+
+        val monkey6 = PetVideo()
+        monkey6.type = PetType.GOLDEN_MONKEY.ordinal
+        monkey6.fileName = "pet_monkey6"
+        monkey6.code = 1388
+        monkey6.duration = 28
+        monkey6.isStar = true
+        monkey6.title = "传说中孙悟空的原型长这样"
+        monkey6.releaseTime = "2022-01-25 11:00:02"
+        monkey6.originalUrl = "https://www.bilibili.com/video/BV1MY41187wv"
+        monkey6.tags = "金丝猴,萌宠,动物圈"
+        monkey6.authorName = "CMG观察"
+        monkey6.cover =
+            "https://i2.hdslb.com/bfs/archive/b397a7117f29173ccc02c311a55082cc48965017.jpg"
+        list.add(monkey6)
+
+        val monkey7 = PetVideo()
+        monkey7.type = PetType.GOLDEN_MONKEY.ordinal
+        monkey7.fileName = "pet_monkey7"
+        monkey7.code = 1389
+        monkey7.duration = 219
+        monkey7.isStar = true
+        monkey7.title = "金丝猴一家的年夜饭"
+        monkey7.releaseTime = "2022-01-31 17:18:19"
+        monkey7.originalUrl = "https://www.bilibili.com/video/BV1WS4y1y7eA"
+        monkey7.tags = "金丝猴,萌宠,动物圈"
+        monkey7.authorName = "まいあ"
+        monkey7.cover =
+            "https://i2.hdslb.com/bfs/archive/5e15638e3c79a269b0e6994f2207f9cee15365af.jpg"
+        list.add(monkey7)
+
+        val monkey8 = PetVideo()
+        monkey8.type = PetType.GOLDEN_MONKEY.ordinal
+        monkey8.fileName = "pet_monkey8"
+        monkey8.code = 1390
+        monkey8.duration = 21
+        monkey8.isStar = true
+        monkey8.title = "今天大雪偶遇金丝猴国道上寻找食物"
+        monkey8.releaseTime = "2021-12-25 18:39:23"
+        monkey8.originalUrl = "https://www.bilibili.com/video/BV1ZF411q7Fu"
+        monkey8.tags = "金丝猴,萌宠,动物圈"
+        monkey8.authorName = "熊猫的慢生活"
+        monkey8.cover =
+            "https://i1.hdslb.com/bfs/archive/14e663a62c8191b6ec3469bbd1d3ce647c1ccf39.jpg"
+        list.add(monkey8)
+
+        return list
+    }
+
+    private fun getRedPanda(): MutableList<PetVideo> {
+
+        val redPanda1 = PetVideo()
+        redPanda1.type = PetType.RED_PANDA.ordinal
+        redPanda1.fileName = "red_panda1"
+        redPanda1.code = 1173
+        redPanda1.duration = 64
+        redPanda1.isStar = true
+        redPanda1.title = "这是小熊猫爸爸一个悲伤的故事——"
+        redPanda1.releaseTime = "2022-01-12 10:13:39"
+        redPanda1.originalUrl = "https://www.bilibili.com/video/BV11Y41187hY"
+        redPanda1.tags = "红熊猫,小熊猫,萌宠"
+        redPanda1.authorName = "被小熊猫追的非羊"
+        redPanda1.cover =
+            "https://i2.hdslb.com/bfs/archive/9c4a479efd77bb363f47801e3ad17221944cbbd9.jpg"
+        list.add(redPanda1)
+
+        val redPanda2 = PetVideo()
+        redPanda2.type = PetType.RED_PANDA.ordinal
+        redPanda2.fileName = "red_panda2"
+        redPanda2.code = 1174
+        redPanda2.duration = 37
+        redPanda2.isStar = true
+        redPanda2.title = "【小熊猫奶油】叼着竹叶的奶油也是很社会了～(￣▽￣～)~"
+        redPanda2.releaseTime = "2022-01-15 20:55:22"
+        redPanda2.originalUrl = "https://www.bilibili.com/video/BV1v3411a7DG"
+        redPanda2.tags = "红熊猫,小熊猫,萌宠"
+        redPanda2.authorName = "白过天际的喜兰"
+        redPanda2.cover =
+            "https://i0.hdslb.com/bfs/archive/e7706c050c879e64ebbbeb4c9ae30a7d8518ac1d.png"
+        list.add(redPanda2)
+
+        val redPanda3 = PetVideo()
+        redPanda3.type = PetType.RED_PANDA.ordinal
+        redPanda3.fileName = "red_panda3"
+        redPanda3.code = 1175
+        redPanda3.duration = 41
+        redPanda3.isStar = true
+        redPanda3.title = "请勿在两脚兽看不见的地方干架蟹蟹"
+        redPanda3.releaseTime = "2022-01-20 23:00:18"
+        redPanda3.originalUrl = "https://www.bilibili.com/video/BV1E3411Y7PY"
+        redPanda3.tags = "红熊猫,小熊猫,萌宠"
+        redPanda3.authorName = "SeiShiN_セ-シン"
+        redPanda3.cover =
+            "https://i1.hdslb.com/bfs/archive/878347cf255e99830c9c5ba2f599e52505373a7f.jpg"
+        list.add(redPanda3)
+
+        val redPanda4 = PetVideo()
+        redPanda4.type = PetType.RED_PANDA.ordinal
+        redPanda4.fileName = "red_panda4"
+        redPanda4.code = 1176
+        redPanda4.duration = 43
+        redPanda4.isStar = true
+        redPanda4.title = "【小胖】又厚又大的大脚板！"
+        redPanda4.releaseTime = "2021-11-06 19:09:46"
+        redPanda4.originalUrl = "https://www.bilibili.com/video/BV1Nr4y1y7Fv"
+        redPanda4.tags = "红熊猫,小熊猫,萌宠"
+        redPanda4.authorName = "小宝墩墩yyds"
+        redPanda4.cover =
+            "https://i1.hdslb.com/bfs/archive/64aac865fe4a0cc1bca9760b334166802d5fb5ac.jpg"
+        list.add(redPanda4)
+
+        val redPanda5 = PetVideo()
+        redPanda5.type = PetType.RED_PANDA.ordinal
+        redPanda5.fileName = "red_panda5"
+        redPanda5.code = 1177
+        redPanda5.duration = 31
+        redPanda5.isStar = true
+        redPanda5.title = "【小熊猫】南瓜午后"
+        redPanda5.releaseTime = "2022-01-14 00:24:59"
+        redPanda5.originalUrl = "https://www.bilibili.com/video/BV1Aq4y117qy"
+        redPanda5.tags = "红熊猫,小熊猫,萌宠"
+        redPanda5.authorName = "管管小熊猫"
+        redPanda5.cover =
+            "https://i1.hdslb.com/bfs/archive/a64f7c634e27f77a3727a513470001f09ad51771.jpg"
+        list.add(redPanda5)
+
+        val redPanda6 = PetVideo()
+        redPanda6.type = PetType.RED_PANDA.ordinal
+        redPanda6.fileName = "red_panda6"
+        redPanda6.code = 1178
+        redPanda6.duration = 92
+        redPanda6.isStar = true
+        redPanda6.title = "前腿淹没在草丛中的嘟嘟【小熊猫】爱眯眼的吃货：我就静静看着你"
+        redPanda6.releaseTime = "2022-01-21 21:14:51"
+        redPanda6.originalUrl = "https://www.bilibili.com/video/BV1jY411b7da"
+        redPanda6.tags = "红熊猫,小熊猫,萌宠"
+        redPanda6.authorName = "野生摄像-萌萌小动物"
+        redPanda6.cover =
+            "https://i0.hdslb.com/bfs/archive/c93f30a905b7f613600ce3f434778d43a73c4326.jpg"
+        list.add(redPanda6)
+
+        val redPanda7 = PetVideo()
+        redPanda7.type = PetType.RED_PANDA.ordinal
+        redPanda7.fileName = "red_panda7"
+        redPanda7.code = 1179
+        redPanda7.duration = 85
+        redPanda7.isStar = true
+        redPanda7.title = "钏路市动物园 跑跑跳跳的双胞胎小熊猫宝宝"
+        redPanda7.releaseTime = "2022-01-12 01:20:12"
+        redPanda7.originalUrl = "https://www.bilibili.com/video/BV1cR4y1g7SG"
+        redPanda7.tags = "红熊猫,小熊猫,萌宠"
+        redPanda7.authorName = "伊奈那岐"
+        redPanda7.cover =
+            "https://i1.hdslb.com/bfs/archive/f4b65378dfd05b242c505503ad4618f5a22c0408.jpg"
+        list.add(redPanda7)
+
+        val redPanda8 = PetVideo()
+        redPanda8.type = PetType.RED_PANDA.ordinal
+        redPanda8.fileName = "red_panda8"
+        redPanda8.code = 1180
+        redPanda8.duration = 82
+        redPanda8.isStar = true
+        redPanda8.title = "【小熊猫】除了可爱我都不知道能说什么了"
+        redPanda8.releaseTime = "2022-01-26 13:17:53"
+        redPanda8.originalUrl = "https://www.bilibili.com/video/BV1QF411p7tY"
+        redPanda8.tags = "红熊猫,小熊猫,萌宠"
+        redPanda8.authorName = "红熊猫云基地"
+        redPanda8.cover =
+            "https://i2.hdslb.com/bfs/archive/8eea21d5859dc8d3e8b9e5f8327368cb0ee1c520.jpg"
+        list.add(redPanda8)
+
+        val redPanda9 = PetVideo()
+        redPanda9.type = PetType.RED_PANDA.ordinal
+        redPanda9.fileName = "red_panda9"
+        redPanda9.code = 1181
+        redPanda9.duration = 128
+        redPanda9.isStar = true
+        redPanda9.title = "雪山飞能"
+        redPanda9.releaseTime = "2021-05-22 14:42:20"
+        redPanda9.originalUrl = "https://www.bilibili.com/video/BV19h411v7zo"
+        redPanda9.tags = "红熊猫,小熊猫,萌宠"
+        redPanda9.authorName = "小能萌"
+        redPanda9.cover =
+            "https://i1.hdslb.com/bfs/archive/c01d73050a68161e88cbb36ba58976da47d37a82.png"
+        list.add(redPanda9)
+
+        val redPanda10 = PetVideo()
+        redPanda10.type = PetType.RED_PANDA.ordinal
+        redPanda10.fileName = "red_panda10"
+        redPanda10.code = 1182
+        redPanda10.duration = 39
+        redPanda10.isStar = true
+        redPanda10.title = "【小熊猫】我堂堂“灰大王”，一能吃一大盘，不过分吧！"
+        redPanda10.releaseTime = "2022-01-13 13:18:40"
+        redPanda10.originalUrl = "https://www.bilibili.com/video/BV1jb4y1J7T4"
+        redPanda10.tags = "红熊猫,小熊猫,萌宠"
+        redPanda10.authorName = "小宝墩墩yyds"
+        redPanda10.cover =
+            "https://i2.hdslb.com/bfs/archive/3d3f38707936ce490d68e3ae6440a63c1382c844.jpg"
+        list.add(redPanda10)
+
+        val redPanda11 = PetVideo()
+        redPanda11.type = PetType.RED_PANDA.ordinal
+        redPanda11.fileName = "red_panda11"
+        redPanda11.code = 1183
+        redPanda11.duration = 24
+        redPanda11.isStar = true
+        redPanda11.title = "【小熊猫】优雅永不过时！"
+        redPanda11.releaseTime = "2022-01-06 18:20:57"
+        redPanda11.originalUrl = "https://www.bilibili.com/video/BV12L411V7z8"
+        redPanda11.tags = "红熊猫,小熊猫,萌宠"
+        redPanda11.authorName = "小宝墩墩yyds"
+        redPanda11.cover =
+            "https://i1.hdslb.com/bfs/archive/4b8206faaf6c830a62d2dd54b99986bc1a50cd00.jpg"
+        list.add(redPanda11)
+
+        val redPanda12 = PetVideo()
+        redPanda12.type = PetType.RED_PANDA.ordinal
+        redPanda12.fileName = "red_panda12"
+        redPanda12.code = 1184
+        redPanda12.duration = 343
+        redPanda12.isStar = true
+        redPanda12.title = "糖霜小熊猫【cattail Sapporo】"
+        redPanda12.releaseTime = "2021-12-20 21:48:37"
+        redPanda12.originalUrl = "https://www.bilibili.com/video/BV19g411w71C"
+        redPanda12.tags = "红熊猫,小熊猫,萌宠"
+        redPanda12.authorName = "末将刁一刀"
+        redPanda12.cover =
+            "https://i1.hdslb.com/bfs/archive/59b41458c0c55c7275b608a235bbda525a236fbc.jpg"
+        list.add(redPanda12)
+
+        val redPanda13 = PetVideo()
+        redPanda13.type = PetType.RED_PANDA.ordinal
+        redPanda13.fileName = "red_panda13"
+        redPanda13.code = 1185
+        redPanda13.duration = 24
+        redPanda13.isStar = true
+        redPanda13.title = "[小熊猫]唉嘿嘿，一起来玩雪呀（看我期盼的小眼神）"
+        redPanda13.releaseTime = "2021-08-02 11:53:34"
+        redPanda13.originalUrl = "https://www.bilibili.com/video/BV14y4y157ae"
+        redPanda13.tags = "红熊猫,小熊猫,萌宠"
+        redPanda13.authorName = "繁华落尽倾旧梦"
+        redPanda13.cover =
+            "https://i1.hdslb.com/bfs/archive/03d456fe3dade8413263e0755a3c85708cec0d9a.jpg"
+        list.add(redPanda13)
+
+        val redPanda14 = PetVideo()
+        redPanda14.type = PetType.RED_PANDA.ordinal
+        redPanda14.fileName = "red_panda14"
+        redPanda14.code = 1186
+        redPanda14.duration = 135
+        redPanda14.isStar = true
+        redPanda14.title = "当小熊猫笑起来，还有什么值得我们烦躁的呢"
+        redPanda14.releaseTime = "2022-01-25 10:49:27"
+        redPanda14.originalUrl = "https://www.bilibili.com/video/BV1bu411174s"
+        redPanda14.tags = "红熊猫,小熊猫,萌宠"
+        redPanda14.authorName = "被小熊猫追的非羊"
+        redPanda14.cover =
+            "https://i2.hdslb.com/bfs/archive/e861ebf2e6f6b4ce1cc31ca06e6cf11e15434c63.jpg"
+        list.add(redPanda14)
+
+        val redPanda15 = PetVideo()
+        redPanda15.type = PetType.RED_PANDA.ordinal
+        redPanda15.fileName = "red_panda15"
+        redPanda15.code = 1187
+        redPanda15.duration = 58
+        redPanda15.isStar = true
+        redPanda15.title = "【油管搬运】猛男必看！柏林动物园的小能苗"
+        redPanda15.releaseTime = "2020-08-24 17:03:41"
+        redPanda15.originalUrl = "https://www.bilibili.com/video/BV1aC4y1t7q3"
+        redPanda15.tags = "红熊猫,小熊猫,萌宠"
+        redPanda15.authorName = "callingsdk"
+        redPanda15.cover =
+            "https://i1.hdslb.com/bfs/archive/c719dfa44f14fc99615f8bf82a7604962314f304.jpg"
+        list.add(redPanda15)
+
+        val redPanda16 = PetVideo()
+        redPanda16.type = PetType.RED_PANDA.ordinal
+        redPanda16.fileName = "red_panda16"
+        redPanda16.code = 1188
+        redPanda16.duration = 51
+        redPanda16.isStar = true
+        redPanda16.title = "[小熊猫]就想静静的趴着看你"
+        redPanda16.releaseTime = "2021-09-14 17:40:41"
+        redPanda16.originalUrl = "https://www.bilibili.com/video/BV19h411H7Gq"
+        redPanda16.tags = "红熊猫,小熊猫,萌宠"
+        redPanda16.authorName = "繁华落尽倾旧梦"
+        redPanda16.cover =
+            "https://i2.hdslb.com/bfs/archive/376d0be73db39479bdf439ba6e0b5938c274aa85.jpg"
+        list.add(redPanda16)
+
+        val redPanda17 = PetVideo()
+        redPanda17.type = PetType.RED_PANDA.ordinal
+        redPanda17.fileName = "red_panda17"
+        redPanda17.code = 1189
+        redPanda17.duration = 125
+        redPanda17.isStar = true
+        redPanda17.title = "阿伟快来受死，感受下两只奶能的双重暴击"
+        redPanda17.releaseTime = "2021-05-07 01:52:44"
+        redPanda17.originalUrl = "https://www.bilibili.com/video/BV1gB4y1w7Fc"
+        redPanda17.tags = "红熊猫,小熊猫,萌宠"
+        redPanda17.authorName = "小能萌"
+        redPanda17.cover =
+            "https://i1.hdslb.com/bfs/archive/e773e153f7fa7f8d1e18023139589e9d0f956772.png"
+        list.add(redPanda17)
+
+        val redPanda18 = PetVideo()
+        redPanda18.type = PetType.RED_PANDA.ordinal
+        redPanda18.fileName = "red_panda18"
+        redPanda18.code = 1190
+        redPanda18.duration = 61
+        redPanda18.isStar = true
+        redPanda18.title = "小熊猫妈妈和刚出生的小宝贝 第二辑"
+        redPanda18.releaseTime = "2020-07-13 10:00:45"
+        redPanda18.originalUrl = "https://www.bilibili.com/video/BV1Ti4y1V7K8"
+        redPanda18.tags = "红熊猫,小熊猫,萌宠"
+        redPanda18.authorName = "红熊猫云基地"
+        redPanda18.cover =
+            "https://i2.hdslb.com/bfs/archive/0934997f4e85b9bb04ef6e0f4c3604ccae1a47f8.jpg"
+        list.add(redPanda18)
+
+        val redPanda19 = PetVideo()
+        redPanda19.type = PetType.RED_PANDA.ordinal
+        redPanda19.fileName = "red_panda19"
+        redPanda19.code = 1191
+        redPanda19.duration = 110
+        redPanda19.isStar = true
+        redPanda19.title = "【小小能】黑胖头！又奶又凶，超大只，巨可爱"
+        redPanda19.releaseTime = "2021-12-12 23:44:11"
+        redPanda19.originalUrl = "https://www.bilibili.com/video/BV1Ji4y1d7uB"
+        redPanda19.tags = "红熊猫,小熊猫,萌宠"
+        redPanda19.authorName = "菇菇咕咕_"
+        redPanda19.cover =
+            "https://i0.hdslb.com/bfs/archive/0fc121e98c0c049c3f863ad0d3d3de25606778ab.jpg"
+        list.add(redPanda19)
+
+        val redPanda20 = PetVideo()
+        redPanda20.type = PetType.RED_PANDA.ordinal
+        redPanda20.fileName = "red_panda20"
+        redPanda20.code = 1192
+        redPanda20.duration = 108
+        redPanda20.isStar = true
+        redPanda20.title = "【小小能】轮胎秋千再现江湖之 三能同乘"
+        redPanda20.releaseTime = "2021-06-20 01:25:39"
+        redPanda20.originalUrl = "https://www.bilibili.com/video/BV1Xg411g7fm"
+        redPanda20.tags = "红熊猫,小熊猫,萌宠"
+        redPanda20.authorName = "菇菇咕咕_"
+        redPanda20.cover =
+            "https://i0.hdslb.com/bfs/archive/77d899234c5f5d83df503021715ce1772bb61bcf.jpg"
+        list.add(redPanda20)
+
+        val redPanda21 = PetVideo()
+        redPanda21.type = PetType.RED_PANDA.ordinal
+        redPanda21.fileName = "red_panda21"
+        redPanda21.code = 1193
+        redPanda21.duration = 64
+        redPanda21.isStar = true
+        redPanda21.title = "【初雾】小甜甜有多可爱？趴个棍儿也能把人萌哭"
+        redPanda21.releaseTime = "2021-12-16 21:34:01"
+        redPanda21.originalUrl = "https://www.bilibili.com/video/BV1W44y1J74C"
+        redPanda21.tags = "红熊猫,小熊猫,萌宠"
+        redPanda21.authorName = "菇菇咕咕_"
+        redPanda21.cover =
+            "https://i2.hdslb.com/bfs/archive/e252eb3f703b51990a6e05d2998d96109b8c45d7.jpg"
+        list.add(redPanda21)
+
+        val redPanda22 = PetVideo()
+        redPanda22.type = PetType.RED_PANDA.ordinal
+        redPanda22.fileName = "red_panda22"
+        redPanda22.code = 1194
+        redPanda22.duration = 42
+        redPanda22.isStar = true
+        redPanda22.title = "【小熊猫】初雾，只要我去的够勤快，你就当从没离开过"
+        redPanda22.releaseTime = "2021-12-29 19:00:00"
+        redPanda22.originalUrl = "https://www.bilibili.com/video/BV1cL411L7o1"
+        redPanda22.tags = "红熊猫,小熊猫,萌宠"
+        redPanda22.authorName = "管管小熊猫"
+        redPanda22.cover =
+            "https://i0.hdslb.com/bfs/archive/2f80184ed50b252a63c775fbd268b2705f8497e9.jpg"
+        list.add(redPanda22)
+
+        val redPanda23 = PetVideo()
+        redPanda23.type = PetType.RED_PANDA.ordinal
+        redPanda23.fileName = "red_panda23"
+        redPanda23.code = 1195
+        redPanda23.duration = 1148
+        redPanda23.isStar = true
+        redPanda23.title = "【小熊猫】金牛湖的那些能"
+        redPanda23.releaseTime = "2022-01-11 00:02:00"
+        redPanda23.originalUrl = "https://www.bilibili.com/video/BV1BY41187x9"
+        redPanda23.tags = "红熊猫,小熊猫,萌宠"
+        redPanda23.authorName = "管管小熊猫"
+        redPanda23.cover =
+            "https://i1.hdslb.com/bfs/archive/6f61cba8bfd98c07f60696e4195626558e0f6ef7.jpg"
+        list.add(redPanda23)
+
+        val redPanda24 = PetVideo()
+        redPanda24.type = PetType.RED_PANDA.ordinal
+        redPanda24.fileName = "red_panda24"
+        redPanda24.code = 1196
+        redPanda24.duration = 25
+        redPanda24.isStar = true
+        redPanda24.title = "可爱捏"
+        redPanda24.releaseTime = "2021-10-10 17:16:17"
+        redPanda24.originalUrl = "https://www.bilibili.com/video/BV1Kf4y1g7qg"
+        redPanda24.tags = "红熊猫,小熊猫,萌宠"
+        redPanda24.authorName = "王牌小熊猫飞行员"
+        redPanda24.cover =
+            "https://i1.hdslb.com/bfs/archive/0cd2571a44a6c5ba46cd76a224b5519470b9d05c.jpg"
+        list.add(redPanda24)
+
+        val redPanda25 = PetVideo()
+        redPanda25.type = PetType.RED_PANDA.ordinal
+        redPanda25.fileName = "red_panda25"
+        redPanda25.code = 1197
+        redPanda25.duration = 12
+        redPanda25.isStar = true
+        redPanda25.title = "修能能，你的小脑袋瓜在想啥呢"
+        redPanda25.releaseTime = "2021-10-19 15:57:22"
+        redPanda25.originalUrl = "https://www.bilibili.com/video/BV1kF411Y7S5"
+        redPanda25.tags = "红熊猫,小熊猫,萌宠"
+        redPanda25.authorName = "王牌小熊猫飞行员"
+        redPanda25.cover =
+            "https://i0.hdslb.com/bfs/archive/9445c39e6d23c206a505d626328ba4a443fbeba3.jpg"
+        list.add(redPanda25)
+
+        val redPanda26 = PetVideo()
+        redPanda26.type = PetType.RED_PANDA.ordinal
+        redPanda26.fileName = "red_panda26"
+        redPanda26.code = 1198
+        redPanda26.duration = 30
+        redPanda26.isStar = true
+        redPanda26.title = "是小熊猫呀！"
+        redPanda26.releaseTime = "2021-08-17 13:41:15"
+        redPanda26.originalUrl = "https://www.bilibili.com/video/BV1sq4y1M7rR"
+        redPanda26.tags = "红熊猫,小熊猫,萌宠"
+        redPanda26.authorName = "伍溜柒"
+        redPanda26.cover =
+            "https://i2.hdslb.com/bfs/archive/7aa6bc6a6fc2d77c1095d7b5c18e1f4165aff90a.jpg"
+        list.add(redPanda26)
+
+        val redPanda27 = PetVideo()
+        redPanda27.type = PetType.RED_PANDA.ordinal
+        redPanda27.fileName = "red_panda27"
+        redPanda27.code = 1199
+        redPanda27.duration = 141
+        redPanda27.isStar = true
+        redPanda27.title = "【小熊猫】灰总如厕&标记领地"
+        redPanda27.releaseTime = "2022-01-23 21:53:12"
+        redPanda27.originalUrl = "https://www.bilibili.com/video/BV1qS4y1L7dT"
+        redPanda27.tags = "红熊猫,小熊猫,萌宠"
+        redPanda27.authorName = "小宝墩墩yyds"
+        redPanda27.cover =
+            "https://i0.hdslb.com/bfs/archive/61076b9a4a44413d9aa58cd690bfd14fdec1245b.jpg"
+        list.add(redPanda27)
+
+        val redPanda28 = PetVideo()
+        redPanda28.type = PetType.RED_PANDA.ordinal
+        redPanda28.fileName = "red_panda28"
+        redPanda28.code = 1200
+        redPanda28.duration = 487
+        redPanda28.isStar = true
+        redPanda28.title = "【小熊猫】谁说要看灰灰吃竹叶呢？（去拍的时候灰灰它们已经吃的差不多了，所以看起来不是那么尽兴，哈哈哈哈哈）"
+        redPanda28.releaseTime = "2021-12-28 18:28:22"
+        redPanda28.originalUrl = "https://www.bilibili.com/video/BV11P4y1J7Yt"
+        redPanda28.tags = "红熊猫,小熊猫,萌宠"
+        redPanda28.authorName = "小宝墩墩yyds"
+        redPanda28.cover =
+            "https://i1.hdslb.com/bfs/archive/1940d7d95002fc48c5086c8d2c3d3d659be9dbda.jpg"
+        list.add(redPanda28)
+
+        val redPanda29 = PetVideo()
+        redPanda29.type = PetType.RED_PANDA.ordinal
+        redPanda29.fileName = "red_panda29"
+        redPanda29.code = 1201
+        redPanda29.duration = 93
+        redPanda29.isStar = true
+        redPanda29.title = "开小灶的男朋友(好帅，好帅)"
+        redPanda29.releaseTime = "2021-12-28 23:19:06"
+        redPanda29.originalUrl = "https://www.bilibili.com/video/BV1SF411B7Ys"
+        redPanda29.tags = "红熊猫,小熊猫,萌宠"
+        redPanda29.authorName = "被小熊猫追的非羊"
+        redPanda29.cover =
+            "https://i2.hdslb.com/bfs/archive/09944787fb90c85e70955d239a2751f4315bedab.jpg"
+        list.add(redPanda29)
+
+        val redPanda30 = PetVideo()
+        redPanda30.type = PetType.RED_PANDA.ordinal
+        redPanda30.fileName = "red_panda30"
+        redPanda30.code = 1202
+        redPanda30.duration = 187
+        redPanda30.isStar = true
+        redPanda30.title = "好想揪一下它的小舌头！"
+        redPanda30.releaseTime = "2021-07-04 10:53:59"
+        redPanda30.originalUrl = "https://www.bilibili.com/video/BV1v64y1Q7fH"
+        redPanda30.tags = "红熊猫,小熊猫,萌宠"
+        redPanda30.authorName = "相信骑基"
+        redPanda30.cover =
+            "https://i0.hdslb.com/bfs/archive/a6efe0ff41d51f9b7acd6fe034626929125df3d5.jpg"
+        list.add(redPanda30)
+
+        val redPanda31 = PetVideo()
+        redPanda31.type = PetType.RED_PANDA.ordinal
+        redPanda31.fileName = "red_panda31"
+        redPanda31.code = 1203
+        redPanda31.duration = 111
+        redPanda31.isStar = true
+        redPanda31.title = "别再问我为什么叫小能了，看封面"
+        redPanda31.releaseTime = "2021-06-22 22:53:51"
+        redPanda31.originalUrl = "https://www.bilibili.com/video/BV1uw411o7Py"
+        redPanda31.tags = "红熊猫,小熊猫,萌宠"
+        redPanda31.authorName = "小能萌"
+        redPanda31.cover =
+            "https://i2.hdslb.com/bfs/archive/19298f9902ca950e6d5d8a9593985bd3ce248e43.png"
+        list.add(redPanda31)
+
+        val redPanda32 = PetVideo()
+        redPanda32.type = PetType.RED_PANDA.ordinal
+        redPanda32.fileName = "red_panda32"
+        redPanda32.code = 1204
+        redPanda32.duration = 148
+        redPanda32.isStar = true
+        redPanda32.title = "【添添、小灰灰】小灰灰想找添添玩，添添只想困觉(இдஇ; )（前几天的库存）"
+        redPanda32.releaseTime = "2021-10-19 13:45:23"
+        redPanda32.originalUrl = "https://www.bilibili.com/video/BV1Tb4y1h71w"
+        redPanda32.tags = "红熊猫,小熊猫,萌宠"
+        redPanda32.authorName = "小宝墩墩yyds"
+        redPanda32.cover =
+            "https://i0.hdslb.com/bfs/archive/9da9faadd3a468cb1fea52fedcfa355db97d227b.jpg"
+        list.add(redPanda32)
+
+        val redPanda33 = PetVideo()
+        redPanda33.type = PetType.RED_PANDA.ordinal
+        redPanda33.fileName = "red_panda33"
+        redPanda33.code = 1205
+        redPanda33.duration = 106
+        redPanda33.isStar = true
+        redPanda33.title = "你敢打我阿姨!你打我啊!别拍我头，会变笨的"
+        redPanda33.releaseTime = "2022-01-10 22:48:29"
+        redPanda33.originalUrl = "https://www.bilibili.com/video/BV17L4y1b7E1"
+        redPanda33.tags = "红熊猫,小熊猫,萌宠"
+        redPanda33.authorName = "被小熊猫追的非羊"
+        redPanda33.cover =
+            "https://i1.hdslb.com/bfs/archive/129b230821168a7834b71a22b3a8096d7e416acd.png"
+        list.add(redPanda33)
+
+        val redPanda34 = PetVideo()
+        redPanda34.type = PetType.RED_PANDA.ordinal
+        redPanda34.fileName = "red_panda34"
+        redPanda34.code = 1206
+        redPanda34.duration = 178
+        redPanda34.isStar = true
+        redPanda34.title = "[小熊猫大佬]你别这样看着我，我会忍不住心动的"
+        redPanda34.releaseTime = "2022-01-06 19:01:35"
+        redPanda34.originalUrl = "https://www.bilibili.com/video/BV1iu411U7w1"
+        redPanda34.tags = "红熊猫,小熊猫,萌宠"
+        redPanda34.authorName = "被小熊猫追的非羊"
+        redPanda34.cover =
+            "https://i2.hdslb.com/bfs/archive/c0a0ed42fe81b5a30e8eda23c0daed92cc1434d6.jpg"
+        list.add(redPanda34)
+
+        val redPanda35 = PetVideo()
+        redPanda35.type = PetType.RED_PANDA.ordinal
+        redPanda35.fileName = "red_panda35"
+        redPanda35.code = 1382
+        redPanda35.duration = 29
+        redPanda35.period = PeriodType.GROUP.ordinal
+        redPanda35.isStar = true
+        redPanda35.title = "【小灰灰】灰灰：我被“不明物”撞了一下腰！"
+        redPanda35.releaseTime = "2021-10-09 20:06:36"
+        redPanda35.originalUrl = "https://www.bilibili.com/video/BV1Lr4y127FU"
+        redPanda35.tags = "红熊猫,小熊猫,萌宠"
+        redPanda35.authorName = "小宝墩墩yyds"
+        redPanda35.cover =
+            "https://i2.hdslb.com/bfs/archive/0b3f622689aac93840bb220974280ae0c762df81.jpg"
+        list.add(redPanda35)
+
+        val redPanda36 = PetVideo()
+        redPanda36.type = PetType.RED_PANDA.ordinal
+        redPanda36.fileName = "red_panda36"
+        redPanda36.code = 1383
+        redPanda36.duration = 57
+        redPanda36.period = PeriodType.GROUP.ordinal
+        redPanda36.isStar = true
+        redPanda36.title = "灰灰来啦！"
+        redPanda36.releaseTime = "2021-09-19 11:47:15"
+        redPanda36.originalUrl = "https://www.bilibili.com/video/BV1W341127wx"
+        redPanda36.tags = "红熊猫,小熊猫,萌宠"
+        redPanda36.authorName = "小宝墩墩yyds"
+        redPanda36.cover =
+            "https://i2.hdslb.com/bfs/archive/493ea039646ed3c316f1c06c05d15224402e40b5.jpg"
+        list.add(redPanda36)
+
 
         return list
     }

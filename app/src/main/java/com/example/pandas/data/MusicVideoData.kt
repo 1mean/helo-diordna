@@ -681,6 +681,66 @@ object MusicVideoData {
         music4.videoType = 0
         list.add(music4)
 
+        val music43 = PetVideo()
+        music43.type = PetType.MUSIC.ordinal
+        music43.fileName = "music43"
+        music43.code = 1359
+        music43.duration = 408
+        music43.isStar = true
+        music43.title = "央视版【意难忘】片头片尾曲"
+        music43.releaseTime = "2019-01-05 22:27:51"
+        music43.originalUrl = "https://www.bilibili.com/video/BV1Xt411x7of"
+        music43.tags = "音乐,歌曲,MV"
+        music43.authorName = "依山小筑"
+        music43.cover =
+            "https://i1.hdslb.com/bfs/archive/5c509e86b580cd0ecf87190d1048c373bf28f779.jpg"
+        list.add(music43)
+
+        val music44 = PetVideo()
+        music44.type = PetType.MUSIC.ordinal
+        music44.fileName = "music44"
+        music44.code = 1360
+        music44.duration = 373
+        music44.isStar = true
+        music44.title = "【国产/电视剧主题曲】水浒后传-片头曲《卧虎藏龙》及片尾曲《背叛情歌》"
+        music44.releaseTime = "2017-09-05 02:25:17"
+        music44.originalUrl = "https://www.bilibili.com/video/BV1Yx411x7QU"
+        music44.tags = "音乐,歌曲,MV"
+        music44.authorName = "三轮世界-四大形骸"
+        music44.cover =
+            "https://i2.hdslb.com/bfs/archive/4ac7b38a8818ecb774fbf5ea46e47b332e3a3137.jpg"
+        list.add(music44)
+
+        val music45 = PetVideo()
+        music45.type = PetType.MUSIC.ordinal
+        music45.fileName = "music45"
+        music45.code = 1361
+        music45.duration = 262
+        music45.isStar = true
+        music45.title = "《天下有情人》粤语版，带你回味95年《神雕侠侣》，古天乐后再无杨过"
+        music45.releaseTime = "2019-11-30 18:24:17"
+        music45.originalUrl = "https://www.bilibili.com/video/BV1UJ411Q7sa"
+        music45.tags = "音乐,歌曲,MV"
+        music45.authorName = "最久音乐"
+        music45.cover =
+            "https://i0.hdslb.com/bfs/archive/bd86005da633b05b9a24ee2a59ddd092d7e1eafb.jpg"
+        list.add(music45)
+
+        val music46 = PetVideo()
+        music46.type = PetType.MUSIC.ordinal
+        music46.fileName = "music46"
+        music46.code = 1362
+        music46.duration = 277
+        music46.isStar = true
+        music46.title = "《东游记》主题曲《逍遥游》，经典好听，秒杀太多电视剧主题曲了"
+        music46.releaseTime = "2021-06-14 21:05:42"
+        music46.originalUrl = "https://www.bilibili.com/video/BV1UK4y137R4"
+        music46.tags = "音乐,歌曲,MV"
+        music46.authorName = "音小侠"
+        music46.cover =
+            "https://i1.hdslb.com/bfs/archive/52fa8fac262364fdf5b366605e7d1c3e630842e7.jpg"
+        list.add(music46)
+
         return list
     }
 }

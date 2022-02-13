@@ -1,4 +1,9 @@
+package com.example.pandas.biz.ext
+
+import android.content.Context
+import android.content.Intent
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.pandas.ui.activity.VideoPlayingActivity
 
 /**
  * SwipeRefreshLayout初始化设置
@@ -18,3 +23,11 @@ fun SwipeRefreshLayout.init(distance: Int): SwipeRefreshLayout {
     return this
 }
 
+
+fun startActivity(context: Context, key: String, value: Int) {
+
+    val intent = Intent(context, VideoPlayingActivity::class.java).apply {
+        putExtra(key, value)
+    }
+    context.startActivity(intent)
+}

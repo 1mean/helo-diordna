@@ -5,8 +5,11 @@ import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.sql.dao.PetVideoDao
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.sql.entity.MusicVo
+import com.example.pandas.sql.entity.PetVideo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 
 /**
@@ -129,6 +132,10 @@ class PetManager {
         }
     }
 
+    fun getVideoByCode(code: Int): Flow<PetVideo> {
+
+        return petDao.queryVideoByCode(code).flowOn(Dispatchers.IO)
+    }
 
     fun getHorVideos(): MutableList<PetViewData> {
 

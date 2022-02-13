@@ -1,4 +1,6 @@
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.databinding.FragmentPandaBinding
@@ -10,24 +12,15 @@ import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
  * @date: 2021/12/11 3:54 下午
  * @version: v1.0
  */
-public class PetChildFragment() :
-    BaseLazyFragment<CutePetViewModel,FragmentPandaBinding>(), LoadMoreRecyclerView.ILoadMoreListener {
+public class PetChildFragment(private var type: Int) :
+    BaseLazyFragment<CutePetViewModel, FragmentPandaBinding>(),
+    LoadMoreRecyclerView.ILoadMoreListener {
 
     private val mAdapter: PandasAdapter by lazy { PandasAdapter(mutableListOf()) }
 
-    private var type = 0
-
     override fun initView(savedInstanceState: Bundle?) {
-//        val gridManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-//        gridManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE;
-//        binding.rv.layoutManager = gridManager
-//        binding.rv.addItemDecoration(RoomItemDecoration(requireContext()))
-//        binding.rv.adapter = activity?.let { PandaAdapter(it, initData()) }
 
-        arguments?.let {
-            type = it.getInt("type")
-        }
-
+        binding.rv.visibility = View.GONE
         binding.rv.run {
             layoutManager = GridLayoutManager(mActivity, 2)
             addItemDecoration(PandaDecoration(mActivity))
@@ -59,6 +52,8 @@ public class PetChildFragment() :
             } else {
 
             }
+
+            binding.rv.visibility = View.VISIBLE
         }
 
     }
@@ -69,15 +64,5 @@ public class PetChildFragment() :
 
     override fun onLoadMore() {
         mViewModel.getDataByPage(false, type)
-    }
-
-    companion object {
-        fun newInstance(type: Int): PetChildFragment {
-            val args = Bundle()
-            args.putInt("type", type)
-            val fragment = PetChildFragment()
-            fragment.arguments = args
-            return fragment
-        }
     }
 }

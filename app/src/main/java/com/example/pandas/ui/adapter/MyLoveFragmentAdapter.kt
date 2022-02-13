@@ -53,9 +53,9 @@ public class MyLoveFragmentAdapter(
         return when (position) {
             0 -> TYPE_IMAGE
             1 -> TYPE_HORIZONTAL
-            2 -> TYPE_MOVIE
+            3 -> TYPE_MOVIE
             5 -> TYPE_SLEEP
-            3 -> TYPE_MUSIC
+            2 -> TYPE_MUSIC
             4 -> TYPE_TALK
             else -> TYPE_COMMON
         }

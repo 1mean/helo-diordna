@@ -2,6 +2,7 @@ package com.example.pandas.data
 
 import MultiVideoData
 import PetGroupPandaData
+import PetSinglePandaData
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
 
@@ -17,6 +18,8 @@ object AppData {
             addAll(PetGroupPandaData.getPetGroupPandaData())
             addAll(PetMomPandaData.getPetMomPandaData())
             addAll(MusicVideoData.getMusicVideoData())
+            addAll(PetSinglePandaData.getAll())
+            addAll(BeautyData.getBeauty())
         }
     }
 

@@ -25,6 +25,7 @@
     <color name="color_indicator">#D5D3D5</color>
     <color name="color_indicator_select">#888689</color>
     <color name="color_indicator_bg">#E4CAAD</color>
+    <color name="color_bg_banner">#11000000</color>
 
     <!--self-->
     <color name="color_black_80">#80000000</color>
@@ -32,7 +33,6 @@
     <color name="color_txt_tab">#999999</color>
     <color name="color_txt_tab_select">#333333</color>
     <color name="color_bg_divider">#E5E5E5</color>
-    <color name="color_bg_rv">#f2fdff</color>
 
     <!--eye-->
     <color name="color_eye_view_bg">#ededed</color>
@@ -52,6 +52,8 @@
     <color name="color_video_item_title">#171a1c</color>
     <color name="color_video_item_name">#95999f</color>
     <color name="color_video_divider">#E5E6E6</color>
+    <color name="color_video_timebar_buffered">#C5C5C5</color>
+    <color name="color_video_timebar_unplayed">#5D5D5F</color>
 
     <!--home fragment-->
     <color name="color_search_text">#acb3b8</color>

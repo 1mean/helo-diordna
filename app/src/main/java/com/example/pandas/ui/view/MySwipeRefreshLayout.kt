@@ -18,11 +18,11 @@ public class MySwipeRefreshLayout : SwipeRefreshLayout {
     private var lastX = 0f
     private var lastY = 0f
 
-    constructor(context: Context) : this(context, null) {
-    }
+    private val mTouchSlop = 300
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-    }
+    constructor(context: Context) : this(context, null)
+
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
 
     override fun onInterceptTouchEvent(event: MotionEvent): Boolean {
@@ -40,6 +40,8 @@ public class MySwipeRefreshLayout : SwipeRefreshLayout {
                 val distanceX: Float = Math.abs(lastX - startX)
                 val distanceY: Float = Math.abs(lastY - startY)
                 if (Math.abs(distanceX) > Math.abs(distanceY)) {
+                    return false
+                } else if (Math.abs(distanceY) < mTouchSlop) {
                     return false
                 }
             }

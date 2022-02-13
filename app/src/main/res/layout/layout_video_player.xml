@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <!--id名必须和exoplayer源码控件名一致-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/exo_ffwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="60dp"
+                android:src="@mipmap/img_video_rew" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/exo_rew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="60dp"
+                android:src="@mipmap/img_video_forward" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/exo_pause"
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12dp"
+                    android:src="@mipmap/img_video_stop" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/exo_play"
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:layout_marginStart="12dp"
+                    android:src="@mipmap/img_video_stop" />
+
+            <com.google.android.exoplayer2.ui.DefaultTimeBar
+                    android:id="@+id/exo_progress"
+                    android:layout_width="225dp"
+                    android:layout_height="match_parent"
+                    app:bar_height="2dp"
+                    app:unplayed_color="@color/color_video_timebar_unplayed"
+                    app:played_color="@color/color_tab_indicator"
+                    app:buffered_color="@color/color_video_timebar_buffered" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="56dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/exo_position"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        tools:ignore="SmallSp" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:textColor="@color/white"
+                        tools:ignore="SmallSp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/exo_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        tools:ignore="SmallSp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="36dp"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/img_video_full"
+                    android:layout_gravity="center_vertical" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

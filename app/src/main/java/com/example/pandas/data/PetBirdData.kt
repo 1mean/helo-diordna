@@ -2334,7 +2334,7 @@ object PetBirdData {
         bird137.authorName = "小灰灰大人"
         bird137.cover =
             "https://i0.hdslb.com/bfs/archive/6490900ea5b3cc8b2951644f8d5be997b3663068.jpg"
-        bird137.videoType = 0
+        bird137.videoType = 3
         list.add(bird137)
 
 

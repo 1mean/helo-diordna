@@ -1,4 +1,5 @@
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
@@ -53,6 +54,7 @@ public class LandscapeFragment : BaseLazyFragment<HomePageViewModel, LayoutRefre
             } else {
 
             }
+            binding.swipLayout.visibility = View.VISIBLE
             binding.swipLayout.isRefreshing = false
         }
     }

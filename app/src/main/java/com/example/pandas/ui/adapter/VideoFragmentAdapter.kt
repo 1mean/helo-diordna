@@ -15,10 +15,10 @@ public class VideoFragmentAdapter(fragmentActivity: FragmentActivity) :
 
     override fun createFragment(position: Int): Fragment {
 
-        if (position == 0) {
-            return VideoIntroFragment()
+        return if (position == 0) {
+            VideoIntroFragment()
         } else {
-            return VideoCommentFragment()
+            VideoCommentFragment()
         }
     }
 }

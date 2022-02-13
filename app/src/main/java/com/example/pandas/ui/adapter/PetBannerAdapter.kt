@@ -20,7 +20,7 @@ public class PetBannerAdapter(private var data: MutableList<PetViewData>) :
     @SuppressLint("NotifyDataSetChanged")
     fun refreshData(list: MutableList<PetViewData>) {
 
-        if (list.isNotEmpty()) {
+        if (list.isNotEmpty() && list != data) {
             data.clear()
             data.addAll(list)
             notifyDataSetChanged()
@@ -42,20 +42,28 @@ public class PetBannerAdapter(private var data: MutableList<PetViewData>) :
         val image = binding.imgView
         fun handle(position: Int) {
             //Glide.with(itemView.context).load(url).into(image)
-            when(position){
-                0->{
-                    Glide.with(itemView.context).load("https://bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/8fe5bfdaa212439a7d3332add8b3afc7.jpg").into(image)
+            when (position) {
+                0 -> {
+                    Glide.with(itemView.context)
+                        .load("https://i0.hdslb.com/bfs/archive/7643dcb1726a5ec7b0f446edc015b5f7042476bf.jpg")
+                        .into(image)
                 }
-                1->{
-                    Glide.with(itemView.context).load("https://i1.hdslb.com/bfs/archive/58d301c56e86fd2cf7316c023daa1aca9480f21d.jpg").into(image)
+                1 -> {
+                    Glide.with(itemView.context)
+                        .load("https://i2.hdslb.com/bfs/archive/0965af132bcf1ad6edda79215167f90d7ebc8cae.jpg")
+                        .into(image)
                 }
-                2->{
-                    Glide.with(itemView.context).load("https://i2.hdslb.com/bfs/archive/8e7e227303ea3b315b09b7838ccf61ec6ad243fe.jpg").into(image)
+                2 -> {
+                    Glide.with(itemView.context)
+                        .load("https://i0.hdslb.com/bfs/archive/cccb3eb504f603095f08ae34c62a49b852a22883.jpg")
+                        .into(image)
                 }
-                3->{
-                    Glide.with(itemView.context).load("https://i0.hdslb.com/bfs/archive/213435510f2714c4e42323a2ae1111e9e7a27898.jpg").into(image)
+                3 -> {
+                    Glide.with(itemView.context)
+                        .load("https://i0.hdslb.com/bfs/archive/6490900ea5b3cc8b2951644f8d5be997b3663068.jpg")
+                        .into(image)
                 }
-                else ->{
+                else -> {
                     Glide.with(itemView.context).load(data[position].cover).into(image)
                 }
             }

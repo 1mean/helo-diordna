@@ -23,4 +23,5 @@ enum class PetType {
     DEER,//鹿
     LANDSCAPE,//山水
     SLEEP,//助眠
+    BEAUTY,//美女
 }

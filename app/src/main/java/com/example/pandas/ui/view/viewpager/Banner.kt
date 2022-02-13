@@ -184,7 +184,7 @@ public class Banner : RelativeLayout {
         fun registerAdapter(adapter: RecyclerView.Adapter<BaseEmptyViewHolder>) {
 
             mAdapter = adapter
-            mAdapter.registerAdapterDataObserver(adapterObserver)
+            //mAdapter.registerAdapterDataObserver(adapterObserver)
         }
     }
 
@@ -405,7 +405,7 @@ public class Banner : RelativeLayout {
         wrapAdapter!!.registerAdapter(adapter)
         mViewPager.adapter = wrapAdapter
 
-        mViewPager.offscreenPageLimit = adapter.itemCount
+        mViewPager.offscreenPageLimit = 1
 
         setCurrentPage(0, false)
         return this

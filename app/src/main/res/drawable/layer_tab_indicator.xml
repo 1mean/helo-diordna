@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+            android:width="28dp"
+            android:gravity="center">
+        <shape>
+            <size android:height="2dp" />
+        </shape>
+    </item>
+<!--
+    <item
             android:width="8dp"
             android:gravity="center">
         <shape>
@@ -9,5 +17,6 @@
             <solid android:color="@color/color_indicator_bg" />
         </shape>
     </item>
+-->
 </layer-list>
 

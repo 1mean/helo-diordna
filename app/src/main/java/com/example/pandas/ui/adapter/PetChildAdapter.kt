@@ -1,23 +1,26 @@
-import android.content.Context
+/*
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pandas.R
+import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.databinding.AdapterPandaItem1Binding
 import com.example.pandas.databinding.AdapterPandaItem2Binding
 import com.example.pandas.ui.adapter.viewholder.RoomViewHolder
 
 
+*/
 /**
  * @description: TODO
  * @author: dongyiming
  * @date: 2021/12/11 6:02 下午
  * @version: v1.0
- */
-public class PandaAdapter(val context: Context, private val pandas: MutableList<Panda>) :
+ *//*
 
-    RecyclerView.Adapter<RoomViewHolder>() {
+public class PetChildAdapter(private val list: MutableList<PetViewData>) :
+
+    RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
     //瀑布流添加数据更新需要使用notifyItemInserted()，pandas.size是添加数据后集合的大小
     fun addData(newData: List<Panda>) {
@@ -31,7 +34,7 @@ public class PandaAdapter(val context: Context, private val pandas: MutableList<
 
     override fun getItemViewType(position: Int): Int = pandas[position].type
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
 
         when (viewType) {
             0 -> {
@@ -76,14 +79,7 @@ public class PandaAdapter(val context: Context, private val pandas: MutableList<
         }
     }
 
-
-    class MyViewHolder1(binding: AdapterPandaItem1Binding) : RoomViewHolder(binding.root) {
-        init {
-            fullImageView = binding.image
-        }
-    }
-
-    class MyViewHolder2(binding: AdapterPandaItem2Binding) : RoomViewHolder(binding.root) {
+    class MyViewHolder2(binding: AdapterPandaItem2Binding) : BaseEmptyViewHolder(binding.root) {
         init {
             imgHeader = binding.imgHeader
             typeValue = binding.txtTypeValue
@@ -95,4 +91,4 @@ public class PandaAdapter(val context: Context, private val pandas: MutableList<
             cvItem = binding.cvItem
         }
     }
-}
+}*/

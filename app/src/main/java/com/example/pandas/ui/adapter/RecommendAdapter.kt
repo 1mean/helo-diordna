@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pandas.R
 import com.example.pandas.bean.pet.PetViewData
+import com.example.pandas.biz.ext.startActivity
 import com.example.pandas.databinding.CardItemLayoutBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.databinding.ItemRecommendVideoBinding
@@ -135,6 +136,10 @@ public class RecommendAdapter(private var data: RecommendData<PetViewData>) :
             this.duration.text = duration
             name.text = petVideo.authorName
             title.text = petVideo.title
+
+            itemView.setOnClickListener {
+                startActivity(itemView.context, "code", petVideo.code)
+            }
         }
     }
 

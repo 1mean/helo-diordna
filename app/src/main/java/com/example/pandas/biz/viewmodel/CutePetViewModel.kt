@@ -1,6 +1,5 @@
 import androidx.lifecycle.MutableLiveData
 import com.example.pandas.base.BaseViewModel
-import com.example.pandas.bean.pet.PetType
 import com.example.pandas.bean.pet.PetViewData
 
 /**
@@ -17,26 +16,13 @@ public class CutePetViewModel : BaseViewModel() {
     //分页起始位置
     var startIndex = 0
 
-    fun getType(name: String): Int {
-
-        var type = 0
-        when (name) {
-            "灵狐" -> type = PetType.FOX.ordinal
-            "国鸟" -> type = PetType.BIRD.ordinal
-            "小熊猫" -> type = PetType.RED_PANDA.ordinal
-            "老虎" -> type = PetType.TIGER.ordinal
-            "北极熊" -> type = PetType.BEAR.ordinal
-            "狮子" -> type = PetType.LION.ordinal
-        }
-        return type
-    }
-
-    fun getBannerData() {
+    fun getBannerData(isRefresh: Boolean) {
 
         request({ PetManagerCoroutine.getCutePetBannerData() },
             {
                 val dataList = UIDataWrapper<PetViewData>(
                     isSuccess = true,
+                    isRefresh = isRefresh,
                     isEmpty = it.isEmpty(),
                     listData = it
                 )
@@ -45,6 +31,7 @@ public class CutePetViewModel : BaseViewModel() {
             {
                 val dataList = UIDataWrapper<PetViewData>(
                     isSuccess = false,
+                    isRefresh = isRefresh,
                     errMessage = it.errorMsg,
                     listData = mutableListOf<PetViewData>()
                 )

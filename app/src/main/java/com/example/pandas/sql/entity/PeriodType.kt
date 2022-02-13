@@ -7,6 +7,7 @@ package com.example.pandas.sql.entity
  *  - 3：group，幼年班，几个小伙伴一起成长
  *  - 4，single，成年，单独一个人
  *  - 5，old，老年
+ *  - 6，all,成长记录
  */
 enum class PeriodType {
 
@@ -14,5 +15,6 @@ enum class PeriodType {
     MOM,
     GROUP,
     SINGLE,
-    OLD
+    OLD,
+    ALL
 }
