@@ -32,11 +32,11 @@ public class VideoRecommendAdapter(private val mutableList: MutableList<Eyepetoz
     inner class MyViewHolder(binding: ItemVideoIntroBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        val cover = binding.imgMinicover
-        val duration = binding.txtDuration
-        val title = binding.txtTitle
-        val name = binding.txtName
-        val time = binding.txtTime
+        val cover = binding.imgVideoRecoCover
+        val duration = binding.txtVideoRecoDuration
+        val title = binding.txtVideoRecoTitle
+        val name = binding.txtVideoRecoName
+        val time = binding.textVideoRecoTime
 
         fun onBind(position: Int) {
 

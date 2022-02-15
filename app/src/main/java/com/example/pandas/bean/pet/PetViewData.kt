@@ -7,5 +7,6 @@ data class PetViewData(
     var duration: Int = 0,
     var cover: String = "",
     var authorName: String = "",
-    var videoType: Int = 0
+    var videoType: Int = 0,
+    var releaseTime: String? = ""
 )

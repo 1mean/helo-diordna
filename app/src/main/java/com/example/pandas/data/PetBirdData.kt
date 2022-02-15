@@ -1,6 +1,7 @@
 package com.example.pandas.data
 
 import com.example.pandas.bean.pet.PetType
+import com.example.pandas.sql.entity.PeriodType
 import com.example.pandas.sql.entity.PetVideo
 
 object PetBirdData {
@@ -2334,9 +2335,8 @@ object PetBirdData {
         bird137.authorName = "小灰灰大人"
         bird137.cover =
             "https://i0.hdslb.com/bfs/archive/6490900ea5b3cc8b2951644f8d5be997b3663068.jpg"
-        bird137.videoType = 3
+        bird137.videoType = 0
         list.add(bird137)
-
 
         val bird138 = PetVideo()
         bird138.type = PetType.BIRD.ordinal
@@ -2439,7 +2439,6 @@ object PetBirdData {
         bird143.videoType = 0
         list.add(bird143)
 
-
         val bird144 = PetVideo()
         bird144.type = PetType.BIRD.ordinal
         bird144.fileName = "bird144"
@@ -2455,6 +2454,23 @@ object PetBirdData {
             "https://i1.hdslb.com/bfs/archive/0af4ebd35da9035635f23a2decbe4c5f98e2b7a7.jpg"
         bird144.videoType = 0
         list.add(bird144)
+
+        val bird145 = PetVideo()
+        bird145.type = PetType.BIRD.ordinal
+        bird145.fileName = "bird145"
+        bird145.code = 427
+        bird145.duration = 210
+        bird145.period = PeriodType.SINGLE.ordinal
+        bird145.isStar = true
+        bird145.title = "【鹤科混剪】鹤之舞 或许这就是神仙之姿吧 （野生鸟片系列）"
+        bird145.releaseTime = "2020-03-23 18:23:38"
+        bird145.originalUrl = "https://www.bilibili.com/video/BV1WE411F7p9"
+        bird145.tags = "鹤,丹顶鹤,萌宠,动物圈"
+        bird145.authorName = "爱福西西一级学者"
+        bird145.cover =
+            "https://i0.hdslb.com/bfs/archive/7643dcb1726a5ec7b0f446edc015b5f7042476bf.jpg"
+        bird145.videoType = 3
+        list.add(bird145)
 
         return list
     }

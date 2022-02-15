@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewbinding.ViewBinding
 import com.example.pandas.base.BaseViewModel
 import java.lang.reflect.InvocationTargetException
@@ -83,7 +84,7 @@ public abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragm
 
         val superclass = javaClass.genericSuperclass
         val aClass = (superclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
-        mViewModel = ViewModelProvider(this)[aClass]
+        mViewModel = ViewModelProvider(getCurrentLifeOwner())[aClass]
         initView(savedInstanceState)
         createObserver()
     }
@@ -183,5 +184,12 @@ public abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragm
      */
     open fun lazyLoadTime(): Long {
         return 300
+    }
+
+    /**
+     * 数据共享时使用
+     */
+    open fun getCurrentLifeOwner(): ViewModelStoreOwner {
+        return this
     }
 }

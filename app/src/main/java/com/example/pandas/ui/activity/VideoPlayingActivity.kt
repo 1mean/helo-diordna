@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.VideoViewModel
@@ -21,6 +22,7 @@ import com.google.android.exoplayer2.util.EventLogger
 import com.google.android.exoplayer2.util.Util
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
+import java.io.File
 
 
 /**
@@ -32,8 +34,7 @@ import kotlinx.coroutines.launch
 public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBinding>() {
 
     private val tabNames = arrayListOf("简介", "评论")
-    private var _mPlayer: ExoPlayer? = null
-    private val mPlayer get() = _mPlayer!!
+    private var mPlayer: ExoPlayer? = null
 
     private var vedioUrl: String? = null
     private var code: Int = -1
@@ -51,14 +52,14 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
             val viewPager = binding.vpVideo
             viewPager.adapter = VideoFragmentAdapter(this@VideoPlayingActivity)
-            viewPager.offscreenPageLimit = 1
-
+            viewPager.offscreenPageLimit = ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
             TabLayoutMediator(
                 binding.tabView, viewPager, true
             ) { tab, position ->
                 tab.text = tabNames[position]
             }.attach()
         }
+
     }
 
     override fun onStart() {
@@ -76,27 +77,34 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     }
 
     override fun createObserver() {
+
         mViewModel.videoInfo.observe(this) {
 
-            if (_mPlayer == null) {
+            if (mPlayer == null) {
 
                 val file = mViewModel.getUrl(this, it.fileName!!)
-
-                //1.创建SimpleExoPlayer实例
-                _mPlayer = ExoPlayer.Builder(this).build()
-                binding.playView.player = mPlayer
-
-                //2.创建播放菜单并添加到播放器
-                val firstLocalMediaItem = MediaItem.fromUri(Uri.fromFile(file))
-
-                mPlayer.run {
-                    addListener(listener)
-                    addMediaItem(firstLocalMediaItem)
-                    playWhenReady = true//3.设置播放方式为自动播放
-                    prepare()//设置播放器状态为prepare
+                Log.e("1mean","path: ${file.absolutePath}")
+                if (file.exists()) {
+                    initPlayer(file)
                 }
-
             }
+        }
+    }
+
+    private fun initPlayer(file: File) {
+
+        //1.创建SimpleExoPlayer实例
+        mPlayer = ExoPlayer.Builder(this).build()
+        binding.playView.player = mPlayer
+
+        //2.创建播放菜单并添加到播放器
+        val firstLocalMediaItem = MediaItem.fromUri(Uri.fromFile(file))
+
+        mPlayer?.run {
+            addListener(listener)
+            addMediaItem(firstLocalMediaItem)
+            playWhenReady = true//3.设置播放方式为自动播放
+            prepare()//设置播放器状态为prepare
         }
     }
 
@@ -106,7 +114,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             Log.d("Pandas", "playUri is null!")
             return
         }
-
         mViewModel.getVideoInfo(code)
     }
 
@@ -144,7 +151,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     //设置播放模式
     //REPEAT_MODE_OFF（顺序播放）、REPEAT_MODE_ONE（仅播放一次）和REPEAT_MODE_ALL（重复播放）
     fun setRepeatMode() {
-        mPlayer.repeatMode = Player.REPEAT_MODE_ALL
+        mPlayer?.repeatMode = Player.REPEAT_MODE_ALL
     }
 
     //监控其播放过程中的重要log信息，可以通过按钮点击实时监控信息
@@ -152,14 +159,14 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         /* 扩展：注册并添加listener */
         val trackSelector = DefaultTrackSelector(this)
         trackSelector.parameters = DefaultTrackSelector.ParametersBuilder(this).build()
-        mPlayer.addAnalyticsListener(EventLogger(trackSelector))
+        mPlayer?.addAnalyticsListener(EventLogger(trackSelector))
     }
 
     //使用exoplayer自带的debug helper来显示实时调试信息
     fun debugHelper(debugTextView: TextView) {
 
         /* 扩展：使用exoplayer自带的debug helper来显示实时调试信息 */
-        val debugViewHelper = DebugTextViewHelper(mPlayer, debugTextView)
+        val debugViewHelper = DebugTextViewHelper(mPlayer!!, debugTextView)
         debugViewHelper.start()
     }
 
@@ -185,7 +192,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     override fun onDestroy() {
         super.onDestroy()
-        mPlayer.release()
+        mPlayer?.release()
     }
 
 

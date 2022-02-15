@@ -137,6 +137,13 @@ class PetManager {
         return petDao.queryVideoByCode(code).flowOn(Dispatchers.IO)
     }
 
+    suspend fun getAiRecommend(type: Int, counts: Int): MutableList<PetViewData> {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryByType(type, counts)
+        }
+    }
+
     fun getHorVideos(): MutableList<PetViewData> {
 
         val list = mutableListOf<PetViewData>()

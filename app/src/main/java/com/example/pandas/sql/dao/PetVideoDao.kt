@@ -72,6 +72,12 @@ interface PetVideoDao {
     @Query("select * from pet_video where title in (:names)")
     suspend fun queryByNames(vararg names: String): List<PetVideo>
 
+    @Query("select * from pet_video where code=(:code)")
+    fun queryByCode(code: Int): PetVideo
+
+    @Query("select count(*) from pet_video")
+    fun getAllSize(): Int
+
     /**
      *  这里编译一直失败，记录一下，下面四条为stack overflow上的普遍解决办法
      *    - 报错 Room "Not sure how to convert a Cursor to this method's return type"
@@ -88,8 +94,11 @@ interface PetVideoDao {
     @Query("select code,title,cover,authorName,duration,videoType from pet_video limit (:startIndex),20")
     suspend fun queryByPage(startIndex: Int): MutableList<PetViewData>
 
-    @Query("select code,title,cover,authorName,duration,videoType from pet_video where type = (:type)")
+    @Query("select code,title,cover,authorName,duration,videoType from pet_video where type = (:type) and videoType=0")
     suspend fun queryByType(type: Int): MutableList<PetViewData>
+
+    @Query("select code,title,cover,authorName,duration,videoType,releaseTime from pet_video where type = (:type) and videoType=0 limit 0,(:count)")
+    suspend fun queryByType(type: Int, count: Int): MutableList<PetViewData>
 
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryByTypeAndPage(type: Int, startIndex: Int, count: Int): MutableList<PetViewData>
@@ -100,7 +109,7 @@ interface PetVideoDao {
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where videoType = (:type) limit 0,4")
     suspend fun queryRecoBanner(type: Int): MutableList<PetViewData>
 
-    @Query("select code,title,cover,authorName,duration,videoType from pet_video where isStar=1 limit (:startIndex),(:count)")
+    @Query("select code,title,cover,authorName,duration,videoType from pet_video where isStar=1 and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryStarByPage(startIndex: Int, count: Int): MutableList<PetViewData>
 
     @Query("select * from pet_video where videoType = (:videoType)")

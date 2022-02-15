@@ -8,7 +8,15 @@ object PetMomPandaData {
 
     private val list = mutableListOf<PetVideo>()
 
-    fun getPetMomPandaData(): MutableList<PetVideo> {
+    fun getAll(): MutableList<PetVideo> {
+
+        getPetMomPandaData()
+        getMomPanda2()
+        getMomPanda3()
+        return list
+    }
+
+    private fun getPetMomPandaData(): MutableList<PetVideo> {
 
         val panda1 = PetVideo()
         panda1.type = PetType.PANDA.ordinal
@@ -5148,7 +5156,6 @@ object PetMomPandaData {
         panda304.cover =
             "https://i0.hdslb.com/bfs/archive/aac89c0ed80b56c09f1896fa006910d5d5b7dd41.jpg"
         list.add(panda304)
-
 
         return list
     }

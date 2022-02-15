@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
@@ -32,6 +33,14 @@ fun loadRoundedCornerImage(context: Context, radius: Int, url: String, view: Ima
     Glide.with(context).load(url).apply(options).into(view)
 }
 
+/**
+ * 加载圆形图片
+ */
+fun loadCircleImage(context: Context, url: String, view: ImageView) {
+    val options = RequestOptions.bitmapTransform(CircleCrop())
+    Glide.with(context).load(url).apply(options).into(view)
+}
+
 fun clearMemoryCache(context: Context) {
     Glide.get(context).clearMemory()
 }
@@ -45,8 +54,9 @@ fun clearFileCache(context: Context) {
 /**
  * 下载项目所有的封面图片到本地，防止远程项目被删除
  * DiskCacheStrategy.DATA： /data/user/0/com.example.hello_diordna/cache/image_manager_disk_cache/74a05aa0349bb3bb72622d1ca50e52882ba535458555fd9ff23993c4b98ef39a.0
- * 存粗在专属外部存储空间：/storage/emulated/0/Android/data/com.example.hello_diordna/files/Download/landscape_40.jpg
+ * 存储在专属外部存储空间：/storage/emulated/0/Android/data/com.example.hello_diordna/files/Download/landscape_40.jpg
  * 导出图片 adb pull /storage/emulated/0/Android/data/com.example.hello_diordna/files/Download /Users/dongyiming/Downloads/pandas
+ * 导入视频位置 adb push /Users/dongyiming/Desktop/pet/pandas/hehua/videos/ /storage/emulated/0/Android/data/com.example.hello_diordna/files/videos/
  *
  * @date: 2/6/22 4:33 下午
  * @version: v1.0

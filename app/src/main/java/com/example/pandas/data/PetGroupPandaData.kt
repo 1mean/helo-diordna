@@ -2402,11 +2402,11 @@ object PetGroupPandaData {
         panda134.videoType = 0
         list.add(panda134)
 
-
-        val panda135 = PetVideo()
-        panda135.code = 610
-        panda135.title = "已失效视频"
-        list.add(panda135)
+        //已失效视频
+//        val panda135 = PetVideo()
+//        panda135.code = 610
+//        panda135.title = "已失效视频"
+//        list.add(panda135)
 
 
         val panda136 = PetVideo()

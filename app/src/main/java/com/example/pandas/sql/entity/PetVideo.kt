@@ -7,7 +7,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "pet_video")
 data class PetVideo(
 
-    @PrimaryKey(autoGenerate = false) //修改表中的code名为id，会报错
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0,
+    @ColumnInfo
     var code: Int = 0,//视频ID
     @ColumnInfo
     var fileName: String? = null,//file name

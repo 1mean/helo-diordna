@@ -38,4 +38,11 @@
     <string name="str_hot_pet">热门萌宠</string>
 
 
+    <!--video info-->
+    <string name="str_share">分享</string>
+    <string name="str_collect">收藏</string>
+    <string name="str_love">喜欢</string>
+    <string name="str_like">点赞</string>
+
+
 </resources>

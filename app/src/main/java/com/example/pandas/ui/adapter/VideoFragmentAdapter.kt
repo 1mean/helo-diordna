@@ -16,7 +16,7 @@ public class VideoFragmentAdapter(fragmentActivity: FragmentActivity) :
     override fun createFragment(position: Int): Fragment {
 
         return if (position == 0) {
-            VideoIntroFragment()
+            VideoInfosFragment()
         } else {
             VideoCommentFragment()
         }
