@@ -1,11 +1,7 @@
-package com.example.pandas
+package com.example.pandas.app
 
 import android.app.Application
-import android.util.Log
-import com.example.pandas.bean.pet.PetType
-import com.example.pandas.data.AppData
 import com.example.pandas.sql.database.AppDataBase
-import com.example.pandas.sql.entity.PetVideo
 
 
 class DiorApplication : Application() {

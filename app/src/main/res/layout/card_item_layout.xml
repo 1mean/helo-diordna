@@ -3,10 +3,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="183dp"
+        app:cardCornerRadius="4dp"
         android:focusable="true"
         android:clickable="true"
-        app:cardCornerRadius="4dp"
         android:background="@color/white"
+        app:cardElevation="0.5dp"
         android:foreground="?android:attr/selectableItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout

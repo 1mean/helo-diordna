@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
  */
 class HomePageViewModel : BaseViewModel() {
 
-    var pageNo = 0 //分页获取数据
     var startIndex = 0//分页起始
 
     /***********************************************************************************
@@ -44,15 +43,13 @@ class HomePageViewModel : BaseViewModel() {
     fun getPagePet(isRefresh: Boolean) {
 
         if (isRefresh) {
-            pageNo = 0
+            startIndex = 0
         }
         request({ PetManagerCoroutine.getPetByPage(startIndex) },
             {
                 //请求数据成功
                 startIndex += 20
-                pageNo++
-
-                val dataList = UIDataWrapper<PetViewData>(
+                val dataList = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = isRefresh,
                     isEmpty = it.isEmpty(),
@@ -64,7 +61,7 @@ class HomePageViewModel : BaseViewModel() {
             },
             {
                 //请求数据失败
-                val dataList = UIDataWrapper<PetViewData>(
+                val dataList = UIDataWrapper(
                     isSuccess = false,
                     errMessage = it.errorMsg,
                     isRefresh = isRefresh,

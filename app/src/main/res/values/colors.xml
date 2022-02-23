@@ -11,7 +11,8 @@
     <color name="colorrrrrr">#95000000</color>
     <color name="color_RadioGroup_bg_homepage">#00000000</color>
     <color name="color_bg_bottom_gb">#00000000</color>
-    <color name="color_groupbutton_text">#a3a3a3</color>
+    <color name="color_groupbutton_text">#616A70</color>
+    <color name="color_groupbutton_text_selected">#FF5596</color>
 
     <!--room-->
     <color name="color_room_tab_bg">#F5F5FF</color>
@@ -70,5 +71,15 @@
     <color name="color_talk_item_pressed">#f46844</color>
     <color name="color_landscape_item_author">#babdbf</color>
     <color name="color_bg_love">#f5f5f5</color>
+
+    <!--search-->
+    <color name="color_text_search_cancel">#60676c</color>
+    <color name="color_text_search_num">#95999d</color>
+    <color name="color_bg_hot_shape">#fc8f51</color>
+    <color name="color_bg_new_shape">#fd7193</color>
+    <color name="color_bg_search">#f0f3f3</color>
+    <color name="color_search_txt_clear">#929a9d</color>
+    <color name="color_search_list_divider">#E4E5E5</color>
+    <color name="color_search_text_like">#F76395</color>
 
 </resources>

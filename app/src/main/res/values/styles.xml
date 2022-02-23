@@ -23,7 +23,7 @@
 
     <!-- home activity RadioButtom style -->
     <style name="styles_homepage_radiobuttom">
-        <item name="android:textSize">@dimen/common_sz_9_dimens</item>
+        <item name="android:textSize">@dimen/common_sz_10_dimens</item>
         <item name="android:ellipsize">marquee</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingTop">@dimen/activity_bottom_paddingTop_dimens</item>

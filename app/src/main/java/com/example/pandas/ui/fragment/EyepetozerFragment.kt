@@ -1,129 +1,65 @@
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pandas.R
-import com.example.pandas.bean.eyes.EyepetozerBean
-import com.example.pandas.biz.controller.EyepetozerController
-import com.example.pandas.biz.interaction.ICommonInvokeResult
+import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.databinding.FragmentEyesBinding
+import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 
 /**
- * @description: TODO
+ * @description: 开眼
  * @author: dongyiming
  * @date: 2021/12/21 2:16 下午
  * @version: v1.0
  */
-public class EyepetozerFragment : Fragment() {
+public class EyepetozerFragment : BaseLazyFragment<EyepetozerViewModel, FragmentEyesBinding>(),
+    LoadMoreRecyclerView.ILoadMoreListener {
 
-    private var _controller: EyepetozerController? = null
-    private val controller get() = _controller!!
-    private var _binding: FragmentEyesBinding? = null
-    private val binding get() = _binding!!
-    private var mAdapter: EyepetozerAdapter? = null
-    private var recyclerView: LoadMoreRecyclerView? = null
+    private val mAdapter: EyepetozerAdapter by lazy { EyepetozerAdapter(mutableListOf()) }
 
-    //{ http://baobab.kaiyanapp.com/api/v4/discovery/hot?start=20&num=20 }
-    private var start: Int = 20
+    override fun initView(savedInstanceState: Bundle?) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+        binding.rvEye.apply {
+            layoutManager = LinearLayoutManager(mActivity)
+            setRefreshAdapter(mAdapter, this@EyepetozerFragment)
+        }
 
-        _binding = FragmentEyesBinding.inflate(inflater, container, false)
-        return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        recyclerView = binding.rvEye
-        val layoutManager = LinearLayoutManager(activity)
-        recyclerView?.layoutManager = layoutManager
-        _controller = EyepetozerController()
-        controller.initData(object : ICommonInvokeResult<MutableList<EyepetozerBean>, String> {
-            override fun onResult(t: MutableList<EyepetozerBean>) {
-
-                mAdapter = EyepetozerAdapter(t)
-                recyclerView?.setRefreshAdapter(mAdapter!!, listener)
+        binding.refreshLayout.run {
+            setRefreshColor()
+            setOnRefreshListener {
+                binding.rvEye.isFreshing(true)
+                mViewModel.initData(true)
             }
-
-            override fun onFailure(e: String) {
-                Log.e("1mean", "error msg: $e")
-            }
-
-            override fun onCompleted() {
-            }
-        })
-
-        val refreshLayout = binding.refreshLayout
-        refreshLayout.setColorSchemeResources(
-            R.color.gray,
-            R.color.red,
-            R.color.orange,
-            R.color.green
-        )
-        refreshLayout.setOnRefreshListener {
-
-            refreshLayout.isRefreshing = true
-            recyclerView?.isFreshing(true)
-            controller.initData(object : ICommonInvokeResult<MutableList<EyepetozerBean>, String> {
-                override fun onResult(t: MutableList<EyepetozerBean>) {
-
-                    refreshLayout.isRefreshing = false
-                    recyclerView?.isFreshing(false)
-                    mAdapter?.refresh(t)
-                }
-
-                override fun onFailure(e: String) {
-                    refreshLayout.isRefreshing = false
-                    recyclerView?.isFreshing(false)
-                }
-
-                override fun onCompleted() {
-                    refreshLayout.isRefreshing = false
-                    recyclerView?.isFreshing(false)
-                }
-            })
         }
     }
 
-    val listener = object : LoadMoreRecyclerView.ILoadMoreListener {
-        override fun onLoadMore() {
-            controller.loadMore(
-                start,
-                20,
-                object : ICommonInvokeResult<MutableList<EyepetozerBean>, String> {
-                    override fun onResult(t: MutableList<EyepetozerBean>) {
-                        start += 20
-                        mAdapter?.addList(t)
-                        recyclerView?.loadMoreFinished()
-                    }
+    override fun createObserver() {
 
-                    override fun onFailure(e: String) {
-                        Log.e("1mean", "error msg: $e")
-                    }
-
-                    override fun onCompleted() {
-                    }
-                })
+        mViewModel.eyepetozerWrapper.observe(viewLifecycleOwner) {
+            if (it.isSuccess) {
+                if (it.isRefresh) {
+                    mAdapter.refresh(it.listData)
+                    binding.rvEye.isFreshing(false)
+                    binding.refreshLayout.isRefreshing = false
+                } else if (it.hasMore) {
+                    mAdapter.loadMore(it.listData)
+                    binding.rvEye.loadMoreFinished()
+                } else {
+                    mAdapter.loadMore(it.listData)
+                    binding.rvEye.noMoreData()
+                }
+            } else {
+                if (it.isRefresh) {
+                    binding.refreshLayout.isRefreshing = false
+                }
+            }
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun firstOnResume() {
+        mViewModel.initData(true)
     }
 
-    override fun onResume() {
-        super.onResume()
-        //StatusBarUtils.updataStatus(requireActivity(), true, false, R.color.color_white_lucency)
+    override fun onLoadMore() {
+        mViewModel.initData(false)
     }
 }

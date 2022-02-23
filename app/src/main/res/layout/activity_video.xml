@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -20,6 +19,8 @@
                 android:layout_height="202dp"
                 app:show_buffering="when_playing"
                 app:show_shuffle_button="true"
+                app:hide_on_touch="true"
+                android:background="@color/black"
                 app:controller_layout_id="@layout/layout_video_player" />
         <!--app:show_subtitle_button="true"-->
 
@@ -70,7 +71,6 @@
 
         <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_video"
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
     </androidx.appcompat.widget.LinearLayoutCompat>

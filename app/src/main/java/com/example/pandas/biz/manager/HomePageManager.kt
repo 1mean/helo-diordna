@@ -1,4 +1,5 @@
 import com.example.pandas.bean.CoverDownLoad
+import com.example.pandas.bean.SearchInfo
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.PetType
 import com.example.pandas.bean.pet.PetViewData
@@ -137,10 +138,24 @@ class PetManager {
         return petDao.queryVideoByCode(code).flowOn(Dispatchers.IO)
     }
 
-    suspend fun getAiRecommend(type: Int, counts: Int): MutableList<PetViewData> {
+    suspend fun getAiRecommend(code: Int, type: Int, counts: Int): MutableList<PetViewData> {
 
         return withContext(Dispatchers.IO) {
-            petDao.queryByType(type, counts)
+            petDao.queryByType(code, type, counts)
+        }
+    }
+
+    suspend fun search(words: String): MutableList<SearchInfo> {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryByKeyWords("%$words%")
+        }
+    }
+
+    suspend fun searchByPage(words: String, startIndex: Int): MutableList<PetViewData> {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryWordsByPage("%$words%", startIndex, 10)
         }
     }
 

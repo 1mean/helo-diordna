@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pandas.R
 import com.example.pandas.bean.pet.PetViewData
-import com.example.pandas.biz.ext.startActivity
+import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.databinding.CardItemLayoutBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.databinding.ItemRecommendVideoBinding
 import com.example.pandas.ui.view.viewpager.Indicator
 
 /**
- * @description: TODO
+ * @description: 首页-推荐
  * @author: dongyiming
  * @date: 1/4/22 3:27 下午
  * @version: v1.0
@@ -56,8 +56,9 @@ public class RecommendAdapter(private var data: RecommendData<PetViewData>) :
     @SuppressLint("NotifyDataSetChanged")
     fun addData(recommendData: RecommendData<PetViewData>) {
         if (recommendData.itemList.isNotEmpty()) {
+            val size = data.itemList.size
             data.itemList.addAll(recommendData.itemList)
-            notifyItemRangeInserted((data.itemList.size + 1), recommendData.itemList.size)
+            notifyItemRangeInserted((size + 1), recommendData.itemList.size)
         }
     }
 
@@ -138,7 +139,7 @@ public class RecommendAdapter(private var data: RecommendData<PetViewData>) :
             title.text = petVideo.title
 
             itemView.setOnClickListener {
-                startActivity(itemView.context, "code", petVideo.code)
+                startVideoPlayActivity(itemView.context,petVideo.code)
             }
         }
     }

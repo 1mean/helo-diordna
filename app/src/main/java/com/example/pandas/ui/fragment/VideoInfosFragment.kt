@@ -2,6 +2,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.viewmodel.VideoViewModel
@@ -14,9 +15,14 @@ import com.example.pandas.databinding.FragmentInformationBinding
  * @version: v1.0
  */
 public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformationBinding>(),
-    View.OnClickListener {
+    View.OnClickListener, OnVideoItemClickLIstener {
 
-    private val mAdapter: VideoRecoListAdapter by lazy { VideoRecoListAdapter(mutableListOf()) }
+    private val mAdapter: VideoRecoListAdapter by lazy {
+        VideoRecoListAdapter(
+            mutableListOf(),
+            this
+        )
+    }
 
     private var isLike = false
     private var isLove = false
@@ -113,5 +119,9 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
 
             }
         }
+    }
+
+    override fun onClick(position: Int, code: Int) {
+        mViewModel.setVideoItemClick(code)
     }
 }

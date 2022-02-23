@@ -2,6 +2,7 @@ package com.example.pandas.sql.dao
 
 import androidx.room.*
 import com.example.pandas.bean.CoverDownLoad
+import com.example.pandas.bean.SearchInfo
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
@@ -97,8 +98,8 @@ interface PetVideoDao {
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where type = (:type) and videoType=0")
     suspend fun queryByType(type: Int): MutableList<PetViewData>
 
-    @Query("select code,title,cover,authorName,duration,videoType,releaseTime from pet_video where type = (:type) and videoType=0 limit 0,(:count)")
-    suspend fun queryByType(type: Int, count: Int): MutableList<PetViewData>
+    @Query("select code,title,cover,authorName,duration,videoType,releaseTime from pet_video where type = (:type) and videoType=0 and code!=(:code) limit 0,(:count)")
+    suspend fun queryByType(code: Int, type: Int, count: Int): MutableList<PetViewData>
 
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryByTypeAndPage(type: Int, startIndex: Int, count: Int): MutableList<PetViewData>
@@ -139,4 +140,14 @@ interface PetVideoDao {
 
     @Query("select * from pet_video where code=(:code)")
     fun queryVideoByCode(code: Int): Flow<PetVideo>
+
+    @Query("select title,code from pet_video where title like (:words) limit 0,20")
+    suspend fun queryByKeyWords(words: String): MutableList<SearchInfo>
+
+    @Query("select code,title,cover,authorName,duration,videoType from  pet_video where title like (:words) limit (:startIndex),(:counts)")
+    suspend fun queryWordsByPage(
+        words: String,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetViewData>
 }

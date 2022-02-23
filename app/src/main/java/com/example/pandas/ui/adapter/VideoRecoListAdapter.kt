@@ -3,7 +3,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.bean.pet.PetViewData
-import com.example.pandas.biz.ext.loadRoundedCornerImage
+import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.databinding.ItemVideoIntroBinding
 
 /**
@@ -12,7 +12,10 @@ import com.example.pandas.databinding.ItemVideoIntroBinding
  * @date: 2/15/22 9:50 下午
  * @version: v1.0
  */
-public class VideoRecoListAdapter(private val list: MutableList<PetViewData>) :
+public class VideoRecoListAdapter(
+    private val list: MutableList<PetViewData>,
+    private val listener: OnVideoItemClickLIstener
+) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
@@ -48,11 +51,15 @@ public class VideoRecoListAdapter(private val list: MutableList<PetViewData>) :
         fun handle(position: Int) {
 
             val video = list[position]
-            loadRoundedCornerImage(itemView.context, 10, video.cover, cover)
+            loadImage(itemView.context, video.cover, cover)
             title.text = video.title
             name.text = video.authorName
             duration.text = TimeUtils.getDuration(video.duration.toLong())
             time.text = video.releaseTime
+
+            itemView.setOnClickListener {
+                listener.onClick(position, video.code)
+            }
         }
     }
 }

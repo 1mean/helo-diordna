@@ -6,12 +6,17 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 /**
- * @description: TODO
+ * @description: 从retrofit+rxjava --> retrofit+courtinue
  * @author: dongyiming
  * @date: 2021/12/21 4:23 下午
  * @version: v1.0
  */
-public interface EyepetozerService {
+interface EyepetozerService {
+
+    companion object {
+        val BASE_URL: String
+            get() = "http://baobab.kaiyanapp.com/api/v4/"
+    }
 
     /**
      * 获取首页所有数据
@@ -33,6 +38,15 @@ public interface EyepetozerService {
      */
     @GET("discovery/hot")
     fun discoveryHot(): Observable<Eyepetozer>
+
+    @GET("discovery/hot")
+    suspend fun getHotList(): Eyepetozer
+
+    @GET("discovery/hot")
+    suspend fun getHotList(
+        @Query("start") startIndex: Int,
+        @Query("num") count: Int
+    ): Eyepetozer
 
     /**
      * 获取分页数据

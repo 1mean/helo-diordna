@@ -41,6 +41,10 @@ fun loadCircleImage(context: Context, url: String, view: ImageView) {
     Glide.with(context).load(url).apply(options).into(view)
 }
 
+fun loadImage(context: Context, url: String, view: ImageView) {
+    Glide.with(context).load(url).into(view)
+}
+
 fun clearMemoryCache(context: Context) {
     Glide.get(context).clearMemory()
 }

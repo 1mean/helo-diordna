@@ -8,11 +8,10 @@
     <!--id名必须和exoplayer源码控件名一致-->
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/black">
+            android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/exo_ffwd"
+        <!--<androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/exo_prev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
@@ -22,54 +21,52 @@
                 android:src="@mipmap/img_video_rew" />
 
         <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/exo_rew"
+                android:id="@+id/exo_ffwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginEnd="60dp"
-                android:src="@mipmap/img_video_forward" />
+                android:src="@mipmap/img_video_forward" />-->
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view_bottom"
                 android:layout_width="0dp"
-                android:layout_height="24dp"
+                android:layout_height="25dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="8dp"
-                android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/exo_pause"
-                    android:layout_width="24dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="12dp"
-                    android:src="@mipmap/img_video_stop" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/exo_play"
-                    android:layout_width="24dp"
-                    android:layout_height="match_parent"
-                    android:visibility="gone"
-                    android:layout_marginStart="12dp"
-                    android:src="@mipmap/img_video_stop" />
-
-            <com.google.android.exoplayer2.ui.DefaultTimeBar
-                    android:id="@+id/exo_progress"
-                    android:layout_width="225dp"
-                    android:layout_height="match_parent"
-                    app:bar_height="2dp"
-                    app:unplayed_color="@color/color_video_timebar_unplayed"
-                    app:played_color="@color/color_tab_indicator"
-                    app:buffered_color="@color/color_video_timebar_buffered" />
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_video_controller_bg">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="56dp"
-                    android:layout_height="14dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_gravity="center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="24dp"
+                    app:layout_constraintLeft_toLeftOf="@id/view_bottom"
+                    app:layout_constraintRight_toRightOf="@id/view_bottom"
+                    app:layout_constraintTop_toTopOf="@id/view_bottom"
+                    app:layout_constraintBottom_toBottomOf="@id/view_bottom"
                     android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/exo_pause"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/img_video_pause" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/exo_play"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_marginStart="2dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/img_video_play" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/exo_position"
@@ -79,19 +76,19 @@
                         android:textStyle="bold"
                         android:textSize="10sp"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:gravity="center"
                         tools:ignore="SmallSp" />
 
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="/"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:textSize="10sp"
-                        android:textColor="@color/white"
-                        tools:ignore="SmallSp" />
+                <com.google.android.exoplayer2.ui.DefaultTimeBar
+                        android:id="@+id/exo_progress"
+                        android:layout_width="180dp"
+                        android:layout_height="match_parent"
+                        app:bar_height="2dp"
+                        android:layout_marginStart="3dp"
+                        app:unplayed_color="@color/color_video_timebar_unplayed"
+                        app:played_color="@color/color_tab_indicator"
+                        app:buffered_color="@color/color_video_timebar_buffered" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/exo_duration"
@@ -100,16 +97,19 @@
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="10sp"
+                        android:layout_marginStart="3dp"
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
                         tools:ignore="SmallSp" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="36dp"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/img_video_full"
-                    android:layout_gravity="center_vertical" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/img_video_more"
+                        android:layout_marginStart="7dp"
+                        android:layout_gravity="center_vertical" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

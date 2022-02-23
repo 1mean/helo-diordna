@@ -18,8 +18,9 @@ public class MusicItemAdapter(private val list: MutableList<MusicVo>) :
 
     fun insertList(data: MutableList<MusicVo>) {
         if (data.isNotEmpty()) {
+            val size = list.size
             list.addAll(data)
-            notifyItemRangeInserted(list.size, data.size)
+            notifyItemRangeInserted(size, data.size)
         }
     }
 

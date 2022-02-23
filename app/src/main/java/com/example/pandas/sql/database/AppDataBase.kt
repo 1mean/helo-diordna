@@ -1,13 +1,11 @@
 package com.example.pandas.sql.database
 
-import android.app.Application
-import android.content.Context
 import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.pandas.DiorApplication
+import com.example.pandas.app.DiorApplication
 import com.example.pandas.sql.dao.PetVideoDao
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo

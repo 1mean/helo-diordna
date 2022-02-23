@@ -1,6 +1,8 @@
 package com.example.pandas.base.activity
 
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -54,6 +56,17 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
         return binding.root
     }
 
+    //BUG:软键盘弹出来后，点击返回不会回调onKeyDown和backpressed方法
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            onkeyBack()
+            return true
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
+    }
+
     private fun initViewModel() {
         val superclass = javaClass.genericSuperclass
         val aClass = (superclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
@@ -64,6 +77,10 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
      * 初始化view
      */
     abstract fun initView(savedInstanceState: Bundle?)
+
+    open fun onkeyBack() {
+        finish()
+    }
 
     /**
      * 创建观察者

@@ -32,10 +32,11 @@ public class PandasAdapter(private val list: MutableList<PetViewData>) :
 
     @SuppressLint("NotifyDataSetChanged")
     fun addData(data: MutableList<PetViewData>) {
+        val size = list.size
         if (data.isNotEmpty()) {
             list.addAll(data)
         }
-        notifyItemRangeInserted(list.size, data.size)
+        notifyItemRangeInserted(size, data.size)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {

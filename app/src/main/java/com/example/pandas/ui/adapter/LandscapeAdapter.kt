@@ -32,8 +32,9 @@ public class LandscapeAdapter(private var data: LandscapeData) :
                 data = landData
                 notifyDataSetChanged()
             } else {
+                val size = data.itemList.size
                 data.itemList.addAll(landData.itemList)
-                notifyItemRangeInserted(data.itemList.size + 2, landData.itemList.size)
+                notifyItemRangeInserted(size + 2, landData.itemList.size)
             }
         }
     }

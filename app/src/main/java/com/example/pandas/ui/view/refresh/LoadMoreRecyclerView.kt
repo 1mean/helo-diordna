@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.pandas.R
+import kotlin.math.abs
 
 
 /**
@@ -95,6 +97,39 @@ class LoadMoreRecyclerView : RecyclerView {
                 }
             }
         }
+    }
+
+    /**
+     * 解决Viewpager2和Viewpager2以及RecyclerView的滑动冲突问题
+     */
+    private var startX = 0
+    private var startY = 0
+    override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
+
+        when (ev.action) {
+            MotionEvent.ACTION_DOWN -> {
+                startX = ev.x.toInt()
+                startY = ev.y.toInt()
+                parent.requestDisallowInterceptTouchEvent(true)
+            }
+            MotionEvent.ACTION_MOVE -> {
+                val endX = ev.x.toInt()
+                val endY = ev.y.toInt()
+                val disX = abs(endX - startX)
+                val disY = abs(endY - startY)
+
+                if (disY > disX) {
+                    //如果是纵向滑动，告知父布局不进行事件拦截，交由子布局消费，　requestDisallowInterceptTouchEvent(true)
+                    parent.requestDisallowInterceptTouchEvent(true)
+                } else {
+                    parent.requestDisallowInterceptTouchEvent(false)
+                }
+            }
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> parent.requestDisallowInterceptTouchEvent(
+                false
+            )
+        }
+        return super.onInterceptTouchEvent(ev)
     }
 
     inner class DataObserver : AdapterDataObserver() {

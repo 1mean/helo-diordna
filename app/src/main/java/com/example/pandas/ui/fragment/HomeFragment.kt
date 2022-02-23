@@ -1,5 +1,5 @@
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.viewpager2.widget.ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -8,6 +8,7 @@ import com.example.pandas.R
 import com.example.pandas.base.BaseViewModel
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.databinding.FragmentHomeBinding
+import com.example.pandas.ui.activity.SearchActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
 /**
@@ -41,6 +42,10 @@ public class HomeFragment : BaseLazyFragment<BaseViewModel, FragmentHomeBinding>
         ) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
+
+        binding.edit.setOnClickListener {
+            startActivity(Intent(mActivity, SearchActivity::class.java))
+        }
     }
 
     override fun createObserver() {

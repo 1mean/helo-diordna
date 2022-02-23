@@ -1,7 +1,7 @@
 package com.example.pandas.base.interaction
 
 import android.view.ViewGroup
-import com.example.pandas.base.BaseViewHolder
+import com.example.pandas.base.adapter.BaseViewHolder
 
 /**
  * @description: TODO

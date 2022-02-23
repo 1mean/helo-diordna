@@ -4,6 +4,8 @@ import BaseEmptyViewHolder
 import PandaDecoration
 import RecommendDecoration
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.pandas.R
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 
 
@@ -29,5 +31,10 @@ fun LoadMoreRecyclerView.initPanda(
     this.layoutManager = manger
     setRefreshAdapter(bindAdapter, listener)
     addItemDecoration(PandaDecoration(context))
+    return this
+}
+
+fun SwipeRefreshLayout.setRefreshColor(): SwipeRefreshLayout {
+    this.setColorSchemeResources(R.color.color_tab_indicator)
     return this
 }

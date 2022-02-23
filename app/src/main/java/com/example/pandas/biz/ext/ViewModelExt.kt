@@ -23,11 +23,9 @@ fun SwipeRefreshLayout.init(distance: Int): SwipeRefreshLayout {
     return this
 }
 
-
-fun startActivity(context: Context, key: String, value: Int) {
-
+fun startVideoPlayActivity(context: Context, code: Int) {
     val intent = Intent(context, VideoPlayingActivity::class.java).apply {
-        putExtra(key, value)
+        putExtra("code", code)
     }
     context.startActivity(intent)
 }

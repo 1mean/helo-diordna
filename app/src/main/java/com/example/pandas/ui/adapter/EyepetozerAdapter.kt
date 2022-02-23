@@ -1,7 +1,10 @@
+import BaseEmptyViewHolder
+import EyeViewPagerAdapter
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.view.menu.MenuView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
@@ -9,10 +12,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.databinding.ItemTitleEyeBinding
 import com.example.pandas.databinding.ItemVideoEyeBinding
 import com.example.pandas.databinding.ItemVpEyeBinding
-import com.example.pandas.ui.activity.VideoPlayingActivity
+import com.example.pandas.ui.activity.VerticalVideoActivity
 import com.example.pandas.ui.view.viewpager.Banner
 
 /**
@@ -27,16 +31,17 @@ public class EyepetozerAdapter(
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
     override fun getItemCount(): Int = list.size
+
     override fun getItemViewType(position: Int): Int {
         return list[position].type
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun addList(items: MutableList<EyepetozerBean>) {
+    fun loadMore(items: MutableList<EyepetozerBean>) {
 
         if (items.isNotEmpty()) {
+            val size = list.size
             list.addAll(items)
-            notifyDataSetChanged()
+            notifyItemRangeInserted(size, items.size)
         }
     }
 
@@ -104,10 +109,7 @@ public class EyepetozerAdapter(
             )
         ).into(videoHolder.userIcon)
         videoHolder.itemView.setOnClickListener {
-//            val intent = Intent(context, VideoPlayingActivity::class.java).apply {
-//                putExtra("EyepetozerBean",bean)
-//            }
-//            context.startActivity(intent)
+            context.startActivity(Intent().setClass(context,VerticalVideoActivity::class.java))
         }
     }
 

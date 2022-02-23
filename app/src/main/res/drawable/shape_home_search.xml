@@ -4,5 +4,5 @@
     <!--定义圆角-->
     <corners android:radius="20dp" />
     <!--内部填充色-->
-    <solid android:color="#f0f3f3" />
+    <solid android:color="@color/color_bg_search" />
 </shape>

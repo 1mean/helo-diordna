@@ -4,12 +4,13 @@ import HomeAdapter
 import StatusBarUtils
 import android.Manifest
 import android.os.Bundle
+import android.view.KeyEvent
 import android.widget.RadioGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.pandas.R
-import com.example.pandas.biz.ext.downLoadVideoCovers
 import com.example.pandas.databinding.ActivityHomeBinding
 
 
@@ -63,11 +64,38 @@ public class HomeActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListe
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+
+        val selectColor = ContextCompat.getColor(this,R.color.color_groupbutton_text_selected)
+        val color = ContextCompat.getColor(this,R.color.color_groupbutton_text)
         when (checkedId) {
-            R.id.rb_name1 -> binding.vpHome.setCurrentItem(0, false)
-            R.id.rb_name2 -> binding.vpHome.setCurrentItem(1, false)
-            R.id.rb_name3 -> binding.vpHome.setCurrentItem(2, false)
-            R.id.rb_name4 -> binding.vpHome.setCurrentItem(3, false)
+            R.id.rb_name1 -> {
+                binding.vpHome.setCurrentItem(0, false)
+                binding.rbName1.setTextColor(selectColor)
+                binding.rbName2.setTextColor(color)
+                binding.rbName3.setTextColor(color)
+                binding.rbName4.setTextColor(color)
+            }
+            R.id.rb_name2 -> {
+                binding.vpHome.setCurrentItem(1, false)
+                binding.rbName1.setTextColor(color)
+                binding.rbName2.setTextColor(selectColor)
+                binding.rbName3.setTextColor(color)
+                binding.rbName4.setTextColor(color)
+            }
+            R.id.rb_name3 -> {
+                binding.vpHome.setCurrentItem(2, false)
+                binding.rbName1.setTextColor(color)
+                binding.rbName2.setTextColor(color)
+                binding.rbName3.setTextColor(selectColor)
+                binding.rbName4.setTextColor(color)
+            }
+            R.id.rb_name4 -> {
+                binding.vpHome.setCurrentItem(3, false)
+                binding.rbName1.setTextColor(color)
+                binding.rbName2.setTextColor(color)
+                binding.rbName3.setTextColor(color)
+                binding.rbName4.setTextColor(selectColor)
+            }
         }
     }
 }

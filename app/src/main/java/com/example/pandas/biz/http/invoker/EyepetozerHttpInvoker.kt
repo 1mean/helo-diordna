@@ -22,7 +22,7 @@ public class EyepetozerHttpInvoker : IEyepetozerHttpInvoker {
     private var eyepetozerService: EyepetozerService? = null
 
     init {
-        val retrofit = RetrofitBuilder.instance.getEyeRetrofit(BASE_URL)
+        val retrofit = RetrofitBuilder.instance.getRxRetrofit(BASE_URL)
         eyepetozerService = retrofit?.create(EyepetozerService::class.java)
     }
 

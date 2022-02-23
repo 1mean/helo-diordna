@@ -7,8 +7,7 @@ import io.reactivex.rxjava3.functions.Function
  * @date: 2021/12/22 7:36 下午
  * @version: v1.0
  */
-public class EyepetozerFunction : Function<Eyepetozer, MutableList<EyepetozerBean>> {
-
+class EyepetozerFunction : Function<Eyepetozer, MutableList<EyepetozerBean>> {
 
     override fun apply(eyepetozer: Eyepetozer?): MutableList<EyepetozerBean> {
 

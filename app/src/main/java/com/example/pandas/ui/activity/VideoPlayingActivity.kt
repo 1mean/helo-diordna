@@ -2,13 +2,16 @@ package com.example.pandas.ui.activity
 
 import StatusBarUtils
 import VideoFragmentAdapter
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.ActivityVideoBinding
@@ -39,6 +42,13 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     private var vedioUrl: String? = null
     private var code: Int = -1
 
+    private val requestLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                mPlayer?.play()
+            }
+        }
+
     override fun initView(savedInstanceState: Bundle?) {
 
         StatusBarUtils.setStatusBarMode(this, false, R.color.black)
@@ -46,7 +56,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 //        val eyepetozerBean = getIntent().getParcelableExtra<EyepetozerBean>("EyepetozerBean")
 //        vedioUrl = eyepetozerBean?.playUrl
 
-        code = intent.getIntExtra("code", -1)
+        code = intent.getIntExtra(AppInfos.VIDEO_PLAY_KEY, -1)
 
         lifecycleScope.launch {
 
@@ -59,7 +69,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                 tab.text = tabNames[position]
             }.attach()
         }
-
     }
 
     override fun onStart() {
@@ -76,6 +85,11 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         }
     }
 
+    override fun onkeyBack() {
+        setResult(RESULT_OK)
+        finish()
+    }
+
     override fun createObserver() {
 
         mViewModel.videoInfo.observe(this) {
@@ -83,11 +97,19 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             if (mPlayer == null) {
 
                 val file = mViewModel.getUrl(this, it.fileName!!)
-                Log.e("1mean","path: ${file.absolutePath}")
+                Log.e("1mean", "path: ${file.absolutePath}")
                 if (file.exists()) {
                     initPlayer(file)
                 }
             }
+        }
+
+        mViewModel.isVideoItemClicked.observe(this) { code ->
+            mPlayer?.pause()
+            val intent = Intent(this, VideoPlayingActivity::class.java).apply {
+                putExtra("code", code)
+            }
+            requestLauncher.launch(intent)
         }
     }
 
@@ -101,6 +123,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         val firstLocalMediaItem = MediaItem.fromUri(Uri.fromFile(file))
 
         mPlayer?.run {
+            setRepeatMode()//设置重复播放模式
             addListener(listener)
             addMediaItem(firstLocalMediaItem)
             playWhenReady = true//3.设置播放方式为自动播放
@@ -111,7 +134,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     private fun initPlayer() {
 
         if (code == -1) {
-            Log.d("Pandas", "playUri is null!")
             return
         }
         mViewModel.getVideoInfo(code)
@@ -178,6 +200,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 //            }
 //            releasePlayer()
         }
+
     }
 
     override fun onStop() {
@@ -195,14 +218,15 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         mPlayer?.release()
     }
 
+    private var lastClickTime: Long = 0
+    private fun isFastClick(): Boolean {
 
-    /*
-    *
-    * 想以本地流的方式来调试exoplayer，
-    * 就会遇到作用域问题，从Android 10开始，
-    * 每个应用程序只能有权在自己的外置存储空间关联目录下读取和创建文件，
-    * 获取该关联目录的代码是：context.getExternalFilesDir()，关联目录对应的路径大致如下：
-    *  /storage/emulated/0/Android/data/<包名>/files
-    * */
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - lastClickTime < 500) {
+            return true
+        }
+        lastClickTime = currentTime
+        return false
+    }
 
 }

@@ -1,17 +1,10 @@
 package com.example.pandas.ui.activity
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pandas.R
-import com.example.pandas.base.BaseViewAdapter
-import com.example.pandas.base.BaseViewHolder
 import com.example.pandas.databinding.ActivityBehaviorBinding
 
 /**
@@ -46,24 +39,5 @@ public class BehaviorActivity : AppCompatActivity() {
         for (i in 0 until 100) {
             list.add("")
         }
-        binding.recyclerView.adapter = MyAdapter(this, list)
-    }
-
-    class MyAdapter(val context: Context, val datas: MutableList<String>) :
-        BaseViewAdapter(context, datas) {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-
-            val tv = TextView(context)
-            tv.text = "hello $viewType"
-            tv.setTextColor(ContextCompat.getColor(context, R.color.black))
-            return BaseViewHolder(tv)
-        }
-
-        override fun handleViewHolder(holder: BaseViewHolder, position: Int) {
-
-        }
-
-
     }
 }

@@ -20,25 +20,25 @@
         <RadioButton
                 android:id="@+id/rb_name1"
                 style="@style/styles_homepage_radiobuttom"
-                android:drawableTop="@drawable/selector_button_catfound"
+                android:drawableTop="@drawable/selector_button_home"
                 android:text="@string/home_button1" />
 
         <RadioButton
                 android:id="@+id/rb_name2"
                 style="@style/styles_homepage_radiobuttom"
-                android:drawableTop="@drawable/selector_button_catfound"
+                android:drawableTop="@drawable/selector_button_pet"
                 android:text="@string/home_button2" />
 
         <RadioButton
                 android:id="@+id/rb_name3"
                 style="@style/styles_homepage_radiobuttom"
-                android:drawableTop="@drawable/selector_button_catfound"
+                android:drawableTop="@drawable/selector_button_video"
                 android:text="@string/home_button3" />
 
         <RadioButton
                 android:id="@+id/rb_name4"
                 style="@style/styles_homepage_radiobuttom"
-                android:drawableTop="@drawable/selector_button_catfound"
+                android:drawableTop="@drawable/selector_button_mine"
                 android:text="@string/home_button4" />
     </RadioGroup>
 
