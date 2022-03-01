@@ -11,8 +11,10 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.R
 import com.example.pandas.bean.pet.PageCommonData
+import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.databinding.*
 import com.example.pandas.sql.entity.MusicVo
+import com.example.pandas.ui.activity.MoreDataListActivity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
@@ -31,7 +33,6 @@ public class MyLoveFragmentAdapter(
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
     private val TYPE_IMAGE = 1 //图片展示
-    private val TYPE_HORIZONTAL = 2 //水平滑动
     private val TYPE_MOVIE = 3 //歌曲视频
     private val TYPE_SLEEP = 4 //我爱的电视剧
     private val TYPE_MUSIC = 5 //热门音乐
@@ -47,15 +48,14 @@ public class MyLoveFragmentAdapter(
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = 6
+    override fun getItemCount(): Int = 5
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
             0 -> TYPE_IMAGE
-            1 -> TYPE_HORIZONTAL
-            3 -> TYPE_MOVIE
-            5 -> TYPE_SLEEP
+            1 -> TYPE_MOVIE
             2 -> TYPE_MUSIC
+            3 -> TYPE_SLEEP
             4 -> TYPE_TALK
             else -> TYPE_COMMON
         }
@@ -67,15 +67,6 @@ public class MyLoveFragmentAdapter(
                 val binding =
                     CardImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return ImageViewHolder(binding)
-            }
-            TYPE_HORIZONTAL -> {
-                val binding =
-                    CardItemHorizontalBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
-                return HorizontalViewHolder(binding)
             }
             TYPE_MOVIE -> {
                 val binding =
@@ -119,9 +110,6 @@ public class MyLoveFragmentAdapter(
             TYPE_IMAGE -> {
                 (holder as ImageViewHolder).handle(position)
             }
-            TYPE_HORIZONTAL -> {
-                (holder as HorizontalViewHolder).handle()
-            }
             TYPE_MOVIE -> {
                 (holder as MovieViewHolder).handle(position)
             }
@@ -145,56 +133,6 @@ public class MyLoveFragmentAdapter(
         val image = binding.imageLove
         fun handle(position: Int) {
 
-        }
-    }
-
-    private inner class ClassifyViewHolder(binding: CardItemClassifyBinding) :
-        BaseEmptyViewHolder(binding.root) {
-
-        val petView = binding.llayoutPet
-        val tvView = binding.llayoutTv
-        val musicView = binding.llayoutMusic
-        val talkView = binding.llayoutTalk
-        val otherView = binding.llayoutOther
-
-        val imgPet = binding.imgPet
-        val imgTv = binding.imgTv
-        val imgMusic = binding.imgMusic
-        val imgTalk = binding.imgTalk
-        val imgOther = binding.imgOther
-
-        fun handle(position: Int) {
-            val options = RequestOptions.bitmapTransform(CircleCrop())
-            Glide.with(itemView.context).apply {
-                load(R.mipmap.img_tiger_1).apply(options).into(imgPet)
-                load(R.mipmap.img_tiger_2).apply(options).into(imgTv)
-                load(R.mipmap.img_tiger_3).apply(options).into(imgMusic)
-                load(R.mipmap.img_tiger_4).apply(options).into(imgTalk)
-                load(R.mipmap.img_tiger_5).apply(options).into(imgOther)
-            }
-        }
-    }
-
-    private inner class HorizontalViewHolder(binding: CardItemHorizontalBinding) :
-        BaseEmptyViewHolder(binding.root) {
-
-        val recyclerView = binding.recyclerViewHorizontalLove
-        private var mAdapter: HorizontalVideoAdapter? = null
-        val padding =
-            itemView.context.resources.getDimension(R.dimen.item_horizontal_padding).toInt()
-
-        fun handle() {
-            val videos = data.horizontalVideos
-
-            if (videos.isNotEmpty() && mAdapter == null) {
-                mAdapter = HorizontalVideoAdapter(videos)
-                recyclerView.run {
-                    layoutManager =
-                        LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
-                    addItemDecoration(HorizontalItemDecoration(padding))
-                    adapter = mAdapter
-                }
-            }
         }
     }
 
@@ -251,6 +189,9 @@ public class MyLoveFragmentAdapter(
                     layoutManager = GridLayoutManager(itemView.context, 2)
                     adapter = mAdapter
                 }
+            }
+            titleLayout.setOnClickListener {
+                MoreDataListActivity.startMoreDataActivity(itemView.context,VideoType.MUSIC.ordinal)
             }
         }
     }

@@ -1,4 +1,4 @@
-import com.example.pandas.bean.pet.PetType
+import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.entity.PeriodType
 import com.example.pandas.sql.entity.PetVideo
 
@@ -15,7 +15,7 @@ object PetGroupPandaData {
     fun getPetGroupPandaData(): MutableList<PetVideo> {
 
         val panda1 = PetVideo()
-        panda1.type = PetType.PANDA.ordinal
+        panda1.type = VideoType.PANDA.ordinal
         panda1.fileName = "panda_group_panda1"
         panda1.code = 337
         panda1.duration = 69
@@ -32,7 +32,7 @@ object PetGroupPandaData {
 
 
         val panda2 = PetVideo()
-        panda2.type = PetType.PANDA.ordinal
+        panda2.type = VideoType.PANDA.ordinal
         panda2.fileName = "panda_group_panda2"
         panda2.code = 338
         panda2.duration = 72
@@ -49,7 +49,7 @@ object PetGroupPandaData {
 
 
         val panda3 = PetVideo()
-        panda3.type = PetType.PANDA.ordinal
+        panda3.type = VideoType.PANDA.ordinal
         panda3.fileName = "panda_group_panda3"
         panda3.code = 339
         panda3.duration = 27
@@ -66,7 +66,7 @@ object PetGroupPandaData {
 
 
         val panda4 = PetVideo()
-        panda4.type = PetType.PANDA.ordinal
+        panda4.type = VideoType.PANDA.ordinal
         panda4.fileName = "panda_group_panda4"
         panda4.code = 340
         panda4.duration = 48
@@ -83,7 +83,7 @@ object PetGroupPandaData {
 
 
         val panda5 = PetVideo()
-        panda5.type = PetType.PANDA.ordinal
+        panda5.type = VideoType.PANDA.ordinal
         panda5.fileName = "panda_group_panda5"
         panda5.code = 341
         panda5.duration = 53
@@ -100,7 +100,7 @@ object PetGroupPandaData {
 
 
         val panda6 = PetVideo()
-        panda6.type = PetType.PANDA.ordinal
+        panda6.type = VideoType.PANDA.ordinal
         panda6.fileName = "panda_group_panda6"
         panda6.code = 342
         panda6.duration = 169
@@ -117,7 +117,7 @@ object PetGroupPandaData {
 
 
         val panda7 = PetVideo()
-        panda7.type = PetType.PANDA.ordinal
+        panda7.type = VideoType.PANDA.ordinal
         panda7.fileName = "panda_group_panda7"
         panda7.code = 343
         panda7.duration = 71
@@ -134,7 +134,7 @@ object PetGroupPandaData {
 
 
         val panda8 = PetVideo()
-        panda8.type = PetType.PANDA.ordinal
+        panda8.type = VideoType.PANDA.ordinal
         panda8.fileName = "panda_group_panda8"
         panda8.code = 344
         panda8.duration = 72
@@ -151,7 +151,7 @@ object PetGroupPandaData {
 
 
         val panda9 = PetVideo()
-        panda9.type = PetType.PANDA.ordinal
+        panda9.type = VideoType.PANDA.ordinal
         panda9.fileName = "panda_group_panda9"
         panda9.code = 345
         panda9.duration = 58
@@ -168,7 +168,7 @@ object PetGroupPandaData {
 
 
         val panda10 = PetVideo()
-        panda10.type = PetType.PANDA.ordinal
+        panda10.type = VideoType.PANDA.ordinal
         panda10.fileName = "panda_group_panda10"
         panda10.code = 346
         panda10.duration = 453
@@ -185,7 +185,7 @@ object PetGroupPandaData {
 
 
         val panda11 = PetVideo()
-        panda11.type = PetType.PANDA.ordinal
+        panda11.type = VideoType.PANDA.ordinal
         panda11.fileName = "panda_group_panda11"
         panda11.code = 347
         panda11.duration = 122
@@ -202,7 +202,7 @@ object PetGroupPandaData {
 
 
         val panda12 = PetVideo()
-        panda12.type = PetType.PANDA.ordinal
+        panda12.type = VideoType.PANDA.ordinal
         panda12.fileName = "panda_group_panda12"
         panda12.code = 68
         panda12.duration = 67
@@ -217,7 +217,7 @@ object PetGroupPandaData {
         list.add(panda12)
 
         val panda13 = PetVideo()
-        panda13.type = PetType.PANDA.ordinal
+        panda13.type = VideoType.PANDA.ordinal
         panda13.fileName = "panda_group_panda13"
         panda13.code = 69
         panda13.duration = 68
@@ -232,7 +232,7 @@ object PetGroupPandaData {
         list.add(panda13)
 
         val panda14 = PetVideo()
-        panda14.type = PetType.PANDA.ordinal
+        panda14.type = VideoType.PANDA.ordinal
         panda14.fileName = "panda_group_panda14"
         panda14.code = 70
         panda14.duration = 113
@@ -247,7 +247,7 @@ object PetGroupPandaData {
         list.add(panda14)
 
         val panda15 = PetVideo()
-        panda15.type = PetType.PANDA.ordinal
+        panda15.type = VideoType.PANDA.ordinal
         panda15.fileName = "panda_group_panda15"
         panda15.code = 71
         panda15.duration = 133
@@ -262,7 +262,7 @@ object PetGroupPandaData {
         list.add(panda15)
 
         val panda16 = PetVideo()
-        panda16.type = PetType.PANDA.ordinal
+        panda16.type = VideoType.PANDA.ordinal
         panda16.fileName = "panda_group_panda16"
         panda16.code = 337
         panda16.duration = 34
@@ -279,7 +279,7 @@ object PetGroupPandaData {
 
 
         val panda17 = PetVideo()
-        panda17.type = PetType.PANDA.ordinal
+        panda17.type = VideoType.PANDA.ordinal
         panda17.fileName = "panda_group_panda17"
         panda17.code = 492
         panda17.duration = 135
@@ -297,7 +297,7 @@ object PetGroupPandaData {
 
 
         val panda18 = PetVideo()
-        panda18.type = PetType.PANDA.ordinal
+        panda18.type = VideoType.PANDA.ordinal
         panda18.fileName = "panda_group_panda18"
         panda18.code = 493
         panda18.duration = 64
@@ -315,7 +315,7 @@ object PetGroupPandaData {
 
 
         val panda19 = PetVideo()
-        panda19.type = PetType.PANDA.ordinal
+        panda19.type = VideoType.PANDA.ordinal
         panda19.fileName = "panda_group_panda19"
         panda19.code = 494
         panda19.duration = 85
@@ -333,7 +333,7 @@ object PetGroupPandaData {
 
 
         val panda20 = PetVideo()
-        panda20.type = PetType.PANDA.ordinal
+        panda20.type = VideoType.PANDA.ordinal
         panda20.fileName = "panda_group_panda20"
         panda20.code = 495
         panda20.duration = 68
@@ -351,7 +351,7 @@ object PetGroupPandaData {
 
 
         val panda21 = PetVideo()
-        panda21.type = PetType.PANDA.ordinal
+        panda21.type = VideoType.PANDA.ordinal
         panda21.fileName = "panda_group_panda21"
         panda21.code = 496
         panda21.duration = 96
@@ -369,7 +369,7 @@ object PetGroupPandaData {
 
 
         val panda22 = PetVideo()
-        panda22.type = PetType.PANDA.ordinal
+        panda22.type = VideoType.PANDA.ordinal
         panda22.fileName = "panda_group_panda22"
         panda22.code = 497
         panda22.duration = 246
@@ -387,7 +387,7 @@ object PetGroupPandaData {
 
 
         val panda23 = PetVideo()
-        panda23.type = PetType.PANDA.ordinal
+        panda23.type = VideoType.PANDA.ordinal
         panda23.fileName = "panda_group_panda23"
         panda23.code = 498
         panda23.duration = 76
@@ -405,7 +405,7 @@ object PetGroupPandaData {
 
 
         val panda24 = PetVideo()
-        panda24.type = PetType.PANDA.ordinal
+        panda24.type = VideoType.PANDA.ordinal
         panda24.fileName = "panda_group_panda24"
         panda24.code = 499
         panda24.duration = 65
@@ -423,7 +423,7 @@ object PetGroupPandaData {
 
 
         val panda25 = PetVideo()
-        panda25.type = PetType.PANDA.ordinal
+        panda25.type = VideoType.PANDA.ordinal
         panda25.fileName = "panda_group_panda25"
         panda25.code = 500
         panda25.duration = 69
@@ -441,7 +441,7 @@ object PetGroupPandaData {
 
 
         val panda26 = PetVideo()
-        panda26.type = PetType.PANDA.ordinal
+        panda26.type = VideoType.PANDA.ordinal
         panda26.fileName = "panda_group_panda26"
         panda26.code = 501
         panda26.duration = 83
@@ -459,7 +459,7 @@ object PetGroupPandaData {
 
 
         val panda27 = PetVideo()
-        panda27.type = PetType.PANDA.ordinal
+        panda27.type = VideoType.PANDA.ordinal
         panda27.fileName = "panda_group_panda27"
         panda27.code = 502
         panda27.duration = 90
@@ -477,7 +477,7 @@ object PetGroupPandaData {
 
 
         val panda28 = PetVideo()
-        panda28.type = PetType.PANDA.ordinal
+        panda28.type = VideoType.PANDA.ordinal
         panda28.fileName = "panda_group_panda28"
         panda28.code = 503
         panda28.duration = 90
@@ -495,7 +495,7 @@ object PetGroupPandaData {
 
 
         val panda29 = PetVideo()
-        panda29.type = PetType.PANDA.ordinal
+        panda29.type = VideoType.PANDA.ordinal
         panda29.fileName = "panda_group_panda29"
         panda29.code = 504
         panda29.duration = 71
@@ -513,7 +513,7 @@ object PetGroupPandaData {
 
 
         val panda30 = PetVideo()
-        panda30.type = PetType.PANDA.ordinal
+        panda30.type = VideoType.PANDA.ordinal
         panda30.fileName = "panda_group_panda30"
         panda30.code = 505
         panda30.duration = 184
@@ -531,7 +531,7 @@ object PetGroupPandaData {
 
 
         val panda31 = PetVideo()
-        panda31.type = PetType.PANDA.ordinal
+        panda31.type = VideoType.PANDA.ordinal
         panda31.fileName = "panda_group_panda31"
         panda31.code = 506
         panda31.duration = 183
@@ -549,7 +549,7 @@ object PetGroupPandaData {
 
 
         val panda32 = PetVideo()
-        panda32.type = PetType.PANDA.ordinal
+        panda32.type = VideoType.PANDA.ordinal
         panda32.fileName = "panda_group_panda32"
         panda32.code = 507
         panda32.duration = 97
@@ -567,7 +567,7 @@ object PetGroupPandaData {
 
 
         val panda33 = PetVideo()
-        panda33.type = PetType.PANDA.ordinal
+        panda33.type = VideoType.PANDA.ordinal
         panda33.fileName = "panda_group_panda33"
         panda33.code = 508
         panda33.duration = 96
@@ -585,7 +585,7 @@ object PetGroupPandaData {
 
 
         val panda34 = PetVideo()
-        panda34.type = PetType.PANDA.ordinal
+        panda34.type = VideoType.PANDA.ordinal
         panda34.fileName = "panda_group_panda34"
         panda34.code = 509
         panda34.duration = 101
@@ -603,7 +603,7 @@ object PetGroupPandaData {
 
 
         val panda35 = PetVideo()
-        panda35.type = PetType.PANDA.ordinal
+        panda35.type = VideoType.PANDA.ordinal
         panda35.fileName = "panda_group_panda35"
         panda35.code = 510
         panda35.duration = 110
@@ -621,7 +621,7 @@ object PetGroupPandaData {
 
 
         val panda36 = PetVideo()
-        panda36.type = PetType.PANDA.ordinal
+        panda36.type = VideoType.PANDA.ordinal
         panda36.fileName = "panda_group_panda36"
         panda36.code = 511
         panda36.duration = 164
@@ -639,7 +639,7 @@ object PetGroupPandaData {
 
 
         val panda37 = PetVideo()
-        panda37.type = PetType.PANDA.ordinal
+        panda37.type = VideoType.PANDA.ordinal
         panda37.fileName = "panda_group_panda37"
         panda37.code = 512
         panda37.duration = 71
@@ -657,7 +657,7 @@ object PetGroupPandaData {
 
 
         val panda38 = PetVideo()
-        panda38.type = PetType.PANDA.ordinal
+        panda38.type = VideoType.PANDA.ordinal
         panda38.fileName = "panda_group_panda38"
         panda38.code = 513
         panda38.duration = 24
@@ -675,7 +675,7 @@ object PetGroupPandaData {
 
 
         val panda39 = PetVideo()
-        panda39.type = PetType.PANDA.ordinal
+        panda39.type = VideoType.PANDA.ordinal
         panda39.fileName = "panda_group_panda39"
         panda39.code = 514
         panda39.duration = 68
@@ -693,7 +693,7 @@ object PetGroupPandaData {
 
 
         val panda40 = PetVideo()
-        panda40.type = PetType.PANDA.ordinal
+        panda40.type = VideoType.PANDA.ordinal
         panda40.fileName = "panda_group_panda40"
         panda40.code = 515
         panda40.duration = 169
@@ -711,7 +711,7 @@ object PetGroupPandaData {
 
 
         val panda41 = PetVideo()
-        panda41.type = PetType.PANDA.ordinal
+        panda41.type = VideoType.PANDA.ordinal
         panda41.fileName = "panda_group_panda41"
         panda41.code = 516
         panda41.duration = 170
@@ -729,7 +729,7 @@ object PetGroupPandaData {
 
 
         val panda42 = PetVideo()
-        panda42.type = PetType.PANDA.ordinal
+        panda42.type = VideoType.PANDA.ordinal
         panda42.fileName = "panda_group_panda42"
         panda42.code = 517
         panda42.duration = 94
@@ -747,7 +747,7 @@ object PetGroupPandaData {
 
 
         val panda43 = PetVideo()
-        panda43.type = PetType.PANDA.ordinal
+        panda43.type = VideoType.PANDA.ordinal
         panda43.fileName = "panda_group_panda43"
         panda43.code = 518
         panda43.duration = 52
@@ -765,7 +765,7 @@ object PetGroupPandaData {
 
 
         val panda44 = PetVideo()
-        panda44.type = PetType.PANDA.ordinal
+        panda44.type = VideoType.PANDA.ordinal
         panda44.fileName = "panda_group_panda44"
         panda44.code = 519
         panda44.duration = 128
@@ -783,7 +783,7 @@ object PetGroupPandaData {
 
 
         val panda45 = PetVideo()
-        panda45.type = PetType.PANDA.ordinal
+        panda45.type = VideoType.PANDA.ordinal
         panda45.fileName = "panda_group_panda45"
         panda45.code = 520
         panda45.duration = 40
@@ -801,7 +801,7 @@ object PetGroupPandaData {
 
 
         val panda46 = PetVideo()
-        panda46.type = PetType.PANDA.ordinal
+        panda46.type = VideoType.PANDA.ordinal
         panda46.fileName = "panda_group_panda46"
         panda46.code = 521
         panda46.duration = 98
@@ -819,7 +819,7 @@ object PetGroupPandaData {
 
 
         val panda47 = PetVideo()
-        panda47.type = PetType.PANDA.ordinal
+        panda47.type = VideoType.PANDA.ordinal
         panda47.fileName = "panda_group_panda47"
         panda47.code = 522
         panda47.duration = 71
@@ -837,7 +837,7 @@ object PetGroupPandaData {
 
 
         val panda48 = PetVideo()
-        panda48.type = PetType.PANDA.ordinal
+        panda48.type = VideoType.PANDA.ordinal
         panda48.fileName = "panda_group_panda48"
         panda48.code = 523
         panda48.duration = 191
@@ -855,7 +855,7 @@ object PetGroupPandaData {
 
 
         val panda49 = PetVideo()
-        panda49.type = PetType.PANDA.ordinal
+        panda49.type = VideoType.PANDA.ordinal
         panda49.fileName = "panda_group_panda49"
         panda49.code = 524
         panda49.duration = 159
@@ -873,7 +873,7 @@ object PetGroupPandaData {
 
 
         val panda50 = PetVideo()
-        panda50.type = PetType.PANDA.ordinal
+        panda50.type = VideoType.PANDA.ordinal
         panda50.fileName = "panda_group_panda50"
         panda50.code = 525
         panda50.duration = 184
@@ -891,7 +891,7 @@ object PetGroupPandaData {
 
 
         val panda51 = PetVideo()
-        panda51.type = PetType.PANDA.ordinal
+        panda51.type = VideoType.PANDA.ordinal
         panda51.fileName = "panda_group_panda51"
         panda51.code = 526
         panda51.duration = 267
@@ -909,7 +909,7 @@ object PetGroupPandaData {
 
 
         val panda52 = PetVideo()
-        panda52.type = PetType.PANDA.ordinal
+        panda52.type = VideoType.PANDA.ordinal
         panda52.fileName = "panda_group_panda52"
         panda52.code = 527
         panda52.duration = 159
@@ -927,7 +927,7 @@ object PetGroupPandaData {
 
 
         val panda53 = PetVideo()
-        panda53.type = PetType.PANDA.ordinal
+        panda53.type = VideoType.PANDA.ordinal
         panda53.fileName = "panda_group_panda53"
         panda53.code = 528
         panda53.duration = 80
@@ -945,7 +945,7 @@ object PetGroupPandaData {
 
 
         val panda54 = PetVideo()
-        panda54.type = PetType.PANDA.ordinal
+        panda54.type = VideoType.PANDA.ordinal
         panda54.fileName = "panda_group_panda54"
         panda54.code = 529
         panda54.duration = 34
@@ -963,7 +963,7 @@ object PetGroupPandaData {
 
 
         val panda55 = PetVideo()
-        panda55.type = PetType.PANDA.ordinal
+        panda55.type = VideoType.PANDA.ordinal
         panda55.fileName = "panda_group_panda55"
         panda55.code = 530
         panda55.duration = 44
@@ -981,7 +981,7 @@ object PetGroupPandaData {
 
 
         val panda56 = PetVideo()
-        panda56.type = PetType.PANDA.ordinal
+        panda56.type = VideoType.PANDA.ordinal
         panda56.fileName = "panda_group_panda56"
         panda56.code = 531
         panda56.duration = 85
@@ -999,7 +999,7 @@ object PetGroupPandaData {
 
 
         val panda57 = PetVideo()
-        panda57.type = PetType.PANDA.ordinal
+        panda57.type = VideoType.PANDA.ordinal
         panda57.fileName = "panda_group_panda57"
         panda57.code = 532
         panda57.duration = 59
@@ -1017,7 +1017,7 @@ object PetGroupPandaData {
 
 
         val panda58 = PetVideo()
-        panda58.type = PetType.PANDA.ordinal
+        panda58.type = VideoType.PANDA.ordinal
         panda58.fileName = "panda_group_panda58"
         panda58.code = 533
         panda58.duration = 213
@@ -1035,7 +1035,7 @@ object PetGroupPandaData {
 
 
         val panda59 = PetVideo()
-        panda59.type = PetType.PANDA.ordinal
+        panda59.type = VideoType.PANDA.ordinal
         panda59.fileName = "panda_group_panda59"
         panda59.code = 534
         panda59.duration = 80
@@ -1053,7 +1053,7 @@ object PetGroupPandaData {
 
 
         val panda60 = PetVideo()
-        panda60.type = PetType.PANDA.ordinal
+        panda60.type = VideoType.PANDA.ordinal
         panda60.fileName = "panda_group_panda60"
         panda60.code = 535
         panda60.duration = 67
@@ -1071,7 +1071,7 @@ object PetGroupPandaData {
 
 
         val panda61 = PetVideo()
-        panda61.type = PetType.PANDA.ordinal
+        panda61.type = VideoType.PANDA.ordinal
         panda61.fileName = "panda_group_panda61"
         panda61.code = 536
         panda61.duration = 92
@@ -1089,7 +1089,7 @@ object PetGroupPandaData {
 
 
         val panda62 = PetVideo()
-        panda62.type = PetType.PANDA.ordinal
+        panda62.type = VideoType.PANDA.ordinal
         panda62.fileName = "panda_group_panda62"
         panda62.code = 537
         panda62.duration = 36
@@ -1107,7 +1107,7 @@ object PetGroupPandaData {
 
 
         val panda63 = PetVideo()
-        panda63.type = PetType.PANDA.ordinal
+        panda63.type = VideoType.PANDA.ordinal
         panda63.fileName = "panda_group_panda63"
         panda63.code = 538
         panda63.duration = 30
@@ -1125,7 +1125,7 @@ object PetGroupPandaData {
 
 
         val panda64 = PetVideo()
-        panda64.type = PetType.PANDA.ordinal
+        panda64.type = VideoType.PANDA.ordinal
         panda64.fileName = "panda_group_panda64"
         panda64.code = 539
         panda64.duration = 84
@@ -1143,7 +1143,7 @@ object PetGroupPandaData {
 
 
         val panda65 = PetVideo()
-        panda65.type = PetType.PANDA.ordinal
+        panda65.type = VideoType.PANDA.ordinal
         panda65.fileName = "panda_group_panda65"
         panda65.code = 540
         panda65.duration = 215
@@ -1161,7 +1161,7 @@ object PetGroupPandaData {
 
 
         val panda66 = PetVideo()
-        panda66.type = PetType.PANDA.ordinal
+        panda66.type = VideoType.PANDA.ordinal
         panda66.fileName = "panda_group_panda66"
         panda66.code = 541
         panda66.duration = 51
@@ -1179,7 +1179,7 @@ object PetGroupPandaData {
 
 
         val panda67 = PetVideo()
-        panda67.type = PetType.PANDA.ordinal
+        panda67.type = VideoType.PANDA.ordinal
         panda67.fileName = "panda_group_panda67"
         panda67.code = 542
         panda67.duration = 60
@@ -1197,7 +1197,7 @@ object PetGroupPandaData {
 
 
         val panda68 = PetVideo()
-        panda68.type = PetType.PANDA.ordinal
+        panda68.type = VideoType.PANDA.ordinal
         panda68.fileName = "panda_group_panda68"
         panda68.code = 543
         panda68.duration = 51
@@ -1215,7 +1215,7 @@ object PetGroupPandaData {
 
 
         val panda69 = PetVideo()
-        panda69.type = PetType.PANDA.ordinal
+        panda69.type = VideoType.PANDA.ordinal
         panda69.fileName = "panda_group_panda69"
         panda69.code = 544
         panda69.duration = 18
@@ -1233,7 +1233,7 @@ object PetGroupPandaData {
 
 
         val panda70 = PetVideo()
-        panda70.type = PetType.PANDA.ordinal
+        panda70.type = VideoType.PANDA.ordinal
         panda70.fileName = "panda_group_panda70"
         panda70.code = 545
         panda70.duration = 32
@@ -1251,7 +1251,7 @@ object PetGroupPandaData {
 
 
         val panda71 = PetVideo()
-        panda71.type = PetType.PANDA.ordinal
+        panda71.type = VideoType.PANDA.ordinal
         panda71.fileName = "panda_group_panda71"
         panda71.code = 546
         panda71.duration = 40
@@ -1269,7 +1269,7 @@ object PetGroupPandaData {
 
 
         val panda72 = PetVideo()
-        panda72.type = PetType.PANDA.ordinal
+        panda72.type = VideoType.PANDA.ordinal
         panda72.fileName = "panda_group_panda72"
         panda72.code = 547
         panda72.duration = 99
@@ -1287,7 +1287,7 @@ object PetGroupPandaData {
 
 
         val panda73 = PetVideo()
-        panda73.type = PetType.PANDA.ordinal
+        panda73.type = VideoType.PANDA.ordinal
         panda73.fileName = "panda_group_panda73"
         panda73.code = 548
         panda73.duration = 600
@@ -1305,7 +1305,7 @@ object PetGroupPandaData {
 
 
         val panda74 = PetVideo()
-        panda74.type = PetType.PANDA.ordinal
+        panda74.type = VideoType.PANDA.ordinal
         panda74.fileName = "panda_group_panda74"
         panda74.code = 549
         panda74.duration = 72
@@ -1323,7 +1323,7 @@ object PetGroupPandaData {
 
 
         val panda75 = PetVideo()
-        panda75.type = PetType.PANDA.ordinal
+        panda75.type = VideoType.PANDA.ordinal
         panda75.fileName = "panda_group_panda75"
         panda75.code = 550
         panda75.duration = 68
@@ -1341,7 +1341,7 @@ object PetGroupPandaData {
 
 
         val panda76 = PetVideo()
-        panda76.type = PetType.PANDA.ordinal
+        panda76.type = VideoType.PANDA.ordinal
         panda76.fileName = "panda_group_panda76"
         panda76.code = 551
         panda76.duration = 79
@@ -1359,7 +1359,7 @@ object PetGroupPandaData {
 
 
         val panda77 = PetVideo()
-        panda77.type = PetType.PANDA.ordinal
+        panda77.type = VideoType.PANDA.ordinal
         panda77.fileName = "panda_group_panda77"
         panda77.code = 552
         panda77.duration = 212
@@ -1377,7 +1377,7 @@ object PetGroupPandaData {
 
 
         val panda78 = PetVideo()
-        panda78.type = PetType.PANDA.ordinal
+        panda78.type = VideoType.PANDA.ordinal
         panda78.fileName = "panda_group_panda78"
         panda78.code = 553
         panda78.duration = 45
@@ -1395,7 +1395,7 @@ object PetGroupPandaData {
 
 
         val panda79 = PetVideo()
-        panda79.type = PetType.PANDA.ordinal
+        panda79.type = VideoType.PANDA.ordinal
         panda79.fileName = "panda_group_panda79"
         panda79.code = 554
         panda79.duration = 80
@@ -1413,7 +1413,7 @@ object PetGroupPandaData {
 
 
         val panda80 = PetVideo()
-        panda80.type = PetType.PANDA.ordinal
+        panda80.type = VideoType.PANDA.ordinal
         panda80.fileName = "panda_group_panda80"
         panda80.code = 555
         panda80.duration = 104
@@ -1431,7 +1431,7 @@ object PetGroupPandaData {
 
 
         val panda81 = PetVideo()
-        panda81.type = PetType.PANDA.ordinal
+        panda81.type = VideoType.PANDA.ordinal
         panda81.fileName = "panda_group_panda81"
         panda81.code = 556
         panda81.duration = 75
@@ -1449,7 +1449,7 @@ object PetGroupPandaData {
 
 
         val panda82 = PetVideo()
-        panda82.type = PetType.PANDA.ordinal
+        panda82.type = VideoType.PANDA.ordinal
         panda82.fileName = "panda_group_panda82"
         panda82.code = 557
         panda82.duration = 259
@@ -1467,7 +1467,7 @@ object PetGroupPandaData {
 
 
         val panda83 = PetVideo()
-        panda83.type = PetType.PANDA.ordinal
+        panda83.type = VideoType.PANDA.ordinal
         panda83.fileName = "panda_group_panda83"
         panda83.code = 558
         panda83.duration = 721
@@ -1485,7 +1485,7 @@ object PetGroupPandaData {
 
 
         val panda84 = PetVideo()
-        panda84.type = PetType.PANDA.ordinal
+        panda84.type = VideoType.PANDA.ordinal
         panda84.fileName = "panda_group_panda84"
         panda84.code = 559
         panda84.duration = 146
@@ -1503,7 +1503,7 @@ object PetGroupPandaData {
 
 
         val panda85 = PetVideo()
-        panda85.type = PetType.PANDA.ordinal
+        panda85.type = VideoType.PANDA.ordinal
         panda85.fileName = "panda_group_panda85"
         panda85.code = 560
         panda85.duration = 138
@@ -1521,7 +1521,7 @@ object PetGroupPandaData {
 
 
         val panda86 = PetVideo()
-        panda86.type = PetType.PANDA.ordinal
+        panda86.type = VideoType.PANDA.ordinal
         panda86.fileName = "panda_group_panda86"
         panda86.code = 561
         panda86.duration = 72
@@ -1539,7 +1539,7 @@ object PetGroupPandaData {
 
 
         val panda87 = PetVideo()
-        panda87.type = PetType.PANDA.ordinal
+        panda87.type = VideoType.PANDA.ordinal
         panda87.fileName = "panda_group_panda87"
         panda87.code = 562
         panda87.duration = 198
@@ -1557,7 +1557,7 @@ object PetGroupPandaData {
 
 
         val panda88 = PetVideo()
-        panda88.type = PetType.PANDA.ordinal
+        panda88.type = VideoType.PANDA.ordinal
         panda88.fileName = "panda_group_panda88"
         panda88.code = 563
         panda88.duration = 51
@@ -1575,7 +1575,7 @@ object PetGroupPandaData {
 
 
         val panda89 = PetVideo()
-        panda89.type = PetType.PANDA.ordinal
+        panda89.type = VideoType.PANDA.ordinal
         panda89.fileName = "panda_group_panda89"
         panda89.code = 564
         panda89.duration = 64
@@ -1593,7 +1593,7 @@ object PetGroupPandaData {
 
 
         val panda90 = PetVideo()
-        panda90.type = PetType.PANDA.ordinal
+        panda90.type = VideoType.PANDA.ordinal
         panda90.fileName = "panda_group_panda90"
         panda90.code = 565
         panda90.duration = 84
@@ -1611,7 +1611,7 @@ object PetGroupPandaData {
 
 
         val panda91 = PetVideo()
-        panda91.type = PetType.PANDA.ordinal
+        panda91.type = VideoType.PANDA.ordinal
         panda91.fileName = "panda_group_panda91"
         panda91.code = 566
         panda91.duration = 66
@@ -1629,7 +1629,7 @@ object PetGroupPandaData {
 
 
         val panda92 = PetVideo()
-        panda92.type = PetType.PANDA.ordinal
+        panda92.type = VideoType.PANDA.ordinal
         panda92.fileName = "panda_group_panda92"
         panda92.code = 567
         panda92.duration = 56
@@ -1647,7 +1647,7 @@ object PetGroupPandaData {
 
 
         val panda93 = PetVideo()
-        panda93.type = PetType.PANDA.ordinal
+        panda93.type = VideoType.PANDA.ordinal
         panda93.fileName = "panda_group_panda93"
         panda93.code = 568
         panda93.duration = 45
@@ -1666,7 +1666,7 @@ object PetGroupPandaData {
 
 
         val panda94 = PetVideo()
-        panda94.type = PetType.PANDA.ordinal
+        panda94.type = VideoType.PANDA.ordinal
         panda94.fileName = "panda_group_panda94"
         panda94.code = 569
         panda94.duration = 69
@@ -1684,7 +1684,7 @@ object PetGroupPandaData {
 
 
         val panda95 = PetVideo()
-        panda95.type = PetType.PANDA.ordinal
+        panda95.type = VideoType.PANDA.ordinal
         panda95.fileName = "panda_group_panda95"
         panda95.code = 570
         panda95.duration = 34
@@ -1702,7 +1702,7 @@ object PetGroupPandaData {
 
 
         val panda96 = PetVideo()
-        panda96.type = PetType.PANDA.ordinal
+        panda96.type = VideoType.PANDA.ordinal
         panda96.fileName = "panda_group_panda96"
         panda96.code = 571
         panda96.duration = 44
@@ -1720,7 +1720,7 @@ object PetGroupPandaData {
 
 
         val panda97 = PetVideo()
-        panda97.type = PetType.PANDA.ordinal
+        panda97.type = VideoType.PANDA.ordinal
         panda97.fileName = "panda_group_panda97"
         panda97.code = 572
         panda97.duration = 71
@@ -1738,7 +1738,7 @@ object PetGroupPandaData {
 
 
         val panda98 = PetVideo()
-        panda98.type = PetType.PANDA.ordinal
+        panda98.type = VideoType.PANDA.ordinal
         panda98.fileName = "panda_group_panda98"
         panda98.code = 573
         panda98.duration = 66
@@ -1756,7 +1756,7 @@ object PetGroupPandaData {
 
 
         val panda99 = PetVideo()
-        panda99.type = PetType.PANDA.ordinal
+        panda99.type = VideoType.PANDA.ordinal
         panda99.fileName = "panda_group_panda99"
         panda99.code = 574
         panda99.duration = 64
@@ -1774,7 +1774,7 @@ object PetGroupPandaData {
 
 
         val panda100 = PetVideo()
-        panda100.type = PetType.PANDA.ordinal
+        panda100.type = VideoType.PANDA.ordinal
         panda100.fileName = "panda_group_panda100"
         panda100.code = 575
         panda100.duration = 15
@@ -1792,7 +1792,7 @@ object PetGroupPandaData {
 
 
         val panda101 = PetVideo()
-        panda101.type = PetType.PANDA.ordinal
+        panda101.type = VideoType.PANDA.ordinal
         panda101.fileName = "panda_group_panda101"
         panda101.code = 576
         panda101.duration = 42
@@ -1810,7 +1810,7 @@ object PetGroupPandaData {
 
 
         val panda102 = PetVideo()
-        panda102.type = PetType.PANDA.ordinal
+        panda102.type = VideoType.PANDA.ordinal
         panda102.fileName = "panda_group_panda102"
         panda102.code = 577
         panda102.duration = 150
@@ -1828,7 +1828,7 @@ object PetGroupPandaData {
 
 
         val panda103 = PetVideo()
-        panda103.type = PetType.PANDA.ordinal
+        panda103.type = VideoType.PANDA.ordinal
         panda103.fileName = "panda_group_panda103"
         panda103.code = 578
         panda103.duration = 127
@@ -1846,7 +1846,7 @@ object PetGroupPandaData {
 
 
         val panda104 = PetVideo()
-        panda104.type = PetType.PANDA.ordinal
+        panda104.type = VideoType.PANDA.ordinal
         panda104.fileName = "panda_group_panda104"
         panda104.code = 579
         panda104.duration = 165
@@ -1864,7 +1864,7 @@ object PetGroupPandaData {
 
 
         val panda105 = PetVideo()
-        panda105.type = PetType.PANDA.ordinal
+        panda105.type = VideoType.PANDA.ordinal
         panda105.fileName = "panda_group_panda105"
         panda105.code = 580
         panda105.duration = 32
@@ -1882,7 +1882,7 @@ object PetGroupPandaData {
 
 
         val panda106 = PetVideo()
-        panda106.type = PetType.PANDA.ordinal
+        panda106.type = VideoType.PANDA.ordinal
         panda106.fileName = "panda_group_panda106"
         panda106.code = 581
         panda106.duration = 104
@@ -1900,7 +1900,7 @@ object PetGroupPandaData {
 
 
         val panda107 = PetVideo()
-        panda107.type = PetType.PANDA.ordinal
+        panda107.type = VideoType.PANDA.ordinal
         panda107.fileName = "panda_group_panda107"
         panda107.code = 582
         panda107.duration = 24
@@ -1918,7 +1918,7 @@ object PetGroupPandaData {
 
 
         val panda108 = PetVideo()
-        panda108.type = PetType.PANDA.ordinal
+        panda108.type = VideoType.PANDA.ordinal
         panda108.fileName = "panda_group_panda108"
         panda108.code = 583
         panda108.duration = 246
@@ -1936,7 +1936,7 @@ object PetGroupPandaData {
 
 
         val panda109 = PetVideo()
-        panda109.type = PetType.PANDA.ordinal
+        panda109.type = VideoType.PANDA.ordinal
         panda109.fileName = "panda_group_panda109"
         panda109.code = 584
         panda109.duration = 37
@@ -1954,7 +1954,7 @@ object PetGroupPandaData {
 
 
         val panda110 = PetVideo()
-        panda110.type = PetType.PANDA.ordinal
+        panda110.type = VideoType.PANDA.ordinal
         panda110.fileName = "panda_group_panda110"
         panda110.code = 585
         panda110.duration = 301
@@ -1972,7 +1972,7 @@ object PetGroupPandaData {
 
 
         val panda111 = PetVideo()
-        panda111.type = PetType.PANDA.ordinal
+        panda111.type = VideoType.PANDA.ordinal
         panda111.fileName = "panda_group_panda111"
         panda111.code = 586
         panda111.duration = 57
@@ -1990,7 +1990,7 @@ object PetGroupPandaData {
 
 
         val panda112 = PetVideo()
-        panda112.type = PetType.PANDA.ordinal
+        panda112.type = VideoType.PANDA.ordinal
         panda112.fileName = "panda_group_panda112"
         panda112.code = 587
         panda112.duration = 56
@@ -2008,7 +2008,7 @@ object PetGroupPandaData {
 
 
         val panda113 = PetVideo()
-        panda113.type = PetType.PANDA.ordinal
+        panda113.type = VideoType.PANDA.ordinal
         panda113.fileName = "panda_group_panda113"
         panda113.code = 588
         panda113.duration = 39
@@ -2026,7 +2026,7 @@ object PetGroupPandaData {
 
 
         val panda114 = PetVideo()
-        panda114.type = PetType.PANDA.ordinal
+        panda114.type = VideoType.PANDA.ordinal
         panda114.fileName = "panda_group_panda114"
         panda114.code = 589
         panda114.duration = 15
@@ -2044,7 +2044,7 @@ object PetGroupPandaData {
 
 
         val panda115 = PetVideo()
-        panda115.type = PetType.PANDA.ordinal
+        panda115.type = VideoType.PANDA.ordinal
         panda115.fileName = "panda_group_panda115"
         panda115.code = 590
         panda115.duration = 33
@@ -2062,7 +2062,7 @@ object PetGroupPandaData {
 
 
         val panda116 = PetVideo()
-        panda116.type = PetType.PANDA.ordinal
+        panda116.type = VideoType.PANDA.ordinal
         panda116.fileName = "panda_group_panda116"
         panda116.code = 591
         panda116.duration = 72
@@ -2080,7 +2080,7 @@ object PetGroupPandaData {
 
 
         val panda117 = PetVideo()
-        panda117.type = PetType.PANDA.ordinal
+        panda117.type = VideoType.PANDA.ordinal
         panda117.fileName = "panda_group_panda117"
         panda117.code = 592
         panda117.duration = 124
@@ -2098,7 +2098,7 @@ object PetGroupPandaData {
 
 
         val panda118 = PetVideo()
-        panda118.type = PetType.PANDA.ordinal
+        panda118.type = VideoType.PANDA.ordinal
         panda118.fileName = "panda_group_panda118"
         panda118.code = 593
         panda118.duration = 75
@@ -2116,7 +2116,7 @@ object PetGroupPandaData {
 
 
         val panda119 = PetVideo()
-        panda119.type = PetType.PANDA.ordinal
+        panda119.type = VideoType.PANDA.ordinal
         panda119.fileName = "panda_group_panda119"
         panda119.code = 594
         panda119.duration = 65
@@ -2134,7 +2134,7 @@ object PetGroupPandaData {
 
 
         val panda120 = PetVideo()
-        panda120.type = PetType.PANDA.ordinal
+        panda120.type = VideoType.PANDA.ordinal
         panda120.fileName = "panda_group_panda120"
         panda120.code = 595
         panda120.duration = 50
@@ -2152,7 +2152,7 @@ object PetGroupPandaData {
 
 
         val panda121 = PetVideo()
-        panda121.type = PetType.PANDA.ordinal
+        panda121.type = VideoType.PANDA.ordinal
         panda121.fileName = "panda_group_panda121"
         panda121.code = 596
         panda121.duration = 108
@@ -2170,7 +2170,7 @@ object PetGroupPandaData {
 
 
         val panda122 = PetVideo()
-        panda122.type = PetType.PANDA.ordinal
+        panda122.type = VideoType.PANDA.ordinal
         panda122.fileName = "panda_group_panda122"
         panda122.code = 597
         panda122.duration = 68
@@ -2188,7 +2188,7 @@ object PetGroupPandaData {
 
 
         val panda123 = PetVideo()
-        panda123.type = PetType.PANDA.ordinal
+        panda123.type = VideoType.PANDA.ordinal
         panda123.fileName = "panda_group_panda123"
         panda123.code = 598
         panda123.duration = 155
@@ -2206,7 +2206,7 @@ object PetGroupPandaData {
 
 
         val panda124 = PetVideo()
-        panda124.type = PetType.PANDA.ordinal
+        panda124.type = VideoType.PANDA.ordinal
         panda124.fileName = "panda_group_panda124"
         panda124.code = 599
         panda124.duration = 196
@@ -2224,7 +2224,7 @@ object PetGroupPandaData {
 
 
         val panda125 = PetVideo()
-        panda125.type = PetType.PANDA.ordinal
+        panda125.type = VideoType.PANDA.ordinal
         panda125.fileName = "panda_group_panda125"
         panda125.code = 600
         panda125.duration = 44
@@ -2242,7 +2242,7 @@ object PetGroupPandaData {
 
 
         val panda126 = PetVideo()
-        panda126.type = PetType.PANDA.ordinal
+        panda126.type = VideoType.PANDA.ordinal
         panda126.fileName = "panda_group_panda126"
         panda126.code = 601
         panda126.duration = 120
@@ -2260,7 +2260,7 @@ object PetGroupPandaData {
 
 
         val panda127 = PetVideo()
-        panda127.type = PetType.PANDA.ordinal
+        panda127.type = VideoType.PANDA.ordinal
         panda127.fileName = "panda_group_panda127"
         panda127.code = 602
         panda127.duration = 142
@@ -2278,7 +2278,7 @@ object PetGroupPandaData {
 
 
         val panda128 = PetVideo()
-        panda128.type = PetType.PANDA.ordinal
+        panda128.type = VideoType.PANDA.ordinal
         panda128.fileName = "panda_group_panda128"
         panda128.code = 603
         panda128.duration = 244
@@ -2296,7 +2296,7 @@ object PetGroupPandaData {
 
 
         val panda129 = PetVideo()
-        panda129.type = PetType.PANDA.ordinal
+        panda129.type = VideoType.PANDA.ordinal
         panda129.fileName = "panda_group_panda129"
         panda129.code = 604
         panda129.duration = 62
@@ -2314,7 +2314,7 @@ object PetGroupPandaData {
 
 
         val panda130 = PetVideo()
-        panda130.type = PetType.PANDA.ordinal
+        panda130.type = VideoType.PANDA.ordinal
         panda130.fileName = "panda_group_panda130"
         panda130.code = 605
         panda130.duration = 27
@@ -2332,7 +2332,7 @@ object PetGroupPandaData {
 
 
         val panda131 = PetVideo()
-        panda131.type = PetType.PANDA.ordinal
+        panda131.type = VideoType.PANDA.ordinal
         panda131.fileName = "panda_group_panda131"
         panda131.code = 606
         panda131.duration = 13
@@ -2350,7 +2350,7 @@ object PetGroupPandaData {
 
 
         val panda132 = PetVideo()
-        panda132.type = PetType.PANDA.ordinal
+        panda132.type = VideoType.PANDA.ordinal
         panda132.fileName = "panda_group_panda132"
         panda132.code = 607
         panda132.duration = 16
@@ -2368,7 +2368,7 @@ object PetGroupPandaData {
 
 
         val panda133 = PetVideo()
-        panda133.type = PetType.PANDA.ordinal
+        panda133.type = VideoType.PANDA.ordinal
         panda133.fileName = "panda_group_panda133"
         panda133.code = 608
         panda133.duration = 31
@@ -2386,7 +2386,7 @@ object PetGroupPandaData {
 
 
         val panda134 = PetVideo()
-        panda134.type = PetType.PANDA.ordinal
+        panda134.type = VideoType.PANDA.ordinal
         panda134.fileName = "panda_group_panda134"
         panda134.code = 609
         panda134.duration = 183
@@ -2410,7 +2410,7 @@ object PetGroupPandaData {
 
 
         val panda136 = PetVideo()
-        panda136.type = PetType.PANDA.ordinal
+        panda136.type = VideoType.PANDA.ordinal
         panda136.fileName = "panda_group_panda136"
         panda136.code = 611
         panda136.duration = 31
@@ -2428,7 +2428,7 @@ object PetGroupPandaData {
 
 
         val panda137 = PetVideo()
-        panda137.type = PetType.PANDA.ordinal
+        panda137.type = VideoType.PANDA.ordinal
         panda137.fileName = "panda_group_panda137"
         panda137.code = 612
         panda137.duration = 20
@@ -2446,7 +2446,7 @@ object PetGroupPandaData {
 
 
         val panda138 = PetVideo()
-        panda138.type = PetType.PANDA.ordinal
+        panda138.type = VideoType.PANDA.ordinal
         panda138.fileName = "panda_group_panda138"
         panda138.code = 613
         panda138.duration = 57
@@ -2464,7 +2464,7 @@ object PetGroupPandaData {
 
 
         val panda139 = PetVideo()
-        panda139.type = PetType.PANDA.ordinal
+        panda139.type = VideoType.PANDA.ordinal
         panda139.fileName = "panda_group_panda139"
         panda139.code = 614
         panda139.duration = 99
@@ -2482,7 +2482,7 @@ object PetGroupPandaData {
 
 
         val panda140 = PetVideo()
-        panda140.type = PetType.PANDA.ordinal
+        panda140.type = VideoType.PANDA.ordinal
         panda140.fileName = "panda_group_panda140"
         panda140.code = 615
         panda140.duration = 95
@@ -2500,7 +2500,7 @@ object PetGroupPandaData {
 
 
         val panda141 = PetVideo()
-        panda141.type = PetType.PANDA.ordinal
+        panda141.type = VideoType.PANDA.ordinal
         panda141.fileName = "panda_group_panda141"
         panda141.code = 616
         panda141.duration = 172
@@ -2518,7 +2518,7 @@ object PetGroupPandaData {
 
 
         val panda142 = PetVideo()
-        panda142.type = PetType.PANDA.ordinal
+        panda142.type = VideoType.PANDA.ordinal
         panda142.fileName = "panda_group_panda142"
         panda142.code = 617
         panda142.duration = 62
@@ -2536,7 +2536,7 @@ object PetGroupPandaData {
 
 
         val panda143 = PetVideo()
-        panda143.type = PetType.PANDA.ordinal
+        panda143.type = VideoType.PANDA.ordinal
         panda143.fileName = "panda_group_panda143"
         panda143.code = 618
         panda143.duration = 142
@@ -2554,7 +2554,7 @@ object PetGroupPandaData {
 
 
         val panda144 = PetVideo()
-        panda144.type = PetType.PANDA.ordinal
+        panda144.type = VideoType.PANDA.ordinal
         panda144.fileName = "panda_group_panda144"
         panda144.code = 619
         panda144.duration = 154
@@ -2571,7 +2571,7 @@ object PetGroupPandaData {
         list.add(panda144)
 
         val panda145 = PetVideo()
-        panda145.type = PetType.PANDA.ordinal
+        panda145.type = VideoType.PANDA.ordinal
         panda145.fileName = "panda_group_panda145"
         panda145.code = 620
         panda145.duration = 175
@@ -2588,7 +2588,7 @@ object PetGroupPandaData {
         list.add(panda145)
 
         val panda146 = PetVideo()
-        panda146.type = PetType.PANDA.ordinal
+        panda146.type = VideoType.PANDA.ordinal
         panda146.fileName = "panda_group_panda146"
         panda146.code = 621
         panda146.duration = 147
@@ -2605,7 +2605,7 @@ object PetGroupPandaData {
         list.add(panda146)
 
         val panda147 = PetVideo()
-        panda147.type = PetType.PANDA.ordinal
+        panda147.type = VideoType.PANDA.ordinal
         panda147.fileName = "panda_group_panda147"
         panda147.code = 622
         panda147.duration = 166
@@ -2622,7 +2622,7 @@ object PetGroupPandaData {
         list.add(panda147)
 
         val panda148 = PetVideo()
-        panda148.type = PetType.PANDA.ordinal
+        panda148.type = VideoType.PANDA.ordinal
         panda148.fileName = "panda_group_panda148"
         panda148.code = 623
         panda148.duration = 69
@@ -2639,7 +2639,7 @@ object PetGroupPandaData {
         list.add(panda148)
 
         val panda149 = PetVideo()
-        panda149.type = PetType.PANDA.ordinal
+        panda149.type = VideoType.PANDA.ordinal
         panda149.fileName = "panda_group_panda149"
         panda149.code = 624
         panda149.duration = 72
@@ -2656,7 +2656,7 @@ object PetGroupPandaData {
         list.add(panda149)
 
         val panda150 = PetVideo()
-        panda150.type = PetType.PANDA.ordinal
+        panda150.type = VideoType.PANDA.ordinal
         panda150.fileName = "panda_group_panda150"
         panda150.code = 625
         panda150.duration = 67
@@ -2673,7 +2673,7 @@ object PetGroupPandaData {
         list.add(panda150)
 
         val panda151 = PetVideo()
-        panda151.type = PetType.PANDA.ordinal
+        panda151.type = VideoType.PANDA.ordinal
         panda151.fileName = "panda_group_panda151"
         panda151.code = 626
         panda151.duration = 226
@@ -2690,7 +2690,7 @@ object PetGroupPandaData {
         list.add(panda151)
 
         val panda152 = PetVideo()
-        panda152.type = PetType.PANDA.ordinal
+        panda152.type = VideoType.PANDA.ordinal
         panda152.fileName = "panda_group_panda152"
         panda152.code = 627
         panda152.duration = 62
@@ -2707,7 +2707,7 @@ object PetGroupPandaData {
         list.add(panda152)
 
         val panda153 = PetVideo()
-        panda153.type = PetType.PANDA.ordinal
+        panda153.type = VideoType.PANDA.ordinal
         panda153.fileName = "panda_group_panda153"
         panda153.code = 628
         panda153.duration = 60
@@ -2724,7 +2724,7 @@ object PetGroupPandaData {
         list.add(panda153)
 
         val panda154 = PetVideo()
-        panda154.type = PetType.PANDA.ordinal
+        panda154.type = VideoType.PANDA.ordinal
         panda154.fileName = "panda_group_panda154"
         panda154.code = 629
         panda154.duration = 147
@@ -2741,7 +2741,7 @@ object PetGroupPandaData {
         list.add(panda154)
 
         val panda155 = PetVideo()
-        panda155.type = PetType.PANDA.ordinal
+        panda155.type = VideoType.PANDA.ordinal
         panda155.fileName = "panda_group_panda155"
         panda155.code = 630
         panda155.duration = 101
@@ -2758,7 +2758,7 @@ object PetGroupPandaData {
         list.add(panda155)
 
         val panda156 = PetVideo()
-        panda156.type = PetType.PANDA.ordinal
+        panda156.type = VideoType.PANDA.ordinal
         panda156.fileName = "panda_group_panda156"
         panda156.code = 631
         panda156.duration = 83
@@ -2775,7 +2775,7 @@ object PetGroupPandaData {
         list.add(panda156)
 
         val panda157 = PetVideo()
-        panda157.type = PetType.PANDA.ordinal
+        panda157.type = VideoType.PANDA.ordinal
         panda157.fileName = "panda_group_panda157"
         panda157.code = 632
         panda157.duration = 47
@@ -2792,7 +2792,7 @@ object PetGroupPandaData {
         list.add(panda157)
 
         val panda158 = PetVideo()
-        panda158.type = PetType.PANDA.ordinal
+        panda158.type = VideoType.PANDA.ordinal
         panda158.fileName = "panda_group_panda158"
         panda158.code = 633
         panda158.duration = 42
@@ -2809,7 +2809,7 @@ object PetGroupPandaData {
         list.add(panda158)
 
         val panda159 = PetVideo()
-        panda159.type = PetType.PANDA.ordinal
+        panda159.type = VideoType.PANDA.ordinal
         panda159.fileName = "panda_group_panda159"
         panda159.code = 634
         panda159.duration = 92
@@ -2826,7 +2826,7 @@ object PetGroupPandaData {
         list.add(panda159)
 
         val panda160 = PetVideo()
-        panda160.type = PetType.PANDA.ordinal
+        panda160.type = VideoType.PANDA.ordinal
         panda160.fileName = "panda_group_panda160"
         panda160.code = 635
         panda160.duration = 116
@@ -2843,7 +2843,7 @@ object PetGroupPandaData {
         list.add(panda160)
 
         val panda161 = PetVideo()
-        panda161.type = PetType.PANDA.ordinal
+        panda161.type = VideoType.PANDA.ordinal
         panda161.fileName = "panda_group_panda161"
         panda161.code = 636
         panda161.duration = 97
@@ -2860,7 +2860,7 @@ object PetGroupPandaData {
         list.add(panda161)
 
         val panda162 = PetVideo()
-        panda162.type = PetType.PANDA.ordinal
+        panda162.type = VideoType.PANDA.ordinal
         panda162.fileName = "panda_group_panda162"
         panda162.code = 637
         panda162.duration = 738
@@ -2877,7 +2877,7 @@ object PetGroupPandaData {
         list.add(panda162)
 
         val panda163 = PetVideo()
-        panda163.type = PetType.PANDA.ordinal
+        panda163.type = VideoType.PANDA.ordinal
         panda163.fileName = "panda_group_panda163"
         panda163.code = 638
         panda163.duration = 139
@@ -2894,7 +2894,7 @@ object PetGroupPandaData {
         list.add(panda163)
 
         val panda164 = PetVideo()
-        panda164.type = PetType.PANDA.ordinal
+        panda164.type = VideoType.PANDA.ordinal
         panda164.fileName = "panda_group_panda164"
         panda164.code = 639
         panda164.duration = 55
@@ -2911,7 +2911,7 @@ object PetGroupPandaData {
         list.add(panda164)
 
         val panda165 = PetVideo()
-        panda165.type = PetType.PANDA.ordinal
+        panda165.type = VideoType.PANDA.ordinal
         panda165.fileName = "panda_group_panda165"
         panda165.code = 640
         panda165.duration = 143
@@ -2928,7 +2928,7 @@ object PetGroupPandaData {
         list.add(panda165)
 
         val panda166 = PetVideo()
-        panda166.type = PetType.PANDA.ordinal
+        panda166.type = VideoType.PANDA.ordinal
         panda166.fileName = "panda_group_panda166"
         panda166.code = 641
         panda166.duration = 125
@@ -2945,7 +2945,7 @@ object PetGroupPandaData {
         list.add(panda166)
 
         val panda167 = PetVideo()
-        panda167.type = PetType.PANDA.ordinal
+        panda167.type = VideoType.PANDA.ordinal
         panda167.fileName = "panda_group_panda167"
         panda167.code = 642
         panda167.duration = 154
@@ -2962,7 +2962,7 @@ object PetGroupPandaData {
         list.add(panda167)
 
         val panda168 = PetVideo()
-        panda168.type = PetType.PANDA.ordinal
+        panda168.type = VideoType.PANDA.ordinal
         panda168.fileName = "panda_group_panda168"
         panda168.code = 643
         panda168.duration = 63
@@ -2979,7 +2979,7 @@ object PetGroupPandaData {
         list.add(panda168)
 
         val panda169 = PetVideo()
-        panda169.type = PetType.PANDA.ordinal
+        panda169.type = VideoType.PANDA.ordinal
         panda169.fileName = "panda_group_panda169"
         panda169.code = 644
         panda169.duration = 36
@@ -2996,7 +2996,7 @@ object PetGroupPandaData {
         list.add(panda169)
 
         val panda170 = PetVideo()
-        panda170.type = PetType.PANDA.ordinal
+        panda170.type = VideoType.PANDA.ordinal
         panda170.fileName = "panda_group_panda170"
         panda170.code = 645
         panda170.duration = 132
@@ -3013,7 +3013,7 @@ object PetGroupPandaData {
         list.add(panda170)
 
         val panda171 = PetVideo()
-        panda171.type = PetType.PANDA.ordinal
+        panda171.type = VideoType.PANDA.ordinal
         panda171.fileName = "panda_group_panda171"
         panda171.code = 646
         panda171.duration = 27
@@ -3030,7 +3030,7 @@ object PetGroupPandaData {
         list.add(panda171)
 
         val panda172 = PetVideo()
-        panda172.type = PetType.PANDA.ordinal
+        panda172.type = VideoType.PANDA.ordinal
         panda172.fileName = "panda_group_panda172"
         panda172.code = 647
         panda172.duration = 210
@@ -3047,7 +3047,7 @@ object PetGroupPandaData {
         list.add(panda172)
 
         val panda173 = PetVideo()
-        panda173.type = PetType.PANDA.ordinal
+        panda173.type = VideoType.PANDA.ordinal
         panda173.fileName = "panda_group_panda173"
         panda173.code = 648
         panda173.duration = 65
@@ -3064,7 +3064,7 @@ object PetGroupPandaData {
         list.add(panda173)
 
         val panda174 = PetVideo()
-        panda174.type = PetType.PANDA.ordinal
+        panda174.type = VideoType.PANDA.ordinal
         panda174.fileName = "panda_group_panda174"
         panda174.code = 649
         panda174.duration = 40
@@ -3081,7 +3081,7 @@ object PetGroupPandaData {
         list.add(panda174)
 
         val panda175 = PetVideo()
-        panda175.type = PetType.PANDA.ordinal
+        panda175.type = VideoType.PANDA.ordinal
         panda175.fileName = "panda_group_panda175"
         panda175.code = 1114
         panda175.duration = 34
@@ -3098,7 +3098,7 @@ object PetGroupPandaData {
         list.add(panda175)
 
         val panda176 = PetVideo()
-        panda176.type = PetType.PANDA.ordinal
+        panda176.type = VideoType.PANDA.ordinal
         panda176.fileName = "panda_group_panda176"
         panda176.code = 1115
         panda176.duration = 11
@@ -3115,7 +3115,7 @@ object PetGroupPandaData {
         list.add(panda176)
 
         val panda177 = PetVideo()
-        panda177.type = PetType.PANDA.ordinal
+        panda177.type = VideoType.PANDA.ordinal
         panda177.fileName = "panda_group_panda177"
         panda177.code = 1116
         panda177.duration = 393
@@ -3132,7 +3132,7 @@ object PetGroupPandaData {
         list.add(panda177)
 
         val panda178 = PetVideo()
-        panda178.type = PetType.PANDA.ordinal
+        panda178.type = VideoType.PANDA.ordinal
         panda178.fileName = "panda_group_panda178"
         panda178.code = 1117
         panda178.duration = 193
@@ -3149,7 +3149,7 @@ object PetGroupPandaData {
         list.add(panda178)
 
         val panda179 = PetVideo()
-        panda179.type = PetType.PANDA.ordinal
+        panda179.type = VideoType.PANDA.ordinal
         panda179.fileName = "panda_group_panda179"
         panda179.code = 1118
         panda179.duration = 48
@@ -3166,7 +3166,7 @@ object PetGroupPandaData {
         list.add(panda179)
 
         val panda180 = PetVideo()
-        panda180.type = PetType.PANDA.ordinal
+        panda180.type = VideoType.PANDA.ordinal
         panda180.fileName = "panda_group_panda180"
         panda180.code = 1119
         panda180.duration = 30
@@ -3183,7 +3183,7 @@ object PetGroupPandaData {
         list.add(panda180)
 
         val panda181 = PetVideo()
-        panda181.type = PetType.PANDA.ordinal
+        panda181.type = VideoType.PANDA.ordinal
         panda181.fileName = "panda_group_panda181"
         panda181.code = 1120
         panda181.duration = 35
@@ -3200,7 +3200,7 @@ object PetGroupPandaData {
         list.add(panda181)
 
         val panda182 = PetVideo()
-        panda182.type = PetType.PANDA.ordinal
+        panda182.type = VideoType.PANDA.ordinal
         panda182.fileName = "panda_group_panda182"
         panda182.code = 1121
         panda182.duration = 83
@@ -3217,7 +3217,7 @@ object PetGroupPandaData {
         list.add(panda182)
 
         val panda183 = PetVideo()
-        panda183.type = PetType.PANDA.ordinal
+        panda183.type = VideoType.PANDA.ordinal
         panda183.fileName = "panda_group_panda183"
         panda183.code = 1122
         panda183.duration = 149
@@ -3234,7 +3234,7 @@ object PetGroupPandaData {
         list.add(panda183)
 
         val panda184 = PetVideo()
-        panda184.type = PetType.PANDA.ordinal
+        panda184.type = VideoType.PANDA.ordinal
         panda184.fileName = "panda_group_panda184"
         panda184.code = 1123
         panda184.duration = 23
@@ -3251,7 +3251,7 @@ object PetGroupPandaData {
         list.add(panda184)
 
         val panda185 = PetVideo()
-        panda185.type = PetType.PANDA.ordinal
+        panda185.type = VideoType.PANDA.ordinal
         panda185.fileName = "panda_group_panda185"
         panda185.code = 1124
         panda185.duration = 38
@@ -3268,7 +3268,7 @@ object PetGroupPandaData {
         list.add(panda185)
 
         val panda186 = PetVideo()
-        panda186.type = PetType.PANDA.ordinal
+        panda186.type = VideoType.PANDA.ordinal
         panda186.fileName = "panda_group_panda186"
         panda186.code = 1125
         panda186.duration = 45
@@ -3285,7 +3285,7 @@ object PetGroupPandaData {
         list.add(panda186)
 
         val panda187 = PetVideo()
-        panda187.type = PetType.PANDA.ordinal
+        panda187.type = VideoType.PANDA.ordinal
         panda187.fileName = "panda_group_panda187"
         panda187.code = 1126
         panda187.duration = 41
@@ -3302,7 +3302,7 @@ object PetGroupPandaData {
         list.add(panda187)
 
         val panda188 = PetVideo()
-        panda188.type = PetType.PANDA.ordinal
+        panda188.type = VideoType.PANDA.ordinal
         panda188.fileName = "panda_group_panda188"
         panda188.code = 1127
         panda188.duration = 11
@@ -3319,7 +3319,7 @@ object PetGroupPandaData {
         list.add(panda188)
 
         val panda189 = PetVideo()
-        panda189.type = PetType.PANDA.ordinal
+        panda189.type = VideoType.PANDA.ordinal
         panda189.fileName = "panda_group_panda189"
         panda189.code = 1128
         panda189.duration = 89
@@ -3336,7 +3336,7 @@ object PetGroupPandaData {
         list.add(panda189)
 
         val panda190 = PetVideo()
-        panda190.type = PetType.PANDA.ordinal
+        panda190.type = VideoType.PANDA.ordinal
         panda190.fileName = "panda_group_panda190"
         panda190.code = 1129
         panda190.duration = 51
@@ -3353,7 +3353,7 @@ object PetGroupPandaData {
         list.add(panda190)
 
         val panda191 = PetVideo()
-        panda191.type = PetType.PANDA.ordinal
+        panda191.type = VideoType.PANDA.ordinal
         panda191.fileName = "panda_group_panda191"
         panda191.code = 1130
         panda191.duration = 145
@@ -3370,7 +3370,7 @@ object PetGroupPandaData {
         list.add(panda191)
 
         val panda192 = PetVideo()
-        panda192.type = PetType.PANDA.ordinal
+        panda192.type = VideoType.PANDA.ordinal
         panda192.fileName = "panda_group_panda192"
         panda192.code = 1230
         panda192.duration = 76
@@ -3386,7 +3386,7 @@ object PetGroupPandaData {
         list.add(panda192)
 
         val panda193 = PetVideo()
-        panda193.type = PetType.PANDA.ordinal
+        panda193.type = VideoType.PANDA.ordinal
         panda193.fileName = "panda_group_panda193"
         panda193.code = 1231
         panda193.duration = 134
@@ -3402,7 +3402,7 @@ object PetGroupPandaData {
         list.add(panda193)
 
         val panda194 = PetVideo()
-        panda194.type = PetType.PANDA.ordinal
+        panda194.type = VideoType.PANDA.ordinal
         panda194.fileName = "panda_group_panda194"
         panda194.code = 1232
         panda194.duration = 52
@@ -3418,7 +3418,7 @@ object PetGroupPandaData {
         list.add(panda194)
 
         val panda195 = PetVideo()
-        panda195.type = PetType.PANDA.ordinal
+        panda195.type = VideoType.PANDA.ordinal
         panda195.fileName = "panda_group_panda195"
         panda195.code = 1233
         panda195.duration = 82
@@ -3434,7 +3434,7 @@ object PetGroupPandaData {
         list.add(panda195)
 
         val panda196 = PetVideo()
-        panda196.type = PetType.PANDA.ordinal
+        panda196.type = VideoType.PANDA.ordinal
         panda196.fileName = "panda_group_panda196"
         panda196.code = 1234
         panda196.duration = 35
@@ -3450,7 +3450,7 @@ object PetGroupPandaData {
         list.add(panda196)
 
         val panda197 = PetVideo()
-        panda197.type = PetType.PANDA.ordinal
+        panda197.type = VideoType.PANDA.ordinal
         panda197.fileName = "panda_group_panda197"
         panda197.code = 1235
         panda197.duration = 103
@@ -3466,7 +3466,7 @@ object PetGroupPandaData {
         list.add(panda197)
 
         val panda198 = PetVideo()
-        panda198.type = PetType.PANDA.ordinal
+        panda198.type = VideoType.PANDA.ordinal
         panda198.fileName = "panda_group_panda198"
         panda198.code = 1236
         panda198.duration = 34
@@ -3482,7 +3482,7 @@ object PetGroupPandaData {
         list.add(panda198)
 
         val panda199 = PetVideo()
-        panda199.type = PetType.PANDA.ordinal
+        panda199.type = VideoType.PANDA.ordinal
         panda199.fileName = "panda_group_panda199"
         panda199.code = 1237
         panda199.duration = 66
@@ -3498,7 +3498,7 @@ object PetGroupPandaData {
         list.add(panda199)
 
         val panda200 = PetVideo()
-        panda200.type = PetType.PANDA.ordinal
+        panda200.type = VideoType.PANDA.ordinal
         panda200.fileName = "panda_group_panda200"
         panda200.code = 1238
         panda200.duration = 147
@@ -3515,7 +3515,7 @@ object PetGroupPandaData {
         list.add(panda200)
 
         val panda201 = PetVideo()
-        panda201.type = PetType.PANDA.ordinal
+        panda201.type = VideoType.PANDA.ordinal
         panda201.fileName = "panda_group_panda201"
         panda201.code = 1239
         panda201.duration = 133
@@ -3531,7 +3531,7 @@ object PetGroupPandaData {
         list.add(panda201)
 
         val panda202 = PetVideo()
-        panda202.type = PetType.PANDA.ordinal
+        panda202.type = VideoType.PANDA.ordinal
         panda202.fileName = "panda_group_panda202"
         panda202.code = 1240
         panda202.duration = 93
@@ -3547,7 +3547,7 @@ object PetGroupPandaData {
         list.add(panda202)
 
         val panda203 = PetVideo()
-        panda203.type = PetType.PANDA.ordinal
+        panda203.type = VideoType.PANDA.ordinal
         panda203.fileName = "panda_group_panda203"
         panda203.code = 1241
         panda203.duration = 106
@@ -3563,7 +3563,7 @@ object PetGroupPandaData {
         list.add(panda203)
 
         val panda204 = PetVideo()
-        panda204.type = PetType.PANDA.ordinal
+        panda204.type = VideoType.PANDA.ordinal
         panda204.fileName = "panda_group_panda204"
         panda204.code = 1242
         panda204.duration = 254
@@ -3579,7 +3579,7 @@ object PetGroupPandaData {
         list.add(panda204)
 
         val panda205 = PetVideo()
-        panda205.type = PetType.PANDA.ordinal
+        panda205.type = VideoType.PANDA.ordinal
         panda205.fileName = "panda_group_panda205"
         panda205.code = 1243
         panda205.duration = 124
@@ -3595,7 +3595,7 @@ object PetGroupPandaData {
         list.add(panda205)
 
         val panda206 = PetVideo()
-        panda206.type = PetType.PANDA.ordinal
+        panda206.type = VideoType.PANDA.ordinal
         panda206.fileName = "panda_group_panda206"
         panda206.code = 1244
         panda206.duration = 81
@@ -3611,7 +3611,7 @@ object PetGroupPandaData {
         list.add(panda206)
 
         val panda207 = PetVideo()
-        panda207.type = PetType.PANDA.ordinal
+        panda207.type = VideoType.PANDA.ordinal
         panda207.fileName = "panda_group_panda207"
         panda207.code = 1245
         panda207.duration = 195
@@ -3627,7 +3627,7 @@ object PetGroupPandaData {
         list.add(panda207)
 
         val panda208 = PetVideo()
-        panda208.type = PetType.PANDA.ordinal
+        panda208.type = VideoType.PANDA.ordinal
         panda208.fileName = "panda_group_panda208"
         panda208.code = 1328
         panda208.duration = 74
@@ -3643,7 +3643,7 @@ object PetGroupPandaData {
         list.add(panda208)
 
         val panda209 = PetVideo()
-        panda209.type = PetType.PANDA.ordinal
+        panda209.type = VideoType.PANDA.ordinal
         panda209.fileName = "panda_group_panda209"
         panda209.code = 1329
         panda209.duration = 62
@@ -3659,7 +3659,7 @@ object PetGroupPandaData {
         list.add(panda209)
 
         val panda210 = PetVideo()
-        panda210.type = PetType.PANDA.ordinal
+        panda210.type = VideoType.PANDA.ordinal
         panda210.fileName = "panda_group_panda210"
         panda210.code = 1330
         panda210.duration = 34
@@ -3675,7 +3675,7 @@ object PetGroupPandaData {
         list.add(panda210)
 
         val panda211 = PetVideo()
-        panda211.type = PetType.PANDA.ordinal
+        panda211.type = VideoType.PANDA.ordinal
         panda211.fileName = "panda_group_panda211"
         panda211.code = 1331
         panda211.duration = 81
@@ -3691,7 +3691,7 @@ object PetGroupPandaData {
         list.add(panda211)
 
         val panda212 = PetVideo()
-        panda212.type = PetType.PANDA.ordinal
+        panda212.type = VideoType.PANDA.ordinal
         panda212.fileName = "panda_group_panda212"
         panda212.code = 1332
         panda212.duration = 89
@@ -3707,7 +3707,7 @@ object PetGroupPandaData {
         list.add(panda212)
 
         val panda213 = PetVideo()
-        panda213.type = PetType.PANDA.ordinal
+        panda213.type = VideoType.PANDA.ordinal
         panda213.fileName = "panda_group_panda213"
         panda213.code = 1333
         panda213.duration = 81
@@ -3723,7 +3723,7 @@ object PetGroupPandaData {
         list.add(panda213)
 
         val panda214 = PetVideo()
-        panda214.type = PetType.PANDA.ordinal
+        panda214.type = VideoType.PANDA.ordinal
         panda214.fileName = "panda_group_panda214"
         panda214.code = 1334
         panda214.duration = 180
@@ -3739,7 +3739,7 @@ object PetGroupPandaData {
         list.add(panda214)
 
         val panda215 = PetVideo()
-        panda215.type = PetType.PANDA.ordinal
+        panda215.type = VideoType.PANDA.ordinal
         panda215.fileName = "panda_group_panda215"
         panda215.code = 1335
         panda215.duration = 54
@@ -3755,7 +3755,7 @@ object PetGroupPandaData {
         list.add(panda215)
 
         val panda216 = PetVideo()
-        panda216.type = PetType.PANDA.ordinal
+        panda216.type = VideoType.PANDA.ordinal
         panda216.fileName = "panda_group_panda216"
         panda216.code = 1336
         panda216.duration = 81
@@ -3771,7 +3771,7 @@ object PetGroupPandaData {
         list.add(panda216)
 
         val panda217 = PetVideo()
-        panda217.type = PetType.PANDA.ordinal
+        panda217.type = VideoType.PANDA.ordinal
         panda217.fileName = "panda_group_panda217"
         panda217.code = 1337
         panda217.duration = 24
@@ -3787,7 +3787,7 @@ object PetGroupPandaData {
         list.add(panda217)
 
         val panda218 = PetVideo()
-        panda218.type = PetType.PANDA.ordinal
+        panda218.type = VideoType.PANDA.ordinal
         panda218.fileName = "panda_group_panda218"
         panda218.code = 1338
         panda218.duration = 153
@@ -3803,7 +3803,7 @@ object PetGroupPandaData {
         list.add(panda218)
 
         val panda219 = PetVideo()
-        panda219.type = PetType.PANDA.ordinal
+        panda219.type = VideoType.PANDA.ordinal
         panda219.fileName = "panda_group_panda219"
         panda219.code = 1339
         panda219.duration = 78
@@ -3819,7 +3819,7 @@ object PetGroupPandaData {
         list.add(panda219)
 
         val panda220 = PetVideo()
-        panda220.type = PetType.PANDA.ordinal
+        panda220.type = VideoType.PANDA.ordinal
         panda220.fileName = "panda_group_panda220"
         panda220.code = 1340
         panda220.duration = 64
@@ -3835,7 +3835,7 @@ object PetGroupPandaData {
         list.add(panda220)
 
         val panda221 = PetVideo()
-        panda221.type = PetType.PANDA.ordinal
+        panda221.type = VideoType.PANDA.ordinal
         panda221.fileName = "panda_group_panda221"
         panda221.code = 1341
         panda221.duration = 110
@@ -3851,7 +3851,7 @@ object PetGroupPandaData {
         list.add(panda221)
 
         val panda222 = PetVideo()
-        panda222.type = PetType.PANDA.ordinal
+        panda222.type = VideoType.PANDA.ordinal
         panda222.fileName = "panda_group_panda222"
         panda222.code = 1342
         panda222.duration = 45
@@ -3867,7 +3867,7 @@ object PetGroupPandaData {
         list.add(panda222)
 
         val panda223 = PetVideo()
-        panda223.type = PetType.PANDA.ordinal
+        panda223.type = VideoType.PANDA.ordinal
         panda223.fileName = "panda_group_panda223"
         panda223.code = 1343
         panda223.duration = 143
@@ -3883,7 +3883,7 @@ object PetGroupPandaData {
         list.add(panda223)
 
         val panda224 = PetVideo()
-        panda224.type = PetType.PANDA.ordinal
+        panda224.type = VideoType.PANDA.ordinal
         panda224.fileName = "panda_group_panda224"
         panda224.code = 1344
         panda224.duration = 82
@@ -3899,7 +3899,7 @@ object PetGroupPandaData {
         list.add(panda224)
 
         val panda225 = PetVideo()
-        panda225.type = PetType.PANDA.ordinal
+        panda225.type = VideoType.PANDA.ordinal
         panda225.fileName = "panda_group_panda225"
         panda225.code = 1345
         panda225.duration = 52
@@ -3915,7 +3915,7 @@ object PetGroupPandaData {
         list.add(panda225)
 
         val panda226 = PetVideo()
-        panda226.type = PetType.PANDA.ordinal
+        panda226.type = VideoType.PANDA.ordinal
         panda226.fileName = "panda_group_panda226"
         panda226.code = 1346
         panda226.duration = 22
@@ -3931,7 +3931,7 @@ object PetGroupPandaData {
         list.add(panda226)
 
         val panda227 = PetVideo()
-        panda227.type = PetType.PANDA.ordinal
+        panda227.type = VideoType.PANDA.ordinal
         panda227.fileName = "panda_group_panda227"
         panda227.code = 1347
         panda227.duration = 106
@@ -3947,7 +3947,7 @@ object PetGroupPandaData {
         list.add(panda227)
 
         val panda228 = PetVideo()
-        panda228.type = PetType.PANDA.ordinal
+        panda228.type = VideoType.PANDA.ordinal
         panda228.fileName = "panda_group_panda228"
         panda228.code = 1348
         panda228.duration = 83
@@ -3963,7 +3963,7 @@ object PetGroupPandaData {
         list.add(panda228)
 
         val panda229 = PetVideo()
-        panda229.type = PetType.PANDA.ordinal
+        panda229.type = VideoType.PANDA.ordinal
         panda229.fileName = "panda_group_panda229"
         panda229.code = 1349
         panda229.duration = 62
@@ -3979,7 +3979,7 @@ object PetGroupPandaData {
         list.add(panda229)
 
         val panda230 = PetVideo()
-        panda230.type = PetType.PANDA.ordinal
+        panda230.type = VideoType.PANDA.ordinal
         panda230.fileName = "panda_group_panda230"
         panda230.code = 1350
         panda230.duration = 52
@@ -3995,7 +3995,7 @@ object PetGroupPandaData {
         list.add(panda230)
 
         val panda231 = PetVideo()
-        panda231.type = PetType.PANDA.ordinal
+        panda231.type = VideoType.PANDA.ordinal
         panda231.fileName = "panda_group_panda231"
         panda231.code = 1351
         panda231.duration = 61
@@ -4011,7 +4011,7 @@ object PetGroupPandaData {
         list.add(panda231)
 
         val panda232 = PetVideo()
-        panda232.type = PetType.PANDA.ordinal
+        panda232.type = VideoType.PANDA.ordinal
         panda232.fileName = "panda_group_panda232"
         panda232.code = 1352
         panda232.duration = 184
@@ -4027,7 +4027,7 @@ object PetGroupPandaData {
         list.add(panda232)
 
         val panda233 = PetVideo()
-        panda233.type = PetType.PANDA.ordinal
+        panda233.type = VideoType.PANDA.ordinal
         panda233.fileName = "panda_group_panda233"
         panda233.code = 1353
         panda233.duration = 52
@@ -4043,7 +4043,7 @@ object PetGroupPandaData {
         list.add(panda233)
 
         val panda234 = PetVideo()
-        panda234.type = PetType.PANDA.ordinal
+        panda234.type = VideoType.PANDA.ordinal
         panda234.fileName = "panda_group_panda234"
         panda234.code = 1354
         panda234.duration = 122
@@ -4059,7 +4059,7 @@ object PetGroupPandaData {
         list.add(panda234)
 
         val panda235 = PetVideo()
-        panda235.type = PetType.PANDA.ordinal
+        panda235.type = VideoType.PANDA.ordinal
         panda235.fileName = "panda_group_panda235"
         panda235.code = 1355
         panda235.duration = 54
@@ -4075,7 +4075,7 @@ object PetGroupPandaData {
         list.add(panda235)
 
         val panda236 = PetVideo()
-        panda236.type = PetType.PANDA.ordinal
+        panda236.type = VideoType.PANDA.ordinal
         panda236.fileName = "panda_group_panda236"
         panda236.code = 1377
         panda236.duration = 34
@@ -4091,7 +4091,7 @@ object PetGroupPandaData {
         list.add(panda236)
 
         val panda237 = PetVideo()
-        panda237.type = PetType.PANDA.ordinal
+        panda237.type = VideoType.PANDA.ordinal
         panda237.fileName = "panda_group_panda237"
         panda237.code = 1378
         panda237.duration = 63
@@ -4107,7 +4107,7 @@ object PetGroupPandaData {
         list.add(panda237)
 
         val panda238 = PetVideo()
-        panda238.type = PetType.PANDA.ordinal
+        panda238.type = VideoType.PANDA.ordinal
         panda238.fileName = "panda_group_panda238"
         panda238.code = 1379
         panda238.duration = 9
@@ -4123,7 +4123,7 @@ object PetGroupPandaData {
         list.add(panda238)
 
         val panda239 = PetVideo()
-        panda239.type = PetType.PANDA.ordinal
+        panda239.type = VideoType.PANDA.ordinal
         panda239.fileName = "panda_group_panda239"
         panda239.code = 1380
         panda239.duration = 31
@@ -4139,7 +4139,7 @@ object PetGroupPandaData {
         list.add(panda239)
 
         val panda240 = PetVideo()
-        panda240.type = PetType.PANDA.ordinal
+        panda240.type = VideoType.PANDA.ordinal
         panda240.fileName = "panda_group_panda240"
         panda240.code = 1381
         panda240.duration = 496

@@ -25,6 +25,5 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Log.d("1mean", "onResume()")
     }
 }

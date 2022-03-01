@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/video_root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:divider="@drawable/shape_video_diver"
+            app:showDividers="middle"
+            android:background="@color/white">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/playView"
+                android:layout_width="match_parent"
+                android:layout_height="202dp"
+                app:show_buffering="when_playing"
+                app:show_shuffle_button="true"
+                app:hide_on_touch="true"
+                android:background="@color/black"
+                app:controller_layout_id="@layout/layout_audio_player" />
+        <!--app:show_subtitle_button="true"-->
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <!--用于全屏播放-->
+</FrameLayout>

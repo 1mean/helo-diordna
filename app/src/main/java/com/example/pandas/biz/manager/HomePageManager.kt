@@ -1,8 +1,8 @@
 import com.example.pandas.bean.CoverDownLoad
 import com.example.pandas.bean.SearchInfo
 import com.example.pandas.bean.pet.PageCommonData
-import com.example.pandas.bean.pet.PetType
 import com.example.pandas.bean.pet.PetViewData
+import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.dao.PetVideoDao
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.sql.entity.MusicVo
@@ -30,7 +30,17 @@ class PetManager {
     suspend fun getPetByPage(startIndex: Int): MutableList<PetViewData> {
 
         return withContext(Dispatchers.IO) {
-            petDao.queryByPage(startIndex)
+            petDao.queryByTypeAndPage(VideoType.PANDA.ordinal, startIndex, 20)
+        }
+    }
+
+    /**
+     * 获取相关videoType的分页数据
+     */
+    suspend fun getPageByType(type: Int, startIndex: Int, counts: Int): MutableList<PetViewData> {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryVideoByType(type, startIndex, counts)
         }
     }
 
@@ -92,9 +102,9 @@ class PetManager {
             if (isFresh) {
                 data.run {
                     horizontalVideos = getHorVideos()
-                    movieModel = petDao.queryByTypeAndPage(PetType.MUSIC.ordinal, 0, 4)
+                    movieModel = petDao.queryByTypeAndPage(VideoType.MUSIC.ordinal, 0, 4)
                     songs = petDao.queryMusicByPage(0, 0, 5)
-                    sleepModel = petDao.queryByTypeAndPage(PetType.SLEEP.ordinal, 0, 2)
+                    sleepModel = petDao.queryByTypeAndPage(VideoType.SLEEP.ordinal, 0, 2)
                     talkAudios = petDao.queryMusicByPage(0, 0, 5)
                     delay(1000)
                 }
@@ -117,10 +127,10 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
 
-            val itemList = petDao.queryVideoByType(PetType.LANDSCAPE.ordinal, startIndex, counts)
+            val itemList = petDao.queryVideoByType(VideoType.LANDSCAPE.ordinal, startIndex, counts)
             var bannerList = mutableListOf<PetViewData>()
             if (startIndex == 0) {
-                bannerList = petDao.queryBannerByType(PetType.LANDSCAPE.ordinal)
+                bannerList = petDao.queryBannerByType(VideoType.LANDSCAPE.ordinal)
             }
             LandscapeData(bannerList, itemList)
         }

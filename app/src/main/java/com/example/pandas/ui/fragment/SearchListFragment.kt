@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.viewmodel.SearchViewModel
@@ -18,7 +19,7 @@ import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
  * @date: 2/19/22 6:44 下午
  * @version: v1.0
  */
-public class SearchListFragment : BaseFragment<SearchViewModel, LayoutLoadmoreBinding>(),
+public class SearchListFragment : BaseLazyFragment<SearchViewModel, LayoutLoadmoreBinding>(),
     LoadMoreRecyclerView.ILoadMoreListener {
 
     private val mAdapter: MyAdapter by lazy { MyAdapter(mutableListOf()) }

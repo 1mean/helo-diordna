@@ -1,6 +1,6 @@
 package com.example.pandas.data
 
-import com.example.pandas.bean.pet.PetType
+import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.entity.PeriodType
 import com.example.pandas.sql.entity.PetVideo
 
@@ -11,7 +11,7 @@ object PetBirdData {
     fun getPetBirdData(): MutableList<PetVideo> {
 
         val bird1 = PetVideo()
-        bird1.type = PetType.BIRD.ordinal
+        bird1.type = VideoType.BIRD.ordinal
         bird1.fileName = "bird1"
         bird1.code = 877
         bird1.duration = 113
@@ -28,7 +28,7 @@ object PetBirdData {
 
 
         val bird2 = PetVideo()
-        bird2.type = PetType.BIRD.ordinal
+        bird2.type = VideoType.BIRD.ordinal
         bird2.fileName = "bird2"
         bird2.code = 878
         bird2.duration = 133
@@ -45,7 +45,7 @@ object PetBirdData {
 
 
         val bird3 = PetVideo()
-        bird3.type = PetType.BIRD.ordinal
+        bird3.type = VideoType.BIRD.ordinal
         bird3.fileName = "bird3"
         bird3.code = 879
         bird3.duration = 13
@@ -62,7 +62,7 @@ object PetBirdData {
 
 
         val bird4 = PetVideo()
-        bird4.type = PetType.BIRD.ordinal
+        bird4.type = VideoType.BIRD.ordinal
         bird4.fileName = "bird4"
         bird4.code = 880
         bird4.duration = 55
@@ -79,7 +79,7 @@ object PetBirdData {
 
 
         val bird5 = PetVideo()
-        bird5.type = PetType.BIRD.ordinal
+        bird5.type = VideoType.BIRD.ordinal
         bird5.fileName = "bird5"
         bird5.code = 881
         bird5.duration = 155
@@ -96,7 +96,7 @@ object PetBirdData {
 
 
         val bird6 = PetVideo()
-        bird6.type = PetType.BIRD.ordinal
+        bird6.type = VideoType.BIRD.ordinal
         bird6.fileName = "bird6"
         bird6.code = 882
         bird6.duration = 363
@@ -113,7 +113,7 @@ object PetBirdData {
 
 
         val bird7 = PetVideo()
-        bird7.type = PetType.BIRD.ordinal
+        bird7.type = VideoType.BIRD.ordinal
         bird7.fileName = "bird7"
         bird7.code = 883
         bird7.duration = 90
@@ -130,7 +130,7 @@ object PetBirdData {
 
 
         val bird8 = PetVideo()
-        bird8.type = PetType.BIRD.ordinal
+        bird8.type = VideoType.BIRD.ordinal
         bird8.fileName = "bird8"
         bird8.code = 884
         bird8.duration = 108
@@ -147,7 +147,7 @@ object PetBirdData {
 
 
         val bird9 = PetVideo()
-        bird9.type = PetType.BIRD.ordinal
+        bird9.type = VideoType.BIRD.ordinal
         bird9.fileName = "bird9"
         bird9.code = 885
         bird9.duration = 167
@@ -164,7 +164,7 @@ object PetBirdData {
 
 
         val bird10 = PetVideo()
-        bird10.type = PetType.BIRD.ordinal
+        bird10.type = VideoType.BIRD.ordinal
         bird10.fileName = "bird10"
         bird10.code = 886
         bird10.duration = 272
@@ -181,7 +181,7 @@ object PetBirdData {
 
 
         val bird11 = PetVideo()
-        bird11.type = PetType.BIRD.ordinal
+        bird11.type = VideoType.BIRD.ordinal
         bird11.fileName = "bird11"
         bird11.code = 887
         bird11.duration = 286
@@ -198,7 +198,7 @@ object PetBirdData {
 
 
         val bird12 = PetVideo()
-        bird12.type = PetType.BIRD.ordinal
+        bird12.type = VideoType.BIRD.ordinal
         bird12.fileName = "bird12"
         bird12.code = 888
         bird12.duration = 19
@@ -215,7 +215,7 @@ object PetBirdData {
 
 
         val bird13 = PetVideo()
-        bird13.type = PetType.BIRD.ordinal
+        bird13.type = VideoType.BIRD.ordinal
         bird13.fileName = "bird13"
         bird13.code = 889
         bird13.duration = 15
@@ -232,7 +232,7 @@ object PetBirdData {
 
 
         val bird14 = PetVideo()
-        bird14.type = PetType.BIRD.ordinal
+        bird14.type = VideoType.BIRD.ordinal
         bird14.fileName = "bird14"
         bird14.code = 890
         bird14.duration = 146
@@ -249,7 +249,7 @@ object PetBirdData {
 
 
         val bird15 = PetVideo()
-        bird15.type = PetType.BIRD.ordinal
+        bird15.type = VideoType.BIRD.ordinal
         bird15.fileName = "bird15"
         bird15.code = 891
         bird15.duration = 148
@@ -266,7 +266,7 @@ object PetBirdData {
 
 
         val bird16 = PetVideo()
-        bird16.type = PetType.BIRD.ordinal
+        bird16.type = VideoType.BIRD.ordinal
         bird16.fileName = "bird16"
         bird16.code = 892
         bird16.duration = 171
@@ -283,7 +283,7 @@ object PetBirdData {
 
 
         val bird17 = PetVideo()
-        bird17.type = PetType.BIRD.ordinal
+        bird17.type = VideoType.BIRD.ordinal
         bird17.fileName = "bird17"
         bird17.code = 893
         bird17.duration = 60
@@ -300,7 +300,7 @@ object PetBirdData {
 
 
         val bird18 = PetVideo()
-        bird18.type = PetType.BIRD.ordinal
+        bird18.type = VideoType.BIRD.ordinal
         bird18.fileName = "bird18"
         bird18.code = 894
         bird18.duration = 48
@@ -317,7 +317,7 @@ object PetBirdData {
 
 
         val bird19 = PetVideo()
-        bird19.type = PetType.BIRD.ordinal
+        bird19.type = VideoType.BIRD.ordinal
         bird19.fileName = "bird19"
         bird19.code = 895
         bird19.duration = 121
@@ -334,7 +334,7 @@ object PetBirdData {
 
 
         val bird20 = PetVideo()
-        bird20.type = PetType.BIRD.ordinal
+        bird20.type = VideoType.BIRD.ordinal
         bird20.fileName = "bird20"
         bird20.code = 896
         bird20.duration = 74
@@ -351,7 +351,7 @@ object PetBirdData {
 
 
         val bird21 = PetVideo()
-        bird21.type = PetType.BIRD.ordinal
+        bird21.type = VideoType.BIRD.ordinal
         bird21.fileName = "bird21"
         bird21.code = 897
         bird21.duration = 82
@@ -368,7 +368,7 @@ object PetBirdData {
 
 
         val bird22 = PetVideo()
-        bird22.type = PetType.BIRD.ordinal
+        bird22.type = VideoType.BIRD.ordinal
         bird22.fileName = "bird22"
         bird22.code = 898
         bird22.duration = 313
@@ -385,7 +385,7 @@ object PetBirdData {
 
 
         val bird23 = PetVideo()
-        bird23.type = PetType.BIRD.ordinal
+        bird23.type = VideoType.BIRD.ordinal
         bird23.fileName = "bird23"
         bird23.code = 899
         bird23.duration = 150
@@ -402,7 +402,7 @@ object PetBirdData {
 
 
         val bird24 = PetVideo()
-        bird24.type = PetType.BIRD.ordinal
+        bird24.type = VideoType.BIRD.ordinal
         bird24.fileName = "bird24"
         bird24.code = 900
         bird24.duration = 120
@@ -419,7 +419,7 @@ object PetBirdData {
 
 
         val bird25 = PetVideo()
-        bird25.type = PetType.BIRD.ordinal
+        bird25.type = VideoType.BIRD.ordinal
         bird25.fileName = "bird25"
         bird25.code = 901
         bird25.duration = 147
@@ -436,7 +436,7 @@ object PetBirdData {
 
 
         val bird26 = PetVideo()
-        bird26.type = PetType.BIRD.ordinal
+        bird26.type = VideoType.BIRD.ordinal
         bird26.fileName = "bird26"
         bird26.code = 902
         bird26.duration = 83
@@ -453,7 +453,7 @@ object PetBirdData {
 
 
         val bird27 = PetVideo()
-        bird27.type = PetType.BIRD.ordinal
+        bird27.type = VideoType.BIRD.ordinal
         bird27.fileName = "bird27"
         bird27.code = 903
         bird27.duration = 155
@@ -470,7 +470,7 @@ object PetBirdData {
 
 
         val bird28 = PetVideo()
-        bird28.type = PetType.BIRD.ordinal
+        bird28.type = VideoType.BIRD.ordinal
         bird28.fileName = "bird28"
         bird28.code = 904
         bird28.duration = 93
@@ -487,7 +487,7 @@ object PetBirdData {
 
 
         val bird29 = PetVideo()
-        bird29.type = PetType.BIRD.ordinal
+        bird29.type = VideoType.BIRD.ordinal
         bird29.fileName = "bird29"
         bird29.code = 905
         bird29.duration = 26
@@ -504,7 +504,7 @@ object PetBirdData {
 
 
         val bird30 = PetVideo()
-        bird30.type = PetType.BIRD.ordinal
+        bird30.type = VideoType.BIRD.ordinal
         bird30.fileName = "bird30"
         bird30.code = 906
         bird30.duration = 11
@@ -521,7 +521,7 @@ object PetBirdData {
 
 
         val bird31 = PetVideo()
-        bird31.type = PetType.BIRD.ordinal
+        bird31.type = VideoType.BIRD.ordinal
         bird31.fileName = "bird31"
         bird31.code = 907
         bird31.duration = 22
@@ -538,7 +538,7 @@ object PetBirdData {
 
 
         val bird32 = PetVideo()
-        bird32.type = PetType.BIRD.ordinal
+        bird32.type = VideoType.BIRD.ordinal
         bird32.fileName = "bird32"
         bird32.code = 908
         bird32.duration = 76
@@ -555,7 +555,7 @@ object PetBirdData {
 
 
         val bird33 = PetVideo()
-        bird33.type = PetType.BIRD.ordinal
+        bird33.type = VideoType.BIRD.ordinal
         bird33.fileName = "bird33"
         bird33.code = 909
         bird33.duration = 46
@@ -572,7 +572,7 @@ object PetBirdData {
 
 
         val bird34 = PetVideo()
-        bird34.type = PetType.BIRD.ordinal
+        bird34.type = VideoType.BIRD.ordinal
         bird34.fileName = "bird34"
         bird34.code = 910
         bird34.duration = 78
@@ -589,7 +589,7 @@ object PetBirdData {
 
 
         val bird35 = PetVideo()
-        bird35.type = PetType.BIRD.ordinal
+        bird35.type = VideoType.BIRD.ordinal
         bird35.fileName = "bird35"
         bird35.code = 911
         bird35.duration = 58
@@ -606,7 +606,7 @@ object PetBirdData {
 
 
         val bird36 = PetVideo()
-        bird36.type = PetType.BIRD.ordinal
+        bird36.type = VideoType.BIRD.ordinal
         bird36.fileName = "bird36"
         bird36.code = 912
         bird36.duration = 53
@@ -623,7 +623,7 @@ object PetBirdData {
 
 
         val bird37 = PetVideo()
-        bird37.type = PetType.BIRD.ordinal
+        bird37.type = VideoType.BIRD.ordinal
         bird37.fileName = "bird37"
         bird37.code = 913
         bird37.duration = 68
@@ -640,7 +640,7 @@ object PetBirdData {
 
 
         val bird38 = PetVideo()
-        bird38.type = PetType.BIRD.ordinal
+        bird38.type = VideoType.BIRD.ordinal
         bird38.fileName = "bird38"
         bird38.code = 914
         bird38.duration = 120
@@ -657,7 +657,7 @@ object PetBirdData {
 
 
         val bird39 = PetVideo()
-        bird39.type = PetType.BIRD.ordinal
+        bird39.type = VideoType.BIRD.ordinal
         bird39.fileName = "bird39"
         bird39.code = 915
         bird39.duration = 167
@@ -674,7 +674,7 @@ object PetBirdData {
 
 
         val bird40 = PetVideo()
-        bird40.type = PetType.BIRD.ordinal
+        bird40.type = VideoType.BIRD.ordinal
         bird40.fileName = "bird40"
         bird40.code = 916
         bird40.duration = 167
@@ -691,7 +691,7 @@ object PetBirdData {
 
 
         val bird41 = PetVideo()
-        bird41.type = PetType.BIRD.ordinal
+        bird41.type = VideoType.BIRD.ordinal
         bird41.fileName = "bird41"
         bird41.code = 917
         bird41.duration = 178
@@ -708,7 +708,7 @@ object PetBirdData {
 
 
         val bird42 = PetVideo()
-        bird42.type = PetType.BIRD.ordinal
+        bird42.type = VideoType.BIRD.ordinal
         bird42.fileName = "bird42"
         bird42.code = 918
         bird42.duration = 120
@@ -725,7 +725,7 @@ object PetBirdData {
 
 
         val bird43 = PetVideo()
-        bird43.type = PetType.BIRD.ordinal
+        bird43.type = VideoType.BIRD.ordinal
         bird43.fileName = "bird43"
         bird43.code = 919
         bird43.duration = 320
@@ -742,7 +742,7 @@ object PetBirdData {
 
 
         val bird44 = PetVideo()
-        bird44.type = PetType.BIRD.ordinal
+        bird44.type = VideoType.BIRD.ordinal
         bird44.fileName = "bird44"
         bird44.code = 920
         bird44.duration = 156
@@ -759,7 +759,7 @@ object PetBirdData {
 
 
         val bird45 = PetVideo()
-        bird45.type = PetType.BIRD.ordinal
+        bird45.type = VideoType.BIRD.ordinal
         bird45.fileName = "bird45"
         bird45.code = 921
         bird45.duration = 160
@@ -776,7 +776,7 @@ object PetBirdData {
 
 
         val bird46 = PetVideo()
-        bird46.type = PetType.BIRD.ordinal
+        bird46.type = VideoType.BIRD.ordinal
         bird46.fileName = "bird46"
         bird46.code = 922
         bird46.duration = 138
@@ -793,7 +793,7 @@ object PetBirdData {
 
 
         val bird47 = PetVideo()
-        bird47.type = PetType.BIRD.ordinal
+        bird47.type = VideoType.BIRD.ordinal
         bird47.fileName = "bird47"
         bird47.code = 923
         bird47.duration = 100
@@ -810,7 +810,7 @@ object PetBirdData {
 
 
         val bird48 = PetVideo()
-        bird48.type = PetType.BIRD.ordinal
+        bird48.type = VideoType.BIRD.ordinal
         bird48.fileName = "bird48"
         bird48.code = 924
         bird48.duration = 66
@@ -827,7 +827,7 @@ object PetBirdData {
 
 
         val bird49 = PetVideo()
-        bird49.type = PetType.BIRD.ordinal
+        bird49.type = VideoType.BIRD.ordinal
         bird49.fileName = "bird49"
         bird49.code = 925
         bird49.duration = 108
@@ -844,7 +844,7 @@ object PetBirdData {
 
 
         val bird50 = PetVideo()
-        bird50.type = PetType.BIRD.ordinal
+        bird50.type = VideoType.BIRD.ordinal
         bird50.fileName = "bird50"
         bird50.code = 926
         bird50.duration = 78
@@ -861,7 +861,7 @@ object PetBirdData {
 
 
         val bird51 = PetVideo()
-        bird51.type = PetType.BIRD.ordinal
+        bird51.type = VideoType.BIRD.ordinal
         bird51.fileName = "bird51"
         bird51.code = 927
         bird51.duration = 145
@@ -878,7 +878,7 @@ object PetBirdData {
 
 
         val bird52 = PetVideo()
-        bird52.type = PetType.BIRD.ordinal
+        bird52.type = VideoType.BIRD.ordinal
         bird52.fileName = "bird52"
         bird52.code = 928
         bird52.duration = 138
@@ -895,7 +895,7 @@ object PetBirdData {
 
 
         val bird53 = PetVideo()
-        bird53.type = PetType.BIRD.ordinal
+        bird53.type = VideoType.BIRD.ordinal
         bird53.fileName = "bird53"
         bird53.code = 929
         bird53.duration = 163
@@ -912,7 +912,7 @@ object PetBirdData {
 
 
         val bird54 = PetVideo()
-        bird54.type = PetType.BIRD.ordinal
+        bird54.type = VideoType.BIRD.ordinal
         bird54.fileName = "bird54"
         bird54.code = 930
         bird54.duration = 178
@@ -929,7 +929,7 @@ object PetBirdData {
 
 
         val bird55 = PetVideo()
-        bird55.type = PetType.BIRD.ordinal
+        bird55.type = VideoType.BIRD.ordinal
         bird55.fileName = "bird55"
         bird55.code = 931
         bird55.duration = 122
@@ -946,7 +946,7 @@ object PetBirdData {
 
 
         val bird56 = PetVideo()
-        bird56.type = PetType.BIRD.ordinal
+        bird56.type = VideoType.BIRD.ordinal
         bird56.fileName = "bird56"
         bird56.code = 932
         bird56.duration = 98
@@ -963,7 +963,7 @@ object PetBirdData {
 
 
         val bird57 = PetVideo()
-        bird57.type = PetType.BIRD.ordinal
+        bird57.type = VideoType.BIRD.ordinal
         bird57.fileName = "bird57"
         bird57.code = 933
         bird57.duration = 167
@@ -980,7 +980,7 @@ object PetBirdData {
 
 
         val bird58 = PetVideo()
-        bird58.type = PetType.BIRD.ordinal
+        bird58.type = VideoType.BIRD.ordinal
         bird58.fileName = "bird58"
         bird58.code = 934
         bird58.duration = 153
@@ -997,7 +997,7 @@ object PetBirdData {
 
 
         val bird59 = PetVideo()
-        bird59.type = PetType.BIRD.ordinal
+        bird59.type = VideoType.BIRD.ordinal
         bird59.fileName = "bird59"
         bird59.code = 935
         bird59.duration = 306
@@ -1014,7 +1014,7 @@ object PetBirdData {
 
 
         val bird60 = PetVideo()
-        bird60.type = PetType.BIRD.ordinal
+        bird60.type = VideoType.BIRD.ordinal
         bird60.fileName = "bird60"
         bird60.code = 936
         bird60.duration = 178
@@ -1031,7 +1031,7 @@ object PetBirdData {
 
 
         val bird61 = PetVideo()
-        bird61.type = PetType.BIRD.ordinal
+        bird61.type = VideoType.BIRD.ordinal
         bird61.fileName = "bird61"
         bird61.code = 937
         bird61.duration = 156
@@ -1048,7 +1048,7 @@ object PetBirdData {
 
 
         val bird62 = PetVideo()
-        bird62.type = PetType.BIRD.ordinal
+        bird62.type = VideoType.BIRD.ordinal
         bird62.fileName = "bird62"
         bird62.code = 938
         bird62.duration = 189
@@ -1065,7 +1065,7 @@ object PetBirdData {
 
 
         val bird63 = PetVideo()
-        bird63.type = PetType.BIRD.ordinal
+        bird63.type = VideoType.BIRD.ordinal
         bird63.fileName = "bird63"
         bird63.code = 939
         bird63.duration = 64
@@ -1082,7 +1082,7 @@ object PetBirdData {
 
 
         val bird64 = PetVideo()
-        bird64.type = PetType.BIRD.ordinal
+        bird64.type = VideoType.BIRD.ordinal
         bird64.fileName = "bird64"
         bird64.code = 940
         bird64.duration = 62
@@ -1099,7 +1099,7 @@ object PetBirdData {
 
 
         val bird65 = PetVideo()
-        bird65.type = PetType.BIRD.ordinal
+        bird65.type = VideoType.BIRD.ordinal
         bird65.fileName = "bird65"
         bird65.code = 941
         bird65.duration = 115
@@ -1116,7 +1116,7 @@ object PetBirdData {
 
 
         val bird66 = PetVideo()
-        bird66.type = PetType.BIRD.ordinal
+        bird66.type = VideoType.BIRD.ordinal
         bird66.fileName = "bird66"
         bird66.code = 942
         bird66.duration = 7
@@ -1133,7 +1133,7 @@ object PetBirdData {
 
 
         val bird67 = PetVideo()
-        bird67.type = PetType.BIRD.ordinal
+        bird67.type = VideoType.BIRD.ordinal
         bird67.fileName = "bird67"
         bird67.code = 943
         bird67.duration = 93
@@ -1150,7 +1150,7 @@ object PetBirdData {
 
 
         val bird68 = PetVideo()
-        bird68.type = PetType.BIRD.ordinal
+        bird68.type = VideoType.BIRD.ordinal
         bird68.fileName = "bird68"
         bird68.code = 944
         bird68.duration = 94
@@ -1167,7 +1167,7 @@ object PetBirdData {
 
 
         val bird69 = PetVideo()
-        bird69.type = PetType.BIRD.ordinal
+        bird69.type = VideoType.BIRD.ordinal
         bird69.fileName = "bird69"
         bird69.code = 945
         bird69.duration = 93
@@ -1184,7 +1184,7 @@ object PetBirdData {
 
 
         val bird70 = PetVideo()
-        bird70.type = PetType.BIRD.ordinal
+        bird70.type = VideoType.BIRD.ordinal
         bird70.fileName = "bird70"
         bird70.code = 946
         bird70.duration = 142
@@ -1201,7 +1201,7 @@ object PetBirdData {
 
 
         val bird71 = PetVideo()
-        bird71.type = PetType.BIRD.ordinal
+        bird71.type = VideoType.BIRD.ordinal
         bird71.fileName = "bird71"
         bird71.code = 947
         bird71.duration = 203
@@ -1218,7 +1218,7 @@ object PetBirdData {
 
 
         val bird72 = PetVideo()
-        bird72.type = PetType.BIRD.ordinal
+        bird72.type = VideoType.BIRD.ordinal
         bird72.fileName = "bird72"
         bird72.code = 948
         bird72.duration = 124
@@ -1235,7 +1235,7 @@ object PetBirdData {
 
 
         val bird73 = PetVideo()
-        bird73.type = PetType.BIRD.ordinal
+        bird73.type = VideoType.BIRD.ordinal
         bird73.fileName = "bird73"
         bird73.code = 949
         bird73.duration = 261
@@ -1252,7 +1252,7 @@ object PetBirdData {
 
 
         val bird74 = PetVideo()
-        bird74.type = PetType.BIRD.ordinal
+        bird74.type = VideoType.BIRD.ordinal
         bird74.fileName = "bird74"
         bird74.code = 950
         bird74.duration = 68
@@ -1269,7 +1269,7 @@ object PetBirdData {
 
 
         val bird75 = PetVideo()
-        bird75.type = PetType.BIRD.ordinal
+        bird75.type = VideoType.BIRD.ordinal
         bird75.fileName = "bird75"
         bird75.code = 951
         bird75.duration = 145
@@ -1286,7 +1286,7 @@ object PetBirdData {
 
 
         val bird76 = PetVideo()
-        bird76.type = PetType.BIRD.ordinal
+        bird76.type = VideoType.BIRD.ordinal
         bird76.fileName = "bird76"
         bird76.code = 952
         bird76.duration = 133
@@ -1303,7 +1303,7 @@ object PetBirdData {
 
 
         val bird77 = PetVideo()
-        bird77.type = PetType.BIRD.ordinal
+        bird77.type = VideoType.BIRD.ordinal
         bird77.fileName = "bird77"
         bird77.code = 953
         bird77.duration = 180
@@ -1320,7 +1320,7 @@ object PetBirdData {
 
 
         val bird78 = PetVideo()
-        bird78.type = PetType.BIRD.ordinal
+        bird78.type = VideoType.BIRD.ordinal
         bird78.fileName = "bird78"
         bird78.code = 954
         bird78.duration = 80
@@ -1337,7 +1337,7 @@ object PetBirdData {
 
 
         val bird79 = PetVideo()
-        bird79.type = PetType.BIRD.ordinal
+        bird79.type = VideoType.BIRD.ordinal
         bird79.fileName = "bird79"
         bird79.code = 955
         bird79.duration = 248
@@ -1354,7 +1354,7 @@ object PetBirdData {
 
 
         val bird80 = PetVideo()
-        bird80.type = PetType.BIRD.ordinal
+        bird80.type = VideoType.BIRD.ordinal
         bird80.fileName = "bird80"
         bird80.code = 956
         bird80.duration = 145
@@ -1371,7 +1371,7 @@ object PetBirdData {
 
 
         val bird81 = PetVideo()
-        bird81.type = PetType.BIRD.ordinal
+        bird81.type = VideoType.BIRD.ordinal
         bird81.fileName = "bird81"
         bird81.code = 957
         bird81.duration = 231
@@ -1388,7 +1388,7 @@ object PetBirdData {
 
 
         val bird82 = PetVideo()
-        bird82.type = PetType.BIRD.ordinal
+        bird82.type = VideoType.BIRD.ordinal
         bird82.fileName = "bird82"
         bird82.code = 958
         bird82.duration = 130
@@ -1405,7 +1405,7 @@ object PetBirdData {
 
 
         val bird83 = PetVideo()
-        bird83.type = PetType.BIRD.ordinal
+        bird83.type = VideoType.BIRD.ordinal
         bird83.fileName = "bird83"
         bird83.code = 959
         bird83.duration = 154
@@ -1422,7 +1422,7 @@ object PetBirdData {
 
 
         val bird84 = PetVideo()
-        bird84.type = PetType.BIRD.ordinal
+        bird84.type = VideoType.BIRD.ordinal
         bird84.fileName = "bird84"
         bird84.code = 960
         bird84.duration = 123
@@ -1439,7 +1439,7 @@ object PetBirdData {
 
 
         val bird85 = PetVideo()
-        bird85.type = PetType.BIRD.ordinal
+        bird85.type = VideoType.BIRD.ordinal
         bird85.fileName = "bird85"
         bird85.code = 961
         bird85.duration = 109
@@ -1456,7 +1456,7 @@ object PetBirdData {
 
 
         val bird86 = PetVideo()
-        bird86.type = PetType.BIRD.ordinal
+        bird86.type = VideoType.BIRD.ordinal
         bird86.fileName = "bird86"
         bird86.code = 962
         bird86.duration = 73
@@ -1473,7 +1473,7 @@ object PetBirdData {
 
 
         val bird87 = PetVideo()
-        bird87.type = PetType.BIRD.ordinal
+        bird87.type = VideoType.BIRD.ordinal
         bird87.fileName = "bird87"
         bird87.code = 963
         bird87.duration = 205
@@ -1490,7 +1490,7 @@ object PetBirdData {
 
 
         val bird88 = PetVideo()
-        bird88.type = PetType.BIRD.ordinal
+        bird88.type = VideoType.BIRD.ordinal
         bird88.fileName = "bird88"
         bird88.code = 964
         bird88.duration = 74
@@ -1507,7 +1507,7 @@ object PetBirdData {
 
 
         val bird89 = PetVideo()
-        bird89.type = PetType.BIRD.ordinal
+        bird89.type = VideoType.BIRD.ordinal
         bird89.fileName = "bird89"
         bird89.code = 965
         bird89.duration = 178
@@ -1524,7 +1524,7 @@ object PetBirdData {
 
 
         val bird90 = PetVideo()
-        bird90.type = PetType.BIRD.ordinal
+        bird90.type = VideoType.BIRD.ordinal
         bird90.fileName = "bird90"
         bird90.code = 966
         bird90.duration = 316
@@ -1541,7 +1541,7 @@ object PetBirdData {
 
 
         val bird91 = PetVideo()
-        bird91.type = PetType.BIRD.ordinal
+        bird91.type = VideoType.BIRD.ordinal
         bird91.fileName = "bird91"
         bird91.code = 967
         bird91.duration = 334
@@ -1558,7 +1558,7 @@ object PetBirdData {
 
 
         val bird92 = PetVideo()
-        bird92.type = PetType.BIRD.ordinal
+        bird92.type = VideoType.BIRD.ordinal
         bird92.fileName = "bird92"
         bird92.code = 968
         bird92.duration = 20
@@ -1575,7 +1575,7 @@ object PetBirdData {
 
 
         val bird93 = PetVideo()
-        bird93.type = PetType.BIRD.ordinal
+        bird93.type = VideoType.BIRD.ordinal
         bird93.fileName = "bird93"
         bird93.code = 969
         bird93.duration = 240
@@ -1592,7 +1592,7 @@ object PetBirdData {
 
 
         val bird94 = PetVideo()
-        bird94.type = PetType.BIRD.ordinal
+        bird94.type = VideoType.BIRD.ordinal
         bird94.fileName = "bird94"
         bird94.code = 970
         bird94.duration = 180
@@ -1609,7 +1609,7 @@ object PetBirdData {
 
 
         val bird95 = PetVideo()
-        bird95.type = PetType.BIRD.ordinal
+        bird95.type = VideoType.BIRD.ordinal
         bird95.fileName = "bird95"
         bird95.code = 971
         bird95.duration = 312
@@ -1626,7 +1626,7 @@ object PetBirdData {
 
 
         val bird96 = PetVideo()
-        bird96.type = PetType.BIRD.ordinal
+        bird96.type = VideoType.BIRD.ordinal
         bird96.fileName = "bird96"
         bird96.code = 972
         bird96.duration = 156
@@ -1643,7 +1643,7 @@ object PetBirdData {
 
 
         val bird97 = PetVideo()
-        bird97.type = PetType.BIRD.ordinal
+        bird97.type = VideoType.BIRD.ordinal
         bird97.fileName = "bird97"
         bird97.code = 973
         bird97.duration = 201
@@ -1660,7 +1660,7 @@ object PetBirdData {
 
 
         val bird98 = PetVideo()
-        bird98.type = PetType.BIRD.ordinal
+        bird98.type = VideoType.BIRD.ordinal
         bird98.fileName = "bird98"
         bird98.code = 974
         bird98.duration = 304
@@ -1677,7 +1677,7 @@ object PetBirdData {
 
 
         val bird99 = PetVideo()
-        bird99.type = PetType.BIRD.ordinal
+        bird99.type = VideoType.BIRD.ordinal
         bird99.fileName = "bird99"
         bird99.code = 975
         bird99.duration = 84
@@ -1694,7 +1694,7 @@ object PetBirdData {
 
 
         val bird100 = PetVideo()
-        bird100.type = PetType.BIRD.ordinal
+        bird100.type = VideoType.BIRD.ordinal
         bird100.fileName = "bird100"
         bird100.code = 976
         bird100.duration = 381
@@ -1711,7 +1711,7 @@ object PetBirdData {
 
 
         val bird101 = PetVideo()
-        bird101.type = PetType.BIRD.ordinal
+        bird101.type = VideoType.BIRD.ordinal
         bird101.fileName = "bird101"
         bird101.code = 977
         bird101.duration = 96
@@ -1728,7 +1728,7 @@ object PetBirdData {
 
 
         val bird102 = PetVideo()
-        bird102.type = PetType.BIRD.ordinal
+        bird102.type = VideoType.BIRD.ordinal
         bird102.fileName = "bird102"
         bird102.code = 978
         bird102.duration = 219
@@ -1745,7 +1745,7 @@ object PetBirdData {
 
 
         val bird103 = PetVideo()
-        bird103.type = PetType.BIRD.ordinal
+        bird103.type = VideoType.BIRD.ordinal
         bird103.fileName = "bird103"
         bird103.code = 979
         bird103.duration = 359
@@ -1762,7 +1762,7 @@ object PetBirdData {
 
 
         val bird104 = PetVideo()
-        bird104.type = PetType.BIRD.ordinal
+        bird104.type = VideoType.BIRD.ordinal
         bird104.fileName = "bird104"
         bird104.code = 980
         bird104.duration = 202
@@ -1779,7 +1779,7 @@ object PetBirdData {
 
 
         val bird105 = PetVideo()
-        bird105.type = PetType.BIRD.ordinal
+        bird105.type = VideoType.BIRD.ordinal
         bird105.fileName = "bird105"
         bird105.code = 981
         bird105.duration = 170
@@ -1796,7 +1796,7 @@ object PetBirdData {
 
 
         val bird106 = PetVideo()
-        bird106.type = PetType.BIRD.ordinal
+        bird106.type = VideoType.BIRD.ordinal
         bird106.fileName = "bird106"
         bird106.code = 982
         bird106.duration = 35
@@ -1813,7 +1813,7 @@ object PetBirdData {
 
 
         val bird107 = PetVideo()
-        bird107.type = PetType.BIRD.ordinal
+        bird107.type = VideoType.BIRD.ordinal
         bird107.fileName = "bird107"
         bird107.code = 983
         bird107.duration = 254
@@ -1830,7 +1830,7 @@ object PetBirdData {
 
 
         val bird108 = PetVideo()
-        bird108.type = PetType.BIRD.ordinal
+        bird108.type = VideoType.BIRD.ordinal
         bird108.fileName = "bird108"
         bird108.code = 984
         bird108.duration = 114
@@ -1847,7 +1847,7 @@ object PetBirdData {
 
 
         val bird109 = PetVideo()
-        bird109.type = PetType.BIRD.ordinal
+        bird109.type = VideoType.BIRD.ordinal
         bird109.fileName = "bird109"
         bird109.code = 985
         bird109.duration = 50
@@ -1864,7 +1864,7 @@ object PetBirdData {
 
 
         val bird110 = PetVideo()
-        bird110.type = PetType.BIRD.ordinal
+        bird110.type = VideoType.BIRD.ordinal
         bird110.fileName = "bird110"
         bird110.code = 986
         bird110.duration = 139
@@ -1881,7 +1881,7 @@ object PetBirdData {
 
 
         val bird111 = PetVideo()
-        bird111.type = PetType.BIRD.ordinal
+        bird111.type = VideoType.BIRD.ordinal
         bird111.fileName = "bird111"
         bird111.code = 987
         bird111.duration = 360
@@ -1898,7 +1898,7 @@ object PetBirdData {
 
 
         val bird112 = PetVideo()
-        bird112.type = PetType.BIRD.ordinal
+        bird112.type = VideoType.BIRD.ordinal
         bird112.fileName = "bird112"
         bird112.code = 988
         bird112.duration = 163
@@ -1915,7 +1915,7 @@ object PetBirdData {
 
 
         val bird113 = PetVideo()
-        bird113.type = PetType.BIRD.ordinal
+        bird113.type = VideoType.BIRD.ordinal
         bird113.fileName = "bird113"
         bird113.code = 989
         bird113.duration = 173
@@ -1932,7 +1932,7 @@ object PetBirdData {
 
 
         val bird114 = PetVideo()
-        bird114.type = PetType.BIRD.ordinal
+        bird114.type = VideoType.BIRD.ordinal
         bird114.fileName = "bird114"
         bird114.code = 990
         bird114.duration = 127
@@ -1949,7 +1949,7 @@ object PetBirdData {
 
 
         val bird115 = PetVideo()
-        bird115.type = PetType.BIRD.ordinal
+        bird115.type = VideoType.BIRD.ordinal
         bird115.fileName = "bird115"
         bird115.code = 991
         bird115.duration = 15
@@ -1966,7 +1966,7 @@ object PetBirdData {
 
 
         val bird116 = PetVideo()
-        bird116.type = PetType.BIRD.ordinal
+        bird116.type = VideoType.BIRD.ordinal
         bird116.fileName = "bird116"
         bird116.code = 992
         bird116.duration = 151
@@ -1983,7 +1983,7 @@ object PetBirdData {
 
 
         val bird117 = PetVideo()
-        bird117.type = PetType.BIRD.ordinal
+        bird117.type = VideoType.BIRD.ordinal
         bird117.fileName = "bird117"
         bird117.code = 993
         bird117.duration = 134
@@ -2000,7 +2000,7 @@ object PetBirdData {
 
 
         val bird118 = PetVideo()
-        bird118.type = PetType.BIRD.ordinal
+        bird118.type = VideoType.BIRD.ordinal
         bird118.fileName = "bird118"
         bird118.code = 994
         bird118.duration = 171
@@ -2017,7 +2017,7 @@ object PetBirdData {
 
 
         val bird119 = PetVideo()
-        bird119.type = PetType.BIRD.ordinal
+        bird119.type = VideoType.BIRD.ordinal
         bird119.fileName = "bird119"
         bird119.code = 995
         bird119.duration = 23
@@ -2034,7 +2034,7 @@ object PetBirdData {
 
 
         val bird120 = PetVideo()
-        bird120.type = PetType.BIRD.ordinal
+        bird120.type = VideoType.BIRD.ordinal
         bird120.fileName = "bird120"
         bird120.code = 996
         bird120.duration = 98
@@ -2051,7 +2051,7 @@ object PetBirdData {
 
 
         val bird121 = PetVideo()
-        bird121.type = PetType.BIRD.ordinal
+        bird121.type = VideoType.BIRD.ordinal
         bird121.fileName = "bird121"
         bird121.code = 997
         bird121.duration = 79
@@ -2068,7 +2068,7 @@ object PetBirdData {
 
 
         val bird122 = PetVideo()
-        bird122.type = PetType.BIRD.ordinal
+        bird122.type = VideoType.BIRD.ordinal
         bird122.fileName = "bird122"
         bird122.code = 998
         bird122.duration = 91
@@ -2085,7 +2085,7 @@ object PetBirdData {
 
 
         val bird123 = PetVideo()
-        bird123.type = PetType.BIRD.ordinal
+        bird123.type = VideoType.BIRD.ordinal
         bird123.fileName = "bird123"
         bird123.code = 999
         bird123.duration = 130
@@ -2102,7 +2102,7 @@ object PetBirdData {
 
 
         val bird124 = PetVideo()
-        bird124.type = PetType.BIRD.ordinal
+        bird124.type = VideoType.BIRD.ordinal
         bird124.fileName = "bird124"
         bird124.code = 1000
         bird124.duration = 152
@@ -2119,7 +2119,7 @@ object PetBirdData {
 
 
         val bird125 = PetVideo()
-        bird125.type = PetType.BIRD.ordinal
+        bird125.type = VideoType.BIRD.ordinal
         bird125.fileName = "bird125"
         bird125.code = 1001
         bird125.duration = 91
@@ -2136,7 +2136,7 @@ object PetBirdData {
 
 
         val bird126 = PetVideo()
-        bird126.type = PetType.BIRD.ordinal
+        bird126.type = VideoType.BIRD.ordinal
         bird126.fileName = "bird126"
         bird126.code = 1002
         bird126.duration = 26
@@ -2153,7 +2153,7 @@ object PetBirdData {
 
 
         val bird127 = PetVideo()
-        bird127.type = PetType.BIRD.ordinal
+        bird127.type = VideoType.BIRD.ordinal
         bird127.fileName = "bird127"
         bird127.code = 1003
         bird127.duration = 29
@@ -2170,7 +2170,7 @@ object PetBirdData {
 
 
         val bird128 = PetVideo()
-        bird128.type = PetType.BIRD.ordinal
+        bird128.type = VideoType.BIRD.ordinal
         bird128.fileName = "bird128"
         bird128.code = 1004
         bird128.duration = 64
@@ -2187,7 +2187,7 @@ object PetBirdData {
 
 
         val bird129 = PetVideo()
-        bird129.type = PetType.BIRD.ordinal
+        bird129.type = VideoType.BIRD.ordinal
         bird129.fileName = "bird129"
         bird129.code = 1005
         bird129.duration = 16
@@ -2204,7 +2204,7 @@ object PetBirdData {
 
 
         val bird130 = PetVideo()
-        bird130.type = PetType.BIRD.ordinal
+        bird130.type = VideoType.BIRD.ordinal
         bird130.fileName = "bird130"
         bird130.code = 1006
         bird130.duration = 112
@@ -2221,7 +2221,7 @@ object PetBirdData {
 
 
         val bird131 = PetVideo()
-        bird131.type = PetType.BIRD.ordinal
+        bird131.type = VideoType.BIRD.ordinal
         bird131.fileName = "bird131"
         bird131.code = 1007
         bird131.duration = 24
@@ -2238,7 +2238,7 @@ object PetBirdData {
 
 
         val bird132 = PetVideo()
-        bird132.type = PetType.BIRD.ordinal
+        bird132.type = VideoType.BIRD.ordinal
         bird132.fileName = "bird132"
         bird132.code = 1008
         bird132.duration = 153
@@ -2255,7 +2255,7 @@ object PetBirdData {
 
 
         val bird133 = PetVideo()
-        bird133.type = PetType.BIRD.ordinal
+        bird133.type = VideoType.BIRD.ordinal
         bird133.fileName = "bird133"
         bird133.code = 1009
         bird133.duration = 46
@@ -2272,7 +2272,7 @@ object PetBirdData {
 
 
         val bird134 = PetVideo()
-        bird134.type = PetType.BIRD.ordinal
+        bird134.type = VideoType.BIRD.ordinal
         bird134.fileName = "bird134"
         bird134.code = 1010
         bird134.duration = 26
@@ -2289,7 +2289,7 @@ object PetBirdData {
 
 
         val bird135 = PetVideo()
-        bird135.type = PetType.BIRD.ordinal
+        bird135.type = VideoType.BIRD.ordinal
         bird135.fileName = "bird135"
         bird135.code = 1011
         bird135.duration = 244
@@ -2306,7 +2306,7 @@ object PetBirdData {
 
 
         val bird136 = PetVideo()
-        bird136.type = PetType.BIRD.ordinal
+        bird136.type = VideoType.BIRD.ordinal
         bird136.fileName = "bird136"
         bird136.code = 1012
         bird136.duration = 247
@@ -2323,7 +2323,7 @@ object PetBirdData {
 
 
         val bird137 = PetVideo()
-        bird137.type = PetType.BIRD.ordinal
+        bird137.type = VideoType.BIRD.ordinal
         bird137.fileName = "bird137"
         bird137.code = 1013
         bird137.duration = 206
@@ -2339,7 +2339,7 @@ object PetBirdData {
         list.add(bird137)
 
         val bird138 = PetVideo()
-        bird138.type = PetType.BIRD.ordinal
+        bird138.type = VideoType.BIRD.ordinal
         bird138.fileName = "bird138"
         bird138.code = 1014
         bird138.duration = 88
@@ -2356,7 +2356,7 @@ object PetBirdData {
 
 
         val bird139 = PetVideo()
-        bird139.type = PetType.BIRD.ordinal
+        bird139.type = VideoType.BIRD.ordinal
         bird139.fileName = "bird139"
         bird139.code = 1015
         bird139.duration = 118
@@ -2373,7 +2373,7 @@ object PetBirdData {
 
 
         val bird140 = PetVideo()
-        bird140.type = PetType.BIRD.ordinal
+        bird140.type = VideoType.BIRD.ordinal
         bird140.fileName = "bird140"
         bird140.code = 1016
         bird140.duration = 159
@@ -2390,7 +2390,7 @@ object PetBirdData {
 
 
         val bird141 = PetVideo()
-        bird141.type = PetType.BIRD.ordinal
+        bird141.type = VideoType.BIRD.ordinal
         bird141.fileName = "bird141"
         bird141.code = 1017
         bird141.duration = 468
@@ -2407,7 +2407,7 @@ object PetBirdData {
 
 
         val bird142 = PetVideo()
-        bird142.type = PetType.BIRD.ordinal
+        bird142.type = VideoType.BIRD.ordinal
         bird142.fileName = "bird142"
         bird142.code = 1018
         bird142.duration = 116
@@ -2424,7 +2424,7 @@ object PetBirdData {
 
 
         val bird143 = PetVideo()
-        bird143.type = PetType.BIRD.ordinal
+        bird143.type = VideoType.BIRD.ordinal
         bird143.fileName = "bird143"
         bird143.code = 1019
         bird143.duration = 57
@@ -2440,7 +2440,7 @@ object PetBirdData {
         list.add(bird143)
 
         val bird144 = PetVideo()
-        bird144.type = PetType.BIRD.ordinal
+        bird144.type = VideoType.BIRD.ordinal
         bird144.fileName = "bird144"
         bird144.code = 1020
         bird144.duration = 83
@@ -2456,7 +2456,7 @@ object PetBirdData {
         list.add(bird144)
 
         val bird145 = PetVideo()
-        bird145.type = PetType.BIRD.ordinal
+        bird145.type = VideoType.BIRD.ordinal
         bird145.fileName = "bird145"
         bird145.code = 427
         bird145.duration = 210

@@ -22,11 +22,11 @@ public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutRefreshB
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.swipLayout.setOnRefreshListener {
+        binding.freshLayout.setOnRefreshListener {
             mViewModel.getLoveData(true)
         }
 
-        binding.recyclerLayout.run {
+        binding.recyclerView.run {
             adapter = mAdapter
             layoutManager = LinearLayoutManager(mActivity)
             addItemDecoration(MyLoveItemDecoration(mActivity))
@@ -42,19 +42,17 @@ public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutRefreshB
                 when{
                     it.isRefresh ->{
                         mAdapter.refresh(it.loveData)
-                        binding.swipLayout.isRefreshing = false
+                        binding.freshLayout.isRefreshing = false
                     }
                 }
-
-                binding.swipLayout.visibility = View.VISIBLE
-
+                binding.freshLayout.visibility = View.VISIBLE
             }
         }
     }
 
     override fun firstOnResume() {
         mViewModel.getLoveData(true)
-        binding.swipLayout.isRefreshing = true
+        binding.freshLayout.isRefreshing = true
     }
 
 }

@@ -7,7 +7,6 @@ object EyepetozerConvert {
 
     fun convert(eyepetozer: Eyepetozer?): MutableList<EyepetozerBean> {
 
-        Log.e("1mean","eyepetozer: $eyepetozer")
         val list: MutableList<EyepetozerBean> = mutableListOf()
         val itemList = eyepetozer?.itemList
         if (itemList != null && itemList.isNotEmpty()) {

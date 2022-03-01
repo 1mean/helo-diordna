@@ -29,3 +29,7 @@ fun startVideoPlayActivity(context: Context, code: Int) {
     }
     context.startActivity(intent)
 }
+
+fun startPlay(){
+
+}

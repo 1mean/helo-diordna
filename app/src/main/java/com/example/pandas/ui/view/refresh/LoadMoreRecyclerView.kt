@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.pandas.R
+import com.example.pandas.base.adapter.BaseViewHolder
 import kotlin.math.abs
 
 
@@ -279,6 +280,10 @@ class LoadMoreRecyclerView : RecyclerView {
     }
 
     /*--提供调用方法------------------------------------------------------------------------------*/
+
+    fun isLoading(): Boolean {
+        return isLoadingData
+    }
 
     fun isFreshing(freshing: Boolean) {
         isFreshing = freshing

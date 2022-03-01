@@ -1,6 +1,6 @@
 package com.example.pandas.data
 
-import com.example.pandas.bean.pet.PetType
+import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.entity.PetVideo
 
 object MusicVideoData {
@@ -10,7 +10,7 @@ object MusicVideoData {
     fun getMusicVideoData(): MutableList<PetVideo> {
 
         val music7 = PetVideo()
-        music7.type = PetType.MUSIC.ordinal
+        music7.type = VideoType.MUSIC.ordinal
         music7.fileName = "music7"
         music7.code = 1131
         music7.duration = 228
@@ -26,7 +26,7 @@ object MusicVideoData {
         list.add(music7)
 
         val music18 = PetVideo()
-        music18.type = PetType.MUSIC.ordinal
+        music18.type = VideoType.MUSIC.ordinal
         music18.fileName = "music18"
         music18.code = 1132
         music18.duration = 267
@@ -42,7 +42,7 @@ object MusicVideoData {
         list.add(music18)
 
         val music41 = PetVideo()
-        music41.type = PetType.MUSIC.ordinal
+        music41.type = VideoType.MUSIC.ordinal
         music41.fileName = "music41"
         music41.code = 1133
         music41.duration = 287
@@ -58,7 +58,7 @@ object MusicVideoData {
         list.add(music41)
 
         val music42 = PetVideo()
-        music42.type = PetType.MUSIC.ordinal
+        music42.type = VideoType.MUSIC.ordinal
         music42.fileName = "music42"
         music42.code = 1134
         music42.duration = 274
@@ -74,7 +74,7 @@ object MusicVideoData {
         list.add(music42)
 
         val music5 = PetVideo()
-        music5.type = PetType.MUSIC.ordinal
+        music5.type = VideoType.MUSIC.ordinal
         music5.fileName = "music5"
         music5.code = 1135
         music5.duration = 508
@@ -90,7 +90,7 @@ object MusicVideoData {
         list.add(music5)
 
         val music6 = PetVideo()
-        music6.type = PetType.MUSIC.ordinal
+        music6.type = VideoType.MUSIC.ordinal
         music6.fileName = "music6"
         music6.code = 1136
         music6.duration = 227
@@ -106,7 +106,7 @@ object MusicVideoData {
         list.add(music6)
 
         val music1 = PetVideo()
-        music1.type = PetType.MUSIC.ordinal
+        music1.type = VideoType.MUSIC.ordinal
         music1.fileName = "music1"
         music1.code = 1137
         music1.duration = 155
@@ -122,7 +122,7 @@ object MusicVideoData {
         list.add(music1)
 
         val music8 = PetVideo()
-        music8.type = PetType.MUSIC.ordinal
+        music8.type = VideoType.MUSIC.ordinal
         music8.fileName = "music8"
         music8.code = 1138
         music8.duration = 210
@@ -138,7 +138,7 @@ object MusicVideoData {
         list.add(music8)
 
         val music9 = PetVideo()
-        music9.type = PetType.MUSIC.ordinal
+        music9.type = VideoType.MUSIC.ordinal
         music9.fileName = "music9"
         music9.code = 1139
         music9.duration = 603
@@ -154,7 +154,7 @@ object MusicVideoData {
         list.add(music9)
 
         val music10 = PetVideo()
-        music10.type = PetType.MUSIC.ordinal
+        music10.type = VideoType.MUSIC.ordinal
         music10.fileName = "music10"
         music10.code = 1140
         music10.duration = 446
@@ -170,7 +170,7 @@ object MusicVideoData {
         list.add(music10)
 
         val music11 = PetVideo()
-        music11.type = PetType.MUSIC.ordinal
+        music11.type = VideoType.MUSIC.ordinal
         music11.fileName = "music11"
         music11.code = 1141
         music11.duration = 495
@@ -186,7 +186,7 @@ object MusicVideoData {
         list.add(music11)
 
         val music12 = PetVideo()
-        music12.type = PetType.MUSIC.ordinal
+        music12.type = VideoType.MUSIC.ordinal
         music12.fileName = "music12"
         music12.code = 1142
         music12.duration = 235
@@ -202,7 +202,7 @@ object MusicVideoData {
         list.add(music12)
 
         val music13 = PetVideo()
-        music13.type = PetType.MUSIC.ordinal
+        music13.type = VideoType.MUSIC.ordinal
         music13.fileName = "music13"
         music13.code = 1143
         music13.duration = 172
@@ -218,7 +218,7 @@ object MusicVideoData {
         list.add(music13)
 
         val music14 = PetVideo()
-        music14.type = PetType.MUSIC.ordinal
+        music14.type = VideoType.MUSIC.ordinal
         music14.fileName = "music14"
         music14.code = 1144
         music14.duration = 227
@@ -234,7 +234,7 @@ object MusicVideoData {
         list.add(music14)
 
         val music15 = PetVideo()
-        music15.type = PetType.MUSIC.ordinal
+        music15.type = VideoType.MUSIC.ordinal
         music15.fileName = "music15"
         music15.code = 1145
         music15.duration = 315
@@ -250,7 +250,7 @@ object MusicVideoData {
         list.add(music15)
 
         val music16 = PetVideo()
-        music16.type = PetType.MUSIC.ordinal
+        music16.type = VideoType.MUSIC.ordinal
         music16.fileName = "music16"
         music16.code = 1146
         music16.duration = 201
@@ -266,7 +266,7 @@ object MusicVideoData {
         list.add(music16)
 
         val music17 = PetVideo()
-        music17.type = PetType.MUSIC.ordinal
+        music17.type = VideoType.MUSIC.ordinal
         music17.fileName = "music17"
         music17.code = 1147
         music17.duration = 231
@@ -282,7 +282,7 @@ object MusicVideoData {
         list.add(music17)
 
         val music2 = PetVideo()
-        music2.type = PetType.MUSIC.ordinal
+        music2.type = VideoType.MUSIC.ordinal
         music2.fileName = "music2"
         music2.code = 1148
         music2.duration = 221
@@ -298,7 +298,7 @@ object MusicVideoData {
         list.add(music2)
 
         val music19 = PetVideo()
-        music19.type = PetType.MUSIC.ordinal
+        music19.type = VideoType.MUSIC.ordinal
         music19.fileName = "music19"
         music19.code = 1149
         music19.duration = 293
@@ -314,7 +314,7 @@ object MusicVideoData {
         list.add(music19)
 
         val music20 = PetVideo()
-        music20.type = PetType.MUSIC.ordinal
+        music20.type = VideoType.MUSIC.ordinal
         music20.fileName = "music20"
         music20.code = 1150
         music20.duration = 576
@@ -330,7 +330,7 @@ object MusicVideoData {
         list.add(music20)
 
         val music21 = PetVideo()
-        music21.type = PetType.MUSIC.ordinal
+        music21.type = VideoType.MUSIC.ordinal
         music21.fileName = "music21"
         music21.code = 1151
         music21.duration = 248
@@ -346,7 +346,7 @@ object MusicVideoData {
         list.add(music21)
 
         val music22 = PetVideo()
-        music22.type = PetType.MUSIC.ordinal
+        music22.type = VideoType.MUSIC.ordinal
         music22.fileName = "music22"
         music22.code = 1152
         music22.duration = 284
@@ -362,7 +362,7 @@ object MusicVideoData {
         list.add(music22)
 
         val music23 = PetVideo()
-        music23.type = PetType.MUSIC.ordinal
+        music23.type = VideoType.MUSIC.ordinal
         music23.fileName = "music23"
         music23.code = 1153
         music23.duration = 216
@@ -378,7 +378,7 @@ object MusicVideoData {
         list.add(music23)
 
         val music24 = PetVideo()
-        music24.type = PetType.MUSIC.ordinal
+        music24.type = VideoType.MUSIC.ordinal
         music24.fileName = "music24"
         music24.code = 1154
         music24.duration = 232
@@ -394,7 +394,7 @@ object MusicVideoData {
         list.add(music24)
 
         val music25 = PetVideo()
-        music25.type = PetType.MUSIC.ordinal
+        music25.type = VideoType.MUSIC.ordinal
         music25.fileName = "music25"
         music25.code = 1155
         music25.duration = 298
@@ -410,7 +410,7 @@ object MusicVideoData {
         list.add(music25)
 
         val music26 = PetVideo()
-        music26.type = PetType.MUSIC.ordinal
+        music26.type = VideoType.MUSIC.ordinal
         music26.fileName = "music26"
         music26.code = 1156
         music26.duration = 225
@@ -426,7 +426,7 @@ object MusicVideoData {
         list.add(music26)
 
         val music27 = PetVideo()
-        music27.type = PetType.MUSIC.ordinal
+        music27.type = VideoType.MUSIC.ordinal
         music27.fileName = "music27"
         music27.code = 1157
         music27.duration = 251
@@ -442,7 +442,7 @@ object MusicVideoData {
         list.add(music27)
 
         val music28 = PetVideo()
-        music28.type = PetType.MUSIC.ordinal
+        music28.type = VideoType.MUSIC.ordinal
         music28.fileName = "music28"
         music28.code = 1158
         music28.duration = 180
@@ -458,7 +458,7 @@ object MusicVideoData {
         list.add(music28)
 
         val music29 = PetVideo()
-        music29.type = PetType.MUSIC.ordinal
+        music29.type = VideoType.MUSIC.ordinal
         music29.fileName = "music29"
         music29.code = 1159
         music29.duration = 317
@@ -474,7 +474,7 @@ object MusicVideoData {
         list.add(music29)
 
         val music30 = PetVideo()
-        music30.type = PetType.MUSIC.ordinal
+        music30.type = VideoType.MUSIC.ordinal
         music30.fileName = "music30"
         music30.code = 1160
         music30.duration = 257
@@ -490,7 +490,7 @@ object MusicVideoData {
         list.add(music30)
 
         val music31 = PetVideo()
-        music31.type = PetType.MUSIC.ordinal
+        music31.type = VideoType.MUSIC.ordinal
         music31.fileName = "music31"
         music31.code = 1161
         music31.duration = 245
@@ -506,7 +506,7 @@ object MusicVideoData {
         list.add(music31)
 
         val music32 = PetVideo()
-        music32.type = PetType.MUSIC.ordinal
+        music32.type = VideoType.MUSIC.ordinal
         music32.fileName = "music32"
         music32.code = 1162
         music32.duration = 262
@@ -522,7 +522,7 @@ object MusicVideoData {
         list.add(music32)
 
         val music33 = PetVideo()
-        music33.type = PetType.MUSIC.ordinal
+        music33.type = VideoType.MUSIC.ordinal
         music33.fileName = "music33"
         music33.code = 1163
         music33.duration = 209
@@ -538,7 +538,7 @@ object MusicVideoData {
         list.add(music33)
 
         val music34 = PetVideo()
-        music34.type = PetType.MUSIC.ordinal
+        music34.type = VideoType.MUSIC.ordinal
         music34.fileName = "music34"
         music34.code = 1164
         music34.duration = 518
@@ -554,7 +554,7 @@ object MusicVideoData {
         list.add(music34)
 
         val music35 = PetVideo()
-        music35.type = PetType.MUSIC.ordinal
+        music35.type = VideoType.MUSIC.ordinal
         music35.fileName = "music35"
         music35.code = 1165
         music35.duration = 301
@@ -570,7 +570,7 @@ object MusicVideoData {
         list.add(music35)
 
         val music36 = PetVideo()
-        music36.type = PetType.MUSIC.ordinal
+        music36.type = VideoType.MUSIC.ordinal
         music36.fileName = "music36"
         music36.code = 1166
         music36.duration = 278
@@ -586,7 +586,7 @@ object MusicVideoData {
         list.add(music36)
 
         val music37 = PetVideo()
-        music37.type = PetType.MUSIC.ordinal
+        music37.type = VideoType.MUSIC.ordinal
         music37.fileName = "music37"
         music37.code = 1167
         music37.duration = 338
@@ -602,7 +602,7 @@ object MusicVideoData {
         list.add(music37)
 
         val music38 = PetVideo()
-        music38.type = PetType.MUSIC.ordinal
+        music38.type = VideoType.MUSIC.ordinal
         music38.fileName = "music38"
         music38.code = 1168
         music38.duration = 321
@@ -618,7 +618,7 @@ object MusicVideoData {
         list.add(music38)
 
         val music39 = PetVideo()
-        music39.type = PetType.MUSIC.ordinal
+        music39.type = VideoType.MUSIC.ordinal
         music39.fileName = "music39"
         music39.code = 1169
         music39.duration = 210
@@ -634,7 +634,7 @@ object MusicVideoData {
         list.add(music39)
 
         val music40 = PetVideo()
-        music40.type = PetType.MUSIC.ordinal
+        music40.type = VideoType.MUSIC.ordinal
         music40.fileName = "music40"
         music40.code = 1170
         music40.duration = 262
@@ -650,7 +650,7 @@ object MusicVideoData {
         list.add(music40)
 
         val music3 = PetVideo()
-        music3.type = PetType.MUSIC.ordinal
+        music3.type = VideoType.MUSIC.ordinal
         music3.fileName = "music3"
         music3.code = 1171
         music3.duration = 235
@@ -666,7 +666,7 @@ object MusicVideoData {
         list.add(music3)
 
         val music4 = PetVideo()
-        music4.type = PetType.MUSIC.ordinal
+        music4.type = VideoType.MUSIC.ordinal
         music4.fileName = "music4"
         music4.code = 1172
         music4.duration = 200
@@ -682,7 +682,7 @@ object MusicVideoData {
         list.add(music4)
 
         val music43 = PetVideo()
-        music43.type = PetType.MUSIC.ordinal
+        music43.type = VideoType.MUSIC.ordinal
         music43.fileName = "music43"
         music43.code = 1359
         music43.duration = 408
@@ -697,7 +697,7 @@ object MusicVideoData {
         list.add(music43)
 
         val music44 = PetVideo()
-        music44.type = PetType.MUSIC.ordinal
+        music44.type = VideoType.MUSIC.ordinal
         music44.fileName = "music44"
         music44.code = 1360
         music44.duration = 373
@@ -712,7 +712,7 @@ object MusicVideoData {
         list.add(music44)
 
         val music45 = PetVideo()
-        music45.type = PetType.MUSIC.ordinal
+        music45.type = VideoType.MUSIC.ordinal
         music45.fileName = "music45"
         music45.code = 1361
         music45.duration = 262
@@ -727,7 +727,7 @@ object MusicVideoData {
         list.add(music45)
 
         val music46 = PetVideo()
-        music46.type = PetType.MUSIC.ordinal
+        music46.type = VideoType.MUSIC.ordinal
         music46.fileName = "music46"
         music46.code = 1362
         music46.duration = 277

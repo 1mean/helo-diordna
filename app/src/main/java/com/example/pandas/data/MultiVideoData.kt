@@ -1,4 +1,4 @@
-import com.example.pandas.bean.pet.PetType
+import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.entity.PeriodType
 import com.example.pandas.sql.entity.PetVideo
 
@@ -28,7 +28,7 @@ object MultiVideoData {
     private fun getRecoBanner(): MutableList<PetVideo> {
 
         val panda4 = PetVideo()
-        panda4.type = PetType.PANDA.ordinal
+        panda4.type = VideoType.PANDA.ordinal
         panda4.fileName = "video_banner1"
         panda4.code = 423
         panda4.duration = 61
@@ -44,7 +44,7 @@ object MultiVideoData {
         list.add(panda4)
 
         val panda3 = PetVideo()
-        panda3.type = PetType.CHINA.ordinal
+        panda3.type = VideoType.CHINA.ordinal
         panda3.fileName = "video_banner2"
         panda3.code = 424
         panda3.duration = 59
@@ -59,7 +59,7 @@ object MultiVideoData {
         list.add(panda3)
 
         val banner1 = PetVideo()
-        banner1.type = PetType.PANDA.ordinal
+        banner1.type = VideoType.PANDA.ordinal
         banner1.fileName = "video_banner3"
         banner1.code = 425
         banner1.duration = 86
@@ -74,7 +74,7 @@ object MultiVideoData {
         list.add(banner1)
 
         val panda2 = PetVideo()
-        panda2.type = PetType.BEAUTY.ordinal
+        panda2.type = VideoType.BEAUTY.ordinal
         panda2.fileName = "video_banner4"
         panda2.code = 426
         panda2.duration = 62
@@ -94,7 +94,7 @@ object MultiVideoData {
     private fun getFoxData(): MutableList<PetVideo> {
 
         val panda1 = PetVideo()
-        panda1.type = PetType.FOX.ordinal
+        panda1.type = VideoType.FOX.ordinal
         panda1.fileName = "pet_fox1"
         panda1.code = 432
         panda1.duration = 73
@@ -111,7 +111,7 @@ object MultiVideoData {
         list.add(panda1)
 
         val panda2 = PetVideo()
-        panda2.type = PetType.FOX.ordinal
+        panda2.type = VideoType.FOX.ordinal
         panda2.fileName = "pet_fox2"
         panda2.code = 433
         panda2.duration = 118
@@ -128,7 +128,7 @@ object MultiVideoData {
         list.add(panda2)
 
         val panda3 = PetVideo()
-        panda3.type = PetType.FOX.ordinal
+        panda3.type = VideoType.FOX.ordinal
         panda3.fileName = "pet_fox3"
         panda3.code = 434
         panda3.duration = 29
@@ -145,7 +145,7 @@ object MultiVideoData {
         list.add(panda3)
 
         val panda4 = PetVideo()
-        panda4.type = PetType.FOX.ordinal
+        panda4.type = VideoType.FOX.ordinal
         panda4.fileName = "pet_fox4"
         panda4.code = 435
         panda4.duration = 127
@@ -162,7 +162,7 @@ object MultiVideoData {
         list.add(panda4)
 
         val panda5 = PetVideo()
-        panda5.type = PetType.FOX.ordinal
+        panda5.type = VideoType.FOX.ordinal
         panda5.fileName = "pet_fox5"
         panda5.code = 436
         panda5.duration = 268
@@ -179,7 +179,7 @@ object MultiVideoData {
         list.add(panda5)
 
         val panda6 = PetVideo()
-        panda6.type = PetType.FOX.ordinal
+        panda6.type = VideoType.FOX.ordinal
         panda6.fileName = "pet_fox6"
         panda6.code = 437
         panda6.duration = 245
@@ -196,7 +196,7 @@ object MultiVideoData {
         list.add(panda6)
 
         val panda7 = PetVideo()
-        panda7.type = PetType.FOX.ordinal
+        panda7.type = VideoType.FOX.ordinal
         panda7.fileName = "pet_fox7"
         panda7.code = 438
         panda7.duration = 57
@@ -213,7 +213,7 @@ object MultiVideoData {
         list.add(panda7)
 
         val panda8 = PetVideo()
-        panda8.type = PetType.FOX.ordinal
+        panda8.type = VideoType.FOX.ordinal
         panda8.fileName = "pet_fox8"
         panda8.code = 439
         panda8.duration = 52
@@ -230,7 +230,7 @@ object MultiVideoData {
         list.add(panda8)
 
         val panda10 = PetVideo()
-        panda10.type = PetType.FOX.ordinal
+        panda10.type = VideoType.FOX.ordinal
         panda10.fileName = "pet_fox10"
         panda10.code = 441
         panda10.duration = 99
@@ -247,7 +247,7 @@ object MultiVideoData {
         list.add(panda10)
 
         val panda11 = PetVideo()
-        panda11.type = PetType.FOX.ordinal
+        panda11.type = VideoType.FOX.ordinal
         panda11.fileName = "pet_fox11"
         panda11.code = 442
         panda11.duration = 37
@@ -264,7 +264,7 @@ object MultiVideoData {
         list.add(panda11)
 
         val panda12 = PetVideo()
-        panda12.type = PetType.FOX.ordinal
+        panda12.type = VideoType.FOX.ordinal
         panda12.fileName = "pet_fox12"
         panda12.code = 443
         panda12.duration = 30
@@ -281,7 +281,7 @@ object MultiVideoData {
         list.add(panda12)
 
         val panda13 = PetVideo()
-        panda13.type = PetType.FOX.ordinal
+        panda13.type = VideoType.FOX.ordinal
         panda13.fileName = "pet_fox13"
         panda13.code = 444
         panda13.duration = 29
@@ -298,7 +298,7 @@ object MultiVideoData {
         list.add(panda13)
 
         val panda14 = PetVideo()
-        panda14.type = PetType.FOX.ordinal
+        panda14.type = VideoType.FOX.ordinal
         panda14.fileName = "pet_fox14"
         panda14.code = 445
         panda14.duration = 22
@@ -315,7 +315,7 @@ object MultiVideoData {
         list.add(panda14)
 
         val panda15 = PetVideo()
-        panda15.type = PetType.FOX.ordinal
+        panda15.type = VideoType.FOX.ordinal
         panda15.fileName = "pet_fox15"
         panda15.code = 446
         panda15.duration = 121
@@ -332,7 +332,7 @@ object MultiVideoData {
         list.add(panda15)
 
         val panda16 = PetVideo()
-        panda16.type = PetType.FOX.ordinal
+        panda16.type = VideoType.FOX.ordinal
         panda16.fileName = "pet_fox16"
         panda16.code = 447
         panda16.duration = 110
@@ -349,7 +349,7 @@ object MultiVideoData {
         list.add(panda16)
 
         val panda18 = PetVideo()
-        panda18.type = PetType.FOX.ordinal
+        panda18.type = VideoType.FOX.ordinal
         panda18.fileName = "pet_fox17"
         panda18.code = 448
         panda18.duration = 136
@@ -366,7 +366,7 @@ object MultiVideoData {
         list.add(panda18)
 
         val fox19 = PetVideo()
-        fox19.type = PetType.FOX.ordinal
+        fox19.type = VideoType.FOX.ordinal
         fox19.fileName = "pet_fox19"
         fox19.code = 1063
         fox19.duration = 23
@@ -383,7 +383,7 @@ object MultiVideoData {
         list.add(fox19)
 
         val fox20 = PetVideo()
-        fox20.type = PetType.FOX.ordinal
+        fox20.type = VideoType.FOX.ordinal
         fox20.fileName = "pet_fox20"
         fox20.code = 1064
         fox20.duration = 31
@@ -400,7 +400,7 @@ object MultiVideoData {
         list.add(fox20)
 
         val fox21 = PetVideo()
-        fox21.type = PetType.FOX.ordinal
+        fox21.type = VideoType.FOX.ordinal
         fox21.fileName = "pet_fox21"
         fox21.code = 1065
         fox21.duration = 27
@@ -417,7 +417,7 @@ object MultiVideoData {
         list.add(fox21)
 
         val fox22 = PetVideo()
-        fox22.type = PetType.FOX.ordinal
+        fox22.type = VideoType.FOX.ordinal
         fox22.fileName = "pet_fox22"
         fox22.code = 1066
         fox22.duration = 53
@@ -434,7 +434,7 @@ object MultiVideoData {
         list.add(fox22)
 
         val fox23 = PetVideo()
-        fox23.type = PetType.FOX.ordinal
+        fox23.type = VideoType.FOX.ordinal
         fox23.fileName = "pet_fox23"
         fox23.code = 1067
         fox23.duration = 217
@@ -451,7 +451,7 @@ object MultiVideoData {
         list.add(fox23)
 
         val fox24 = PetVideo()
-        fox24.type = PetType.FOX.ordinal
+        fox24.type = VideoType.FOX.ordinal
         fox24.fileName = "pet_fox24"
         fox24.code = 1068
         fox24.duration = 21
@@ -468,7 +468,7 @@ object MultiVideoData {
         list.add(fox24)
 
         val fox25 = PetVideo()
-        fox25.type = PetType.FOX.ordinal
+        fox25.type = VideoType.FOX.ordinal
         fox25.fileName = "pet_fox25"
         fox25.code = 1069
         fox25.duration = 58
@@ -485,7 +485,7 @@ object MultiVideoData {
         list.add(fox25)
 
         val fox26 = PetVideo()
-        fox26.type = PetType.FOX.ordinal
+        fox26.type = VideoType.FOX.ordinal
         fox26.fileName = "pet_fox26"
         fox26.code = 1070
         fox26.duration = 208
@@ -502,7 +502,7 @@ object MultiVideoData {
         list.add(fox26)
 
         val fox27 = PetVideo()
-        fox27.type = PetType.FOX.ordinal
+        fox27.type = VideoType.FOX.ordinal
         fox27.fileName = "pet_fox27"
         fox27.code = 1071
         fox27.duration = 17
@@ -519,7 +519,7 @@ object MultiVideoData {
         list.add(fox27)
 
         val fox28 = PetVideo()
-        fox28.type = PetType.FOX.ordinal
+        fox28.type = VideoType.FOX.ordinal
         fox28.fileName = "pet_fox28"
         fox28.code = 1072
         fox28.duration = 115
@@ -536,7 +536,7 @@ object MultiVideoData {
         list.add(fox28)
 
         val fox29 = PetVideo()
-        fox29.type = PetType.FOX.ordinal
+        fox29.type = VideoType.FOX.ordinal
         fox29.fileName = "pet_fox29"
         fox29.code = 1073
         fox29.duration = 103
@@ -553,7 +553,7 @@ object MultiVideoData {
         list.add(fox29)
 
         val fox30 = PetVideo()
-        fox30.type = PetType.FOX.ordinal
+        fox30.type = VideoType.FOX.ordinal
         fox30.fileName = "pet_fox30"
         fox30.code = 1074
         fox30.duration = 277
@@ -570,7 +570,7 @@ object MultiVideoData {
         list.add(fox30)
 
         val fox31 = PetVideo()
-        fox31.type = PetType.FOX.ordinal
+        fox31.type = VideoType.FOX.ordinal
         fox31.fileName = "pet_fox31"
         fox31.code = 1075
         fox31.duration = 48
@@ -587,7 +587,7 @@ object MultiVideoData {
         list.add(fox31)
 
         val fox32 = PetVideo()
-        fox32.type = PetType.FOX.ordinal
+        fox32.type = VideoType.FOX.ordinal
         fox32.fileName = "pet_fox32"
         fox32.code = 1076
         fox32.duration = 21
@@ -604,7 +604,7 @@ object MultiVideoData {
         list.add(fox32)
 
         val fox33 = PetVideo()
-        fox33.type = PetType.FOX.ordinal
+        fox33.type = VideoType.FOX.ordinal
         fox33.fileName = "pet_fox33"
         fox33.code = 428
         fox33.duration = 73
@@ -625,7 +625,7 @@ object MultiVideoData {
     private fun getLandScapeData(): MutableList<PetVideo> {
 
         val landscape25 = PetVideo()
-        landscape25.type = PetType.LANDSCAPE.ordinal
+        landscape25.type = VideoType.LANDSCAPE.ordinal
         landscape25.fileName = "landscape_25"
         landscape25.code = 471
         landscape25.duration = 235
@@ -641,7 +641,7 @@ object MultiVideoData {
         list.add(landscape25)
 
         val landscape22 = PetVideo()
-        landscape22.type = PetType.LANDSCAPE.ordinal
+        landscape22.type = VideoType.LANDSCAPE.ordinal
         landscape22.fileName = "landscape_22"
         landscape22.code = 474
         landscape22.duration = 64
@@ -657,7 +657,7 @@ object MultiVideoData {
         list.add(landscape22)
 
         val landscape42 = PetVideo()
-        landscape42.type = PetType.LANDSCAPE.ordinal
+        landscape42.type = VideoType.LANDSCAPE.ordinal
         landscape42.fileName = "landscape_42"
         landscape42.code = 475
         landscape42.duration = 88
@@ -673,7 +673,7 @@ object MultiVideoData {
         list.add(landscape42)
 
         val landscape26 = PetVideo()
-        landscape26.type = PetType.LANDSCAPE.ordinal
+        landscape26.type = VideoType.LANDSCAPE.ordinal
         landscape26.fileName = "landscape_26"
         landscape26.code = 491
         landscape26.duration = 237
@@ -689,7 +689,7 @@ object MultiVideoData {
         list.add(landscape26)
 
         val landscape1 = PetVideo()
-        landscape1.type = PetType.LANDSCAPE.ordinal
+        landscape1.type = VideoType.LANDSCAPE.ordinal
         landscape1.fileName = "landscape_1"
         landscape1.code = 450
         landscape1.duration = 31
@@ -706,7 +706,7 @@ object MultiVideoData {
 
 
         val landscape2 = PetVideo()
-        landscape2.type = PetType.LANDSCAPE.ordinal
+        landscape2.type = VideoType.LANDSCAPE.ordinal
         landscape2.fileName = "landscape_2"
         landscape2.code = 451
         landscape2.duration = 61
@@ -723,7 +723,7 @@ object MultiVideoData {
 
 
         val landscape3 = PetVideo()
-        landscape3.type = PetType.LANDSCAPE.ordinal
+        landscape3.type = VideoType.LANDSCAPE.ordinal
         landscape3.fileName = "landscape_3"
         landscape3.code = 452
         landscape3.duration = 26
@@ -739,7 +739,7 @@ object MultiVideoData {
         list.add(landscape3)
 
         val landscape4 = PetVideo()
-        landscape4.type = PetType.LANDSCAPE.ordinal
+        landscape4.type = VideoType.LANDSCAPE.ordinal
         landscape4.fileName = "landscape_4"
         landscape4.code = 453
         landscape4.duration = 268
@@ -755,7 +755,7 @@ object MultiVideoData {
         list.add(landscape4)
 
         val landscape5 = PetVideo()
-        landscape5.type = PetType.LANDSCAPE.ordinal
+        landscape5.type = VideoType.LANDSCAPE.ordinal
         landscape5.fileName = "landscape_5"
         landscape5.code = 454
         landscape5.duration = 65
@@ -771,7 +771,7 @@ object MultiVideoData {
         list.add(landscape5)
 
         val landscape6 = PetVideo()
-        landscape6.type = PetType.LANDSCAPE.ordinal
+        landscape6.type = VideoType.LANDSCAPE.ordinal
         landscape6.fileName = "landscape_6"
         landscape6.code = 455
         landscape6.duration = 17
@@ -787,7 +787,7 @@ object MultiVideoData {
         list.add(landscape6)
 
         val landscape7 = PetVideo()
-        landscape7.type = PetType.LANDSCAPE.ordinal
+        landscape7.type = VideoType.LANDSCAPE.ordinal
         landscape7.fileName = "landscape_7"
         landscape7.code = 456
         landscape7.duration = 12
@@ -803,7 +803,7 @@ object MultiVideoData {
         list.add(landscape7)
 
         val landscape8 = PetVideo()
-        landscape8.type = PetType.LANDSCAPE.ordinal
+        landscape8.type = VideoType.LANDSCAPE.ordinal
         landscape8.fileName = "landscape_8"
         landscape8.code = 457
         landscape8.duration = 89
@@ -819,7 +819,7 @@ object MultiVideoData {
         list.add(landscape8)
 
         val landscape9 = PetVideo()
-        landscape9.type = PetType.LANDSCAPE.ordinal
+        landscape9.type = VideoType.LANDSCAPE.ordinal
         landscape9.fileName = "landscape_9"
         landscape9.code = 458
         landscape9.duration = 97
@@ -835,7 +835,7 @@ object MultiVideoData {
         list.add(landscape9)
 
         val landscape10 = PetVideo()
-        landscape10.type = PetType.LANDSCAPE.ordinal
+        landscape10.type = VideoType.LANDSCAPE.ordinal
         landscape10.fileName = "landscape_10"
         landscape10.code = 459
         landscape10.duration = 102
@@ -851,7 +851,7 @@ object MultiVideoData {
         list.add(landscape10)
 
         val landscape11 = PetVideo()
-        landscape11.type = PetType.LANDSCAPE.ordinal
+        landscape11.type = VideoType.LANDSCAPE.ordinal
         landscape11.fileName = "landscape_11"
         landscape11.code = 460
         landscape11.duration = 364
@@ -867,7 +867,7 @@ object MultiVideoData {
         list.add(landscape11)
 
         val landscape12 = PetVideo()
-        landscape12.type = PetType.LANDSCAPE.ordinal
+        landscape12.type = VideoType.LANDSCAPE.ordinal
         landscape12.fileName = "landscape_12"
         landscape12.code = 461
         landscape12.duration = 235
@@ -883,7 +883,7 @@ object MultiVideoData {
         list.add(landscape12)
 
         val landscape13 = PetVideo()
-        landscape13.type = PetType.LANDSCAPE.ordinal
+        landscape13.type = VideoType.LANDSCAPE.ordinal
         landscape13.fileName = "landscape_13"
         landscape13.code = 462
         landscape13.duration = 143
@@ -899,7 +899,7 @@ object MultiVideoData {
         list.add(landscape13)
 
         val landscape14 = PetVideo()
-        landscape14.type = PetType.LANDSCAPE.ordinal
+        landscape14.type = VideoType.LANDSCAPE.ordinal
         landscape14.fileName = "landscape_14"
         landscape14.code = 463
         landscape14.duration = 200
@@ -915,7 +915,7 @@ object MultiVideoData {
         list.add(landscape14)
 
         val landscape15 = PetVideo()
-        landscape15.type = PetType.LANDSCAPE.ordinal
+        landscape15.type = VideoType.LANDSCAPE.ordinal
         landscape15.fileName = "landscape_15"
         landscape15.code = 464
         landscape15.duration = 217
@@ -931,7 +931,7 @@ object MultiVideoData {
         list.add(landscape15)
 
         val landscape16 = PetVideo()
-        landscape16.type = PetType.LANDSCAPE.ordinal
+        landscape16.type = VideoType.LANDSCAPE.ordinal
         landscape16.fileName = "landscape_16"
         landscape16.code = 465
         landscape16.duration = 259
@@ -947,7 +947,7 @@ object MultiVideoData {
         list.add(landscape16)
 
         val landscape17 = PetVideo()
-        landscape17.type = PetType.LANDSCAPE.ordinal
+        landscape17.type = VideoType.LANDSCAPE.ordinal
         landscape17.fileName = "landscape_17"
         landscape17.code = 466
         landscape17.duration = 221
@@ -963,7 +963,7 @@ object MultiVideoData {
         list.add(landscape17)
 
         val landscape18 = PetVideo()
-        landscape18.type = PetType.LANDSCAPE.ordinal
+        landscape18.type = VideoType.LANDSCAPE.ordinal
         landscape18.fileName = "landscape_18"
         landscape18.code = 467
         landscape18.duration = 32
@@ -979,7 +979,7 @@ object MultiVideoData {
         list.add(landscape18)
 
         val landscape19 = PetVideo()
-        landscape19.type = PetType.LANDSCAPE.ordinal
+        landscape19.type = VideoType.LANDSCAPE.ordinal
         landscape19.fileName = "landscape_19"
         landscape19.code = 468
         landscape19.duration = 15
@@ -995,7 +995,7 @@ object MultiVideoData {
         list.add(landscape19)
 
         val landscape20 = PetVideo()
-        landscape20.type = PetType.LANDSCAPE.ordinal
+        landscape20.type = VideoType.LANDSCAPE.ordinal
         landscape20.fileName = "landscape_20"
         landscape20.code = 469
         landscape20.duration = 242
@@ -1011,7 +1011,7 @@ object MultiVideoData {
         list.add(landscape20)
 
         val landscape21 = PetVideo()
-        landscape21.type = PetType.LANDSCAPE.ordinal
+        landscape21.type = VideoType.LANDSCAPE.ordinal
         landscape21.fileName = "landscape_21"
         landscape21.code = 470
         landscape21.duration = 27
@@ -1027,7 +1027,7 @@ object MultiVideoData {
         list.add(landscape21)
 
         val landscape23 = PetVideo()
-        landscape23.type = PetType.LANDSCAPE.ordinal
+        landscape23.type = VideoType.LANDSCAPE.ordinal
         landscape23.fileName = "landscape_23"
         landscape23.code = 472
         landscape23.duration = 199
@@ -1043,7 +1043,7 @@ object MultiVideoData {
         list.add(landscape23)
 
         val landscape24 = PetVideo()
-        landscape24.type = PetType.LANDSCAPE.ordinal
+        landscape24.type = VideoType.LANDSCAPE.ordinal
         landscape24.fileName = "landscape_24"
         landscape24.code = 473
         landscape24.duration = 92
@@ -1059,7 +1059,7 @@ object MultiVideoData {
         list.add(landscape24)
 
         val landscape27 = PetVideo()
-        landscape27.type = PetType.LANDSCAPE.ordinal
+        landscape27.type = VideoType.LANDSCAPE.ordinal
         landscape27.fileName = "landscape_27"
         landscape27.code = 476
         landscape27.duration = 254
@@ -1075,7 +1075,7 @@ object MultiVideoData {
         list.add(landscape27)
 
         val landscape28 = PetVideo()
-        landscape28.type = PetType.LANDSCAPE.ordinal
+        landscape28.type = VideoType.LANDSCAPE.ordinal
         landscape28.fileName = "landscape_28"
         landscape28.code = 477
         landscape28.duration = 161
@@ -1091,7 +1091,7 @@ object MultiVideoData {
         list.add(landscape28)
 
         val landscape29 = PetVideo()
-        landscape29.type = PetType.LANDSCAPE.ordinal
+        landscape29.type = VideoType.LANDSCAPE.ordinal
         landscape29.fileName = "landscape_29"
         landscape29.code = 478
         landscape29.duration = 48
@@ -1107,7 +1107,7 @@ object MultiVideoData {
         list.add(landscape29)
 
         val landscape30 = PetVideo()
-        landscape30.type = PetType.LANDSCAPE.ordinal
+        landscape30.type = VideoType.LANDSCAPE.ordinal
         landscape30.fileName = "landscape_30"
         landscape30.code = 479
         landscape30.duration = 145
@@ -1123,7 +1123,7 @@ object MultiVideoData {
         list.add(landscape30)
 
         val landscape31 = PetVideo()
-        landscape31.type = PetType.LANDSCAPE.ordinal
+        landscape31.type = VideoType.LANDSCAPE.ordinal
         landscape31.fileName = "landscape_31"
         landscape31.code = 480
         landscape31.duration = 12
@@ -1139,7 +1139,7 @@ object MultiVideoData {
         list.add(landscape31)
 
         val landscape32 = PetVideo()
-        landscape32.type = PetType.LANDSCAPE.ordinal
+        landscape32.type = VideoType.LANDSCAPE.ordinal
         landscape32.fileName = "landscape_32"
         landscape32.code = 481
         landscape32.duration = 312
@@ -1155,7 +1155,7 @@ object MultiVideoData {
         list.add(landscape32)
 
         val landscape33 = PetVideo()
-        landscape33.type = PetType.LANDSCAPE.ordinal
+        landscape33.type = VideoType.LANDSCAPE.ordinal
         landscape33.fileName = "landscape_33"
         landscape33.code = 482
         landscape33.duration = 179
@@ -1171,7 +1171,7 @@ object MultiVideoData {
         list.add(landscape33)
 
         val landscape34 = PetVideo()
-        landscape34.type = PetType.LANDSCAPE.ordinal
+        landscape34.type = VideoType.LANDSCAPE.ordinal
         landscape34.fileName = "landscape_34"
         landscape34.code = 483
         landscape34.duration = 24
@@ -1187,7 +1187,7 @@ object MultiVideoData {
         list.add(landscape34)
 
         val landscape35 = PetVideo()
-        landscape35.type = PetType.LANDSCAPE.ordinal
+        landscape35.type = VideoType.LANDSCAPE.ordinal
         landscape35.fileName = "landscape_35"
         landscape35.code = 484
         landscape35.duration = 10
@@ -1203,7 +1203,7 @@ object MultiVideoData {
         list.add(landscape35)
 
         val landscape36 = PetVideo()
-        landscape36.type = PetType.LANDSCAPE.ordinal
+        landscape36.type = VideoType.LANDSCAPE.ordinal
         landscape36.fileName = "landscape_36"
         landscape36.code = 485
         landscape36.duration = 212
@@ -1219,7 +1219,7 @@ object MultiVideoData {
         list.add(landscape36)
 
         val landscape37 = PetVideo()
-        landscape37.type = PetType.LANDSCAPE.ordinal
+        landscape37.type = VideoType.LANDSCAPE.ordinal
         landscape37.fileName = "landscape_37"
         landscape37.code = 486
         landscape37.duration = 209
@@ -1235,7 +1235,7 @@ object MultiVideoData {
         list.add(landscape37)
 
         val landscape38 = PetVideo()
-        landscape38.type = PetType.LANDSCAPE.ordinal
+        landscape38.type = VideoType.LANDSCAPE.ordinal
         landscape38.fileName = "landscape_38"
         landscape38.code = 487
         landscape38.duration = 248
@@ -1251,7 +1251,7 @@ object MultiVideoData {
         list.add(landscape38)
 
         val landscape39 = PetVideo()
-        landscape39.type = PetType.LANDSCAPE.ordinal
+        landscape39.type = VideoType.LANDSCAPE.ordinal
         landscape39.fileName = "landscape_39"
         landscape39.code = 488
         landscape39.duration = 227
@@ -1267,7 +1267,7 @@ object MultiVideoData {
         list.add(landscape39)
 
         val landscape40 = PetVideo()
-        landscape40.type = PetType.LANDSCAPE.ordinal
+        landscape40.type = VideoType.LANDSCAPE.ordinal
         landscape40.fileName = "landscape_40"
         landscape40.code = 489
         landscape40.duration = 236
@@ -1283,7 +1283,7 @@ object MultiVideoData {
         list.add(landscape40)
 
         val landscape41 = PetVideo()
-        landscape41.type = PetType.LANDSCAPE.ordinal
+        landscape41.type = VideoType.LANDSCAPE.ordinal
         landscape41.fileName = "landscape_41"
         landscape41.code = 490
         landscape41.duration = 94
@@ -1299,7 +1299,7 @@ object MultiVideoData {
         list.add(landscape41)
 
         val landscape43 = PetVideo()
-        landscape43.type = PetType.LANDSCAPE.ordinal
+        landscape43.type = VideoType.LANDSCAPE.ordinal
         landscape43.fileName = "landscape_43"
         landscape43.code = 1363
         landscape43.duration = 213
@@ -1314,7 +1314,7 @@ object MultiVideoData {
         list.add(landscape43)
 
         val landscape44 = PetVideo()
-        landscape44.type = PetType.LANDSCAPE.ordinal
+        landscape44.type = VideoType.LANDSCAPE.ordinal
         landscape44.fileName = "landscape_44"
         landscape44.code = 1364
         landscape44.duration = 121
@@ -1329,7 +1329,7 @@ object MultiVideoData {
         list.add(landscape44)
 
         val landscape45 = PetVideo()
-        landscape45.type = PetType.LANDSCAPE.ordinal
+        landscape45.type = VideoType.LANDSCAPE.ordinal
         landscape45.fileName = "landscape_45"
         landscape45.code = 1365
         landscape45.duration = 19
@@ -1344,7 +1344,7 @@ object MultiVideoData {
         list.add(landscape45)
 
         val landscape46 = PetVideo()
-        landscape46.type = PetType.LANDSCAPE.ordinal
+        landscape46.type = VideoType.LANDSCAPE.ordinal
         landscape46.fileName = "landscape_46"
         landscape46.code = 1366
         landscape46.duration = 33
@@ -1359,7 +1359,7 @@ object MultiVideoData {
         list.add(landscape46)
 
         val landscape47 = PetVideo()
-        landscape47.type = PetType.LANDSCAPE.ordinal
+        landscape47.type = VideoType.LANDSCAPE.ordinal
         landscape47.fileName = "landscape_47"
         landscape47.code = 1367
         landscape47.duration = 12
@@ -1374,7 +1374,7 @@ object MultiVideoData {
         list.add(landscape47)
 
         val landscape48 = PetVideo()
-        landscape48.type = PetType.LANDSCAPE.ordinal
+        landscape48.type = VideoType.LANDSCAPE.ordinal
         landscape48.fileName = "landscape_48"
         landscape48.code = 1368
         landscape48.duration = 64
@@ -1389,7 +1389,7 @@ object MultiVideoData {
         list.add(landscape48)
 
         val landscape49 = PetVideo()
-        landscape49.type = PetType.LANDSCAPE.ordinal
+        landscape49.type = VideoType.LANDSCAPE.ordinal
         landscape49.fileName = "landscape_49"
         landscape49.code = 1369
         landscape49.duration = 154
@@ -1409,7 +1409,7 @@ object MultiVideoData {
     private fun getPandaKnowledge(): MutableList<PetVideo> {
 
         val panda1 = PetVideo()
-        panda1.type = PetType.PANDA.ordinal
+        panda1.type = VideoType.PANDA.ordinal
         panda1.fileName = "panda_knowledge1"
         panda1.code = 1021
         panda1.duration = 255
@@ -1426,7 +1426,7 @@ object MultiVideoData {
         list.add(panda1)
 
         val panda2 = PetVideo()
-        panda2.type = PetType.PANDA.ordinal
+        panda2.type = VideoType.PANDA.ordinal
         panda2.fileName = "panda_knowledge2"
         panda2.code = 1022
         panda2.duration = 205
@@ -1443,7 +1443,7 @@ object MultiVideoData {
         list.add(panda2)
 
         val panda3 = PetVideo()
-        panda3.type = PetType.PANDA.ordinal
+        panda3.type = VideoType.PANDA.ordinal
         panda3.fileName = "panda_knowledge3"
         panda3.code = 1023
         panda3.duration = 227
@@ -1460,7 +1460,7 @@ object MultiVideoData {
         list.add(panda3)
 
         val panda4 = PetVideo()
-        panda4.type = PetType.PANDA.ordinal
+        panda4.type = VideoType.PANDA.ordinal
         panda4.fileName = "panda_knowledge4"
         panda4.code = 1024
         panda4.duration = 167
@@ -1477,7 +1477,7 @@ object MultiVideoData {
         list.add(panda4)
 
         val panda5 = PetVideo()
-        panda5.type = PetType.PANDA.ordinal
+        panda5.type = VideoType.PANDA.ordinal
         panda5.fileName = "panda_knowledge5"
         panda5.code = 1025
         panda5.duration = 154
@@ -1494,7 +1494,7 @@ object MultiVideoData {
         list.add(panda5)
 
         val panda6 = PetVideo()
-        panda6.type = PetType.PANDA.ordinal
+        panda6.type = VideoType.PANDA.ordinal
         panda6.fileName = "panda_knowledge6"
         panda6.code = 1026
         panda6.duration = 220
@@ -1511,7 +1511,7 @@ object MultiVideoData {
         list.add(panda6)
 
         val panda7 = PetVideo()
-        panda7.type = PetType.PANDA.ordinal
+        panda7.type = VideoType.PANDA.ordinal
         panda7.fileName = "panda_knowledge7"
         panda7.code = 1027
         panda7.duration = 231
@@ -1528,7 +1528,7 @@ object MultiVideoData {
         list.add(panda7)
 
         val panda8 = PetVideo()
-        panda8.type = PetType.PANDA.ordinal
+        panda8.type = VideoType.PANDA.ordinal
         panda8.fileName = "panda_knowledge8"
         panda8.code = 1028
         panda8.duration = 210
@@ -1545,7 +1545,7 @@ object MultiVideoData {
         list.add(panda8)
 
         val panda9 = PetVideo()
-        panda9.type = PetType.PANDA.ordinal
+        panda9.type = VideoType.PANDA.ordinal
         panda9.fileName = "panda_knowledge9"
         panda9.code = 1029
         panda9.duration = 215
@@ -1562,7 +1562,7 @@ object MultiVideoData {
         list.add(panda9)
 
         val panda10 = PetVideo()
-        panda10.type = PetType.PANDA.ordinal
+        panda10.type = VideoType.PANDA.ordinal
         panda10.fileName = "panda_knowledge10"
         panda10.code = 1030
         panda10.duration = 221
@@ -1579,7 +1579,7 @@ object MultiVideoData {
         list.add(panda10)
 
         val panda11 = PetVideo()
-        panda11.type = PetType.PANDA.ordinal
+        panda11.type = VideoType.PANDA.ordinal
         panda11.fileName = "panda_knowledge11"
         panda11.code = 1031
         panda11.duration = 207
@@ -1596,7 +1596,7 @@ object MultiVideoData {
         list.add(panda11)
 
         val panda12 = PetVideo()
-        panda12.type = PetType.PANDA.ordinal
+        panda12.type = VideoType.PANDA.ordinal
         panda12.fileName = "panda_knowledge12"
         panda12.code = 1032
         panda12.duration = 226
@@ -1613,7 +1613,7 @@ object MultiVideoData {
         list.add(panda12)
 
         val panda13 = PetVideo()
-        panda13.type = PetType.PANDA.ordinal
+        panda13.type = VideoType.PANDA.ordinal
         panda13.fileName = "panda_knowledge13"
         panda13.code = 1033
         panda13.duration = 260
@@ -1630,7 +1630,7 @@ object MultiVideoData {
         list.add(panda13)
 
         val panda14 = PetVideo()
-        panda14.type = PetType.PANDA.ordinal
+        panda14.type = VideoType.PANDA.ordinal
         panda14.fileName = "panda_knowledge14"
         panda14.code = 1034
         panda14.duration = 251
@@ -1647,7 +1647,7 @@ object MultiVideoData {
         list.add(panda14)
 
         val panda15 = PetVideo()
-        panda15.type = PetType.PANDA.ordinal
+        panda15.type = VideoType.PANDA.ordinal
         panda15.fileName = "panda_knowledge15"
         panda15.code = 1035
         panda15.duration = 230
@@ -1664,7 +1664,7 @@ object MultiVideoData {
         list.add(panda15)
 
         val panda16 = PetVideo()
-        panda16.type = PetType.PANDA.ordinal
+        panda16.type = VideoType.PANDA.ordinal
         panda16.fileName = "panda_knowledge16"
         panda16.code = 1036
         panda16.duration = 224
@@ -1681,7 +1681,7 @@ object MultiVideoData {
         list.add(panda16)
 
         val panda17 = PetVideo()
-        panda17.type = PetType.PANDA.ordinal
+        panda17.type = VideoType.PANDA.ordinal
         panda17.fileName = "panda_knowledge17"
         panda17.code = 1037
         panda17.duration = 208
@@ -1698,7 +1698,7 @@ object MultiVideoData {
         list.add(panda17)
 
         val panda18 = PetVideo()
-        panda18.type = PetType.PANDA.ordinal
+        panda18.type = VideoType.PANDA.ordinal
         panda18.fileName = "panda_knowledge18"
         panda18.code = 1038
         panda18.duration = 215
@@ -1715,7 +1715,7 @@ object MultiVideoData {
         list.add(panda18)
 
         val panda19 = PetVideo()
-        panda19.type = PetType.PANDA.ordinal
+        panda19.type = VideoType.PANDA.ordinal
         panda19.fileName = "panda_knowledge19"
         panda19.code = 1039
         panda19.duration = 225
@@ -1732,7 +1732,7 @@ object MultiVideoData {
         list.add(panda19)
 
         val panda20 = PetVideo()
-        panda20.type = PetType.PANDA.ordinal
+        panda20.type = VideoType.PANDA.ordinal
         panda20.fileName = "panda_knowledge20"
         panda20.code = 1040
         panda20.duration = 222
@@ -1749,7 +1749,7 @@ object MultiVideoData {
         list.add(panda20)
 
         val panda21 = PetVideo()
-        panda21.type = PetType.PANDA.ordinal
+        panda21.type = VideoType.PANDA.ordinal
         panda21.fileName = "panda_knowledge21"
         panda21.code = 1041
         panda21.duration = 223
@@ -1766,7 +1766,7 @@ object MultiVideoData {
         list.add(panda21)
 
         val panda22 = PetVideo()
-        panda22.type = PetType.PANDA.ordinal
+        panda22.type = VideoType.PANDA.ordinal
         panda22.fileName = "panda_knowledge22"
         panda22.code = 1042
         panda22.duration = 268
@@ -1783,7 +1783,7 @@ object MultiVideoData {
         list.add(panda22)
 
         val panda23 = PetVideo()
-        panda23.type = PetType.PANDA.ordinal
+        panda23.type = VideoType.PANDA.ordinal
         panda23.fileName = "panda_knowledge23"
         panda23.code = 1043
         panda23.duration = 206
@@ -1800,7 +1800,7 @@ object MultiVideoData {
         list.add(panda23)
 
         val panda24 = PetVideo()
-        panda24.type = PetType.PANDA.ordinal
+        panda24.type = VideoType.PANDA.ordinal
         panda24.fileName = "panda_knowledge24"
         panda24.code = 1044
         panda24.duration = 249
@@ -1817,7 +1817,7 @@ object MultiVideoData {
         list.add(panda24)
 
         val panda25 = PetVideo()
-        panda25.type = PetType.PANDA.ordinal
+        panda25.type = VideoType.PANDA.ordinal
         panda25.fileName = "panda_knowledge25"
         panda25.code = 1045
         panda25.duration = 267
@@ -1834,7 +1834,7 @@ object MultiVideoData {
         list.add(panda25)
 
         val panda26 = PetVideo()
-        panda26.type = PetType.PANDA.ordinal
+        panda26.type = VideoType.PANDA.ordinal
         panda26.fileName = "panda_knowledge26"
         panda26.code = 1046
         panda26.duration = 286
@@ -1856,7 +1856,7 @@ object MultiVideoData {
     private fun getPenguinData(): MutableList<PetVideo> {
 
         val penguin1 = PetVideo()
-        penguin1.type = PetType.PENGUIN.ordinal
+        penguin1.type = VideoType.PENGUIN.ordinal
         penguin1.fileName = "penguin1"
         penguin1.code = 1047
         penguin1.duration = 156
@@ -1873,7 +1873,7 @@ object MultiVideoData {
         list.add(penguin1)
 
         val penguin2 = PetVideo()
-        penguin2.type = PetType.PENGUIN.ordinal
+        penguin2.type = VideoType.PENGUIN.ordinal
         penguin2.fileName = "penguin2"
         penguin2.code = 1048
         penguin2.duration = 154
@@ -1890,7 +1890,7 @@ object MultiVideoData {
         list.add(penguin2)
 
         val penguin3 = PetVideo()
-        penguin3.type = PetType.PENGUIN.ordinal
+        penguin3.type = VideoType.PENGUIN.ordinal
         penguin3.fileName = "penguin3"
         penguin3.code = 1049
         penguin3.duration = 95
@@ -1907,7 +1907,7 @@ object MultiVideoData {
         list.add(penguin3)
 
         val penguin4 = PetVideo()
-        penguin4.type = PetType.PENGUIN.ordinal
+        penguin4.type = VideoType.PENGUIN.ordinal
         penguin4.fileName = "penguin4"
         penguin4.code = 1050
         penguin4.duration = 128
@@ -1924,7 +1924,7 @@ object MultiVideoData {
         list.add(penguin4)
 
         val penguin5 = PetVideo()
-        penguin5.type = PetType.PENGUIN.ordinal
+        penguin5.type = VideoType.PENGUIN.ordinal
         penguin5.fileName = "penguin5"
         penguin5.code = 1051
         penguin5.duration = 371
@@ -1941,7 +1941,7 @@ object MultiVideoData {
         list.add(penguin5)
 
         val penguin6 = PetVideo()
-        penguin6.type = PetType.PENGUIN.ordinal
+        penguin6.type = VideoType.PENGUIN.ordinal
         penguin6.fileName = "penguin6"
         penguin6.code = 1052
         penguin6.duration = 47
@@ -1958,7 +1958,7 @@ object MultiVideoData {
         list.add(penguin6)
 
         val penguin7 = PetVideo()
-        penguin7.type = PetType.PENGUIN.ordinal
+        penguin7.type = VideoType.PENGUIN.ordinal
         penguin7.fileName = "penguin7"
         penguin7.code = 1053
         penguin7.duration = 27
@@ -1975,7 +1975,7 @@ object MultiVideoData {
         list.add(penguin7)
 
         val penguin8 = PetVideo()
-        penguin8.type = PetType.PENGUIN.ordinal
+        penguin8.type = VideoType.PENGUIN.ordinal
         penguin8.fileName = "penguin8"
         penguin8.code = 1054
         penguin8.duration = 445
@@ -1993,7 +1993,7 @@ object MultiVideoData {
         list.add(penguin8)
 
         val penguin9 = PetVideo()
-        penguin9.type = PetType.PENGUIN.ordinal
+        penguin9.type = VideoType.PENGUIN.ordinal
         penguin9.fileName = "penguin9"
         penguin9.code = 1055
         penguin9.duration = 136
@@ -2010,7 +2010,7 @@ object MultiVideoData {
         list.add(penguin9)
 
         val penguin10 = PetVideo()
-        penguin10.type = PetType.PENGUIN.ordinal
+        penguin10.type = VideoType.PENGUIN.ordinal
         penguin10.fileName = "penguin10"
         penguin10.code = 1056
         penguin10.duration = 107
@@ -2027,7 +2027,7 @@ object MultiVideoData {
         list.add(penguin10)
 
         val penguin11 = PetVideo()
-        penguin11.type = PetType.PENGUIN.ordinal
+        penguin11.type = VideoType.PENGUIN.ordinal
         penguin11.fileName = "penguin11"
         penguin11.code = 1057
         penguin11.duration = 151
@@ -2044,7 +2044,7 @@ object MultiVideoData {
         list.add(penguin11)
 
         val penguin12 = PetVideo()
-        penguin12.type = PetType.PENGUIN.ordinal
+        penguin12.type = VideoType.PENGUIN.ordinal
         penguin12.fileName = "penguin12"
         penguin12.code = 1058
         penguin12.duration = 119
@@ -2061,7 +2061,7 @@ object MultiVideoData {
         list.add(penguin12)
 
         val penguin13 = PetVideo()
-        penguin13.type = PetType.PENGUIN.ordinal
+        penguin13.type = VideoType.PENGUIN.ordinal
         penguin13.fileName = "penguin13"
         penguin13.code = 1059
         penguin13.duration = 140
@@ -2078,7 +2078,7 @@ object MultiVideoData {
         list.add(penguin13)
 
         val penguin14 = PetVideo()
-        penguin14.type = PetType.PENGUIN.ordinal
+        penguin14.type = VideoType.PENGUIN.ordinal
         penguin14.fileName = "penguin14"
         penguin14.code = 1060
         penguin14.duration = 125
@@ -2095,7 +2095,7 @@ object MultiVideoData {
         list.add(penguin14)
 
         val penguin15 = PetVideo()
-        penguin15.type = PetType.PENGUIN.ordinal
+        penguin15.type = VideoType.PENGUIN.ordinal
         penguin15.fileName = "penguin15"
         penguin15.code = 1061
         penguin15.duration = 125
@@ -2112,7 +2112,7 @@ object MultiVideoData {
         list.add(penguin15)
 
         val penguin16 = PetVideo()
-        penguin16.type = PetType.PENGUIN.ordinal
+        penguin16.type = VideoType.PENGUIN.ordinal
         penguin16.fileName = "penguin16"
         penguin16.code = 1062
         penguin16.duration = 29
@@ -2129,7 +2129,7 @@ object MultiVideoData {
         list.add(penguin16)
 
         val penguin17 = PetVideo()
-        penguin17.type = PetType.PENGUIN.ordinal
+        penguin17.type = VideoType.PENGUIN.ordinal
         penguin17.fileName = "penguin17"
         penguin17.code = 1370
         penguin17.duration = 58
@@ -2144,7 +2144,7 @@ object MultiVideoData {
         list.add(penguin17)
 
         val penguin18 = PetVideo()
-        penguin18.type = PetType.PENGUIN.ordinal
+        penguin18.type = VideoType.PENGUIN.ordinal
         penguin18.fileName = "penguin18"
         penguin18.code = 430
         penguin18.duration = 80
@@ -2164,7 +2164,7 @@ object MultiVideoData {
     private fun getbearData(): MutableList<PetVideo> {
 
         val bear1 = PetVideo()
-        bear1.type = PetType.BEAR.ordinal
+        bear1.type = VideoType.BEAR.ordinal
         bear1.fileName = "pet_bear1"
         bear1.code = 1077
         bear1.duration = 261
@@ -2181,7 +2181,7 @@ object MultiVideoData {
         list.add(bear1)
 
         val bear2 = PetVideo()
-        bear2.type = PetType.BEAR.ordinal
+        bear2.type = VideoType.BEAR.ordinal
         bear2.fileName = "pet_bear2"
         bear2.code = 1078
         bear2.duration = 98
@@ -2198,7 +2198,7 @@ object MultiVideoData {
         list.add(bear2)
 
         val bear3 = PetVideo()
-        bear3.type = PetType.BEAR.ordinal
+        bear3.type = VideoType.BEAR.ordinal
         bear3.fileName = "pet_bear3"
         bear3.code = 1079
         bear3.duration = 75
@@ -2215,7 +2215,7 @@ object MultiVideoData {
         list.add(bear3)
 
         val bear4 = PetVideo()
-        bear4.type = PetType.BEAR.ordinal
+        bear4.type = VideoType.BEAR.ordinal
         bear4.fileName = "pet_bear4"
         bear4.code = 1080
         bear4.duration = 57
@@ -2232,7 +2232,7 @@ object MultiVideoData {
         list.add(bear4)
 
         val bear5 = PetVideo()
-        bear5.type = PetType.BEAR.ordinal
+        bear5.type = VideoType.BEAR.ordinal
         bear5.fileName = "pet_bear5"
         bear5.code = 1081
         bear5.duration = 121
@@ -2249,7 +2249,7 @@ object MultiVideoData {
         list.add(bear5)
 
         val bear6 = PetVideo()
-        bear6.type = PetType.BEAR.ordinal
+        bear6.type = VideoType.BEAR.ordinal
         bear6.fileName = "pet_bear6"
         bear6.code = 1082
         bear6.duration = 162
@@ -2266,7 +2266,7 @@ object MultiVideoData {
         list.add(bear6)
 
         val bear7 = PetVideo()
-        bear7.type = PetType.BEAR.ordinal
+        bear7.type = VideoType.BEAR.ordinal
         bear7.fileName = "pet_bear7"
         bear7.code = 1083
         bear7.duration = 68
@@ -2283,7 +2283,7 @@ object MultiVideoData {
         list.add(bear7)
 
         val bear8 = PetVideo()
-        bear8.type = PetType.BEAR.ordinal
+        bear8.type = VideoType.BEAR.ordinal
         bear8.fileName = "pet_bear8"
         bear8.code = 1084
         bear8.duration = 106
@@ -2300,7 +2300,7 @@ object MultiVideoData {
         list.add(bear8)
 
         val bear9 = PetVideo()
-        bear9.type = PetType.BEAR.ordinal
+        bear9.type = VideoType.BEAR.ordinal
         bear9.fileName = "pet_bear9"
         bear9.code = 1085
         bear9.duration = 107
@@ -2317,7 +2317,7 @@ object MultiVideoData {
         list.add(bear9)
 
         val bear10 = PetVideo()
-        bear10.type = PetType.BEAR.ordinal
+        bear10.type = VideoType.BEAR.ordinal
         bear10.fileName = "pet_bear10"
         bear10.code = 1086
         bear10.duration = 239
@@ -2334,7 +2334,7 @@ object MultiVideoData {
         list.add(bear10)
 
         val bear11 = PetVideo()
-        bear11.type = PetType.BEAR.ordinal
+        bear11.type = VideoType.BEAR.ordinal
         bear11.fileName = "pet_bear11"
         bear11.code = 1087
         bear11.duration = 157
@@ -2351,7 +2351,7 @@ object MultiVideoData {
         list.add(bear11)
 
         val bear12 = PetVideo()
-        bear12.type = PetType.BEAR.ordinal
+        bear12.type = VideoType.BEAR.ordinal
         bear12.fileName = "pet_bear12"
         bear12.code = 1088
         bear12.duration = 111
@@ -2368,7 +2368,7 @@ object MultiVideoData {
         list.add(bear12)
 
         val bear13 = PetVideo()
-        bear13.type = PetType.BEAR.ordinal
+        bear13.type = VideoType.BEAR.ordinal
         bear13.fileName = "pet_bear13"
         bear13.code = 1089
         bear13.duration = 299
@@ -2385,7 +2385,7 @@ object MultiVideoData {
         list.add(bear13)
 
         val bear14 = PetVideo()
-        bear14.type = PetType.BEAR.ordinal
+        bear14.type = VideoType.BEAR.ordinal
         bear14.fileName = "pet_bear14"
         bear14.code = 1090
         bear14.duration = 312
@@ -2402,7 +2402,7 @@ object MultiVideoData {
         list.add(bear14)
 
         val bear15 = PetVideo()
-        bear15.type = PetType.BEAR.ordinal
+        bear15.type = VideoType.BEAR.ordinal
         bear15.fileName = "pet_bear15"
         bear15.code = 1091
         bear15.duration = 310
@@ -2419,7 +2419,7 @@ object MultiVideoData {
         list.add(bear15)
 
         val bear16 = PetVideo()
-        bear16.type = PetType.BEAR.ordinal
+        bear16.type = VideoType.BEAR.ordinal
         bear16.fileName = "pet_bear16"
         bear16.code = 1092
         bear16.duration = 59
@@ -2436,7 +2436,7 @@ object MultiVideoData {
         list.add(bear16)
 
         val bear17 = PetVideo()
-        bear17.type = PetType.BEAR.ordinal
+        bear17.type = VideoType.BEAR.ordinal
         bear17.fileName = "pet_bear17"
         bear17.code = 1093
         bear17.duration = 66
@@ -2453,7 +2453,7 @@ object MultiVideoData {
         list.add(bear17)
 
         val bear18 = PetVideo()
-        bear18.type = PetType.BEAR.ordinal
+        bear18.type = VideoType.BEAR.ordinal
         bear18.fileName = "pet_bear18"
         bear18.code = 1094
         bear18.duration = 415
@@ -2470,7 +2470,7 @@ object MultiVideoData {
         list.add(bear18)
 
         val bear19 = PetVideo()
-        bear19.type = PetType.BEAR.ordinal
+        bear19.type = VideoType.BEAR.ordinal
         bear19.fileName = "pet_bear19"
         bear19.code = 1095
         bear19.duration = 306
@@ -2487,7 +2487,7 @@ object MultiVideoData {
         list.add(bear19)
 
         val bear20 = PetVideo()
-        bear20.type = PetType.BEAR.ordinal
+        bear20.type = VideoType.BEAR.ordinal
         bear20.fileName = "pet_bear20"
         bear20.code = 1096
         bear20.duration = 114
@@ -2504,7 +2504,7 @@ object MultiVideoData {
         list.add(bear20)
 
         val bear21 = PetVideo()
-        bear21.type = PetType.BEAR.ordinal
+        bear21.type = VideoType.BEAR.ordinal
         bear21.fileName = "pet_bear21"
         bear21.code = 1097
         bear21.duration = 90
@@ -2521,7 +2521,7 @@ object MultiVideoData {
         list.add(bear21)
 
         val bear22 = PetVideo()
-        bear22.type = PetType.BEAR.ordinal
+        bear22.type = VideoType.BEAR.ordinal
         bear22.fileName = "pet_bear22"
         bear22.code = 1098
         bear22.duration = 184
@@ -2538,7 +2538,7 @@ object MultiVideoData {
         list.add(bear22)
 
         val bear23 = PetVideo()
-        bear23.type = PetType.BEAR.ordinal
+        bear23.type = VideoType.BEAR.ordinal
         bear23.fileName = "pet_bear23"
         bear23.code = 1099
         bear23.duration = 152
@@ -2555,7 +2555,7 @@ object MultiVideoData {
         list.add(bear23)
 
         val bear24 = PetVideo()
-        bear24.type = PetType.BEAR.ordinal
+        bear24.type = VideoType.BEAR.ordinal
         bear24.fileName = "pet_bear24"
         bear24.code = 1100
         bear24.duration = 15
@@ -2572,7 +2572,7 @@ object MultiVideoData {
         list.add(bear24)
 
         val bear25 = PetVideo()
-        bear25.type = PetType.BEAR.ordinal
+        bear25.type = VideoType.BEAR.ordinal
         bear25.fileName = "pet_bear25"
         bear25.code = 1101
         bear25.duration = 104
@@ -2589,7 +2589,7 @@ object MultiVideoData {
         list.add(bear25)
 
         val bear26 = PetVideo()
-        bear26.type = PetType.BEAR.ordinal
+        bear26.type = VideoType.BEAR.ordinal
         bear26.fileName = "pet_bear26"
         bear26.code = 1102
         bear26.duration = 69
@@ -2606,7 +2606,7 @@ object MultiVideoData {
         list.add(bear26)
 
         val bear27 = PetVideo()
-        bear27.type = PetType.BEAR.ordinal
+        bear27.type = VideoType.BEAR.ordinal
         bear27.fileName = "pet_bear27"
         bear27.code = 1103
         bear27.duration = 16
@@ -2623,7 +2623,7 @@ object MultiVideoData {
         list.add(bear27)
 
         val bear28 = PetVideo()
-        bear28.type = PetType.BEAR.ordinal
+        bear28.type = VideoType.BEAR.ordinal
         bear28.fileName = "pet_bear28"
         bear28.code = 1104
         bear28.duration = 66
@@ -2640,7 +2640,7 @@ object MultiVideoData {
         list.add(bear28)
 
         val bear29 = PetVideo()
-        bear29.type = PetType.BEAR.ordinal
+        bear29.type = VideoType.BEAR.ordinal
         bear29.fileName = "pet_bear29"
         bear29.code = 1105
         bear29.duration = 120
@@ -2657,7 +2657,7 @@ object MultiVideoData {
         list.add(bear29)
 
         val bear30 = PetVideo()
-        bear30.type = PetType.BEAR.ordinal
+        bear30.type = VideoType.BEAR.ordinal
         bear30.fileName = "pet_bear30"
         bear30.code = 1106
         bear30.duration = 76
@@ -2674,7 +2674,7 @@ object MultiVideoData {
         list.add(bear30)
 
         val bear31 = PetVideo()
-        bear31.type = PetType.BEAR.ordinal
+        bear31.type = VideoType.BEAR.ordinal
         bear31.fileName = "pet_bear31"
         bear31.code = 1107
         bear31.duration = 132
@@ -2691,7 +2691,7 @@ object MultiVideoData {
         list.add(bear31)
 
         val bear32 = PetVideo()
-        bear32.type = PetType.BEAR.ordinal
+        bear32.type = VideoType.BEAR.ordinal
         bear32.fileName = "pet_bear32"
         bear32.code = 1108
         bear32.duration = 166
@@ -2708,7 +2708,7 @@ object MultiVideoData {
         list.add(bear32)
 
         val bear33 = PetVideo()
-        bear33.type = PetType.BEAR.ordinal
+        bear33.type = VideoType.BEAR.ordinal
         bear33.fileName = "pet_bear33"
         bear33.code = 1356
         bear33.duration = 441
@@ -2724,7 +2724,7 @@ object MultiVideoData {
         list.add(bear33)
 
         val bear34 = PetVideo()
-        bear34.type = PetType.BEAR.ordinal
+        bear34.type = VideoType.BEAR.ordinal
         bear34.fileName = "pet_bear34"
         bear34.code = 1357
         bear34.duration = 32
@@ -2740,7 +2740,7 @@ object MultiVideoData {
         list.add(bear34)
 
         val bear35 = PetVideo()
-        bear35.type = PetType.BEAR.ordinal
+        bear35.type = VideoType.BEAR.ordinal
         bear35.fileName = "pet_bear35"
         bear35.code = 1358
         bear35.duration = 72
@@ -2761,7 +2761,7 @@ object MultiVideoData {
     private fun getMonkey(): MutableList<PetVideo> {
 
         val monkey1 = PetVideo()
-        monkey1.type = PetType.GOLDEN_MONKEY.ordinal
+        monkey1.type = VideoType.GOLDEN_MONKEY.ordinal
         monkey1.fileName = "pet_monkey1"
         monkey1.code = 1109
         monkey1.duration = 104
@@ -2778,7 +2778,7 @@ object MultiVideoData {
         list.add(monkey1)
 
         val monkey2 = PetVideo()
-        monkey2.type = PetType.GOLDEN_MONKEY.ordinal
+        monkey2.type = VideoType.GOLDEN_MONKEY.ordinal
         monkey2.fileName = "pet_monkey2"
         monkey2.code = 1110
         monkey2.duration = 22
@@ -2795,7 +2795,7 @@ object MultiVideoData {
         list.add(monkey2)
 
         val monkey3 = PetVideo()
-        monkey3.type = PetType.GOLDEN_MONKEY.ordinal
+        monkey3.type = VideoType.GOLDEN_MONKEY.ordinal
         monkey3.fileName = "pet_monkey3"
         monkey3.code = 1111
         monkey3.duration = 122
@@ -2810,7 +2810,7 @@ object MultiVideoData {
         list.add(monkey3)
 
         val monkey4 = PetVideo()
-        monkey4.type = PetType.GOLDEN_MONKEY.ordinal
+        monkey4.type = VideoType.GOLDEN_MONKEY.ordinal
         monkey4.fileName = "pet_monkey4"
         monkey4.code = 1112
         monkey4.duration = 129
@@ -2825,7 +2825,7 @@ object MultiVideoData {
         list.add(monkey4)
 
         val monkey5 = PetVideo()
-        monkey5.type = PetType.GOLDEN_MONKEY.ordinal
+        monkey5.type = VideoType.GOLDEN_MONKEY.ordinal
         monkey5.fileName = "pet_monkey5"
         monkey5.code = 1113
         monkey5.duration = 51
@@ -2840,7 +2840,7 @@ object MultiVideoData {
         list.add(monkey5)
 
         val monkey6 = PetVideo()
-        monkey6.type = PetType.GOLDEN_MONKEY.ordinal
+        monkey6.type = VideoType.GOLDEN_MONKEY.ordinal
         monkey6.fileName = "pet_monkey6"
         monkey6.code = 1388
         monkey6.duration = 28
@@ -2855,7 +2855,7 @@ object MultiVideoData {
         list.add(monkey6)
 
         val monkey7 = PetVideo()
-        monkey7.type = PetType.GOLDEN_MONKEY.ordinal
+        monkey7.type = VideoType.GOLDEN_MONKEY.ordinal
         monkey7.fileName = "pet_monkey7"
         monkey7.code = 1389
         monkey7.duration = 219
@@ -2870,7 +2870,7 @@ object MultiVideoData {
         list.add(monkey7)
 
         val monkey8 = PetVideo()
-        monkey8.type = PetType.GOLDEN_MONKEY.ordinal
+        monkey8.type = VideoType.GOLDEN_MONKEY.ordinal
         monkey8.fileName = "pet_monkey8"
         monkey8.code = 1390
         monkey8.duration = 21
@@ -2890,7 +2890,7 @@ object MultiVideoData {
     private fun getRedPanda(): MutableList<PetVideo> {
 
         val redPanda1 = PetVideo()
-        redPanda1.type = PetType.RED_PANDA.ordinal
+        redPanda1.type = VideoType.RED_PANDA.ordinal
         redPanda1.fileName = "red_panda1"
         redPanda1.code = 1173
         redPanda1.duration = 64
@@ -2905,7 +2905,7 @@ object MultiVideoData {
         list.add(redPanda1)
 
         val redPanda2 = PetVideo()
-        redPanda2.type = PetType.RED_PANDA.ordinal
+        redPanda2.type = VideoType.RED_PANDA.ordinal
         redPanda2.fileName = "red_panda2"
         redPanda2.code = 1174
         redPanda2.duration = 37
@@ -2920,7 +2920,7 @@ object MultiVideoData {
         list.add(redPanda2)
 
         val redPanda3 = PetVideo()
-        redPanda3.type = PetType.RED_PANDA.ordinal
+        redPanda3.type = VideoType.RED_PANDA.ordinal
         redPanda3.fileName = "red_panda3"
         redPanda3.code = 1175
         redPanda3.duration = 41
@@ -2935,7 +2935,7 @@ object MultiVideoData {
         list.add(redPanda3)
 
         val redPanda4 = PetVideo()
-        redPanda4.type = PetType.RED_PANDA.ordinal
+        redPanda4.type = VideoType.RED_PANDA.ordinal
         redPanda4.fileName = "red_panda4"
         redPanda4.code = 1176
         redPanda4.duration = 43
@@ -2950,7 +2950,7 @@ object MultiVideoData {
         list.add(redPanda4)
 
         val redPanda5 = PetVideo()
-        redPanda5.type = PetType.RED_PANDA.ordinal
+        redPanda5.type = VideoType.RED_PANDA.ordinal
         redPanda5.fileName = "red_panda5"
         redPanda5.code = 1177
         redPanda5.duration = 31
@@ -2965,7 +2965,7 @@ object MultiVideoData {
         list.add(redPanda5)
 
         val redPanda6 = PetVideo()
-        redPanda6.type = PetType.RED_PANDA.ordinal
+        redPanda6.type = VideoType.RED_PANDA.ordinal
         redPanda6.fileName = "red_panda6"
         redPanda6.code = 1178
         redPanda6.duration = 92
@@ -2980,7 +2980,7 @@ object MultiVideoData {
         list.add(redPanda6)
 
         val redPanda7 = PetVideo()
-        redPanda7.type = PetType.RED_PANDA.ordinal
+        redPanda7.type = VideoType.RED_PANDA.ordinal
         redPanda7.fileName = "red_panda7"
         redPanda7.code = 1179
         redPanda7.duration = 85
@@ -2995,7 +2995,7 @@ object MultiVideoData {
         list.add(redPanda7)
 
         val redPanda8 = PetVideo()
-        redPanda8.type = PetType.RED_PANDA.ordinal
+        redPanda8.type = VideoType.RED_PANDA.ordinal
         redPanda8.fileName = "red_panda8"
         redPanda8.code = 1180
         redPanda8.duration = 82
@@ -3010,7 +3010,7 @@ object MultiVideoData {
         list.add(redPanda8)
 
         val redPanda9 = PetVideo()
-        redPanda9.type = PetType.RED_PANDA.ordinal
+        redPanda9.type = VideoType.RED_PANDA.ordinal
         redPanda9.fileName = "red_panda9"
         redPanda9.code = 1181
         redPanda9.duration = 128
@@ -3025,7 +3025,7 @@ object MultiVideoData {
         list.add(redPanda9)
 
         val redPanda10 = PetVideo()
-        redPanda10.type = PetType.RED_PANDA.ordinal
+        redPanda10.type = VideoType.RED_PANDA.ordinal
         redPanda10.fileName = "red_panda10"
         redPanda10.code = 1182
         redPanda10.duration = 39
@@ -3040,7 +3040,7 @@ object MultiVideoData {
         list.add(redPanda10)
 
         val redPanda11 = PetVideo()
-        redPanda11.type = PetType.RED_PANDA.ordinal
+        redPanda11.type = VideoType.RED_PANDA.ordinal
         redPanda11.fileName = "red_panda11"
         redPanda11.code = 1183
         redPanda11.duration = 24
@@ -3055,7 +3055,7 @@ object MultiVideoData {
         list.add(redPanda11)
 
         val redPanda12 = PetVideo()
-        redPanda12.type = PetType.RED_PANDA.ordinal
+        redPanda12.type = VideoType.RED_PANDA.ordinal
         redPanda12.fileName = "red_panda12"
         redPanda12.code = 1184
         redPanda12.duration = 343
@@ -3070,7 +3070,7 @@ object MultiVideoData {
         list.add(redPanda12)
 
         val redPanda13 = PetVideo()
-        redPanda13.type = PetType.RED_PANDA.ordinal
+        redPanda13.type = VideoType.RED_PANDA.ordinal
         redPanda13.fileName = "red_panda13"
         redPanda13.code = 1185
         redPanda13.duration = 24
@@ -3085,7 +3085,7 @@ object MultiVideoData {
         list.add(redPanda13)
 
         val redPanda14 = PetVideo()
-        redPanda14.type = PetType.RED_PANDA.ordinal
+        redPanda14.type = VideoType.RED_PANDA.ordinal
         redPanda14.fileName = "red_panda14"
         redPanda14.code = 1186
         redPanda14.duration = 135
@@ -3100,7 +3100,7 @@ object MultiVideoData {
         list.add(redPanda14)
 
         val redPanda15 = PetVideo()
-        redPanda15.type = PetType.RED_PANDA.ordinal
+        redPanda15.type = VideoType.RED_PANDA.ordinal
         redPanda15.fileName = "red_panda15"
         redPanda15.code = 1187
         redPanda15.duration = 58
@@ -3115,7 +3115,7 @@ object MultiVideoData {
         list.add(redPanda15)
 
         val redPanda16 = PetVideo()
-        redPanda16.type = PetType.RED_PANDA.ordinal
+        redPanda16.type = VideoType.RED_PANDA.ordinal
         redPanda16.fileName = "red_panda16"
         redPanda16.code = 1188
         redPanda16.duration = 51
@@ -3130,7 +3130,7 @@ object MultiVideoData {
         list.add(redPanda16)
 
         val redPanda17 = PetVideo()
-        redPanda17.type = PetType.RED_PANDA.ordinal
+        redPanda17.type = VideoType.RED_PANDA.ordinal
         redPanda17.fileName = "red_panda17"
         redPanda17.code = 1189
         redPanda17.duration = 125
@@ -3145,7 +3145,7 @@ object MultiVideoData {
         list.add(redPanda17)
 
         val redPanda18 = PetVideo()
-        redPanda18.type = PetType.RED_PANDA.ordinal
+        redPanda18.type = VideoType.RED_PANDA.ordinal
         redPanda18.fileName = "red_panda18"
         redPanda18.code = 1190
         redPanda18.duration = 61
@@ -3160,7 +3160,7 @@ object MultiVideoData {
         list.add(redPanda18)
 
         val redPanda19 = PetVideo()
-        redPanda19.type = PetType.RED_PANDA.ordinal
+        redPanda19.type = VideoType.RED_PANDA.ordinal
         redPanda19.fileName = "red_panda19"
         redPanda19.code = 1191
         redPanda19.duration = 110
@@ -3175,7 +3175,7 @@ object MultiVideoData {
         list.add(redPanda19)
 
         val redPanda20 = PetVideo()
-        redPanda20.type = PetType.RED_PANDA.ordinal
+        redPanda20.type = VideoType.RED_PANDA.ordinal
         redPanda20.fileName = "red_panda20"
         redPanda20.code = 1192
         redPanda20.duration = 108
@@ -3190,7 +3190,7 @@ object MultiVideoData {
         list.add(redPanda20)
 
         val redPanda21 = PetVideo()
-        redPanda21.type = PetType.RED_PANDA.ordinal
+        redPanda21.type = VideoType.RED_PANDA.ordinal
         redPanda21.fileName = "red_panda21"
         redPanda21.code = 1193
         redPanda21.duration = 64
@@ -3205,7 +3205,7 @@ object MultiVideoData {
         list.add(redPanda21)
 
         val redPanda22 = PetVideo()
-        redPanda22.type = PetType.RED_PANDA.ordinal
+        redPanda22.type = VideoType.RED_PANDA.ordinal
         redPanda22.fileName = "red_panda22"
         redPanda22.code = 1194
         redPanda22.duration = 42
@@ -3220,7 +3220,7 @@ object MultiVideoData {
         list.add(redPanda22)
 
         val redPanda23 = PetVideo()
-        redPanda23.type = PetType.RED_PANDA.ordinal
+        redPanda23.type = VideoType.RED_PANDA.ordinal
         redPanda23.fileName = "red_panda23"
         redPanda23.code = 1195
         redPanda23.duration = 1148
@@ -3235,7 +3235,7 @@ object MultiVideoData {
         list.add(redPanda23)
 
         val redPanda24 = PetVideo()
-        redPanda24.type = PetType.RED_PANDA.ordinal
+        redPanda24.type = VideoType.RED_PANDA.ordinal
         redPanda24.fileName = "red_panda24"
         redPanda24.code = 1196
         redPanda24.duration = 25
@@ -3250,7 +3250,7 @@ object MultiVideoData {
         list.add(redPanda24)
 
         val redPanda25 = PetVideo()
-        redPanda25.type = PetType.RED_PANDA.ordinal
+        redPanda25.type = VideoType.RED_PANDA.ordinal
         redPanda25.fileName = "red_panda25"
         redPanda25.code = 1197
         redPanda25.duration = 12
@@ -3265,7 +3265,7 @@ object MultiVideoData {
         list.add(redPanda25)
 
         val redPanda26 = PetVideo()
-        redPanda26.type = PetType.RED_PANDA.ordinal
+        redPanda26.type = VideoType.RED_PANDA.ordinal
         redPanda26.fileName = "red_panda26"
         redPanda26.code = 1198
         redPanda26.duration = 30
@@ -3280,7 +3280,7 @@ object MultiVideoData {
         list.add(redPanda26)
 
         val redPanda27 = PetVideo()
-        redPanda27.type = PetType.RED_PANDA.ordinal
+        redPanda27.type = VideoType.RED_PANDA.ordinal
         redPanda27.fileName = "red_panda27"
         redPanda27.code = 1199
         redPanda27.duration = 141
@@ -3295,7 +3295,7 @@ object MultiVideoData {
         list.add(redPanda27)
 
         val redPanda28 = PetVideo()
-        redPanda28.type = PetType.RED_PANDA.ordinal
+        redPanda28.type = VideoType.RED_PANDA.ordinal
         redPanda28.fileName = "red_panda28"
         redPanda28.code = 1200
         redPanda28.duration = 487
@@ -3310,7 +3310,7 @@ object MultiVideoData {
         list.add(redPanda28)
 
         val redPanda29 = PetVideo()
-        redPanda29.type = PetType.RED_PANDA.ordinal
+        redPanda29.type = VideoType.RED_PANDA.ordinal
         redPanda29.fileName = "red_panda29"
         redPanda29.code = 1201
         redPanda29.duration = 93
@@ -3325,7 +3325,7 @@ object MultiVideoData {
         list.add(redPanda29)
 
         val redPanda30 = PetVideo()
-        redPanda30.type = PetType.RED_PANDA.ordinal
+        redPanda30.type = VideoType.RED_PANDA.ordinal
         redPanda30.fileName = "red_panda30"
         redPanda30.code = 1202
         redPanda30.duration = 187
@@ -3340,7 +3340,7 @@ object MultiVideoData {
         list.add(redPanda30)
 
         val redPanda31 = PetVideo()
-        redPanda31.type = PetType.RED_PANDA.ordinal
+        redPanda31.type = VideoType.RED_PANDA.ordinal
         redPanda31.fileName = "red_panda31"
         redPanda31.code = 1203
         redPanda31.duration = 111
@@ -3355,7 +3355,7 @@ object MultiVideoData {
         list.add(redPanda31)
 
         val redPanda32 = PetVideo()
-        redPanda32.type = PetType.RED_PANDA.ordinal
+        redPanda32.type = VideoType.RED_PANDA.ordinal
         redPanda32.fileName = "red_panda32"
         redPanda32.code = 1204
         redPanda32.duration = 148
@@ -3370,7 +3370,7 @@ object MultiVideoData {
         list.add(redPanda32)
 
         val redPanda33 = PetVideo()
-        redPanda33.type = PetType.RED_PANDA.ordinal
+        redPanda33.type = VideoType.RED_PANDA.ordinal
         redPanda33.fileName = "red_panda33"
         redPanda33.code = 1205
         redPanda33.duration = 106
@@ -3385,7 +3385,7 @@ object MultiVideoData {
         list.add(redPanda33)
 
         val redPanda34 = PetVideo()
-        redPanda34.type = PetType.RED_PANDA.ordinal
+        redPanda34.type = VideoType.RED_PANDA.ordinal
         redPanda34.fileName = "red_panda34"
         redPanda34.code = 1206
         redPanda34.duration = 178
@@ -3400,7 +3400,7 @@ object MultiVideoData {
         list.add(redPanda34)
 
         val redPanda35 = PetVideo()
-        redPanda35.type = PetType.RED_PANDA.ordinal
+        redPanda35.type = VideoType.RED_PANDA.ordinal
         redPanda35.fileName = "red_panda35"
         redPanda35.code = 1382
         redPanda35.duration = 29
@@ -3416,7 +3416,7 @@ object MultiVideoData {
         list.add(redPanda35)
 
         val redPanda36 = PetVideo()
-        redPanda36.type = PetType.RED_PANDA.ordinal
+        redPanda36.type = VideoType.RED_PANDA.ordinal
         redPanda36.fileName = "red_panda36"
         redPanda36.code = 1383
         redPanda36.duration = 57

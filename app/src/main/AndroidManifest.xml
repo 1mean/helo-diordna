@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         package="com.example.pandas">
 
     <application
@@ -25,7 +24,8 @@
         <activity android:name=".ui.activity.BehaviorActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.VerticalVideoActivity" />
-       <!-- <activity android:name=".ui.activity.HomeActivity" />-->
+        <activity android:name=".ui.activity.MoreDataListActivity" />
+        <!-- <activity android:name=".ui.activity.HomeActivity" />-->
         <activity
                 android:name=".ui.activity.VideoPlayingActivity"
                 android:configChanges="orientation" />

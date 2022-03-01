@@ -19,7 +19,6 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, FragmentPandasB
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.refreshLayoutPanda.setOnRefreshListener {
-            binding.refreshLayoutPanda.isRefreshing = true
             binding.recyclerViewPanda.isFreshing(true)
             mViewModel.getPagePet(true)
         }

@@ -1,7 +1,6 @@
 package com.example.pandas.base.adapter
 
 import android.content.Context
-import android.util.Log
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
@@ -59,7 +58,6 @@ public open class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     open fun <T : View> getWidget(widgetId: Int): T {
         var view: View? = null
         if (widgetViews != null) {
-            Log.e("1mean", "widgetViews:  $widgetViews")
             view = widgetViews!!.get(widgetId)//get()为null赋值给view会报错，所以view必须初始化为null
             if (view == null) {
                 view = mView!!.findViewById(widgetId)

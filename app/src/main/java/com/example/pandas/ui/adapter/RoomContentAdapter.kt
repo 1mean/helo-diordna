@@ -2,7 +2,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.pandas.bean.pet.PetType
+import com.example.pandas.bean.pet.VideoType
 
 /**
  * @description: TODO
@@ -33,12 +33,12 @@ public class RoomContentAdapter(
 
         var type = 0
         when (position) {
-            0 -> type = PetType.BIRD.ordinal
-            1 -> type = PetType.FOX.ordinal
-            2 -> type = PetType.RED_PANDA.ordinal
-            3 -> type = PetType.PENGUIN.ordinal
-            4 -> type = PetType.GOLDEN_MONKEY.ordinal
-            5 -> type = PetType.BEAR.ordinal
+            0 -> type = VideoType.BIRD.ordinal
+            1 -> type = VideoType.FOX.ordinal
+            2 -> type = VideoType.RED_PANDA.ordinal
+            3 -> type = VideoType.PENGUIN.ordinal
+            4 -> type = VideoType.GOLDEN_MONKEY.ordinal
+            5 -> type = VideoType.BEAR.ordinal
         }
         return type
     }

@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.base.activity.BaseActivity
+import com.example.pandas.biz.ext.getUrl
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.ActivityVideoBinding
 import com.google.android.exoplayer2.ExoPlayer
@@ -96,7 +97,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
             if (mPlayer == null) {
 
-                val file = mViewModel.getUrl(this, it.fileName!!)
+                val file = getUrl(this, it.fileName!!)
                 Log.e("1mean", "path: ${file.absolutePath}")
                 if (file.exists()) {
                     initPlayer(file)

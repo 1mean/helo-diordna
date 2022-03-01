@@ -16,6 +16,8 @@ import kotlinx.coroutines.launch
 class HomePageViewModel : BaseViewModel() {
 
     var startIndex = 0//分页起始
+    var petIndex = 0
+    var recoIndex = 0
 
     /***********************************************************************************
      * LiveData是不可变的，MutableLiveData是可变的
@@ -43,12 +45,12 @@ class HomePageViewModel : BaseViewModel() {
     fun getPagePet(isRefresh: Boolean) {
 
         if (isRefresh) {
-            startIndex = 0
+            petIndex = 0
         }
-        request({ PetManagerCoroutine.getPetByPage(startIndex) },
+        request({ PetManagerCoroutine.getPetByPage(petIndex) },
             {
                 //请求数据成功
-                startIndex += 20
+                petIndex += 20
                 val dataList = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = isRefresh,
@@ -81,14 +83,14 @@ class HomePageViewModel : BaseViewModel() {
     fun getRecommendData(isRefresh: Boolean) {
 
         if (isRefresh) {
-            startIndex = 0
+            recoIndex = 0
         }
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getRecommendByPage(startIndex)
+                PetManagerCoroutine.getRecommendByPage(recoIndex)
             }.onSuccess {
-                startIndex += if (startIndex == 0) 10 else 11
+                recoIndex += if (recoIndex == 0) 10 else 11
                 val wrapper = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = isRefresh,

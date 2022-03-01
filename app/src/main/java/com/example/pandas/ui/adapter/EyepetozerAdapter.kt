@@ -109,7 +109,9 @@ public class EyepetozerAdapter(
             )
         ).into(videoHolder.userIcon)
         videoHolder.itemView.setOnClickListener {
-            context.startActivity(Intent().setClass(context,VerticalVideoActivity::class.java))
+            val intent = Intent(context,VerticalVideoActivity::class.java)
+            intent.putExtra("currentVideo",bean)
+            context.startActivity(intent)
         }
     }
 

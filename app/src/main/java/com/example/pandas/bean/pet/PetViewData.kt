@@ -8,5 +8,6 @@ data class PetViewData(
     var cover: String = "",
     var authorName: String = "",
     var videoType: Int = 0,
-    var releaseTime: String? = ""
+    var releaseTime: String? = "",//需要时设置，petDao里可以不用设置，编译不会报错
+    var fileName: String? = ""
 )

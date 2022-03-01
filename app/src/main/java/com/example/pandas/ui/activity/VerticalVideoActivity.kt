@@ -1,18 +1,24 @@
 package com.example.pandas.ui.activity
 
+import StatusBarUtils
 import VerticalVideoAdapter
-import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.*
+import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.bean.eyes.EyepetozerBean
 import com.example.pandas.biz.viewmodel.VerticalVideoModel
 import com.example.pandas.databinding.ActivityVerticalVideoplayBinding
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
-import java.io.File
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.util.Util
+
 
 /**
  * @description: TODO
@@ -21,49 +27,109 @@ import java.io.File
  * @version: v1.0
  */
 public class VerticalVideoActivity :
-    BaseActivity<VerticalVideoModel, ActivityVerticalVideoplayBinding>() {
+    BaseActivity<VerticalVideoModel, ActivityVerticalVideoplayBinding>(),
+    VerticalVideoAdapter.VideoCallBack {
 
     private var mPlayer: ExoPlayer? = null
+    private var video: EyepetozerBean? = null
+    private val mAdapter: VerticalVideoAdapter by lazy {
+        VerticalVideoAdapter(
+            mutableListOf(),
+            this
+        )
+    }
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        val list:MutableList<EyepetozerBean> = mutableListOf()
-        for (i in 0..10){
-            val eye = EyepetozerBean(videoId = i)
-            list.add(eye)
-        }
+        StatusBarUtils.setStatusBarMode(this, false, R.color.black)
 
+        video = intent.getParcelableExtra("currentVideo")
 
         binding.rvPlay.apply {
             layoutManager = LinearLayoutManager(
                 this@VerticalVideoActivity,
                 RecyclerView.VERTICAL, false
             )
-            adapter = VerticalVideoAdapter(list)
+            adapter = mAdapter
+            addOnScrollListener(recyclerViewScrollListener)
         }
         PagerSnapHelper().attachToRecyclerView(binding.rvPlay)
 
     }
 
     override fun createObserver() {
+        mViewModel.recommendWrapper.observe(this) {
+
+            if (it.isSuccess) {
+                mAdapter.refreshAdapter(it.listData)
+            }
+        }
     }
 
-//    private fun initPlayer(file: File) {
-//
-//        //1.创建SimpleExoPlayer实例
-//        mPlayer = ExoPlayer.Builder(this).build()
-//        binding.playView.player = mPlayer
-//
-//        //2.创建播放菜单并添加到播放器
-//        val firstLocalMediaItem = MediaItem.fromUri(Uri.fromFile(file))
-//
-//        mPlayer?.run {
-//            setRepeatMode()//设置重复播放模式
-//            addListener(listener)
-//            addMediaItem(firstLocalMediaItem)
-//            playWhenReady = true//3.设置播放方式为自动播放
-//            prepare()//设置播放器状态为prepare
-//        }
-//    }
+    override fun onStart() {
+        super.onStart()
+        if (Util.SDK_INT > 23) {
+            initPlayer()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (Util.SDK_INT <= 23) {
+            initPlayer()
+        }
+    }
+
+    /**
+     * 处理翻页时，exoplayer的释放和切换播放源
+     */
+    private val recyclerViewScrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            when (newState) {
+                SCROLL_STATE_IDLE -> {
+                }
+                SCROLL_STATE_DRAGGING -> {
+                }
+                SCROLL_STATE_SETTLING -> {
+                }
+            }
+        }
+    }
+
+    override fun play(url: String?, playerView: PlayerView) {
+
+        if (url != null) {
+            playerView.player = mPlayer
+            val firstLocalMediaItem = MediaItem.fromUri(url)
+            mPlayer?.run {
+                //clearMediaItems()
+                Log.e("1mean","mediaCounts: ${this.mediaItemCount}")
+                addMediaItem(firstLocalMediaItem)
+                playWhenReady = true
+                prepare()
+                play()
+            }
+        }
+
+    }
+
+    private fun initPlayer() {
+
+        //1.创建SimpleExoPlayer实例
+        mPlayer = ExoPlayer.Builder(this).build()
+       // binding.rvPlay.player = mPlayer
+
+        //2.创建播放菜单并添加到播放器
+       // val firstLocalMediaItem = MediaItem.fromUri(Uri.fromFile(file))
+
+        mPlayer?.run {
+            repeatMode = Player.REPEAT_MODE_ALL//设置重复播放模式
+            //addListener(listener)
+            //playWhenReady = true//3.设置播放方式为自动播放
+            //prepare()//设置播放器状态为prepare
+        }
+
+        video?.let { mViewModel.getRecoList(it) }
+    }
 
 }

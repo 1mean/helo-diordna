@@ -6,7 +6,7 @@ package com.example.pandas.bean.pet
  * @date: 1/23/22 3:52 下午
  * @version: v1.0
  */
-enum class PetType {
+enum class VideoType {
     PANDA,//大熊猫
     GOLDEN_MONKEY,//金丝猴
     TIGER,//老虎

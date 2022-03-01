@@ -3,7 +3,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
-import com.example.pandas.databinding.LayoutRefreshBinding
+import com.example.pandas.databinding.LayoutRefreshLoadmoreBinding
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 
 /**
@@ -12,7 +12,7 @@ import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
  * @date: 2/4/22 4:44 下午
  * @version: v1.0
  */
-public class LandscapeFragment : BaseLazyFragment<HomePageViewModel, LayoutRefreshBinding>(),
+public class LandscapeFragment : BaseLazyFragment<HomePageViewModel, LayoutRefreshLoadmoreBinding>(),
     LoadMoreRecyclerView.ILoadMoreListener {
 
     private val mAdapter: LandscapeAdapter by lazy { LandscapeAdapter(LandscapeData()) }

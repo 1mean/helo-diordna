@@ -24,4 +24,13 @@ public class HttpInvokerManager {
         }
     }
 
+    suspend fun getRecommendVideos(videoId: Int): MutableList<EyepetozerBean> {
+
+        return withContext(Dispatchers.IO) {
+
+            val list = httpService.getRecommend(videoId)
+            EyepetozerConvert.convert(list)
+        }
+    }
+
 }

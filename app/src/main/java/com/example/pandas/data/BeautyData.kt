@@ -1,6 +1,6 @@
 package com.example.pandas.data
 
-import com.example.pandas.bean.pet.PetType
+import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.entity.PetVideo
 
 object BeautyData {
@@ -10,7 +10,7 @@ object BeautyData {
     fun getBeauty(): MutableList<PetVideo> {
 
         val beauty1 = PetVideo()
-        beauty1.type = PetType.BEAUTY.ordinal
+        beauty1.type = VideoType.BEAUTY.ordinal
         beauty1.fileName = "beauty1"
         beauty1.code = 1384
         beauty1.duration = 22
@@ -25,7 +25,7 @@ object BeautyData {
         list.add(beauty1)
 
         val beauty2 = PetVideo()
-        beauty2.type = PetType.BEAUTY.ordinal
+        beauty2.type = VideoType.BEAUTY.ordinal
         beauty2.fileName = "beauty2"
         beauty2.code = 1385
         beauty2.duration = 224
@@ -40,7 +40,7 @@ object BeautyData {
         list.add(beauty2)
 
         val beauty3 = PetVideo()
-        beauty3.type = PetType.BEAUTY.ordinal
+        beauty3.type = VideoType.BEAUTY.ordinal
         beauty3.fileName = "beauty3"
         beauty3.code = 1386
         beauty3.duration = 133
@@ -55,7 +55,7 @@ object BeautyData {
         list.add(beauty3)
 
         val beauty4 = PetVideo()
-        beauty4.type = PetType.BEAUTY.ordinal
+        beauty4.type = VideoType.BEAUTY.ordinal
         beauty4.fileName = "beauty4"
         beauty4.code = 1387
         beauty4.duration = 44

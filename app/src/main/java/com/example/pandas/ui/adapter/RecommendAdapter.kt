@@ -1,5 +1,6 @@
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -7,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.pandas.R
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.startVideoPlayActivity
+import com.example.pandas.biz.interaction.OnItemClickListener
 import com.example.pandas.databinding.CardItemLayoutBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.databinding.ItemRecommendVideoBinding
@@ -18,7 +20,10 @@ import com.example.pandas.ui.view.viewpager.Indicator
  * @date: 1/4/22 3:27 下午
  * @version: v1.0
  */
-public class RecommendAdapter(private var data: RecommendData<PetViewData>) :
+public class RecommendAdapter(
+    private var data: RecommendData<PetViewData>,
+    private val listener: OnItemClickListener<Int>
+) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
     private val TYPE_BANNER = 1//轮播图
@@ -139,7 +144,7 @@ public class RecommendAdapter(private var data: RecommendData<PetViewData>) :
             title.text = petVideo.title
 
             itemView.setOnClickListener {
-                startVideoPlayActivity(itemView.context,petVideo.code)
+                startVideoPlayActivity(itemView.context, petVideo.code)
             }
         }
     }
@@ -171,16 +176,45 @@ public class RecommendAdapter(private var data: RecommendData<PetViewData>) :
     inner class VideoHolder(binding: ItemRecommendVideoBinding) :
         BaseEmptyViewHolder(binding.root) {
 
-        val cover = binding.imgVideo
-        val title = binding.txtTitle
+        val playView = binding.playerReco
+        val cover = binding.imgRecoVideo
+        val shelter = binding.layoutRecoVideoShelter
+        val title = binding.txtRecoVideoTitle
+
+        fun startPlay() {
+            shelter.visibility = View.GONE
+        }
+
+        fun stopPlay() {
+            shelter.visibility = View.VISIBLE
+        }
+
+        fun getFileName(position: Int): String? {
+
+            return data.itemList[position - 1].fileName
+        }
 
         fun handle(position: Int) {
+
+            itemView.tag = this
+
+            shelter.visibility = View.VISIBLE
             val petVideo = data.itemList[position - 1]
             //把http图片换成https就能加载出来
-            //val url = petVideo.cover.replace("http", "https")
+            //val ur
+            // l = petVideo.cover.replace("http", "https")
             Glide.with(itemView.context).load(petVideo.cover)
                 .into(cover)
             title.text = petVideo.title
+            itemView.setOnClickListener {
+                shelter.visibility = View.VISIBLE
+                listener.onClick(position, petVideo.code)
+            }
+
+            playView.setOnClickListener {
+                shelter.visibility = View.VISIBLE
+                listener.onClick(position, petVideo.code)
+            }
         }
     }
 

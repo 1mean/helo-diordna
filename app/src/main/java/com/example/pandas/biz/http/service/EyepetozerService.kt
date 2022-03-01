@@ -75,6 +75,8 @@ interface EyepetozerService {
     @GET("video/related")
     fun getRecommendVideo(@Query("id") id: Int): Observable<Eyepetozer>
 
+    @GET("video/related")
+    suspend fun getRecommend(@Query("id") id: Int): Eyepetozer
     /**
      * <热门评论>
      *

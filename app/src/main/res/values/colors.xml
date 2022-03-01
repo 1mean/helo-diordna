@@ -34,6 +34,10 @@
     <color name="color_txt_tab">#999999</color>
     <color name="color_txt_tab_select">#333333</color>
     <color name="color_bg_divider">#E5E5E5</color>
+    <color name="color_mine_txt_name">#151B1C</color>
+    <color name="color_mine_txt_zone_counts">#212121</color>
+    <color name="color_mine_txt_zone">#999A97</color>
+    <color name="color_mine_txt_download">#454E54</color>
 
     <!--eye-->
     <color name="color_eye_view_bg">#ededed</color>
@@ -55,6 +59,7 @@
     <color name="color_video_divider">#E5E6E6</color>
     <color name="color_video_timebar_buffered">#C5C5C5</color>
     <color name="color_video_timebar_unplayed">#5D5D5F</color>
+    <color name="color_reco_video_bg">#33000000</color>
 
     <!--home fragment-->
     <color name="color_search_text">#acb3b8</color>
@@ -81,5 +86,8 @@
     <color name="color_search_txt_clear">#929a9d</color>
     <color name="color_search_list_divider">#E4E5E5</color>
     <color name="color_search_text_like">#F76395</color>
+
+    <!--more info-->
+    <color name="color_bar_txt_title">#191919</color>
 
 </resources>
