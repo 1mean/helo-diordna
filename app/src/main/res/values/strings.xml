@@ -59,5 +59,7 @@
 
     <!--more data-->
     <string name="str_video_music">歌曲视频</string>
+    <string name="str_play_all">播放全部</string>
+    <string name="str_music">音乐</string>
 
 </resources>

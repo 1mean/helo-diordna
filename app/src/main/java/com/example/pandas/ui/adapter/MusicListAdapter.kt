@@ -10,15 +10,14 @@ import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.sql.entity.MusicVo
 
 /**
- * @description: MusicItemAdapter
+ * @description: MusicListAdapter
  * @author: dongyiming
- * @date: 2/1/22 6:55 下午
+ * @date: 3/2/22 7:25 下午
  * @version: v1.0
  */
-public class MusicItemAdapter(private val list: MutableList<MusicVo>) :
-    BaseCommonAdapter<MusicVo>(list) {
+public class MusicListAdapter(private val list:MutableList<MusicVo>):BaseCommonAdapter<MusicVo>(list) {
 
-    override fun getLayoutId(): Int = R.layout.adapter_item_music
+    override fun getLayoutId(): Int = R.layout.adapter_music_list
 
     override fun convert(holder: BaseViewHolder, data: MusicVo, position: Int) {
         val cover = holder.getWidget<AppCompatImageView>(R.id.img_cover_music)
@@ -35,4 +34,5 @@ public class MusicItemAdapter(private val list: MutableList<MusicVo>) :
 
         }
     }
+
 }

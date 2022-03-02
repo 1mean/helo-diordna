@@ -1,11 +1,9 @@
 package com.example.pandas.ui.view.refresh
 
-import BaseEmptyViewHolder
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
@@ -16,9 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
-import kotlin.math.abs
 
 
 /**
@@ -228,6 +224,9 @@ class LoadMoreRecyclerView2 : RecyclerView {
             fun handle() {
                 if (isNoMore) {//没有更多数据
                     progressBar.visibility = GONE
+                    if (v_ref) {
+                        txtFooter.text = ""
+                    }
                     txtFooter.visibility = VISIBLE
                 } else {
                     progressBar.visibility = VISIBLE
@@ -257,6 +256,7 @@ class LoadMoreRecyclerView2 : RecyclerView {
         isFreshing = freshing
         isLoadingData = false
         isNoMore = false
+        v_ref = false
     }
 
     fun loadMoreFinished() {
@@ -267,6 +267,13 @@ class LoadMoreRecyclerView2 : RecyclerView {
     fun noMoreData() {
         isNoMore = true
         isLoadingData = false
+    }
+
+    private var v_ref = false //需要foot行，但是内容不显示
+    fun noMoreDataAndEmptyView() {
+        isNoMore = true
+        isLoadingData = false
+        v_ref = true
     }
 
     interface ILoadMoreListener {

@@ -106,7 +106,6 @@ class PetManager {
                     songs = petDao.queryMusicByPage(0, 0, 5)
                     sleepModel = petDao.queryByTypeAndPage(VideoType.SLEEP.ordinal, 0, 2)
                     talkAudios = petDao.queryMusicByPage(0, 0, 5)
-                    delay(1000)
                 }
             }
             data

@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.databinding.*
@@ -156,12 +157,16 @@ public class MyLoveFragmentAdapter(
                     layoutManager = LinearLayoutManager(itemView.context)
                     adapter = mAdapter
                 }
+                titleLayout.setOnClickListener {
+                    MoreDataListActivity.startMoreDataActivity(itemView.context, AppInfos.TYPE_MP3)
+                }
+
                 next.setOnClickListener {
                     owner.apply {
                         lifecycleScope.launch {
                             getNextSongs().collect { value ->
                                 startIndex += pageItems
-                                mAdapter!!.insertList(value)
+                                mAdapter!!.loadMore(value)
                             }
                         }
                     }
@@ -191,7 +196,10 @@ public class MyLoveFragmentAdapter(
                 }
             }
             titleLayout.setOnClickListener {
-                MoreDataListActivity.startMoreDataActivity(itemView.context,VideoType.MUSIC.ordinal)
+                MoreDataListActivity.startMoreDataActivity(
+                    itemView.context,
+                    VideoType.MUSIC.ordinal
+                )
             }
         }
     }
