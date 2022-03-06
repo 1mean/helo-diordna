@@ -2,8 +2,32 @@ package com.example.pandas.biz.ext;
 
 import FileUtils
 import android.content.Context
-import android.util.Log
 import java.io.File
+
+/**
+ * 从本地获取audio具体目录,有两种不同格式的文件
+ *
+ * 文件存储目录 /storage/emulated/0/Android/data/com.example.hello_diordna/files/music
+ * 同 /sdcard/Android/data/com.example.hello_diordna/files/music
+ */
+fun getMusicUrl(context: Context, fileName: String): String {
+
+    // localFile: /storage/emulated/0/Android/data/com.example.hello_diordna/files
+    val localFile = FileUtils.getExternalFileDirectory(context, "")
+    val path =
+        StringBuilder("/music").append(File.separator).append(fileName).append(".mp3").toString()
+    val file = File(localFile, path)
+    if (!file.exists()) {
+        val path2 = StringBuilder("/music").append(File.separator).append(fileName).append(".flac")
+            .toString()
+        val file2 = File(localFile, path2)
+        if (file2.exists()) {
+            return file2.absolutePath
+        }
+        return ""
+    }
+    return file.absolutePath
+}
 
 /**
  * 从本地获取视频目录
@@ -12,7 +36,6 @@ fun getUrl(context: Context, fileName: String): File {
 
     // localFile: /storage/emulated/0/Android/data/com.example.hello_diordna/files
     val localFile = FileUtils.getExternalFileDirectory(context, "")
-    Log.e("1mean", "fileName: $fileName")
     val builder = StringBuilder("/videos")
     var finalPath = ""
     when {

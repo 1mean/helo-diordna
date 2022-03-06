@@ -64,11 +64,10 @@
                         app:layout_constraintTop_toTopOf="@id/clayout_play"
                         app:layout_constraintBottom_toBottomOf="@id/clayout_play"
                         app:layout_constraintLeft_toRightOf="@id/txt_play_all"
-                        android:layout_marginLeft="4dp"
+                        android:layout_marginStart="4dp"
                         android:textSize="13sp"
                         android:includeFontPadding="false"
-                        android:textColor="@color/color_music_top_txt"
-                        android:text="123" />
+                        android:textColor="@color/color_music_top_txt" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -101,7 +100,7 @@
                 android:overScrollMode="never" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!--<androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_list_bottom"
             android:layout_width="match_parent"
             android:layout_height="54dp"
@@ -146,6 +145,5 @@
                 android:layout_marginTop="4dp"
                 app:layout_constraintLeft_toLeftOf="@id/txt_music_list_song" />
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
 </FrameLayout>

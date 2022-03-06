@@ -36,6 +36,9 @@ interface PetVideoDao {
     @Delete
     fun deleteAll(list: MutableList<PetVideo>)
 
+    @Delete
+    fun deleteAllMusic(list: MutableList<MusicVo>)
+
 
     /* -----------更新------------------------------------- */
 
@@ -66,6 +69,9 @@ interface PetVideoDao {
 
     @Query("select * from pet_video")
     suspend fun getAll(): List<PetVideo>
+
+    @Query("select * from music")
+    fun getAllMusic(): MutableList<MusicVo>
 
     @Query("select * from pet_video where title like :name")
     suspend fun queryByName(name: String): List<PetVideo>
@@ -127,6 +133,12 @@ interface PetVideoDao {
 
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryVideoByType(type: Int, startIndex: Int, count: Int): MutableList<PetViewData>
+
+    @Query("select count(*) from music")
+    suspend fun queryMusicCounts(): Int
+
+    @Query("select * from music where type=0 and fileName=(:fileName)")
+    suspend fun queryMusicByFileName(fileName: String): MusicVo
 
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where videoType=(:videoType) limit (:startIndex),(:count)")
     suspend fun queryVideoByVideoType(

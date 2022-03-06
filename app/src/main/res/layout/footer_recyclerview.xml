@@ -22,12 +22,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_txt_singer"
-            android:textSize="14sp"
+            android:textSize="13sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:text="亲，数据已全部加载完成。。。"
+            android:text="无更多内容"
             android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

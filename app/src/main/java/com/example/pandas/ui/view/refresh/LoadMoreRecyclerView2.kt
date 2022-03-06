@@ -3,6 +3,7 @@ package com.example.pandas.ui.view.refresh
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -90,7 +91,6 @@ class LoadMoreRecyclerView2 : RecyclerView {
                     ) {
                         isLoadingData = true
                         mListener!!.onLoadMore()
-
                     }
                 }
             }
@@ -224,9 +224,6 @@ class LoadMoreRecyclerView2 : RecyclerView {
             fun handle() {
                 if (isNoMore) {//没有更多数据
                     progressBar.visibility = GONE
-                    if (v_ref) {
-                        txtFooter.text = ""
-                    }
                     txtFooter.visibility = VISIBLE
                 } else {
                     progressBar.visibility = VISIBLE
@@ -256,7 +253,6 @@ class LoadMoreRecyclerView2 : RecyclerView {
         isFreshing = freshing
         isLoadingData = false
         isNoMore = false
-        v_ref = false
     }
 
     fun loadMoreFinished() {
@@ -269,12 +265,6 @@ class LoadMoreRecyclerView2 : RecyclerView {
         isLoadingData = false
     }
 
-    private var v_ref = false //需要foot行，但是内容不显示
-    fun noMoreDataAndEmptyView() {
-        isNoMore = true
-        isLoadingData = false
-        v_ref = true
-    }
 
     interface ILoadMoreListener {
         fun onLoadMore()

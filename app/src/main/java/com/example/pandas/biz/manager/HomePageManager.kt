@@ -8,7 +8,6 @@ import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
@@ -43,6 +42,21 @@ class PetManager {
             petDao.queryVideoByType(type, startIndex, counts)
         }
     }
+
+    suspend fun getMusicCounts(): Int {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryMusicCounts()
+        }
+    }
+
+    suspend fun getMusic(fileName: String): MusicVo {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryMusicByFileName(fileName)
+        }
+    }
+
 
     /**
      * 获取首页推荐栏数据

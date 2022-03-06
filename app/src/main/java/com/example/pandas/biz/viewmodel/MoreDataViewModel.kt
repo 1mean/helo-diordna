@@ -2,11 +2,12 @@ package com.example.pandas.biz.viewmodel
 
 import PetManagerCoroutine
 import UIDataWrapper
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.BaseViewModel
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.sql.entity.MusicVo
+import kotlinx.coroutines.launch
 
 /**
  * @description: TODO
@@ -22,6 +23,15 @@ public class MoreDataViewModel : BaseViewModel() {
 
     val moreDataResult: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
     val musicResult: MutableLiveData<UIDataWrapper<MusicVo>> by lazy { MutableLiveData() }
+    val musicCount: MutableLiveData<Int> by lazy { MutableLiveData() }
+
+    fun getMusicCounts() {
+
+        viewModelScope.launch {
+
+            musicCount.value = PetManagerCoroutine.getMusicCounts()
+        }
+    }
 
     fun getListResult() {
 
@@ -50,14 +60,18 @@ public class MoreDataViewModel : BaseViewModel() {
 
     fun getPageMusic() {
 
-        request({ PetManagerCoroutine.getPageMusic(musicStartIndex, 20) },
-            {
+        request({ PetManagerCoroutine.getPageMusic(musicStartIndex, 21) },
+            { list ->
+                val hasMore = list.size == 21
+                if (list.size == 21) {
+                    list.removeLast()
+                }
                 val dataList = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = musicStartIndex == 0,
-                    hasMore = it.size == 20,
-                    isEmpty = it.isEmpty(),
-                    listData = it
+                    hasMore = hasMore,
+                    isEmpty = list.isEmpty(),
+                    listData = list
                 )
                 musicStartIndex += 20
                 musicResult.value = dataList

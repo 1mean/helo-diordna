@@ -1,10 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#77000000">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_audio_cover"
+                android:layout_width="0dp"
+                android:layout_height="165dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="108dp"
+                android:scaleType="fitXY" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_audio_song_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/img_audio_cover"
+                app:layout_constraintLeft_toLeftOf="@id/img_audio_cover"
+                android:layout_marginTop="13dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:maxEms="18"
+                android:textStyle="bold"
+                android:ellipsize="end" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_audio_singer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/txt_audio_song_name"
+                app:layout_constraintLeft_toLeftOf="@id/txt_audio_song_name"
+                android:layout_marginTop="13dp"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:maxLines="1"
+                android:maxEms="18"
+                android:ellipsize="end" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_audio_time_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="10sp"
+                app:layout_constraintTop_toTopOf="@id/bar_audio_time"
+                app:layout_constraintRight_toLeftOf="@id/bar_audio_time"
+                android:gravity="center"
+                tools:ignore="SmallSp" />
+
+        <com.google.android.exoplayer2.ui.DefaultTimeBar
+                android:id="@+id/bar_audio_time"
+                android:layout_width="180dp"
+                android:layout_height="38dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/img_audio_play"
+                android:layout_marginBottom="40dp"
+                app:bar_height="2dp"
+                app:unplayed_color="@color/color_video_timebar_unplayed"
+                app:played_color="@color/color_tab_indicator"
+                app:buffered_color="@color/color_video_timebar_buffered" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_audio_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bar_audio_time"
+                app:layout_constraintLeft_toRightOf="@id/bar_audio_time"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="10sp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                tools:ignore="SmallSp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_audio_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="40dp"
+                android:src="@mipmap/img_audio_play" />
+
+        <!-- <androidx.appcompat.widget.AppCompatImageView
+                 android:id="@+id/exo_play"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 app:layout_constraintLeft_toLeftOf="parent"
+                 app:layout_constraintRight_toRightOf="parent"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 android:layout_marginBottom="40dp"
+                 android:src="@mipmap/img_audio_play" />-->
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_audio_last"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@id/img_audio_play"
+                app:layout_constraintTop_toTopOf="@id/img_audio_play"
+                android:layout_marginEnd="25dp"
+                android:src="@mipmap/img_audio_last" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_audio_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/img_audio_play"
+                app:layout_constraintTop_toTopOf="@id/img_audio_play"
+                android:layout_marginStart="25dp"
+                android:src="@mipmap/img_audio_next" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--<androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/video_root"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,14 +139,14 @@
         <com.google.android.exoplayer2.ui.PlayerView
                 android:id="@+id/playView"
                 android:layout_width="match_parent"
-                android:layout_height="202dp"
+                android:layout_height="match_parent"
                 app:show_buffering="when_playing"
                 app:show_shuffle_button="true"
                 app:hide_on_touch="true"
-                android:background="@color/black"
+                android:background="@color/white"
                 app:controller_layout_id="@layout/layout_audio_player" />
-        <!--app:show_subtitle_button="true"-->
+        &lt;!&ndash;app:show_subtitle_button="true"&ndash;&gt;
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>-->
     <!--用于全屏播放-->
 </FrameLayout>

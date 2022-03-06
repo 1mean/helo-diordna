@@ -25,11 +25,14 @@
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.VerticalVideoActivity" />
         <activity android:name=".ui.activity.MoreDataListActivity" />
+        <activity android:name=".ui.activity.AudioPlayActivity" />
         <!-- <activity android:name=".ui.activity.HomeActivity" />-->
         <activity
                 android:name=".ui.activity.VideoPlayingActivity"
                 android:configChanges="orientation" />
 
+        <!--service-->
+        <service android:name=".ui.service.AudioPlayService" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

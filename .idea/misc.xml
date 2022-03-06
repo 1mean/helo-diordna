@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/selector_button_catown.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/selector_button_minefriend.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/selector_button_setting.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/layout/activity_audio.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_more.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_video.xml" value="0.14606741573033707" />
@@ -18,6 +19,7 @@
         <entry key="app/src/main/res/layout/fragment_room.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_self.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_recommend_video.xml" value="0.2423076923076923" />
+        <entry key="app/src/main/res/layout/layout_exoplay_music_list.xml" value="0.125" />
       </map>
     </option>
   </component>
@@ -30,7 +32,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.15070921985815602" />
+        <option name="scale" value="0.125" />
       </ProjectState>
     </option>
   </component>

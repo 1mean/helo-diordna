@@ -7,6 +7,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
+import com.example.pandas.biz.interaction.OnItemClickListener
 import com.example.pandas.sql.entity.MusicVo
 
 /**
@@ -15,7 +16,11 @@ import com.example.pandas.sql.entity.MusicVo
  * @date: 3/2/22 7:25 下午
  * @version: v1.0
  */
-public class MusicListAdapter(private val list:MutableList<MusicVo>):BaseCommonAdapter<MusicVo>(list) {
+public class MusicListAdapter(
+    private val list: MutableList<MusicVo>,
+    private val listener: OnItemClickListener<String>
+) :
+    BaseCommonAdapter<MusicVo>(list) {
 
     override fun getLayoutId(): Int = R.layout.adapter_music_list
 
@@ -30,8 +35,8 @@ public class MusicListAdapter(private val list:MutableList<MusicVo>):BaseCommonA
         Glide.with(holder.itemView.context).load(music.cover).apply(options).into(cover)
         audioName.text = music.audioName
         singerName.text = music.singerName
-        layoutMore.setOnClickListener {
-
+        holder.itemView.setOnClickListener {
+            data.fileName?.let { it1 -> listener.onClick(position, it1) }
         }
     }
 
