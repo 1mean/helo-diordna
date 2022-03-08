@@ -60,7 +60,7 @@ object BeautyData {
         beauty4.code = 1387
         beauty4.duration = 44
         beauty4.isStar = true
-        beauty4.title = "小说女主婚礼被虐现场"
+        beauty4.title = "hu小说女主婚礼被虐现场"
         beauty4.releaseTime = "2022-02-08 22:03:48"
         beauty4.originalUrl = "https://www.bilibili.com/video/BV16r4y1h78V"
         beauty4.tags = "美女"

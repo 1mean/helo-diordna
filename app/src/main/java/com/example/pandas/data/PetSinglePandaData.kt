@@ -141,7 +141,7 @@ object PetSinglePandaData {
         panda8.duration = 20
         panda8.period = PeriodType.SINGLE.ordinal
         panda8.isStar = false
-        panda8.title = "瞬间树叶落完了"
+        panda8.title = "【小馨】瞬间树叶落完了"
         panda8.releaseTime = "2021-11-15 22:16:36"
         panda8.originalUrl = "https://www.bilibili.com/video/BV1Y34y1d7hi"
         panda8.tags = "大熊猫,萌宠,动物圈"
@@ -157,7 +157,7 @@ object PetSinglePandaData {
         panda9.duration = 71
         panda9.period = PeriodType.SINGLE.ordinal
         panda9.isStar = false
-        panda9.title = "贴秋膘的季节来啦"
+        panda9.title = "【小馨】贴秋膘的季节来啦"
         panda9.releaseTime = "2021-10-30 00:18:44"
         panda9.originalUrl = "https://www.bilibili.com/video/BV1iQ4y1q7cE"
         panda9.tags = "大熊猫,萌宠,动物圈"
@@ -173,7 +173,7 @@ object PetSinglePandaData {
         panda10.duration = 44
         panda10.period = PeriodType.SINGLE.ordinal
         panda10.isStar = false
-        panda10.title = "它昨天生日，今天补发一下"
+        panda10.title = "【小馨】它昨天生日，今天补发一下"
         panda10.releaseTime = "2021-07-27 10:36:09"
         panda10.originalUrl = "https://www.bilibili.com/video/BV1NL411n7D7"
         panda10.tags = "大熊猫,萌宠,动物圈"
@@ -189,7 +189,7 @@ object PetSinglePandaData {
         panda11.duration = 72
         panda11.period = PeriodType.SINGLE.ordinal
         panda11.isStar = false
-        panda11.title = "秦岭深处的宝贝生活状态怎么样"
+        panda11.title = "【小馨】秦岭深处的宝贝生活状态怎么样"
         panda11.releaseTime = "2021-05-15 01:19:01"
         panda11.originalUrl = "https://www.bilibili.com/video/BV1hK4y197Vu"
         panda11.tags = "大熊猫,萌宠,动物圈"
@@ -429,7 +429,7 @@ object PetSinglePandaData {
         panda26.duration = 170
         panda26.period = PeriodType.SINGLE.ordinal
         panda26.isStar = false
-        panda26.title = "【大熊猫】洗澡澡，过新年咯！"
+        panda26.title = "【大熊猫肉肉】洗澡澡，过新年咯！"
         panda26.releaseTime = "2021-02-11 17:50:40"
         panda26.originalUrl = "https://www.bilibili.com/video/BV1ef4y1z7Ps"
         panda26.tags = "大熊猫,萌宠,动物圈"
@@ -492,7 +492,7 @@ object PetSinglePandaData {
         panda30.code = 1317
         panda30.duration = 79
         panda30.period = PeriodType.SINGLE.ordinal
-        panda30.isStar = false
+        panda30.isStar = true
         panda30.title = "【大熊猫奥莉奥】奥总裁吃窝头"
         panda30.releaseTime = "2020-04-29 12:40:21"
         panda30.originalUrl = "https://www.bilibili.com/video/BV1ak4y1r7E6"
@@ -621,7 +621,7 @@ object PetSinglePandaData {
         panda38.duration = 95
         panda38.period = PeriodType.SINGLE.ordinal
         panda38.isStar = false
-        panda38.title = "我！不！胖！！！！！！"
+        panda38.title = "囡囡：我！不！胖！！！！！！"
         panda38.releaseTime = "2018-01-02 21:00:54"
         panda38.originalUrl = "https://www.bilibili.com/video/BV1ZW411q7JD"
         panda38.tags = "大熊猫,萌宠,动物圈"
@@ -769,7 +769,7 @@ object PetSinglePandaData {
         panda7.code = 1252
         panda7.duration = 190
         panda7.period = PeriodType.ALL.ordinal
-        panda7.isStar = true
+        panda7.isStar = false
         panda7.title = "你思念的那个远方的人，应该也在思念你吧"
         panda7.releaseTime = "2021-09-21 13:30:00"
         panda7.originalUrl = "https://www.bilibili.com/video/BV1aq4y1f7n5"
@@ -785,7 +785,7 @@ object PetSinglePandaData {
         panda8.code = 1253
         panda8.duration = 108
         panda8.period = PeriodType.ALL.ordinal
-        panda8.isStar = true
+        panda8.isStar = false
         panda8.title = "藏好麻袋好吗！熊猫基地2021级熊猫云亮相大集合来啦！"
         panda8.releaseTime = "2021-09-30 18:16:56"
         panda8.originalUrl = "https://www.bilibili.com/video/BV1cq4y1N7nK"
@@ -801,7 +801,7 @@ object PetSinglePandaData {
         panda9.code = 1254
         panda9.duration = 87
         panda9.period = PeriodType.ALL.ordinal
-        panda9.isStar = true
+        panda9.isStar = false
         panda9.title = "大熊猫能吃吗？当然啦！"
         panda9.releaseTime = "2021-10-21 12:50:33"
         panda9.originalUrl = "https://www.bilibili.com/video/BV15b4y1h7v9"

@@ -2713,7 +2713,7 @@ object MultiVideoData {
         bear33.code = 1356
         bear33.duration = 441
         bear33.period = PeriodType.GROUP.ordinal
-        bear33.isStar = false
+        bear33.isStar = true
         bear33.title = "【小熊】胆小的小公主普扎"
         bear33.releaseTime = "2020-12-10 17:10:08"
         bear33.originalUrl = "https://www.bilibili.com/video/BV1Xf4y1v7GW"

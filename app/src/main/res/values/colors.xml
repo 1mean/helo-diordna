@@ -96,4 +96,8 @@
     <color name="color_music_top_txt">#2A313B</color>
     <color name="color_music_divider_shadow">#66000000</color>
 
+    <!--cache-->
+    <color name="color_cache_bar_title">#5E676D</color>
+    <color name="color_cache_listitem_desc">#94999D</color>
+
 </resources>

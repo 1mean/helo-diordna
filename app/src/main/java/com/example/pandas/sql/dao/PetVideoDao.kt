@@ -134,6 +134,9 @@ interface PetVideoDao {
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryVideoByType(type: Int, startIndex: Int, count: Int): MutableList<PetViewData>
 
+    @Query("select code,title,cover,authorName,duration from pet_video where fileName=(:fileName)")
+    suspend fun queryVideoByFileName(fileName: String): PetViewData
+
     @Query("select count(*) from music")
     suspend fun queryMusicCounts(): Int
 
@@ -156,7 +159,7 @@ interface PetVideoDao {
     @Query("select title,code from pet_video where title like (:words) limit 0,20")
     suspend fun queryByKeyWords(words: String): MutableList<SearchInfo>
 
-    @Query("select code,title,cover,authorName,duration,videoType from  pet_video where title like (:words) limit (:startIndex),(:counts)")
+    @Query("select code,title,cover,authorName,duration,videoType from pet_video where title like (:words) limit (:startIndex),(:counts)")
     suspend fun queryWordsByPage(
         words: String,
         startIndex: Int,

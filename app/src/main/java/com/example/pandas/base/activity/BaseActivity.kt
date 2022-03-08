@@ -86,4 +86,5 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
      * 创建观察者
      */
     abstract fun createObserver()
+
 }

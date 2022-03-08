@@ -64,4 +64,10 @@
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:scaleType">fitXY</item>
     </style>
+
+    <!--cache toolbar-->
+    <style name="styles_cache_toolbar">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/color_cache_bar_title</item>
+    </style>
 </resources>

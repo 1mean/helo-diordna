@@ -1,10 +1,12 @@
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.ext.loadCircleImage
-import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.databinding.FragmentMineBinding
+import com.example.pandas.ui.activity.LocalCacheActivity
 
 /**
  * @description: TODO
@@ -18,6 +20,7 @@ public class SelfFragment : BaseLazyFragment<SelfViewModel, FragmentMineBinding>
     override fun initView(savedInstanceState: Bundle?) {
 
         loadCircleImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
+        binding.clayoutDownload.setOnClickListener(this)
     }
 
     override fun createObserver() {
@@ -28,11 +31,11 @@ public class SelfFragment : BaseLazyFragment<SelfViewModel, FragmentMineBinding>
 
     override fun onClick(view: View?) {
 
-//        when (view?.id) {
-//            R.id.btn_1 -> {
-//                val intent = Intent(activity, BehaviorActivity::class.java)
-//                startActivity(intent)
-//            }
-//        }
+        when (view?.id) {
+            R.id.clayout_download -> {
+                val intent = Intent(activity, LocalCacheActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 }

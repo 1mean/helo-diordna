@@ -57,6 +57,13 @@ class PetManager {
         }
     }
 
+    suspend fun getVideoByFileName(fileName: String): PetViewData {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryVideoByFileName(fileName)
+        }
+    }
+
 
     /**
      * 获取首页推荐栏数据

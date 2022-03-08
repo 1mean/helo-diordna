@@ -30,6 +30,8 @@ object AppData {
             Log.e("1mean", "size7: ${list7.size}")
             val list8 = BeautyData.getBeauty()
             Log.e("1mean", "size8: ${list8.size}")
+            val list9 = PetMonPandaData2.getAll()
+            Log.e("1mean", "size9: ${list9.size}")
 
             Log.e("1mean","sum: " + (list1.size+list2.size+list3.size+list4.size+list5.size+list6.size+list7.size+list8.size))
             addAll(list1)
@@ -40,6 +42,7 @@ object AppData {
             addAll(list6)
             addAll(list7)
             addAll(list8)
+            addAll(list9)
         }
     }
 
