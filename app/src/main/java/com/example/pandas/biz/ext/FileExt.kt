@@ -108,6 +108,30 @@ fun getUrl(context: Context, fileName: String): File {
             finalPath =
                 builder.append(File.separator).append("single").append(File.separator)
                     .append(fileName).append(".mp4").toString()
+        fileName.startsWith("cat") ->
+            finalPath =
+                builder.append(File.separator).append("cat").append(File.separator)
+                    .append(fileName).append(".mp4").toString()
+        fileName.startsWith("honglou") ->
+            finalPath =
+                builder.append(File.separator).append("honglou").append(File.separator)
+                    .append(fileName).append(".mp4").toString()
+        fileName.startsWith("baby") ->
+            finalPath =
+                builder.append(File.separator).append("human_baby").append(File.separator)
+                    .append(fileName).append(".mp4").toString()
+        fileName.startsWith("art") ->
+            finalPath =
+                builder.append(File.separator).append("art").append(File.separator)
+                    .append(fileName).append(".mp4").toString()
+        fileName.startsWith("tv") ->
+            finalPath =
+                builder.append(File.separator).append("tv").append(File.separator)
+                    .append(fileName).append(".mp4").toString()
+        fileName.startsWith("football") ->
+            finalPath =
+                builder.append(File.separator).append("football").append(File.separator)
+                    .append(fileName).append(".mp4").toString()
     }
     return File(localFile, finalPath)
 }

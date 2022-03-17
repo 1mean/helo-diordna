@@ -61,6 +61,7 @@
 
     <!--home-->
     <dimen name="item_home_padding">7dp</dimen>
+    <dimen name="item_home_padding_top">9dp</dimen>
     <dimen name="item_horizontal_padding">9dp</dimen>
 
 </resources>

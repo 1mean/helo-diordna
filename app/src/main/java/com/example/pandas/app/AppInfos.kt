@@ -31,6 +31,9 @@ object AppInfos {
         "single" to "https://i2.hdslb.com/bfs/archive/5f04a15762b54f27bf9a79995bdf055065a6e2f6.jpg",
         "group" to "https://i1.hdslb.com/bfs/archive/d791f0eb581f5ba885dd5604cd28767ac1ef4de7.jpg",
         "mom" to "https://i0.hdslb.com/bfs/archive/f687398b040af3d6f08b5a995920a67bef983bba.jpg",
-        "cat" to "https://i0.hdslb.com/bfs/archive/0c174e87b43a0356094baeb84d04fc49181de0cf.jpg"
-        )
+        "cat" to "https://i0.hdslb.com/bfs/archive/0c174e87b43a0356094baeb84d04fc49181de0cf.jpg",
+        "honglou" to "https://i1.hdslb.com/bfs/archive/b8e17de5829f4e80be94ffed86f7d46909aabdcf.jpg",
+        "human_baby" to "https://i1.hdslb.com/bfs/archive/3ff9843ac7c088c541d56b7f1fb642486651b7da.jpg",
+        "art" to "https://i0.hdslb.com/bfs/archive/cd2661ecb62a563fa5cd2bb1ab837192516d858d.jpg"
+    )
 }

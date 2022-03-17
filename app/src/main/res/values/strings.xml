@@ -4,12 +4,13 @@
     <string name="app_name">Pandas</string>
 
     <!-- homepage 底部radiogroup-->
-    <string name="home_button1">首 页</string>
-    <string name="home_button2">萌 宠</string>
-    <string name="home_button3">视 频</string>
-    <string name="home_button4">我 的</string>
+    <string name="home_button1">首页</string>
+    <string name="home_button2">萌宠</string>
+    <string name="home_button3">视频</string>
+    <string name="home_button4">我的</string>
 
     <!--room tab item-->
+    <string name="string_room_tab_item0">猫咪</string>
     <string name="string_room_tab_item1">国鸟</string>
     <string name="string_room_tab_item2">灵狐</string>
     <string name="string_room_tab_item3">小熊猫</string>
@@ -43,6 +44,7 @@
     <string name="str_collect">收藏</string>
     <string name="str_love">喜欢</string>
     <string name="str_like">点赞</string>
+    <string name="str_setting">设置</string>
 
     <!--search-->
     <string name="str_cannel">取消</string>
@@ -57,6 +59,7 @@
     <string name="str_mine_history">历史记录</string>
     <string name="str_mine_collect">我的收藏</string>
     <string name="str_cache">缓存</string>
+    <string name="str_history">历史记录</string>
 
     <!--more data-->
     <string name="str_video_music">歌曲视频</string>
@@ -66,5 +69,14 @@
     <!--cache-->
     <string name="str_file_name">文件夹名：</string>
     <string name="str_desc">描述：</string>
+    <string name="str_cache_name">缓存名：</string>
+    <string name="str_football">天下足球</string>
+
+    <!--self-->
+    <string name="str_setting_info">账号、推出</string>
+    <string name="str_setting_other">个性设置</string>
+    <string name="str_setting_more">更多服务</string>
+    <string name="str_setting_more_info">免费流量卡</string>
+    <string name="str_setting_other_info">新皮肤上线了</string>
 
 </resources>

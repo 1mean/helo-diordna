@@ -98,7 +98,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             if (mPlayer == null) {
 
                 val file = getUrl(this, it.fileName!!)
-                Log.e("1mean", "path: ${file.absolutePath}")
                 if (file.exists()) {
                     initPlayer(file)
                 }
@@ -120,6 +119,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         mPlayer = ExoPlayer.Builder(this).build()
         binding.playView.player = mPlayer
 
+        Log.e("1mean","fileName: ${file.absolutePath}")
         //2.创建播放菜单并添加到播放器
         val firstLocalMediaItem = MediaItem.fromUri(Uri.fromFile(file))
 
@@ -216,6 +216,13 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     override fun onDestroy() {
         super.onDestroy()
+
+        //保存历史记录
+        mPlayer?.let { play ->
+            val currentPosition = play.currentPosition
+            Log.e("1mean","onDestroy: $currentPosition")
+            mViewModel.saveHistory(code, currentPosition)
+        }
         mPlayer?.release()
     }
 

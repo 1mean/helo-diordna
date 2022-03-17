@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 
 /**
- * @description: TODO
+ * @description: PandaDecoration
  * @author: dongyiming
  * @date: 1/24/22 2:31 上午
  * @version: v1.0

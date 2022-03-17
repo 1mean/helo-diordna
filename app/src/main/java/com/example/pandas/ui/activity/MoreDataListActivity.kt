@@ -47,6 +47,12 @@ public class MoreDataListActivity : BaseActivity<MoreDataViewModel, ActivityMore
                 supportFragmentManager.beginTransaction()
                     .add(R.id.flayout_more, MusicListFragment()).commit()
             }
+            VideoType.FOOTBALL.ordinal -> {
+                mViewModel.currentType = type
+                binding.txtTitleName.text = this.getString(R.string.str_football)
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.flayout_more, VideoListFragment()).commit()
+            }
 
         }
         binding.barTitle.setNavigationOnClickListener {

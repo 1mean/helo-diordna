@@ -46,6 +46,10 @@ public class HomeFragment : BaseLazyFragment<BaseViewModel, FragmentHomeBinding>
         binding.edit.setOnClickListener {
             startActivity(Intent(mActivity, SearchActivity::class.java))
         }
+
+        binding.imgHead.setOnClickListener {
+
+        }
     }
 
     override fun createObserver() {

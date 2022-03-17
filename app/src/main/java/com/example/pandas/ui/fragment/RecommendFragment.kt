@@ -218,6 +218,7 @@ public class RecommendFragment : BaseLazyFragment<HomePageViewModel, FragmentRec
     }
 
     override fun onClick(position: Int, t: Int) {
+
         if (mPlayer != null && mPlayer!!.isPlaying) {
             mPlayer!!.stop()
             mPosition = -1

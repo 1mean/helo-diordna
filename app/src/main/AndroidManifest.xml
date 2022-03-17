@@ -27,6 +27,7 @@
         <activity android:name=".ui.activity.MoreDataListActivity" />
         <activity android:name=".ui.activity.AudioPlayActivity" />
         <activity android:name=".ui.activity.LocalCacheActivity" />
+        <activity android:name=".ui.activity.HistoryActivity" />
         <!-- <activity android:name=".ui.activity.HomeActivity" />-->
         <activity
                 android:name=".ui.activity.VideoPlayingActivity"

@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * @description: TODO
+ * @description: BaseViewHolder
  * @author: dongyiming
  * @date: 2021/12/16 5:59 下午
  * @version: v1.0

@@ -35,7 +35,7 @@ public class MyLoveFragmentAdapter(
 
     private val TYPE_IMAGE = 1 //图片展示
     private val TYPE_MOVIE = 3 //歌曲视频
-    private val TYPE_SLEEP = 4 //我爱的电视剧
+    private val TYPE_FOOTBALL = 4
     private val TYPE_MUSIC = 5 //热门音乐
     private val TYPE_TALK = 6 //热门相声
     private val TYPE_COMMON = 7 //普通列表
@@ -56,7 +56,7 @@ public class MyLoveFragmentAdapter(
             0 -> TYPE_IMAGE
             1 -> TYPE_MOVIE
             2 -> TYPE_MUSIC
-            3 -> TYPE_SLEEP
+            3 -> TYPE_FOOTBALL
             4 -> TYPE_TALK
             else -> TYPE_COMMON
         }
@@ -79,7 +79,7 @@ public class MyLoveFragmentAdapter(
                 return MovieViewHolder(binding)
             }
 
-            TYPE_SLEEP -> {
+            TYPE_FOOTBALL -> {
                 val binding =
                     LayoutSleepBinding.inflate(
                         LayoutInflater.from(parent.context),
@@ -114,7 +114,7 @@ public class MyLoveFragmentAdapter(
             TYPE_MOVIE -> {
                 (holder as MovieViewHolder).handle(position)
             }
-            TYPE_SLEEP -> {
+            TYPE_FOOTBALL -> {
                 (holder as SleepViewHolder).handle(position)
             }
             TYPE_MUSIC -> {
@@ -207,15 +207,15 @@ public class MyLoveFragmentAdapter(
     private inner class SleepViewHolder(binding: LayoutSleepBinding) :
         BaseEmptyViewHolder(binding.root) {
 
-        val title = binding.txtSleep
         val titleLayout = binding.layoutSleepTitle
         val recyclerView = binding.recyclerSleepVideo
+        val title = binding.txtSleep
         var mAdapter: SleepVideoItemAdapter? = null
 
         fun handle(position: Int) {
 
-            title.text = "助眠"
-            val videos = data.sleepModel
+            title.text = "天下足球"
+            val videos = data.footBallModel
             if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
                 recyclerView.run {
@@ -223,6 +223,12 @@ public class MyLoveFragmentAdapter(
                     layoutManager = GridLayoutManager(itemView.context, 2)
                     adapter = mAdapter
                 }
+            }
+            titleLayout.setOnClickListener {
+                MoreDataListActivity.startMoreDataActivity(
+                    itemView.context,
+                    VideoType.FOOTBALL.ordinal
+                )
             }
         }
     }

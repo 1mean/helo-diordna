@@ -31,5 +31,11 @@ object TimeUtils {
         return formatter.format(Date(time))
     }
 
+    @SuppressLint("SimpleDateFormat")
+    fun getTime(time: Long):String{
+        val formatter = SimpleDateFormat("MM-dd HH:mm")
+        return formatter.format(Date(time))
+    }
+
 
 }

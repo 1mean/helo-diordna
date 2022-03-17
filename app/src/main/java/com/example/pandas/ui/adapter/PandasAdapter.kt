@@ -7,7 +7,7 @@ import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.databinding.CardItemLayoutBinding
 
 /**
- * @description: TODO
+ * @description: PandasAdapter
  * @author: dongyiming
  * @date: 1/12/22 7:53 下午
  * @version: v1.0

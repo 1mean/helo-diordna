@@ -45,6 +45,7 @@
 
     <style name="VideoTabLayoutTextStyle">
         <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <!-- home activity RadioButtom style -->

@@ -13,6 +13,7 @@
     <color name="color_bg_bottom_gb">#00000000</color>
     <color name="color_groupbutton_text">#616A70</color>
     <color name="color_groupbutton_text_selected">#FF5596</color>
+    <color name="color_home_divider">#E5E5E6</color>
 
     <!--room-->
     <color name="color_room_tab_bg">#F5F5FF</color>
@@ -38,6 +39,9 @@
     <color name="color_mine_txt_zone_counts">#212121</color>
     <color name="color_mine_txt_zone">#999A97</color>
     <color name="color_mine_txt_download">#454E54</color>
+    <color name="color_self_clayout_bg">#f5f8f8</color>
+    <color name="color_bg_self">#f4f7f9</color>
+    <color name="color_bg_mine">#E6EBF5</color>
 
     <!--eye-->
     <color name="color_eye_view_bg">#ededed</color>
@@ -99,5 +103,10 @@
     <!--cache-->
     <color name="color_cache_bar_title">#5E676D</color>
     <color name="color_cache_listitem_desc">#94999D</color>
+    <color name="color_cache_item_name">#969AA0</color>
+    <color name="color_txt_history_time">#909A9A</color>
+    <color name="color_text_setting">#02091D</color>
+    <color name="color_text_setting_info">#ADB4BE</color>
+
 
 </resources>

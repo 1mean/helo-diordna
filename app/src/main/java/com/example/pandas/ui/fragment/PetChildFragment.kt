@@ -1,10 +1,10 @@
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.base.fragment.BaseLazyFragment
-import com.example.pandas.databinding.FragmentPandaBinding
-import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
+import com.example.pandas.databinding.FragmentCuteChildBinding
+import com.example.pandas.databinding.FragmentMoreBinding
+import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
 
 /**
  * @description: TODO
@@ -12,18 +12,21 @@ import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
  * @date: 2021/12/11 3:54 下午
  * @version: v1.0
  */
-public class PetChildFragment(private var type: Int) :
-    BaseLazyFragment<CutePetViewModel, FragmentPandaBinding>(),
-    LoadMoreRecyclerView.ILoadMoreListener {
+public class PetChildFragment() :
+    BaseLazyFragment<CutePetViewModel, FragmentCuteChildBinding>(),
+    LoadMoreRecyclerView2.ILoadMoreListener {
 
-    private val mAdapter: PandasAdapter by lazy { PandasAdapter(mutableListOf()) }
+    private val mAdapter: CutePetChildAdapter by lazy { CutePetChildAdapter(mutableListOf()) }
+
+    private var type = 0
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.rv.visibility = View.GONE
-        binding.rv.run {
+        type = requireArguments().getInt("type")
+        binding.recyclerLoad.visibility = View.GONE
+        binding.recyclerLoad.run {
             layoutManager = GridLayoutManager(mActivity, 2)
-            addItemDecoration(PandaDecoration(mActivity))
+            addItemDecoration(CutePetChildDecoration(mActivity))
             setRefreshAdapter(mAdapter, this@PetChildFragment)
         }
     }
@@ -36,26 +39,25 @@ public class PetChildFragment(private var type: Int) :
 
                 when {
                     it.isRefresh -> {
-                        mAdapter.refreshData(it.listData)
+                        if (!it.hasMore) {
+                            binding.recyclerLoad.noMoreData()
+                        }
+                        mAdapter.refreshAdapter(it.listData)
                     }
                     it.isFirstEmpty -> {
 
                     }
                     else -> {
-                        mAdapter.addData(it.listData)
-                        binding.rv.loadMoreFinished()
+                        mAdapter.loadMore(it.listData)
+                        binding.recyclerLoad.loadMoreFinished()
                         if (!it.hasMore) {//没有更多数据了
-                            binding.rv.noMoreData()
+                            binding.recyclerLoad.noMoreData()
                         }
                     }
                 }
-            } else {
-
             }
-
-            binding.rv.visibility = View.VISIBLE
+            binding.recyclerLoad.visibility = View.VISIBLE
         }
-
     }
 
     override fun firstOnResume() {
@@ -64,5 +66,21 @@ public class PetChildFragment(private var type: Int) :
 
     override fun onLoadMore() {
         mViewModel.getDataByPage(false, type)
+    }
+
+    /**
+     * Fragment必须有空构造函数，否则会报错，传递值时处理
+     */
+    companion object {
+
+        fun newInstance(id: Int): PetChildFragment {
+
+            val args = Bundle().apply {
+                putInt("type", id)
+            }
+            val fragment = PetChildFragment()
+            fragment.arguments = args
+            return fragment
+        }
     }
 }

@@ -69,6 +69,247 @@ object BeautyData {
             "https://i2.hdslb.com/bfs/archive/153db771d26904fc142a14daf5747039a16e81cc.jpg"
         list.add(beauty4)
 
+        val beauty5 = PetVideo()
+        beauty5.type = VideoType.BEAUTY.ordinal
+        beauty5.fileName = "beauty5"
+        beauty5.code = 1944
+        beauty5.duration = 91
+        beauty5.isStar = true
+        beauty5.title = "姐姐！龙袍都穿了！还要什么男人啊！"
+        beauty5.releaseTime = "2021-04-23 21:56:56"
+        beauty5.originalUrl = "https://www.bilibili.com/video/BV1F54y187Xv"
+        beauty5.tags = "美女"
+        beauty5.authorName = "柠檬好吃么"
+        beauty5.cover =
+            "https://i0.hdslb.com/bfs/archive/3a4187bfb1075168dccedbbefd8686a16e40dadd.jpg"
+        list.add(beauty5)
+
+        val beauty6 = PetVideo()
+        beauty6.type = VideoType.BEAUTY.ordinal
+        beauty6.fileName = "beauty6"
+        beauty6.code = 1945
+        beauty6.duration = 181
+        beauty6.isStar = true
+        beauty6.title = "无   人   生   还"
+        beauty6.releaseTime = "2020-02-15 18:08:08"
+        beauty6.originalUrl = "https://www.bilibili.com/video/BV1v7411J73g"
+        beauty6.tags = "美女"
+        beauty6.authorName = "草莓味的草莓莓莓"
+        beauty6.cover =
+            "https://i2.hdslb.com/bfs/archive/6d8660336a4099c8e631f901ae6d0fe311dc3a3e.jpg"
+        list.add(beauty6)
+
+        val beauty7 = PetVideo()
+        beauty7.type = VideoType.BEAUTY.ordinal
+        beauty7.fileName = "beauty7"
+        beauty7.code = 1946
+        beauty7.duration = 68
+        beauty7.isStar = true
+        beauty7.title = "江玉燕问一个能打的都没有吗？于是她！她站出来了！！"
+        beauty7.releaseTime = "2021-06-25 18:39:23"
+        beauty7.originalUrl = "https://www.bilibili.com/video/BV1Jq4y1s7ob"
+        beauty7.tags = "美女"
+        beauty7.authorName = "山也知道"
+        beauty7.cover =
+            "https://i2.hdslb.com/bfs/archive/d3babf06e2cdb28d2502a72e1894c026c3dad58b.jpg"
+        list.add(beauty7)
+
+        val beauty8 = PetVideo()
+        beauty8.type = VideoType.BEAUTY.ordinal
+        beauty8.fileName = "beauty8"
+        beauty8.code = 1947
+        beauty8.duration = 128
+        beauty8.isStar = true
+        beauty8.title = "当年原著党都抵制这个角色！结果剧播出后最火的就是她！"
+        beauty8.releaseTime = "2021-09-20 11:38:46"
+        beauty8.originalUrl = "https://www.bilibili.com/video/BV1tf4y1n7D3"
+        beauty8.tags = "美女"
+        beauty8.authorName = "来1碗小仙女Oo"
+        beauty8.cover =
+            "https://i0.hdslb.com/bfs/archive/e59ff07badeac9058373f79893ddc63c151077c6.jpg"
+        list.add(beauty8)
+
+        val beauty9 = PetVideo()
+        beauty9.type = VideoType.BEAUTY.ordinal
+        beauty9.fileName = "beauty9"
+        beauty9.code = 1948
+        beauty9.duration = 127
+        beauty9.isStar = true
+        beauty9.title = "这么年轻就演妈！你可知当年她可是最美公孙绿萼呀"
+        beauty9.releaseTime = "2021-02-28 15:07:51"
+        beauty9.originalUrl = "https://www.bilibili.com/video/BV1ii4y1N71U"
+        beauty9.tags = "美女"
+        beauty9.authorName = "話影小酱"
+        beauty9.cover =
+            "https://i0.hdslb.com/bfs/archive/536ef7b424a3b04359ad51004d9d65981e51a09b.jpg"
+        list.add(beauty9)
+
+        val beauty10 = PetVideo()
+        beauty10.type = VideoType.BEAUTY.ordinal
+        beauty10.fileName = "beauty10"
+        beauty10.code = 1949
+        beauty10.duration = 133
+        beauty10.isStar = true
+        beauty10.title = "【全员美人|天龙八部】你可曾见过人均绝色的电视剧【第十五期】"
+        beauty10.releaseTime = "2020-05-26 18:10:39"
+        beauty10.originalUrl = "https://www.bilibili.com/video/BV1sf4y127j5"
+        beauty10.tags = "美女"
+        beauty10.authorName = "花池-"
+        beauty10.cover =
+            "https://i2.hdslb.com/bfs/archive/5d46a74fe0dc948bb24b03b00ab4dd18a98cb61c.jpg"
+        list.add(beauty10)
+
+        val beauty11 = PetVideo()
+        beauty11.type = VideoType.BEAUTY.ordinal
+        beauty11.fileName = "beauty11"
+        beauty11.code = 1950
+        beauty11.duration = 147
+        beauty11.isStar = true
+        beauty11.title = "【全员美人|仙剑奇侠传一】你可曾见过人均绝色的电视剧【第十四期】"
+        beauty11.releaseTime = "2020-05-18 18:30:18"
+        beauty11.originalUrl = "https://www.bilibili.com/video/BV1pp4y1Q7vf"
+        beauty11.tags = "美女"
+        beauty11.authorName = "花池-"
+        beauty11.cover =
+            "https://i0.hdslb.com/bfs/archive/0c0aa3f9e32c7c13f0bdcce37b246f6ac43679f4.jpg"
+        list.add(beauty11)
+
+        val beauty12 = PetVideo()
+        beauty12.type = VideoType.BEAUTY.ordinal
+        beauty12.fileName = "beauty12"
+        beauty12.code = 1951
+        beauty12.duration = 164
+        beauty12.isStar = true
+        beauty12.title = "仙 侠 女 主 的 巅 峰！！！这才是古偶剧该有的颜值"
+        beauty12.releaseTime = "2020-09-18 09:00:19"
+        beauty12.originalUrl = "https://www.bilibili.com/video/BV1pv411C7jh"
+        beauty12.tags = "美女"
+        beauty12.authorName = "我跟白敬亭私奔了"
+        beauty12.cover =
+            "https://i0.hdslb.com/bfs/archive/805049f0c40a14bcbcd3c3fdd312ea0db31390e1.jpg"
+        list.add(beauty12)
+
+        val beauty13 = PetVideo()
+        beauty13.type = VideoType.BEAUTY.ordinal
+        beauty13.fileName = "beauty13"
+        beauty13.code = 1952
+        beauty13.duration = 132
+        beauty13.isStar = true
+        beauty13.title = "卧槽！她们互看的这一段，鬼知道我看了多少遍！"
+        beauty13.releaseTime = "2022-02-19 14:31:09"
+        beauty13.originalUrl = "https://www.bilibili.com/video/BV18L411K7zU"
+        beauty13.tags = "美女"
+        beauty13.authorName = "剪刀手瑜乔"
+        beauty13.cover =
+            "https://i0.hdslb.com/bfs/archive/c4bcd4ea289017ae08dc9166d3f95547454a52f3.jpg"
+        list.add(beauty13)
+
+        val beauty14 = PetVideo()
+        beauty14.type = VideoType.BEAUTY.ordinal
+        beauty14.fileName = "beauty14"
+        beauty14.code = 1953
+        beauty14.duration = 139
+        beauty14.isStar = true
+        beauty14.title = "怪不得粉丝都叫她千金，这气质也太绝了？！"
+        beauty14.releaseTime = "2022-02-05 02:08:36"
+        beauty14.originalUrl = "https://www.bilibili.com/video/BV1uR4y17724"
+        beauty14.tags = "美女"
+        beauty14.authorName = "南柯十一梦"
+        beauty14.cover =
+            "https://i0.hdslb.com/bfs/archive/15f9c7210b27e43f116605120e0f8658539b02fc.jpg"
+        list.add(beauty14)
+
+        val beauty15 = PetVideo()
+        beauty15.type = VideoType.BEAUTY.ordinal
+        beauty15.fileName = "beauty15"
+        beauty15.code = 1954
+        beauty15.duration = 185
+        beauty15.isStar = true
+        beauty15.title = "【4K纯享】追逐蝴蝶的少女,K宝全俄短节目获90+高分"
+        beauty15.releaseTime = "2021-12-25 10:42:07"
+        beauty15.originalUrl = "https://www.bilibili.com/video/BV1Lg411A7Lq"
+        beauty15.tags = "美女"
+        beauty15.authorName = "杂小技的轻松熊"
+        beauty15.cover =
+            "https://i2.hdslb.com/bfs/archive/d53ff854866edea9c3f5287dac81e9a55e4eb84e.jpg"
+        list.add(beauty15)
+
+        val beauty16 = PetVideo()
+        beauty16.type = VideoType.BEAUTY.ordinal
+        beauty16.fileName = "beauty16"
+        beauty16.code = 1955
+        beauty16.duration = 172
+        beauty16.isStar = true
+        beauty16.title = "【花滑千金】冰上时刻，2016年莫斯科锦标赛短节目表演"
+        beauty16.releaseTime = "2022-03-05 19:39:04"
+        beauty16.originalUrl = "https://www.bilibili.com/video/BV1ja411b7Uz"
+        beauty16.tags = "美女"
+        beauty16.authorName = "安娜-谢尔巴科娃"
+        beauty16.cover =
+            "https://i1.hdslb.com/bfs/archive/b91977033326ef1ac713d49d52ef6219c9101880.jpg"
+        list.add(beauty16)
+
+        val beauty17 = PetVideo()
+        beauty17.type = VideoType.BEAUTY.ordinal
+        beauty17.fileName = "beauty17"
+        beauty17.code = 1956
+        beauty17.duration = 69
+        beauty17.isStar = true
+        beauty17.title = "17岁的高圆圆？班主任 ：至少 10个班的男生 在追她！"
+        beauty17.releaseTime = "2021-04-10 13:11:12"
+        beauty17.originalUrl = "https://www.bilibili.com/video/BV1V5411c7jL"
+        beauty17.tags = "美女"
+        beauty17.authorName = "柒_小诗"
+        beauty17.cover =
+            "https://i1.hdslb.com/bfs/archive/7c984d7b2e572888466dafc4cdd2c668c862e176.jpg"
+        list.add(beauty17)
+
+        val beauty18 = PetVideo()
+        beauty18.type = VideoType.BEAUTY.ordinal
+        beauty18.fileName = "beauty18"
+        beauty18.code = 1957
+        beauty18.duration = 246
+        beauty18.isStar = true
+        beauty18.title = "【袁泉】19个角色|从少女到总裁"
+        beauty18.releaseTime = "2020-01-05 13:50:08"
+        beauty18.originalUrl = "https://www.bilibili.com/video/BV1WJ411L7MG"
+        beauty18.tags = "美女"
+        beauty18.authorName = "木之画"
+        beauty18.cover =
+            "https://i2.hdslb.com/bfs/archive/310f5747a323dc0446ec05d622bc80c2fddb7881.jpg"
+        list.add(beauty18)
+
+        val beauty19 = PetVideo()
+        beauty19.type = VideoType.BEAUTY.ordinal
+        beauty19.fileName = "beauty19"
+        beauty19.code = 1958
+        beauty19.duration = 295
+        beauty19.isStar = true
+        beauty19.title = "【60后群像||85人】颜狗盛宴！上世纪大陆美人真的是百花齐放啊！"
+        beauty19.releaseTime = "2020-11-28 12:00:10"
+        beauty19.originalUrl = "https://www.bilibili.com/video/BV1YA411x7fV"
+        beauty19.tags = "美女"
+        beauty19.authorName = "蜗牛了了"
+        beauty19.cover =
+            "https://i2.hdslb.com/bfs/archive/1d88898a6c9cb4de5a37bcdefdbb76ed0ee14ea1.jpg"
+        list.add(beauty19)
+
+        val beauty20 = PetVideo()
+        beauty20.type = VideoType.BEAUTY.ordinal
+        beauty20.fileName = "beauty20"
+        beauty20.code = 1959
+        beauty20.duration = 184
+        beauty20.isStar = true
+        beauty20.title = "这是六界聚会吗？从50到00的女神都来了"
+        beauty20.releaseTime = "2022-01-02 14:33:25"
+        beauty20.originalUrl = "https://www.bilibili.com/video/BV1b34y1z7rx"
+        beauty20.tags = "美女"
+        beauty20.authorName = "锦鲤良钰"
+        beauty20.cover =
+            "https://i1.hdslb.com/bfs/archive/06c3936345e5ec2816176c3a171348495bda5f5b.jpg"
+        list.add(beauty20)
+
+
 
         return list
     }

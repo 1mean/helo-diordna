@@ -1728,6 +1728,214 @@ object PetBabyPandaData2 {
             "https://i2.hdslb.com/bfs/archive/188ac90b6139c579758f7702567973eea9397290.jpg"
         list.add(panda489)
 
+        val panda490 = PetVideo()
+        panda490.type = VideoType.PANDA.ordinal
+        panda490.fileName = "panda_baby_panda490"
+        panda490.code = 1960
+        panda490.duration = 185
+        panda490.period = PeriodType.BABY.ordinal
+        panda490.isStar = false
+        panda490.title = "【大熊猫福多多】你成长的每一步，都有爱你的人在守护"
+        panda490.releaseTime = "2022-02-19 11:12:03"
+        panda490.originalUrl = "https://www.bilibili.com/video/BV1Xu41197Ph"
+        panda490.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+        panda490.authorName = "好喜欢金虎和大阿福"
+        panda490.cover =
+            "https://i2.hdslb.com/bfs/archive/f839b8b99fd14a0e69e8da4a8c1af7af510ad13d.jpg"
+        list.add(panda490)
+
+        val panda491 = PetVideo()
+        panda491.type = VideoType.PANDA.ordinal
+        panda491.fileName = "panda_baby_panda491"
+        panda491.code = 1961
+        panda491.duration = 31
+        panda491.period = PeriodType.BABY.ordinal
+        panda491.isStar = true
+        panda491.title = "两脚兽注意！萌兽出现了萌化你【和花】"
+        panda491.releaseTime = "2022-02-19 10:00:16"
+        panda491.originalUrl = "https://www.bilibili.com/video/BV1Lm4y1d7cu"
+        panda491.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+        panda491.authorName = "熊猫宝宝家园"
+        panda491.cover =
+            "https://i2.hdslb.com/bfs/archive/4b06e17d51005b0a50667f50aa95e9f68050c914.jpg"
+        list.add(panda491)
+
+        val panda492 = PetVideo()
+        panda492.type = VideoType.PANDA.ordinal
+        panda492.fileName = "panda_baby_panda492"
+        panda492.code = 1962
+        panda492.duration = 76
+        panda492.period = PeriodType.BABY.ordinal
+        panda492.isStar = true
+        panda492.title = "【大熊猫福多多】幼崽果然是最可爱的生物，当熊猫幼崽遇到人类幼崽，这神仙组合太让人上头了"
+        panda492.releaseTime = "2021-12-19 17:35:48"
+        panda492.originalUrl = "https://www.bilibili.com/video/BV1gP4y1H7PM"
+        panda492.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+        panda492.authorName = "咩咩叮当喵"
+        panda492.cover =
+            "https://i2.hdslb.com/bfs/archive/dfc6af1cf076701a7ef25f3131d615a6c72040ac.jpg"
+        list.add(panda492)
+
+        val panda493 = PetVideo()
+        panda493.type = VideoType.PANDA.ordinal
+        panda493.fileName = "panda_baby_panda493"
+        panda493.code = 1963
+        panda493.duration = 73
+        panda493.period = PeriodType.BABY.ordinal
+        panda493.isStar = false
+        panda493.title = "【大熊猫金宵】懵懵懂懂的妹妹"
+        panda493.releaseTime = "2021-11-29 16:51:31"
+        panda493.originalUrl = "https://www.bilibili.com/video/BV11P4y1V7dB"
+        panda493.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+        panda493.authorName = "空调轰轰响"
+        panda493.cover =
+            "https://i0.hdslb.com/bfs/archive/21b4c15dd2cada59f030a4446425784a236228a8.png"
+        list.add(panda493)
+
+        val panda494 = PetVideo()
+        panda494.type = VideoType.PANDA.ordinal
+        panda494.fileName = "panda_baby_panda494"
+        panda494.code = 1964
+        panda494.duration = 20
+        panda494.period = PeriodType.BABY.ordinal
+        panda494.isStar = false
+        panda494.title = "和花肉都duang起来了"
+        panda494.releaseTime = "2022-03-07 19:15:14"
+        panda494.originalUrl = "https://www.bilibili.com/video/BV14u411X74H"
+        panda494.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+        panda494.authorName = "萌面可爱多_"
+        panda494.cover =
+            "https://i1.hdslb.com/bfs/archive/3afbd837040487c1575dae573faa09368bbc54c7.jpg"
+        list.add(panda494)
+
+        val panda495 = PetVideo()
+        panda495.type = VideoType.PANDA.ordinal
+        panda495.fileName = "panda_baby_panda495"
+        panda495.code = 1965
+        panda495.duration = 36
+        panda495.period = PeriodType.BABY.ordinal
+        panda495.isStar = false
+        panda495.title = "大熊猫福多多：刀疤颂厉害了，把多多打下木架了"
+        panda495.releaseTime = "2022-03-08 22:30:03"
+        panda495.originalUrl = "https://www.bilibili.com/video/BV13a411b7zx"
+        panda495.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+        panda495.authorName = "小香妞爱熊猫"
+        panda495.cover =
+            "https://i0.hdslb.com/bfs/archive/4b7a7221d0ceba022a548adbeb32a1d2f8363483.jpg"
+        list.add(panda495)
+
+        val panda496 = PetVideo()
+        panda496.type = VideoType.PANDA.ordinal
+        panda496.fileName = "panda_baby_panda496"
+        panda496.code = 1966
+        panda496.duration = 31
+        panda496.period = PeriodType.BABY.ordinal
+        panda496.isStar = false
+        panda496.title = "福多多真是一只娇憨的小熊"
+        panda496.releaseTime = "2022-03-04 18:40:25"
+        panda496.originalUrl = "https://www.bilibili.com/video/BV1aY411G7NC"
+        panda496.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+        panda496.authorName = "熊猫能量社区"
+        panda496.cover =
+            "https://i0.hdslb.com/bfs/archive/6e6546140455b370050b996bacbe1c2a908c258a.jpg"
+        list.add(panda496)
+
+        val panda497 = PetVideo()
+        panda497.type = VideoType.PANDA.ordinal
+        panda497.fileName = "panda_baby_panda497"
+        panda497.code = 1967
+        panda497.duration = 129
+        panda497.period = PeriodType.BABY.ordinal
+        panda497.isStar = true
+        panda497.title = "么么儿学爬小树"
+        panda497.releaseTime = "2017-02-11 15:39:35"
+        panda497.originalUrl = "https://www.bilibili.com/video/BV1Ax41127Y2"
+        panda497.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+        panda497.authorName = "PANDAMONIUM"
+        panda497.cover =
+            "https://i0.hdslb.com/bfs/archive/03ba10c13317d8cb3bba14e65fe0ad42a9f49778.jpg"
+        list.add(panda497)
+
+        val panda498 = PetVideo()
+        panda498.type = VideoType.PANDA.ordinal
+        panda498.fileName = "panda_baby_panda498"
+        panda498.code = 1968
+        panda498.duration = 76
+        panda498.period = PeriodType.BABY.ordinal
+        panda498.isStar = false
+        panda498.title = "【大熊猫奇珍】崽崽，你长大了会当王！"
+        panda498.releaseTime = "2022-01-11 18:45:04"
+        panda498.originalUrl = "https://www.bilibili.com/video/BV14a411q7xD"
+        panda498.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+        panda498.authorName = "猴哥某熊铁锤都退役了"
+        panda498.cover =
+            "https://i1.hdslb.com/bfs/archive/fcc3edbf6d56f4b6bc4d9525557e7a76db48c6b9.jpg"
+        list.add(panda498)
+
+        val panda499 = PetVideo()
+        panda499.type = VideoType.PANDA.ordinal
+        panda499.fileName = "panda_baby_panda499"
+        panda499.code = 1969
+        panda499.duration = 101
+        panda499.period = PeriodType.BABY.ordinal
+        panda499.isStar = false
+        panda499.title = "【奇珍奇宝】lai妈安慰被凑弟弟欺负的姐姐熊！"
+        panda499.releaseTime = "2022-01-17 20:20:58"
+        panda499.originalUrl = "https://www.bilibili.com/video/BV1WL411c7bC"
+        panda499.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+        panda499.authorName = "猴哥某熊铁锤都退役了"
+        panda499.cover =
+            "https://i2.hdslb.com/bfs/archive/3a6e8b9fb159239df21e139079e50518c600abf8.jpg"
+        list.add(panda499)
+
+        val panda500 = PetVideo()
+        panda500.type = VideoType.PANDA.ordinal
+        panda500.fileName = "panda_baby_panda500"
+        panda500.code = 1970
+        panda500.duration = 22
+        panda500.period = PeriodType.BABY.ordinal
+        panda500.isStar = false
+        panda500.title = "成功摘下奇一，火腿奶爸露出收获的喜悦笑容"
+        panda500.releaseTime = "2020-03-10 19:08:42"
+        panda500.originalUrl = "https://www.bilibili.com/video/BV14E411T7hu"
+        panda500.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+        panda500.authorName = "绩笑笑最可爱啦"
+        panda500.cover =
+            "https://i2.hdslb.com/bfs/archive/e887e660af04e4b6a9dfd9fa13259f0b42e23174.jpg"
+        list.add(panda500)
+
+        val panda501 = PetVideo()
+        panda501.type = VideoType.PANDA.ordinal
+        panda501.fileName = "panda_baby_panda501"
+        panda501.code = 1971
+        panda501.duration = 17
+        panda501.period = PeriodType.BABY.ordinal
+        panda501.isStar = true
+        panda501.title = "大熊猫奇一:你的小可爱突然出现"
+        panda501.releaseTime = "2020-05-28 11:23:17"
+        panda501.originalUrl = "https://www.bilibili.com/video/BV1Pp4y1X75x"
+        panda501.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+        panda501.authorName = "丶大熊猫奇一"
+        panda501.cover =
+            "https://i2.hdslb.com/bfs/archive/c4c52c6125ddd239cfb76fbaf84c953d5118289d.jpg"
+        list.add(panda501)
+
+        val panda502 = PetVideo()
+        panda502.type = VideoType.PANDA.ordinal
+        panda502.fileName = "panda_baby_panda502"
+        panda502.code = 1972
+        panda502.duration = 31
+        panda502.period = PeriodType.BABY.ordinal
+        panda502.isStar = true
+        panda502.title = "【大熊猫】满场兔子跳的“奇一”宝宝"
+        panda502.releaseTime = "2017-01-04 10:15:25"
+        panda502.originalUrl = "https://www.bilibili.com/video/BV1ts411Y77d"
+        panda502.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+        panda502.authorName = "允在要出柜"
+        panda502.cover =
+            "https://i2.hdslb.com/bfs/archive/4bf143e26b5289c0b5441ffaf207617a1feea0c7.png"
+        list.add(panda502)
+
 
         return list
     }

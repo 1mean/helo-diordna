@@ -1,10 +1,13 @@
+import android.util.Log
 import com.example.pandas.bean.CoverDownLoad
+import com.example.pandas.bean.HistoryItem
 import com.example.pandas.bean.SearchInfo
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.dao.PetVideoDao
 import com.example.pandas.sql.database.AppDataBase
+import com.example.pandas.sql.entity.History
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
 import kotlinx.coroutines.Dispatchers
@@ -58,10 +61,7 @@ class PetManager {
     }
 
     suspend fun getVideoByFileName(fileName: String): PetViewData {
-
-        return withContext(Dispatchers.IO) {
-            petDao.queryVideoByFileName(fileName)
-        }
+        return petDao.queryVideoByFileName(fileName)
     }
 
 
@@ -103,10 +103,14 @@ class PetManager {
      * @date: 1/26/22 5:27 下午
      * @version: v1.0
      */
-    suspend fun getCutePetByType(type: Int, startIndex: Int): MutableList<PetViewData> {
+    suspend fun getCutePetByType(
+        type: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetViewData> {
 
         return withContext(Dispatchers.IO) {
-            petDao.queryByTypeAndPage(type, startIndex, 10)
+            petDao.queryByTypeAndPage(type, startIndex, counts)
         }
     }
 
@@ -125,7 +129,7 @@ class PetManager {
                     horizontalVideos = getHorVideos()
                     movieModel = petDao.queryByTypeAndPage(VideoType.MUSIC.ordinal, 0, 4)
                     songs = petDao.queryMusicByPage(0, 0, 5)
-                    sleepModel = petDao.queryByTypeAndPage(VideoType.SLEEP.ordinal, 0, 2)
+                    footBallModel = petDao.queryByTypeAndPage(VideoType.FOOTBALL.ordinal, 0, 4)
                     talkAudios = petDao.queryMusicByPage(0, 0, 5)
                 }
             }
@@ -163,6 +167,17 @@ class PetManager {
         }
     }
 
+    fun saveHistory(history: History) {
+        val localHistory = petDao.queryHistoryByCode(history.code)
+        if (localHistory == null) {//不存在的，一定为null
+            petDao.insertHistory(history)
+        } else {
+            localHistory.lastTime = history.lastTime
+            localHistory.playPosition = history.playPosition
+            petDao.updateHistory(localHistory)
+        }
+    }
+
     fun getVideoByCode(code: Int): Flow<PetVideo> {
 
         return petDao.queryVideoByCode(code).flowOn(Dispatchers.IO)
@@ -186,6 +201,21 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
             petDao.queryWordsByPage("%$words%", startIndex, 10)
+        }
+    }
+
+    suspend fun getHistory(startIndex: Int, counts: Int): MutableList<HistoryItem> {
+
+        return withContext(Dispatchers.IO) {
+
+            val historyList = mutableListOf<HistoryItem>()
+            val history = petDao.queryHistoryByPage(startIndex, counts)
+            history.forEach {
+                val viewData = petDao.queryViewDataByCode(it.code)
+                val historyItem = HistoryItem(it, viewData)
+                historyList.add(historyItem)
+            }
+            historyList
         }
     }
 

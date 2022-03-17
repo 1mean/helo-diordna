@@ -265,6 +265,11 @@ class LoadMoreRecyclerView2 : RecyclerView {
         isLoadingData = false
     }
 
+    fun clearState(){
+        isLoadingData = false
+        isFreshing = false
+        isNoMore = false
+    }
 
     interface ILoadMoreListener {
         fun onLoadMore()

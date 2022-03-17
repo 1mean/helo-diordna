@@ -4,6 +4,7 @@ import androidx.room.*
 import com.example.pandas.bean.CoverDownLoad
 import com.example.pandas.bean.SearchInfo
 import com.example.pandas.bean.pet.PetViewData
+import com.example.pandas.sql.entity.History
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
 import kotlinx.coroutines.flow.Flow
@@ -21,6 +22,9 @@ interface PetVideoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE) //发生冲突解决办法：终止操作，抛出异常
     fun insert(video: PetVideo)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE) //发生冲突解决办法：终止操作，抛出异常
+    fun insertHistory(history: History)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(videos: MutableList<PetVideo>)
@@ -46,8 +50,10 @@ interface PetVideoDao {
     fun update(video: PetVideo)
 
     @Update(onConflict = OnConflictStrategy.ABORT)
-    fun updateAll(vararg videos: PetVideo)
+    fun updateAll(list: MutableList<PetVideo>)
 
+    @Update(onConflict = OnConflictStrategy.ABORT) //发生冲突解决办法：终止操作，抛出异常
+    fun updateHistory(history: History)
 
     /* -----------查------------------------------------- */
     //如果查询多个结果返回的数据类不是数据实体类，无需给 Room 解析对应数据表，也无需添加 @Entity 注解
@@ -68,7 +74,7 @@ interface PetVideoDao {
      */
 
     @Query("select * from pet_video")
-    suspend fun getAll(): List<PetVideo>
+    fun getAll(): MutableList<PetVideo>
 
     @Query("select * from music")
     fun getAllMusic(): MutableList<MusicVo>
@@ -81,6 +87,9 @@ interface PetVideoDao {
 
     @Query("select * from pet_video where code=(:code)")
     fun queryByCode(code: Int): PetVideo
+
+    @Query("select * from pet_video where id=(:id)")
+    fun queryById(id: Int): PetVideo
 
     @Query("select count(*) from pet_video")
     fun getAllSize(): Int
@@ -134,7 +143,7 @@ interface PetVideoDao {
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryVideoByType(type: Int, startIndex: Int, count: Int): MutableList<PetViewData>
 
-    @Query("select code,title,cover,authorName,duration from pet_video where fileName=(:fileName)")
+    @Query("select code,title,cover,authorName,duration,fileName from pet_video where fileName=(:fileName)")
     suspend fun queryVideoByFileName(fileName: String): PetViewData
 
     @Query("select count(*) from music")
@@ -165,4 +174,13 @@ interface PetVideoDao {
         startIndex: Int,
         counts: Int
     ): MutableList<PetViewData>
+
+    @Query("select * from history order by lastTime desc limit (:startIndex),(:count)")
+    suspend fun queryHistoryByPage(startIndex: Int, count: Int): MutableList<History>
+
+    @Query("select code,title,cover,authorName,duration from pet_video where code=(:code)")
+    suspend fun queryViewDataByCode(code: Int): PetViewData
+
+    @Query("select * from history where code=(:code)")
+    fun queryHistoryByCode(code: Int): History
 }

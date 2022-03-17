@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/color_bg_self"
         android:orientation="vertical">
 
     <View
@@ -118,102 +118,44 @@
                 android:src="@mipmap/img_level8" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_mine"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
+            android:layout_height="105dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_bg_self">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llayout_mine_zone"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_mine_info1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_mine"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_mine"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="13dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="美人如画隔云端" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_mine_zone_counts"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@color/color_mine_txt_zone_counts"
-                    android:text="1"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_mine_info2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/txt_mine_info1"
+                app:layout_constraintLeft_toLeftOf="@id/txt_mine_info1"
+                android:layout_marginTop="5dp"
+                android:textSize="12sp"
+                android:text="美人娟娟隔秋水，濯足洞庭望八荒" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:textColor="@color/color_mine_txt_zone"
-                    android:textSize="12sp"
-                    android:text="@string/str_zone"
-                    android:layout_gravity="center_horizontal" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_mine_follow_counts"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@color/color_mine_txt_zone_counts"
-                    android:text="12"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp" />
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:textColor="@color/color_mine_txt_zone"
-                    android:textSize="12sp"
-                    android:text="@string/str_follow"
-                    android:layout_gravity="center_horizontal" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_mine_fans_counts"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@color/color_mine_txt_zone_counts"
-                    android:text="5555"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp" />
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:textColor="@color/color_mine_txt_zone"
-                    android:textSize="12sp"
-                    android:text="@string/str_fans"
-                    android:layout_gravity="center_horizontal" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.AppCompatImageView
-            android:layout_marginTop="9dp"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -228,7 +170,7 @@
                     app:layout_constraintTop_toTopOf="@id/clayout_download"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_download"
                     app:layout_constraintRight_toRightOf="@id/clayout_download"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:src="@mipmap/img_mine_download" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -284,7 +226,7 @@
                     app:layout_constraintTop_toTopOf="@id/clayout_collect"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_collect"
                     app:layout_constraintRight_toRightOf="@id/clayout_collect"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="11dp"
                     android:src="@mipmap/img_mine_collect" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -312,7 +254,7 @@
                     app:layout_constraintTop_toTopOf="@id/clayout_later"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_later"
                     app:layout_constraintRight_toRightOf="@id/clayout_later"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:src="@mipmap/img_mine_download" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -327,6 +269,170 @@
                     android:layout_marginTop="5dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <!--<androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="161dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:cardCornerRadius="10dp"
+            android:layout_marginTop="20dp"
+            app:cardElevation="0.3dp"
+            android:background="@color/white">-->
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="89dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="0.3dp"
+                android:background="@color/white" />
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="9dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="0.3dp"
+                android:background="@color/white" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更多服务"
+                android:textColor="@color/color_video_item_title"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="18dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_setting"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="48dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_setting"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_setting"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_setting"
+                    android:layout_marginStart="22dp"
+                    android:textColor="@color/color_text_setting"
+                    android:textSize="13sp"
+                    android:text="@string/str_setting" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_setting"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_setting"
+                    app:layout_constraintRight_toRightOf="@id/clayout_setting"
+                    android:layout_marginEnd="26dp"
+                    android:textColor="@color/color_text_setting_info"
+                    android:textSize="12sp"
+                    android:text="@string/str_setting_info" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_setting"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_setting"
+                    app:layout_constraintRight_toRightOf="@id/clayout_setting"
+                    android:src="@mipmap/img_self_arrow_right"
+                    android:layout_marginEnd="12dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_other_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_other_setting"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_other_setting"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_other_setting"
+                    android:layout_marginStart="22dp"
+                    android:textColor="@color/color_text_setting"
+                    android:textSize="13sp"
+                    android:text="@string/str_setting_other" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_other_setting"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_other_setting"
+                    app:layout_constraintRight_toRightOf="@id/clayout_other_setting"
+                    android:layout_marginEnd="26dp"
+                    android:textColor="@color/color_text_setting_info"
+                    android:textSize="12sp"
+                    android:text="@string/str_setting_other_info" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_other_setting"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_other_setting"
+                    app:layout_constraintRight_toRightOf="@id/clayout_other_setting"
+                    android:src="@mipmap/img_self_arrow_right"
+                    android:layout_marginEnd="12dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_more_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_more_setting"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_more_setting"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_more_setting"
+                    android:layout_marginStart="22dp"
+                    android:textColor="@color/color_text_setting"
+                    android:textSize="13sp"
+                    android:text="@string/str_setting_more" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_more_setting"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_more_setting"
+                    app:layout_constraintRight_toRightOf="@id/clayout_more_setting"
+                    android:layout_marginEnd="26dp"
+                    android:textColor="@color/color_text_setting_info"
+                    android:textSize="12sp"
+                    android:text="@string/str_setting_more_info" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_more_setting"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_more_setting"
+                    app:layout_constraintRight_toRightOf="@id/clayout_more_setting"
+                    android:src="@mipmap/img_self_arrow_right"
+                    android:layout_marginEnd="12dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.appcompat.widget.LinearLayoutCompat>

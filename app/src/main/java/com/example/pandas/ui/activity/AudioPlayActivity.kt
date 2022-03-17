@@ -78,7 +78,6 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
-
             mService = null
         }
 

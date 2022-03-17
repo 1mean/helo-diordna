@@ -23,6 +23,7 @@ public class CutePetFragment : BaseLazyFragment<CutePetViewModel, FragmentRoomBi
 
     private val tabNames by lazy {
         arrayListOf(
+            resources.getString(R.string.string_room_tab_item0),
             resources.getString(R.string.string_room_tab_item1),
             resources.getString(R.string.string_room_tab_item2),
             resources.getString(R.string.string_room_tab_item3),

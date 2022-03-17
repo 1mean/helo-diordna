@@ -58,7 +58,10 @@ public class CacheListAdapter(
         "single" to "独居大熊猫",
         "group" to "幼年大熊猫",
         "mom" to "大熊猫妈妈",
-        "cat" to "喵喵喵"
+        "cat" to "喵喵喵",
+        "honglou" to "红楼梦",
+        "human_baby" to "可爱的人类小宝宝",
+        "art" to "艺术",
     )
 
     val descMap = mapOf(
@@ -77,6 +80,9 @@ public class CacheListAdapter(
         "single" to "独居、成年大熊猫",
         "group" to "和同级小伙伴生活在一起",
         "mom" to "妈妈会陪伴宝宝到一岁半",
-        "cat" to "单身居家好伴侣"
+        "cat" to "单身居家好伴侣",
+        "honglou" to "封建社会的百科全书",
+        "human_baby" to "谁都想有个小宝宝",
+        "art" to "艺术的本质是一种精神",
     )
 }

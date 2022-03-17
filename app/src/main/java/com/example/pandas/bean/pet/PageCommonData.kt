@@ -9,7 +9,7 @@ data class PageCommonData(
     var horizontalVideos: MutableList<PetViewData> = mutableListOf(),
     var movieModel: MutableList<PetViewData> = mutableListOf(),
     var songs: MutableList<MusicVo> = mutableListOf(),
-    var sleepModel: MutableList<PetViewData> = mutableListOf(),
+    var footBallModel: MutableList<PetViewData> = mutableListOf(),
     var talkAudios: MutableList<MusicVo> = mutableListOf(),
     var videoList: MutableList<PetViewData> = mutableListOf()
 

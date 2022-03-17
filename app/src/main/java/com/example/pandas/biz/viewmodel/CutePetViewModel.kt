@@ -39,30 +39,35 @@ public class CutePetViewModel : BaseViewModel() {
             })
     }
 
-    /**
-     * 通过position来确定type
-     */
+    private var hasMore = false
     fun getDataByPage(isRefresh: Boolean, type: Int) {
 
         if (isRefresh) {
             startIndex = 0
         }
 
-        request({ PetManagerCoroutine.getCutePetByType(type, startIndex) },
+        request({ PetManagerCoroutine.getCutePetByType(type, startIndex, 21) },
             {
-                startIndex += 10
-                val dataList = UIDataWrapper<PetViewData>(
+
+                hasMore = if (it.isNotEmpty() && it.size > 20) {
+                    it.removeLast()
+                    true
+                } else {
+                    false
+                }
+                val dataList = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = isRefresh,
                     isEmpty = it.isEmpty(),
-                    hasMore = it.size == 10,
+                    hasMore = hasMore,
                     isFirstEmpty = isRefresh && it.isEmpty(),
                     listData = it
                 )
+                startIndex += 20
                 pageDataWrapper.value = dataList
             },
             {
-                val dataList = UIDataWrapper<PetViewData>(
+                val dataList = UIDataWrapper(
                     isSuccess = false,
                     errMessage = it.errorMsg,
                     isRefresh = isRefresh,

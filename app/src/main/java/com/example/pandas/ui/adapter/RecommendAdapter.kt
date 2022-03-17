@@ -144,7 +144,7 @@ public class RecommendAdapter(
             title.text = petVideo.title
 
             itemView.setOnClickListener {
-                startVideoPlayActivity(itemView.context, petVideo.code)
+                listener.onClick(position, petVideo.code)
             }
         }
     }

@@ -4,6 +4,8 @@ import CacheItemFragment
 import CacheListFragment
 import StatusBarUtils
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
@@ -16,8 +18,7 @@ import com.example.pandas.databinding.ActivityCacheBinding
  * @date: 3/8/22 1:38 下午
  * @version: v1.0
  */
-public class LocalCacheActivity : BaseActivity<LocalCacheViewModel, ActivityCacheBinding>(),
-    View.OnClickListener {
+public class LocalCacheActivity : BaseActivity<LocalCacheViewModel, ActivityCacheBinding>(){
 
     private val mFragment1 by lazy { CacheListFragment() }
     private val mFragment2 by lazy { CacheItemFragment() }
@@ -41,7 +42,30 @@ public class LocalCacheActivity : BaseActivity<LocalCacheViewModel, ActivityCach
         }
     }
 
-    override fun onClick(v: View?) {
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Log.e("1mean","onBackPressed")
     }
 
+//    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+//
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            if (mFragment2.isVisible) {
+//                supportFragmentManager.beginTransaction().hide(mFragment2).show(mFragment1).commit()
+//            } else {
+//                finish()
+//            }
+//            return true
+//        } else {
+//            return super.onKeyDown(keyCode, event);
+//        }
+//    }
+    override fun onkeyBack() {
+        if (mFragment2.isVisible) {
+            supportFragmentManager.beginTransaction().hide(mFragment2).show(mFragment1).commit()
+            return
+        } else {
+            finish()
+        }
+    }
 }

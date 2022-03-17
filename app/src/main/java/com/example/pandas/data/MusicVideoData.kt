@@ -741,6 +741,82 @@ object MusicVideoData {
             "https://i1.hdslb.com/bfs/archive/52fa8fac262364fdf5b366605e7d1c3e630842e7.jpg"
         list.add(music46)
 
+        val music47 = PetVideo()
+        music47.type = VideoType.MUSIC.ordinal
+        music47.fileName = "music47"
+        music47.code = 1973
+        music47.duration = 242
+        music47.isStar = false
+        music47.title = "【林志炫】凤凰花开的路口，现场演唱版720P。"
+        music47.releaseTime = "2016-03-01 20:05:11"
+        music47.originalUrl = "https://www.bilibili.com/video/BV1us411Q7Nz"
+        music47.tags = "音乐,歌曲,MV"
+        music47.authorName = "dqcy"
+        music47.cover =
+            "https://i1.hdslb.com/bfs/archive/2ce576634cba1d55540b86c9e40cffece72ea65b.jpg"
+        list.add(music47)
+
+        val music48 = PetVideo()
+        music48.type = VideoType.MUSIC.ordinal
+        music48.fileName = "music48"
+        music48.code = 1974
+        music48.duration = 222
+        music48.isStar = false
+        music48.title = "【4K修复.Live】郑中基《可惜我是水瓶座》完美现场！长岛冰茶的味道"
+        music48.releaseTime = "2021-04-17 20:49:12"
+        music48.originalUrl = "https://www.bilibili.com/video/BV1MQ4y1Z7SB"
+        music48.tags = "音乐,歌曲,MV"
+        music48.authorName = "tAAAAAAAAAAo"
+        music48.cover =
+            "https://i2.hdslb.com/bfs/archive/6ada1cf9c67d5956238dd1748b76545986c1b1a6.png"
+        list.add(music48)
+
+        val music49 = PetVideo()
+        music49.type = VideoType.MUSIC.ordinal
+        music49.fileName = "music49"
+        music49.code = 1975
+        music49.duration = 209
+        music49.isStar = false
+        music49.title = "【4K修复】阿杜《他一定很爱你》我应该在车底「醇情歌演唱会」"
+        music49.releaseTime = "2021-03-28 12:11:33"
+        music49.originalUrl = "https://www.bilibili.com/video/BV1bi4y1P7Xi"
+        music49.tags = "音乐,歌曲,MV"
+        music49.authorName = "tAAAAAAAAAAo"
+        music49.cover =
+            "https://i2.hdslb.com/bfs/archive/3325b853739ddb8321ca179724e3b38d555b37ff.png"
+        list.add(music49)
+
+        val music50 = PetVideo()
+        music50.type = VideoType.MUSIC.ordinal
+        music50.fileName = "music50"
+        music50.code = 1976
+        music50.duration = 146
+        music50.isStar = false
+        music50.title = "北京冬奥会，再见！"
+        music50.releaseTime = "2022-02-20 23:07:01"
+        music50.originalUrl = "https://www.bilibili.com/video/BV1kT4y1D7Z8"
+        music50.tags = "音乐,歌曲,MV"
+        music50.authorName = "共青团中央"
+        music50.cover =
+            "https://i1.hdslb.com/bfs/archive/db1f1ef390b1972445a25701339a446d646a40ca.jpg"
+        list.add(music50)
+
+        val music51 = PetVideo()
+        music51.type = VideoType.MUSIC.ordinal
+        music51.fileName = "music51"
+        music51.code = 1977
+        music51.duration = 233
+        music51.isStar = false
+        music51.title = "当下最火的俄语歌《Колыбельная》，战争是残酷的，和平来之不易！"
+        music51.releaseTime = "2020-11-23 20:12:28"
+        music51.originalUrl = "https://www.bilibili.com/video/BV1ap4y1r7L8"
+        music51.tags = "音乐,歌曲,MV"
+        music51.authorName = "小O音乐"
+        music51.cover =
+            "https://i1.hdslb.com/bfs/archive/c3e49c0d3acb829de9878924d78caa72772cffbb.jpg"
+        list.add(music51)
+
+
         return list
     }
 }

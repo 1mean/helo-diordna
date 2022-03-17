@@ -1,17 +1,17 @@
 package com.example.pandas.biz.viewmodel
 
-import FileUtils
 import PetManagerCoroutine
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.BaseViewModel
 import com.example.pandas.bean.pet.PetViewData
+import com.example.pandas.sql.entity.History
 import com.example.pandas.sql.entity.PetVideo
+import com.google.android.exoplayer2.util.Util
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.io.File
+import java.util.*
 
 /**
  * @description: TODO
@@ -50,5 +50,22 @@ public class VideoViewModel : BaseViewModel() {
                 }
             }
         }
+    }
+
+    fun saveHistory(code: Int, currentPosition: Long) {
+
+        Thread {
+            val formatBuilder = StringBuilder()
+            val formatter = Formatter(formatBuilder, Locale.getDefault())
+            val position = Util.getStringForTime(formatBuilder, formatter, currentPosition)
+            val history =
+                History(
+                    code = code,
+                    lastTime = System.currentTimeMillis(),
+                    playPosition = position
+                )
+            PetManagerCoroutine.saveHistory(history)
+        }.start()
+
     }
 }

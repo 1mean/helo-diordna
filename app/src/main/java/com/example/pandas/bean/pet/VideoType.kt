@@ -24,4 +24,9 @@ enum class VideoType {
     LANDSCAPE,//山水
     SLEEP,//助眠
     BEAUTY,//美女
+    CAT,//猫
+    HONGLOU,//红楼
+    BABY,//小宝宝
+    ART,//艺术
+    FOOTBALL,//足球
 }
