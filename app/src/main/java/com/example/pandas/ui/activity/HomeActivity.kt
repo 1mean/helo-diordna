@@ -4,13 +4,13 @@ import HomeAdapter
 import StatusBarUtils
 import android.Manifest
 import android.os.Bundle
-import android.view.KeyEvent
 import android.widget.RadioGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.pandas.R
+import com.example.pandas.base.activity.BaseActivity
+import com.example.pandas.biz.viewmodel.MainViewModel
 import com.example.pandas.databinding.ActivityHomeBinding
 
 
@@ -20,9 +20,8 @@ import com.example.pandas.databinding.ActivityHomeBinding
  * @date: 11/17/21 1:25 PM
  * @version: v1.0
  */
-public class HomeActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListener {
-
-    private lateinit var binding: ActivityHomeBinding
+public class HomeActivity : BaseActivity<MainViewModel, ActivityHomeBinding>(),
+    RadioGroup.OnCheckedChangeListener {
 
     private val permissions = arrayOf(
         Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -41,32 +40,37 @@ public class HomeActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListe
             val alwaysDeniedList = list - deniedList
         }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initView(savedInstanceState: Bundle?) {
 
         StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
 
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding.rgHome.apply {
+            setOnCheckedChangeListener(this@HomeActivity)
+            check(R.id.rb_name1)
+        }
 
-        binding.rgHome.setOnCheckedChangeListener(this)
-        binding.rgHome.check(R.id.rb_name1)
-
-        val mAdapter = HomeAdapter(this)
-        binding.vpHome.adapter = mAdapter
-        binding.vpHome.setCurrentItem(0, false)
-        binding.vpHome.isUserInputEnabled = false //禁止滑动
+        binding.vpHome.apply {
+            adapter = HomeAdapter(this@HomeActivity)
+            setCurrentItem(0, false)
+            isUserInputEnabled = false //禁止滑动
+        }
 
         requestPermissions.launch(permissions)
 
         //downLoadVideoCovers(this,this)
+    }
 
+    override fun createObserver() {
+
+        mViewModel.HeadUiState.observe(this){
+            binding.rgHome.check(R.id.rb_name4)
+        }
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
 
-        val selectColor = ContextCompat.getColor(this,R.color.color_groupbutton_text_selected)
-        val color = ContextCompat.getColor(this,R.color.color_groupbutton_text)
+        val selectColor = ContextCompat.getColor(this, R.color.color_groupbutton_text_selected)
+        val color = ContextCompat.getColor(this, R.color.color_groupbutton_text)
         when (checkedId) {
             R.id.rb_name1 -> {
                 binding.vpHome.setCurrentItem(0, false)

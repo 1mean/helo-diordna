@@ -6,7 +6,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.R
+import com.example.pandas.biz.viewmodel.MainViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
+import com.example.pandas.ui.activity.MessageActivity
 import com.example.pandas.ui.activity.SearchActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -16,7 +18,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  * @date: 1/3/22 11:42 下午
  * @version: v1.0
  */
-public class HomeFragment : BaseFragment<HomePageViewModel, FragmentHomeBinding>() {
+public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 
     private val tabTitles = arrayListOf("大熊猫", "推荐", "最爱", "山水")
 
@@ -47,10 +49,13 @@ public class HomeFragment : BaseFragment<HomePageViewModel, FragmentHomeBinding>
         }
 
         binding.imgHead.setOnClickListener {
-
+            mViewModel.updateHeadState()
+        }
+        binding.ibMessage.setOnClickListener {
+            mActivity.startActivity(Intent(mActivity, MessageActivity::class.java))
         }
 
-        binding.bar.setExpanded(true,true)
+        //binding.bar.setExpanded(true,true)
     }
 
     override fun createObserver() {

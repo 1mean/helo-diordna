@@ -11,12 +11,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 public class HomeAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
 
-
     override fun getItemCount() = 4
 
-    override fun createFragment(position: Int): Fragment {
-
-        return FragmentFactory.buildFragment(position)
-    }
+    override fun createFragment(position: Int): Fragment = FragmentFactory.buildFragment(position)
 
 }

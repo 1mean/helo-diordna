@@ -1,3 +1,4 @@
+import android.content.Intent
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -8,6 +9,7 @@ import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.sql.entity.MusicVo
+import com.example.pandas.ui.activity.AudioPlayActivity
 
 /**
  * @description: MusicItemAdapter
@@ -21,6 +23,8 @@ public class MusicItemAdapter(private val list: MutableList<MusicVo>) :
     override fun getLayoutId(): Int = R.layout.adapter_item_music
 
     override fun convert(holder: BaseViewHolder, data: MusicVo, position: Int) {
+
+        val context = holder.itemView.context
         val cover = holder.getWidget<AppCompatImageView>(R.id.img_cover_music)
         val audioName = holder.getWidget<AppCompatTextView>(R.id.txt_audio_name)
         val singerName = holder.getWidget<AppCompatTextView>(R.id.txt_singer_name)
@@ -33,6 +37,14 @@ public class MusicItemAdapter(private val list: MutableList<MusicVo>) :
         singerName.text = music.singerName
         layoutMore.setOnClickListener {
 
+        }
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, AudioPlayActivity::class.java).apply {
+                putExtra("fileName",data.fileName)
+                putExtra("position",position)
+            }
+            context.startActivity(intent)
         }
     }
 }

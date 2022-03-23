@@ -238,7 +238,6 @@ public class MyLoveFragmentAdapter(
                 titleLayout.setOnClickListener {
                     MoreDataListActivity.startMoreDataActivity(itemView.context, AppInfos.TYPE_MP3)
                 }
-
 //                next.setOnClickListener {
 //                    owner.apply {
 //                        lifecycleScope.launch {

@@ -10,10 +10,10 @@ public class FragmentFactory {
 
     companion object instance {
 
-        const val PAGE_ONE = 0
-        const val PAGE_TWO = 1
-        const val PAGE_THREE = 2
-        const val PAGE_FOUR = 3
+        private const val PAGE_ONE = 0
+        private const val PAGE_TWO = 1
+        private const val PAGE_THREE = 2
+        private const val PAGE_FOUR = 3
 
         var fragments = HashMap<Int, Fragment>()
 

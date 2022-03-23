@@ -72,6 +72,12 @@
         <item name="android:textColor">@color/color_cache_bar_title</item>
     </style>
 
+    <!--message toolbar-->
+    <style name="styles_toolbar_message">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <declare-styleable name="RadiusCardView">
         <attr name="leftTopRadiu" format="dimension" />
         <attr name="leftBottomRadiu" format="dimension" />
