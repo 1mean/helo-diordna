@@ -71,4 +71,27 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/color_cache_bar_title</item>
     </style>
+
+    <declare-styleable name="RadiusCardView">
+        <attr name="leftTopRadiu" format="dimension" />
+        <attr name="leftBottomRadiu" format="dimension" />
+        <attr name="rightTopRadiu" format="dimension" />
+        <attr name="rightBottomRadiu" format="dimension" />
+        <attr name="bgColor" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="BannerCardView">
+        <attr name="bannerWidth" format="dimension" />
+        <attr name="card2Width" format="dimension" />
+        <attr name="card3Width" format="dimension" />
+    </declare-styleable>
+
+    <!--必须如此才能配合实现dialog有圆角-->
+    <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
+    </style>
+
+    <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>

@@ -152,6 +152,9 @@ interface PetVideoDao {
     @Query("select * from music where type=0 and fileName=(:fileName)")
     suspend fun queryMusicByFileName(fileName: String): MusicVo
 
+    @Query("select * from music where type=0")
+    suspend fun queryAllMusic(): MutableList<MusicVo>
+
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where videoType=(:videoType) limit (:startIndex),(:count)")
     suspend fun queryVideoByVideoType(
         videoType: Int,

@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.biz.ext.loadRoundedCornerImage
+import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.databinding.AdapterItemTitleBinding
 import com.example.pandas.databinding.AdapterLandscapeItemBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
@@ -154,6 +155,9 @@ public class LandscapeAdapter(private var data: LandscapeData) :
             name.text = video.authorName
             layoutMore.setOnClickListener {
 
+            }
+            itemView.setOnClickListener {
+                startVideoPlayActivity(itemView.context, video.code)
             }
         }
     }

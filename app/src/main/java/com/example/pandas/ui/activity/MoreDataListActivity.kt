@@ -53,6 +53,30 @@ public class MoreDataListActivity : BaseActivity<MoreDataViewModel, ActivityMore
                 supportFragmentManager.beginTransaction()
                     .add(R.id.flayout_more, VideoListFragment()).commit()
             }
+            VideoType.ART.ordinal -> {
+                mViewModel.currentType = type
+                binding.txtTitleName.text = this.getString(R.string.str_art)
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.flayout_more, VideoListFragment()).commit()
+            }
+            VideoType.BABY.ordinal -> {
+                mViewModel.currentType = type
+                binding.txtTitleName.text = this.getString(R.string.str_baby)
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.flayout_more, VideoListFragment()).commit()
+            }
+            VideoType.HONGLOU.ordinal -> {
+                mViewModel.currentType = type
+                binding.txtTitleName.text = this.getString(R.string.str_honglou)
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.flayout_more, VideoListFragment()).commit()
+            }
+            VideoType.BEAUTY.ordinal -> {
+                mViewModel.currentType = type
+                binding.txtTitleName.text = this.getString(R.string.str_beauty)
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.flayout_more, VideoListFragment()).commit()
+            }
 
         }
         binding.barTitle.setNavigationOnClickListener {

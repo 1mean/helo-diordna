@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="@id/txt_landscape_name"
             app:layout_constraintBottom_toBottomOf="@id/img_landscape"
-            android:src="@mipmap/img_video_author" />
+            android:src="@mipmap/img_up2" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_landscape_author"

@@ -1,13 +1,14 @@
 package com.example.pandas.app
 
 /**
- * 项目通用
+ * 项目通用信息
  * @author: dongyiming
  * @date: 3/2/22 5:21 下午
  * @version: v1.0
  */
 object AppInfos {
 
+    val DEBUG_LOG_TAG = "pandas_log" //debug版本的默认删除日志tag
     val SEARCH_KEY = "history" //搜索历史记录存入sp的key
     val VIDEO_PLAY_KEY = "code" //视频播放界面需要传递的key
     val HEAD_URL =

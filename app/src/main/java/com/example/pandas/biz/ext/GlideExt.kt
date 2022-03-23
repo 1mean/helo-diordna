@@ -3,8 +3,14 @@ package com.example.pandas.biz.ext
 import FileUtils
 import PetManagerCoroutine
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Environment
+import android.view.View
 import android.widget.ImageView
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -15,7 +21,11 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.*
 import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.request.transition.Transition
+import com.example.pandas.R
+import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -43,6 +53,42 @@ fun loadCircleImage(context: Context, url: String, view: ImageView) {
 
 fun loadImage(context: Context, url: String, view: ImageView) {
     Glide.with(context).load(url).into(view)
+}
+
+fun loadLayoutBackGround(context: Context, url: String, view: View){
+
+//    Glide.with(mContext)
+//        .load(R.drawable.img_menu_top)
+//        .bitmapTransform(
+//            BlurTransformation(
+//                mContext,
+//                25,
+//                20
+//            )
+//        )
+//        .into(object : SimpleTarget<GlideDrawable?>() {
+//            override fun onResourceReady(
+//                resource: GlideDrawable,
+//                glideAnimation: GlideAnimation<in GlideDrawable?>?
+//            ) {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                    rlayout_header.setBackground(resource.getCurrent())
+//                }
+//            }
+//        })
+
+    /*设置高斯模糊效果,服务器请求的图片失真严重 sampling值越大颜色值会越浓*/
+    /*设置背景 glide3.7的为Bitmap,兼容高斯模糊的glide是GlideDrawable,getCurrent()再转换成drawable*/
+    Glide.with(context).asBitmap().load(url)
+        .apply(RequestOptions.bitmapTransform(BlurTransformation(25, 20)))
+        .into(object :CustomTarget<Bitmap>(){
+            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                view.background = BitmapDrawable(context.resources,resource)
+            }
+
+            override fun onLoadCleared(placeholder: Drawable?) {
+            }
+        })
 }
 
 fun clearMemoryCache(context: Context) {

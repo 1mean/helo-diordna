@@ -116,6 +116,37 @@
                 app:layout_constraintTop_toTopOf="@id/txt_mine_name"
                 android:layout_marginTop="1dp"
                 android:src="@mipmap/img_level8" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_self"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                app:layout_constraintBottom_toBottomOf="@id/view_header"
+                app:layout_constraintRight_toRightOf="@id/view_header"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="15dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_self"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_self"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_self"
+                    android:text="个人中心"
+                    android:includeFontPadding="false"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_text_setting_info" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_self"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_self"
+                    app:layout_constraintRight_toRightOf="@id/clayout_self"
+                    android:src="@mipmap/img_self_arrow_right" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -362,6 +393,7 @@
                     android:src="@mipmap/img_self_arrow_right"
                     android:layout_marginEnd="12dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_other_setting"
                 android:layout_width="match_parent"
@@ -398,6 +430,7 @@
                     android:src="@mipmap/img_self_arrow_right"
                     android:layout_marginEnd="12dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_more_setting"
                 android:layout_width="match_parent"

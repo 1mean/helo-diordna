@@ -5,10 +5,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.bean.pet.PetViewData
+import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.databinding.AdapterSleepVideoItemBinding
 
 /**
- * @description: TODO
+ * @description: SleepVideoItemAdapter
  * @author: dongyiming
  * @date: 2/3/22 10:05 下午
  * @version: v1.0
@@ -41,6 +42,10 @@ public class SleepVideoItemAdapter(private val list: MutableList<PetViewData>) :
                 val video = list[position]
                 Glide.with(itemView.context).load(video.cover).apply(options).into(cover)
                 title.text = video.title
+
+                itemView.setOnClickListener {
+                    startVideoPlayActivity(itemView.context, video.code)
+                }
             }
         }
     }

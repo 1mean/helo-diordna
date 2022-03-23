@@ -61,6 +61,8 @@ public class CutePetFragment : BaseLazyFragment<CutePetViewModel, FragmentRoomBi
             adapter = RoomContentAdapter(childFragmentManager, lifecycle, tabNames)
             offscreenPageLimit = tabNames.size
             currentItem = 0
+            //java.lang.IllegalStateException: Fragment no longer exists for key f#23578416: unique id 9c69bbb3-2f68-4da6-92d8-fadf6ff059fd
+            isSaveEnabled = false
         }
 
         binding.tlayoutPet.addOnTabSelectedListener(listener)

@@ -71,6 +71,10 @@
     <string name="str_desc">描述：</string>
     <string name="str_cache_name">缓存名：</string>
     <string name="str_football">天下足球</string>
+    <string name="str_art">艺术雕塑</string>
+    <string name="str_baby">人类宝宝</string>
+    <string name="str_honglou">红楼评说</string>
+    <string name="str_beauty">影视美女</string>
 
     <!--self-->
     <string name="str_setting_info">账号、推出</string>

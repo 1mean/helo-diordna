@@ -13,4 +13,6 @@ interface AudioServiceListener {
     fun getTimeBarPosition(position: Long, bufferedPosition: Long)
 
     fun playStateChanged(state: Int)
+
+    fun initPlayView(mediaIndex: Int)
 }

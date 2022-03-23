@@ -27,6 +27,10 @@ public class MusicListFragment : BaseFragment<MoreDataViewModel, FragmentMusicLi
             layoutManager = LinearLayoutManager(mActivity)
             setRefreshAdapter(mAdapter, this@MusicListFragment)
         }
+
+        binding.clayoutPlay.setOnClickListener {
+
+        }
     }
 
     override fun createObserver() {
@@ -84,7 +88,7 @@ public class MusicListFragment : BaseFragment<MoreDataViewModel, FragmentMusicLi
 
             val intent = Intent(mActivity, AudioPlayActivity::class.java).apply {
                 putExtra("fileName",t)
-                putExtra("url",filePath)
+                putExtra("position",position)
             }
             //mActivity.startService(intent)
             mActivity.startActivity(intent)

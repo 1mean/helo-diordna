@@ -1,4 +1,3 @@
-import android.util.Log
 import com.example.pandas.bean.CoverDownLoad
 import com.example.pandas.bean.HistoryItem
 import com.example.pandas.bean.SearchInfo
@@ -59,6 +58,14 @@ class PetManager {
             petDao.queryMusicByFileName(fileName)
         }
     }
+
+    suspend fun getAllMusic(): MutableList<MusicVo> {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryAllMusic()
+        }
+    }
+
 
     suspend fun getVideoByFileName(fileName: String): PetViewData {
         return petDao.queryVideoByFileName(fileName)
@@ -131,6 +138,10 @@ class PetManager {
                     songs = petDao.queryMusicByPage(0, 0, 5)
                     footBallModel = petDao.queryByTypeAndPage(VideoType.FOOTBALL.ordinal, 0, 4)
                     talkAudios = petDao.queryMusicByPage(0, 0, 5)
+                    artList = petDao.queryVideoByType(VideoType.ART.ordinal, 0, 4)
+                    babyList = petDao.queryVideoByType(VideoType.BABY.ordinal, 0, 4)
+                    honglouList = petDao.queryVideoByType(VideoType.HONGLOU.ordinal, 0, 4)
+                    beautyList = petDao.queryVideoByType(VideoType.BEAUTY.ordinal, 0, 4)
                 }
             }
             data

@@ -18,6 +18,8 @@ class HomePageViewModel : BaseViewModel() {
     var startIndex = 0//分页起始
     var petIndex = 0
     var recoIndex = 0
+    var landIndex = 0
+    var hasMore = true//是否有更多
 
     /***********************************************************************************
      * LiveData是不可变的，MutableLiveData是可变的
@@ -32,7 +34,6 @@ class HomePageViewModel : BaseViewModel() {
      *   }
      ************************************************************************************/
 
-
     val petDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
 
     val recommendDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
@@ -40,7 +41,6 @@ class HomePageViewModel : BaseViewModel() {
     val loveDataWrapper: MutableLiveData<UIDataWrapper<PageCommonData>> by lazy { MutableLiveData() }
 
     val landScapeDataWrapper: MutableLiveData<UIDataWrapper<LandscapeData>> by lazy { MutableLiveData() }
-
 
     fun getPagePet(isRefresh: Boolean) {
 
@@ -148,22 +148,30 @@ class HomePageViewModel : BaseViewModel() {
     fun getLandScapeData(isRefresh: Boolean) {
 
         if (isRefresh) {
-            startIndex = 0
+            landIndex = 0
         }
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getLandscapeData(startIndex, 10)
+                PetManagerCoroutine.getLandscapeData(landIndex, 11)
             }.onSuccess {
-                startIndex += 10
+
+                hasMore = if (it.itemList.size > 10) {
+                    it.itemList.removeLast()
+                    true
+                } else {
+                    false
+                }
+
                 val dataList = UIDataWrapper<LandscapeData>(
                     isSuccess = true,
                     isRefresh = isRefresh,
                     isEmpty = it.itemList.isEmpty() && it.bannerList.isEmpty(),
-                    hasMore = it.itemList.size == 10,
+                    hasMore = hasMore,
                     isFirstEmpty = isRefresh && it.itemList.isEmpty() && it.bannerList.isEmpty(),
                     landscapeData = it
                 )
+                landIndex += 10
                 landScapeDataWrapper.value = dataList
             }.onFailure {
 

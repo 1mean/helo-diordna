@@ -7,7 +7,7 @@ import com.example.pandas.databinding.LayoutRefreshLoadmoreBinding
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 
 /**
- * @description: TODO
+ * @description: LandscapeFragment
  * @author: dongyiming
  * @date: 2/4/22 4:44 下午
  * @version: v1.0
@@ -47,12 +47,14 @@ public class LandscapeFragment : BaseLazyFragment<HomePageViewModel, LayoutRefre
                         binding.recyclerLayout.isFreshing(false)
                     }
                     else -> {
+                        if (it.hasMore) {
+                            binding.recyclerLayout.loadMoreFinished()
+                        } else {
+                            binding.recyclerLayout.noMoreData()
+                        }
                         mAdapter.updata(false, it.landscapeData)
-                        binding.recyclerLayout.loadMoreFinished()
                     }
                 }
-            } else {
-
             }
             binding.swipLayout.visibility = View.VISIBLE
             binding.swipLayout.isRefreshing = false
@@ -60,7 +62,6 @@ public class LandscapeFragment : BaseLazyFragment<HomePageViewModel, LayoutRefre
     }
 
     override fun firstOnResume() {
-
         mViewModel.getLandScapeData(true)
     }
 

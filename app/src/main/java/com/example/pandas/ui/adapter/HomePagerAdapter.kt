@@ -3,7 +3,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 /**
- * @description: TODO
+ * @description: fragment factory
  * @author: dongyiming
  * @date: 1/4/22 12:48 下午
  * @version: v1.0
@@ -11,13 +11,13 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 public class HomePagerAdapter(private val tabList: List<String>, fragment: FragmentActivity) :
     FragmentStateAdapter(fragment) {
 
-    private var fragments: HashMap<Int, Fragment> = HashMap()
+    private var fragments = HashMap<Int, Fragment>()
 
     override fun getItemCount(): Int = tabList.size
 
     override fun createFragment(position: Int): Fragment {
 
-        var mFragment = fragments.get(position)
+        var mFragment = fragments[position]
         if (mFragment == null) {
             mFragment = when (tabList[position]) {
                 "推荐" -> {
@@ -40,5 +40,4 @@ public class HomePagerAdapter(private val tabList: List<String>, fragment: Fragm
         }
         return mFragment
     }
-
 }

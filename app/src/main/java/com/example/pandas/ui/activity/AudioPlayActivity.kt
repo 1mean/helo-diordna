@@ -1,7 +1,10 @@
 package com.example.pandas.ui.activity
 
+import AudioMenuAdapter
 import AudioServiceListener
+import FixedHeightBottomSheetDialog
 import StatusBarUtils
+import android.annotation.SuppressLint
 import android.app.Service
 import android.content.ComponentName
 import android.content.Intent
@@ -9,25 +12,32 @@ import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
-import android.view.View
+import android.view.LayoutInflater
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
+import com.example.pandas.biz.ext.loadLayoutBackGround
 import com.example.pandas.biz.ext.loadRoundedCornerImage
+import com.example.pandas.biz.interaction.OnItemClickListener
 import com.example.pandas.biz.viewmodel.AudioViewModel
 import com.example.pandas.databinding.ActivityAudioBinding
+import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.ui.service.AudioPlayService
 import com.google.android.exoplayer2.ui.TimeBar
 import com.google.android.exoplayer2.util.Util
 import java.util.*
 
 /**
- * @description: TODO
+ * @description: AudioPlayActivity
  * @author: dongyiming
  * @date: 3/1/22 6:41 下午
  * @version: v1.0
  */
 public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBinding>(),
-    View.OnClickListener {
+    OnItemClickListener<MusicVo> {
 
     private var isTimeBarMoving = false //正在拖动时间bar
 
@@ -35,9 +45,16 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
     private var formatBuilder: StringBuilder? = null
     private var formatter: Formatter? = null
 
+    private var mRecyclerView: RecyclerView? = null
     private var fileName: String? = null
-    private var url: String? = null
+    private var position: Int = 0
     private var mService: AudioPlayService? = null
+
+    private var mLayoutManager: LinearLayoutManager? = null
+
+
+    //buttom dialog
+    private var mDialog: FixedHeightBottomSheetDialog? = null
 
     override fun initView(savedInstanceState: Bundle?) {
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
@@ -46,24 +63,33 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
         formatter = Formatter(formatBuilder, Locale.getDefault())
 
         fileName = intent.getStringExtra("fileName").toString()
-        url = intent.getStringExtra("url").toString()
+        position = intent.getIntExtra("position", 0)
         val intent = Intent(this, AudioPlayService::class.java)
         bindService(intent, conn, Service.BIND_AUTO_CREATE)
-        binding.imgAudioPlay.setOnClickListener(this)
+        binding.clayoutAudioPlay.setOnClickListener {
+            mService?.dispatchPause()
+        }
         binding.barAudioTime.addListener(barListener)
+
+        binding.imgAudioMenu.setOnClickListener {
+            initMenu()
+        }
+
+        binding.clayoutAudioNext.setOnClickListener {
+            mService?.switchSong(true)
+        }
+        binding.clayoutAudioLast.setOnClickListener {
+            mService?.switchSong(false)
+        }
     }
 
     override fun onResume() {
         super.onResume()
         mViewModel.getMusicInfo(fileName!!)
+        mViewModel.getMenu()
     }
 
     override fun createObserver() {
-        mViewModel.musicResult.observe(this) { music ->
-            music.cover?.let { loadRoundedCornerImage(this, 10, it, binding.imgAudioCover) }
-            binding.txtAudioSongName.text = music.audioName
-            binding.txtAudioSingerName.text = music.singerName
-        }
     }
 
 
@@ -74,16 +100,79 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
             val binder = service as AudioPlayService.LocalBinder
             mService = binder.getService()
             mService!!.addListener(audiolistener)
-            url?.let { mService!!.startExoPlayer(it) }
+            val list = mViewModel.musicsResult.value
+            list?.let { mService!!.startExoPlayer(fileName!!, it) }
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
             mService = null
         }
+    }
 
+    @SuppressLint("InflateParams")
+    private fun initMenu() {
+
+        if (mDialog == null) {//menu背景设置透明，才能显示出顶部圆角
+            mDialog = FixedHeightBottomSheetDialog(this, R.style.BottomSheetDialog, 1500)
+            val menuView = LayoutInflater.from(this).inflate(R.layout.layout_audio_menu, null)
+            mRecyclerView = menuView.findViewById<RecyclerView>(R.id.recycler_list)
+            mRecyclerView?.itemAnimator = DefaultItemAnimator()
+            mLayoutManager = LinearLayoutManager(this)
+            mRecyclerView?.layoutManager = mLayoutManager
+
+            val list = mViewModel.musicsResult.value
+            val adapter =
+                list?.let {
+                    AudioMenuAdapter(it, fileName!!, object : OnItemClickListener<MusicVo> {
+                        override fun onClick(position: Int, t: MusicVo) {
+
+                            mService?.seekToMediaItem(position)
+                            (mRecyclerView?.adapter as AudioMenuAdapter).updateSelectItem(
+                                t.fileName!!,
+                                position
+                            )
+                        }
+                    })
+                }
+            mRecyclerView!!.adapter = adapter
+            mDialog!!.setContentView(menuView)
+        } else {
+            (mRecyclerView?.adapter as AudioMenuAdapter).updateSelectItem(fileName!!,position)
+        }
+        Log.e("1mean","position: $position")
+        mLayoutManager?.scrollToPositionWithOffset(position, 200)
+        mDialog?.show()
+    }
+
+    //menu item click
+    override fun onClick(position: Int, t: MusicVo) {
+
+        //mService?.dispatchPause()
     }
 
     private val audiolistener = object : AudioServiceListener {
+
+        override fun initPlayView(mediaIndex: Int) {
+            mViewModel.musicsResult.value?.let { list ->
+                val currentItem = list[mediaIndex]
+                fileName = currentItem.fileName
+                position = mediaIndex
+                loadRoundedCornerImage(
+                    this@AudioPlayActivity,
+                    50,
+                    currentItem.cover!!,
+                    binding.imgAudioCover
+                )
+                loadLayoutBackGround(
+                    this@AudioPlayActivity,
+                    currentItem.cover!!,
+                    binding.flayoutAudio
+                )
+                binding.txtAudioSongName.text = currentItem.audioName
+                binding.txtAudioSingerName.text = currentItem.singerName
+            }
+        }
+
         override fun getMusicDuration(duration: String, lDuration: Long) {
             binding.txtAudioDuration.text = duration
             binding.barAudioTime.setDuration(lDuration)
@@ -108,7 +197,6 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
                 3 -> binding.imgAudioPlay.setImageResource(R.mipmap.img_audio_pause)
             }
         }
-
     }
 
     //目前只有停止时做时间处理
@@ -128,18 +216,10 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
         override fun onScrubStop(timeBar: TimeBar, position: Long, canceled: Boolean) {
             isTimeBarMoving = false
             if (!canceled) {
-                mService?.seekTo(position)
+                mService?.seekToPosition(position)
             }
         }
 
-    }
-
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.img_audio_play -> {
-                mService?.dispatchPause()
-            }
-        }
     }
 
 }

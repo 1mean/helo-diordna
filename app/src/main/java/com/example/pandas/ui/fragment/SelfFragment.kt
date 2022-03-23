@@ -24,6 +24,18 @@ public class SelfFragment : BaseLazyFragment<SelfViewModel, FragmentMineBinding>
         binding.clayoutHistory.setOnClickListener {
             startActivity(Intent(activity, HistoryActivity::class.java))
         }
+        binding.clayoutSetting.setOnClickListener {
+            showToast("设置")
+        }
+        binding.clayoutOtherSetting.setOnClickListener {
+            showToast("个性设置")
+        }
+        binding.clayoutMoreSetting.setOnClickListener {
+            showToast("更多服务")
+        }
+        binding.clayoutSelf.setOnClickListener {
+            showToast("个人中心")
+        }
     }
 
     override fun createObserver() {

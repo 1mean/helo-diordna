@@ -80,6 +80,8 @@
     <color name="color_talk_item_pressed">#f46844</color>
     <color name="color_landscape_item_author">#babdbf</color>
     <color name="color_bg_love">#f5f5f5</color>
+    <color name="color_bg_love2">#F4F8FA</color>
+    <color name="color_bg_card1">#29F3FF</color>
 
     <!--search-->
     <color name="color_text_search_cancel">#60676c</color>
@@ -99,6 +101,7 @@
     <color name="color_music_start_bg">#f6f6f6</color>
     <color name="color_music_top_txt">#2A313B</color>
     <color name="color_music_divider_shadow">#66000000</color>
+    <color name="color_music_menu_item_selected">#f8fbfd</color>
 
     <!--cache-->
     <color name="color_cache_bar_title">#5E676D</color>
@@ -107,6 +110,7 @@
     <color name="color_txt_history_time">#909A9A</color>
     <color name="color_text_setting">#02091D</color>
     <color name="color_text_setting_info">#ADB4BE</color>
+    <color name="color_audio_menu_singer">#808892</color>
 
 
 </resources>

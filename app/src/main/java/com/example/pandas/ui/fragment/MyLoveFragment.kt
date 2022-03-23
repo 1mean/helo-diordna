@@ -3,7 +3,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.bean.pet.PageCommonData
-import com.example.pandas.databinding.LayoutRefreshBinding
+import com.example.pandas.databinding.LayoutRefreshLoadmoreBinding
 
 /**
  * @description: 我爱看的
@@ -11,7 +11,7 @@ import com.example.pandas.databinding.LayoutRefreshBinding
  * @date: 1/28/22 8:51 下午
  * @version: v1.0
  */
-public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutRefreshBinding>() {
+public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutRefreshLoadmoreBinding>() {
 
     private val mAdapter: MyLoveFragmentAdapter by lazy {
         MyLoveFragmentAdapter(
@@ -22,15 +22,14 @@ public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutRefreshB
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.freshLayout.setOnRefreshListener {
+        binding.swipLayout.setOnRefreshListener {
             mViewModel.getLoveData(true)
         }
 
-        binding.recyclerView.run {
+        binding.recyclerLayout.run {
             adapter = mAdapter
             layoutManager = LinearLayoutManager(mActivity)
             addItemDecoration(MyLoveItemDecoration(mActivity))
-
         }
     }
 
@@ -39,20 +38,20 @@ public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutRefreshB
         mViewModel.loveDataWrapper.observe(viewLifecycleOwner) {
             if (it.isSuccess) {
 
-                when{
-                    it.isRefresh ->{
+                when {
+                    it.isRefresh -> {
                         mAdapter.refresh(it.loveData)
-                        binding.freshLayout.isRefreshing = false
+                        binding.swipLayout.isRefreshing = false
                     }
                 }
-                binding.freshLayout.visibility = View.VISIBLE
+                binding.swipLayout.visibility = View.VISIBLE
             }
         }
     }
 
     override fun firstOnResume() {
         mViewModel.getLoveData(true)
-        binding.freshLayout.isRefreshing = true
+        binding.swipLayout.isRefreshing = true
     }
 
 }

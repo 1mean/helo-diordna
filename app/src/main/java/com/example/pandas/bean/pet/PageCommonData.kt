@@ -11,7 +11,11 @@ data class PageCommonData(
     var songs: MutableList<MusicVo> = mutableListOf(),
     var footBallModel: MutableList<PetViewData> = mutableListOf(),
     var talkAudios: MutableList<MusicVo> = mutableListOf(),
-    var videoList: MutableList<PetViewData> = mutableListOf()
+    var videoList: MutableList<PetViewData> = mutableListOf(),
+    var artList: MutableList<PetViewData> = mutableListOf(),
+    var babyList: MutableList<PetViewData> = mutableListOf(),
+    var honglouList: MutableList<PetViewData> = mutableListOf(),
+    var beautyList: MutableList<PetViewData> = mutableListOf(),
 
 )
 

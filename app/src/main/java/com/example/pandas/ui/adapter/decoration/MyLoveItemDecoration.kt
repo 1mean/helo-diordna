@@ -13,6 +13,7 @@ import com.example.pandas.R
 public class MyLoveItemDecoration(private val context: Context) : RecyclerView.ItemDecoration() {
 
     private var padding: Int = context.resources.getDimension(R.dimen.item_home_padding).toInt()
+    private var padding2: Int = context.resources.getDimension(R.dimen.common_sz_15_dimens).toInt()
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -23,8 +24,8 @@ public class MyLoveItemDecoration(private val context: Context) : RecyclerView.I
         super.getItemOffsets(outRect, view, parent, state)
 
         when (parent.getChildAdapterPosition(view)) {
-            0 -> outRect.set(padding, padding, padding, padding)
-            else -> outRect.set(padding, 0, padding, padding)
+            0 -> outRect.set(padding, padding, padding, padding2)
+            else -> outRect.set(padding, 0, padding, padding2)
         }
     }
 }
