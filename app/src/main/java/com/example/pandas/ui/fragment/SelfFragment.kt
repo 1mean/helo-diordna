@@ -1,9 +1,12 @@
+package com.example.pandas.ui.fragment
 import android.content.Intent
 import android.os.Bundle
 import com.example.pandas.app.AppInfos
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentMineBinding
+import com.example.pandas.ui.activity.ErrorActivity
 import com.example.pandas.ui.activity.HistoryActivity
 import com.example.pandas.ui.activity.LocalCacheActivity
 
@@ -35,6 +38,9 @@ public class SelfFragment : BaseLazyFragment<SelfViewModel, FragmentMineBinding>
         }
         binding.clayoutSelf.setOnClickListener {
             showToast("个人中心")
+        }
+        binding.cvError.setOnClickListener {
+            mActivity.startActivity(Intent(mActivity, ErrorActivity::class.java))
         }
     }
 

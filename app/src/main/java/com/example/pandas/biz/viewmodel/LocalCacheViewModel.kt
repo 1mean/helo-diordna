@@ -1,14 +1,14 @@
 package com.example.pandas.biz.viewmodel
 
-import FileUtils
-import PetManagerCoroutine
-import UIDataWrapper
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.pandas.app.AppInfos
 import com.example.pandas.base.BaseViewModel
+import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.pet.PetViewData
+import com.example.pandas.biz.manager.PetManagerCoroutine
+import com.example.pandas.utils.FileUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -71,7 +71,7 @@ public class LocalCacheViewModel : BaseViewModel() {
             withContext(Dispatchers.IO) {
 
                 val list = getAllFiles(context)
-                Log.e("1madaean","size: ${list.size}")
+                Log.e("1madaean", "size: ${list.size}")
                 val videoList = mutableListOf<PetViewData>()
                 val pageList =
                     if ((times + 1) * counts >= list.size) {//最后一批数据
@@ -137,14 +137,14 @@ public class LocalCacheViewModel : BaseViewModel() {
                 val itemFile = File(localFile, "/videos/".plus(selectFileName.value))
                 if (itemFile.isDirectory) {
                     val videoList = itemFile.listFiles()
-                    Log.e("1madaean","videoList: ${videoList.size}")
+                    Log.e("1madaean", "videoList: ${videoList.size}")
                     if (videoList != null && videoList.isNotEmpty()) {
                         //过滤掉不是mp4的文件,目前已经物理删除
 //                        mp4List = videoList.filter { file ->
 //                            file.name.endsWith("mp4")
 //                        }.toMutableList()
                         mp4List = videoList.toMutableList()
-                        Log.e("1madaean","mp4List: ${mp4List.size}")
+                        Log.e("1madaean", "mp4List: ${mp4List.size}")
                     }
                 }
             }

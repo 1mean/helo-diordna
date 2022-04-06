@@ -1,8 +1,11 @@
+package com.example.pandas.biz.manager
 import com.example.pandas.bean.CoverDownLoad
 import com.example.pandas.bean.HistoryItem
+import com.example.pandas.bean.LandscapeData
 import com.example.pandas.bean.SearchInfo
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.PetViewData
+import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.dao.PetVideoDao
 import com.example.pandas.sql.database.AppDataBase
@@ -10,8 +13,6 @@ import com.example.pandas.sql.entity.History
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 
 /**
@@ -189,9 +190,17 @@ class PetManager {
         }
     }
 
-    fun getVideoByCode(code: Int): Flow<PetVideo> {
+    suspend fun getVideoByCode(code: Int): PetVideo {
 
-        return petDao.queryVideoByCode(code).flowOn(Dispatchers.IO)
+        return withContext(Dispatchers.IO) {
+            val video = petDao.queryVideoByCode(code)
+            val name = video.authorName
+            name?.let {
+                val user = petDao.queryUserByName(it)
+                video.user = user
+            }
+            video
+        }
     }
 
     suspend fun getAiRecommend(code: Int, type: Int, counts: Int): MutableList<PetViewData> {
@@ -205,6 +214,29 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
             petDao.queryByKeyWords("%$words%")
+        }
+    }
+
+    suspend fun searchPeriod(
+        words: String,
+        period: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetViewData> {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryPeriedByKey("%$words%", period, startIndex, counts)
+        }
+    }
+
+    suspend fun searchByPeriod(
+        period: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetViewData> {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryByPeried(period, startIndex, counts)
         }
     }
 

@@ -1,3 +1,4 @@
+package com.example.pandas.ui.fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

@@ -1,3 +1,5 @@
+package com.example.pandas.ui.fragment
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
+import com.example.pandas.ui.adapter.DownLoadAdapter
+import com.example.pandas.ui.adapter.decoration.DownLoadItemDecoration
 
 /**
  * @description: TODO

@@ -1,10 +1,15 @@
+package com.example.pandas.ui.adapter
+
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.bean.pet.PetViewData
-import com.example.pandas.biz.ext.loadImage
+import com.example.pandas.biz.ext.loadRoundedCornerImage
+import com.example.pandas.biz.interaction.OnVideoItemClickLIstener
 import com.example.pandas.databinding.ItemVideoIntroBinding
+import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
+import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: TODO
@@ -51,7 +56,7 @@ public class VideoRecoListAdapter(
         fun handle(position: Int) {
 
             val video = list[position]
-            loadImage(itemView.context, video.cover, cover)
+            loadRoundedCornerImage(itemView.context, 13, video.cover, cover)
             title.text = video.title
             name.text = video.authorName
             duration.text = TimeUtils.getDuration(video.duration.toLong())

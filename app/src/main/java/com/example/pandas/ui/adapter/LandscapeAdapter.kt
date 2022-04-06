@@ -1,15 +1,20 @@
+package com.example.pandas.ui.adapter
+
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
+import com.example.pandas.bean.LandscapeData
 import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.databinding.AdapterItemTitleBinding
 import com.example.pandas.databinding.AdapterLandscapeItemBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
+import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.viewpager.Indicator
+import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: TODO

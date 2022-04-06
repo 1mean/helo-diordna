@@ -1,3 +1,5 @@
+package com.example.pandas.utils
+
 import android.R
 import android.annotation.TargetApi
 import android.app.Activity

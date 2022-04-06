@@ -1,11 +1,10 @@
 package com.example.pandas.data
 
 import MultiVideoData
-import PetGroupPandaData
-import PetSinglePandaData
 import android.util.Log
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.sql.entity.User
 
 object AppData {
 
@@ -44,12 +43,14 @@ object AppData {
             Log.e("1mean", "list14: ${list14.size}")
             val list15 = ArtData.getAll()
             Log.e("1mean", "list15: ${list15.size}")
+            val list16 = FootballData.getAll()
+            Log.e("1mean", "list16: ${list16.size}")
 
 
             Log.e(
                 "1mean",
                 "sum: " + (list1.size + list2.size + list3.size + list4.size + list5.size
-                        + list6.size + list7.size + list8.size + list9.size + list10.size + list11.size + list12.size + list13.size + list14.size + list15.size
+                        + list6.size + list7.size + list8.size + list9.size + list10.size + list11.size + list12.size + list13.size + list14.size + list15.size + list16.size
                         )
             )
             addAll(list1)
@@ -67,11 +68,16 @@ object AppData {
             addAll(list13)
             addAll(list14)
             addAll(list15)
+            addAll(list16)
         }
     }
 
     fun getMusicData(): MutableList<MusicVo> {
 
         return MusicData.getMusic()
+    }
+
+    fun getUser(): MutableList<User> {
+        return UserData.getAll()
     }
 }

@@ -1,3 +1,4 @@
+package com.example.pandas.ui.adapter
 import android.graphics.Typeface
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView

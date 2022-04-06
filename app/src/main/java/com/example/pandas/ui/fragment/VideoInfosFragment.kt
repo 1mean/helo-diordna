@@ -1,15 +1,21 @@
+package com.example.pandas.ui.fragment
+
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
+import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.interaction.OnVideoItemClickLIstener
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.FragmentInformationBinding
+import com.example.pandas.ui.adapter.VideoRecoListAdapter
 
 /**
- * @description: TODO
+ * @description: VideoInfosFragment
  * @author: dongyiming
  * @date: 2/14/22 9:48 下午
  * @version: v1.0
@@ -53,8 +59,24 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                 binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
             }
 
-            it.cover?.let { url ->
-                loadCircleImage(mActivity, url, binding.imgVideoInfoHead)
+            it.user?.let { author ->
+
+                author.headUrl?.let { loadCircleImage(mActivity, it, binding.imgVideoInfoHead) }
+                if (author.isVip == 1) {//是会员
+                    binding.txtVideoInfoName.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
+                    binding.txtVideoInfoName.setTextColor(
+                        ContextCompat.getColor(
+                            mActivity,
+                            R.color.color_name_txt
+                        )
+                    )
+                }
+            }
+
+            if (it.user == null) {
+                it.cover?.let { cover ->
+                    loadCircleImage(mActivity, cover, binding.imgVideoInfoHead)
+                }
             }
 
             it.authorName?.let { name ->

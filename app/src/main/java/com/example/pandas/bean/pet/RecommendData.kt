@@ -1,3 +1,4 @@
+package com.example.pandas.bean.pet
 /**
  * @description: TODO
  * @author: dongyiming

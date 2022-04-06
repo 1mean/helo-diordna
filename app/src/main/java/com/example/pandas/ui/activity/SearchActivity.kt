@@ -1,9 +1,5 @@
 package com.example.pandas.ui.activity
 
-import HotSearchAdapter
-import SearchListFragment
-import SearchResultAdapter
-import StatusBarUtils
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -20,7 +16,11 @@ import com.example.pandas.biz.interaction.OnItemClickListener
 import com.example.pandas.biz.interaction.OnItemSelectedListener
 import com.example.pandas.biz.viewmodel.SearchViewModel
 import com.example.pandas.databinding.ActivitySearchBinding
+import com.example.pandas.ui.adapter.HotSearchAdapter
+import com.example.pandas.ui.adapter.SearchResultAdapter
+import com.example.pandas.ui.fragment.SearchListFragment
 import com.example.pandas.utils.KeyboardUtils
+import com.example.pandas.utils.StatusBarUtils
 
 
 /**
@@ -53,7 +53,7 @@ public class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBindin
         }
         mViewModel.getHotSearch()
 
-        binding.gridSearch.init(mViewModel.getSrachHistory(this),this)
+        binding.gridSearch.init(mViewModel.getSrachHistory(this), this)
 
         binding.rvList.layoutManager = LinearLayoutManager(this@SearchActivity)
         binding.rvList.adapter = rAdapter
@@ -63,7 +63,7 @@ public class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBindin
             addTextChangedListener(watch)
         }
         binding.edit.setOnClickListener {
-            Log.e("1mean","isFragmentShow: $isFragmentShow")
+            Log.e("1mean", "isFragmentShow: $isFragmentShow")
             binding.edit.isCursorVisible = true
             if (isFragmentShow && supportFragmentManager.fragments.size == 2) {//fragment显示中
                 supportFragmentManager.beginTransaction().remove(mFragment).commit()
@@ -91,7 +91,7 @@ public class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBindin
 
         binding.clClear.setOnClickListener {
             mViewModel.clearHistory(this)
-            binding.gridSearch.init(mViewModel.getSrachHistory(this),this)
+            binding.gridSearch.init(mViewModel.getSrachHistory(this), this)
         }
     }
 
@@ -103,7 +103,7 @@ public class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBindin
         //添加4个时 0 0 4，删除1个时 3 1 0，
         override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
 
-            Log.e("1mean","onTextChanged: $isUserSet")
+            Log.e("1mean", "onTextChanged: $isUserSet")
             if (!isUserSet) {//代码设置的内容，不需要下面操作
 
                 if (text?.length != 0) {
@@ -153,7 +153,7 @@ public class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBindin
         } else {
             supportFragmentManager.beginTransaction().remove(mFragment).commit()
             clear()
-            binding.gridSearch.init(mViewModel.getSrachHistory(this),this)
+            binding.gridSearch.init(mViewModel.getSrachHistory(this), this)
         }
     }
 

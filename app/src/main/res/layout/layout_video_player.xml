@@ -3,7 +3,10 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:viewBindingIgnore="false"
+        android:id="@+id/flayout_controller"
+        >
 
     <!--id名必须和exoplayer源码控件名一致-->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,6 +32,52 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginEnd="60dp"
                 android:src="@mipmap/img_video_forward" />-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_top_left"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/shape_video_controller_bg">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clayout_video_left"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="@id/clayout_top_left"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_top_left"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_top_left">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="@id/clayout_video_left"
+                        app:layout_constraintTop_toTopOf="@id/clayout_video_left"
+                        app:layout_constraintBottom_toBottomOf="@id/clayout_video_left"
+                        android:layout_marginStart="5dp"
+                        android:src="@mipmap/img_video_left" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clayout_video_full"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="@id/clayout_top_left"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_top_left"
+                    app:layout_constraintRight_toRightOf="@id/clayout_top_left">
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="@id/clayout_video_full"
+                        app:layout_constraintTop_toTopOf="@id/clayout_video_full"
+                        app:layout_constraintBottom_toBottomOf="@id/clayout_video_full"
+                        android:layout_marginEnd="5dp"
+                        android:src="@mipmap/img_video_full" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/view_bottom"
@@ -39,7 +88,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="3dp"
                 android:background="@drawable/shape_video_controller_bg">
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -64,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:visibility="gone"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="8dp"
                         android:layout_gravity="center_vertical"
                         android:src="@mipmap/img_video_play" />
 

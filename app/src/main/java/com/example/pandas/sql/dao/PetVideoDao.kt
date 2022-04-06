@@ -7,7 +7,7 @@ import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.sql.entity.History
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
-import kotlinx.coroutines.flow.Flow
+import com.example.pandas.sql.entity.User
 
 /**
  * @description:
@@ -31,6 +31,12 @@ interface PetVideoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMusics(songs: MutableList<MusicVo>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertUsers(users: MutableList<User>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertUser(user: User)
 
     /* -----------删------------------------------------- */
 
@@ -166,10 +172,25 @@ interface PetVideoDao {
     suspend fun queryAllPetCovers(): MutableList<CoverDownLoad>
 
     @Query("select * from pet_video where code=(:code)")
-    fun queryVideoByCode(code: Int): Flow<PetVideo>
+    suspend fun queryVideoByCode(code: Int): PetVideo
 
     @Query("select title,code from pet_video where title like (:words) limit 0,20")
     suspend fun queryByKeyWords(words: String): MutableList<SearchInfo>
+
+    @Query("select code,title,cover,authorName,duration from pet_video where period=(:period) and type=0 and videoType=0 and title like (:words) limit (:startIndex),(:counts)")
+    suspend fun queryPeriedByKey(
+        words: String,
+        period: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetViewData>
+
+    @Query("select code,title,cover,authorName,duration from pet_video where period=(:period) and type=0 and videoType=0 limit (:startIndex),(:counts)")
+    suspend fun queryByPeried(
+        period: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetViewData>
 
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where title like (:words) limit (:startIndex),(:counts)")
     suspend fun queryWordsByPage(
@@ -186,4 +207,7 @@ interface PetVideoDao {
 
     @Query("select * from history where code=(:code)")
     fun queryHistoryByCode(code: Int): History
+
+    @Query("select * from User where userName=(:name)")
+    fun queryUserByName(name: String): User
 }

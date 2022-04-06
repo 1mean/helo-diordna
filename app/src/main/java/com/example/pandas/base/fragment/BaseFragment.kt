@@ -1,3 +1,4 @@
+package com.example.pandas.base.fragment
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle

@@ -1,6 +1,10 @@
+package com.example.pandas.ui.adapter
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.pandas.ui.fragment.VideoCommentFragment
+import com.example.pandas.ui.fragment.VideoInfosFragment
 
 /**
  * @description: TODO

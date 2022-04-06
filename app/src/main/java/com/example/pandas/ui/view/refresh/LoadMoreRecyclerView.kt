@@ -1,13 +1,9 @@
 package com.example.pandas.ui.view.refresh
 
-import BaseEmptyViewHolder
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import kotlin.math.abs
 
 
@@ -34,6 +30,10 @@ class LoadMoreRecyclerView : RecyclerView {
     private var isFreshing = false //正在下拉刷新数据中
     private var isNoMore = false //是否没有更多数据
 
+    private var mDownX = 0
+    private var mDownY = 0
+    private var mScaleTouchSlop = 0
+
     private var mListener: ILoadMoreListener? = null
 
     constructor(context: Context) : this(context, null)
@@ -42,7 +42,9 @@ class LoadMoreRecyclerView : RecyclerView {
         context,
         attrs,
         defStyle
-    )
+    ) {
+        mScaleTouchSlop = ViewConfiguration.get(getContext()).scaledTouchSlop
+    }
 
     /**
      * 设置adapter
@@ -132,6 +134,52 @@ class LoadMoreRecyclerView : RecyclerView {
         }
         return super.onInterceptTouchEvent(ev)
     }
+
+//    override fun onInterceptTouchEvent(e: MotionEvent): Boolean {
+//
+//        var isIntercepted = super.onInterceptTouchEvent(e)
+//        Log.e("1mean", "pointerCount:${e.pointerCount}")
+//        if (e.pointerCount > 1) return true
+//
+////    var touchPosition: Int = getChildAdapterPosition(findChildViewUnder(x, y)!!)
+////    var touchVH = findViewHolderForAdapterPosition(touchPosition)
+////    var touchView: SwipeMenuLayout? = null
+////    if (touchVH != null)
+////    {
+////        val itemView: View = getSwipeMenuView(touchVH!!.itemView)
+////        if (itemView is SwipeMenuLayout) {
+////            touchView = itemView as SwipeMenuLayout
+////        }
+////    }
+//
+//        val action = e.action
+//        val x = e.x.toInt()
+//        val y = e.y.toInt()
+//        when (action) {
+//            MotionEvent.ACTION_DOWN -> {
+//                mDownX = x
+//                mDownY = y
+//                isIntercepted = false
+//            }
+//            MotionEvent.ACTION_MOVE -> {
+//                run { isIntercepted = handleUnDown(x, y, isIntercepted) }
+//            }
+//            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+//                isIntercepted = handleUnDown(x, y, isIntercepted)
+//            }
+//        }
+//        return isIntercepted
+//    }
+//
+//    private fun handleUnDown(x: Int, y: Int, defaultValue: Boolean): Boolean {
+//        val disX: Int = mDownX - x
+//        val disY: Int = mDownY - y
+//
+//        // swipe
+//        if (abs(disX) > mScaleTouchSlop && abs(disX) > abs(disY)) return false
+//        // click
+//        return if (abs(disY) < mScaleTouchSlop && abs(disX) < mScaleTouchSlop) false else defaultValue
+//    }
 
     inner class DataObserver : AdapterDataObserver() {
 

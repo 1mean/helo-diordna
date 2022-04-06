@@ -1,3 +1,5 @@
+package com.example.pandas.ui.adapter
+
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -7,6 +9,7 @@ import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.ext.startVideoPlayActivity
+import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: VideoListAdapter

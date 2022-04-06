@@ -1,9 +1,13 @@
+package com.example.pandas.ui.fragment
+
 import android.os.Bundle
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.interaction.OnItemClickListener
 import com.example.pandas.biz.viewmodel.LocalCacheViewModel
 import com.example.pandas.databinding.FragmentCacheListBinding
+import com.example.pandas.ui.adapter.CacheListAdapter
 
 /**
  * @description: CacheListFragment

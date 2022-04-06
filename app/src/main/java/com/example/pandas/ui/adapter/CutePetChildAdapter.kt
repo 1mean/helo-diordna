@@ -1,3 +1,5 @@
+package com.example.pandas.ui.adapter
+
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
@@ -5,6 +7,8 @@ import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loadImage
+import com.example.pandas.biz.ext.startVideoPlayActivity
+import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: CutePetChildAdapter
@@ -34,5 +38,9 @@ public class CutePetChildAdapter(private val list: MutableList<PetViewData>) :
         durationView.text = duration
         name.text = petVideo.authorName
         title.text = petVideo.title
+
+        holder.itemView.setOnClickListener {
+            startVideoPlayActivity(context, data.code)
+        }
     }
 }

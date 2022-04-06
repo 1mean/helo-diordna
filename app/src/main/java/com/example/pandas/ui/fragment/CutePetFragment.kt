@@ -1,9 +1,14 @@
+package com.example.pandas.ui.fragment
+
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
+import com.example.pandas.biz.viewmodel.CutePetViewModel
 import com.example.pandas.databinding.FragmentRoomBinding
+import com.example.pandas.ui.adapter.PetBannerAdapter
+import com.example.pandas.ui.adapter.RoomContentAdapter
 import com.example.pandas.ui.view.viewpager.Indicator
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout

@@ -1,16 +1,14 @@
 package com.example.pandas.ui.activity
 
-import CacheItemFragment
-import CacheListFragment
-import StatusBarUtils
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
-import android.view.View
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.LocalCacheViewModel
 import com.example.pandas.databinding.ActivityCacheBinding
+import com.example.pandas.ui.fragment.CacheItemFragment
+import com.example.pandas.ui.fragment.CacheListFragment
+import com.example.pandas.utils.StatusBarUtils
 
 /**
  * @description: LocalCacheActivity
@@ -18,7 +16,7 @@ import com.example.pandas.databinding.ActivityCacheBinding
  * @date: 3/8/22 1:38 下午
  * @version: v1.0
  */
-public class LocalCacheActivity : BaseActivity<LocalCacheViewModel, ActivityCacheBinding>(){
+public class LocalCacheActivity : BaseActivity<LocalCacheViewModel, ActivityCacheBinding>() {
 
     private val mFragment1 by lazy { CacheListFragment() }
     private val mFragment2 by lazy { CacheItemFragment() }
@@ -44,10 +42,10 @@ public class LocalCacheActivity : BaseActivity<LocalCacheViewModel, ActivityCach
 
     override fun onBackPressed() {
         super.onBackPressed()
-        Log.e("1mean","onBackPressed")
+        Log.e("1mean", "onBackPressed")
     }
 
-//    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+    //    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
 //
 //        if (keyCode == KeyEvent.KEYCODE_BACK) {
 //            if (mFragment2.isVisible) {

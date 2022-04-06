@@ -1,13 +1,14 @@
 package com.example.pandas.ui.activity
 
-import HistoryAdapter
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityHistoryBinding
+import com.example.pandas.ui.adapter.HistoryAdapter
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
+import com.example.pandas.utils.StatusBarUtils
 
 /**
  * @description: HistoryActivity

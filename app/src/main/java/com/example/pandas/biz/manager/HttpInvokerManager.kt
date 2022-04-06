@@ -1,3 +1,4 @@
+package com.example.pandas.biz.manager
 import com.example.pandas.bean.eyes.EyepetozerBean
 import com.example.pandas.biz.http.EyepetozerConvert
 import com.example.pandas.biz.http.httpService

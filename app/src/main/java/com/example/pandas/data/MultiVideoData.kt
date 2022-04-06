@@ -1519,7 +1519,7 @@ object MultiVideoData {
         panda1.fileName = "panda_knowledge1"
         panda1.code = 1021
         panda1.duration = 255
-        panda1.period = PeriodType.BABY.ordinal
+        panda1.period = PeriodType.KNOWLEDGE.ordinal
         panda1.isStar = true
         panda1.title = "《舌尖上的斧头山》第5集 盆盆奶"
         panda1.releaseTime = "2020-10-06 13:35:17"
@@ -1536,7 +1536,7 @@ object MultiVideoData {
         panda2.fileName = "panda_knowledge2"
         panda2.code = 1022
         panda2.duration = 205
-        panda2.period = PeriodType.BABY.ordinal
+        panda2.period = PeriodType.KNOWLEDGE.ordinal
         panda2.isStar = true
         panda2.title = "《舌尖上的斧头山》第4集 窝窝头"
         panda2.releaseTime = "2020-09-21 16:20:02"
@@ -1553,7 +1553,7 @@ object MultiVideoData {
         panda3.fileName = "panda_knowledge3"
         panda3.code = 1023
         panda3.duration = 227
-        panda3.period = PeriodType.BABY.ordinal
+        panda3.period = PeriodType.KNOWLEDGE.ordinal
         panda3.isStar = true
         panda3.title = "《舌尖上的斧头山》 第3集 午后甜点"
         panda3.releaseTime = "2020-09-07 16:30:54"
@@ -1570,7 +1570,7 @@ object MultiVideoData {
         panda4.fileName = "panda_knowledge4"
         panda4.code = 1024
         panda4.duration = 167
-        panda4.period = PeriodType.BABY.ordinal
+        panda4.period = PeriodType.KNOWLEDGE.ordinal
         panda4.isStar = true
         panda4.title = "《舌尖上的斧头山》第2集 竹"
         panda4.releaseTime = "2020-08-24 19:00:51"
@@ -1587,7 +1587,7 @@ object MultiVideoData {
         panda5.fileName = "panda_knowledge5"
         panda5.code = 1025
         panda5.duration = 154
-        panda5.period = PeriodType.BABY.ordinal
+        panda5.period = PeriodType.KNOWLEDGE.ordinal
         panda5.isStar = true
         panda5.title = "《舌尖上的斧头山》第1集 美食江湖"
         panda5.releaseTime = "2020-08-17 18:02:41"
@@ -1604,7 +1604,7 @@ object MultiVideoData {
         panda6.fileName = "panda_knowledge6"
         panda6.code = 1026
         panda6.duration = 220
-        panda6.period = PeriodType.BABY.ordinal
+        panda6.period = PeriodType.KNOWLEDGE.ordinal
         panda6.isStar = true
         panda6.title = "端午了，你们吃粽子，我们有“铛铛铛”！"
         panda6.releaseTime = "2021-06-14 13:35:15"
@@ -1621,7 +1621,7 @@ object MultiVideoData {
         panda7.fileName = "panda_knowledge7"
         panda7.code = 1027
         panda7.duration = 231
-        panda7.period = PeriodType.BABY.ordinal
+        panda7.period = PeriodType.KNOWLEDGE.ordinal
         panda7.isStar = true
         panda7.title = "“长江后浪”推前浪，一代更比一代胖"
         panda7.releaseTime = "2021-09-11 13:30:05"
@@ -1638,7 +1638,7 @@ object MultiVideoData {
         panda8.fileName = "panda_knowledge8"
         panda8.code = 1028
         panda8.duration = 210
-        panda8.period = PeriodType.BABY.ordinal
+        panda8.period = PeriodType.KNOWLEDGE.ordinal
         panda8.isStar = true
         panda8.title = "黑白熊怎么就变成“胖哒儿”了？"
         panda8.releaseTime = "2021-09-12 13:30:03"
@@ -1655,7 +1655,7 @@ object MultiVideoData {
         panda9.fileName = "panda_knowledge9"
         panda9.code = 1029
         panda9.duration = 215
-        panda9.period = PeriodType.BABY.ordinal
+        panda9.period = PeriodType.KNOWLEDGE.ordinal
         panda9.isStar = true
         panda9.title = "大熊猫不愧是用萌力传递友谊的使者！"
         panda9.releaseTime = "2021-09-13 10:16:02"
@@ -1672,7 +1672,7 @@ object MultiVideoData {
         panda10.fileName = "panda_knowledge10"
         panda10.code = 1030
         panda10.duration = 221
-        panda10.period = PeriodType.BABY.ordinal
+        panda10.period = PeriodType.KNOWLEDGE.ordinal
         panda10.isStar = true
         panda10.title = "大熊猫为什么只在川陕甘地区活动？是社恐吗？"
         panda10.releaseTime = "2021-09-14 10:00:00"
@@ -1689,7 +1689,7 @@ object MultiVideoData {
         panda11.fileName = "panda_knowledge11"
         panda11.code = 1031
         panda11.duration = 207
-        panda11.period = PeriodType.BABY.ordinal
+        panda11.period = PeriodType.KNOWLEDGE.ordinal
         panda11.isStar = true
         panda11.title = "大熊猫的“相亲相爱一家人”群里都有谁？"
         panda11.releaseTime = "2021-09-15 10:00:13"
@@ -1706,7 +1706,7 @@ object MultiVideoData {
         panda12.fileName = "panda_knowledge12"
         panda12.code = 1032
         panda12.duration = 226
-        panda12.period = PeriodType.BABY.ordinal
+        panda12.period = PeriodType.KNOWLEDGE.ordinal
         panda12.isStar = true
         panda12.title = "诶！严寒的冬天，就是玩~"
         panda12.releaseTime = "2021-09-16 13:30:13"
@@ -1723,7 +1723,7 @@ object MultiVideoData {
         panda13.fileName = "panda_knowledge13"
         panda13.code = 1033
         panda13.duration = 260
-        panda13.period = PeriodType.BABY.ordinal
+        panda13.period = PeriodType.KNOWLEDGE.ordinal
         panda13.isStar = true
         panda13.title = "小熊猫真不是大熊猫的崽！"
         panda13.releaseTime = "2021-09-17 13:30:05"
@@ -1740,7 +1740,7 @@ object MultiVideoData {
         panda14.fileName = "panda_knowledge14"
         panda14.code = 1034
         panda14.duration = 251
-        panda14.period = PeriodType.BABY.ordinal
+        panda14.period = PeriodType.KNOWLEDGE.ordinal
         panda14.isStar = true
         panda14.title = "大熊猫吃竹是基操，而特殊食谱还有此等功效与作用？"
         panda14.releaseTime = "2021-09-18 10:00:19"
@@ -1757,7 +1757,7 @@ object MultiVideoData {
         panda15.fileName = "panda_knowledge15"
         panda15.code = 1035
         panda15.duration = 230
-        panda15.period = PeriodType.BABY.ordinal
+        panda15.period = PeriodType.KNOWLEDGE.ordinal
         panda15.isStar = true
         panda15.title = "想和大熊猫握握手吗？"
         panda15.releaseTime = "2021-09-19 10:00:14"
@@ -1774,7 +1774,7 @@ object MultiVideoData {
         panda16.fileName = "panda_knowledge16"
         panda16.code = 1036
         panda16.duration = 224
-        panda16.period = PeriodType.BABY.ordinal
+        panda16.period = PeriodType.KNOWLEDGE.ordinal
         panda16.isStar = true
         panda16.title = "一口竹子嘎嘣脆"
         panda16.releaseTime = "2021-09-20 10:00:12"
@@ -1791,7 +1791,7 @@ object MultiVideoData {
         panda17.fileName = "panda_knowledge17"
         panda17.code = 1037
         panda17.duration = 208
-        panda17.period = PeriodType.BABY.ordinal
+        panda17.period = PeriodType.KNOWLEDGE.ordinal
         panda17.isStar = true
         panda17.title = "别看我是“素食主义者”，但我可是地地道道的食肉目动物！"
         panda17.releaseTime = "2021-09-21 10:00:11"
@@ -1808,7 +1808,7 @@ object MultiVideoData {
         panda18.fileName = "panda_knowledge18"
         panda18.code = 1038
         panda18.duration = 215
-        panda18.period = PeriodType.BABY.ordinal
+        panda18.period = PeriodType.KNOWLEDGE.ordinal
         panda18.isStar = true
         panda18.title = "本国宝的生活，是你们这些两脚兽羡慕不来的！"
         panda18.releaseTime = "2021-09-22 10:00:06"
@@ -1825,7 +1825,7 @@ object MultiVideoData {
         panda19.fileName = "panda_knowledge19"
         panda19.code = 1039
         panda19.duration = 225
-        panda19.period = PeriodType.BABY.ordinal
+        panda19.period = PeriodType.KNOWLEDGE.ordinal
         panda19.isStar = true
         panda19.title = "小小青团大学问，这竟然也是宝贝？！"
         panda19.releaseTime = "2021-09-23 10:00:14"
@@ -1842,7 +1842,7 @@ object MultiVideoData {
         panda20.fileName = "panda_knowledge20"
         panda20.code = 1040
         panda20.duration = 222
-        panda20.period = PeriodType.BABY.ordinal
+        panda20.period = PeriodType.KNOWLEDGE.ordinal
         panda20.isStar = true
         panda20.title = "熊家的尾巴只是不明显，不能说我没尾巴啊！"
         panda20.releaseTime = "2021-09-24 10:00:00"
@@ -1859,7 +1859,7 @@ object MultiVideoData {
         panda21.fileName = "panda_knowledge21"
         panda21.code = 1041
         panda21.duration = 223
-        panda21.period = PeriodType.BABY.ordinal
+        panda21.period = PeriodType.KNOWLEDGE.ordinal
         panda21.isStar = true
         panda21.title = "厉害吧！我们国宝间的交流就是这样朴实无华"
         panda21.releaseTime = "2021-09-25 10:00:02"
@@ -1876,7 +1876,7 @@ object MultiVideoData {
         panda22.fileName = "panda_knowledge22"
         panda22.code = 1042
         panda22.duration = 268
-        panda22.period = PeriodType.BABY.ordinal
+        panda22.period = PeriodType.KNOWLEDGE.ordinal
         panda22.isStar = true
         panda22.title = "大熊猫是怎么从粉红“小老鼠”变成黑白分明的大团子的呢？"
         panda22.releaseTime = "2021-09-26 10:00:06"
@@ -1893,7 +1893,7 @@ object MultiVideoData {
         panda23.fileName = "panda_knowledge23"
         panda23.code = 1043
         panda23.duration = 206
-        panda23.period = PeriodType.BABY.ordinal
+        panda23.period = PeriodType.KNOWLEDGE.ordinal
         panda23.isStar = true
         panda23.title = "没想到我们的行为举止也会影响到熊猫的生活？"
         panda23.releaseTime = "2021-09-30 10:00:13"
@@ -1910,7 +1910,7 @@ object MultiVideoData {
         panda24.fileName = "panda_knowledge24"
         panda24.code = 1044
         panda24.duration = 249
-        panda24.period = PeriodType.BABY.ordinal
+        panda24.period = PeriodType.KNOWLEDGE.ordinal
         panda24.isStar = true
         panda24.title = "母爱如同“山体滑坡”，看大熊猫妈妈如何教导熊猫宝宝成为一只真正的大熊猫"
         panda24.releaseTime = "2021-09-27 10:00:13"
@@ -1927,7 +1927,7 @@ object MultiVideoData {
         panda25.fileName = "panda_knowledge25"
         panda25.code = 1045
         panda25.duration = 267
-        panda25.period = PeriodType.BABY.ordinal
+        panda25.period = PeriodType.KNOWLEDGE.ordinal
         panda25.isStar = true
         panda25.title = "快来翻译翻译，这些嘤嘤怪们都在说什么？"
         panda25.releaseTime = "2021-09-28 10:00:09"
@@ -1944,7 +1944,7 @@ object MultiVideoData {
         panda26.fileName = "panda_knowledge26"
         panda26.code = 1046
         panda26.duration = 286
-        panda26.period = PeriodType.BABY.ordinal
+        panda26.period = PeriodType.KNOWLEDGE.ordinal
         panda26.isStar = true
         panda26.title = "国宝也是会生病的！不要再嘲笑熊家的“脱裤照”了！"
         panda26.releaseTime = "2021-09-29 10:00:14"

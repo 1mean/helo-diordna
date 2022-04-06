@@ -1,11 +1,12 @@
-import android.content.Context
-import android.content.Intent
+package com.example.pandas.ui.fragment
+
 import android.os.Bundle
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MoreDataViewModel
 import com.example.pandas.databinding.FragmentMoreBinding
-import com.example.pandas.ui.activity.MoreDataListActivity
+import com.example.pandas.ui.adapter.VideoListAdapter
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
 
 /**
@@ -28,7 +29,7 @@ public class VideoListFragment : BaseFragment<MoreDataViewModel, FragmentMoreBin
     }
 
     override fun createObserver() {
-        mViewModel.moreDataResult.observe(viewLifecycleOwner){
+        mViewModel.moreDataResult.observe(viewLifecycleOwner) {
             if (it.isSuccess && !it.isEmpty) {
                 if (it.isRefresh) {
                     mAdapter.refreshAdapter(it.listData)

@@ -2,6 +2,8 @@ package com.example.pandas.biz.ext
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Typeface
+import android.widget.TextView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pandas.ui.activity.VideoPlayingActivity
 
@@ -28,8 +30,4 @@ fun startVideoPlayActivity(context: Context, code: Int) {
         putExtra("code", code)
     }
     context.startActivity(intent)
-}
-
-fun startPlay(){
-
 }

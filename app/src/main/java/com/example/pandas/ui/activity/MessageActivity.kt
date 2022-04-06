@@ -1,10 +1,10 @@
 package com.example.pandas.ui.activity
-import StatusBarUtils
 import android.os.Bundle
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.MessageViewModel
 import com.example.pandas.databinding.ActivityMessageBinding
+import com.example.pandas.utils.StatusBarUtils
 
 /**
  * @description: 消息界面

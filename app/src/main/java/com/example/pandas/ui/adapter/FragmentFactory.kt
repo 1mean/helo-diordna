@@ -1,4 +1,10 @@
+package com.example.pandas.ui.adapter
+
 import androidx.fragment.app.Fragment
+import com.example.pandas.ui.fragment.CutePetFragment
+import com.example.pandas.ui.fragment.EyepetozerFragment
+import com.example.pandas.ui.fragment.HomeFragment
+import com.example.pandas.ui.fragment.SelfFragment
 
 /**
  * @description: 创建home界面的4个fragment

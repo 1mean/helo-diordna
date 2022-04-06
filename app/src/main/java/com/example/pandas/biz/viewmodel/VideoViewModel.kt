@@ -1,20 +1,18 @@
 package com.example.pandas.biz.viewmodel
 
-import PetManagerCoroutine
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.BaseViewModel
 import com.example.pandas.bean.pet.PetViewData
+import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.sql.entity.History
 import com.example.pandas.sql.entity.PetVideo
 import com.google.android.exoplayer2.util.Util
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 
 /**
- * @description: TODO
+ * @description: VideoViewModel
  * @author: dongyiming
  * @date: 2/11/22 4:38 下午
  * @version: v1.0
@@ -28,9 +26,7 @@ public class VideoViewModel : BaseViewModel() {
     fun getVideoInfo(code: Int) {
 
         viewModelScope.launch {
-            PetManagerCoroutine.getVideoByCode(code).collect {
-                videoInfo.value = it
-            }
+            videoInfo.value = PetManagerCoroutine.getVideoByCode(code)
         }
     }
 

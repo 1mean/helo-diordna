@@ -1,7 +1,14 @@
+package com.example.pandas.utils
+import android.app.Activity
 import android.content.Context
+import android.os.Build
 import android.util.DisplayMetrics
+import android.view.View
+import android.view.WindowInsets
+import android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
 import android.view.WindowManager
+import androidx.core.view.WindowCompat
 
 
 /**
@@ -16,14 +23,6 @@ object ScreenUtil {
     fun dip2px(context: Context, dpValue: Float): Int {
         return (dpValue * context.resources.displayMetrics.density).toInt()
     }
-
-//    fun dp2px(context: Context, dpValue: Float): Int {
-//
-//        val scale = context.resources.displayMetrics.density
-//
-//        return (dpValue * scale + 0.5f).toInt()
-//
-//    }
 
     fun px2dp(context: Context, pxValue: Float): Int {
 
@@ -48,5 +47,52 @@ object ScreenUtil {
         val displayMetrics = DisplayMetrics()
         windowManager.defaultDisplay.getRealMetrics(displayMetrics)
         return displayMetrics.heightPixels
+    }
+
+    /**
+     * 屏幕相关的写法，可以借鉴于其他功能 for activity
+     * @param:
+     * @return:
+     * @author: dongyiming
+     * @date: 3/30/22 6:36 下午
+     * @version: v1.0
+     */
+    fun hideSystemUI(context: Activity) {
+        val window = context.window
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+
+            // Tell the window that we want to handle/fit any system windows
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+
+            val controller = window.insetsController
+
+            // Hide the keyboard (IME)
+            controller?.hide(WindowInsets.Type.ime())
+
+            // Sticky Immersive is now ...
+            controller?.systemBarsBehavior = BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+
+            // When we want to hide the system bars
+            controller?.hide(WindowInsets.Type.systemBars())
+
+            /*val flag = WindowInsets.Type.statusBars()
+            WindowInsets.Type.navigationBars()
+            WindowInsets.Type.captionBar()
+            window?.insetsController?.hide(flag)*/
+        } else {
+            //noinspection
+            @Suppress("DEPRECATION")
+            // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    // Set the content to appear under the system bars so that the
+                    // content doesn't resize when the system bars hide and show.
+                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    // Hide the nav bar and status bar
+                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_FULLSCREEN)
+        }
     }
 }

@@ -1,3 +1,5 @@
+package com.example.pandas.ui.fragment
+
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -9,13 +11,14 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestBuilder
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.bumptech.glide.load.resource.bitmap.TransformationUtils
 import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.biz.controller.VideoIntroController
+import com.example.pandas.biz.interaction.CommonResultListener
 import com.example.pandas.databinding.FragmentVideoIntroBinding
+import com.example.pandas.ui.adapter.VideoRecommendAdapter
+import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: TODO

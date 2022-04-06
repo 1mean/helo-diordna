@@ -1,14 +1,18 @@
+package com.example.pandas.ui.fragment
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.getMusicUrl
 import com.example.pandas.biz.interaction.OnItemClickListener
 import com.example.pandas.biz.viewmodel.MoreDataViewModel
 import com.example.pandas.databinding.FragmentMusicListBinding
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.ui.activity.AudioPlayActivity
+import com.example.pandas.ui.adapter.MusicListAdapter
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
 
 /**
@@ -87,8 +91,8 @@ public class MusicListFragment : BaseFragment<MoreDataViewModel, FragmentMusicLi
         if (filePath.isNotEmpty()) {
 
             val intent = Intent(mActivity, AudioPlayActivity::class.java).apply {
-                putExtra("fileName",t)
-                putExtra("position",position)
+                putExtra("fileName", t)
+                putExtra("position", position)
             }
             //mActivity.startService(intent)
             mActivity.startActivity(intent)

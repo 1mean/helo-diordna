@@ -16,5 +16,6 @@ enum class PeriodType {
     GROUP,
     SINGLE,
     OLD,
-    ALL
+    ALL,
+    KNOWLEDGE,
 }

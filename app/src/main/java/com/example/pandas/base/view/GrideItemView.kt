@@ -1,3 +1,4 @@
+package com.example.pandas.base.view
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewConfiguration

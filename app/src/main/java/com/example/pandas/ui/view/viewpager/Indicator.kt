@@ -1,16 +1,15 @@
 package com.example.pandas.ui.view.viewpager
 
-import ScreenUtil
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import com.example.pandas.R
+import com.example.pandas.utils.ScreenUtil
 
 /**
  * @description: 自定义ViewPager的翻页指示器

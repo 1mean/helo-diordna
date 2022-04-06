@@ -2,6 +2,7 @@ package com.example.pandas.sql.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "pet_video")
@@ -40,6 +41,6 @@ data class PetVideo(
     //视频展示类型 0为普通视频，1为轮播图视频，2为横屏视频  3为cutepet页面轮播图
     @ColumnInfo
     var videoType: Int = 0,
-
-
-    )
+    @Ignore
+    var user: User? = null,
+)

@@ -29,10 +29,14 @@
         <activity android:name=".ui.activity.LocalCacheActivity" />
         <activity android:name=".ui.activity.HistoryActivity" />
         <activity android:name=".ui.activity.MessageActivity" />
+        <activity android:name=".ui.activity.ErrorActivity" />
+        <activity android:name=".ui.activity.PandaActivity" />
+        <activity android:name=".ui.activity.VideoItemListActivity" />
+        <activity android:name=".ui.activity.EyePlayingActivity" />
         <!-- <activity android:name=".ui.activity.HomeActivity" />-->
         <activity
                 android:name=".ui.activity.VideoPlayingActivity"
-                android:configChanges="orientation" />
+                android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <!--service-->
         <service android:name=".ui.service.AudioPlayService" />

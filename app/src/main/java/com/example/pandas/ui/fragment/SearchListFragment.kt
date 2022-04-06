@@ -1,3 +1,5 @@
+package com.example.pandas.ui.fragment
+
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +13,9 @@ import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.viewmodel.SearchViewModel
 import com.example.pandas.databinding.FragmentSearchResultBinding
 import com.example.pandas.databinding.LayoutLoadmoreBinding
+import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
+import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: TODO
@@ -28,7 +32,7 @@ public class SearchListFragment : BaseLazyFragment<SearchViewModel, LayoutLoadmo
     override fun initView(savedInstanceState: Bundle?) {
         keywords = arguments?.getString("keywords").toString()
 
-        mViewModel.saveSearchHistory(mActivity,keywords)
+        mViewModel.saveSearchHistory(mActivity, keywords)
         binding.recyclerLoad.run {
             layoutManager = LinearLayoutManager(mActivity)
             setRefreshAdapter(mAdapter, this@SearchListFragment)
@@ -70,7 +74,7 @@ public class SearchListFragment : BaseLazyFragment<SearchViewModel, LayoutLoadmo
         mViewModel.searchRefresh(false, keywords)
     }
 
-    fun clear(){
+    fun clear() {
         mAdapter.clear()
     }
 
@@ -98,7 +102,7 @@ public class SearchListFragment : BaseLazyFragment<SearchViewModel, LayoutLoadmo
         }
 
         @SuppressLint("NotifyDataSetChanged")
-        fun clear(){
+        fun clear() {
             list.clear()
             notifyDataSetChanged()
         }

@@ -1,7 +1,5 @@
 package com.example.pandas.ui.activity
 
-import StatusBarUtils
-import VerticalVideoAdapter
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +11,8 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.bean.eyes.EyepetozerBean
 import com.example.pandas.biz.viewmodel.VerticalVideoModel
 import com.example.pandas.databinding.ActivityVerticalVideoplayBinding
+import com.example.pandas.ui.adapter.VerticalVideoAdapter
+import com.example.pandas.utils.StatusBarUtils
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -103,7 +103,7 @@ public class VerticalVideoActivity :
             val firstLocalMediaItem = MediaItem.fromUri(url)
             mPlayer?.run {
                 //clearMediaItems()
-                Log.e("1mean","mediaCounts: ${this.mediaItemCount}")
+                Log.e("1mean", "mediaCounts: ${this.mediaItemCount}")
                 addMediaItem(firstLocalMediaItem)
                 playWhenReady = true
                 prepare()
@@ -117,10 +117,10 @@ public class VerticalVideoActivity :
 
         //1.创建SimpleExoPlayer实例
         mPlayer = ExoPlayer.Builder(this).build()
-       // binding.rvPlay.player = mPlayer
+        // binding.rvPlay.player = mPlayer
 
         //2.创建播放菜单并添加到播放器
-       // val firstLocalMediaItem = MediaItem.fromUri(Uri.fromFile(file))
+        // val firstLocalMediaItem = MediaItem.fromUri(Uri.fromFile(file))
 
         mPlayer?.run {
             repeatMode = Player.REPEAT_MODE_ALL//设置重复播放模式

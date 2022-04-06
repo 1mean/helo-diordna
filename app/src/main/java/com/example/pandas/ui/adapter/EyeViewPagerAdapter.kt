@@ -1,8 +1,10 @@
+package com.example.pandas.ui.adapter
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 
 /**
  * @description: TODO

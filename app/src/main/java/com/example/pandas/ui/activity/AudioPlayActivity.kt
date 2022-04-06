@@ -1,9 +1,5 @@
 package com.example.pandas.ui.activity
 
-import AudioMenuAdapter
-import AudioServiceListener
-import FixedHeightBottomSheetDialog
-import StatusBarUtils
 import android.annotation.SuppressLint
 import android.app.Service
 import android.content.ComponentName
@@ -15,17 +11,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.ext.loadLayoutBackGround
 import com.example.pandas.biz.ext.loadRoundedCornerImage
+import com.example.pandas.biz.interaction.AudioServiceListener
 import com.example.pandas.biz.interaction.OnItemClickListener
 import com.example.pandas.biz.viewmodel.AudioViewModel
 import com.example.pandas.databinding.ActivityAudioBinding
 import com.example.pandas.sql.entity.MusicVo
+import com.example.pandas.ui.adapter.AudioMenuAdapter
 import com.example.pandas.ui.service.AudioPlayService
+import com.example.pandas.ui.view.FixedHeightBottomSheetDialog
+import com.example.pandas.utils.StatusBarUtils
 import com.google.android.exoplayer2.ui.TimeBar
 import com.google.android.exoplayer2.util.Util
 import java.util.*
@@ -137,9 +136,9 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
             mRecyclerView!!.adapter = adapter
             mDialog!!.setContentView(menuView)
         } else {
-            (mRecyclerView?.adapter as AudioMenuAdapter).updateSelectItem(fileName!!,position)
+            (mRecyclerView?.adapter as AudioMenuAdapter).updateSelectItem(fileName!!, position)
         }
-        Log.e("1mean","position: $position")
+        Log.e("1mean", "position: $position")
         mLayoutManager?.scrollToPositionWithOffset(position, 200)
         mDialog?.show()
     }

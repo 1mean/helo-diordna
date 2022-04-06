@@ -10,7 +10,7 @@ object PetBabyPandaData {
 
     fun getPetBabyPanda(): MutableList<PetVideo> {
 
-        val panda = PetVideo()
+        /*val panda = PetVideo()
         panda.type = VideoType.PANDA.ordinal
         panda.fileName = "panda_baby_1"
         panda.code = 1
@@ -23,7 +23,7 @@ object PetBabyPandaData {
         panda.authorName = "瘦瘦爱吃粘豆包"
         panda.cover =
             "https://i1.hdslb.com/bfs/archive/f67baa59ade92acfb8397527e4453f7d19fe55b0.jpg"
-        list.add(panda)
+        list.add(panda)*/
 
         val panda2 = PetVideo()
         panda2.type = VideoType.PANDA.ordinal

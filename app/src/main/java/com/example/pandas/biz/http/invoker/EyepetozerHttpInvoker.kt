@@ -1,15 +1,14 @@
 package com.example.pandas.biz.http.invoker
 
-import EyepetozerFunction
 import com.example.pandas.bean.eyes.Eyepetozer
 import com.example.pandas.bean.eyes.EyepetozerBean
 import com.example.pandas.biz.http.RetrofitBuilder
 import com.example.pandas.biz.http.service.EyepetozerService
 import com.example.pandas.biz.interaction.IEyepetozerHttpInvoker
+import com.example.pandas.biz.manager.EyepetozerFunction
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.observers.ResourceObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
-import java.util.*
 
 /**
  * @description: 开眼视频网络请求
@@ -44,7 +43,8 @@ public class EyepetozerHttpInvoker : IEyepetozerHttpInvoker {
         count: Int,
         subscriber: ResourceObserver<MutableList<EyepetozerBean>>
     ) {
-        eyepetozerService?.discoveryHot(startIndx,count)?.map(EyepetozerFunction())?.subscribeOn(Schedulers.io())
+        eyepetozerService?.discoveryHot(startIndx, count)?.map(EyepetozerFunction())
+            ?.subscribeOn(Schedulers.io())
             ?.unsubscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe(subscriber)
     }
@@ -53,7 +53,8 @@ public class EyepetozerHttpInvoker : IEyepetozerHttpInvoker {
         videoId: Int,
         subscriber: ResourceObserver<MutableList<EyepetozerBean>>
     ) {
-        eyepetozerService?.getRecommendVideo(videoId)?.map(EyepetozerFunction())?.subscribeOn(Schedulers.io())
+        eyepetozerService?.getRecommendVideo(videoId)?.map(EyepetozerFunction())
+            ?.subscribeOn(Schedulers.io())
             ?.unsubscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe(subscriber)
     }

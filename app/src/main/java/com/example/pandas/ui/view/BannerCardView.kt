@@ -1,6 +1,5 @@
 package com.example.pandas.ui.view
 
-import BaseEmptyViewHolder
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
@@ -11,6 +10,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
+import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.viewpager.Banner
 
 /**

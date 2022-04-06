@@ -1,3 +1,5 @@
+package com.example.pandas.ui.adapter
+
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,12 +11,16 @@ import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.VideoType
+import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.databinding.CardImageBinding
 import com.example.pandas.databinding.CardItemMusicBinding
 import com.example.pandas.databinding.LayoutSleepBinding
 import com.example.pandas.databinding.LayoutTalkBinding
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.ui.activity.MoreDataListActivity
+import com.example.pandas.ui.adapter.decoration.OneDirectionItemDecoration
+import com.example.pandas.ui.adapter.decoration.SleepVideosItemDecoration
+import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -34,11 +40,12 @@ public class MyLoveFragmentAdapter(
     private val TYPE_MOVIE = 1 //歌曲视频
     private val TYPE_MUSIC = 2 //热门音乐
     private val TYPE_FOOTBALL = 3 //天下足球
-    private val TYPE_TALK = 4 //热门相声
-    private val TYPE_ART = 5 //艺术
-    private val TYPE_BABY = 6 //人类宝宝
-    private val TYPE_HONGLOU = 7 //人类宝宝
-    private val TYPE_BEAUTY = 8 //影视美人
+
+    //private val TYPE_TALK = 4 //热门相声
+    private val TYPE_ART = 4 //艺术
+    private val TYPE_BABY = 5 //人类宝宝
+    private val TYPE_HONGLOU = 6 //人类宝宝
+    private val TYPE_BEAUTY = 7 //影视美人
 
     private var startIndex = 5
     private val pageItems = 5
@@ -49,7 +56,7 @@ public class MyLoveFragmentAdapter(
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = 9
+    override fun getItemCount(): Int = 8
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
@@ -57,10 +64,9 @@ public class MyLoveFragmentAdapter(
             1 -> TYPE_MOVIE
             2 -> TYPE_MUSIC
             3 -> TYPE_FOOTBALL
-            4 -> TYPE_TALK
-            5 -> TYPE_ART
-            6 -> TYPE_BABY
-            7 -> TYPE_HONGLOU
+            4 -> TYPE_ART
+            5 -> TYPE_BABY
+            6 -> TYPE_HONGLOU
             else -> TYPE_BEAUTY
         }
     }
@@ -93,13 +99,13 @@ public class MyLoveFragmentAdapter(
                         parent,
                         false
                     )
-                return SleepViewHolder(binding)
+                return FootBallHolder(binding)
             }
-            TYPE_TALK -> {
-                val binding =
-                    LayoutTalkBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                return TalkViewHolder(binding)
-            }
+//            TYPE_TALK -> {
+//                val binding =
+//                    LayoutTalkBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+//                return TalkViewHolder(binding)
+//            }
             TYPE_ART -> {
                 val binding =
                     LayoutSleepBinding.inflate(
@@ -148,14 +154,14 @@ public class MyLoveFragmentAdapter(
                 (holder as MovieViewHolder).handle(position)
             }
             TYPE_FOOTBALL -> {
-                (holder as SleepViewHolder).handle(position)
+                (holder as FootBallHolder).handle(position)
             }
             TYPE_MUSIC -> {
                 (holder as MusicHolder).handle()
             }
-            TYPE_TALK -> {
-                (holder as TalkViewHolder).handle(position)
-            }
+//            TYPE_TALK -> {
+//                (holder as TalkViewHolder).handle(position)
+//            }
             TYPE_ART -> {
                 (holder as ArtViewHolder).handle(position)
             }
@@ -173,9 +179,9 @@ public class MyLoveFragmentAdapter(
 
     private inner class ImageViewHolder(binding: CardImageBinding) :
         BaseEmptyViewHolder(binding.root) {
-//        val image = binding.imageLove
-//        val card2 = binding.layoutCard2
-//        val card3 = binding.layoutCard3
+        val image = binding.imageLove
+        val card2 = binding.layoutMusic
+        val card3 = binding.layoutCard3
 //
 //        private var lastX: Float = 0F
 //        private var lastY: Float = 0F
@@ -183,6 +189,9 @@ public class MyLoveFragmentAdapter(
         @SuppressLint("ClickableViewAccessibility")
         fun handle(position: Int) {
 
+            card2.setOnClickListener {
+                MoreDataListActivity.startMoreDataActivity(itemView.context, AppInfos.TYPE_MP3)
+            }
 //            card2.setOnTouchListener { v, event ->
 //                val x = event.rawX
 //                val y = event.rawY
@@ -281,7 +290,7 @@ public class MyLoveFragmentAdapter(
         }
     }
 
-    private inner class SleepViewHolder(binding: LayoutSleepBinding) :
+    private inner class FootBallHolder(binding: LayoutSleepBinding) :
         BaseEmptyViewHolder(binding.root) {
 
         val titleLayout = binding.layoutSleepTitle

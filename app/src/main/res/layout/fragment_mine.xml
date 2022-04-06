@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_bg_self"
+        android:background="@color/white"
         android:orientation="vertical">
 
     <View
@@ -202,7 +202,7 @@
                     app:layout_constraintLeft_toLeftOf="@id/clayout_download"
                     app:layout_constraintRight_toRightOf="@id/clayout_download"
                     android:layout_marginTop="10dp"
-                    android:src="@mipmap/img_mine_download" />
+                    android:src="@mipmap/img_self_down" />
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -230,7 +230,7 @@
                     app:layout_constraintLeft_toLeftOf="@id/clayout_history"
                     app:layout_constraintRight_toRightOf="@id/clayout_history"
                     android:layout_marginTop="12dp"
-                    android:src="@mipmap/img_mine_history" />
+                    android:src="@mipmap/img_self_history" />
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -258,7 +258,7 @@
                     app:layout_constraintLeft_toLeftOf="@id/clayout_collect"
                     app:layout_constraintRight_toRightOf="@id/clayout_collect"
                     android:layout_marginTop="11dp"
-                    android:src="@mipmap/img_mine_collect" />
+                    android:src="@mipmap/img_self_collect" />
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -286,12 +286,12 @@
                     app:layout_constraintLeft_toLeftOf="@id/clayout_later"
                     app:layout_constraintRight_toRightOf="@id/clayout_later"
                     android:layout_marginTop="10dp"
-                    android:src="@mipmap/img_mine_download" />
+                    android:src="@mipmap/img_self_later" />
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/str_mine_download"
+                    android:text="@string/str_mine_later"
                     android:textSize="12sp"
                     android:textColor="@color/color_mine_txt_download"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_later"
@@ -318,15 +318,28 @@
             android:orientation="horizontal"
             android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp">
+            android:layout_marginEnd="10dp"
+            >
 
         <androidx.cardview.widget.CardView
+                android:id="@+id/cv_error"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="0.3dp"
-                android:background="@color/white" />
+                app:cardBackgroundColor="@color/color_bg_self">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="错误日志"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="13sp"
+                    android:layout_gravity="center" />
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
@@ -335,7 +348,7 @@
                 android:layout_marginStart="9dp"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="0.3dp"
-                android:background="@color/white" />
+                app:cardBackgroundColor="@color/color_bg_self"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

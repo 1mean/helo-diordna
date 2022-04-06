@@ -1,10 +1,9 @@
-import BaseEmptyViewHolder
-import EyeViewPagerAdapter
+package com.example.pandas.ui.adapter
+
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.view.menu.MenuView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,11 +11,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.bean.eyes.EyepetozerBean
-import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.databinding.ItemTitleEyeBinding
 import com.example.pandas.databinding.ItemVideoEyeBinding
 import com.example.pandas.databinding.ItemVpEyeBinding
+import com.example.pandas.ui.activity.EyePlayingActivity
 import com.example.pandas.ui.activity.VerticalVideoActivity
+import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.viewpager.Banner
 
 /**
@@ -25,9 +25,7 @@ import com.example.pandas.ui.view.viewpager.Banner
  * @date: 2021/12/23 10:28 上午
  * @version: v1.0
  */
-public class EyepetozerAdapter(
-    val list: MutableList<EyepetozerBean>,
-) :
+public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
     override fun getItemCount(): Int = list.size
@@ -82,7 +80,7 @@ public class EyepetozerAdapter(
         when (getItemViewType(position)) {
             1 -> doViewPagerHodler(holder, position)
             2 -> doTitleHodler(holder, position)
-            3 -> doVideoHodler(holder, position)
+            3 -> (holder as VideoHolder).handle(position)
         }
     }
 
@@ -109,8 +107,8 @@ public class EyepetozerAdapter(
             )
         ).into(videoHolder.userIcon)
         videoHolder.itemView.setOnClickListener {
-            val intent = Intent(context,VerticalVideoActivity::class.java)
-            intent.putExtra("currentVideo",bean)
+            val intent = Intent(context, VerticalVideoActivity::class.java)
+            intent.putExtra("currentVideo", bean)
             context.startActivity(intent)
         }
     }
@@ -125,12 +123,31 @@ public class EyepetozerAdapter(
         val viewPager: Banner = binding.vpEye
     }
 
-    class VideoHolder(binding: ItemVideoEyeBinding) :
+    inner class VideoHolder(binding: ItemVideoEyeBinding) :
         BaseEmptyViewHolder(binding.root) {
         val cover: AppCompatImageView = binding.imgVideo
         val userIcon: AppCompatImageView = binding.imgUser
         val descripetion: AppCompatTextView = binding.txtDescripetion
         val userName: AppCompatTextView = binding.txtUser
+
+        fun handle(position: Int) {
+            val context = itemView.context
+            val bean = list[position]
+            val user = bean.user
+            userName.text = user?.userName
+            descripetion.text = bean.title
+            Glide.with(context).load(bean.coverUrl).into(cover)
+            Glide.with(context).load(user?.userIcon).apply(
+                RequestOptions.bitmapTransform(
+                    CircleCrop()
+                )
+            ).into(userIcon)
+            itemView.setOnClickListener {
+                val intent = Intent(context, EyePlayingActivity::class.java)
+                intent.putExtra("EyepetozerBean", bean)
+                context.startActivity(intent)
+            }
+        }
     }
 
     class TitleHolder(binding: ItemTitleEyeBinding) : BaseEmptyViewHolder(binding.root) {

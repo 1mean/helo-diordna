@@ -1,3 +1,5 @@
+package com.example.pandas.ui.adapter
+
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
@@ -7,12 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pandas.R
 import com.example.pandas.bean.pet.PetViewData
-import com.example.pandas.biz.ext.startVideoPlayActivity
+import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.biz.interaction.OnItemClickListener
 import com.example.pandas.databinding.CardItemLayoutBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.databinding.ItemRecommendVideoBinding
+import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.viewpager.Indicator
+import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: 首页-推荐

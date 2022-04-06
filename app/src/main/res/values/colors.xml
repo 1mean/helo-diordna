@@ -13,7 +13,7 @@
     <color name="color_bg_bottom_gb">#00000000</color>
     <color name="color_groupbutton_text">#616A70</color>
     <color name="color_groupbutton_text_selected">#FF5596</color>
-    <color name="color_home_divider">#E5E5E6</color>
+    <color name="color_home_divider">#E2E6E6</color>
 
     <!--room-->
     <color name="color_room_tab_bg">#F5F5FF</color>
@@ -28,6 +28,7 @@
     <color name="color_indicator_select">#888689</color>
     <color name="color_indicator_bg">#E4CAAD</color>
     <color name="color_bg_banner">#11000000</color>
+    <color name="color_bg_pandas">#EFF3F3</color>
 
     <!--self-->
     <color name="color_black_80">#80000000</color>
@@ -46,6 +47,7 @@
     <!--eye-->
     <color name="color_eye_view_bg">#ededed</color>
     <color name="color_txt_item_name">#b6b6b6</color>
+    <color name="color_eye_txt_name">#DBD5D2</color>
 
     <!--video-->
     <color name="color_tab_text_selected">#F26E9A</color>
@@ -61,8 +63,8 @@
     <color name="color_video_item_title">#171a1c</color>
     <color name="color_video_item_name">#939a9f</color>
     <color name="color_video_divider">#E5E6E6</color>
-    <color name="color_video_timebar_buffered">#C5C5C5</color>
-    <color name="color_video_timebar_unplayed">#5D5D5F</color>
+    <color name="color_video_timebar_buffered">#cfd8dc</color>
+    <color name="color_video_timebar_unplayed">#77D3D3D3</color>
     <color name="color_reco_video_bg">#33000000</color>
 
     <!--home fragment-->
@@ -101,6 +103,7 @@
     <color name="color_music_start_bg">#f6f6f6</color>
     <color name="color_music_top_txt">#2A313B</color>
     <color name="color_music_divider_shadow">#66000000</color>
+    <color name="color_video_divider_shadow">#66000000</color>
     <color name="color_music_menu_item_selected">#f8fbfd</color>
 
     <!--cache-->
@@ -111,6 +114,9 @@
     <color name="color_text_setting">#02091D</color>
     <color name="color_text_setting_info">#ADB4BE</color>
     <color name="color_audio_menu_singer">#808892</color>
+    <color name="color_player_controller_bg">#99000000</color>
 
+    <!--other-->
+    <color name="color_progress_loadmore">#FF5B9A</color>
 
 </resources>

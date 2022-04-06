@@ -35,9 +35,8 @@
                     app:layout_constraintLeft_toRightOf="@id/img_video_info_head"
                     android:layout_marginStart="20dp"
                     android:textSize="12sp"
-                    android:textColor="@color/color_name_txt"
-                    android:gravity="center"
-                    android:textStyle="bold" />
+                    android:textColor="@color/color_talk_name"
+                    android:gravity="center" />
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_video_info_time"
@@ -194,7 +193,6 @@
                 android:id="@+id/rv_video_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:nestedScrollingEnabled="false"
-                />
+                android:nestedScrollingEnabled="false" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>

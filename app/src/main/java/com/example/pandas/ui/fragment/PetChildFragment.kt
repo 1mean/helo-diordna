@@ -1,9 +1,13 @@
+package com.example.pandas.ui.fragment
+
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.base.fragment.BaseLazyFragment
+import com.example.pandas.biz.viewmodel.CutePetViewModel
 import com.example.pandas.databinding.FragmentCuteChildBinding
-import com.example.pandas.databinding.FragmentMoreBinding
+import com.example.pandas.ui.adapter.CutePetChildAdapter
+import com.example.pandas.ui.adapter.decoration.CutePetChildDecoration
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
 
 /**

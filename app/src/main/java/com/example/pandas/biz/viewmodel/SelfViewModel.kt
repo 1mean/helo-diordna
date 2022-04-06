@@ -1,3 +1,4 @@
+package com.example.pandas.biz.viewmodel
 import com.example.pandas.base.BaseViewModel
 
 /**

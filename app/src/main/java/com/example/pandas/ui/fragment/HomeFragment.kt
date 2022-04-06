@@ -1,3 +1,5 @@
+package com.example.pandas.ui.fragment
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelStoreOwner
@@ -6,10 +8,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.R
+import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
 import com.example.pandas.ui.activity.MessageActivity
 import com.example.pandas.ui.activity.SearchActivity
+import com.example.pandas.ui.adapter.HomePagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 /**

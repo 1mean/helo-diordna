@@ -1,8 +1,9 @@
+package com.example.pandas.ui.fragment
+
 import android.content.Intent
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -11,11 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
+import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.biz.ext.getUrl
-import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.biz.interaction.OnItemClickListener
+import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.FragmentRecommendBinding
 import com.example.pandas.ui.activity.VideoPlayingActivity
+import com.example.pandas.ui.adapter.RecommendAdapter
 import com.example.pandas.ui.ext.initReco
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 import com.google.android.exoplayer2.ExoPlayer

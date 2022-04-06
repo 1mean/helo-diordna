@@ -1,3 +1,5 @@
+package com.example.pandas.utils
+
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,10 +34,16 @@ object TimeUtils {
     }
 
     @SuppressLint("SimpleDateFormat")
-    fun getTime(time: Long):String{
+    fun getTime(time: Long): String {
         val formatter = SimpleDateFormat("MM-dd HH:mm")
         return formatter.format(Date(time))
     }
 
+    @SuppressLint("SimpleDateFormat")
+    fun getCurrentDate(): String {
+        val currentTime = System.currentTimeMillis()
+        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        return formatter.format(Date(currentTime))
+    }
 
 }

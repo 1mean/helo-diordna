@@ -1,9 +1,13 @@
+package com.example.pandas.ui.fragment
+
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.LocalCacheViewModel
 import com.example.pandas.databinding.FragmentMoreBinding
+import com.example.pandas.ui.adapter.CacheItemAdapter
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
 
 /**
@@ -28,7 +32,10 @@ public class CacheItemFragment : BaseFragment<LocalCacheViewModel, FragmentMoreB
     override fun createObserver() {
 
         mViewModel.cacheList.observe(viewLifecycleOwner) {
-            Log.e("111111mean","size: ${it.listData.size}, isRefresh: ${it.isRefresh}, hasMore: ${it.hasMore}")
+            Log.e(
+                "111111mean",
+                "size: ${it.listData.size}, isRefresh: ${it.isRefresh}, hasMore: ${it.hasMore}"
+            )
             if (it.isSuccess) {
                 if (it.isRefresh) {
                     if (!it.hasMore) {

@@ -1,8 +1,13 @@
 package com.example.pandas.app
 
 import android.app.Application
-import com.example.pandas.data.*
+import android.util.Log
+import com.example.pandas.data.AppData
+import com.example.pandas.data.FootballData
+import com.example.pandas.data.UserData
 import com.example.pandas.sql.database.AppDataBase
+import com.example.pandas.sql.entity.PeriodType
+import com.example.pandas.sql.entity.User
 
 
 class DiorApplication : Application() {
@@ -17,8 +22,10 @@ class DiorApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         _instance = this
+        CrashHandler.init(this)
         //
-       //initdata()
+        //initdata()
+
     }
 
     private fun initdata() {
@@ -26,16 +33,13 @@ class DiorApplication : Application() {
         Thread {
             val petDao = AppDataBase.getInstance().petVideoDao()
 
-            val list1 = FootballData.getAll()
-            petDao.insertAll(list1)
-//
-//            val list2 = AppData.getMusicData()
-//            petDao.insertMusics(list2)
-
-//            for (id in 1845..1888){
-//                val video = petDao.queryById(id)
-//                petDao.delete(video)
-//            }
+            /* add data */
+//            val list = AppData.getPetVideoData()
+//            val list1 = AppData.getMusicData()
+//            val list2 = AppData.getUser()
+//            petDao.insertAll(list)
+//            petDao.insertMusics(list1)
+//            petDao.insertUsers(list2)
 
         }.start()
     }

@@ -1,10 +1,4 @@
-import android.content.Context
-import android.util.Log
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.pandas.sql.dao.PetVideoDao
-import com.example.pandas.sql.database.AppDataBase
+package com.example.pandas.sql
 
 /**
  * @description: 数据库操作类

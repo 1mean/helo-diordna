@@ -12,9 +12,17 @@ data class User(
     @ColumnInfo
     var userCode: Int = 0,//code
     @ColumnInfo
+    var userName: String? = null,//userName
+    @ColumnInfo
     var sex: Int = 0,//男0女1
     @ColumnInfo
+    var level: Int = 0,
+    @ColumnInfo
+    var isVip: Int = 0,//1为会员
+    @ColumnInfo
     var headUrl: String? = null,//头像
+    @ColumnInfo
+    var topUrl: String? = null,//顶部头像
     @ColumnInfo
     var region: String? = null,//地区
     @ColumnInfo

@@ -1,11 +1,11 @@
 package com.example.pandas.biz.viewmodel
 
-import UIDataWrapper
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.pandas.base.BaseViewModel
+import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.eyes.EyepetozerBean
-import httpManager
+import com.example.pandas.biz.manager.httpManager
 
 /**
  * @description: VerticalVideoModel

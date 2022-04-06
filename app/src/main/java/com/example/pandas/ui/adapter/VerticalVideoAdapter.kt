@@ -1,3 +1,4 @@
+package com.example.pandas.ui.adapter
 import android.util.Log
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter

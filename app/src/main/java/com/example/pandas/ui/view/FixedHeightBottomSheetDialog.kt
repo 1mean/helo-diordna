@@ -1,3 +1,4 @@
+package com.example.pandas.ui.view
 import android.content.Context
 import android.os.Bundle
 import android.view.Gravity

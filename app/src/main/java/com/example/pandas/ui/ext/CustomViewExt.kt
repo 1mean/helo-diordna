@@ -1,11 +1,11 @@
 package com.example.pandas.ui.ext;
 
-import BaseEmptyViewHolder
-import PandaDecoration
-import RecommendDecoration
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pandas.R
+import com.example.pandas.ui.adapter.decoration.PandaDecoration
+import com.example.pandas.ui.adapter.decoration.RecommendDecoration
+import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 
 

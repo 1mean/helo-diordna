@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="116dp"
+        android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_pandas_item_cover"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:scaleType="fitXY" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_pandas_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textSize="13sp"
+            android:textColor="@color/grey900"
+            android:maxLines="1"
+            android:maxEms="12"
+            android:ellipsize="end" />
+</androidx.appcompat.widget.LinearLayoutCompat>

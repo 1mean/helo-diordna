@@ -1,3 +1,4 @@
+package com.example.pandas.ui.adapter
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.example.pandas.R

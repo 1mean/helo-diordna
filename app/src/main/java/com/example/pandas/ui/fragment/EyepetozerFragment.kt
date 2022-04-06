@@ -1,7 +1,10 @@
+package com.example.pandas.ui.fragment
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.base.fragment.BaseLazyFragment
+import com.example.pandas.biz.viewmodel.EyepetozerViewModel
 import com.example.pandas.databinding.FragmentEyesBinding
+import com.example.pandas.ui.adapter.EyepetozerAdapter
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
 

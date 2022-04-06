@@ -13,6 +13,7 @@
             app:showDividers="middle"
             android:background="@color/white">
 
+
         <com.google.android.exoplayer2.ui.PlayerView
                 android:id="@+id/playView"
                 android:layout_width="match_parent"
@@ -21,8 +22,27 @@
                 app:show_shuffle_button="true"
                 app:hide_on_touch="true"
                 android:background="@color/black"
-                app:controller_layout_id="@layout/layout_video_player" />
-        <!--app:show_subtitle_button="true"-->
+                app:controller_layout_id="@layout/layout_video_controller" />
+
+        <!-- 使用三个 0dp 讲控件所有的padding设置为0 -->
+        <com.google.android.exoplayer2.ui.DefaultTimeBar
+                android:id="@+id/exo_time"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                app:bar_height="2dp"
+
+                app:scrubber_enabled_size="0dp"
+                app:scrubber_disabled_size="0dp"
+                app:scrubber_dragged_size="0dp"
+
+                android:layout_marginTop="-2dp"
+
+                app:unplayed_color="@color/color_video_timebar_unplayed"
+                app:played_color="@color/color_tab_indicator"
+
+                app:buffered_color="@color/color_video_timebar_buffered"
+                android:visibility="gone"
+                />
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -57,7 +77,7 @@
 
             </com.google.android.material.tabs.TabLayout>
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <!--<androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/ibtn"
                     android:layout_width="40dp"
                     android:layout_height="30dp"
@@ -66,13 +86,22 @@
                     app:layout_constraintBottom_toBottomOf="@id/cl_tab"
                     app:layout_constraintRight_toRightOf="@id/cl_tab"
                     android:background="@color/color_caption_bg"
-                    android:src="@mipmap/img_caption_close" />
+                    android:src="@mipmap/img_caption_close" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/color_music_start_bg"
+                android:outlineSpotShadowColor="@color/color_video_divider_shadow"
+                android:outlineAmbientShadowColor="@color/color_video_divider_shadow"
+                android:elevation="4dp" />
 
         <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_video"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@color/white" />
     </androidx.appcompat.widget.LinearLayoutCompat>
     <!--用于全屏播放-->
     <SurfaceView

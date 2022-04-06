@@ -1,8 +1,7 @@
-package com.example.pandas.biz.ext;
+package com.example.pandas.biz.ext
 
-import FileUtils
 import android.content.Context
-import android.util.Log
+import com.example.pandas.utils.FileUtils
 import java.io.File
 
 /**

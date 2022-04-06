@@ -1,6 +1,5 @@
 package com.example.pandas.ui.view.viewpager
 
-import BaseEmptyViewHolder
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import kotlin.math.abs
 
 /**

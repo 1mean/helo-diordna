@@ -1,4 +1,6 @@
+package com.example.pandas.bean
 import com.example.pandas.bean.pet.PageCommonData
+import com.example.pandas.bean.pet.RecommendData
 
 /**
  * @description: TODO

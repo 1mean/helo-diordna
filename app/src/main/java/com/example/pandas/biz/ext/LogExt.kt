@@ -1,4 +1,4 @@
-package com.example.pandas.biz.ext;
+package com.example.pandas.biz.ext
 
 import android.util.Log
 

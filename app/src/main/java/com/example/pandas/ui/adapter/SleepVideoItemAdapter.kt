@@ -1,3 +1,5 @@
+package com.example.pandas.ui.adapter
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,6 +9,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.databinding.AdapterSleepVideoItemBinding
+import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 
 /**
  * @description: SleepVideoItemAdapter

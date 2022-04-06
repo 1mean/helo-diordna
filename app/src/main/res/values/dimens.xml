@@ -32,10 +32,10 @@
 
 
     <!-- homepage底部规范-->
-    <dimen name="activity_bottom_height_dimens">48dp</dimen>
-    <dimen name="activity_bottom_paddingTop_dimens">5.7dp</dimen>
-    <dimen name="activity_bottom_paddingBottom_dimens">5dp</dimen>
-    <dimen name="activity_bottom_drawablePadding_dimens">2dp</dimen>
+    <dimen name="activity_bottom_height_dimens">49dp</dimen>
+    <dimen name="activity_bottom_paddingTop_dimens">6dp</dimen>
+    <dimen name="activity_bottom_paddingBottom_dimens">6dp</dimen>
+    <dimen name="activity_bottom_drawablePadding_dimens">3dp</dimen>
 
 
     <!-- recommend page roll viewpager -->

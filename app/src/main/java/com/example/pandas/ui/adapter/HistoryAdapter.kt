@@ -1,3 +1,5 @@
+package com.example.pandas.ui.adapter
+
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
@@ -6,6 +8,7 @@ import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.HistoryItem
 import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.ext.startVideoPlayActivity
+import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: HistoryAdapter

@@ -1,16 +1,13 @@
+package com.example.pandas.ui.adapter
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.R
-import com.example.pandas.bean.pet.PetViewData
-import com.example.pandas.databinding.AdapterSleepVideoItemBinding
 import com.example.pandas.databinding.AdapterTalkItemBinding
 import com.example.pandas.sql.entity.MusicVo
+import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 
 /**
  * @description: TODO
@@ -37,7 +34,7 @@ public class TalkAudioItemAdapter(private val list: MutableList<MusicVo>) :
         BaseEmptyViewHolder(binding.root) {
         val name = binding.txtTalkName
         val item = binding.layoutTalkItem
-        val color = ContextCompat.getColor(itemView.context,R.color.color_talk_item_pressed)
+        val color = ContextCompat.getColor(itemView.context, R.color.color_talk_item_pressed)
         fun handle(position: Int) {
             if (list.isNotEmpty()) {
                 val audio = list[position]
