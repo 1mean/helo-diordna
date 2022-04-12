@@ -1,13 +1,14 @@
 package com.example.pandas.ui.fragment
 
+import CommonItemDecoration
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.CutePetViewModel
 import com.example.pandas.databinding.FragmentCuteChildBinding
 import com.example.pandas.ui.adapter.CutePetChildAdapter
-import com.example.pandas.ui.adapter.decoration.CutePetChildDecoration
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
 
 /**
@@ -26,11 +27,12 @@ public class PetChildFragment() :
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        val padding = resources.getDimension(R.dimen.dimen_padding_pet).toInt()
         type = requireArguments().getInt("type")
         binding.recyclerLoad.visibility = View.GONE
         binding.recyclerLoad.run {
             layoutManager = GridLayoutManager(mActivity, 2)
-            addItemDecoration(CutePetChildDecoration(mActivity))
+            addItemDecoration(CommonItemDecoration(false, 2, padding, padding))
             setRefreshAdapter(mAdapter, this@PetChildFragment)
         }
     }

@@ -1,16 +1,21 @@
 package com.example.pandas.ui.activity
 
+import CommonItemDecoration
+import EyeRecAdapter
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.viewmodel.EyepetozerViewModel
 import com.example.pandas.databinding.ActivityEyePlayBinding
 import com.example.pandas.utils.StatusBarUtils
@@ -35,18 +40,22 @@ import kotlinx.coroutines.launch
 public class EyePlayingActivity : BaseActivity<EyepetozerViewModel, ActivityEyePlayBinding>() {
 
     private var mPlayer: ExoPlayer? = null
+    private var eyepetozerBean: EyepetozerBean? = null
 
     private var vedioUrl: String? = null
     private var isFullScreen: Boolean = false
     private var isAttachedToWindow: Boolean = false
     private val MAX_UPDATE_INTERVAL_MS = 1000L
 
+    private val mAdapter: EyeRecAdapter by lazy { EyeRecAdapter(mutableListOf()) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
         StatusBarUtils.setStatusBarMode(this, false, R.color.black)
 
-        val eyepetozerBean = intent.getParcelableExtra<EyepetozerBean>("EyepetozerBean")
+        val paddingBottom = resources.getDimension(R.dimen.common_lh_15_dimens).toInt()
+
+        eyepetozerBean = intent.getParcelableExtra<EyepetozerBean>("EyepetozerBean")
         vedioUrl = eyepetozerBean?.playUrl
 
 
@@ -67,6 +76,11 @@ public class EyePlayingActivity : BaseActivity<EyepetozerViewModel, ActivityEyeP
             finish()
         }
 
+        binding.rvEye.run {
+            layoutManager = LinearLayoutManager(this@EyePlayingActivity)
+            addItemDecoration(CommonItemDecoration(paddingBottom = paddingBottom))
+            adapter = mAdapter
+        }
 //        full.setOnClickListener {
 //            isFullScreen = if (isFullScreen) {//全屏
 //                closeFullScreen()
@@ -98,6 +112,33 @@ public class EyePlayingActivity : BaseActivity<EyepetozerViewModel, ActivityEyeP
         if (Util.SDK_INT <= 23) {
             initPlayer()
         }
+        eyepetozerBean?.let {
+            val title = it.title
+            val desc = it.description
+            val category = it.category
+            val authorUrl = it.user?.userIcon
+            val authorDesc = it.user?.userDes
+            val authorName = it.user?.userName
+            title?.let { t ->
+                binding.txtEyeTitle.text = t
+            }
+            desc?.let {
+                binding.txtEyeDesc.text = it
+            }
+            category?.let {
+                binding.txtEyeTag.text = StringBuilder("#").append(it).toString()
+            }
+            authorUrl?.let {
+                loadCircleImage(this, it, binding.imgEyeCover)
+            }
+            authorDesc?.let {
+                binding.txtAuthorDesc.text = it
+            }
+            authorName?.let {
+                binding.txtEyeName.text = it
+            }
+            mViewModel.getRecommend(it.videoId)
+        }
     }
 
     override fun createObserver() {
@@ -109,6 +150,14 @@ public class EyePlayingActivity : BaseActivity<EyepetozerViewModel, ActivityEyeP
 //            }
 //            requestLauncher.launch(intent)
 //        }
+        mViewModel.recoResult.observe(this) { list ->
+
+            Log.e("1mean", "list: $list")
+            if (list != null && list.isNotEmpty()) {
+
+                mAdapter.refreshAdapter(list)
+            }
+        }
     }
 
     private fun initPlayer() {

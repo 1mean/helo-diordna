@@ -1,15 +1,15 @@
 package com.example.pandas.ui.fragment
 
+import CommonItemDecoration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.PandaViewModel
 import com.example.pandas.databinding.LayoutRefreshLoadmore2Binding
 import com.example.pandas.ui.adapter.PandaListAdapter
-import com.example.pandas.ui.adapter.decoration.CutePetChildDecoration
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
 
 /**
@@ -28,12 +28,13 @@ public class PandaChildFragment : BaseFragment<PandaViewModel, LayoutRefreshLoad
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        val padding = resources.getDimension(R.dimen.dimen_padding_panda_child).toInt()
         type = requireArguments().getInt("type")
         key = requireArguments().getString("key")
 
         binding.recyclerLayout.apply {
             layoutManager = GridLayoutManager(mActivity, 2)
-            addItemDecoration(CutePetChildDecoration(mActivity))
+            addItemDecoration(CommonItemDecoration(false, 2, padding, padding))
             setRefreshAdapter(mAdapter, this@PandaChildFragment)
         }
         binding.swipLayout.setOnRefreshListener {

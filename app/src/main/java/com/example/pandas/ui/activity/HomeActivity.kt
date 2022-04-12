@@ -51,6 +51,7 @@ public class HomeActivity : BaseActivity<MainViewModel, ActivityHomeBinding>(),
 
         binding.vpHome.apply {
             adapter = HomeAdapter(this@HomeActivity)
+            offscreenPageLimit = 4
             setCurrentItem(0, false)
             isUserInputEnabled = false //禁止滑动
         }
@@ -62,7 +63,7 @@ public class HomeActivity : BaseActivity<MainViewModel, ActivityHomeBinding>(),
 
     override fun createObserver() {
 
-        mViewModel.HeadUiState.observe(this){
+        mViewModel.HeadUiState.observe(this) {
             binding.rgHome.check(R.id.rb_name4)
         }
     }

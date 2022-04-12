@@ -25,6 +25,8 @@
     <dimen name="common_lh_6_dimens">6dp</dimen>
     <dimen name="common_lh_8_dimens">8dp</dimen>
     <dimen name="common_lh_18_dimens">18dp</dimen>
+    <dimen name="common_lh_15_dimens">15dp</dimen>
+    <dimen name="common_lh_20_dimens">20dp</dimen>
     <dimen name="common_lh_22_dimens">22dp</dimen>
     <dimen name="common_lh_26_dimens">26dp</dimen>
     <dimen name="common_lh_25_dimens">25dp</dimen>
@@ -60,8 +62,13 @@
     <dimen name="video_divider_left_dimen">12dp</dimen>
 
     <!--home-->
-    <dimen name="item_home_padding">10dp</dimen>
+    <dimen name="item_home_padding">8dp</dimen>
+    <dimen name="item_panda_paddingTop">10dp</dimen>
+    <dimen name="item_panda_paddingLeft">8dp</dimen>
     <dimen name="item_home_padding_top">9dp</dimen>
-    <dimen name="item_horizontal_padding">9dp</dimen>
+    <dimen name="item_horizontal_padding">8dp</dimen>
+    <dimen name="dimen_padding_pet">8dp</dimen>
+    <dimen name="dimen_padding_panda_list">8dp</dimen>
+    <dimen name="dimen_padding_panda_child">10dp</dimen>
 
 </resources>

@@ -1,8 +1,15 @@
 package com.example.pandas.biz.http
 
-import android.util.Log
 import com.example.pandas.bean.eyes.*
 
+/**
+ * 只保留video
+ * @param:
+ * @return:
+ * @author: dongyiming
+ * @date: 4/8/22 3:02 下午
+ * @version: v2.0
+ */
 object EyepetozerConvert {
 
     fun convert(eyepetozer: Eyepetozer?): MutableList<EyepetozerBean> {
@@ -14,12 +21,12 @@ object EyepetozerConvert {
 
                 //目前界面展示三种item_type
                 when (item.type) {
-                    "horizontalScrollCard" -> {
-                        list.add(buildScrollCard(item))
-                    }
-                    "textHeader" -> {
-                        list.add(buildHeader(item))
-                    }
+//                    "horizontalScrollCard" -> {
+//                        list.add(buildScrollCard(item))
+//                    }
+//                    "textHeader" -> {
+//                        list.add(buildHeader(item))
+//                    }
                     "video" -> {
                         list.add(buildVideo(item, true))
                     }
@@ -88,6 +95,7 @@ object EyepetozerConvert {
             eyeBean.userCode = author.id
             eyeBean.user = createAuthor(author)
         }
+        eyeBean.category = data.category
         eyeBean.playUrl = data.playUrl
         eyeBean.duration = data.duration
         eyeBean.videoType = data.type

@@ -7,6 +7,9 @@ import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.view.ViewGroup
 import android.widget.RelativeLayout
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
@@ -30,7 +33,7 @@ import kotlin.math.abs
  * @date: 2021/12/24 10:55 上午
  * @version: v1.0
  */
-public class Banner : RelativeLayout {
+public class Banner : RelativeLayout, LifecycleObserver {
 
     private var scaledTouchSlop: Int = 0
     private var _mViewPager: ViewPager2? = null
@@ -330,6 +333,17 @@ public class Banner : RelativeLayout {
         return this
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    public fun onPause() {
+        Log.e("1mean", "onPause")
+        stopPlaying()
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    public fun onResume() {
+        Log.e("1mean", "onResume")
+        startPlaying()
+    }
 
     /* --对外暴露的方法--------------------------------------------------------------------------- */
 

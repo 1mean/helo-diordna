@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/llayout_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/color_bg_loading"
+        android:visibility="gone">
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/img_error" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/str_error"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/color_text_loading"
+            android:textSize="15sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_refresh"
+            android:layout_width="80dp"
+            android:layout_height="31dp"
+            android:text="@string/str_refresh"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_marginTop="14dp"
+            android:includeFontPadding="false"
+            android:background="@drawable/shape_bg_refresh" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

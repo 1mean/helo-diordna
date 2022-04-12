@@ -19,6 +19,7 @@ data class EyepetozerBean(
     var title: String? = null,//名称
     var coverUrl: String? = null,//封面图片
     var description: String? = null,//视频描述信息
+    var category: String? = null,//tag
     var userCode: Int = 0,//发布者的id
     var playUrl: String? = null,//默认的视频播放url
     var duration: Int = 0,//video时长，单位秒

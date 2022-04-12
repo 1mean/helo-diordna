@@ -18,6 +18,7 @@ import com.example.pandas.ui.activity.EyePlayingActivity
 import com.example.pandas.ui.activity.VerticalVideoActivity
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.viewpager.Banner
+import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: TODO
@@ -129,6 +130,7 @@ public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
         val userIcon: AppCompatImageView = binding.imgUser
         val descripetion: AppCompatTextView = binding.txtDescripetion
         val userName: AppCompatTextView = binding.txtUser
+        val duration: AppCompatTextView = binding.txtEyeItemDuration
 
         fun handle(position: Int) {
             val context = itemView.context
@@ -136,6 +138,7 @@ public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
             val user = bean.user
             userName.text = user?.userName
             descripetion.text = bean.title
+            duration.text = TimeUtils.getMMDuration(bean.duration.toLong())
             Glide.with(context).load(bean.coverUrl).into(cover)
             Glide.with(context).load(user?.userIcon).apply(
                 RequestOptions.bitmapTransform(

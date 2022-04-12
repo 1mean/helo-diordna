@@ -62,6 +62,8 @@ public class RetrofitBuilder private constructor() {
         if (httpclentBuilder == null) {
             httpclentBuilder = OkHttpClient.Builder()
             httpclentBuilder!!.readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+            //solve SocketTimeoutException: timeout
+            httpclentBuilder!!.writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
             httpclentBuilder!!.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
             //解析出现了乱码
             httpclentBuilder!!.addInterceptor { chain ->

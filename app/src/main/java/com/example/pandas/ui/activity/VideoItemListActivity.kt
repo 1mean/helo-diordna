@@ -1,5 +1,6 @@
 package com.example.pandas.ui.activity
 
+import CommonItemDecoration
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
@@ -8,7 +9,6 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.PandaViewModel
 import com.example.pandas.databinding.ActivityVideoListBinding
 import com.example.pandas.ui.adapter.PandaListAdapter
-import com.example.pandas.ui.adapter.decoration.CutePetChildDecoration
 import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
 import com.example.pandas.utils.StatusBarUtils
 
@@ -28,6 +28,7 @@ public class VideoItemListActivity : BaseActivity<PandaViewModel, ActivityVideoL
     override fun initView(savedInstanceState: Bundle?) {
 
         StatusBarUtils.updataStatus(this, true, false, R.color.white)
+        val padding = resources.getDimension(R.dimen.dimen_padding_panda_list).toInt()
         title = intent.getStringExtra("title")
         binding.tbPandas.title = title
         binding.tbPandas.setNavigationOnClickListener {
@@ -36,7 +37,7 @@ public class VideoItemListActivity : BaseActivity<PandaViewModel, ActivityVideoL
 
         binding.rvVideoList.apply {
             layoutManager = GridLayoutManager(this@VideoItemListActivity, 2)
-            addItemDecoration(CutePetChildDecoration(this@VideoItemListActivity))
+            addItemDecoration(CommonItemDecoration(false, 2, padding, padding))
             setRefreshAdapter(mAdapter, this@VideoItemListActivity)
         }
         binding.swipVideoList.setOnRefreshListener {

@@ -1,6 +1,9 @@
 package com.example.pandas.ui.fragment
+
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.EyepetozerViewModel
 import com.example.pandas.databinding.FragmentEyesBinding
@@ -21,8 +24,13 @@ public class EyepetozerFragment : BaseLazyFragment<EyepetozerViewModel, Fragment
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        val paddingTop = mActivity.resources.getDimension(R.dimen.common_lh_20_dimens).toInt()
+
+        binding.refreshLayout.isRefreshing = true
+
         binding.rvEye.apply {
             layoutManager = LinearLayoutManager(mActivity)
+            //addItemDecoration(PaddingTopItemDecoration(paddingTop))
             setRefreshAdapter(mAdapter, this@EyepetozerFragment)
         }
 
@@ -39,6 +47,8 @@ public class EyepetozerFragment : BaseLazyFragment<EyepetozerViewModel, Fragment
 
         mViewModel.eyepetozerWrapper.observe(viewLifecycleOwner) {
             if (it.isSuccess) {
+                binding.rvEye.visibility = View.VISIBLE
+                binding.layoutEyeResult.layoutError.llayoutError.visibility = View.GONE
                 if (it.isRefresh) {
                     mAdapter.refresh(it.listData)
                     binding.rvEye.isFreshing(false)
@@ -51,6 +61,9 @@ public class EyepetozerFragment : BaseLazyFragment<EyepetozerViewModel, Fragment
                     binding.rvEye.noMoreData()
                 }
             } else {
+                showToast("你好")
+                binding.rvEye.visibility = View.GONE
+                binding.layoutEyeResult.layoutError.llayoutError.visibility = View.VISIBLE
                 if (it.isRefresh) {
                     binding.refreshLayout.isRefreshing = false
                 }

@@ -24,7 +24,6 @@ public class VerticalVideoAdapter(
 
     override fun convert(holder: BaseViewHolder, data: EyepetozerBean, position: Int) {
 
-        Log.e("1mean", "position: $position")
         call.play(data.playUrl, holder.getWidget(R.id.playView))
 //        if (data.playUrl != null) {
 //

@@ -28,7 +28,7 @@
     <color name="color_indicator_select">#888689</color>
     <color name="color_indicator_bg">#E4CAAD</color>
     <color name="color_bg_banner">#11000000</color>
-    <color name="color_bg_pandas">#EFF3F3</color>
+    <color name="color_bg_pandas">#F0F3F3</color>
 
     <!--self-->
     <color name="color_black_80">#80000000</color>
@@ -118,5 +118,7 @@
 
     <!--other-->
     <color name="color_progress_loadmore">#FF5B9A</color>
+    <color name="color_text_loading">#919A9D</color>
+    <color name="color_bg_loading">#f0f3f3</color>
 
 </resources>

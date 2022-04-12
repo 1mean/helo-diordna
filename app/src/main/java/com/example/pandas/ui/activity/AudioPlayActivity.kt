@@ -138,7 +138,6 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
         } else {
             (mRecyclerView?.adapter as AudioMenuAdapter).updateSelectItem(fileName!!, position)
         }
-        Log.e("1mean", "position: $position")
         mLayoutManager?.scrollToPositionWithOffset(position, 200)
         mDialog?.show()
     }

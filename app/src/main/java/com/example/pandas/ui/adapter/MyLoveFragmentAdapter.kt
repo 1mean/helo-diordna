@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
@@ -18,9 +17,8 @@ import com.example.pandas.databinding.LayoutSleepBinding
 import com.example.pandas.databinding.LayoutTalkBinding
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.ui.activity.MoreDataListActivity
-import com.example.pandas.ui.adapter.decoration.OneDirectionItemDecoration
-import com.example.pandas.ui.adapter.decoration.SleepVideosItemDecoration
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
+import com.example.pandas.ui.ext.initRv
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -275,11 +273,7 @@ public class MyLoveFragmentAdapter(
             val videos = data.movieModel
             if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
-                recyclerView.run {
-                    addItemDecoration(SleepVideosItemDecoration(itemView.context))
-                    layoutManager = GridLayoutManager(itemView.context, 2)
-                    adapter = mAdapter
-                }
+                recyclerView.initRv(itemView.context,mAdapter!!)
             }
             titleLayout.setOnClickListener {
                 MoreDataListActivity.startMoreDataActivity(
@@ -304,11 +298,7 @@ public class MyLoveFragmentAdapter(
             val videos = data.footBallModel
             if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
-                recyclerView.run {
-                    addItemDecoration(SleepVideosItemDecoration(itemView.context))
-                    layoutManager = GridLayoutManager(itemView.context, 2)
-                    adapter = mAdapter
-                }
+                recyclerView.initRv(itemView.context,mAdapter!!)
             }
             titleLayout.setOnClickListener {
                 MoreDataListActivity.startMoreDataActivity(
@@ -333,12 +323,12 @@ public class MyLoveFragmentAdapter(
             if (mAdapter == null && audios.isNotEmpty()) {
                 mAdapter = TalkAudioItemAdapter(audios)
                 recyclerView.run {
-                    addItemDecoration(
-                        OneDirectionItemDecoration(
-                            isBottom = true,
-                            padding = padding
-                        )
-                    )
+//                    addItemDecoration(
+//                        OneDirectionItemDecoration(
+//                            isBottom = true,
+//                            padding = padding
+//                        )
+//                    )
                     layoutManager = LinearLayoutManager(itemView.context)
                     adapter = mAdapter
                 }
@@ -360,11 +350,7 @@ public class MyLoveFragmentAdapter(
             val videos = data.artList
             if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
-                recyclerView.run {
-                    addItemDecoration(SleepVideosItemDecoration(itemView.context))
-                    layoutManager = GridLayoutManager(itemView.context, 2)
-                    adapter = mAdapter
-                }
+                recyclerView.initRv(itemView.context,mAdapter!!)
             }
             titleLayout.setOnClickListener {
                 MoreDataListActivity.startMoreDataActivity(
@@ -389,11 +375,7 @@ public class MyLoveFragmentAdapter(
             val videos = data.babyList
             if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
-                recyclerView.run {
-                    addItemDecoration(SleepVideosItemDecoration(itemView.context))
-                    layoutManager = GridLayoutManager(itemView.context, 2)
-                    adapter = mAdapter
-                }
+                recyclerView.initRv(itemView.context,mAdapter!!)
             }
             titleLayout.setOnClickListener {
                 MoreDataListActivity.startMoreDataActivity(
@@ -418,11 +400,7 @@ public class MyLoveFragmentAdapter(
             val videos = data.honglouList
             if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
-                recyclerView.run {
-                    addItemDecoration(SleepVideosItemDecoration(itemView.context))
-                    layoutManager = GridLayoutManager(itemView.context, 2)
-                    adapter = mAdapter
-                }
+                recyclerView.initRv(itemView.context,mAdapter!!)
             }
             titleLayout.setOnClickListener {
                 MoreDataListActivity.startMoreDataActivity(
@@ -447,11 +425,7 @@ public class MyLoveFragmentAdapter(
             val videos = data.beautyList
             if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
-                recyclerView.run {
-                    addItemDecoration(SleepVideosItemDecoration(itemView.context))
-                    layoutManager = GridLayoutManager(itemView.context, 2)
-                    adapter = mAdapter
-                }
+                recyclerView.initRv(itemView.context,mAdapter!!)
             }
             titleLayout.setOnClickListener {
                 MoreDataListActivity.startMoreDataActivity(
