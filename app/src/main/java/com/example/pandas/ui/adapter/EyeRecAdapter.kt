@@ -27,7 +27,7 @@ public class EyeRecAdapter(list: MutableList<EyepetozerBean>) :
         val tag = holder.getWidget<AppCompatTextView>(R.id.txt_eye_item_tag)
 
         data.coverUrl?.let {
-            loadRoundedCornerImage(context, 5, it, cover)
+            loadRoundedCornerImage(context, 10, it, cover)
         }
         duration.text = TimeUtils.getMMDuration(data.duration.toLong())
         data.title?.let {

@@ -1,4 +1,5 @@
 package com.example.pandas.biz.manager
+
 import com.example.pandas.bean.CoverDownLoad
 import com.example.pandas.bean.HistoryItem
 import com.example.pandas.bean.LandscapeData
@@ -12,6 +13,7 @@ import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.sql.entity.History
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.sql.entity.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -115,10 +117,17 @@ class PetManager {
         type: Int,
         startIndex: Int,
         counts: Int
-    ): MutableList<PetViewData> {
+    ): MutableList<PetVideo> {
 
         return withContext(Dispatchers.IO) {
-            petDao.queryByTypeAndPage(type, startIndex, counts)
+            val list = petDao.queryPageType(type, startIndex, counts)
+            list.forEach { video ->
+                video.authorName?.let { name ->
+                    val user = petDao.queryUserByName(name)
+                    video.user = user
+                }
+            }
+            list
         }
     }
 
@@ -259,6 +268,13 @@ class PetManager {
                 historyList.add(historyItem)
             }
             historyList
+        }
+    }
+
+    suspend fun getUser(userCode: Int): User {
+
+        return withContext(Dispatchers.IO) {
+            petDao.queryUserByCode(userCode)
         }
     }
 

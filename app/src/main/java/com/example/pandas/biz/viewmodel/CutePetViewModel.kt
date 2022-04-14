@@ -4,6 +4,7 @@ import com.example.pandas.base.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.manager.PetManagerCoroutine
+import com.example.pandas.sql.entity.PetVideo
 
 /**
  * @description: 获取宠物信息
@@ -14,7 +15,7 @@ import com.example.pandas.biz.manager.PetManagerCoroutine
 public class CutePetViewModel : BaseViewModel() {
 
     val bannerWrapper: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
-    val pageDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
+    val pageDataWrapper: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
 
     //分页起始位置
     var startIndex = 0
@@ -74,7 +75,7 @@ public class CutePetViewModel : BaseViewModel() {
                     isSuccess = false,
                     errMessage = it.errorMsg,
                     isRefresh = isRefresh,
-                    listData = mutableListOf<PetViewData>()
+                    listData = mutableListOf<PetVideo>()
                 )
                 pageDataWrapper.value = dataList
             })

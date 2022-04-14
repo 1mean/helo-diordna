@@ -22,23 +22,11 @@
                 app:layout_constraintTop_toTopOf="@id/clayout_eye_top"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_eye_top"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_eye_top"
-                android:layout_marginStart="15dp"
+                app:layout_constraintRight_toRightOf="@id/clayout_eye_top"
                 android:textSize="17sp"
-                android:fontFamily="@font/hwxw"
                 android:textStyle="bold"
                 android:text="@string/str_eyepetizer"
                 android:textColor="@color/color_talk_name" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/clayout_eye_top"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_eye_top"
-                app:layout_constraintRight_toRightOf="@id/clayout_eye_top"
-                android:layout_marginEnd="15dp"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:text="@string/str_hotting" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
@@ -65,6 +53,7 @@
                     android:id="@+id/rv_eye"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/color_eye_rv_bg"
                     android:visibility="gone" />
 
             <include

@@ -1,4 +1,5 @@
 package com.example.pandas.ui.fragment
+
 import android.content.Intent
 import android.os.Bundle
 import com.example.pandas.app.AppInfos
@@ -9,6 +10,7 @@ import com.example.pandas.databinding.FragmentMineBinding
 import com.example.pandas.ui.activity.ErrorActivity
 import com.example.pandas.ui.activity.HistoryActivity
 import com.example.pandas.ui.activity.LocalCacheActivity
+import com.example.pandas.ui.activity.SelfInfoActivity
 
 /**
  * @description: SelfFragment
@@ -37,7 +39,7 @@ public class SelfFragment : BaseLazyFragment<SelfViewModel, FragmentMineBinding>
             showToast("更多服务")
         }
         binding.clayoutSelf.setOnClickListener {
-            showToast("个人中心")
+            mActivity.startActivity(Intent(mActivity, SelfInfoActivity::class.java))
         }
         binding.cvError.setOnClickListener {
             mActivity.startActivity(Intent(mActivity, ErrorActivity::class.java))

@@ -156,7 +156,7 @@
             android:layout_height="105dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/shape_bg_self">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -318,27 +318,51 @@
             android:orientation="horizontal"
             android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            >
+            android:layout_marginEnd="10dp">
 
         <androidx.cardview.widget.CardView
                 android:id="@+id/cv_error"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="0.3dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
                 app:cardBackgroundColor="@color/color_bg_self">
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="错误日志"
+                    android:text="日志文件"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="13sp"
-                    android:layout_gravity="center" />
+                    android:textSize="15sp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="13dp" />
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="50dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_error_log"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="日志、崩溃文件"
+                        android:textColor="@color/color_text_setting_info"
+                        android:textSize="13sp"
+                        android:layout_gravity="center_vertical"
+                        android:includeFontPadding="false" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="7dp"
+                        android:src="@mipmap/img_self_arrow_right" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -346,9 +370,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_marginStart="9dp"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="0.3dp"
-                app:cardBackgroundColor="@color/color_bg_self"/>
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/color_bg_self" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

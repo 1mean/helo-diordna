@@ -43,11 +43,14 @@
     <color name="color_self_clayout_bg">#f5f8f8</color>
     <color name="color_bg_self">#f4f7f9</color>
     <color name="color_bg_mine">#E6EBF5</color>
+    <color name="color_item_bg_mine_info">#11000000</color>
 
     <!--eye-->
     <color name="color_eye_view_bg">#ededed</color>
-    <color name="color_txt_item_name">#b6b6b6</color>
+    <color name="color_txt_item_name">#FF559A</color>
+    <color name="color_eye_txt_time">#919AA0</color>
     <color name="color_eye_txt_name">#DBD5D2</color>
+    <color name="color_eye_rv_bg">#EFF3F3</color>
 
     <!--video-->
     <color name="color_tab_text_selected">#F26E9A</color>

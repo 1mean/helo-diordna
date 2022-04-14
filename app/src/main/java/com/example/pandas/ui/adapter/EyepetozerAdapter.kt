@@ -11,6 +11,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.ext.loadEmptyCircleImage
+import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.databinding.ItemTitleEyeBinding
 import com.example.pandas.databinding.ItemVideoEyeBinding
 import com.example.pandas.databinding.ItemVpEyeBinding
@@ -129,6 +132,7 @@ public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
         val cover: AppCompatImageView = binding.imgVideo
         val userIcon: AppCompatImageView = binding.imgUser
         val descripetion: AppCompatTextView = binding.txtDescripetion
+        val time: AppCompatTextView = binding.txtEyeTime
         val userName: AppCompatTextView = binding.txtUser
         val duration: AppCompatTextView = binding.txtEyeItemDuration
 
@@ -136,15 +140,27 @@ public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
             val context = itemView.context
             val bean = list[position]
             val user = bean.user
-            userName.text = user?.userName
+
             descripetion.text = bean.title
             duration.text = TimeUtils.getMMDuration(bean.duration.toLong())
-            Glide.with(context).load(bean.coverUrl).into(cover)
-            Glide.with(context).load(user?.userIcon).apply(
-                RequestOptions.bitmapTransform(
-                    CircleCrop()
-                )
-            ).into(userIcon)
+
+            bean.coverUrl?.let {
+                loadImage(context, it, cover)
+            }
+
+            if (user == null) {
+                loadEmptyCircleImage(context, userIcon)
+                userName.text = "开眼视频"
+                time.text = TimeUtils.getStringDate(System.currentTimeMillis())
+            } else {
+                user.let {
+                    it.userIcon?.let { url ->
+                        loadCircleImage(context, url, userIcon)
+                    }
+                    time.text = TimeUtils.getStringDate(it.latestReleaseTime)
+                    userName.text = it.userName
+                }
+            }
             itemView.setOnClickListener {
                 val intent = Intent(context, EyePlayingActivity::class.java)
                 intent.putExtra("EyepetozerBean", bean)

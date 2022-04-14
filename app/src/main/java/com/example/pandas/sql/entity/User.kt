@@ -14,7 +14,7 @@ data class User(
     @ColumnInfo
     var userName: String? = null,//userName
     @ColumnInfo
-    var sex: Int = 0,//男0女1
+    var sex: Int = 0,//男0女1,-1为保密
     @ColumnInfo
     var level: Int = 0,
     @ColumnInfo

@@ -16,6 +16,7 @@ import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.bean.eyes.EyepetozerBean
 import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.ext.loadEmptyCircleImage
 import com.example.pandas.biz.viewmodel.EyepetozerViewModel
 import com.example.pandas.databinding.ActivityEyePlayBinding
 import com.example.pandas.utils.StatusBarUtils
@@ -128,11 +129,20 @@ public class EyePlayingActivity : BaseActivity<EyepetozerViewModel, ActivityEyeP
             category?.let {
                 binding.txtEyeTag.text = StringBuilder("#").append(it).toString()
             }
-            authorUrl?.let {
-                loadCircleImage(this, it, binding.imgEyeCover)
+            if (authorUrl == null) {
+                loadEmptyCircleImage(this, binding.imgEyeCover)
+            } else {
+                loadCircleImage(this, authorUrl, binding.imgEyeCover)
             }
-            authorDesc?.let {
-                binding.txtAuthorDesc.text = it
+            if (authorName == null) {
+                binding.txtEyeName.text = "开眼视频"
+            } else {
+                binding.txtEyeName.text = authorName
+            }
+            if (authorDesc == null) {
+                binding.txtAuthorDesc.text = "开眼精选视频"
+            } else {
+                binding.txtAuthorDesc.text = authorDesc
             }
             authorName?.let {
                 binding.txtEyeName.text = it
@@ -154,7 +164,6 @@ public class EyePlayingActivity : BaseActivity<EyepetozerViewModel, ActivityEyeP
 
             Log.e("1mean", "list: $list")
             if (list != null && list.isNotEmpty()) {
-
                 mAdapter.refreshAdapter(list)
             }
         }

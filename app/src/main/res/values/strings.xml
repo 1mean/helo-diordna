@@ -90,8 +90,14 @@
     <string name="str_no_error">暂时没有任何日志信息</string>
     <string name="str_no_data">暂无任何数据</string>
     <string name="str_error">页面加载失败，请重试</string>
-    <string name="str_eyepetizer">eyepetizer</string>
+    <string name="str_eyepetizer">视频</string>
     <string name="str_hotting">热门</string>
     <string name="str_refresh">刷新一下</string>
+    <string name="str_txt_mine_info">个人信息</string>
+    <string name="str_head">头像</string>
+    <string name="str_name">昵称</string>
+    <string name="str_sex">性别</string>
+    <string name="str_NO">账号ID</string>
+    <string name="str_sign">个性签名</string>
 
 </resources>

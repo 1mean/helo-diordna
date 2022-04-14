@@ -20,6 +20,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
+import com.example.pandas.R
 import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.utils.FileUtils
 import jp.wasabeef.glide.transformations.BlurTransformation
@@ -49,7 +50,12 @@ fun loadCircleImage(context: Context, url: String, view: ImageView) {
 }
 
 fun loadImage(context: Context, url: String, view: ImageView) {
-    Glide.with(context).load(url).into(view)
+    Glide.with(context).load(url).placeholder(R.mipmap.img_holder).into(view)
+}
+
+fun loadEmptyCircleImage(context: Context, view: ImageView) {
+    val options = RequestOptions.bitmapTransform(CircleCrop())
+    Glide.with(context).load(R.mipmap.img_holder).apply(options).into(view)
 }
 
 fun loadLayoutBackGround(context: Context, url: String, view: View) {

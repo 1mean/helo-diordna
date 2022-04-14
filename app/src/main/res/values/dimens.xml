@@ -24,6 +24,7 @@
     <dimen name="common_lh_5_dimens">5dp</dimen>
     <dimen name="common_lh_6_dimens">6dp</dimen>
     <dimen name="common_lh_8_dimens">8dp</dimen>
+    <dimen name="common_lh_10_dimens">10dp</dimen>
     <dimen name="common_lh_18_dimens">18dp</dimen>
     <dimen name="common_lh_15_dimens">15dp</dimen>
     <dimen name="common_lh_20_dimens">20dp</dimen>
