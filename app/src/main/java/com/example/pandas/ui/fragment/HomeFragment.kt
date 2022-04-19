@@ -1,7 +1,11 @@
 package com.example.pandas.ui.fragment
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewpager2.widget.ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
 import com.bumptech.glide.Glide
@@ -14,6 +18,7 @@ import com.example.pandas.databinding.FragmentHomeBinding
 import com.example.pandas.ui.activity.MessageActivity
 import com.example.pandas.ui.activity.SearchActivity
 import com.example.pandas.ui.adapter.HomePagerAdapter
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 /**
@@ -42,9 +47,33 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
             setCurrentItem(1, false)
         }
 
+//        binding.tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+//            override fun onTabSelected(tab: TabLayout.Tab?) {
+//
+//                val title = tab?.customView?.findViewById<AppCompatTextView>(R.id.txt_tab_home)
+//                title?.setTextColor(ContextCompat.getColor(mActivity,R.color.color_tab_text_selected))
+//                title?.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
+//                Log.e("1mean", "tab1: ${tab?.text}")
+//            }
+//
+//            override fun onTabUnselected(tab: TabLayout.Tab?) {
+//                Log.e("1mean", "tab2: ${tab?.text}")
+//                val title = tab?.customView?.findViewById<AppCompatTextView>(R.id.txt_tab_home)
+//                title?.setTextColor(ContextCompat.getColor(mActivity,R.color.color_home_tab_text))
+//                title?.typeface = Typeface.defaultFromStyle(Typeface.NORMAL)
+//            }
+//
+//            override fun onTabReselected(tab: TabLayout.Tab?) {
+//            }
+//
+//        })
+
         TabLayoutMediator(
             binding.tab, binding.viewpager, true
         ) { tab, position ->
+//            tab.setCustomView(R.layout.tab_home)
+//            val title = tab.customView?.findViewById<AppCompatTextView>(R.id.txt_tab_home)
+//            title?.text = tabTitles[position]
             tab.text = tabTitles[position]
         }.attach()
 

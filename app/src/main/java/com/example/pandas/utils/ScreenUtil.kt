@@ -1,6 +1,8 @@
 package com.example.pandas.utils
+
 import android.app.Activity
 import android.content.Context
+import android.content.res.Resources
 import android.os.Build
 import android.util.DisplayMetrics
 import android.view.View
@@ -20,8 +22,8 @@ import androidx.core.view.WindowCompat
 object ScreenUtil {
 
 
-    fun dip2px(context: Context, dpValue: Float): Int {
-        return (dpValue * context.resources.displayMetrics.density).toInt()
+    fun dip2px(dpValue: Float): Int {
+        return (dpValue * Resources.getSystem().displayMetrics.density).toInt()
     }
 
     fun px2dp(context: Context, pxValue: Float): Int {

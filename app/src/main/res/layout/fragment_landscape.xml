@@ -4,26 +4,22 @@
         android:id="@+id/swip_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:background="@color/color_bg_love2">
 
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView2
+        <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
                 android:id="@+id/recycler_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_empty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/str_no_data"
-                android:textSize="15sp"
-                android:textColor="@color/gray"
-                android:layout_marginTop="200dp"
+                android:layout_height="match_parent"
                 android:visibility="gone" />
+
+        <include
+                android:id="@+id/layout_error"
+                layout="@layout/layout_error" />
+
+        <include layout="@layout/layout_empty" />
     </FrameLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

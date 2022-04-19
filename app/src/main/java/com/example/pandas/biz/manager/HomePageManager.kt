@@ -15,6 +15,7 @@ import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 /**
@@ -172,6 +173,7 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
 
+            delay(300)
             val itemList = petDao.queryVideoByType(VideoType.LANDSCAPE.ordinal, startIndex, counts)
             var bannerList = mutableListOf<PetViewData>()
             if (startIndex == 0) {

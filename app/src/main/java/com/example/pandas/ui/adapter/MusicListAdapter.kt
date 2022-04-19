@@ -8,7 +8,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.biz.interaction.OnItemClickListener
+import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.sql.entity.MusicVo
 
 /**
@@ -19,7 +19,7 @@ import com.example.pandas.sql.entity.MusicVo
  */
 public class MusicListAdapter(
     private val list: MutableList<MusicVo>,
-    private val listener: OnItemClickListener<String>
+    private val listener: OnItemmmmClickListener<String>
 ) :
     BaseCommonAdapter<MusicVo>(list) {
 

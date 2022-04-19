@@ -9,7 +9,7 @@ import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCircleImage
-import com.example.pandas.biz.interaction.OnItemClickListener
+import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.sql.entity.MusicVo
 
 /**
@@ -20,7 +20,7 @@ import com.example.pandas.sql.entity.MusicVo
  */
 public class AudioMenuAdapter(
     list: MutableList<MusicVo>, private var fileName: String,
-    private val listener: OnItemClickListener<MusicVo>
+    private val listener: OnItemmmmClickListener<MusicVo>
 ) :
     BaseCommonAdapter<MusicVo>(list) {
 

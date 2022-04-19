@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.pandas.R
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.bean.pet.RecommendData
-import com.example.pandas.biz.interaction.OnItemClickListener
+import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.databinding.CardItemLayoutBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.databinding.ItemRecommendVideoBinding
@@ -26,7 +26,7 @@ import com.example.pandas.utils.TimeUtils
  */
 public class RecommendAdapter(
     private var data: RecommendData<PetViewData>,
-    private val listener: OnItemClickListener<Int>
+    private val listener: OnItemmmmClickListener<Int>
 ) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 

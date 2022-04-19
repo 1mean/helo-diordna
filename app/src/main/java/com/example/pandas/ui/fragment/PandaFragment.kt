@@ -7,7 +7,7 @@ import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.FragmentPandasBinding
 import com.example.pandas.ui.adapter.PandasAdapter
 import com.example.pandas.ui.ext.initPanda
-import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
+import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
 
 /**
  * @description: PandaFragment

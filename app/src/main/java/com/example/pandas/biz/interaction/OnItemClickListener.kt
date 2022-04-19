@@ -1,12 +1,12 @@
-package com.example.pandas.biz.interaction
+import android.view.View
 
 /**
- * @description: TODO
+ * @description: OnItemClickListener
  * @author: dongyiming
- * @date: 2/17/22 8:37 下午
+ * @date: 4/18/22 12:07 下午
  * @version: v1.0
  */
-public interface OnItemClickListener<T> {
+public interface OnItemClickListener {
 
-    fun onClick(position: Int, t: T)
+    fun onItemClick(view: View, position: Int)
 }

@@ -1,8 +1,9 @@
-package com.example.pandas.ui.view.refresh
+package com.example.pandas.ui.view.recyclerview
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatTextView
@@ -22,7 +23,7 @@ import kotlin.math.abs
  * @date: 12/27/19 6:30 下午
  * @version: v1.0
  */
-class LoadMoreRecyclerView3 : RecyclerView {
+class LoadMoreRecyclerView : RecyclerView {
 
     private val TYPE_FOOTER = 999
     private var wrapAdapter: WrapAdapter? = null
@@ -102,46 +103,84 @@ class LoadMoreRecyclerView3 : RecyclerView {
         }
     }
 
-    override fun onInterceptTouchEvent(e: MotionEvent): Boolean {
-        var isIntercepted = super.onInterceptTouchEvent(e)
-        if (e.pointerCount > 1) return true
-        val action = e.action
-        val x = e.x.toInt()
-        val y = e.y.toInt()
-        when (action) {
+    /**
+     * 解决Viewpager2和Viewpager2以及RecyclerView的滑动冲突问题
+     */
+    private var startX = 0
+    private var startY = 0
+    override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
+
+        when (ev.action) {
             MotionEvent.ACTION_DOWN -> {
-                mDownX = x
-                mDownY = y
-                isIntercepted = false
+                startX = ev.x.toInt()
+                startY = ev.y.toInt()
+                parent.requestDisallowInterceptTouchEvent(true)
             }
             MotionEvent.ACTION_MOVE -> {
-                run {
-                    isIntercepted = handleUnDown(x, y, isIntercepted)
-                    val disX: Int = mDownX - x
-                    // 向左滑，显示右侧菜单，或者关闭左侧菜单。
-                    val showRightCloseLeft = disX > 0
-                    // 向右滑，显示左侧菜单，或者关闭右侧菜单。
-                    val showLeftCloseRight = disX < 0
-                    parent.requestDisallowInterceptTouchEvent(showRightCloseLeft || showLeftCloseRight)
+                val endX = ev.x.toInt()
+                val endY = ev.y.toInt()
+                val disX = abs(endX - startX)
+                val disY = abs(endY - startY)
+
+                if (disY > disX) {
+                    //如果是纵向滑动，告知父布局不进行事件拦截，交由子布局消费，　requestDisallowInterceptTouchEvent(true)
+                    parent.requestDisallowInterceptTouchEvent(true)
+                } else {
+                    parent.requestDisallowInterceptTouchEvent(false)
                 }
-                run { isIntercepted = handleUnDown(x, y, isIntercepted) }
             }
-            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                isIntercepted = handleUnDown(x, y, isIntercepted)
-            }
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> parent.requestDisallowInterceptTouchEvent(
+                false
+            )
         }
-        return isIntercepted
+        return super.onInterceptTouchEvent(ev)
     }
 
-    private fun handleUnDown(x: Int, y: Int, defaultValue: Boolean): Boolean {
-        val disX: Int = mDownX - x
-        val disY: Int = mDownY - y
-
-        // swipe
-        if (abs(disX) > mScaleTouchSlop && abs(disX) > abs(disY)) return false
-        // click
-        return if (abs(disY) < mScaleTouchSlop && abs(disX) < mScaleTouchSlop) false else defaultValue
-    }
+//    override fun onInterceptTouchEvent(e: MotionEvent): Boolean {
+//
+//        var isIntercepted = super.onInterceptTouchEvent(e)
+//        Log.e("1mean", "pointerCount:${e.pointerCount}")
+//        if (e.pointerCount > 1) return true
+//
+////    var touchPosition: Int = getChildAdapterPosition(findChildViewUnder(x, y)!!)
+////    var touchVH = findViewHolderForAdapterPosition(touchPosition)
+////    var touchView: SwipeMenuLayout? = null
+////    if (touchVH != null)
+////    {
+////        val itemView: View = getSwipeMenuView(touchVH!!.itemView)
+////        if (itemView is SwipeMenuLayout) {
+////            touchView = itemView as SwipeMenuLayout
+////        }
+////    }
+//
+//        val action = e.action
+//        val x = e.x.toInt()
+//        val y = e.y.toInt()
+//        when (action) {
+//            MotionEvent.ACTION_DOWN -> {
+//                mDownX = x
+//                mDownY = y
+//                isIntercepted = false
+//            }
+//            MotionEvent.ACTION_MOVE -> {
+//                run { isIntercepted = handleUnDown(x, y, isIntercepted) }
+//            }
+//            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+//                isIntercepted = handleUnDown(x, y, isIntercepted)
+//            }
+//        }
+//        return isIntercepted
+//    }
+//
+//    private fun handleUnDown(x: Int, y: Int, defaultValue: Boolean): Boolean {
+//        val disX: Int = mDownX - x
+//        val disY: Int = mDownY - y
+//
+//        // swipe
+//        if (abs(disX) > mScaleTouchSlop && abs(disX) > abs(disY)) return false
+//        // click
+//        return if (abs(disY) < mScaleTouchSlop && abs(disX) < mScaleTouchSlop) false else defaultValue
+//    }
 
     inner class DataObserver : AdapterDataObserver() {
 
@@ -175,6 +214,8 @@ class LoadMoreRecyclerView3 : RecyclerView {
     inner class WrapAdapter(private val adapter: Adapter<BaseEmptyViewHolder>) :
         Adapter<BaseEmptyViewHolder>() {
 
+        private var holder: FooterViewHolder? = null
+
         fun isFooter(position: Int): Boolean {
 
             return position == itemCount - 1
@@ -190,12 +231,17 @@ class LoadMoreRecyclerView3 : RecyclerView {
                 return adapter.getItemViewType(position)
         }
 
+        fun nomore() {
+            holder!!.nomore()
+        }
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
 
             if (viewType == TYPE_FOOTER) {
                 val footer = LayoutInflater.from(parent.context)
                     .inflate(R.layout.footer_recyclerview, parent, false)
-                return FooterViewHolder(footer)
+                holder = FooterViewHolder(footer)
+                return holder!!
             } else {
                 return adapter.onCreateViewHolder(parent, viewType)
             }
@@ -268,6 +314,7 @@ class LoadMoreRecyclerView3 : RecyclerView {
             private val footer: ConstraintLayout = itemView.findViewById(R.id.footer)
 
             fun handle() {
+                Log.e("1mean", "handle: $isNoMore")
                 if (isNoMore) {//没有更多数据
                     progressBar.visibility = GONE
                     txtFooter.visibility = VISIBLE
@@ -275,6 +322,11 @@ class LoadMoreRecyclerView3 : RecyclerView {
                     progressBar.visibility = VISIBLE
                     txtFooter.visibility = GONE
                 }
+            }
+
+            fun nomore(){
+                progressBar.visibility = GONE
+                txtFooter.visibility = VISIBLE
             }
         }
     }
@@ -309,6 +361,7 @@ class LoadMoreRecyclerView3 : RecyclerView {
     fun noMoreData() {
         isNoMore = true
         isLoadingData = false
+        wrapAdapter?.nomore()
     }
 
     interface ILoadMoreListener {

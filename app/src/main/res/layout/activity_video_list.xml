@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
+            <com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView2
                     android:id="@+id/rv_video_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />

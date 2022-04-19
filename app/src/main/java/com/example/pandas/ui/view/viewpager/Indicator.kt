@@ -23,8 +23,8 @@ public class Indicator : View, Iindicator {
     private var pageCount: Int = 0
 
     //距离参数，选中和未选中一样大小
-    private val indicatorItemPadding: Int = ScreenUtil.dip2px(context, 4f) //间隔
-    private val indicatorRadius: Int = ScreenUtil.dip2px(context, 2.7f) //半径
+    private val indicatorItemPadding: Int = ScreenUtil.dip2px(4f) //间隔
+    private val indicatorRadius: Int = ScreenUtil.dip2px(2.7f) //半径
 
     private var mPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var selectColor: Int? = null
@@ -71,8 +71,8 @@ public class Indicator : View, Iindicator {
             )
             params?.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
             params?.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-            params?.bottomMargin = ScreenUtil.dip2px(context, 8f)
-            params?.rightMargin = ScreenUtil.dip2px(context, 8f)
+            params?.bottomMargin = ScreenUtil.dip2px(8f)
+            params?.rightMargin = ScreenUtil.dip2px(8f)
         }
         return params!!
     }

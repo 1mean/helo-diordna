@@ -1,13 +1,14 @@
-package com.example.pandas.ui.view.refresh
+package com.example.pandas.ui.view.recyclerview
 
 import android.content.Context
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.FrameLayout
-import androidx.appcompat.widget.AppCompatImageView
+import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
+import androidx.appcompat.widget.LinearLayoutCompat
 import com.example.pandas.R
+import com.example.pandas.utils.ScreenUtil
 
 /**
  * @description: 自定义RecyclerView的上拉加载
@@ -15,12 +16,17 @@ import com.example.pandas.R
  * @date: 12/27/21 6:11 下午
  * @version: v1.0
  */
-public class Footer(context: Context) : FrameLayout(context) {
+public class Footer(context: Context) : LinearLayoutCompat(context) {
 
     //private var image: AppCompatImageView? = null
     private var message: AppCompatTextView? = null
 
     init {
+
+        layoutParams = ViewGroup.LayoutParams(-1, -2)
+        gravity = Gravity.CENTER
+        visibility = View.GONE
+        val minHeight = ScreenUtil.dip2px(36f)
         val footer = LayoutInflater.from(context).inflate(R.layout.footer_recyclerview, this)
         //image = footer.findViewById<AppCompatImageView>(R.id.img_footer)
         message = footer.findViewById<AppCompatTextView>(R.id.txt_footer)

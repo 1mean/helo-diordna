@@ -8,7 +8,7 @@ import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.LocalCacheViewModel
 import com.example.pandas.databinding.FragmentMoreBinding
 import com.example.pandas.ui.adapter.CacheItemAdapter
-import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
+import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView2
 
 /**
  * @description: CacheItemFragment

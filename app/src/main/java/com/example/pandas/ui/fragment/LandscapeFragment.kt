@@ -7,10 +7,11 @@ import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.bean.LandscapeData
 import com.example.pandas.biz.viewmodel.HomePageViewModel
-import com.example.pandas.databinding.LayoutRefreshLoadmoreBinding
+import com.example.pandas.databinding.FragmentLandscapeBinding
 import com.example.pandas.ui.adapter.LandscapeAdapter
 import com.example.pandas.ui.adapter.decoration.LandScapeItemDecoration
-import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
+import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
  * @description: LandscapeFragment
@@ -19,8 +20,7 @@ import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
  * @version: v1.0
  */
 public class LandscapeFragment :
-    BaseLazyFragment<HomePageViewModel, LayoutRefreshLoadmoreBinding>(),
-    LoadMoreRecyclerView.ILoadMoreListener {
+    BaseLazyFragment<HomePageViewModel, FragmentLandscapeBinding>() {
 
     private val mAdapter: LandscapeAdapter by lazy { LandscapeAdapter(LandscapeData()) }
 
@@ -32,11 +32,20 @@ public class LandscapeFragment :
 
             layoutManager = LinearLayoutManager(mActivity)
             addItemDecoration(LandScapeItemDecoration(padding))
-            setRefreshAdapter(mAdapter, this@LandscapeFragment)
+            setRefreshAdapter(mAdapter, object : SwipRecyclerView.ILoadMoreListener {
+                override fun onLoadMore() {
+                    mViewModel.getLandScapeData(false)
+                }
+            })
         }
 
-        binding.swipLayout.setOnRefreshListener {
-            mViewModel.getLandScapeData(true)
+        binding.swipLayout.run {
+            setRefreshColor()
+            isRefreshing = true
+            setOnRefreshListener {
+                binding.recyclerLayout.isRefreshing(true)
+                mViewModel.getLandScapeData(true)
+            }
         }
     }
 
@@ -45,23 +54,18 @@ public class LandscapeFragment :
         mViewModel.landScapeDataWrapper.observe(viewLifecycleOwner) {
 
             if (it.isSuccess) {
+
+                binding.recyclerLayout.visibility = View.VISIBLE
                 when {
-                    it.isFirstEmpty -> {
-                        binding.recyclerLayout.isFreshing(false)
-                    }
                     it.isRefresh -> {
                         mAdapter.updata(true, it.landscapeData)
-                        binding.recyclerLayout.isFreshing(false)
+                        binding.recyclerLayout.isRefreshing(false)
                     }
                     else -> {
-                        if (it.hasMore) {
-                            binding.recyclerLayout.loadMoreFinished()
-                        } else {
-                            binding.recyclerLayout.noMoreData()
-                        }
                         mAdapter.updata(false, it.landscapeData)
                     }
                 }
+                binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
             }
             binding.swipLayout.visibility = View.VISIBLE
             binding.swipLayout.isRefreshing = false
@@ -70,10 +74,6 @@ public class LandscapeFragment :
 
     override fun firstOnResume() {
         mViewModel.getLandScapeData(true)
-    }
-
-    override fun onLoadMore() {
-        mViewModel.getLandScapeData(false)
     }
 
 }

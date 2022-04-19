@@ -1,4 +1,4 @@
-package com.example.pandas.ui.view.refresh
+package com.example.pandas.ui.view.recyclerview
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -22,7 +22,7 @@ import kotlin.math.abs
  * @date: 12/27/19 6:30 下午
  * @version: v1.0
  */
-class LoadMoreRecyclerView : RecyclerView {
+class LoadMoreRecyclerView3 : RecyclerView {
 
     private val TYPE_FOOTER = 999
     private var wrapAdapter: WrapAdapter? = null
@@ -102,84 +102,46 @@ class LoadMoreRecyclerView : RecyclerView {
         }
     }
 
-    /**
-     * 解决Viewpager2和Viewpager2以及RecyclerView的滑动冲突问题
-     */
-    private var startX = 0
-    private var startY = 0
-    override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
-
-        when (ev.action) {
+    override fun onInterceptTouchEvent(e: MotionEvent): Boolean {
+        var isIntercepted = super.onInterceptTouchEvent(e)
+        if (e.pointerCount > 1) return true
+        val action = e.action
+        val x = e.x.toInt()
+        val y = e.y.toInt()
+        when (action) {
             MotionEvent.ACTION_DOWN -> {
-                startX = ev.x.toInt()
-                startY = ev.y.toInt()
-                parent.requestDisallowInterceptTouchEvent(true)
+                mDownX = x
+                mDownY = y
+                isIntercepted = false
             }
             MotionEvent.ACTION_MOVE -> {
-                val endX = ev.x.toInt()
-                val endY = ev.y.toInt()
-                val disX = abs(endX - startX)
-                val disY = abs(endY - startY)
-
-                if (disY > disX) {
-                    //如果是纵向滑动，告知父布局不进行事件拦截，交由子布局消费，　requestDisallowInterceptTouchEvent(true)
-                    parent.requestDisallowInterceptTouchEvent(true)
-                } else {
-                    parent.requestDisallowInterceptTouchEvent(false)
+                run {
+                    isIntercepted = handleUnDown(x, y, isIntercepted)
+                    val disX: Int = mDownX - x
+                    // 向左滑，显示右侧菜单，或者关闭左侧菜单。
+                    val showRightCloseLeft = disX > 0
+                    // 向右滑，显示左侧菜单，或者关闭右侧菜单。
+                    val showLeftCloseRight = disX < 0
+                    parent.requestDisallowInterceptTouchEvent(showRightCloseLeft || showLeftCloseRight)
                 }
+                run { isIntercepted = handleUnDown(x, y, isIntercepted) }
             }
-            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> parent.requestDisallowInterceptTouchEvent(
-                false
-            )
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                isIntercepted = handleUnDown(x, y, isIntercepted)
+            }
         }
-        return super.onInterceptTouchEvent(ev)
+        return isIntercepted
     }
 
-//    override fun onInterceptTouchEvent(e: MotionEvent): Boolean {
-//
-//        var isIntercepted = super.onInterceptTouchEvent(e)
-//        Log.e("1mean", "pointerCount:${e.pointerCount}")
-//        if (e.pointerCount > 1) return true
-//
-////    var touchPosition: Int = getChildAdapterPosition(findChildViewUnder(x, y)!!)
-////    var touchVH = findViewHolderForAdapterPosition(touchPosition)
-////    var touchView: SwipeMenuLayout? = null
-////    if (touchVH != null)
-////    {
-////        val itemView: View = getSwipeMenuView(touchVH!!.itemView)
-////        if (itemView is SwipeMenuLayout) {
-////            touchView = itemView as SwipeMenuLayout
-////        }
-////    }
-//
-//        val action = e.action
-//        val x = e.x.toInt()
-//        val y = e.y.toInt()
-//        when (action) {
-//            MotionEvent.ACTION_DOWN -> {
-//                mDownX = x
-//                mDownY = y
-//                isIntercepted = false
-//            }
-//            MotionEvent.ACTION_MOVE -> {
-//                run { isIntercepted = handleUnDown(x, y, isIntercepted) }
-//            }
-//            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-//                isIntercepted = handleUnDown(x, y, isIntercepted)
-//            }
-//        }
-//        return isIntercepted
-//    }
-//
-//    private fun handleUnDown(x: Int, y: Int, defaultValue: Boolean): Boolean {
-//        val disX: Int = mDownX - x
-//        val disY: Int = mDownY - y
-//
-//        // swipe
-//        if (abs(disX) > mScaleTouchSlop && abs(disX) > abs(disY)) return false
-//        // click
-//        return if (abs(disY) < mScaleTouchSlop && abs(disX) < mScaleTouchSlop) false else defaultValue
-//    }
+    private fun handleUnDown(x: Int, y: Int, defaultValue: Boolean): Boolean {
+        val disX: Int = mDownX - x
+        val disY: Int = mDownY - y
+
+        // swipe
+        if (abs(disX) > mScaleTouchSlop && abs(disX) > abs(disY)) return false
+        // click
+        return if (abs(disY) < mScaleTouchSlop && abs(disX) < mScaleTouchSlop) false else defaultValue
+    }
 
     inner class DataObserver : AdapterDataObserver() {
 

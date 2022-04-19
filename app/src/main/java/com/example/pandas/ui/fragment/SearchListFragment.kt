@@ -14,7 +14,7 @@ import com.example.pandas.biz.viewmodel.SearchViewModel
 import com.example.pandas.databinding.FragmentSearchResultBinding
 import com.example.pandas.databinding.LayoutLoadmoreBinding
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
-import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
+import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
 import com.example.pandas.utils.TimeUtils
 
 /**

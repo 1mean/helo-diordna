@@ -7,7 +7,7 @@
         android:visibility="gone"
         android:background="@color/color_bg_love2">
 
-    <com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
+    <com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
             android:id="@+id/recycler_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

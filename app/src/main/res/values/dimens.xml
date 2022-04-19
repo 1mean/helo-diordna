@@ -68,7 +68,7 @@
     <dimen name="item_panda_paddingLeft">8dp</dimen>
     <dimen name="item_home_padding_top">9dp</dimen>
     <dimen name="item_horizontal_padding">8dp</dimen>
-    <dimen name="dimen_padding_pet">8dp</dimen>
+    <dimen name="dimen_padding_pet">6dp</dimen>
     <dimen name="dimen_padding_panda_list">8dp</dimen>
     <dimen name="dimen_padding_panda_child">10dp</dimen>
 

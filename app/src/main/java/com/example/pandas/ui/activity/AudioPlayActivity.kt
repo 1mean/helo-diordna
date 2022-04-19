@@ -17,7 +17,7 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.ext.loadLayoutBackGround
 import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.interaction.AudioServiceListener
-import com.example.pandas.biz.interaction.OnItemClickListener
+import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.viewmodel.AudioViewModel
 import com.example.pandas.databinding.ActivityAudioBinding
 import com.example.pandas.sql.entity.MusicVo
@@ -36,7 +36,7 @@ import java.util.*
  * @version: v1.0
  */
 public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBinding>(),
-    OnItemClickListener<MusicVo> {
+    OnItemmmmClickListener<MusicVo> {
 
     private var isTimeBarMoving = false //正在拖动时间bar
 
@@ -122,7 +122,7 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
             val list = mViewModel.musicsResult.value
             val adapter =
                 list?.let {
-                    AudioMenuAdapter(it, fileName!!, object : OnItemClickListener<MusicVo> {
+                    AudioMenuAdapter(it, fileName!!, object : OnItemmmmClickListener<MusicVo> {
                         override fun onClick(position: Int, t: MusicVo) {
 
                             mService?.seekToMediaItem(position)

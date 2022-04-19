@@ -83,7 +83,7 @@
     <color name="color_txt_sleep_more">#cdcdcd</color>
     <color name="color_talk_name">#333333</color>
     <color name="color_talk_item_pressed">#f46844</color>
-    <color name="color_landscape_item_author">#babdbf</color>
+    <color name="color_landscape_item_author">#94999D</color>
     <color name="color_bg_love">#f5f5f5</color>
     <color name="color_bg_love2">#F4F8FA</color>
     <color name="color_bg_card1">#29F3FF</color>
@@ -123,5 +123,6 @@
     <color name="color_progress_loadmore">#FF5B9A</color>
     <color name="color_text_loading">#919A9D</color>
     <color name="color_bg_loading">#f0f3f3</color>
+    <color name="color_bg_cute_pet">#FAFAFA</color>
 
 </resources>

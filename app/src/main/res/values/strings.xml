@@ -99,5 +99,6 @@
     <string name="str_sex">性别</string>
     <string name="str_NO">账号ID</string>
     <string name="str_sign">个性签名</string>
+    <string name="str_footer_nomore">无更多内容</string>
 
 </resources>

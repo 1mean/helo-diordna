@@ -7,13 +7,13 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.getMusicUrl
-import com.example.pandas.biz.interaction.OnItemClickListener
+import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.viewmodel.MoreDataViewModel
 import com.example.pandas.databinding.FragmentMusicListBinding
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.ui.activity.AudioPlayActivity
 import com.example.pandas.ui.adapter.MusicListAdapter
-import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
+import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView2
 
 /**
  * @description: MusicListFragment
@@ -22,7 +22,7 @@ import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
  * @version: v1.0
  */
 public class MusicListFragment : BaseFragment<MoreDataViewModel, FragmentMusicListBinding>(),
-    LoadMoreRecyclerView2.ILoadMoreListener, OnItemClickListener<String> {
+    LoadMoreRecyclerView2.ILoadMoreListener, OnItemmmmClickListener<String> {
 
     private val mAdapter: MusicListAdapter by lazy { MusicListAdapter(mutableListOf(), this) }
     override fun initView(savedInstanceState: Bundle?) {

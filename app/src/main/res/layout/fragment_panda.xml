@@ -4,7 +4,7 @@
         android:layout_height="match_parent"
         android:background="@color/color_bg_love">
 
-    <com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
+    <com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
             android:id="@+id/rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

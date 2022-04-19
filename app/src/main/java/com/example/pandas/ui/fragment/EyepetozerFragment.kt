@@ -10,7 +10,7 @@ import com.example.pandas.biz.viewmodel.EyepetozerViewModel
 import com.example.pandas.databinding.FragmentEyesBinding
 import com.example.pandas.ui.adapter.EyepetozerAdapter
 import com.example.pandas.ui.ext.setRefreshColor
-import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
+import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
 
 /**
  * @description: 开眼

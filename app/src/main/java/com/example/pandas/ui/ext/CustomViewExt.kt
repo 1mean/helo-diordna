@@ -11,7 +11,7 @@ import com.example.pandas.R
 import com.example.pandas.ui.adapter.SleepVideoItemAdapter
 import com.example.pandas.ui.adapter.decoration.RecommendDecoration
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
-import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
+import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
 
 
 /**

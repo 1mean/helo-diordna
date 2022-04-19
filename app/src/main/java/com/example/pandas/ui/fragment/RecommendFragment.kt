@@ -14,13 +14,13 @@ import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.biz.ext.getUrl
-import com.example.pandas.biz.interaction.OnItemClickListener
+import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.FragmentRecommendBinding
 import com.example.pandas.ui.activity.VideoPlayingActivity
 import com.example.pandas.ui.adapter.RecommendAdapter
 import com.example.pandas.ui.ext.initReco
-import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
+import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -36,7 +36,7 @@ import com.google.android.exoplayer2.util.Util
  * @version: v1.0
  */
 public class RecommendFragment : BaseLazyFragment<HomePageViewModel, FragmentRecommendBinding>(),
-    LoadMoreRecyclerView.ILoadMoreListener, OnItemClickListener<Int> {
+    LoadMoreRecyclerView.ILoadMoreListener, OnItemmmmClickListener<Int> {
 
     private val mAdapter: RecommendAdapter by lazy { RecommendAdapter(RecommendData(), this) }
 

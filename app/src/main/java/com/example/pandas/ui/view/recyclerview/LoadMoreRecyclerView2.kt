@@ -1,4 +1,4 @@
-package com.example.pandas.ui.view.refresh
+package com.example.pandas.ui.view.recyclerview
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -89,12 +89,16 @@ class LoadMoreRecyclerView2 : RecyclerView {
 
                         && !isFreshing && !isNoMore
                     ) {
-                        isLoadingData = true
-                        mListener!!.onLoadMore()
+                        dispatchLoadMore()
                     }
                 }
             }
         }
+    }
+
+    private fun dispatchLoadMore(){
+        isLoadingData = true
+        mListener!!.onLoadMore()
     }
 
     inner class DataObserver : AdapterDataObserver() {
@@ -157,9 +161,11 @@ class LoadMoreRecyclerView2 : RecyclerView {
 
         override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
 
+            Log.e("1mean", "position1: $position")
             if (getItemViewType(position) != TYPE_FOOTER) {
                 adapter.onBindViewHolder(holder, position)
             } else {
+                Log.e("1mean", "position2: $position")
                 (holder as FooterViewHolder).handle()
             }
         }
@@ -222,6 +228,7 @@ class LoadMoreRecyclerView2 : RecyclerView {
             private val footer: ConstraintLayout = getWidget(R.id.footer)
 
             fun handle() {
+                Log.e("1mean", "handle: $isNoMore")
                 if (isNoMore) {//没有更多数据
                     progressBar.visibility = GONE
                     txtFooter.visibility = VISIBLE
@@ -265,7 +272,7 @@ class LoadMoreRecyclerView2 : RecyclerView {
         isLoadingData = false
     }
 
-    fun clearState(){
+    fun clearState() {
         isLoadingData = false
         isFreshing = false
         isNoMore = false

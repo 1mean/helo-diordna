@@ -3,6 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
     <View
@@ -31,14 +32,11 @@
 
     <View
             android:layout_width="match_parent"
-            android:layout_height="0.3dp"
+            android:layout_height="0.5dp"
             app:layout_constraintTop_toTopOf="@id/clayout_music_top"
             app:layout_constraintLeft_toLeftOf="@id/clayout_music_top"
             app:layout_constraintRight_toRightOf="@id/clayout_music_top"
-            android:background="@color/color_music_start_bg"
-            android:outlineSpotShadowColor="@color/color_music_divider_shadow"
-            android:outlineAmbientShadowColor="@color/color_music_divider_shadow"
-            android:elevation="4dp" />
+            android:background="@color/color_video_divider" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refreshLayout"
@@ -49,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <com.example.pandas.ui.view.refresh.LoadMoreRecyclerView
+            <com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
                     android:id="@+id/rv_eye"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

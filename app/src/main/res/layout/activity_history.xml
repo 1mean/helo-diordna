@@ -22,7 +22,7 @@
             android:outlineAmbientShadowColor="@color/color_music_divider_shadow"
             android:elevation="3dp" />
 
-    <com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
+    <com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView2
             android:id="@+id/rv_history"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

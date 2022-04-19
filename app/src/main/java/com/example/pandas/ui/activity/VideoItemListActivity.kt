@@ -9,7 +9,7 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.PandaViewModel
 import com.example.pandas.databinding.ActivityVideoListBinding
 import com.example.pandas.ui.adapter.PandaListAdapter
-import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
+import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView2
 import com.example.pandas.utils.StatusBarUtils
 
 /**

@@ -3,8 +3,8 @@ package com.example.pandas.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.pandas.bean.pet.PetViewData
+import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.databinding.ViewpagerRecommendBinding
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 
@@ -39,13 +39,9 @@ public class RecoViewPagerAdapter(private val list: MutableList<PetViewData>) :
         val title = binding.txtRecommendTitle
 
         fun handle(position: Int) {
-
             val data = list[position]
-            Glide.with(itemView.context).load(data.cover)
-                .into(cover)
-            if (position != 0) {
-                title.text = data.title
-            }
+            loadImage(itemView.context, data.cover, cover)
+            title.text = data.title
         }
     }
 }

@@ -6,7 +6,7 @@ import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loadRoundedCornerImage
-import com.example.pandas.biz.interaction.OnItemClickListener
+import com.example.pandas.biz.interaction.OnItemmmmClickListener
 
 /**
  * @description: 缓存文件夹分类
@@ -16,7 +16,7 @@ import com.example.pandas.biz.interaction.OnItemClickListener
  */
 public class CacheListAdapter(
     private val list: MutableList<PetViewData>,
-    private val listener: OnItemClickListener<String>
+    private val listener: OnItemmmmClickListener<String>
 ) :
     BaseCommonAdapter<PetViewData>(list) {
 

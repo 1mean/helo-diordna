@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.interaction.ItemClickListener
-import com.example.pandas.biz.interaction.OnItemClickListener
+import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.interaction.OnItemSelectedListener
 import com.example.pandas.biz.viewmodel.SearchViewModel
 import com.example.pandas.databinding.ActivitySearchBinding
@@ -30,7 +30,8 @@ import com.example.pandas.utils.StatusBarUtils
  * @version: v1.0
  */
 public class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>(),
-    OnItemClickListener<String>, OnItemSelectedListener, ItemClickListener<String> {
+    ItemClickListener<String>, OnItemSelectedListener,
+    OnItemmmmClickListener<String> {
 
     private var keywords: String = ""
 

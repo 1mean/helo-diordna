@@ -48,6 +48,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="HomeTabTextStyle">
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <!-- home activity RadioButtom style -->
     <style name="styles_txt_love_classify">
         <item name="android:textSize">11sp</item>

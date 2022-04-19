@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.biz.interaction.OnItemClickListener
+import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.viewmodel.LocalCacheViewModel
 import com.example.pandas.databinding.FragmentCacheListBinding
 import com.example.pandas.ui.adapter.CacheListAdapter
@@ -16,7 +16,7 @@ import com.example.pandas.ui.adapter.CacheListAdapter
  * @version: v1.0
  */
 public class CacheListFragment : BaseFragment<LocalCacheViewModel, FragmentCacheListBinding>(),
-    OnItemClickListener<String> {
+    OnItemmmmClickListener<String> {
 
     private val mFragment by lazy { CacheItemFragment() }
 

@@ -27,7 +27,7 @@ public class CutePetChildAdapter(private val list: MutableList<PetVideo>) :
         val context = holder.itemView.context
         val cover = holder.getWidget<AppCompatImageView>(R.id.img_cute_cover)
         val header = holder.getWidget<AppCompatImageView>(R.id.img_cute_author)
-        val durationView = holder.getWidget<AppCompatTextView>(R.id.txt_cute_duration)
+        //val durationView = holder.getWidget<AppCompatTextView>(R.id.txt_cute_duration)
         val name = holder.getWidget<AppCompatTextView>(R.id.txt_cute_name)
         val title = holder.getWidget<AppCompatTextView>(R.id.txt_cute_title)
 
@@ -46,7 +46,7 @@ public class CutePetChildAdapter(private val list: MutableList<PetVideo>) :
             }
         }
 
-        durationView.text = duration
+        //durationView.text = duration
         name.text = petVideo.authorName
         title.text = petVideo.title
 

@@ -9,7 +9,7 @@ import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.CutePetViewModel
 import com.example.pandas.databinding.FragmentCuteChildBinding
 import com.example.pandas.ui.adapter.CutePetChildAdapter
-import com.example.pandas.ui.view.refresh.LoadMoreRecyclerView2
+import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView2
 
 /**
  * @description: TODO

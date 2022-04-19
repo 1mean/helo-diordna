@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                    app:contentScrim="@color/color_viewpager_bg">
+                    app:contentScrim="@color/color_bg_cute_pet">
                 <!--在ImageView控件中使用到的属性 layout_collapseMode (折叠模式) - 有两个值-->
                 <!--pin：设置为这个模式时，当CollapsingToolbarLayout完全收缩后，Toolbar还可以保留在屏幕上-->
                 <!--parallax：在内容滚动时，CollapsingToolbarLayout中的View（比如ImageView)也可以同时滚动
@@ -84,7 +84,7 @@
                 app:tabIndicator="@drawable/layer_tab_indicator"
                 app:tabRippleColor="@android:color/transparent"
                 android:paddingBottom="5dp"
-                android:background="@color/color_viewpager_bg"
+                android:background="@color/color_bg_cute_pet"
                 app:tabSelectedTextColor="@color/color_tab_text_selected"
                 app:tabIndicatorColor="@color/color_tab_indicator"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">

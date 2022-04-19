@@ -5,7 +5,7 @@ import androidx.core.content.ContextCompat
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.biz.interaction.OnItemClickListener
+import com.example.pandas.biz.interaction.OnItemmmmClickListener
 
 /**
  * @description: TODO
@@ -15,7 +15,7 @@ import com.example.pandas.biz.interaction.OnItemClickListener
  */
 public class HotSearchAdapter(
     private val list: MutableList<String>,
-    private val listener: OnItemClickListener<String>
+    private val listener: OnItemmmmClickListener<String>
 ) :
     BaseCommonAdapter<String>(list) {
 

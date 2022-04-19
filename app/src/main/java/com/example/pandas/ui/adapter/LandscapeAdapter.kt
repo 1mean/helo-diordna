@@ -12,22 +12,20 @@ import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.databinding.AdapterItemTitleBinding
 import com.example.pandas.databinding.AdapterLandscapeItemBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
-import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.viewpager.Indicator
 import com.example.pandas.utils.TimeUtils
 
 /**
- * @description: TODO
+ * @description: LandscapeAdapter
  * @author: dongyiming
  * @date: 2/4/22 5:31 下午
  * @version: v1.0
  */
 public class LandscapeAdapter(private var data: LandscapeData) :
-    RecyclerView.Adapter<BaseEmptyViewHolder>() {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_BANNER = 1 //山水轮播图
-    private val TYPE_TITLE = 2
-    private val TYPE_ITEM = 3 //grid item
+    private val TYPE_ITEM = 2 //grid item
 
     @SuppressLint("NotifyDataSetChanged")
     fun updata(isRefresh: Boolean, landData: LandscapeData) {
@@ -40,7 +38,7 @@ public class LandscapeAdapter(private var data: LandscapeData) :
             } else {
                 val size = data.itemList.size
                 data.itemList.addAll(landData.itemList)
-                notifyItemRangeInserted(size + 2, landData.itemList.size)
+                notifyItemRangeInserted(size + 1, landData.itemList.size)
             }
         }
     }
@@ -49,7 +47,7 @@ public class LandscapeAdapter(private var data: LandscapeData) :
         val bannerList = data.bannerList
         val itemList = data.itemList
         if (bannerList.isNotEmpty() && itemList.isNotEmpty()) {
-            return itemList.size + 2
+            return itemList.size + 1
         }
         return 0
     }
@@ -58,12 +56,11 @@ public class LandscapeAdapter(private var data: LandscapeData) :
 
         return when (position) {
             0 -> TYPE_BANNER
-            1 -> TYPE_TITLE
             else -> TYPE_ITEM
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         when (viewType) {
             TYPE_BANNER -> {
@@ -73,14 +70,6 @@ public class LandscapeAdapter(private var data: LandscapeData) :
                     false
                 )
                 return BannerHolder(binding)
-            }
-            TYPE_TITLE -> {
-                val binding = AdapterItemTitleBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
-                return TitleViewHolder(binding)
             }
             else -> {
                 val binding = AdapterLandscapeItemBinding.inflate(
@@ -93,13 +82,11 @@ public class LandscapeAdapter(private var data: LandscapeData) :
         }
     }
 
-    override fun onBindViewHolder(holder: BaseEmptyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
         when (getItemViewType(position)) {
             TYPE_BANNER -> {
                 (holder as BannerHolder).handle(position)
-            }
-            TYPE_TITLE -> {
-                (holder as TitleViewHolder).handle()
             }
             else -> {
                 (holder as ItemViewHolder).handle(position)
@@ -108,7 +95,7 @@ public class LandscapeAdapter(private var data: LandscapeData) :
     }
 
     inner class BannerHolder(binding: ItemBannerRecommendBinding) :
-        BaseEmptyViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root) {
 
         private val banner = binding.banner
         var indicator: Indicator? = null
@@ -132,17 +119,8 @@ public class LandscapeAdapter(private var data: LandscapeData) :
         }
     }
 
-    inner class TitleViewHolder(binding: AdapterItemTitleBinding) :
-        BaseEmptyViewHolder(binding.root) {
-
-        private val title = binding.txtLandscapeTitle
-        fun handle() {
-            title.text = "精选山水"
-        }
-    }
-
     private inner class ItemViewHolder(binding: AdapterLandscapeItemBinding) :
-        BaseEmptyViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root) {
 
         val cover = binding.imgLandscape
         val duration = binding.txtLandscapeDuration
@@ -152,7 +130,7 @@ public class LandscapeAdapter(private var data: LandscapeData) :
 
         fun handle(position: Int) {
 
-            val video = data.itemList[position - 2]
+            val video = data.itemList[position - 1]
 
             loadRoundedCornerImage(itemView.context, 10, video.cover, cover)
             duration.text = TimeUtils.getMMDuration(video.duration.toLong())
