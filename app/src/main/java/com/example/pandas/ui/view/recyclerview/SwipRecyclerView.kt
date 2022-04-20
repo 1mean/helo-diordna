@@ -61,10 +61,10 @@ class SwipRecyclerView : RecyclerView {
      * @date: 12/28/21 12:19 上午
      * @version: v1.0
      */
-    fun setRefreshAdapter(adapter: Adapter<ViewHolder>, listener: ILoadMoreListener) {
+    fun setRefreshAdapter(adapter: Adapter<out ViewHolder>, listener: ILoadMoreListener) {
 
         mListener = listener
-        wrapAdapter = AdapterWrapper(adapter)
+        wrapAdapter = AdapterWrapper(adapter as Adapter<ViewHolder>)
         onItemClickListener?.let {
             wrapAdapter!!.setOnItemClickListener(it)
         }

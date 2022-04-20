@@ -1,4 +1,5 @@
 package com.example.pandas.biz.viewmodel
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.BaseViewModel
@@ -10,6 +11,7 @@ import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.ExceptionHandle
 import com.example.pandas.biz.manager.PetManagerCoroutine
+import com.example.pandas.sql.entity.PetVideo
 import kotlinx.coroutines.launch
 
 /**
@@ -24,6 +26,7 @@ class HomePageViewModel : BaseViewModel() {
     var petIndex = 0
     var recoIndex = 0
     var landIndex = 0
+    var hotIndex = 0
     var hasMore = true//是否有更多
 
     /***********************************************************************************
@@ -46,6 +49,8 @@ class HomePageViewModel : BaseViewModel() {
     val loveDataWrapper: MutableLiveData<UIDataWrapper<PageCommonData>> by lazy { MutableLiveData() }
 
     val landScapeDataWrapper: MutableLiveData<UIDataWrapper<LandscapeData>> by lazy { MutableLiveData() }
+
+    val hotDataWrapper: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
 
     fun getPagePet(isRefresh: Boolean) {
 
@@ -190,6 +195,50 @@ class HomePageViewModel : BaseViewModel() {
                     landscapeData = LandscapeData()
                 )
                 landScapeDataWrapper.value = dataList
+            }
+        }
+    }
+
+    fun getHotData(isRefresh: Boolean) {
+
+        if (isRefresh) {
+            hotIndex = 0
+        }
+        viewModelScope.launch {
+
+            kotlin.runCatching {
+                PetManagerCoroutine.getHotData(hotIndex, 11)
+            }.onSuccess {
+
+                hasMore = if (it.size > 10) {
+                    it.removeLast()
+                    true
+                } else {
+                    false
+                }
+
+                val dataList = UIDataWrapper<PetVideo>(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    isEmpty = it.isEmpty(),
+                    hasMore = hasMore,
+                    isFirstEmpty = isRefresh && it.isEmpty(),
+                    listData = it
+                )
+                hotIndex += 10
+                hotDataWrapper.value = dataList
+            }.onFailure {
+
+                it.message?.loge()
+                it.printStackTrace()
+                val exception = ExceptionHandle.handleException(it)
+                val dataList = UIDataWrapper<PetVideo>(
+                    isSuccess = false,
+                    errMessage = exception.errorMsg,
+                    isRefresh = isRefresh,
+                    listData = mutableListOf()
+                )
+                hotDataWrapper.value = dataList
             }
         }
     }

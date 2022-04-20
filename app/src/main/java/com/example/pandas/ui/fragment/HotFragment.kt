@@ -1,28 +1,27 @@
 package com.example.pandas.ui.fragment
 
+import HotFragmentAdapter
+import OnItemClickListener
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
-import com.example.pandas.bean.LandscapeData
+import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
-import com.example.pandas.ui.adapter.LandscapeAdapter
-import com.example.pandas.ui.adapter.decoration.LandScapeItemDecoration
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
- * @description: LandscapeFragment
+ * @description: 热门
  * @author: dongyiming
- * @date: 2/4/22 4:44 下午
+ * @date: 4/20/22 11:20 下午
  * @version: v1.0
  */
-public class LandscapeFragment :
-    BaseLazyFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
+public class HotFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
 
-    private val mAdapter: LandscapeAdapter by lazy { LandscapeAdapter(LandscapeData()) }
+    private val mAdapter: HotFragmentAdapter by lazy { HotFragmentAdapter(mutableListOf()) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -31,10 +30,9 @@ public class LandscapeFragment :
         binding.recyclerLayout.run {
 
             layoutManager = LinearLayoutManager(mActivity)
-            addItemDecoration(LandScapeItemDecoration(padding))
             setRefreshAdapter(mAdapter, object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
-                    mViewModel.getLandScapeData(false)
+                    mViewModel.getHotData(false)
                 }
             })
         }
@@ -44,25 +42,24 @@ public class LandscapeFragment :
             isRefreshing = true
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
-                mViewModel.getLandScapeData(true)
+                mViewModel.getHotData(true)
             }
         }
     }
 
     override fun createObserver() {
-
-        mViewModel.landScapeDataWrapper.observe(viewLifecycleOwner) {
+        mViewModel.hotDataWrapper.observe(viewLifecycleOwner) {
 
             if (it.isSuccess) {
 
                 binding.recyclerLayout.visibility = View.VISIBLE
                 when {
                     it.isRefresh -> {
-                        mAdapter.updata(true, it.landscapeData)
+                        mAdapter.refreshAdapter(it.listData)
                         binding.recyclerLayout.isRefreshing(false)
                     }
                     else -> {
-                        mAdapter.updata(false, it.landscapeData)
+                        mAdapter.loadMore(it.listData)
                     }
                 }
                 binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
@@ -73,7 +70,7 @@ public class LandscapeFragment :
     }
 
     override fun firstOnResume() {
-        mViewModel.getLandScapeData(true)
+        mViewModel.getHotData(true)
     }
 
 }

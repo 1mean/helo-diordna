@@ -3,10 +3,7 @@ package com.example.pandas.ui.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.pandas.ui.fragment.LandscapeFragment
-import com.example.pandas.ui.fragment.MyLoveFragment
-import com.example.pandas.ui.fragment.PandaFragment
-import com.example.pandas.ui.fragment.RecommendFragment
+import com.example.pandas.ui.fragment.*
 
 /**
  * @description: fragment factory
@@ -31,6 +28,9 @@ public class HomePagerAdapter(private val tabList: List<String>, fragment: Fragm
                 }
                 "大熊猫" -> {
                     PandaFragment()
+                }
+                "热门" -> {
+                    HotFragment()
                 }
                 "最爱" -> {
                     MyLoveFragment()

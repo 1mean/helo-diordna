@@ -119,6 +119,11 @@
     <color name="color_audio_menu_singer">#808892</color>
     <color name="color_player_controller_bg">#99000000</color>
 
+    <!--hot-->
+    <color name="color_txt_hot_tag">#FF5D1D</color>
+    <color name="color_bg_hot_divider">#E2E6E5</color>
+
+
     <!--other-->
     <color name="color_progress_loadmore">#FF5B9A</color>
     <color name="color_text_loading">#919A9D</color>

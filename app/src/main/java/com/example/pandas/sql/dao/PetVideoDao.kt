@@ -140,6 +140,9 @@ interface PetVideoDao {
     @Query("select * from pet_video where videoType = (:videoType)")
     suspend fun queryVideoType(videoType: Int): MutableList<PetVideo>
 
+    @Query("select * from pet_video where videoType=0 and isStar=1 order by releaseTime desc limit (:startIndex),(:count)")
+    suspend fun queryHotVideo(startIndex: Int, count: Int): MutableList<PetVideo>
+
     @Query("select * from music where type=(:type) limit (:startIndex),(:count)")
     suspend fun queryMusicByPage(type: Int, startIndex: Int, count: Int): MutableList<MusicVo>
 

@@ -183,6 +183,15 @@ class PetManager {
         }
     }
 
+    suspend fun getHotData(startIndex: Int, counts: Int): MutableList<PetVideo> {
+
+        return withContext(Dispatchers.IO) {
+
+            delay(300)
+            petDao.queryHotVideo(startIndex, counts)
+        }
+    }
+
     suspend fun getAllPetCoverUrl(): MutableList<CoverDownLoad> {
 
         return withContext(Dispatchers.IO) {

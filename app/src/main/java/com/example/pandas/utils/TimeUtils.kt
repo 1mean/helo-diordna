@@ -40,6 +40,12 @@ object TimeUtils {
     }
 
     @SuppressLint("SimpleDateFormat")
+    fun getMdTime(time: Long): String {
+        val formatter = SimpleDateFormat("MM-dd")
+        return formatter.format(Date(time))
+    }
+
+    @SuppressLint("SimpleDateFormat")
     fun getCurrentDate(): String {
         val currentTime = System.currentTimeMillis()
         val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")

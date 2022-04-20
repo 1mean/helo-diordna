@@ -29,7 +29,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  */
 public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 
-    private val tabTitles = arrayListOf("大熊猫", "推荐", "最爱", "山水")
+    private val tabTitles = arrayListOf("大熊猫", "推荐", "热门", "最爱", "山水")
 
     override fun lazyLoadTime(): Long = 0
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
@@ -43,7 +43,7 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 
         binding.viewpager.run {
             adapter = HomePagerAdapter(tabTitles, requireActivity())
-            offscreenPageLimit = OFFSCREEN_PAGE_LIMIT_DEFAULT //不设置预加载页面
+            offscreenPageLimit = tabTitles.size //不设置预加载页面
             setCurrentItem(1, false)
         }
 
