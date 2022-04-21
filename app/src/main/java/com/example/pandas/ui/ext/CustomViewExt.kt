@@ -76,16 +76,19 @@ fun hideSoftKeyboard(activity: Activity?) {
     }
 }
 
+/**
+ * 图片像素为65px
+ */
 fun setLevelImageResourse(level: Int, imageView: AppCompatImageView) {
 
     when (level) {
-        0 -> imageView.setImageResource(R.mipmap.img_level0)
-        1 -> imageView.setImageResource(R.mipmap.img_level1)
-        2 -> imageView.setImageResource(R.mipmap.img_level2)
-        3 -> imageView.setImageResource(R.mipmap.img_level3)
-        4 -> imageView.setImageResource(R.mipmap.img_level4)
+        0 -> imageView.setImageResource(R.mipmap.img_level_0)
+        1 -> imageView.setImageResource(R.mipmap.img_level_1)
+        2 -> imageView.setImageResource(R.mipmap.img_level_2)
+        3 -> imageView.setImageResource(R.mipmap.img_level_3)
+        4 -> imageView.setImageResource(R.mipmap.img_level_4)
         5 -> imageView.setImageResource(R.mipmap.img_level_5)
-        6 -> imageView.setImageResource(R.mipmap.img_level6)
+        6 -> imageView.setImageResource(R.mipmap.img_level_6)
         7 -> imageView.setImageResource(R.mipmap.img_level7)
         8 -> imageView.setImageResource(R.mipmap.img_level8)
         9 -> imageView.setImageResource(R.mipmap.img_level9)
