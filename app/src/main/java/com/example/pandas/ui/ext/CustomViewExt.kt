@@ -4,6 +4,7 @@ import CommonItemDecoration
 import android.app.Activity
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -73,4 +74,21 @@ fun hideSoftKeyboard(activity: Activity?) {
             )
         }
     }
+}
+
+fun setLevelImageResourse(level: Int, imageView: AppCompatImageView) {
+
+    when (level) {
+        0 -> imageView.setImageResource(R.mipmap.img_level0)
+        1 -> imageView.setImageResource(R.mipmap.img_level1)
+        2 -> imageView.setImageResource(R.mipmap.img_level2)
+        3 -> imageView.setImageResource(R.mipmap.img_level3)
+        4 -> imageView.setImageResource(R.mipmap.img_level4)
+        5 -> imageView.setImageResource(R.mipmap.img_level_5)
+        6 -> imageView.setImageResource(R.mipmap.img_level6)
+        7 -> imageView.setImageResource(R.mipmap.img_level7)
+        8 -> imageView.setImageResource(R.mipmap.img_level8)
+        9 -> imageView.setImageResource(R.mipmap.img_level9)
+    }
+
 }

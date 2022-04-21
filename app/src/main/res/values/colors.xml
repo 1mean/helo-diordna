@@ -123,6 +123,9 @@
     <color name="color_txt_hot_tag">#FF5D1D</color>
     <color name="color_bg_hot_divider">#E2E6E5</color>
 
+    <!--userinfo-->
+    <color name="color_txt_user_name">#2E333A</color>
+
 
     <!--other-->
     <color name="color_progress_loadmore">#FF5B9A</color>

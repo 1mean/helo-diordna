@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.ext.startUserInfoActivity
 import com.example.pandas.biz.interaction.OnVideoItemClickLIstener
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.FragmentInformationBinding
+import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.adapter.VideoRecoListAdapter
 
 /**
@@ -34,6 +36,8 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
     private var isLove = false
     private var isCollect = false
 
+    private var user: User? = null
+
     override fun lazyLoadTime(): Long = 0
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -47,6 +51,12 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
 
             layoutManager = LinearLayoutManager(mActivity)
             adapter = mAdapter
+        }
+
+        binding.imgVideoInfoHead.setOnClickListener {
+            user?.let {
+                startUserInfoActivity(mActivity, it)
+            }
         }
     }
 
@@ -71,6 +81,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                         )
                     )
                 }
+                user = author
             }
 
             if (it.user == null) {

@@ -1,9 +1,12 @@
 package com.example.pandas.sql.entity
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(tableName = "user")
 data class User(
 
@@ -33,4 +36,4 @@ data class User(
     var reservedInt: Int = 0,//预留int字段
     @ColumnInfo
     var reservedString: String? = null//预留string字段
-)
+): Parcelable

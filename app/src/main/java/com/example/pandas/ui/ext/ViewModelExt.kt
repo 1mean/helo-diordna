@@ -2,9 +2,9 @@ package com.example.pandas.biz.ext
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Typeface
-import android.widget.TextView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.pandas.sql.entity.User
+import com.example.pandas.ui.activity.UserInfoActivity
 import com.example.pandas.ui.activity.VideoPlayingActivity
 
 /**
@@ -28,6 +28,16 @@ fun SwipeRefreshLayout.init(distance: Int): SwipeRefreshLayout {
 fun startVideoPlayActivity(context: Context, code: Int) {
     val intent = Intent(context, VideoPlayingActivity::class.java).apply {
         putExtra("code", code)
+    }
+    context.startActivity(intent)
+}
+
+/**
+ * 后续数据修改成id
+ */
+fun startUserInfoActivity(context: Context, user: User) {
+    val intent = Intent(context, UserInfoActivity::class.java).apply {
+        putExtra("user", user)
     }
     context.startActivity(intent)
 }

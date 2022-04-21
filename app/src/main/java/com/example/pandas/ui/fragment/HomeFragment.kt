@@ -3,11 +3,10 @@ package com.example.pandas.ui.fragment
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
+import android.view.View
+import android.widget.TextView
 import androidx.lifecycle.ViewModelStoreOwner
-import androidx.viewpager2.widget.ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
@@ -18,8 +17,12 @@ import com.example.pandas.databinding.FragmentHomeBinding
 import com.example.pandas.ui.activity.MessageActivity
 import com.example.pandas.ui.activity.SearchActivity
 import com.example.pandas.ui.adapter.HomePagerAdapter
+import com.example.pandas.ui.view.TabEntity
+import com.flyco.tablayout.listener.CustomTabEntity
+import com.flyco.tablayout.listener.OnTabSelectListener
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+import java.util.*
+
 
 /**
  * @description: 首页
@@ -43,39 +46,32 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 
         binding.viewpager.run {
             adapter = HomePagerAdapter(tabTitles, requireActivity())
-            offscreenPageLimit = tabTitles.size //不设置预加载页面
+            offscreenPageLimit = tabTitles.size
             setCurrentItem(1, false)
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    binding.tab.currentTab = position
+                }
+            })
         }
 
-//        binding.tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-//            override fun onTabSelected(tab: TabLayout.Tab?) {
-//
-//                val title = tab?.customView?.findViewById<AppCompatTextView>(R.id.txt_tab_home)
-//                title?.setTextColor(ContextCompat.getColor(mActivity,R.color.color_tab_text_selected))
-//                title?.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
-//                Log.e("1mean", "tab1: ${tab?.text}")
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//                Log.e("1mean", "tab2: ${tab?.text}")
-//                val title = tab?.customView?.findViewById<AppCompatTextView>(R.id.txt_tab_home)
-//                title?.setTextColor(ContextCompat.getColor(mActivity,R.color.color_home_tab_text))
-//                title?.typeface = Typeface.defaultFromStyle(Typeface.NORMAL)
-//            }
-//
-//            override fun onTabReselected(tab: TabLayout.Tab?) {
-//            }
-//
-//        })
+        val mTabEntities = ArrayList<CustomTabEntity>()
+        for (i in tabTitles.indices) {
+            mTabEntities.add(TabEntity(tabTitles[i]))
+        }
+        binding.tab.run {
+            setTabData(mTabEntities)
+            currentTab = 1
+            setOnTabSelectListener(object : OnTabSelectListener {
+                override fun onTabSelect(position: Int) {
+                    binding.viewpager.setCurrentItem(position, false)
+                }
 
-        TabLayoutMediator(
-            binding.tab, binding.viewpager, true
-        ) { tab, position ->
-//            tab.setCustomView(R.layout.tab_home)
-//            val title = tab.customView?.findViewById<AppCompatTextView>(R.id.txt_tab_home)
-//            title?.text = tabTitles[position]
-            tab.text = tabTitles[position]
-        }.attach()
+                override fun onTabReselect(position: Int) {
+                }
+            })
+        }
 
         binding.edit.setOnClickListener {
             startActivity(Intent(mActivity, SearchActivity::class.java))
@@ -91,9 +87,19 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
         //binding.bar.setExpanded(true,true)
     }
 
+    private fun setTabTypeface(tab: TabLayout.Tab) {
+        for (i in 0 until tab.view.childCount) {
+            val tabViewChild: View = tab.view.getChildAt(i)
+            if (tabViewChild is TextView) {
+                (tabViewChild as TextView).typeface = Typeface.defaultFromStyle(Typeface.BOLD)
+            }
+        }
+    }
+
     override fun createObserver() {
     }
 
     override fun firstOnResume() {
     }
+
 }
