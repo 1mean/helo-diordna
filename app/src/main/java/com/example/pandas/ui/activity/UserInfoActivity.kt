@@ -28,7 +28,7 @@ public class UserInfoActivity : BaseActivity<UserInfoViewModel, ActivityUserBind
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
+        StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
         user = intent.getParcelableExtra<User>("user")
 
         user?.let {
@@ -53,11 +53,24 @@ public class UserInfoActivity : BaseActivity<UserInfoViewModel, ActivityUserBind
             offscreenPageLimit = tabList.size
             adapter = UserInfoPageAdapter(this@UserInfoActivity)
         }
+
+
         TabLayoutMediator(
             binding.tbUser, binding.vpUser, true
         ) { tab, position ->
             tab.text = tabList[position]
         }.attach()
+
+        binding.tbUser.getTabAt(2)?.select()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        user?.let {
+            it.userName?.let {
+                mViewModel.getUserVideos(it, true)
+            }
+        }
     }
 
     override fun createObserver() {

@@ -149,6 +149,13 @@ interface PetVideoDao {
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where isStar=1 limit 0,(:counts)")
     suspend fun queryByCounts(counts: Int): MutableList<PetViewData>
 
+    @Query("select code,title,cover,authorName,duration,videoType,releaseTime from pet_video where authorName=(:name) order by releaseTime limit (:startIndex),(:counts)")
+    suspend fun queryVideosByName(
+        name: String,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetViewData>
+
     @Query("select code,title,cover,authorName,duration,videoType from pet_video where type=(:type) and videoType=1")
     suspend fun queryBannerByType(type: Int): MutableList<PetViewData>
 

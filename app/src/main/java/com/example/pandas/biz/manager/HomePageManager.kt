@@ -192,6 +192,19 @@ class PetManager {
         }
     }
 
+    suspend fun getUserVideos(
+        name: String,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetViewData> {
+
+        return withContext(Dispatchers.IO) {
+
+            delay(300)
+            petDao.queryVideosByName(name, startIndex, counts)
+        }
+    }
+
     suspend fun getAllPetCoverUrl(): MutableList<CoverDownLoad> {
 
         return withContext(Dispatchers.IO) {

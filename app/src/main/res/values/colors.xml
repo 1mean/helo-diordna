@@ -125,6 +125,7 @@
 
     <!--userinfo-->
     <color name="color_txt_user_name">#2E333A</color>
+    <color name="color_txt_video_time">#919A9D</color>
 
 
     <!--other-->

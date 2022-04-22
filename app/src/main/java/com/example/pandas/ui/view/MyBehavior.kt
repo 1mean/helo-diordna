@@ -30,6 +30,23 @@ public class MyBehavior() : CoordinatorLayout.Behavior<View>() {
 
     }
 
+    override fun layoutDependsOn(
+        parent: CoordinatorLayout,
+        child: View,
+        dependency: View
+    ): Boolean {
+        return super.layoutDependsOn(parent, child, dependency)
+    }
+
+    override fun onDependentViewChanged(
+        parent: CoordinatorLayout,
+        child: View,
+        dependency: View
+    ): Boolean {
+
+        return super.onDependentViewChanged(parent, child, dependency)
+    }
+
     /**
      * 当CoordinatorLayout 的直接或者非直接子View开始准备嵌套滑动的时候会调用
      * @param:

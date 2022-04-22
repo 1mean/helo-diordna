@@ -13,6 +13,7 @@
         <!--一个垂直的linearlayout，配合导航栏和标题栏达到折叠滚动效果-->
         <!--内部子view提供滚动行为，布局设置layout_scrollFlags-->
         <!--需要一个单独滚动的同级布局，如常用的NestedScrollView，以便知道何时去滚动-->
+        <!--app:elevation="0dp" 避免和tablayout的交接初有阴影效果-->
         <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/abl"
                 android:layout_width="match_parent"
