@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- dimens.xml命名规范：模块_具体作用名 -->
 
@@ -71,5 +71,8 @@
     <dimen name="dimen_padding_pet">6dp</dimen>
     <dimen name="dimen_padding_panda_list">8dp</dimen>
     <dimen name="dimen_padding_panda_child">10dp</dimen>
+
+    <!-- 修改BottomNavigationView框架 布局默认的间距，满足项目需求-->
+    <dimen tools:override="true" name="design_bottom_navigation_margin">11dp</dimen>
 
 </resources>

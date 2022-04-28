@@ -35,8 +35,8 @@ public class UserVideosAdapter(list: MutableList<PetViewData>) :
         counts.text = StringBuilder("$count").append("观看").toString()
 
         data.releaseTime?.let {
-            val subTime = it.substring(5, 10)
-            time.text = StringBuilder("- ").append(subTime).toString()
+            val subTime = it.substring(0, 10)
+            time.text = subTime
         }
         holder.itemView.setOnClickListener {
             startVideoPlayActivity(context, data.code)

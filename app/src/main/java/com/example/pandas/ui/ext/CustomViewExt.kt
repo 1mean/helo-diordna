@@ -6,13 +6,16 @@ import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pandas.R
 import com.example.pandas.ui.adapter.SleepVideoItemAdapter
 import com.example.pandas.ui.adapter.decoration.RecommendDecoration
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
+import com.example.pandas.ui.view.recyclerview.CommonFooter
 import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
+import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 
 /**
@@ -48,6 +51,21 @@ fun LoadMoreRecyclerView.initPanda(
 
 fun SwipeRefreshLayout.setRefreshColor(): SwipeRefreshLayout {
     this.setColorSchemeResources(R.color.color_tab_indicator)
+    return this
+}
+
+fun SwipRecyclerView.init(
+    itemDecoration: RecyclerView.ItemDecoration? = null,
+    adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>,
+    listener: SwipRecyclerView.ILoadMoreListener
+): SwipRecyclerView {
+
+    addFooterView(CommonFooter(context))
+    layoutManager = LinearLayoutManager(context)
+    itemDecoration?.let {
+        addItemDecoration(it)
+    }
+    setRefreshAdapter(adapter, listener)
     return this
 }
 

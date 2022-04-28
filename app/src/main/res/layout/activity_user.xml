@@ -2,7 +2,8 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                     android:id="@+id/clayout_user_top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="136dp"
+                    android:layout_marginTop="134dp"
                     android:background="@color/color_white_lucency">
 
                 <com.kproduce.roundcorners.CircleImageView
@@ -40,15 +41,64 @@
                         app:layout_constraintLeft_toLeftOf="@id/clayout_user_top"
                         android:layout_marginStart="24dp" />
 
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/clayout_user_info"
+                        android:layout_width="193dp"
+                        android:layout_height="39dp"
+                        app:layout_constraintTop_toTopOf="@id/clayout_user_top"
+                        app:layout_constraintRight_toRightOf="@id/clayout_user_top"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat style="@style/style_user_top_info">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/txt_user_fans"
+                                style="@style/style_user_top_value"
+                                android:text="2350" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/style_user_top_name"
+                                android:text="@string/str_fans" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat style="@style/style_user_top_info">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/txt_user_attention"
+                                style="@style/style_user_top_value"
+                                android:text="24" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/style_user_top_name"
+                                android:text="@string/str_follow" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat style="@style/style_user_top_info">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/txt_user_like"
+                                style="@style/style_user_top_value"
+                                android:text="18.7万" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/style_user_top_name"
+                                android:text="@string/str_praise" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/clayout_user_follow"
                         android:layout_width="193dp"
                         android:layout_height="30dp"
-                        app:layout_constraintTop_toTopOf="@id/clayout_user_top"
-                        app:layout_constraintRight_toRightOf="@id/clayout_user_top"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintTop_toBottomOf="@id/clayout_user_info"
+                        app:layout_constraintLeft_toLeftOf="@id/clayout_user_info"
                         android:background="@drawable/shape_user_attention"
-                        android:layout_marginEnd="12dp"
-                        android:layout_marginTop="46dp">
+                        android:layout_marginTop="7dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/clayout_user_attention"
@@ -73,8 +123,39 @@
                                 app:layout_constraintBottom_toBottomOf="@id/clayout_user_attention"
                                 android:layout_marginEnd="7dp"
                                 android:textColor="@color/white"
+                                android:includeFontPadding="false"
                                 android:textSize="14sp"
-                                android:text="关注" />
+                                android:text="@string/txt_follow" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clayout_user_unattention"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_user_follow"
+                            app:layout_constraintRight_toRightOf="@id/clayout_user_follow">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintLeft_toLeftOf="@id/clayout_user_unattention"
+                                app:layout_constraintTop_toTopOf="@id/clayout_user_unattention"
+                                app:layout_constraintBottom_toBottomOf="@id/clayout_user_unattention"
+                                android:src="@mipmap/img_user_unattention" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintRight_toRightOf="@id/clayout_user_unattention"
+                                app:layout_constraintTop_toTopOf="@id/clayout_user_unattention"
+                                app:layout_constraintBottom_toBottomOf="@id/clayout_user_unattention"
+                                android:layout_marginEnd="7dp"
+                                android:textColor="@color/color_txt_user_unattention"
+                                android:includeFontPadding="false"
+                                android:textSize="14sp"
+                                android:text="已关注" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -151,13 +232,16 @@
             android:layout_width="match_parent"
             android:layout_height="41dp"
             app:tabMaxWidth="0dp"
+            app:tabBackground="@color/white"
             app:tabRippleColor="@android:color/transparent"
             app:tabTextColor="@color/color_home_tab_text"
             app:tabIndicatorColor="@color/color_tab_indicator"
             app:tabSelectedTextColor="@color/color_tab_text_selected"
-            app:tabTextAppearance="@style/VideoTabLayoutTextStyle"
-            app:tabIndicator="@drawable/layer_video_indicator"
+            app:tabTextAppearance="@style/UserInfoTabStyle"
+            app:tabIndicator="@drawable/layer_user_tab_indicator"
+            android:paddingBottom="5dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
 
     <!--    <androidx.core.widget.NestedScrollView-->
     <!--            android:layout_width="match_parent"-->
@@ -169,7 +253,7 @@
             android:id="@+id/vp_user"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="41dp"
+            android:layout_marginTop="41.8dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     <!--    </androidx.core.widget.NestedScrollView>-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

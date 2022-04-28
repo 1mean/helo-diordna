@@ -1,13 +1,17 @@
 package com.example.pandas.biz.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.pandas.app.AppInfos
 import com.example.pandas.base.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.ExceptionHandle
 import com.example.pandas.biz.manager.PetManagerCoroutine
+import com.example.pandas.utils.SPUtils
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
@@ -72,4 +76,16 @@ public class UserInfoViewModel : BaseViewModel() {
         }
     }
 
+    fun addAttention(context: Context,userCode:Int){
+
+        viewModelScope.launch(Dispatchers.IO){
+            SPUtils.saveList(context,AppInfos.ATTENTION_KEY,userCode.toString())
+        }
+    }
+
+    fun deleteAttention(context: Context,userCode:Int){
+        viewModelScope.launch(Dispatchers.IO){
+            SPUtils.removeFromList(context,AppInfos.ATTENTION_KEY,userCode.toString())
+        }
+    }
 }

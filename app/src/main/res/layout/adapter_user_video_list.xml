@@ -35,7 +35,7 @@
             android:paddingEnd="4dp"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
-            android:background="@drawable/shape_video_item_duration"
+            android:background="@drawable/shape_hot_duration"
             tools:ignore="SmallSp" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -55,9 +55,10 @@
             android:layout_width="wrap_content"
             android:layout_height="15dp"
             app:layout_constraintLeft_toLeftOf="@id/txt_user_list_name"
-            app:layout_constraintTop_toBottomOf="@id/txt_user_list_name"
+            app:layout_constraintBottom_toBottomOf="@id/img_user_list_cover"
             android:textColor="@color/color_txt_video_time"
             android:gravity="center"
+            android:layout_marginBottom="17dp"
             android:includeFontPadding="false"
             android:textSize="11sp" />
 

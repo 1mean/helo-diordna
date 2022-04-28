@@ -38,7 +38,13 @@ import com.google.android.exoplayer2.util.Util
 public class RecommendFragment : BaseLazyFragment<HomePageViewModel, FragmentRecommendBinding>(),
     LoadMoreRecyclerView.ILoadMoreListener, OnItemmmmClickListener<Int> {
 
-    private val mAdapter: RecommendAdapter by lazy { RecommendAdapter(RecommendData(), this) }
+    private val mAdapter: RecommendAdapter by lazy {
+        RecommendAdapter(
+            lifecycle,
+            RecommendData(),
+            this
+        )
+    }
 
     private var mPlayer: ExoPlayer? = null
     private var mPosition = -1 //当前正在播放的视频的实际position

@@ -333,6 +333,11 @@ public class Banner : RelativeLayout, LifecycleObserver {
         return this
     }
 
+    fun setLifecycleRegistry(lifecycleRegistry: Lifecycle): Banner {
+        lifecycleRegistry.addObserver(this)
+        return this
+    }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public fun onPause() {
         Log.e("1mean", "onPause")

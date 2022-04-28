@@ -1,15 +1,12 @@
 package com.example.pandas.ui.fragment
 
 import HotFragmentAdapter
-import OnItemClickListener
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
-import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
+import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
@@ -25,17 +22,11 @@ public class HotFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefresh
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        val padding = mActivity.resources.getDimension(R.dimen.item_home_padding).toInt()
-
-        binding.recyclerLayout.run {
-
-            layoutManager = LinearLayoutManager(mActivity)
-            setRefreshAdapter(mAdapter, object : SwipRecyclerView.ILoadMoreListener {
-                override fun onLoadMore() {
-                    mViewModel.getHotData(false)
-                }
-            })
-        }
+        binding.recyclerLayout.init(null, mAdapter, object : SwipRecyclerView.ILoadMoreListener {
+            override fun onLoadMore() {
+                mViewModel.getHotData(false)
+            }
+        })
 
         binding.swipLayout.run {
             setRefreshColor()

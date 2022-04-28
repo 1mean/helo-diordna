@@ -7,6 +7,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
+import android.view.View
 import android.view.ViewConfiguration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +37,8 @@ class SwipRecyclerView : RecyclerView {
     private var mScaleTouchSlop = 0
 
     private var mListener: ILoadMoreListener? = null
+    private var footerView: View? = null
+    private var loadMoreView: SwipLoadMoreView? = null
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -65,6 +68,9 @@ class SwipRecyclerView : RecyclerView {
 
         mListener = listener
         wrapAdapter = AdapterWrapper(adapter as Adapter<ViewHolder>)
+        footerView?.let {
+            wrapAdapter!!.addFooter(it)
+        }
         onItemClickListener?.let {
             wrapAdapter!!.setOnItemClickListener(it)
         }
@@ -105,7 +111,7 @@ class SwipRecyclerView : RecyclerView {
                 layoutManager?.let {
                     val childCount =
                         layoutManager!!.childCount // 未隐藏的数目 childCount = count - hiddenCount
-                    Log.e("1mean","$isRefreshing,,,$hasMore")
+                    Log.e("1mean", "$isRefreshing,,,$hasMore")
                     if (childCount > 0 && lastVisibleItemPosition >= total - 1 && total > childCount
 
                         && !isRefreshing && hasMore
@@ -119,9 +125,9 @@ class SwipRecyclerView : RecyclerView {
 
     private fun dispatchLoadMore() {
 
-        Log.e("1mean","dispatchLoadMore")
+        Log.e("1mean", "dispatchLoadMore")
         isLoadingData = true
-        wrapAdapter?.onLoading()//显示正在加载中
+        loadMoreView?.onLoading()//显示正在加载中
         mListener?.onLoadMore()
     }
 
@@ -181,11 +187,16 @@ class SwipRecyclerView : RecyclerView {
         isLoadingData = false
         this.hasMore = hasMore
 
-        wrapAdapter?.onLoadFinished(isEmpty, hasMore)
+        Log.e("1mean", "wrapAdapter: $wrapAdapter")
+        loadMoreView?.onLoadFinished(isEmpty, hasMore)
     }
 
     interface ILoadMoreListener {
         fun onLoadMore()
     }
 
+    fun addFooterView(footerView: View) {
+        this.footerView = footerView
+        this.loadMoreView = footerView as SwipLoadMoreView
+    }
 }

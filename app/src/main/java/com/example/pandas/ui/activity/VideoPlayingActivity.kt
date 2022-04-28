@@ -183,6 +183,11 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+        mPlayer?.pause()
+    }
+
     private fun initPlayer() {
 
         if (code == -1) {

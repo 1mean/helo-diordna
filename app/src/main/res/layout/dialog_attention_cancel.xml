@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey50"
+        android:orientation="vertical">
+
+    <RelativeLayout
+            android:id="@+id/rlayout_add"
+            style="@style/style_user_dialog_relative">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/style_user_dialog_text"
+                android:text="@string/str_attention_add" />
+    </RelativeLayout>
+
+    <View style="@style/style_user_dialog_divider" />
+
+    <RelativeLayout
+            android:id="@+id/rlayout_group"
+            style="@style/style_user_dialog_relative">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/style_user_dialog_text"
+                android:text="@string/str_group_divide" />
+    </RelativeLayout>
+
+    <View style="@style/style_user_dialog_divider" />
+
+    <RelativeLayout
+            android:id="@+id/rlayout_cancel"
+            style="@style/style_user_dialog_relative">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/style_user_dialog_text"
+                android:text="@string/str_attention_cancel" />
+    </RelativeLayout>
+
+    <View style="@style/style_user_dialog_divider2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:text="@string/str_cannel"
+            android:textSize="15sp"
+            android:textColor="@color/color_user_dialog_txt_cancel"
+            android:gravity="center"
+            android:includeFontPadding="false" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

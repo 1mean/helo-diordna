@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/nav_graph"
+        app:startDestination="@id/mainFragment">
+
+    <!--startDestination 表示第一个启动的fragment-->
+    <fragment
+            android:id="@+id/mainFragment"
+            android:label="MainFragment"
+            android:name="com.example.pandas.ui.fragment.MainFragment" />
+</navigation>

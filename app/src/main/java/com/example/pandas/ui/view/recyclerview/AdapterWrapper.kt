@@ -1,10 +1,6 @@
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -21,9 +17,10 @@ public class AdapterWrapper(private val mAdapter: RecyclerView.Adapter<RecyclerV
 
     private val TYPE_ITEM_FOOTER = 99999 //footer
 
-    private var mViewHolder: FooterViewHolder? = null
     private var onItemClickListener: OnItemClickListener? = null
     private var onItemLongClickListener: OnItemLongClickListener? = null
+
+    private var footer: View? = null
 
     fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
         this.onItemClickListener = onItemClickListener
@@ -35,7 +32,7 @@ public class AdapterWrapper(private val mAdapter: RecyclerView.Adapter<RecyclerV
 
     fun getCurrentItemCount() = mAdapter.itemCount
 
-    private fun isFooter(position: Int): Boolean = position == getCurrentItemCount()
+    private fun isFooter(position: Int): Boolean = position >= getCurrentItemCount()
 
     private fun isFooter(holder: RecyclerView.ViewHolder): Boolean = holder is FooterViewHolder
 
@@ -52,25 +49,10 @@ public class AdapterWrapper(private val mAdapter: RecyclerView.Adapter<RecyclerV
         }
     }
 
-    fun onLoading() {
-        mViewHolder?.onLoading()
-    }
-
-    fun onLoadFinished(isEmpty: Boolean, hasMore: Boolean) {
-        mViewHolder?.onLoadFinished(isEmpty, hasMore)
-    }
-
-    fun loadError(errorCode: Int, errorMessage: String) {
-        mViewHolder?.onLoadError(errorCode, errorMessage)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         if (viewType == TYPE_ITEM_FOOTER) {
-            val footer = LayoutInflater.from(parent.context)
-                .inflate(R.layout.footer_recyclerview, parent, false)
-            mViewHolder = FooterViewHolder(footer)
-            return mViewHolder!!
+            return FooterViewHolder(footer!!)
         } else {
             val holder = mAdapter.onCreateViewHolder(parent, viewType)
             onItemClickListener?.let { listener ->
@@ -95,45 +77,7 @@ public class AdapterWrapper(private val mAdapter: RecyclerView.Adapter<RecyclerV
         }
     }
 
-    private inner class FooterViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
-
-        private val progressBar: ProgressBar = itemView.findViewById(R.id.progressBar)
-        private val txtFooter: AppCompatTextView = itemView.findViewById(R.id.txt_footer)
-        private val footer: ConstraintLayout = itemView.findViewById(R.id.footer)
-
-        fun onLoading() {
-            footer.visibility = View.VISIBLE
-            progressBar.visibility = View.VISIBLE
-            txtFooter.visibility = View.GONE
-        }
-
-        fun onLoadFinished(isEmpty: Boolean, hasMore: Boolean) {
-
-            Log.e("1mean", "onLoadFinished: $isEmpty, $hasMore")
-            if (hasMore) {
-                footer.visibility = View.GONE
-            } else {
-                footer.visibility = View.VISIBLE
-                if (isEmpty) {
-                    progressBar.visibility = View.GONE
-                    txtFooter.visibility = View.VISIBLE
-                    txtFooter.text = "暂时没有数据"
-                } else {
-                    progressBar.visibility = View.GONE
-                    txtFooter.visibility = View.VISIBLE
-                    txtFooter.text = "没有更多数据啦"
-                }
-            }
-        }
-
-        fun onLoadError(errorCode: Int, errorMessage: String) {
-
-            footer.visibility = View.VISIBLE
-            progressBar.visibility = View.GONE
-            txtFooter.visibility = View.VISIBLE
-            txtFooter.text = errorMessage
-        }
-    }
+    private inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -183,5 +127,9 @@ public class AdapterWrapper(private val mAdapter: RecyclerView.Adapter<RecyclerV
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         mAdapter.onDetachedFromRecyclerView(recyclerView)
+    }
+
+    fun addFooter(view: View) {
+        this.footer = view
     }
 }

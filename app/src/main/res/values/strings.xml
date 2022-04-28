@@ -55,6 +55,7 @@
     <string name="str_zone">动态</string>
     <string name="str_follow">关注</string>
     <string name="str_fans">粉丝</string>
+    <string name="str_praise">获赞</string>
     <string name="str_mine_download">离线缓存</string>
     <string name="str_mine_history">历史记录</string>
     <string name="str_mine_collect">我的收藏</string>
@@ -100,5 +101,8 @@
     <string name="str_NO">账号ID</string>
     <string name="str_sign">个性签名</string>
     <string name="str_footer_nomore">无更多内容</string>
+    <string name="str_attention_add">加入特别关注</string>
+    <string name="str_group_divide">设置分组</string>
+    <string name="str_attention_cancel">取消关注</string>
 
 </resources>

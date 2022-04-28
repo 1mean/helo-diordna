@@ -4,11 +4,11 @@ import UserVideosAdapter
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelStoreOwner
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.UserInfoViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
-import com.example.pandas.ui.adapter.decoration.LandScapeItemDecoration
+import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
@@ -24,25 +24,22 @@ public class UserVideosFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefr
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.recyclerLayout.run {
-
-            layoutManager = LinearLayoutManager(mActivity)
-            setRefreshAdapter(mAdapter, object : SwipRecyclerView.ILoadMoreListener {
-                override fun onLoadMore() {
-                    mViewModel.authorName?.let {
-                        mViewModel.getUserVideos(it,false)
-                    }
+        binding.recyclerLayout.init(null, mAdapter, object : SwipRecyclerView.ILoadMoreListener {
+            override fun onLoadMore() {
+                mViewModel.authorName?.let {
+                    mViewModel.getUserVideos(it, false)
                 }
-            })
-        }
+            }
+        })
 
         binding.swipLayout.run {
+            setBackgroundResource(R.color.white)
             setRefreshColor()
             isRefreshing = true
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
                 mViewModel.authorName?.let {
-                    mViewModel.getUserVideos(it,true)
+                    mViewModel.getUserVideos(it, true)
                 }
             }
         }

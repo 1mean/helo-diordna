@@ -3,6 +3,7 @@ package com.example.pandas.ui.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.pandas.ui.fragment.UserDailyFragment
 import com.example.pandas.ui.fragment.UserVideosFragment
 
 /**
@@ -19,7 +20,7 @@ public class UserInfoPageAdapter(fragmentActivity: FragmentActivity) :
         return if (position == 0) {
             UserVideosFragment()
         } else {
-            UserVideosFragment()
+            UserDailyFragment()
         }
     }
 

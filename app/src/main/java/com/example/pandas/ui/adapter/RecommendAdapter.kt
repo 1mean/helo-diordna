@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pandas.R
@@ -25,6 +26,7 @@ import com.example.pandas.utils.TimeUtils
  * @version: v1.0
  */
 public class RecommendAdapter(
+    private val lifecycle: Lifecycle,
     private var data: RecommendData<PetViewData>,
     private val listener: OnItemmmmClickListener<Int>
 ) :
@@ -169,6 +171,7 @@ public class RecommendAdapter(
                     ContextCompat.getColor(itemView.context, R.color.white)
                 )
                 val adapter = RecoViewPagerAdapter(list)
+                this.banner.setLifecycleRegistry(lifecycle)
 
                 this.banner.setAdapter(adapter)
                     .setIndicator(indicator, true)

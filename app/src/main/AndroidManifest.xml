@@ -12,8 +12,9 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name="com.example.pandas.ui.activity.HomeActivity"
-                android:exported="true">
+                android:name="com.example.pandas.ui.activity.MainActivity"
+                android:exported="true"
+                android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +36,7 @@
         <activity android:name=".ui.activity.EyePlayingActivity" />
         <activity android:name=".ui.activity.SelfInfoActivity" />
         <activity android:name=".ui.activity.UserInfoActivity" />
-        <!-- <activity android:name=".ui.activity.HomeActivity" />-->
+        <activity android:name=".ui.activity.HomeActivity" />
         <activity
                 android:name=".ui.activity.VideoPlayingActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize" />

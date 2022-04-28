@@ -10,6 +10,7 @@ import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.LandscapeAdapter
 import com.example.pandas.ui.adapter.decoration.LandScapeItemDecoration
+import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
@@ -28,16 +29,14 @@ public class LandscapeFragment :
 
         val padding = mActivity.resources.getDimension(R.dimen.item_home_padding).toInt()
 
-        binding.recyclerLayout.run {
-
-            layoutManager = LinearLayoutManager(mActivity)
-            addItemDecoration(LandScapeItemDecoration(padding))
-            setRefreshAdapter(mAdapter, object : SwipRecyclerView.ILoadMoreListener {
+        binding.recyclerLayout.init(
+            LandScapeItemDecoration(padding),
+            mAdapter,
+            object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
                     mViewModel.getLandScapeData(false)
                 }
             })
-        }
 
         binding.swipLayout.run {
             setRefreshColor()
