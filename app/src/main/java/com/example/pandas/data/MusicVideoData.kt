@@ -4,11 +4,8 @@ import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.entity.PetVideo
 
 object MusicVideoData {
-
     private val list = mutableListOf<PetVideo>()
-
     fun getMusicVideoData(): MutableList<PetVideo> {
-
         val music7 = PetVideo()
         music7.type = VideoType.MUSIC.ordinal
         music7.fileName = "music7"
@@ -19,7 +16,7 @@ object MusicVideoData {
         music7.releaseTime = "2021-03-21 00:11:43"
         music7.originalUrl = "https://www.bilibili.com/video/BV1zA411N7ct"
         music7.tags = "音乐,歌曲,MV"
-        music7.authorName = "tAAAAAAAAAAo"
+        music7.authorId = 326838748
         music7.cover =
             "https://i2.hdslb.com/bfs/archive/207c89db37528513180f6cf495a0790598b41417.png"
         music7.videoType = 0
@@ -35,7 +32,7 @@ object MusicVideoData {
         music18.releaseTime = "2019-07-03 02:54:15"
         music18.originalUrl = "https://www.bilibili.com/video/BV1Nx411975J"
         music18.tags = "音乐,歌曲,MV"
-        music18.authorName = "-魔君"
+        music18.authorId = 3966859
         music18.cover =
             "https://i2.hdslb.com/bfs/archive/dc84d0f95dd7adff43241de151e341c111b986b0.jpg"
         music18.videoType = 0
@@ -51,7 +48,7 @@ object MusicVideoData {
         music41.releaseTime = "2021-08-08 20:11:27"
         music41.originalUrl = "https://www.bilibili.com/video/BV1ty4y1L78S"
         music41.tags = "音乐,歌曲,MV"
-        music41.authorName = "音乐私藏馆"
+        music41.authorId = 229733301
         music41.cover =
             "https://i1.hdslb.com/bfs/archive/66981dec88b9f9a4fc31b33243364977b530074d.jpg"
         music41.videoType = 0
@@ -67,7 +64,7 @@ object MusicVideoData {
         music42.releaseTime = "2021-08-11 20:08:00"
         music42.originalUrl = "https://www.bilibili.com/video/BV1P341167qB"
         music42.tags = "音乐,歌曲,MV"
-        music42.authorName = "音乐私藏馆"
+        music42.authorId = 229733301
         music42.cover =
             "https://i2.hdslb.com/bfs/archive/c2727f3cd8a08ff4d64505699c85663411fdecdd.jpg"
         music42.videoType = 0
@@ -83,7 +80,7 @@ object MusicVideoData {
         music5.releaseTime = "2021-03-19 21:46:21"
         music5.originalUrl = "https://www.bilibili.com/video/BV1SV411Y7aB"
         music5.tags = "音乐,歌曲,MV"
-        music5.authorName = "tAAAAAAAAAAo"
+        music5.authorId = 326838748
         music5.cover =
             "https://i0.hdslb.com/bfs/archive/58fa1a145201f8de18c9b5c989e86f419f0f8461.png"
         music5.videoType = 0
@@ -99,7 +96,7 @@ object MusicVideoData {
         music6.releaseTime = "2020-03-08 18:00:11"
         music6.originalUrl = "https://www.bilibili.com/video/BV1SE411p7du"
         music6.tags = "音乐,歌曲,MV"
-        music6.authorName = "音乐私藏馆"
+        music6.authorId = 229733301
         music6.cover =
             "https://i1.hdslb.com/bfs/archive/f3f0794d746a5573c152987fa77375cf257d728d.jpg"
         music6.videoType = 0
@@ -115,7 +112,7 @@ object MusicVideoData {
         music1.releaseTime = "2020-09-16 17:58:45"
         music1.originalUrl = "https://www.bilibili.com/video/BV1PV411m73F"
         music1.tags = "音乐,歌曲,MV"
-        music1.authorName = "bili_217921940"
+        music1.authorId = 217921940
         music1.cover =
             "https://i2.hdslb.com/bfs/archive/33e5f549bfb8d7ec71b1377eab109cc181d5c110.jpg"
         music1.videoType = 0
@@ -131,7 +128,7 @@ object MusicVideoData {
         music8.releaseTime = "2021-03-22 17:32:08"
         music8.originalUrl = "https://www.bilibili.com/video/BV1Cp4y1h7H4"
         music8.tags = "音乐,歌曲,MV"
-        music8.authorName = "tAAAAAAAAAAo"
+        music8.authorId = 326838748
         music8.cover =
             "https://i2.hdslb.com/bfs/archive/d9e480897482d2a145ef5ac98b17c56c2a7b6365.png"
         music8.videoType = 0
@@ -147,7 +144,7 @@ object MusicVideoData {
         music9.releaseTime = "2021-03-22 17:28:21"
         music9.originalUrl = "https://www.bilibili.com/video/BV16b4y19728"
         music9.tags = "音乐,歌曲,MV"
-        music9.authorName = "tAAAAAAAAAAo"
+        music9.authorId = 326838748
         music9.cover =
             "https://i1.hdslb.com/bfs/archive/39c0e958687971efcd5c954d514169144bde472d.png"
         music9.videoType = 0
@@ -163,7 +160,7 @@ object MusicVideoData {
         music10.releaseTime = "2021-03-19 11:56:21"
         music10.originalUrl = "https://www.bilibili.com/video/BV1LV411e74T"
         music10.tags = "音乐,歌曲,MV"
-        music10.authorName = "tAAAAAAAAAAo"
+        music10.authorId = 326838748
         music10.cover =
             "https://i0.hdslb.com/bfs/archive/2178929eb186a1c3b74368e1e0f8e9c6dbb3326b.png"
         music10.videoType = 0
@@ -179,7 +176,7 @@ object MusicVideoData {
         music11.releaseTime = "2021-03-18 21:55:49"
         music11.originalUrl = "https://www.bilibili.com/video/BV1Dy4y187X6"
         music11.tags = "音乐,歌曲,MV"
-        music11.authorName = "tAAAAAAAAAAo"
+        music11.authorId = 326838748
         music11.cover =
             "https://i1.hdslb.com/bfs/archive/627d9c414509392f4022fedde52749b40d2dc711.png"
         music11.videoType = 0
@@ -195,7 +192,7 @@ object MusicVideoData {
         music12.releaseTime = "2021-03-22 17:28:43"
         music12.originalUrl = "https://www.bilibili.com/video/BV1J64y1D7Qs"
         music12.tags = "音乐,歌曲,MV"
-        music12.authorName = "tAAAAAAAAAAo"
+        music12.authorId = 326838748
         music12.cover =
             "https://i1.hdslb.com/bfs/archive/35b94b9ee6f77307c99b2f27b10a7ed68f46db99.png"
         music12.videoType = 0
@@ -211,7 +208,7 @@ object MusicVideoData {
         music13.releaseTime = "2016-05-04 01:00:57"
         music13.originalUrl = "https://www.bilibili.com/video/BV1Rs411q7bA"
         music13.tags = "音乐,歌曲,MV"
-        music13.authorName = "偷偷藏好小马甲嗷"
+        music13.authorId = 13272167
         music13.cover =
             "https://i2.hdslb.com/bfs/archive/530debdb3d844e045a4ced37b6c430da16562b74.jpg"
         music13.videoType = 0
@@ -227,7 +224,7 @@ object MusicVideoData {
         music14.releaseTime = "2020-01-27 16:52:05"
         music14.originalUrl = "https://www.bilibili.com/video/BV1q741167W5"
         music14.tags = "音乐,歌曲,MV"
-        music14.authorName = "海棠家的大肥鱼"
+        music14.authorId = 34840587
         music14.cover =
             "https://i0.hdslb.com/bfs/archive/95122b294dcf0aea3d770af311117f521d36422b.jpg"
         music14.videoType = 0
@@ -243,7 +240,7 @@ object MusicVideoData {
         music15.releaseTime = "2019-03-23 21:52:14"
         music15.originalUrl = "https://www.bilibili.com/video/BV1zb411779E"
         music15.tags = "音乐,歌曲,MV"
-        music15.authorName = "徐慕之"
+        music15.authorId = 21120530
         music15.cover =
             "https://i1.hdslb.com/bfs/archive/c864f3322201078aee300ab5a4a600e3408af87f.jpg"
         music15.videoType = 0
@@ -259,7 +256,7 @@ object MusicVideoData {
         music16.releaseTime = "2017-03-17 23:05:08"
         music16.originalUrl = "https://www.bilibili.com/video/BV1qx411r7tN"
         music16.tags = "音乐,歌曲,MV"
-        music16.authorName = "长安砚"
+        music16.authorId = 13966989
         music16.cover =
             "https://i1.hdslb.com/bfs/archive/925a71cab1c07cb4935858de02057cff63464104.jpg"
         music16.videoType = 0
@@ -275,7 +272,7 @@ object MusicVideoData {
         music17.releaseTime = "2017-04-27 15:55:05"
         music17.originalUrl = "https://www.bilibili.com/video/BV1ox411U7Lx"
         music17.tags = "音乐,歌曲,MV"
-        music17.authorName = "罗伊人"
+        music17.authorId = 31656568
         music17.cover =
             "https://i1.hdslb.com/bfs/archive/11e5dd812bb3eef1fb7ee603237b2c582655723f.jpg"
         music17.videoType = 0
@@ -291,7 +288,7 @@ object MusicVideoData {
         music2.releaseTime = "2018-11-04 07:19:56"
         music2.originalUrl = "https://www.bilibili.com/video/BV1ab411w7tm"
         music2.tags = "音乐,歌曲,MV"
-        music2.authorName = "喜欢趴着玩手机"
+        music2.authorId = 306815937
         music2.cover =
             "https://i1.hdslb.com/bfs/archive/c310750d8e87edc1c8a4493d0d0fafb20f94f401.png"
         music2.videoType = 0
@@ -307,7 +304,7 @@ object MusicVideoData {
         music19.releaseTime = "2020-03-20 18:50:52"
         music19.originalUrl = "https://www.bilibili.com/video/BV1m7411R7cr"
         music19.tags = "音乐,歌曲,MV"
-        music19.authorName = "三叶棠"
+        music19.authorId = 351141843
         music19.cover =
             "https://i1.hdslb.com/bfs/archive/78fc44827e4d88b5785f418a34a26a930f315e00.jpg"
         music19.videoType = 0
@@ -323,7 +320,7 @@ object MusicVideoData {
         music20.releaseTime = "2021-10-02 19:05:34"
         music20.originalUrl = "https://www.bilibili.com/video/BV13L411s79L"
         music20.tags = "音乐,歌曲,MV"
-        music20.authorName = "音乐私藏馆"
+        music20.authorId = 229733301
         music20.cover =
             "https://i2.hdslb.com/bfs/archive/a7a1542e831ff0ef7901b76e927db3d8043fb86f.jpg"
         music20.videoType = 0
@@ -339,7 +336,7 @@ object MusicVideoData {
         music21.releaseTime = "2017-05-11 20:46:45"
         music21.originalUrl = "https://www.bilibili.com/video/BV1dx411m7s9"
         music21.tags = "音乐,歌曲,MV"
-        music21.authorName = "名字不可以吗"
+        music21.authorId = 755969
         music21.cover =
             "https://i0.hdslb.com/bfs/archive/323887173f17989b0d46c97f2d3cb4903c4cc9dd.jpg"
         music21.videoType = 0
@@ -355,7 +352,7 @@ object MusicVideoData {
         music22.releaseTime = "2017-08-29 02:23:35"
         music22.originalUrl = "https://www.bilibili.com/video/BV1dx41147tr"
         music22.tags = "音乐,歌曲,MV"
-        music22.authorName = "nicety_o"
+        music22.authorId = 23307646
         music22.cover =
             "https://i2.hdslb.com/bfs/archive/3c9abc6449382bdb00ad5d87cdd0c89e6d04b49a.jpg"
         music22.videoType = 0
@@ -371,7 +368,7 @@ object MusicVideoData {
         music23.releaseTime = "2020-09-17 22:12:29"
         music23.originalUrl = "https://www.bilibili.com/video/BV1Rv41117JG"
         music23.tags = "音乐,歌曲,MV"
-        music23.authorName = "音乐私藏馆"
+        music23.authorId = 229733301
         music23.cover =
             "https://i0.hdslb.com/bfs/archive/f6c44dedd9883385cf88fa6f716952d295590e85.jpg"
         music23.videoType = 0
@@ -387,7 +384,7 @@ object MusicVideoData {
         music24.releaseTime = "2020-11-14 19:44:43"
         music24.originalUrl = "https://www.bilibili.com/video/BV1yp4y167a5"
         music24.tags = "音乐,歌曲,MV"
-        music24.authorName = "音乐私藏馆"
+        music24.authorId = 229733301
         music24.cover =
             "https://i0.hdslb.com/bfs/archive/9a5636c8d24f9cfa93e367bd1b1a04c8be8ccec7.jpg"
         music24.videoType = 0
@@ -403,7 +400,7 @@ object MusicVideoData {
         music25.releaseTime = "2019-09-23 09:48:29"
         music25.originalUrl = "https://www.bilibili.com/video/BV16J411g7Y2"
         music25.tags = "音乐,歌曲,MV"
-        music25.authorName = "抽象的LBH"
+        music25.authorId = 286175030
         music25.cover =
             "https://i2.hdslb.com/bfs/archive/f042641aae29074e22a8910513c2e6eb670a367e.png"
         music25.videoType = 0
@@ -419,7 +416,7 @@ object MusicVideoData {
         music26.releaseTime = "2021-09-01 17:29:41"
         music26.originalUrl = "https://www.bilibili.com/video/BV1cA411w79Y"
         music26.tags = "音乐,歌曲,MV"
-        music26.authorName = "怀旧音乐盘点"
+        music26.authorId = 1618687574
         music26.cover =
             "https://i1.hdslb.com/bfs/archive/eded16b6992faf64efe6737dd878f9490feb3c31.jpg"
         music26.videoType = 0
@@ -435,7 +432,7 @@ object MusicVideoData {
         music27.releaseTime = "2021-11-21 20:28:13"
         music27.originalUrl = "https://www.bilibili.com/video/BV1j34y1o7SK"
         music27.tags = "音乐,歌曲,MV"
-        music27.authorName = "音乐私藏馆"
+        music27.authorId = 229733301
         music27.cover =
             "https://i1.hdslb.com/bfs/archive/92a02c73ed0e241ae715bf234a7e3a72b5406cbd.jpg"
         music27.videoType = 0
@@ -451,7 +448,7 @@ object MusicVideoData {
         music28.releaseTime = "2021-08-02 20:20:06"
         music28.originalUrl = "https://www.bilibili.com/video/BV13q4y197t7"
         music28.tags = "音乐,歌曲,MV"
-        music28.authorName = "音乐私藏馆"
+        music28.authorId = 229733301
         music28.cover =
             "https://i2.hdslb.com/bfs/archive/2039dbc06a1790df23e3e2239f6cd83369f7ce11.jpg"
         music28.videoType = 0
@@ -467,7 +464,7 @@ object MusicVideoData {
         music29.releaseTime = "2021-04-06 21:35:13"
         music29.originalUrl = "https://www.bilibili.com/video/BV19V411n7L3"
         music29.tags = "音乐,歌曲,MV"
-        music29.authorName = "音乐私藏馆"
+        music29.authorId = 229733301
         music29.cover =
             "https://i0.hdslb.com/bfs/archive/3121e152560d6bb976fad4b1dd3a0a0ba0fc8ca4.jpg"
         music29.videoType = 0
@@ -483,7 +480,7 @@ object MusicVideoData {
         music30.releaseTime = "2021-02-28 19:30:15"
         music30.originalUrl = "https://www.bilibili.com/video/BV1eb4y1X7fK"
         music30.tags = "音乐,歌曲,MV"
-        music30.authorName = "音乐秀秀乐"
+        music30.authorId = 560320560
         music30.cover =
             "https://i0.hdslb.com/bfs/archive/b6a14c0db10e3adcf3c28a8aff504538238ecb89.jpg"
         music30.videoType = 0
@@ -499,7 +496,7 @@ object MusicVideoData {
         music31.releaseTime = "2021-04-25 00:57:08"
         music31.originalUrl = "https://www.bilibili.com/video/BV1qp4y1t7DJ"
         music31.tags = "音乐,歌曲,MV"
-        music31.authorName = "浙江卫视"
+        music31.authorId = 504672822
         music31.cover =
             "https://i2.hdslb.com/bfs/archive/8a96eeb1e9068f5a3eae132ea6075622170fc981.jpg"
         music31.videoType = 0
@@ -515,7 +512,7 @@ object MusicVideoData {
         music32.releaseTime = "2018-12-14 20:44:15"
         music32.originalUrl = "https://www.bilibili.com/video/BV1Vt411i7kb"
         music32.tags = "音乐,歌曲,MV"
-        music32.authorName = "Zelan_"
+        music32.authorId = 20849066
         music32.cover =
             "https://i2.hdslb.com/bfs/archive/aa12192e1e42117b0df257e42bdcda5c096aec31.jpg"
         music32.videoType = 0
@@ -531,7 +528,7 @@ object MusicVideoData {
         music33.releaseTime = "2020-03-14 23:10:08"
         music33.originalUrl = "https://www.bilibili.com/video/BV14E411V7TD"
         music33.tags = "音乐,歌曲,MV"
-        music33.authorName = "Sweetie_Vitalik"
+        music33.authorId = 241047317
         music33.cover =
             "https://i1.hdslb.com/bfs/archive/246c7b4cd48079da502f357a05f716a224cf6a98.jpg"
         music33.videoType = 0
@@ -547,7 +544,7 @@ object MusicVideoData {
         music34.releaseTime = "2016-09-17 01:32:25"
         music34.originalUrl = "https://www.bilibili.com/video/BV1Ns411t7UW"
         music34.tags = "音乐,歌曲,MV"
-        music34.authorName = "晓雾喵"
+        music34.authorId = 8864685
         music34.cover =
             "https://i1.hdslb.com/bfs/archive/90c29d0025dce785ee375a0791af1e2e5039b328.jpg"
         music34.videoType = 0
@@ -563,7 +560,7 @@ object MusicVideoData {
         music35.releaseTime = "2020-01-31 22:48:37"
         music35.originalUrl = "https://www.bilibili.com/video/BV1Z7411B7uD"
         music35.tags = "音乐,歌曲,MV"
-        music35.authorName = "银河系守脑"
+        music35.authorId = 449604910
         music35.cover =
             "https://i1.hdslb.com/bfs/archive/68ab8c41c39dbdf5f9ae489251b06d94fb9468e2.jpg"
         music35.videoType = 0
@@ -579,7 +576,7 @@ object MusicVideoData {
         music36.releaseTime = "2021-04-02 21:15:09"
         music36.originalUrl = "https://www.bilibili.com/video/BV1ey4y1t7cy"
         music36.tags = "音乐,歌曲,MV"
-        music36.authorName = "音乐私藏馆"
+        music36.authorId = 229733301
         music36.cover =
             "https://i1.hdslb.com/bfs/archive/1cab2583eed01373fcac0501d9a105404cb019a7.jpg"
         music36.videoType = 0
@@ -595,7 +592,7 @@ object MusicVideoData {
         music37.releaseTime = "2019-01-10 01:22:15"
         music37.originalUrl = "https://www.bilibili.com/video/BV1ct411x7ED"
         music37.tags = "音乐,歌曲,MV"
-        music37.authorName = "KINOMOTO-TOUYA"
+        music37.authorId = 23202793
         music37.cover =
             "https://i0.hdslb.com/bfs/archive/7914c7a5f34dd0cf73a60b31520d4830b0bdcd44.jpg"
         music37.videoType = 0
@@ -611,7 +608,7 @@ object MusicVideoData {
         music38.releaseTime = "2022-01-11 20:52:10"
         music38.originalUrl = "https://www.bilibili.com/video/BV11F411v7p6"
         music38.tags = "音乐,歌曲,MV"
-        music38.authorName = "蚕豆音乐娘"
+        music38.authorId = 8843146
         music38.cover =
             "https://i2.hdslb.com/bfs/archive/60f609dead784ef9854b7a6e3fb446e9908125a8.png"
         music38.videoType = 0
@@ -627,7 +624,7 @@ object MusicVideoData {
         music39.releaseTime = "2018-01-16 12:26:14"
         music39.originalUrl = "https://www.bilibili.com/video/BV1GW411v7wE"
         music39.tags = "音乐,歌曲,MV"
-        music39.authorName = "他姐姐救我"
+        music39.authorId = 71486832
         music39.cover =
             "https://i1.hdslb.com/bfs/archive/55c2d68a6573c4bf3baca91d1d2c7868c9c1329c.jpg"
         music39.videoType = 0
@@ -643,7 +640,7 @@ object MusicVideoData {
         music40.releaseTime = "2019-12-15 07:00:50"
         music40.originalUrl = "https://www.bilibili.com/video/BV1aJ411C7Pn"
         music40.tags = "音乐,歌曲,MV"
-        music40.authorName = "醉酒就唱歌"
+        music40.authorId = 330248540
         music40.cover =
             "https://i2.hdslb.com/bfs/archive/1a114fc88d0484f4ac7e83cbd059ecfc7ef1663c.jpg"
         music40.videoType = 0
@@ -659,7 +656,7 @@ object MusicVideoData {
         music3.releaseTime = "2021-03-26 17:26:56"
         music3.originalUrl = "https://www.bilibili.com/video/BV1jv41187YV"
         music3.tags = "音乐,歌曲,MV"
-        music3.authorName = "童童音乐"
+        music3.authorId = 513487743
         music3.cover =
             "https://i0.hdslb.com/bfs/archive/ca6e883c2f5a30529c87361d1000f9c58c62b4d3.jpg"
         music3.videoType = 0
@@ -675,7 +672,7 @@ object MusicVideoData {
         music4.releaseTime = "2022-01-23 13:34:33"
         music4.originalUrl = "https://www.bilibili.com/video/BV115411f7DM"
         music4.tags = "音乐,歌曲,MV"
-        music4.authorName = "英乐分享君"
+        music4.authorId = 702453625
         music4.cover =
             "https://i0.hdslb.com/bfs/archive/5cd086696e2dec9b75109a1818ae175efc2c7989.jpg"
         music4.videoType = 0
@@ -691,7 +688,7 @@ object MusicVideoData {
         music43.releaseTime = "2019-01-05 22:27:51"
         music43.originalUrl = "https://www.bilibili.com/video/BV1Xt411x7of"
         music43.tags = "音乐,歌曲,MV"
-        music43.authorName = "依山小筑"
+        music43.authorId = 39833741
         music43.cover =
             "https://i1.hdslb.com/bfs/archive/5c509e86b580cd0ecf87190d1048c373bf28f779.jpg"
         list.add(music43)
@@ -706,7 +703,7 @@ object MusicVideoData {
         music44.releaseTime = "2017-09-05 02:25:17"
         music44.originalUrl = "https://www.bilibili.com/video/BV1Yx411x7QU"
         music44.tags = "音乐,歌曲,MV"
-        music44.authorName = "三轮世界-四大形骸"
+        music44.authorId = 74441805
         music44.cover =
             "https://i2.hdslb.com/bfs/archive/4ac7b38a8818ecb774fbf5ea46e47b332e3a3137.jpg"
         list.add(music44)
@@ -721,7 +718,7 @@ object MusicVideoData {
         music45.releaseTime = "2019-11-30 18:24:17"
         music45.originalUrl = "https://www.bilibili.com/video/BV1UJ411Q7sa"
         music45.tags = "音乐,歌曲,MV"
-        music45.authorName = "最久音乐"
+        music45.authorId = 95936167
         music45.cover =
             "https://i0.hdslb.com/bfs/archive/bd86005da633b05b9a24ee2a59ddd092d7e1eafb.jpg"
         list.add(music45)
@@ -736,7 +733,7 @@ object MusicVideoData {
         music46.releaseTime = "2021-06-14 21:05:42"
         music46.originalUrl = "https://www.bilibili.com/video/BV1UK4y137R4"
         music46.tags = "音乐,歌曲,MV"
-        music46.authorName = "音小侠"
+        music46.authorId = 1675531666
         music46.cover =
             "https://i1.hdslb.com/bfs/archive/52fa8fac262364fdf5b366605e7d1c3e630842e7.jpg"
         list.add(music46)
@@ -751,7 +748,7 @@ object MusicVideoData {
         music47.releaseTime = "2016-03-01 20:05:11"
         music47.originalUrl = "https://www.bilibili.com/video/BV1us411Q7Nz"
         music47.tags = "音乐,歌曲,MV"
-        music47.authorName = "dqcy"
+        music47.authorId = 11888621
         music47.cover =
             "https://i1.hdslb.com/bfs/archive/2ce576634cba1d55540b86c9e40cffece72ea65b.jpg"
         list.add(music47)
@@ -766,7 +763,7 @@ object MusicVideoData {
         music48.releaseTime = "2021-04-17 20:49:12"
         music48.originalUrl = "https://www.bilibili.com/video/BV1MQ4y1Z7SB"
         music48.tags = "音乐,歌曲,MV"
-        music48.authorName = "tAAAAAAAAAAo"
+        music48.authorId = 326838748
         music48.cover =
             "https://i2.hdslb.com/bfs/archive/6ada1cf9c67d5956238dd1748b76545986c1b1a6.png"
         list.add(music48)
@@ -781,7 +778,7 @@ object MusicVideoData {
         music49.releaseTime = "2021-03-28 12:11:33"
         music49.originalUrl = "https://www.bilibili.com/video/BV1bi4y1P7Xi"
         music49.tags = "音乐,歌曲,MV"
-        music49.authorName = "tAAAAAAAAAAo"
+        music49.authorId = 326838748
         music49.cover =
             "https://i2.hdslb.com/bfs/archive/3325b853739ddb8321ca179724e3b38d555b37ff.png"
         list.add(music49)
@@ -796,7 +793,7 @@ object MusicVideoData {
         music50.releaseTime = "2022-02-20 23:07:01"
         music50.originalUrl = "https://www.bilibili.com/video/BV1kT4y1D7Z8"
         music50.tags = "音乐,歌曲,MV"
-        music50.authorName = "共青团中央"
+        music50.authorId = 20165629
         music50.cover =
             "https://i1.hdslb.com/bfs/archive/db1f1ef390b1972445a25701339a446d646a40ca.jpg"
         list.add(music50)
@@ -811,11 +808,10 @@ object MusicVideoData {
         music51.releaseTime = "2020-11-23 20:12:28"
         music51.originalUrl = "https://www.bilibili.com/video/BV1ap4y1r7L8"
         music51.tags = "音乐,歌曲,MV"
-        music51.authorName = "小O音乐"
+        music51.authorId = 40656188
         music51.cover =
             "https://i1.hdslb.com/bfs/archive/c3e49c0d3acb829de9878924d78caa72772cffbb.jpg"
         list.add(music51)
-
 
         return list
     }

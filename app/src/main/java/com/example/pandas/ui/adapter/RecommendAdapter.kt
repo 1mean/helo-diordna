@@ -17,6 +17,7 @@ import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.databinding.ItemRecommendVideoBinding
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.viewpager.Indicator
+import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -135,6 +136,8 @@ public class RecommendAdapter(
         val duration = binding.txtDuration
         val name = binding.txtName
         val title = binding.txtTitle
+        val follow = binding.txtRecoFollow
+        val up = binding.imgRecoAuthor
 
         fun handle(position: Int) {
 
@@ -146,7 +149,19 @@ public class RecommendAdapter(
             Glide.with(itemView.context).load(petVideo.cover)
                 .into(cover)
             this.duration.text = duration
-            name.text = petVideo.authorName
+            petVideo.user?.let {
+                name.text = it.userName
+            }
+            if (petVideo.authorId != 0 ) {
+                val isAttention = SPUtils.isAttention(itemView.context,petVideo.authorId)
+                if (isAttention) {
+                    follow.visibility = View.VISIBLE
+                    up.visibility = View.GONE
+                } else {
+                    follow.visibility = View.GONE
+                    up.visibility = View.VISIBLE
+                }
+            }
             title.text = petVideo.title
 
             itemView.setOnClickListener {
@@ -208,7 +223,6 @@ public class RecommendAdapter(
             shelter.visibility = View.VISIBLE
             val petVideo = data.itemList[position - 1]
             //把http图片换成https就能加载出来
-            //val ur
             // l = petVideo.cover.replace("http", "https")
             Glide.with(itemView.context).load(petVideo.cover)
                 .into(cover)

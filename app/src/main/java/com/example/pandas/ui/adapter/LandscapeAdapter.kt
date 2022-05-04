@@ -9,7 +9,6 @@ import com.example.pandas.R
 import com.example.pandas.bean.LandscapeData
 import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.ext.startVideoPlayActivity
-import com.example.pandas.databinding.AdapterItemTitleBinding
 import com.example.pandas.databinding.AdapterLandscapeItemBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.ui.view.viewpager.Indicator
@@ -135,7 +134,9 @@ public class LandscapeAdapter(private var data: LandscapeData) :
             loadRoundedCornerImage(itemView.context, 10, video.cover, cover)
             duration.text = TimeUtils.getMMDuration(video.duration.toLong())
             title.text = video.title
-            name.text = video.authorName
+            video.user?.let {
+                name.text = it.userName
+            }
             layoutMore.setOnClickListener {
 
             }

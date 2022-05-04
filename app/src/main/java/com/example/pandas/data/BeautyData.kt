@@ -19,7 +19,7 @@ object BeautyData {
         beauty1.releaseTime = "2020-12-02 14:51:58"
         beauty1.originalUrl = "https://www.bilibili.com/video/BV1hZ4y1G7fL"
         beauty1.tags = "美女"
-        beauty1.authorName = "院落溶溶月-"
+        beauty1.authorId = 445048708
         beauty1.cover =
             "https://i1.hdslb.com/bfs/archive/9b90018d3acfe1a1c6a66e42fd658eb45dd8df03.jpg"
         list.add(beauty1)
@@ -34,7 +34,7 @@ object BeautyData {
         beauty2.releaseTime = "2020-01-15 18:08:52"
         beauty2.originalUrl = "https://www.bilibili.com/video/BV11J411J7tr"
         beauty2.tags = "美女"
-        beauty2.authorName = "宝姐姐酷酷的"
+        beauty2.authorId = 140918720
         beauty2.cover =
             "https://i1.hdslb.com/bfs/archive/ba12739b8df0059596f414e8103c1a57d30b576b.jpg"
         list.add(beauty2)
@@ -49,7 +49,7 @@ object BeautyData {
         beauty3.releaseTime = "2020-11-22 20:55:23"
         beauty3.originalUrl = "https://www.bilibili.com/video/BV1VV411a7CK"
         beauty3.tags = "美女"
-        beauty3.authorName = "Deponial"
+        beauty3.authorId = 95669899
         beauty3.cover =
             "https://i0.hdslb.com/bfs/archive/af69e10ccc01d2850a47d1cb0e01845d44a28fe7.jpg"
         list.add(beauty3)
@@ -64,7 +64,7 @@ object BeautyData {
         beauty4.releaseTime = "2022-02-08 22:03:48"
         beauty4.originalUrl = "https://www.bilibili.com/video/BV16r4y1h78V"
         beauty4.tags = "美女"
-        beauty4.authorName = "刘亦菲赵盼儿"
+        beauty4.authorId = 485226408
         beauty4.cover =
             "https://i2.hdslb.com/bfs/archive/153db771d26904fc142a14daf5747039a16e81cc.jpg"
         list.add(beauty4)
@@ -79,7 +79,7 @@ object BeautyData {
         beauty5.releaseTime = "2021-04-23 21:56:56"
         beauty5.originalUrl = "https://www.bilibili.com/video/BV1F54y187Xv"
         beauty5.tags = "美女"
-        beauty5.authorName = "柠檬好吃么"
+        beauty5.authorId = 27306175
         beauty5.cover =
             "https://i0.hdslb.com/bfs/archive/3a4187bfb1075168dccedbbefd8686a16e40dadd.jpg"
         list.add(beauty5)
@@ -94,7 +94,7 @@ object BeautyData {
         beauty6.releaseTime = "2020-02-15 18:08:08"
         beauty6.originalUrl = "https://www.bilibili.com/video/BV1v7411J73g"
         beauty6.tags = "美女"
-        beauty6.authorName = "草莓味的草莓莓莓"
+        beauty6.authorId = 9370995
         beauty6.cover =
             "https://i2.hdslb.com/bfs/archive/6d8660336a4099c8e631f901ae6d0fe311dc3a3e.jpg"
         list.add(beauty6)
@@ -109,7 +109,7 @@ object BeautyData {
         beauty7.releaseTime = "2021-06-25 18:39:23"
         beauty7.originalUrl = "https://www.bilibili.com/video/BV1Jq4y1s7ob"
         beauty7.tags = "美女"
-        beauty7.authorName = "山也知道"
+        beauty7.authorId = 200634377
         beauty7.cover =
             "https://i2.hdslb.com/bfs/archive/d3babf06e2cdb28d2502a72e1894c026c3dad58b.jpg"
         list.add(beauty7)
@@ -124,7 +124,7 @@ object BeautyData {
         beauty8.releaseTime = "2021-09-20 11:38:46"
         beauty8.originalUrl = "https://www.bilibili.com/video/BV1tf4y1n7D3"
         beauty8.tags = "美女"
-        beauty8.authorName = "来1碗小仙女Oo"
+        beauty8.authorId = 435041418
         beauty8.cover =
             "https://i0.hdslb.com/bfs/archive/e59ff07badeac9058373f79893ddc63c151077c6.jpg"
         list.add(beauty8)
@@ -139,7 +139,7 @@ object BeautyData {
         beauty9.releaseTime = "2021-02-28 15:07:51"
         beauty9.originalUrl = "https://www.bilibili.com/video/BV1ii4y1N71U"
         beauty9.tags = "美女"
-        beauty9.authorName = "話影小酱"
+        beauty9.authorId = 44341427
         beauty9.cover =
             "https://i0.hdslb.com/bfs/archive/536ef7b424a3b04359ad51004d9d65981e51a09b.jpg"
         list.add(beauty9)
@@ -154,7 +154,7 @@ object BeautyData {
         beauty10.releaseTime = "2020-05-26 18:10:39"
         beauty10.originalUrl = "https://www.bilibili.com/video/BV1sf4y127j5"
         beauty10.tags = "美女"
-        beauty10.authorName = "花池-"
+        beauty10.authorId = 2024662
         beauty10.cover =
             "https://i2.hdslb.com/bfs/archive/5d46a74fe0dc948bb24b03b00ab4dd18a98cb61c.jpg"
         list.add(beauty10)
@@ -169,7 +169,7 @@ object BeautyData {
         beauty11.releaseTime = "2020-05-18 18:30:18"
         beauty11.originalUrl = "https://www.bilibili.com/video/BV1pp4y1Q7vf"
         beauty11.tags = "美女"
-        beauty11.authorName = "花池-"
+        beauty11.authorId = 2024662
         beauty11.cover =
             "https://i0.hdslb.com/bfs/archive/0c0aa3f9e32c7c13f0bdcce37b246f6ac43679f4.jpg"
         list.add(beauty11)
@@ -184,7 +184,7 @@ object BeautyData {
         beauty12.releaseTime = "2020-09-18 09:00:19"
         beauty12.originalUrl = "https://www.bilibili.com/video/BV1pv411C7jh"
         beauty12.tags = "美女"
-        beauty12.authorName = "我跟白敬亭私奔了"
+        beauty12.authorId = 19429622
         beauty12.cover =
             "https://i0.hdslb.com/bfs/archive/805049f0c40a14bcbcd3c3fdd312ea0db31390e1.jpg"
         list.add(beauty12)
@@ -199,7 +199,7 @@ object BeautyData {
         beauty13.releaseTime = "2022-02-19 14:31:09"
         beauty13.originalUrl = "https://www.bilibili.com/video/BV18L411K7zU"
         beauty13.tags = "美女"
-        beauty13.authorName = "剪刀手瑜乔"
+        beauty13.authorId = 42448991
         beauty13.cover =
             "https://i0.hdslb.com/bfs/archive/c4bcd4ea289017ae08dc9166d3f95547454a52f3.jpg"
         list.add(beauty13)
@@ -214,7 +214,7 @@ object BeautyData {
         beauty14.releaseTime = "2022-02-05 02:08:36"
         beauty14.originalUrl = "https://www.bilibili.com/video/BV1uR4y17724"
         beauty14.tags = "美女"
-        beauty14.authorName = "南柯十一梦"
+        beauty14.authorId = 404523870
         beauty14.cover =
             "https://i0.hdslb.com/bfs/archive/15f9c7210b27e43f116605120e0f8658539b02fc.jpg"
         list.add(beauty14)
@@ -229,7 +229,7 @@ object BeautyData {
         beauty15.releaseTime = "2021-12-25 10:42:07"
         beauty15.originalUrl = "https://www.bilibili.com/video/BV1Lg411A7Lq"
         beauty15.tags = "美女"
-        beauty15.authorName = "杂小技的轻松熊"
+        beauty15.authorId = 396343652
         beauty15.cover =
             "https://i2.hdslb.com/bfs/archive/d53ff854866edea9c3f5287dac81e9a55e4eb84e.jpg"
         list.add(beauty15)
@@ -244,7 +244,7 @@ object BeautyData {
         beauty16.releaseTime = "2022-03-05 19:39:04"
         beauty16.originalUrl = "https://www.bilibili.com/video/BV1ja411b7Uz"
         beauty16.tags = "美女"
-        beauty16.authorName = "安娜-谢尔巴科娃"
+        beauty16.authorId = 2087432052
         beauty16.cover =
             "https://i1.hdslb.com/bfs/archive/b91977033326ef1ac713d49d52ef6219c9101880.jpg"
         list.add(beauty16)
@@ -259,7 +259,7 @@ object BeautyData {
         beauty17.releaseTime = "2021-04-10 13:11:12"
         beauty17.originalUrl = "https://www.bilibili.com/video/BV1V5411c7jL"
         beauty17.tags = "美女"
-        beauty17.authorName = "柒_小诗"
+        beauty17.authorId = 293243325
         beauty17.cover =
             "https://i1.hdslb.com/bfs/archive/7c984d7b2e572888466dafc4cdd2c668c862e176.jpg"
         list.add(beauty17)
@@ -274,7 +274,7 @@ object BeautyData {
         beauty18.releaseTime = "2020-01-05 13:50:08"
         beauty18.originalUrl = "https://www.bilibili.com/video/BV1WJ411L7MG"
         beauty18.tags = "美女"
-        beauty18.authorName = "木之画"
+        beauty18.authorId = 20429499
         beauty18.cover =
             "https://i2.hdslb.com/bfs/archive/310f5747a323dc0446ec05d622bc80c2fddb7881.jpg"
         list.add(beauty18)
@@ -289,7 +289,7 @@ object BeautyData {
         beauty19.releaseTime = "2020-11-28 12:00:10"
         beauty19.originalUrl = "https://www.bilibili.com/video/BV1YA411x7fV"
         beauty19.tags = "美女"
-        beauty19.authorName = "蜗牛了了"
+        beauty19.authorId = 44041977
         beauty19.cover =
             "https://i2.hdslb.com/bfs/archive/1d88898a6c9cb4de5a37bcdefdbb76ed0ee14ea1.jpg"
         list.add(beauty19)
@@ -304,12 +304,10 @@ object BeautyData {
         beauty20.releaseTime = "2022-01-02 14:33:25"
         beauty20.originalUrl = "https://www.bilibili.com/video/BV1b34y1z7rx"
         beauty20.tags = "美女"
-        beauty20.authorName = "锦鲤良钰"
+        beauty20.authorId = 1151868166
         beauty20.cover =
             "https://i1.hdslb.com/bfs/archive/06c3936345e5ec2816176c3a171348495bda5f5b.jpg"
         list.add(beauty20)
-
-
 
         return list
     }

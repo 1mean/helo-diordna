@@ -26,9 +26,7 @@ public class UserVideosFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefr
 
         binding.recyclerLayout.init(null, mAdapter, object : SwipRecyclerView.ILoadMoreListener {
             override fun onLoadMore() {
-                mViewModel.authorName?.let {
-                    mViewModel.getUserVideos(it, false)
-                }
+                mViewModel.getUserVideos(mViewModel.authorId, false)
             }
         })
 
@@ -38,9 +36,7 @@ public class UserVideosFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefr
             isRefreshing = true
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
-                mViewModel.authorName?.let {
-                    mViewModel.getUserVideos(it, true)
-                }
+                mViewModel.getUserVideos(mViewModel.authorId, true)
             }
         }
 

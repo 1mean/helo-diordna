@@ -121,9 +121,7 @@ public class UserInfoActivity : BaseActivity<UserInfoViewModel, ActivityUserBind
     override fun onResume() {
         super.onResume()
         user?.let {
-            it.userName?.let {
-                mViewModel.getUserVideos(it, true)
-            }
+            mViewModel.getUserVideos(it.userCode, true)
         }
     }
 

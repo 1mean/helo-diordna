@@ -19,7 +19,7 @@ object ArtData {
         art1.releaseTime = "2022-02-25 07:19:55"
         art1.originalUrl = "https://www.bilibili.com/video/BV1634y1r7kw"
         art1.tags = "艺术,MV"
-        art1.authorName = "徐老憨"
+        art1.authorId = 1398755083
         art1.cover = "https://i1.hdslb.com/bfs/archive/41188b9d86cae20c3978c630f2105d035e79a9fd.jpg"
         list.add(art1)
 
@@ -34,7 +34,7 @@ object ArtData {
         art2.releaseTime = "2020-03-29 15:12:25"
         art2.originalUrl = "https://www.bilibili.com/video/BV1YK4y1C77o"
         art2.tags = "艺术,MV"
-        art2.authorName = "漫天落樱芳华"
+        art2.authorId = 98093909
         art2.cover = "https://i0.hdslb.com/bfs/archive/2355775e413d4b67c34b14f9d61539880df62ecc.jpg"
         list.add(art2)
 
@@ -48,7 +48,7 @@ object ArtData {
         art3.releaseTime = "2021-12-11 20:24:46"
         art3.originalUrl = "https://www.bilibili.com/video/BV18r4y1D7k2"
         art3.tags = "艺术,MV"
-        art3.authorName = "KAuthor"
+        art3.authorId = 36814636
         art3.cover = "https://i1.hdslb.com/bfs/archive/0121ff379cb408a3617a0137d12278151530f02b.jpg"
         list.add(art3)
 
@@ -62,12 +62,9 @@ object ArtData {
         art4.releaseTime = "2020-07-04 19:21:57"
         art4.originalUrl = "https://www.bilibili.com/video/BV1tp4y1U72x"
         art4.tags = "艺术,MV"
-        art4.authorName = "爱吃西瓜的跳跳虎"
+        art4.authorId = 92694869
         art4.cover = "https://i0.hdslb.com/bfs/archive/cd2661ecb62a563fa5cd2bb1ab837192516d858d.jpg"
         list.add(art4)
-
-
-
 
         return list
     }

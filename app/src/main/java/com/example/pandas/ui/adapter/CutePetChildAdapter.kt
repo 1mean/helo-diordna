@@ -44,10 +44,10 @@ public class CutePetChildAdapter(private val list: MutableList<PetVideo>) :
             it.headUrl?.let { url ->
                 loadCircleImage(context, url, header)
             }
+            name.text = it.userName
         }
 
         //durationView.text = duration
-        name.text = petVideo.authorName
         title.text = petVideo.title
 
         holder.itemView.setOnClickListener {

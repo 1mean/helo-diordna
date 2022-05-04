@@ -19,7 +19,7 @@ object FootballData {
         football1.releaseTime = "2020-09-04 20:56:29"
         football1.originalUrl = "https://www.bilibili.com/video/BV14A411n7LR"
         football1.tags = "足球"
-        football1.authorName = "足球故事-李治霖"
+        football1.authorId = 105502937
         football1.cover =
             "https://i2.hdslb.com/bfs/archive/c0378004cc1e77c34d348121adaec452cf6f1a08.jpg"
         list.add(football1)
@@ -34,7 +34,7 @@ object FootballData {
         football2.releaseTime = "2022-01-13 20:34:11"
         football2.originalUrl = "https://www.bilibili.com/video/BV1kq4y1A7b8"
         football2.tags = "足球"
-        football2.authorName = "体坛梗百科"
+        football2.authorId = 2105092609
         football2.cover =
             "https://i2.hdslb.com/bfs/archive/492967cceecbbaa6765580d259ddcc7289c6611d.jpg"
         list.add(football2)
@@ -49,7 +49,7 @@ object FootballData {
         football3.releaseTime = "2022-01-16 20:28:12"
         football3.originalUrl = "https://www.bilibili.com/video/BV1kr4y1Y7QE"
         football3.tags = "足球"
-        football3.authorName = "体坛梗百科"
+        football3.authorId = 2105092609
         football3.cover =
             "https://i0.hdslb.com/bfs/archive/1a9049472ac2c5ce7bbe2f5f397ab5ffc7991121.jpg"
         list.add(football3)
@@ -64,7 +64,7 @@ object FootballData {
         football4.releaseTime = "2021-12-16 19:15:23"
         football4.originalUrl = "https://www.bilibili.com/video/BV1sa411k7Ci"
         football4.tags = "足球"
-        football4.authorName = "体坛梗百科"
+        football4.authorId = 2105092609
         football4.cover =
             "https://i1.hdslb.com/bfs/archive/9c28178633985b8e634363713e39680d6ae71c76.jpg"
         list.add(football4)
@@ -79,7 +79,7 @@ object FootballData {
         football5.releaseTime = "2021-11-27 19:06:42"
         football5.originalUrl = "https://www.bilibili.com/video/BV15Y411s7G9"
         football5.tags = "足球"
-        football5.authorName = "体坛梗百科"
+        football5.authorId = 2105092609
         football5.cover =
             "https://i1.hdslb.com/bfs/archive/9b108d1dd3393f8e25a885f9c6bb78fa797dac06.jpg"
         list.add(football5)
@@ -94,7 +94,7 @@ object FootballData {
         football6.releaseTime = "2021-12-11 15:27:13"
         football6.originalUrl = "https://www.bilibili.com/video/BV1P3411t7Gu"
         football6.tags = "足球"
-        football6.authorName = "足球影像馆"
+        football6.authorId = 32154760
         football6.cover =
             "https://i1.hdslb.com/bfs/archive/bc002009edb67c3d7eccd8eff33f3c67b5ee1fd6.jpg"
         list.add(football6)
@@ -109,7 +109,7 @@ object FootballData {
         football7.releaseTime = "2021-12-24 21:30:25"
         football7.originalUrl = "https://www.bilibili.com/video/BV1pF411B7wE"
         football7.tags = "足球"
-        football7.authorName = "足球影像馆"
+        football7.authorId = 32154760
         football7.cover =
             "https://i0.hdslb.com/bfs/archive/fbd4197e94a4e9bbd3ea0e52199462d61468c9e7.jpg"
         list.add(football7)
@@ -124,7 +124,7 @@ object FootballData {
         football8.releaseTime = "2022-02-15 21:58:24"
         football8.originalUrl = "https://www.bilibili.com/video/BV1QL4y137Gx"
         football8.tags = "足球"
-        football8.authorName = "足球影像馆"
+        football8.authorId = 32154760
         football8.cover =
             "https://i1.hdslb.com/bfs/archive/b4fdf87c57f0b1c4e6499910d2db6befe449ded9.jpg"
         list.add(football8)
@@ -139,7 +139,7 @@ object FootballData {
         football9.releaseTime = "2021-10-01 21:35:46"
         football9.originalUrl = "https://www.bilibili.com/video/BV16f4y1F7Gp"
         football9.tags = "足球"
-        football9.authorName = "足球影像馆"
+        football9.authorId = 32154760
         football9.cover =
             "https://i0.hdslb.com/bfs/archive/ffce3769052a1df277833d2afdacb6d512369ff7.png"
         list.add(football9)
@@ -154,7 +154,7 @@ object FootballData {
         football10.releaseTime = "2022-01-10 21:31:14"
         football10.originalUrl = "https://www.bilibili.com/video/BV1s44y157zk"
         football10.tags = "足球"
-        football10.authorName = "la小和尚"
+        football10.authorId = 414612336
         football10.cover =
             "https://i0.hdslb.com/bfs/archive/42e6e88c23041bee6981944786b2c91d40a2f6a3.jpg"
         list.add(football10)
@@ -169,7 +169,7 @@ object FootballData {
         football11.releaseTime = "2022-02-24 13:00:05"
         football11.originalUrl = "https://www.bilibili.com/video/BV1tm4y1R7jq"
         football11.tags = "足球"
-        football11.authorName = "AC米兰"
+        football11.authorId = 13621
         football11.cover =
             "https://i0.hdslb.com/bfs/archive/1549a9b9f043f107bfe1dfc6d83ad0c0933d5dad.jpg"
         list.add(football11)
@@ -184,7 +184,7 @@ object FootballData {
         football12.releaseTime = "2020-12-05 20:32:27"
         football12.originalUrl = "https://www.bilibili.com/video/BV1ep4y1z7kH"
         football12.tags = "足球"
-        football12.authorName = "努力进省城"
+        football12.authorId = 438232879
         football12.cover =
             "https://i2.hdslb.com/bfs/archive/f6ba5538aea1c9d1be021aad0187d8566a264497.jpg"
         list.add(football12)
@@ -199,7 +199,7 @@ object FootballData {
         football13.releaseTime = "2019-05-28 02:09:47"
         football13.originalUrl = "https://www.bilibili.com/video/BV1K4411W7Nt"
         football13.tags = "足球"
-        football13.authorName = "来自意大利的JIAO"
+        football13.authorId = 392913805
         football13.cover =
             "https://i1.hdslb.com/bfs/archive/d3b87508cd855c5a7f4defc43b2c487a11d0fba5.jpg"
         list.add(football13)
@@ -214,7 +214,7 @@ object FootballData {
         football14.releaseTime = "2020-12-22 16:54:32"
         football14.originalUrl = "https://www.bilibili.com/video/BV1JK411G7HB"
         football14.tags = "足球"
-        football14.authorName = "Edwin6699"
+        football14.authorId = 491334548
         football14.cover =
             "https://i1.hdslb.com/bfs/archive/5182cde0ef583a27fd807c523713f160c02b53a1.jpg"
         list.add(football14)
@@ -229,7 +229,7 @@ object FootballData {
         football15.releaseTime = "2021-06-28 22:54:51"
         football15.originalUrl = "https://www.bilibili.com/video/BV1vB4y1K7mh"
         football15.tags = "足球"
-        football15.authorName = "Stupefy7"
+        football15.authorId = 490749435
         football15.cover =
             "https://i1.hdslb.com/bfs/archive/dd2bb633476dfac3c64f5b69d52e42079568e0c2.jpg"
         list.add(football15)
@@ -244,7 +244,7 @@ object FootballData {
         football16.releaseTime = "2018-07-09 11:08:56"
         football16.originalUrl = "https://www.bilibili.com/video/BV1cs411W7ke"
         football16.tags = "足球"
-        football16.authorName = "搬砖的磐石"
+        football16.authorId = 33907247
         football16.cover =
             "https://i1.hdslb.com/bfs/archive/b400a4a6c2906f074f6c2905a1a821c456b72e7b.jpg"
         list.add(football16)
@@ -259,7 +259,7 @@ object FootballData {
         football17.releaseTime = "2018-06-29 18:51:38"
         football17.originalUrl = "https://www.bilibili.com/video/BV13s411576a"
         football17.tags = "足球"
-        football17.authorName = "搬砖的磐石"
+        football17.authorId = 33907247
         football17.cover =
             "https://i0.hdslb.com/bfs/archive/1e4a4b6e866f42ebec989d8254c8c4c5a8f6c1f1.jpg"
         list.add(football17)
@@ -274,7 +274,7 @@ object FootballData {
         football18.releaseTime = "2021-11-05 21:28:02"
         football18.originalUrl = "https://www.bilibili.com/video/BV1fu411o7Tp"
         football18.tags = "足球"
-        football18.authorName = "Thisisit足球"
+        football18.authorId = 1117193657
         football18.cover =
             "https://i2.hdslb.com/bfs/archive/7325440b04e1ae7cc84d35900fbb06325d1e0745.jpg"
         list.add(football18)
@@ -289,7 +289,7 @@ object FootballData {
         football19.releaseTime = "2021-07-01 21:00:05"
         football19.originalUrl = "https://www.bilibili.com/video/BV1dL411p7rD"
         football19.tags = "足球"
-        football19.authorName = "燃个球"
+        football19.authorId = 22849238
         football19.cover =
             "https://i2.hdslb.com/bfs/archive/42c29ed38adbda282606840a7264b8128bab4e31.jpg"
         list.add(football19)
@@ -304,7 +304,7 @@ object FootballData {
         football20.releaseTime = "2018-06-29 20:18:45"
         football20.originalUrl = "https://www.bilibili.com/video/BV1Gs411573F"
         football20.tags = "足球"
-        football20.authorName = "搬砖的磐石"
+        football20.authorId = 33907247
         football20.cover =
             "https://i1.hdslb.com/bfs/archive/300276ce78406e3236f020e33891e242ff0570a9.jpg"
         list.add(football20)
@@ -319,7 +319,7 @@ object FootballData {
         football21.releaseTime = "2022-02-19 00:55:18"
         football21.originalUrl = "https://www.bilibili.com/video/BV1aR4y1V7Ni"
         football21.tags = "足球"
-        football21.authorName = "回忆足球"
+        football21.authorId = 524346444
         football21.cover =
             "https://i0.hdslb.com/bfs/archive/06efa22aa56b4e33c4bbc1462b6448f2cfcf89ef.jpg"
         list.add(football21)
@@ -334,7 +334,7 @@ object FootballData {
         football22.releaseTime = "2018-11-27 16:17:12"
         football22.originalUrl = "https://www.bilibili.com/video/BV19t41197LY"
         football22.tags = "足球"
-        football22.authorName = "lizch22"
+        football22.authorId = 88004317
         football22.cover =
             "https://i1.hdslb.com/bfs/archive/f9042e5a46513158b5d5c99ae679b91608920f22.jpg"
         list.add(football22)
@@ -349,7 +349,7 @@ object FootballData {
         football23.releaseTime = "2022-02-18 19:09:16"
         football23.originalUrl = "https://www.bilibili.com/video/BV1BP4y1F7Zg"
         football23.tags = "足球"
-        football23.authorName = "英超联赛"
+        football23.authorId = 1488532268
         football23.cover =
             "https://i1.hdslb.com/bfs/archive/f82927f89677814310f4967b6277b4056ff885d9.jpg"
         list.add(football23)
@@ -364,7 +364,7 @@ object FootballData {
         football24.releaseTime = "2021-03-03 18:34:22"
         football24.originalUrl = "https://www.bilibili.com/video/BV1YV411v71b"
         football24.tags = "足球"
-        football24.authorName = "体坛第三视角"
+        football24.authorId = 506034970
         football24.cover =
             "https://i2.hdslb.com/bfs/archive/29ae55d5d80b605e70c8c6c984f1bec06c83481c.jpg"
         list.add(football24)
@@ -379,7 +379,7 @@ object FootballData {
         football25.releaseTime = "2016-04-14 19:35:37"
         football25.originalUrl = "https://www.bilibili.com/video/BV1ms411z769"
         football25.tags = "足球"
-        football25.authorName = "喵u喵"
+        football25.authorId = 3023698
         football25.cover =
             "https://i0.hdslb.com/bfs/archive/34f821d3367bb414794a8e71ddcc1c3fed8771ae.jpg"
         list.add(football25)
@@ -394,7 +394,7 @@ object FootballData {
         football26.releaseTime = "2020-10-10 20:04:48"
         football26.originalUrl = "https://www.bilibili.com/video/BV1oA41177NV"
         football26.tags = "足球"
-        football26.authorName = "足球记忆"
+        football26.authorId = 643958569
         football26.cover =
             "https://i0.hdslb.com/bfs/archive/b8aea5713471db11398ce545aecf4f1c9704cc18.jpg"
         list.add(football26)
@@ -409,7 +409,7 @@ object FootballData {
         football27.releaseTime = "2020-09-25 20:42:17"
         football27.originalUrl = "https://www.bilibili.com/video/BV1dK4y1a7Vr"
         football27.tags = "足球"
-        football27.authorName = "足球记忆"
+        football27.authorId = 643958569
         football27.cover =
             "https://i1.hdslb.com/bfs/archive/eba5e50279a3573a75a60c7dd4c50e79a2e524e6.jpg"
         list.add(football27)
@@ -424,7 +424,7 @@ object FootballData {
         football28.releaseTime = "2018-09-23 22:49:11"
         football28.originalUrl = "https://www.bilibili.com/video/BV1YW411z7BX"
         football28.tags = "足球"
-        football28.authorName = "逃脱理想"
+        football28.authorId = 8615665
         football28.cover =
             "https://i0.hdslb.com/bfs/archive/67701a37617bad3ffdd78d3423a406a0b35d559b.jpg"
         list.add(football28)
@@ -439,7 +439,7 @@ object FootballData {
         football29.releaseTime = "2018-07-09 11:03:39"
         football29.originalUrl = "https://www.bilibili.com/video/BV1cs411W7YX"
         football29.tags = "足球"
-        football29.authorName = "搬砖的磐石"
+        football29.authorId = 33907247
         football29.cover =
             "https://i1.hdslb.com/bfs/archive/2a4714f37a0ca3c92e3e02f5c2a5811f08ff38f4.jpg"
         list.add(football29)
@@ -454,7 +454,7 @@ object FootballData {
         football30.releaseTime = "2018-06-29 16:46:59"
         football30.originalUrl = "https://www.bilibili.com/video/BV1Es41157ed"
         football30.tags = "足球"
-        football30.authorName = "搬砖的磐石"
+        football30.authorId = 33907247
         football30.cover =
             "https://i0.hdslb.com/bfs/archive/8f413b12e5855d1f7b4d37ffa02d090079e49c40.jpg"
         list.add(football30)
@@ -469,7 +469,7 @@ object FootballData {
         football31.releaseTime = "2018-06-29 16:56:38"
         football31.originalUrl = "https://www.bilibili.com/video/BV1Es41157kA"
         football31.tags = "足球"
-        football31.authorName = "搬砖的磐石"
+        football31.authorId = 33907247
         football31.cover =
             "https://i1.hdslb.com/bfs/archive/133d0e1d20ebc04040e553b23fe3ec40eeb16d52.jpg"
         list.add(football31)
@@ -484,7 +484,7 @@ object FootballData {
         football32.releaseTime = "2018-06-29 19:10:18"
         football32.originalUrl = "https://www.bilibili.com/video/BV13s41157tA"
         football32.tags = "足球"
-        football32.authorName = "搬砖的磐石"
+        football32.authorId = 33907247
         football32.cover =
             "https://i0.hdslb.com/bfs/archive/76ef9e9a0bf3e03f22657091086a15e05baa103b.jpg"
         list.add(football32)
@@ -499,7 +499,7 @@ object FootballData {
         football33.releaseTime = "2018-07-09 10:09:36"
         football33.originalUrl = "https://www.bilibili.com/video/BV1ws411W7zk"
         football33.tags = "足球"
-        football33.authorName = "搬砖的磐石"
+        football33.authorId = 33907247
         football33.cover =
             "https://i0.hdslb.com/bfs/archive/7b29b1009c061cf4afbc81209c5af75caf95f165.jpg"
         list.add(football33)
@@ -514,7 +514,7 @@ object FootballData {
         football34.releaseTime = "2018-07-09 10:48:21"
         football34.originalUrl = "https://www.bilibili.com/video/BV1cs411W79R"
         football34.tags = "足球"
-        football34.authorName = "搬砖的磐石"
+        football34.authorId = 33907247
         football34.cover =
             "https://i1.hdslb.com/bfs/archive/f5b726de63ed43e14aaafb15d3ede25243021e34.jpg"
         list.add(football34)
@@ -529,7 +529,7 @@ object FootballData {
         football35.releaseTime = "2018-09-16 19:32:45"
         football35.originalUrl = "https://www.bilibili.com/video/BV1hW411k7LL"
         football35.tags = "足球"
-        football35.authorName = "逃脱理想"
+        football35.authorId = 8615665
         football35.cover =
             "https://i2.hdslb.com/bfs/archive/06ba3036b4546136b55c6d4116885fb0d9411b76.jpg"
         list.add(football35)
@@ -544,7 +544,7 @@ object FootballData {
         football36.releaseTime = "2018-06-29 18:36:39"
         football36.originalUrl = "https://www.bilibili.com/video/BV13s41157e3"
         football36.tags = "足球"
-        football36.authorName = "搬砖的磐石"
+        football36.authorId = 33907247
         football36.cover =
             "https://i1.hdslb.com/bfs/archive/805a097a96fe8b1a986472cbc544d2fab70365c6.jpg"
         list.add(football36)
@@ -559,7 +559,7 @@ object FootballData {
         football37.releaseTime = "2021-08-13 02:45:53"
         football37.originalUrl = "https://www.bilibili.com/video/BV1qA411w7fs"
         football37.tags = "足球"
-        football37.authorName = "猩足球"
+        football37.authorId = 508258142
         football37.cover =
             "https://i2.hdslb.com/bfs/archive/ecbd0b1e66186d9ef66fe81c4e1dc1e24c2a2f47.jpg"
         list.add(football37)
@@ -574,7 +574,7 @@ object FootballData {
         football38.releaseTime = "2021-07-04 20:20:40"
         football38.originalUrl = "https://www.bilibili.com/video/BV1rh411h7fU"
         football38.tags = "足球"
-        football38.authorName = "英超联赛"
+        football38.authorId = 1488532268
         football38.cover =
             "https://i1.hdslb.com/bfs/archive/cb8b1fb93cdb36a513d1a7e7e4a354ad5ae77c42.jpg"
         list.add(football38)
@@ -589,7 +589,7 @@ object FootballData {
         football39.releaseTime = "2019-10-02 18:30:55"
         football39.originalUrl = "https://www.bilibili.com/video/BV15E411Q7y7"
         football39.tags = "足球"
-        football39.authorName = "_YMJ_"
+        football39.authorId = 280127123
         football39.cover =
             "https://i1.hdslb.com/bfs/archive/b8bd648fd5364510391a0644e18a626f5a5d18f0.jpg"
         list.add(football39)
@@ -604,7 +604,7 @@ object FootballData {
         football40.releaseTime = "2018-05-16 15:39:59"
         football40.originalUrl = "https://www.bilibili.com/video/BV1yp411Z7ph"
         football40.tags = "足球"
-        football40.authorName = "颓佬鲍伯"
+        football40.authorId = 75058975
         football40.cover =
             "https://i1.hdslb.com/bfs/archive/1429e209deef067f1745e8205bb7a3ffad685427.png"
         list.add(football40)
@@ -619,7 +619,7 @@ object FootballData {
         football41.releaseTime = "2021-03-20 01:20:59"
         football41.originalUrl = "https://www.bilibili.com/video/BV1AX4y1G7EF"
         football41.tags = "足球"
-        football41.authorName = "MR_永远的第7天"
+        football41.authorId = 36826532
         football41.cover =
             "https://i1.hdslb.com/bfs/archive/053e8759015c67c17305ed1c90fb259dccbe4d36.jpg"
         list.add(football41)
@@ -634,7 +634,7 @@ object FootballData {
         football42.releaseTime = "2021-01-31 14:59:43"
         football42.originalUrl = "https://www.bilibili.com/video/BV1jK4y1p7cp"
         football42.tags = "足球"
-        football42.authorName = "学机械的一波"
+        football42.authorId = 356416793
         football42.cover =
             "https://i1.hdslb.com/bfs/archive/45c297a5baf5b24b636aa89c8fcc4c16108a5e75.png"
         list.add(football42)
@@ -649,7 +649,7 @@ object FootballData {
         football43.releaseTime = "2014-09-09 10:02:44"
         football43.originalUrl = "https://www.bilibili.com/video/BV1bx411K7bd"
         football43.tags = "足球"
-        football43.authorName = "儒家小帅比"
+        football43.authorId = 5458690
         football43.cover =
             "https://i1.hdslb.com/bfs/archive/661a922ee1d1fa1a4aefe0a8299ace612e81df09.jpg"
         list.add(football43)
@@ -664,7 +664,7 @@ object FootballData {
         football44.releaseTime = "2021-09-10 19:50:11"
         football44.originalUrl = "https://www.bilibili.com/video/BV1JA411F7HV"
         football44.tags = "足球"
-        football44.authorName = "G僧东东"
+        football44.authorId = 226243718
         football44.cover =
             "https://i0.hdslb.com/bfs/archive/dcca9c3d247ac0359fda87a5bc1be9ffac71ca88.jpg"
         list.add(football44)
@@ -679,7 +679,7 @@ object FootballData {
         football45.releaseTime = "2021-10-11 20:56:15"
         football45.originalUrl = "https://www.bilibili.com/video/BV1wf4y1g7hv"
         football45.tags = "足球"
-        football45.authorName = "体坛梗百科"
+        football45.authorId = 2105092609
         football45.cover =
             "https://i0.hdslb.com/bfs/archive/ad815a35f7a572e6c04c2824626c7eb9a47df2e9.jpg"
         list.add(football45)
@@ -694,7 +694,7 @@ object FootballData {
         football46.releaseTime = "2018-03-31 23:44:52"
         football46.originalUrl = "https://www.bilibili.com/video/BV1vW411u7iS"
         football46.tags = "足球"
-        football46.authorName = "吃草莓长大的美少女"
+        football46.authorId = 11386359
         football46.cover =
             "https://i2.hdslb.com/bfs/archive/8710c50c9f2133d862b5f07c69045814eac625f1.png"
         list.add(football46)
@@ -709,7 +709,7 @@ object FootballData {
         football47.releaseTime = "2020-11-17 11:27:42"
         football47.originalUrl = "https://www.bilibili.com/video/BV1Va4y1x7Mm"
         football47.tags = "足球"
-        football47.authorName = "野球场"
+        football47.authorId = 143866924
         football47.cover =
             "https://i1.hdslb.com/bfs/archive/0a49553fd2a0fc05785d1b3ebc57074881b23844.jpg"
         list.add(football47)
@@ -724,7 +724,7 @@ object FootballData {
         football48.releaseTime = "2018-12-25 15:39:47"
         football48.originalUrl = "https://www.bilibili.com/video/BV1Pt411C7MW"
         football48.tags = "足球"
-        football48.authorName = "龙套没有姓名"
+        football48.authorId = 388698561
         football48.cover =
             "https://i2.hdslb.com/bfs/archive/c00ae5b3f8a4fd732ab220f76ff9ff3ca01713b3.jpg"
         list.add(football48)
@@ -739,7 +739,7 @@ object FootballData {
         football49.releaseTime = "2017-09-21 11:03:45"
         football49.originalUrl = "https://www.bilibili.com/video/BV1tx411x7RQ"
         football49.tags = "足球"
-        football49.authorName = "花开院柚罗酱"
+        football49.authorId = 56593688
         football49.cover =
             "https://i2.hdslb.com/bfs/archive/af16a0057205961abc2956dbab059b40325530c1.jpg"
         list.add(football49)
@@ -754,7 +754,7 @@ object FootballData {
         football50.releaseTime = "2019-05-30 04:59:42"
         football50.originalUrl = "https://www.bilibili.com/video/BV1W4411H7UE"
         football50.tags = "足球"
-        football50.authorName = "来自意大利的JIAO"
+        football50.authorId = 392913805
         football50.cover =
             "https://i0.hdslb.com/bfs/archive/66cbf0615c5b61ed36e0442abbbd88a680245951.jpg"
         list.add(football50)
@@ -769,7 +769,7 @@ object FootballData {
         football51.releaseTime = "2016-11-23 00:46:35"
         football51.originalUrl = "https://www.bilibili.com/video/BV1Ds411W7Ue"
         football51.tags = "足球"
-        football51.authorName = "Jackson0920"
+        football51.authorId = 19255217
         football51.cover =
             "https://i0.hdslb.com/bfs/archive/27e1f769e7e307e53496e5f8589843237c0f6dc3.jpg"
         list.add(football51)
@@ -784,7 +784,7 @@ object FootballData {
         football52.releaseTime = "2017-02-15 20:12:58"
         football52.originalUrl = "https://www.bilibili.com/video/BV1zx41127Xz"
         football52.tags = "足球"
-        football52.authorName = "爱尔奎特-布伦式塔德"
+        football52.authorId = 7731922
         football52.cover =
             "https://i1.hdslb.com/bfs/archive/29fc35ec0fd710fea6aa21f48e6c60bdda8d4754.jpg"
         list.add(football52)
@@ -799,7 +799,7 @@ object FootballData {
         football53.releaseTime = "2021-07-07 20:49:52"
         football53.originalUrl = "https://www.bilibili.com/video/BV1qU4y137N9"
         football53.tags = "足球"
-        football53.authorName = "耳朵听了能怀孕"
+        football53.authorId = 78110942
         football53.cover =
             "https://i0.hdslb.com/bfs/archive/e34e47d8547200291655796e2a55004f4dd5db3c.jpg"
         list.add(football53)
@@ -814,7 +814,7 @@ object FootballData {
         football54.releaseTime = "2021-08-07 13:00:56"
         football54.originalUrl = "https://www.bilibili.com/video/BV18P4y1x79D"
         football54.tags = "足球"
-        football54.authorName = "荒草音乐"
+        football54.authorId = 626297715
         football54.cover =
             "https://i1.hdslb.com/bfs/archive/c0a2d6154e7766ddb01255d4f8bb21ffd7bfb2fe.jpg"
         list.add(football54)

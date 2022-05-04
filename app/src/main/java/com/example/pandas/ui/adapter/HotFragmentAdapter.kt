@@ -35,7 +35,9 @@ public class HotFragmentAdapter(list: MutableList<PetVideo>) : BaseCommonAdapter
         duration.text = TimeUtils.getDuration(data.duration.toLong())
         title.text = data.title
         tag.text = "百万播放"
-        author.text = data.authorName
+        data.user?.let {
+            author.text = it.userName
+        }
         val count = (1..5000).random()
         playCounts.text = StringBuilder("$count").append("观看").toString()
         data.releaseTime?.let {

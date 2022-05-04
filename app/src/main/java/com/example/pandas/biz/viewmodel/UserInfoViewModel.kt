@@ -24,14 +24,14 @@ public class UserInfoViewModel : BaseViewModel() {
 
     var startIndex = 0//分页起始
     var hasMore = true//是否有更多
-    var authorName: String? = null
+    var authorId: Int = 0
 
     val userVideos: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
 
-    fun getUserVideos(name: String, isRefresh: Boolean) {
+    fun getUserVideos(code: Int, isRefresh: Boolean) {
 
-        if (authorName == null) {
-            authorName = name
+        if (authorId == 0) {
+            authorId = code
         }
 
         if (isRefresh) {
@@ -40,7 +40,7 @@ public class UserInfoViewModel : BaseViewModel() {
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getUserVideos(name, startIndex, 11)
+                PetManagerCoroutine.getUserVideos(authorId, startIndex, 11)
             }.onSuccess {
 
                 hasMore = if (it.size > 10) {
@@ -76,16 +76,16 @@ public class UserInfoViewModel : BaseViewModel() {
         }
     }
 
-    fun addAttention(context: Context,userCode:Int){
+    fun addAttention(context: Context, userCode: Int) {
 
-        viewModelScope.launch(Dispatchers.IO){
-            SPUtils.saveList(context,AppInfos.ATTENTION_KEY,userCode.toString())
+        viewModelScope.launch(Dispatchers.IO) {
+            SPUtils.saveList(context, AppInfos.ATTENTION_KEY, userCode.toString())
         }
     }
 
-    fun deleteAttention(context: Context,userCode:Int){
-        viewModelScope.launch(Dispatchers.IO){
-            SPUtils.removeFromList(context,AppInfos.ATTENTION_KEY,userCode.toString())
+    fun deleteAttention(context: Context, userCode: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            SPUtils.removeFromList(context, AppInfos.ATTENTION_KEY, userCode.toString())
         }
     }
 }

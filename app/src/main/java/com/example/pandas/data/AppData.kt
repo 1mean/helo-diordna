@@ -29,7 +29,7 @@ object AppData {
             Log.e("1mean", "size7: ${list7.size}")
             val list8 = BeautyData.getBeauty()
             Log.e("1mean", "size8: ${list8.size}")
-            val list9 = PetMonPandaData2.getAll()
+            val list9 = PetMomPandaData2.getAll()
             Log.e("1mean", "size9: ${list9.size}")
             val list10 = PetGroupPandaData2.getAll()
             Log.e("1mean", "list10: ${list10.size}")

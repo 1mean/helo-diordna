@@ -90,8 +90,8 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                 }
             }
 
-            it.authorName?.let { name ->
-                binding.txtVideoInfoName.text = name
+            it.user?.let { user ->
+                binding.txtVideoInfoName.text = user.userName
             }
 
             it.releaseTime?.let { time ->

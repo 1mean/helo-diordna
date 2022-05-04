@@ -106,7 +106,9 @@ public class PandasAdapter(private val list: MutableList<PetViewData>) :
             //把http图片换成https就能加载出来
             Glide.with(itemView).load(petVideo.cover).into(cover)
             this.duration.text = duration
-            name.text = petVideo.authorName
+            petVideo.user?.let {
+                name.text = it.userName
+            }
             title.text = petVideo.title
 
             itemView.setOnClickListener {

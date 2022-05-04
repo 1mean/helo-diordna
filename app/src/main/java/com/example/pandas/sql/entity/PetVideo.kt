@@ -33,7 +33,7 @@ data class PetVideo(
     @ColumnInfo
     var type: Int = 0,//动物类型
     @ColumnInfo
-    var authorName: String? = null,//发布者信息
+    var authorId: Int = 0,//发布者唯一id
     @ColumnInfo
     var period: Int = 0,//对应PetType
     @ColumnInfo

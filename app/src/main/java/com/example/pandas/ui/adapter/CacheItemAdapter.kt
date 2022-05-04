@@ -35,7 +35,9 @@ public class CacheItemAdapter(private val list: MutableList<PetViewData>) :
         loadRoundedCornerImage(context, 15, data.cover, cover)
         duration.text = TimeUtils.getMMDuration(data.duration.toLong())
         title.text = data.title
-        author.text = data.authorName
+        data.user?.let {
+            author.text = it.userName
+        }
         file.text = data.fileName
 
         more.setOnClickListener { }

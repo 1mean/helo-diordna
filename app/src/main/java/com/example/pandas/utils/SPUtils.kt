@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.util.Log
+import com.example.pandas.app.AppInfos
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -124,5 +125,15 @@ object SPUtils {
     @SuppressLint("CommitPrefEdits")
     fun clearKey(context: Context, key: String) {
         getInstanse(context).edit().putString(key, "").apply()
+    }
+
+    fun isAttention(context: Context, id: Int): Boolean {
+
+        val list = getList<String>(context, AppInfos.ATTENTION_KEY)
+        if (list.isEmpty()) {
+            return false
+        } else {
+            return list.contains(id.toString())
+        }
     }
 }

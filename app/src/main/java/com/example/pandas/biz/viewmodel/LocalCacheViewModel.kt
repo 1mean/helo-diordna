@@ -71,7 +71,6 @@ public class LocalCacheViewModel : BaseViewModel() {
             withContext(Dispatchers.IO) {
 
                 val list = getAllFiles(context)
-                Log.e("1madaean", "size: ${list.size}")
                 val videoList = mutableListOf<PetViewData>()
                 val pageList =
                     if ((times + 1) * counts >= list.size) {//最后一批数据
@@ -85,7 +84,6 @@ public class LocalCacheViewModel : BaseViewModel() {
                             (times + 1) * counts + 1
                         )
                     }
-                Log.e("111111mean", "list: ${list.size}")
                 //每次取21条数据
                 pageList.forEach { file ->
                     Log.e("1mean", "file: ${file.name}")

@@ -35,7 +35,9 @@ public class VideoListAdapter(private val list: MutableList<PetViewData>) :
         loadRoundedCornerImage(holder.itemView.context, 10, video.cover, cover)
         duration.text = TimeUtils.getMMDuration(video.duration.toLong())
         title.text = video.title
-        name.text = video.authorName
+        data.user?.let {
+            name.text = it.userName
+        }
         layoutMore.setOnClickListener {
 
         }

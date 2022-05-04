@@ -35,7 +35,13 @@ class PetManager {
     suspend fun getPetByPage(startIndex: Int): MutableList<PetViewData> {
 
         return withContext(Dispatchers.IO) {
-            petDao.queryByTypeAndPage(VideoType.PANDA.ordinal, startIndex, 20)
+            val list = petDao.queryByTypeAndPage(VideoType.PANDA.ordinal, startIndex, 20)
+            if (list.isNotEmpty()) {
+                list.forEach {
+                    it.user = petDao.queryUserByCode(it.authorId)
+                }
+            }
+            list
         }
     }
 
@@ -45,7 +51,13 @@ class PetManager {
     suspend fun getPageByType(type: Int, startIndex: Int, counts: Int): MutableList<PetViewData> {
 
         return withContext(Dispatchers.IO) {
-            petDao.queryVideoByType(type, startIndex, counts)
+            val list = petDao.queryVideoByType(type, startIndex, counts)
+            if (list.isNotEmpty()) {
+                list.forEach {
+                    it.user = petDao.queryUserByCode(it.authorId)
+                }
+            }
+            list
         }
     }
 
@@ -72,7 +84,10 @@ class PetManager {
 
 
     suspend fun getVideoByFileName(fileName: String): PetViewData {
-        return petDao.queryVideoByFileName(fileName)
+
+        val video = petDao.queryVideoByFileName(fileName)
+        video.user = petDao.queryUserByCode(video.authorId)
+        return video
     }
 
 
@@ -89,9 +104,21 @@ class PetManager {
             val recommendData = RecommendData<PetViewData>()
             if (startIndex == 0) {//首页
                 recommendData.bannerList = petDao.queryRecoBanner(1)
-                recommendData.itemList = petDao.queryStarByPage(startIndex, 10)
+                val list = petDao.queryStarByPage(startIndex, 10)
+                if (list.isNotEmpty()) {
+                    list.forEach {
+                        it.user = petDao.queryUserByCode(it.authorId)
+                    }
+                }
+                recommendData.itemList = list
             } else {
-                recommendData.itemList = petDao.queryStarByPage(startIndex, 11)
+                val list = petDao.queryStarByPage(startIndex, 11)
+                if (list.isNotEmpty()) {
+                    list.forEach {
+                        it.user = petDao.queryUserByCode(it.authorId)
+                    }
+                }
+                recommendData.itemList = list
             }
             recommendData
         }
@@ -123,8 +150,8 @@ class PetManager {
         return withContext(Dispatchers.IO) {
             val list = petDao.queryPageType(type, startIndex, counts)
             list.forEach { video ->
-                video.authorName?.let { name ->
-                    val user = petDao.queryUserByName(name)
+                if (video.authorId != 0) {
+                    val user = petDao.queryUserByCode(video.authorId)
                     video.user = user
                 }
             }
@@ -175,6 +202,9 @@ class PetManager {
 
             delay(300)
             val itemList = petDao.queryVideoByType(VideoType.LANDSCAPE.ordinal, startIndex, counts)
+            itemList.forEach {
+                it.user = petDao.queryUserByCode(it.authorId)
+            }
             var bannerList = mutableListOf<PetViewData>()
             if (startIndex == 0) {
                 bannerList = petDao.queryBannerByType(VideoType.LANDSCAPE.ordinal)
@@ -188,12 +218,19 @@ class PetManager {
         return withContext(Dispatchers.IO) {
 
             delay(300)
-            petDao.queryHotVideo(startIndex, counts)
+            val list = petDao.queryHotVideo(startIndex, counts)
+            list.forEach {
+                val code = it.authorId
+                if (code != 0) {
+                    it.user = petDao.queryUserByCode(code)
+                }
+            }
+            list
         }
     }
 
     suspend fun getUserVideos(
-        name: String,
+        code: Int,
         startIndex: Int,
         counts: Int
     ): MutableList<PetViewData> {
@@ -201,7 +238,7 @@ class PetManager {
         return withContext(Dispatchers.IO) {
 
             delay(300)
-            petDao.queryVideosByName(name, startIndex, counts)
+            petDao.queryVideosByCode(code, startIndex, counts)
         }
     }
 
@@ -227,9 +264,8 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
             val video = petDao.queryVideoByCode(code)
-            val name = video.authorName
-            name?.let {
-                val user = petDao.queryUserByName(it)
+            if (video.authorId != 0) {
+                val user = petDao.queryUserByCode(video.authorId)
                 video.user = user
             }
             video
@@ -239,7 +275,13 @@ class PetManager {
     suspend fun getAiRecommend(code: Int, type: Int, counts: Int): MutableList<PetViewData> {
 
         return withContext(Dispatchers.IO) {
-            petDao.queryByType(code, type, counts)
+            val list = petDao.queryByType(code, type, counts)
+            if (list.isNotEmpty()) {
+                list.forEach {
+                    it.user = petDao.queryUserByCode(it.authorId)
+                }
+            }
+            list
         }
     }
 
@@ -276,7 +318,13 @@ class PetManager {
     suspend fun searchByPage(words: String, startIndex: Int): MutableList<PetViewData> {
 
         return withContext(Dispatchers.IO) {
-            petDao.queryWordsByPage("%$words%", startIndex, 10)
+            val list = petDao.queryWordsByPage("%$words%", startIndex, 10)
+            if (list.isNotEmpty()) {
+                list.forEach {
+                    it.user = petDao.queryUserByCode(it.authorId)
+                }
+            }
+            list
         }
     }
 

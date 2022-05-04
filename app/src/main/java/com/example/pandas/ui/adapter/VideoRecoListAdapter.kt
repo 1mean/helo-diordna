@@ -58,7 +58,9 @@ public class VideoRecoListAdapter(
             val video = list[position]
             loadRoundedCornerImage(itemView.context, 13, video.cover, cover)
             title.text = video.title
-            name.text = video.authorName
+            video.user?.let {
+                name.text = it.userName
+            }
             duration.text = TimeUtils.getDuration(video.duration.toLong())
             time.text = video.releaseTime
 

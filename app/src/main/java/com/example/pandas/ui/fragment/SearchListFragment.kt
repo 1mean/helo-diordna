@@ -138,7 +138,9 @@ public class SearchListFragment : BaseLazyFragment<SearchViewModel, LayoutLoadmo
                 loadRoundedCornerImage(itemView.context, 10, video.cover, cover)
                 duration.text = TimeUtils.getMMDuration(video.duration.toLong())
                 title.text = video.title
-                name.text = video.authorName
+                video.user?.let {
+                    name.text = it.userName
+                }
                 layoutMore.setOnClickListener {
                 }
             }

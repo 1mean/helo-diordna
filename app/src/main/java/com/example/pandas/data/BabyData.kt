@@ -4,17 +4,13 @@ import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.entity.PetVideo
 
 object BabyData {
-
     private val list = mutableListOf<PetVideo>()
-
     fun getAll(): MutableList<PetVideo> {
-
         getPandaData()
         return list
     }
 
     private fun getPandaData(): MutableList<PetVideo> {
-
         val baby1 = PetVideo()
         baby1.type = VideoType.BABY.ordinal
         baby1.fileName = "baby_1"
@@ -25,7 +21,7 @@ object BabyData {
         baby1.releaseTime = "2021-10-21 12:24:37"
         baby1.originalUrl = "https://www.bilibili.com/video/BV1tb4y1h7PB"
         baby1.tags = "人类宝宝"
-        baby1.authorName = "吃家的好孩子"
+        baby1.authorId = 2106730041
         baby1.cover =
             "https://i0.hdslb.com/bfs/archive/e4951e74e209fc52bf84964ccf3e0d0b69565a38.jpg"
         list.add(baby1)
@@ -40,7 +36,7 @@ object BabyData {
         baby2.releaseTime = "2021-11-20 11:00:09"
         baby2.originalUrl = "https://www.bilibili.com/video/BV1uP4y1L7Vn"
         baby2.tags = "人类宝宝"
-        baby2.authorName = "快乐源泉bot"
+        baby2.authorId = 3107068
         baby2.cover =
             "https://i1.hdslb.com/bfs/archive/a0e8bf700deed595d381db6ab2b6d54b0471d41c.jpg"
         list.add(baby2)
@@ -55,7 +51,7 @@ object BabyData {
         baby3.releaseTime = "2022-03-08 11:46:44"
         baby3.originalUrl = "https://www.bilibili.com/video/BV1RL411N7zY"
         baby3.tags = "人类宝宝"
-        baby3.authorName = "全视频官方"
+        baby3.authorId = 1984573756
         baby3.cover =
             "https://i0.hdslb.com/bfs/archive/bf0f8f7c8146f606112a623cf59643b5983b6a3c.jpg"
         list.add(baby3)
@@ -70,7 +66,7 @@ object BabyData {
         baby4.releaseTime = "2022-03-09 11:36:10"
         baby4.originalUrl = "https://www.bilibili.com/video/BV1JS4y1S7Wa"
         baby4.tags = "人类宝宝"
-        baby4.authorName = "00o00o00o00"
+        baby4.authorId = 312245686
         baby4.cover =
             "https://i2.hdslb.com/bfs/archive/c69bcd5a776f331a32255cd11f97b3e993351ebf.jpg"
         list.add(baby4)
@@ -85,7 +81,7 @@ object BabyData {
         baby5.releaseTime = "2022-03-07 20:08:20"
         baby5.originalUrl = "https://www.bilibili.com/video/BV13S4y137J9"
         baby5.tags = "人类宝宝"
-        baby5.authorName = "海鸟视频"
+        baby5.authorId = 27120931
         baby5.cover =
             "https://i2.hdslb.com/bfs/archive/549c2ef23f27b6f1d05409f1b8287d8dd64123f6.jpg"
         list.add(baby5)
@@ -100,7 +96,7 @@ object BabyData {
         baby6.releaseTime = "2022-02-18 13:45:02"
         baby6.originalUrl = "https://www.bilibili.com/video/BV1wr4y1r7Lq"
         baby6.tags = "人类宝宝"
-        baby6.authorName = "00o00o00o00"
+        baby6.authorId = 312245686
         baby6.cover =
             "https://i1.hdslb.com/bfs/archive/12a2ee4b6664046ac3fbea3249997e8e1bd7d331.jpg"
         list.add(baby6)
@@ -115,7 +111,7 @@ object BabyData {
         baby7.releaseTime = "2022-02-26 21:15:24"
         baby7.originalUrl = "https://www.bilibili.com/video/BV1dR4y1V7nH"
         baby7.tags = "人类宝宝"
-        baby7.authorName = "FrogTV"
+        baby7.authorId = 549090612
         baby7.cover =
             "https://i0.hdslb.com/bfs/archive/27b68b6fb2cfe6996dabbab047de06c594393aae.jpg"
         list.add(baby7)
@@ -130,7 +126,7 @@ object BabyData {
         baby8.releaseTime = "2019-12-03 23:28:10"
         baby8.originalUrl = "https://www.bilibili.com/video/BV19J411q7Bv"
         baby8.tags = "人类宝宝"
-        baby8.authorName = "cicada十八"
+        baby8.authorId = 179512321
         baby8.cover =
             "https://i1.hdslb.com/bfs/archive/51466d3cce4e53d55cb002bc702403a4c0137c63.jpg"
         list.add(baby8)
@@ -145,7 +141,7 @@ object BabyData {
         baby9.releaseTime = "2021-07-09 18:20:14"
         baby9.originalUrl = "https://www.bilibili.com/video/BV1qB4y1T7nZ"
         baby9.tags = "人类宝宝"
-        baby9.authorName = "可爱幼崽菌"
+        baby9.authorId = 668149765
         baby9.cover =
             "https://i2.hdslb.com/bfs/archive/449223597111bd91f0a16ffdc98a168abebc83d5.jpg"
         list.add(baby9)
@@ -160,7 +156,7 @@ object BabyData {
         baby10.releaseTime = "2021-08-05 17:00:12"
         baby10.originalUrl = "https://www.bilibili.com/video/BV1bq4y1p7Zh"
         baby10.tags = "人类宝宝"
-        baby10.authorName = "快乐源泉bot"
+        baby10.authorId = 3107068
         baby10.cover =
             "https://i1.hdslb.com/bfs/archive/eec0568e43c6b0f6b9df30b281ce06f555734446.jpg"
         list.add(baby10)
@@ -175,7 +171,7 @@ object BabyData {
         baby11.releaseTime = "2021-10-21 19:31:52"
         baby11.originalUrl = "https://www.bilibili.com/video/BV1jh411n7Kr"
         baby11.tags = "人类宝宝"
-        baby11.authorName = "超可爱的人类幼崽"
+        baby11.authorId = 30738231
         baby11.cover =
             "https://i0.hdslb.com/bfs/archive/5bcb3cf7aec0e580053ccccd58636742e7e90ac1.jpg"
         list.add(baby11)
@@ -190,7 +186,7 @@ object BabyData {
         baby12.releaseTime = "2021-11-09 19:15:01"
         baby12.originalUrl = "https://www.bilibili.com/video/BV1Cb4y187cd"
         baby12.tags = "人类宝宝"
-        baby12.authorName = "可爱幼崽菌"
+        baby12.authorId = 668149765
         baby12.cover =
             "https://i0.hdslb.com/bfs/archive/dcf0f47d02004753c537c4df70132ac8ae3cdd02.jpg"
         list.add(baby12)
@@ -205,7 +201,7 @@ object BabyData {
         baby13.releaseTime = "2022-02-14 19:15:10"
         baby13.originalUrl = "https://www.bilibili.com/video/BV1E34y1C7Ny"
         baby13.tags = "人类宝宝"
-        baby13.authorName = "可爱幼崽菌"
+        baby13.authorId = 668149765
         baby13.cover =
             "https://i0.hdslb.com/bfs/archive/7227144b16a78b670737083bb53595c012bad41a.jpg"
         list.add(baby13)
@@ -220,7 +216,7 @@ object BabyData {
         baby14.releaseTime = "2022-02-26 19:15:08"
         baby14.originalUrl = "https://www.bilibili.com/video/BV11S4y1F7m6"
         baby14.tags = "人类宝宝"
-        baby14.authorName = "可爱幼崽菌"
+        baby14.authorId = 668149765
         baby14.cover =
             "https://i1.hdslb.com/bfs/archive/41dc763ce36d5ef87d38c665889d04470a064638.jpg"
         list.add(baby14)
@@ -235,7 +231,7 @@ object BabyData {
         baby15.releaseTime = "2022-02-22 18:43:39"
         baby15.originalUrl = "https://www.bilibili.com/video/BV1hL4y1G74X"
         baby15.tags = "人类宝宝"
-        baby15.authorName = "可爱幼崽菌"
+        baby15.authorId = 668149765
         baby15.cover =
             "https://i2.hdslb.com/bfs/archive/dad679558ad695a822893bead27153682d1550ab.jpg"
         list.add(baby15)
@@ -250,7 +246,7 @@ object BabyData {
         baby16.releaseTime = "2019-11-21 21:00:04"
         baby16.originalUrl = "https://www.bilibili.com/video/BV1pJ41127Hw"
         baby16.tags = "人类宝宝"
-        baby16.authorName = "古惟寞其铭"
+        baby16.authorId = 43296249
         baby16.cover =
             "https://i2.hdslb.com/bfs/archive/e01f536906869405d6116d1e062e079055bc5a2c.jpg"
         list.add(baby16)
@@ -265,7 +261,7 @@ object BabyData {
         baby17.releaseTime = "2021-05-04 16:47:33"
         baby17.originalUrl = "https://www.bilibili.com/video/BV1dy4y1s7q5"
         baby17.tags = "人类宝宝"
-        baby17.authorName = "超可爱的人类幼崽"
+        baby17.authorId = 30738231
         baby17.cover =
             "https://i1.hdslb.com/bfs/archive/a552a0279401566c884b251d32ea21aae8315797.jpg"
         list.add(baby17)
@@ -280,7 +276,7 @@ object BabyData {
         baby18.releaseTime = "2021-04-13 17:37:49"
         baby18.originalUrl = "https://www.bilibili.com/video/BV1n5411c7Au"
         baby18.tags = "人类宝宝"
-        baby18.authorName = "超可爱的人类幼崽"
+        baby18.authorId = 30738231
         baby18.cover =
             "https://i2.hdslb.com/bfs/archive/0324634a78fd9a3cc0b9544ef47cd72a798c625b.jpg"
         list.add(baby18)
@@ -295,7 +291,7 @@ object BabyData {
         baby19.releaseTime = "2018-07-10 23:25:48"
         baby19.originalUrl = "https://www.bilibili.com/video/BV11s411p77Y"
         baby19.tags = "人类宝宝"
-        baby19.authorName = "治愈系BABY"
+        baby19.authorId = 346324250
         baby19.cover =
             "https://i2.hdslb.com/bfs/archive/f525c4018ee0ba1c9078c789d40e77ab4b2a4880.jpg"
         list.add(baby19)
@@ -310,7 +306,7 @@ object BabyData {
         baby20.releaseTime = "2019-12-27 13:50:59"
         baby20.originalUrl = "https://www.bilibili.com/video/BV1zJ411Y7Wv"
         baby20.tags = "人类宝宝"
-        baby20.authorName = "精髓制造者"
+        baby20.authorId = 404842697
         baby20.cover =
             "https://i0.hdslb.com/bfs/archive/fc74642fca01b256c0590258809bb7c7e7f53638.jpg"
         list.add(baby20)
@@ -325,7 +321,7 @@ object BabyData {
         baby21.releaseTime = "2022-03-07 03:51:28"
         baby21.originalUrl = "https://www.bilibili.com/video/BV1zb4y1W7Ad"
         baby21.tags = "人类宝宝"
-        baby21.authorName = "00o00o00o00"
+        baby21.authorId = 312245686
         baby21.cover =
             "https://i1.hdslb.com/bfs/archive/e0ca3994b2cbbf8036a2c514f0d5df4ece8cdc63.jpg"
         list.add(baby21)
@@ -340,7 +336,7 @@ object BabyData {
         baby22.releaseTime = "2021-07-01 00:32:01"
         baby22.originalUrl = "https://www.bilibili.com/video/BV1wV411W7xH"
         baby22.tags = "人类宝宝"
-        baby22.authorName = "YouTube精彩视频-"
+        baby22.authorId = 412719797
         baby22.cover =
             "https://i1.hdslb.com/bfs/archive/7fcb1e5bd9e645dbff796989cb7c515d33d2842d.jpg"
         list.add(baby22)
@@ -355,7 +351,7 @@ object BabyData {
         baby23.releaseTime = "2019-05-06 00:24:00"
         baby23.originalUrl = "https://www.bilibili.com/video/BV1U4411i7NB"
         baby23.tags = "人类宝宝"
-        baby23.authorName = "愚者的手杖"
+        baby23.authorId = 329057504
         baby23.cover =
             "https://i2.hdslb.com/bfs/archive/b3c1b1c40b826f8b49e12dbfa3e380054698b0cb.jpg"
         list.add(baby23)
@@ -370,7 +366,7 @@ object BabyData {
         baby24.releaseTime = "2021-10-12 11:02:40"
         baby24.originalUrl = "https://www.bilibili.com/video/BV1AR4y1J7PR"
         baby24.tags = "人类宝宝"
-        baby24.authorName = "Nia_Nido"
+        baby24.authorId = 57289248
         baby24.cover =
             "https://i1.hdslb.com/bfs/archive/85e03f24410110453e66d38c3c65cb5a3b00e759.jpg"
         list.add(baby24)
@@ -385,7 +381,7 @@ object BabyData {
         baby25.releaseTime = "2020-02-11 20:59:53"
         baby25.originalUrl = "https://www.bilibili.com/video/BV1X741157we"
         baby25.tags = "人类宝宝"
-        baby25.authorName = "爆炸闪亮亮"
+        baby25.authorId = 28128780
         baby25.cover =
             "https://i1.hdslb.com/bfs/archive/3ff9843ac7c088c541d56b7f1fb642486651b7da.jpg"
         list.add(baby25)
@@ -400,7 +396,7 @@ object BabyData {
         baby26.releaseTime = "2020-04-28 15:50:04"
         baby26.originalUrl = "https://www.bilibili.com/video/BV14K411578r"
         baby26.tags = "人类宝宝"
-        baby26.authorName = "飞羽小天"
+        baby26.authorId = 62974251
         baby26.cover =
             "https://i0.hdslb.com/bfs/archive/511d02fbc6b43cc9d14e5b4f1050e2a1929a1c8c.jpg"
         list.add(baby26)
@@ -415,7 +411,7 @@ object BabyData {
         baby27.releaseTime = "2022-02-12 12:39:19"
         baby27.originalUrl = "https://www.bilibili.com/video/BV17T4y1X79w"
         baby27.tags = "人类宝宝"
-        baby27.authorName = "VIELFRASS_"
+        baby27.authorId = 17597722
         baby27.cover =
             "https://i0.hdslb.com/bfs/archive/3d148e76b6df630d932c681c50b0eb2438ba62c4.jpg"
         list.add(baby27)
@@ -430,7 +426,7 @@ object BabyData {
         baby28.releaseTime = "2021-03-19 18:46:17"
         baby28.originalUrl = "https://www.bilibili.com/video/BV1tv411a7go"
         baby28.tags = "人类宝宝"
-        baby28.authorName = "Youtube中文字幕组"
+        baby28.authorId = 382189062
         baby28.cover =
             "https://i1.hdslb.com/bfs/archive/cf21853e98dfcd06ba90ec37b7ef3b39a734095c.jpg"
         list.add(baby28)
@@ -445,7 +441,7 @@ object BabyData {
         baby29.releaseTime = "2022-01-19 21:42:18"
         baby29.originalUrl = "https://www.bilibili.com/video/BV1fR4y1M7gH"
         baby29.tags = "人类宝宝"
-        baby29.authorName = "超可爱的人类幼崽"
+        baby29.authorId = 30738231
         baby29.cover =
             "https://i1.hdslb.com/bfs/archive/1ff39e97b4b1874751adabf779b84f161be79a55.jpg"
         list.add(baby29)
@@ -460,7 +456,7 @@ object BabyData {
         baby30.releaseTime = "2022-02-03 22:47:36"
         baby30.originalUrl = "https://www.bilibili.com/video/BV1zF411J7xB"
         baby30.tags = "人类宝宝"
-        baby30.authorName = "超可爱的人类幼崽"
+        baby30.authorId = 30738231
         baby30.cover =
             "https://i2.hdslb.com/bfs/archive/28beae44044f843dc5b3ac86bf672cb2d1b3fef4.jpg"
         list.add(baby30)
@@ -475,7 +471,7 @@ object BabyData {
         baby31.releaseTime = "2022-02-06 22:08:00"
         baby31.originalUrl = "https://www.bilibili.com/video/BV1Si4y1Z7nG"
         baby31.tags = "人类宝宝"
-        baby31.authorName = "超可爱的人类幼崽"
+        baby31.authorId = 30738231
         baby31.cover =
             "https://i1.hdslb.com/bfs/archive/1e75db27be67008b08a7f0fea3f7e2fdacb5f3c4.jpg"
         list.add(baby31)
@@ -490,7 +486,7 @@ object BabyData {
         baby32.releaseTime = "2021-01-17 13:31:11"
         baby32.originalUrl = "https://www.bilibili.com/video/BV1rA411H7zi"
         baby32.tags = "人类宝宝"
-        baby32.authorName = "YouTube精彩视频-"
+        baby32.authorId = 412719797
         baby32.cover =
             "https://i1.hdslb.com/bfs/archive/408e451b135db0fe5bd744a4be4a50c9746cb2d2.jpg"
         list.add(baby32)
@@ -505,7 +501,7 @@ object BabyData {
         baby33.releaseTime = "2014-07-24 17:50:45"
         baby33.originalUrl = "https://www.bilibili.com/video/BV1hx411N7ri"
         baby33.tags = "人类宝宝"
-        baby33.authorName = "KIKUUMY"
+        baby33.authorId = 2278338
         baby33.cover =
             "https://i0.hdslb.com/bfs/archive/07ea057bb9bc0cd764d43cd8787bbce85963cf72.jpg"
         list.add(baby33)
@@ -520,7 +516,7 @@ object BabyData {
         baby34.releaseTime = "2020-04-10 20:38:40"
         baby34.originalUrl = "https://www.bilibili.com/video/BV1H5411t7KE"
         baby34.tags = "人类宝宝"
-        baby34.authorName = "摸大象"
+        baby34.authorId = 103384117
         baby34.cover =
             "https://i0.hdslb.com/bfs/archive/7b11ddfa67727779904e3feb473515d4b57ebbf8.jpg"
         list.add(baby34)
