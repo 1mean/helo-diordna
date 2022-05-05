@@ -16,5 +16,7 @@ interface Iindicator {
 
     fun initIndicator(count: Int, color: Int)
 
+    fun initIndicator(count: Int, color: Int, isMid: Boolean)
+
     fun getParams(): RelativeLayout.LayoutParams
 }

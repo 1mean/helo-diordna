@@ -3,6 +3,7 @@ package com.example.pandas.ui.fragment
 import HotFragmentAdapter
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
@@ -22,11 +23,15 @@ public class HotFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefresh
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.recyclerLayout.init(null, mAdapter, object : SwipRecyclerView.ILoadMoreListener {
-            override fun onLoadMore() {
-                mViewModel.getHotData(false)
-            }
-        })
+        binding.recyclerLayout.init(
+            null,
+            mAdapter,
+            LinearLayoutManager(context),
+            object : SwipRecyclerView.ILoadMoreListener {
+                override fun onLoadMore() {
+                    mViewModel.getHotData(false)
+                }
+            })
 
         binding.swipLayout.run {
             setRefreshColor()

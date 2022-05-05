@@ -9,14 +9,16 @@ import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pandas.R
-import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.bean.pet.RecommendData
+import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.databinding.CardItemLayoutBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.databinding.ItemRecommendVideoBinding
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.viewpager.Indicator
+import com.example.pandas.utils.NumUtils
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.TimeUtils
 
@@ -28,7 +30,7 @@ import com.example.pandas.utils.TimeUtils
  */
 public class RecommendAdapter(
     private val lifecycle: Lifecycle,
-    private var data: RecommendData<PetViewData>,
+    private var data: RecommendData<PetVideo>,
     private val listener: OnItemmmmClickListener<Int>
 ) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
@@ -51,7 +53,7 @@ public class RecommendAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun refreshData(recommendData: RecommendData<PetViewData>) {
+    fun refreshData(recommendData: RecommendData<PetVideo>) {
 
         if (recommendData.itemList.isNotEmpty() || recommendData.bannerList.isNotEmpty()) {
             if (data != recommendData) {
@@ -66,7 +68,7 @@ public class RecommendAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addData(recommendData: RecommendData<PetViewData>) {
+    fun addData(recommendData: RecommendData<PetVideo>) {
         if (recommendData.itemList.isNotEmpty()) {
             val size = data.itemList.size
             data.itemList.addAll(recommendData.itemList)
@@ -136,32 +138,54 @@ public class RecommendAdapter(
         val duration = binding.txtDuration
         val name = binding.txtName
         val title = binding.txtTitle
-        val follow = binding.txtRecoFollow
-        val up = binding.imgRecoAuthor
+        private val follow = binding.txtRecoFollow
+        private val up = binding.imgRecoAuthor
+        private val videoCounts = binding.txtRecoVideoCounts
+        private val comments = binding.txtRecoVideoComments
+        private val num = 1 * 1000 * 100
+        private val commentNum = 1 * 100
 
         fun handle(position: Int) {
 
+            val context = itemView.context
             val petVideo = data.itemList[position - 1]
             val duration = TimeUtils.getDuration(petVideo.duration.toLong())
 
             //把http图片换成https就能加载出来
             //val url = petVideo.cover.replace("http", "https")
-            Glide.with(itemView.context).load(petVideo.cover)
-                .into(cover)
+            Glide.with(context).load(petVideo.cover).into(cover)
             this.duration.text = duration
             petVideo.user?.let {
                 name.text = it.userName
             }
-            if (petVideo.authorId != 0 ) {
-                val isAttention = SPUtils.isAttention(itemView.context,petVideo.authorId)
+
+            val counts = (1..num).random()
+            val commentCounts = (1..commentNum).random()
+            videoCounts.text = NumUtils.getShortNum(counts)
+            comments.text = commentCounts.toString()
+
+            val type = petVideo.type
+            if (type == VideoType.HONGLOU.ordinal) {
+                follow.visibility = View.VISIBLE
+                up.visibility = View.GONE
+                follow.setTextColor(ContextCompat.getColor(context,R.color.color_bg_reco_type))
+                follow.setBackgroundResource(R.drawable.shape_bg_reco_type)
+                follow.text = context.resources.getString(R.string.str_hl)
+            } else {
+                val isAttention = SPUtils.isAttention(context, petVideo.authorId)
                 if (isAttention) {
                     follow.visibility = View.VISIBLE
                     up.visibility = View.GONE
+                    follow.setTextColor(ContextCompat.getColor(context,R.color.color_txt_reco_followed))
+                    follow.setBackgroundResource(R.drawable.shape_bg_reco_followed)
+                    follow.text = context.resources.getString(R.string.str_followed)
                 } else {
                     follow.visibility = View.GONE
                     up.visibility = View.VISIBLE
                 }
             }
+
+
             title.text = petVideo.title
 
             itemView.setOnClickListener {

@@ -32,6 +32,7 @@ public class LandscapeFragment :
         binding.recyclerLayout.init(
             LandScapeItemDecoration(padding),
             mAdapter,
+            LinearLayoutManager(context),
             object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
                     mViewModel.getLandScapeData(false)

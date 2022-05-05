@@ -62,6 +62,7 @@
             android:paddingRight="3dp"
             android:textSize="10sp"
             android:gravity="center"
+            android:visibility="gone"
             tools:ignore="SmallSp" />
 
     <androidx.appcompat.widget.AppCompatImageView

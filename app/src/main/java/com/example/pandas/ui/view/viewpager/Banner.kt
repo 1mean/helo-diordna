@@ -158,16 +158,16 @@ public class Banner : RelativeLayout, LifecycleObserver {
      * 1页3屏，预展示页面数为1，预加载page position = 0,1,2,3,4 设置currentitem=2顺序2，3，4，1，0
      * @date: 2021/12/24 11:30 上午
      */
-    private inner class BannerAdapterWrapper : RecyclerView.Adapter<BaseEmptyViewHolder>() {
+    private inner class BannerAdapterWrapper : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-        private lateinit var mAdapter: RecyclerView.Adapter<BaseEmptyViewHolder>
+        private lateinit var mAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
             return mAdapter.onCreateViewHolder(parent, viewType)
         }
 
-        override fun onBindViewHolder(holder: BaseEmptyViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
             mAdapter.onBindViewHolder(holder, realPosition(position))
         }
@@ -184,7 +184,7 @@ public class Banner : RelativeLayout, LifecycleObserver {
 
         fun getRealCount(): Int = mAdapter.itemCount
 
-        fun registerAdapter(adapter: RecyclerView.Adapter<BaseEmptyViewHolder>) {
+        fun registerAdapter(adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>) {
 
             mAdapter = adapter
             //mAdapter.registerAdapterDataObserver(adapterObserver)
@@ -418,10 +418,11 @@ public class Banner : RelativeLayout, LifecycleObserver {
      * @date: 1/24/22 3:13 下午
      * @version: v1.0
      */
-    fun setAdapter(adapter: RecyclerView.Adapter<BaseEmptyViewHolder>): Banner {
+    fun setAdapter(adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>): Banner {
+
 
         wrapAdapter = BannerAdapterWrapper()
-        wrapAdapter!!.registerAdapter(adapter)
+        wrapAdapter!!.registerAdapter(adapter as RecyclerView.Adapter<RecyclerView.ViewHolder>)
         mViewPager.adapter = wrapAdapter
 
         mViewPager.offscreenPageLimit = 1

@@ -1,13 +1,17 @@
 package com.example.pandas.ui.fragment
 
+import CommonItemDecoration
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.HomePageViewModel
-import com.example.pandas.databinding.FragmentPandasBinding
+import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.PandasAdapter
-import com.example.pandas.ui.ext.initPanda
-import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
+import com.example.pandas.ui.ext.init
+import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
  * @description: PandaFragment
@@ -15,20 +19,33 @@ import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
  * @date: 1/12/22 7:35 下午
  * @version: v1.0
  */
-public class PandaFragment : BaseLazyFragment<HomePageViewModel, FragmentPandasBinding>(),
-    LoadMoreRecyclerView.ILoadMoreListener {
+public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
 
     private val pandasAdapter: PandasAdapter by lazy { PandasAdapter(arrayListOf()) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.refreshLayoutPanda.setOnRefreshListener {
-            binding.recyclerViewPanda.isFreshing(true)
-            mViewModel.getPagePet(true)
-        }
+        val paddingTop = resources.getDimension(R.dimen.item_panda_paddingTop).toInt()
+        val paddingHorinzontal = resources.getDimension(R.dimen.item_panda_paddingLeft).toInt()
 
-        val layoutManager = GridLayoutManager(activity, 2)
-        binding.recyclerViewPanda.initPanda(layoutManager, pandasAdapter, this)
+        binding.recyclerLayout.init(
+            CommonItemDecoration(true, 2, paddingTop, paddingHorinzontal),
+            pandasAdapter,
+            GridLayoutManager(mActivity, 2),
+            object : SwipRecyclerView.ILoadMoreListener {
+                override fun onLoadMore() {
+                    mViewModel.getPagePet(false)
+                }
+            })
+
+        binding.swipLayout.run {
+            setRefreshColor()
+            isRefreshing = true
+            setOnRefreshListener {
+                binding.recyclerLayout.isRefreshing(true)
+                mViewModel.getPagePet(true)
+            }
+        }
     }
 
     override fun createObserver() {
@@ -36,36 +53,28 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, FragmentPandasB
         mViewModel.petDataWrapper.observe(viewLifecycleOwner) {
 
             if (it.isSuccess) {//成功
+
+                binding.recyclerLayout.visibility = View.VISIBLE
                 when {
                     //没有数据
-                    it.isFirstEmpty -> {
-                        binding.refreshLayoutPanda.isRefreshing = false
-                        binding.recyclerViewPanda.isFreshing(false)
-                    }
-                    //刷新的第一页
                     it.isRefresh -> {
-                        binding.refreshLayoutPanda.isRefreshing = false
-                        binding.recyclerViewPanda.isFreshing(false)
                         pandasAdapter.refreshData(it.listData)
+                        binding.recyclerLayout.isRefreshing(false)
                     }
                     //加载更多
                     else -> {
-                        binding.recyclerViewPanda.loadMoreFinished()
                         pandasAdapter.addData(it.listData)
                     }
                 }
+                binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
             }
+            binding.swipLayout.visibility = View.VISIBLE
+            binding.swipLayout.isRefreshing = false
         }
 
     }
 
     override fun firstOnResume() {
-
-        binding.refreshLayoutPanda.isRefreshing = true
         mViewModel.getPagePet(true)
-    }
-
-    override fun onLoadMore() {
-        mViewModel.getPagePet(false)
     }
 }

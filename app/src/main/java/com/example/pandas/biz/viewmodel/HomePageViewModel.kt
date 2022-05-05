@@ -28,6 +28,8 @@ class HomePageViewModel : BaseViewModel() {
     var landIndex = 0
     var hotIndex = 0
     var hasMore = true//是否有更多
+    var hotHasMore = true//是否有更多
+    var pandaHasMore = true//是否有更多
 
     /***********************************************************************************
      * LiveData是不可变的，MutableLiveData是可变的
@@ -44,7 +46,7 @@ class HomePageViewModel : BaseViewModel() {
 
     val petDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
 
-    val recommendDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
+    val recommendDataWrapper: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
 
     val loveDataWrapper: MutableLiveData<UIDataWrapper<PageCommonData>> by lazy { MutableLiveData() }
 
@@ -57,18 +59,24 @@ class HomePageViewModel : BaseViewModel() {
         if (isRefresh) {
             petIndex = 0
         }
-        request({ PetManagerCoroutine.getPetByPage(petIndex) },
+        request({ PetManagerCoroutine.getPetByPage(petIndex,21) },
             {
                 //请求数据成功
-                petIndex += 20
+                pandaHasMore = if (it.size > 20) {
+                    it.removeLast()
+                    true
+                } else {
+                    false
+                }
                 val dataList = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = isRefresh,
                     isEmpty = it.isEmpty(),
-                    hasMore = it.size == 20,
+                    hasMore = pandaHasMore,
                     isFirstEmpty = isRefresh && it.isEmpty(),
                     listData = it
                 )
+                petIndex += 20
                 petDataWrapper.value = dataList
             },
             {
@@ -115,7 +123,7 @@ class HomePageViewModel : BaseViewModel() {
                 it.message?.loge()
                 it.printStackTrace()
                 val exception = ExceptionHandle.handleException(it)
-                val dataList = UIDataWrapper<PetViewData>(
+                val dataList = UIDataWrapper<PetVideo>(
                     isSuccess = false,
                     errMessage = exception.errorMsg,
                     isRefresh = isRefresh,
@@ -210,7 +218,7 @@ class HomePageViewModel : BaseViewModel() {
                 PetManagerCoroutine.getHotData(hotIndex, 11)
             }.onSuccess {
 
-                hasMore = if (it.size > 10) {
+                hotHasMore = if (it.size > 10) {
                     it.removeLast()
                     true
                 } else {
@@ -221,7 +229,7 @@ class HomePageViewModel : BaseViewModel() {
                     isSuccess = true,
                     isRefresh = isRefresh,
                     isEmpty = it.isEmpty(),
-                    hasMore = hasMore,
+                    hasMore = hotHasMore,
                     isFirstEmpty = isRefresh && it.isEmpty(),
                     listData = it
                 )

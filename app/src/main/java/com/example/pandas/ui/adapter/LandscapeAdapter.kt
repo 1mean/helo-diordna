@@ -109,7 +109,7 @@ public class LandscapeAdapter(private var data: LandscapeData) :
                     list.size,
                     ContextCompat.getColor(itemView.context, R.color.white)
                 )
-                val adapter = RecoViewPagerAdapter(list)
+                val adapter = LandViewPagerAdapter(list)
 
                 this.banner.setAdapter(adapter)
                     .setIndicator(indicator!!, true)

@@ -57,11 +57,27 @@ fun SwipeRefreshLayout.setRefreshColor(): SwipeRefreshLayout {
 fun SwipRecyclerView.init(
     itemDecoration: RecyclerView.ItemDecoration? = null,
     adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>,
+    manager: RecyclerView.LayoutManager,
     listener: SwipRecyclerView.ILoadMoreListener
 ): SwipRecyclerView {
 
     addFooterView(CommonFooter(context))
-    layoutManager = LinearLayoutManager(context)
+    layoutManager = manager
+    itemDecoration?.let {
+        addItemDecoration(it)
+    }
+    setRefreshAdapter(adapter, listener)
+    return this
+}
+
+fun SwipRecyclerView.initNoFooter(
+    itemDecoration: RecyclerView.ItemDecoration? = null,
+    adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>,
+    manager: RecyclerView.LayoutManager,
+    listener: SwipRecyclerView.ILoadMoreListener?
+): SwipRecyclerView {
+
+    layoutManager = manager
     itemDecoration?.let {
         addItemDecoration(it)
     }

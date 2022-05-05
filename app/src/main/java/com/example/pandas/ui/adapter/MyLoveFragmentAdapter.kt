@@ -3,7 +3,7 @@ package com.example.pandas.ui.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
@@ -19,6 +19,7 @@ import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.ui.activity.MoreDataListActivity
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.ext.initRv
+import com.example.pandas.ui.view.viewpager.Indicator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -29,7 +30,6 @@ import kotlinx.coroutines.flow.flow
  * @version: v1.0
  */
 public class MyLoveFragmentAdapter(
-    private val owner: LifecycleOwner,
     private var data: PageCommonData
 ) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
@@ -146,7 +146,7 @@ public class MyLoveFragmentAdapter(
     override fun onBindViewHolder(holder: BaseEmptyViewHolder, position: Int) {
         when (getItemViewType(position)) {
             TYPE_BANNER -> {
-                (holder as ImageViewHolder).handle(position)
+                (holder as ImageViewHolder).handle()
             }
             TYPE_MOVIE -> {
                 (holder as MovieViewHolder).handle(position)
@@ -177,7 +177,7 @@ public class MyLoveFragmentAdapter(
 
     private inner class ImageViewHolder(binding: CardImageBinding) :
         BaseEmptyViewHolder(binding.root) {
-        val image = binding.imageLove
+        val banner = binding.bannerLove
         val card2 = binding.layoutMusic
         val card3 = binding.layoutCard3
 //
@@ -185,39 +185,25 @@ public class MyLoveFragmentAdapter(
 //        private var lastY: Float = 0F
 
         @SuppressLint("ClickableViewAccessibility")
-        fun handle(position: Int) {
+        fun handle() {
 
             card2.setOnClickListener {
                 MoreDataListActivity.startMoreDataActivity(itemView.context, AppInfos.TYPE_MP3)
             }
-//            card2.setOnTouchListener { v, event ->
-//                val x = event.rawX
-//                val y = event.rawY
-//                when(event.action){
-//                    MotionEvent.ACTION_DOWN ->{
-//                        lastX = x
-//                        lastY = y
-//                    }
-//                    MotionEvent.ACTION_MOVE ->{
-//                        lastX = event.rawX
-//                        lastY = event.rawY
-//                        val distanceX: Float = Math.abs(lastX - x)
-//                        val distanceY: Float = Math.abs(lastY - y)
-//
-//                        if (distanceX > distanceY) {
-//                            Log.e("1mean","和啊啊 啊")
-//                        }
-//
-//                    }
-//                    MotionEvent.ACTION_UP ->{
-//
-//                    }
-//                }
-//
-//
-//                true
-//            }
+            val list = data.bannerList
 
+            //避免重复创建，刷新banner位置到起始位
+            val indicator = Indicator(itemView.context)
+            indicator.initIndicator(
+                list.size,
+                ContextCompat.getColor(itemView.context, R.color.white),
+                true
+            )
+            val adapter = ImageAdapter(list)
+
+            this.banner.setAdapter(adapter)
+                .setIndicator(indicator, true)
+                .setAutoPlayed(true)
         }
     }
 
@@ -273,7 +259,7 @@ public class MyLoveFragmentAdapter(
             val videos = data.movieModel
             if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
-                recyclerView.initRv(itemView.context,mAdapter!!)
+                recyclerView.initRv(itemView.context, mAdapter!!)
             }
             titleLayout.setOnClickListener {
                 MoreDataListActivity.startMoreDataActivity(
@@ -298,7 +284,7 @@ public class MyLoveFragmentAdapter(
             val videos = data.footBallModel
             if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
-                recyclerView.initRv(itemView.context,mAdapter!!)
+                recyclerView.initRv(itemView.context, mAdapter!!)
             }
             titleLayout.setOnClickListener {
                 MoreDataListActivity.startMoreDataActivity(
@@ -350,7 +336,7 @@ public class MyLoveFragmentAdapter(
             val videos = data.artList
             if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
-                recyclerView.initRv(itemView.context,mAdapter!!)
+                recyclerView.initRv(itemView.context, mAdapter!!)
             }
             titleLayout.setOnClickListener {
                 MoreDataListActivity.startMoreDataActivity(
@@ -375,7 +361,7 @@ public class MyLoveFragmentAdapter(
             val videos = data.babyList
             if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
-                recyclerView.initRv(itemView.context,mAdapter!!)
+                recyclerView.initRv(itemView.context, mAdapter!!)
             }
             titleLayout.setOnClickListener {
                 MoreDataListActivity.startMoreDataActivity(
@@ -400,7 +386,7 @@ public class MyLoveFragmentAdapter(
             val videos = data.honglouList
             if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
-                recyclerView.initRv(itemView.context,mAdapter!!)
+                recyclerView.initRv(itemView.context, mAdapter!!)
             }
             titleLayout.setOnClickListener {
                 MoreDataListActivity.startMoreDataActivity(
@@ -425,7 +411,7 @@ public class MyLoveFragmentAdapter(
             val videos = data.beautyList
             if (mAdapter == null && videos.isNotEmpty()) {
                 mAdapter = SleepVideoItemAdapter(videos)
-                recyclerView.initRv(itemView.context,mAdapter!!)
+                recyclerView.initRv(itemView.context, mAdapter!!)
             }
             titleLayout.setOnClickListener {
                 MoreDataListActivity.startMoreDataActivity(

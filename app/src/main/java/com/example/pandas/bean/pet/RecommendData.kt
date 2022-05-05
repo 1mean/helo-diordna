@@ -1,6 +1,6 @@
 package com.example.pandas.bean.pet
 /**
- * @description: TODO
+ * @description: RecommendData
  * @author: dongyiming
  * @date: 1/23/22 3:20 下午
  * @version: v1.0

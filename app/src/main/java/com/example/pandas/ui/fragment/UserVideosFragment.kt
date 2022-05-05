@@ -4,6 +4,7 @@ import UserVideosAdapter
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.UserInfoViewModel
@@ -24,11 +25,15 @@ public class UserVideosFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefr
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.recyclerLayout.init(null, mAdapter, object : SwipRecyclerView.ILoadMoreListener {
-            override fun onLoadMore() {
-                mViewModel.getUserVideos(mViewModel.authorId, false)
-            }
-        })
+        binding.recyclerLayout.init(
+            null,
+            mAdapter,
+            LinearLayoutManager(context),
+            object : SwipRecyclerView.ILoadMoreListener {
+                override fun onLoadMore() {
+                    mViewModel.getUserVideos(mViewModel.authorId, false)
+                }
+            })
 
         binding.swipLayout.run {
             setBackgroundResource(R.color.white)

@@ -22,6 +22,8 @@ public class Indicator : View, Iindicator {
     private var newPage: Int = 0
     private var pageCount: Int = 0
 
+    private var isMid: Boolean = false
+
     //距离参数，选中和未选中一样大小
     private val indicatorItemPadding: Int = ScreenUtil.dip2px(4f) //间隔
     private val indicatorRadius: Int = ScreenUtil.dip2px(2.7f) //半径
@@ -62,6 +64,19 @@ public class Indicator : View, Iindicator {
         requestLayout()//重新测量和布局
     }
 
+    override fun initIndicator(count: Int, color: Int, isMid: Boolean) {
+
+        this.isMid = isMid
+        pageCount = count
+        selectColor = color
+        visibility = if (pageCount > 1) {
+            VISIBLE
+        } else {
+            GONE
+        }
+        requestLayout()//重新测量和布局
+    }
+
     override fun getParams(): RelativeLayout.LayoutParams {
 
         if (params == null) {
@@ -70,9 +85,13 @@ public class Indicator : View, Iindicator {
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
             params?.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
-            params?.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+            if (isMid) {
+                params?.addRule(RelativeLayout.CENTER_HORIZONTAL)
+            } else {
+                params?.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+                params?.rightMargin = ScreenUtil.dip2px(8f)
+            }
             params?.bottomMargin = ScreenUtil.dip2px(8f)
-            params?.rightMargin = ScreenUtil.dip2px(8f)
         }
         return params!!
     }

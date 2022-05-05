@@ -1,10 +1,8 @@
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.pandas.R
 
 /**
  * @description: adapter wrapper 只有一个footer
@@ -38,7 +36,12 @@ public class AdapterWrapper(private val mAdapter: RecyclerView.Adapter<RecyclerV
 
     override fun getItemCount(): Int {
         val count = mAdapter.itemCount
-        return if (count == 0) 0 else count + 1
+        if (count == 0) {
+            return 0
+        } else if (footer == null) {
+            return count
+        } else
+            return count + 1
     }
 
     override fun getItemViewType(position: Int): Int {

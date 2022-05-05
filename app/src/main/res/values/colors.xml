@@ -31,6 +31,7 @@
     <color name="color_bg_pandas">#F0F3F3</color>
     <color name="color_bg_reco_followed">#FFF3EC</color>
     <color name="color_txt_reco_followed">#FB6439</color>
+    <color name="color_bg_reco_type">#FF5E97</color>
 
     <!--self-->
     <color name="color_black_80">#80000000</color>

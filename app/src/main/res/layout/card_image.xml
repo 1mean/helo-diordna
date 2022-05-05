@@ -7,12 +7,10 @@
         app:cardElevation="0dp"
         app:cardCornerRadius="15dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_love"
+    <com.example.pandas.ui.view.viewpager.Banner
+            android:id="@+id/banner_love"
             android:layout_width="240dp"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@mipmap/liuyifei" />
+            android:layout_height="match_parent" />
 
     <com.kproduce.roundcorners.RoundRelativeLayout
             android:id="@+id/layout_music"
@@ -53,8 +51,7 @@
                 android:layout_alignStart="@id/txt_music_name"
                 android:layout_below="@id/txt_music_name"
                 android:layout_marginTop="6dp"
-                android:src="@mipmap/img_music_right"
-                />
+                android:src="@mipmap/img_music_right" />
     </com.kproduce.roundcorners.RoundRelativeLayout>
 
     <com.kproduce.roundcorners.RoundRelativeLayout
@@ -62,8 +59,44 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:rBottomLeftRadius="30dp"
+            android:clickable="true"
             android:layout_marginStart="274dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:focusable="true">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_honglou_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="14dp"
+                android:fontFamily="@font/pglh"
+                android:text="@string/str_honglou"
+                android:maxLines="2"
+                android:maxEms="2"
+                android:textSize="20sp"
+                android:textColor="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_honglou_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="RED CHAMBER"
+                android:textSize="8sp"
+                android:layout_alignStart="@id/txt_honglou_title"
+                android:layout_below="@id/txt_honglou_title"
+                android:textColor="#37A7B2"
+                tools:ignore="SmallSp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/txt_honglou_name"
+                android:layout_below="@id/txt_honglou_name"
+                android:layout_marginTop="6dp"
+                android:src="@mipmap/img_music_right" />
+    </com.kproduce.roundcorners.RoundRelativeLayout>
 
 
 </androidx.cardview.widget.CardView>

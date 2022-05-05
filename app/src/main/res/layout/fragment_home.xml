@@ -5,6 +5,7 @@
         xmlns:tl="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
     <View
@@ -13,7 +14,6 @@
             android:background="@color/color_white_lucency" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-
             android:id="@+id/clayout_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -57,23 +57,23 @@
                         tools:ignore="RtlSymmetry" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/ib_more"
+                        android:id="@+id/ib_message"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
-                        android:src="@mipmap/img_titlebar_more"
+                        android:src="@mipmap/img_home_message"
                         android:background="@null"
-                        android:layout_marginEnd="5dp"
                         android:layout_gravity="center_vertical|right"
                         tools:ignore="RtlHardcoded" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/ib_message"
+                        android:id="@+id/ib_more"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
-                        android:src="@mipmap/img_message"
+                        android:src="@mipmap/img_home_music"
                         android:background="@null"
                         android:layout_gravity="center_vertical|right"
                         tools:ignore="RtlHardcoded" />
+
             </androidx.appcompat.widget.Toolbar>
 
             <!--

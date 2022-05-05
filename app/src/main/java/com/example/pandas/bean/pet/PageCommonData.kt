@@ -1,12 +1,12 @@
 package com.example.pandas.bean.pet
 
+import com.example.pandas.bean.BannerItem
 import com.example.pandas.sql.entity.MusicVo
 
 data class PageCommonData(
 
     var topUrl: String = "",
-    var imgUrls: MutableList<String> = mutableListOf(),
-    var horizontalVideos: MutableList<PetViewData> = mutableListOf(),
+    var bannerList: MutableList<BannerItem> = mutableListOf(),
     var movieModel: MutableList<PetViewData> = mutableListOf(),
     var songs: MutableList<MusicVo> = mutableListOf(),
     var footBallModel: MutableList<PetViewData> = mutableListOf(),
@@ -17,7 +17,7 @@ data class PageCommonData(
     var honglouList: MutableList<PetViewData> = mutableListOf(),
     var beautyList: MutableList<PetViewData> = mutableListOf(),
 
-)
+    )
 
 data class SleepModel(
     var videos: MutableList<PetViewData> = mutableListOf(),
