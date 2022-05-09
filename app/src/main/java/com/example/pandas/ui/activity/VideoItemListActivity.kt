@@ -9,7 +9,9 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.PandaViewModel
 import com.example.pandas.databinding.ActivityVideoListBinding
 import com.example.pandas.ui.adapter.PandaListAdapter
-import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView2
+import com.example.pandas.ui.ext.init
+import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
 
 /**
@@ -18,77 +20,75 @@ import com.example.pandas.utils.StatusBarUtils
  * @date: 3/28/22 6:26 下午
  * @version: v1.0
  */
-public class VideoItemListActivity : BaseActivity<PandaViewModel, ActivityVideoListBinding>(),
-    LoadMoreRecyclerView2.ILoadMoreListener {
+public class VideoItemListActivity : BaseActivity<PandaViewModel, ActivityVideoListBinding>() {
 
     private val mAdapter: PandaListAdapter by lazy { PandaListAdapter(mutableListOf()) }
 
     private var title: String? = null
 
+    private var isFirstShow: Boolean = true
+
     override fun initView(savedInstanceState: Bundle?) {
 
         StatusBarUtils.updataStatus(this, true, false, R.color.white)
-        val padding = resources.getDimension(R.dimen.dimen_padding_panda_list).toInt()
-        title = intent.getStringExtra("title")
-        binding.tbPandas.title = title
-        binding.tbPandas.setNavigationOnClickListener {
-            finish()
-        }
 
-        binding.rvVideoList.apply {
-            layoutManager = GridLayoutManager(this@VideoItemListActivity, 2)
-            addItemDecoration(CommonItemDecoration(false, 2, padding, padding))
-            setRefreshAdapter(mAdapter, this@VideoItemListActivity)
-        }
-        binding.swipVideoList.setOnRefreshListener {
-            title?.let { mViewModel.getPandas(true, it) }
+        val padding = resources.getDimension(R.dimen.dimen_padding_panda_list).toInt()
+
+        title = intent.getStringExtra("title")
+
+        binding.txtPandaName.text = title
+        binding.ibnPanda.setOnClickListener { finish() }
+
+        binding.recyclerLayout.init(
+            CommonItemDecoration(false, 2, padding, padding),
+            mAdapter,
+            GridLayoutManager(this@VideoItemListActivity, 2),
+            object : SwipRecyclerView.ILoadMoreListener {
+                override fun onLoadMore() {
+                    title?.let { mViewModel.getPandas(false, it) }
+                }
+            })
+
+        binding.swipLayout.run {
+            setRefreshColor()
+            setOnRefreshListener {
+                binding.recyclerLayout.isRefreshing(true)
+                title?.let { mViewModel.getPandas(true, it) }
+            }
         }
     }
 
     override fun onResume() {
         super.onResume()
-        title?.let { mViewModel.getPandas(true, it) }
+        if (isFirstShow) {
+            isFirstShow = false
+            binding.swipLayout.isRefreshing = true
+            title?.let { mViewModel.getPandas(true, it) }
+        }
     }
 
     override fun createObserver() {
 
         mViewModel.pandaResult.observe(this) {
+
             if (it.isSuccess) {
+                binding.recyclerLayout.visibility = View.VISIBLE
                 when {
-                    it.isFirstEmpty -> viewState(true)
+                    it.isFirstEmpty -> {
+                        binding.layoutEmpty.llayoutEmpty.visibility = View.VISIBLE
+                    }
                     it.isRefresh -> {
-                        viewState(false)
-                        binding.rvVideoList.isFreshing(false)
-                        binding.swipVideoList.isRefreshing = false
-                        if (!it.hasMore) {
-                            binding.rvVideoList.noMoreData()
-                        }
+                        binding.recyclerLayout.isRefreshing(false)
                         mAdapter.refreshAdapter(it.listData)
                     }
                     else -> {
                         mAdapter.loadMore(it.listData)
-                        if (it.hasMore) {
-                            binding.rvVideoList.loadMoreFinished()
-                        } else {
-                            binding.rvVideoList.noMoreData()
-                        }
                     }
                 }
+                binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
             }
-        }
-    }
-
-    override fun onLoadMore() {
-        title?.let { mViewModel.getPandas(false, it) }
-    }
-
-    private fun viewState(isEmpty: Boolean) {
-        if (isEmpty) {
-            binding.rvVideoList.visibility = View.GONE
-            binding.txtEmpty.visibility = View.VISIBLE
-        } else {
-            binding.rvVideoList.visibility = View.VISIBLE
-            binding.txtEmpty.visibility = View.GONE
+            binding.swipLayout.visibility = View.VISIBLE
+            binding.swipLayout.isRefreshing = false
         }
     }
 }

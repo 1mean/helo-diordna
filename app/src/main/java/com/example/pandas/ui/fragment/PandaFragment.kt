@@ -40,7 +40,6 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefre
 
         binding.swipLayout.run {
             setRefreshColor()
-            isRefreshing = true
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
                 mViewModel.getPagePet(true)
@@ -75,6 +74,7 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefre
     }
 
     override fun firstOnResume() {
+        binding.swipLayout.isRefreshing = true
         mViewModel.getPagePet(true)
     }
 }

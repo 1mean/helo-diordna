@@ -4,10 +4,7 @@ import androidx.room.*
 import com.example.pandas.bean.CoverDownLoad
 import com.example.pandas.bean.SearchInfo
 import com.example.pandas.bean.pet.PetViewData
-import com.example.pandas.sql.entity.History
-import com.example.pandas.sql.entity.MusicVo
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.User
+import com.example.pandas.sql.entity.*
 
 /**
  * @description:
@@ -38,6 +35,9 @@ interface PetVideoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: User)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertVideoData(videoData: VideoData)
+
     /* -----------删------------------------------------- */
 
     @Delete
@@ -48,6 +48,9 @@ interface PetVideoDao {
 
     @Delete
     fun deleteAllMusic(list: MutableList<MusicVo>)
+
+    @Delete
+    fun deleteAllVideoData(list: MutableList<VideoData>)
 
 
     /* -----------更新------------------------------------- */
@@ -60,6 +63,9 @@ interface PetVideoDao {
 
     @Update(onConflict = OnConflictStrategy.ABORT) //发生冲突解决办法：终止操作，抛出异常
     fun updateHistory(history: History)
+
+    @Update(onConflict = OnConflictStrategy.ABORT) //发生冲突解决办法：终止操作，抛出异常
+    fun updateVideoData(data: VideoData)
 
     /* -----------查------------------------------------- */
     //如果查询多个结果返回的数据类不是数据实体类，无需给 Room 解析对应数据表，也无需添加 @Entity 注解
@@ -99,6 +105,12 @@ interface PetVideoDao {
 
     @Query("select count(*) from pet_video")
     fun getAllSize(): Int
+
+    @Query("select * from video_data")
+    fun queryVideoData(): MutableList<VideoData>
+
+    @Query("select * from video_data where videoCode=(:code)")
+    suspend fun queryVideoDataByCode(code: Int): VideoData?
 
     /**
      *  这里编译一直失败，记录一下，下面四条为stack overflow上的普遍解决办法
@@ -190,20 +202,20 @@ interface PetVideoDao {
     @Query("select title,code from pet_video where title like (:words) limit 0,20")
     suspend fun queryByKeyWords(words: String): MutableList<SearchInfo>
 
-    @Query("select code,title,cover,authorId,duration from pet_video where period=(:period) and type=0 and videoType=0 and title like (:words) limit (:startIndex),(:counts)")
+    @Query("select * from pet_video where period=(:period) and type=0 and videoType=0 and title like (:words) limit (:startIndex),(:counts)")
     suspend fun queryPeriedByKey(
         words: String,
         period: Int,
         startIndex: Int,
         counts: Int
-    ): MutableList<PetViewData>
+    ): MutableList<PetVideo>
 
-    @Query("select code,title,cover,authorId,duration from pet_video where period=(:period) and type=0 and videoType=0 limit (:startIndex),(:counts)")
+    @Query("select * from pet_video where period=(:period) and type=0 and videoType=0 limit (:startIndex),(:counts)")
     suspend fun queryByPeried(
         period: Int,
         startIndex: Int,
         counts: Int
-    ): MutableList<PetViewData>
+    ): MutableList<PetVideo>
 
     @Query("select code,title,cover,authorId,duration,videoType from pet_video where title like (:words) limit (:startIndex),(:counts)")
     suspend fun queryWordsByPage(

@@ -3,12 +3,14 @@ package com.example.pandas.ui.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.CutePetViewModel
 import com.example.pandas.databinding.FragmentRoomBinding
 import com.example.pandas.ui.adapter.PetBannerAdapter
 import com.example.pandas.ui.adapter.RoomContentAdapter
+import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.viewpager.Indicator
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
@@ -42,7 +44,7 @@ public class CutePetFragment : BaseLazyFragment<CutePetViewModel, FragmentRoomBi
 
         binding.refreshPet.apply {
             setProgressViewEndTarget(true, 300)
-            setColorSchemeResources(R.color.green)
+            setRefreshColor()
             setOnRefreshListener {
                 mViewModel.getBannerData(true)
             }
@@ -107,11 +109,14 @@ public class CutePetFragment : BaseLazyFragment<CutePetViewModel, FragmentRoomBi
                 }
                 binding.refreshPet.isRefreshing = false
             }
+
             binding.clayoutShow.visibility = View.VISIBLE
+            binding.refreshPet.isRefreshing = false
         }
     }
 
     override fun firstOnResume() {
+        binding.refreshPet.isRefreshing = true
         mViewModel.getBannerData(false)
     }
 

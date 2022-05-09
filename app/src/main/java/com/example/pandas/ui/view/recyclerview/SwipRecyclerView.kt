@@ -69,7 +69,6 @@ class SwipRecyclerView : RecyclerView {
         mListener = listener
         wrapAdapter = AdapterWrapper(adapter as Adapter<ViewHolder>)
         footerView?.let {
-            Log.e("111111mean","addFooter")
             wrapAdapter!!.addFooter(it)
         }
         onItemClickListener?.let {

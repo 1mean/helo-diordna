@@ -7,21 +7,23 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.CutePetViewModel
-import com.example.pandas.databinding.FragmentCuteChildBinding
+import com.example.pandas.databinding.LayoutLoadingRefreshBinding
+import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.CutePetChildAdapter
-import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView2
+import com.example.pandas.ui.ext.init
+import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
- * @description: TODO
+ * @description: PetChildFragment
  * @author: dongyiming
  * @date: 2021/12/11 3:54 下午
  * @version: v1.0
  */
 public class PetChildFragment() :
-    BaseLazyFragment<CutePetViewModel, FragmentCuteChildBinding>(),
-    LoadMoreRecyclerView2.ILoadMoreListener {
+    BaseLazyFragment<CutePetViewModel, LayoutLoadingRefreshBinding>(),
+    CutePetChildAdapter.OnLikeClickListener {
 
-    private val mAdapter: CutePetChildAdapter by lazy { CutePetChildAdapter(mutableListOf()) }
+    private val mAdapter: CutePetChildAdapter by lazy { CutePetChildAdapter(mutableListOf(), this) }
 
     private var type = 0
 
@@ -29,12 +31,16 @@ public class PetChildFragment() :
 
         val padding = resources.getDimension(R.dimen.dimen_padding_pet).toInt()
         type = requireArguments().getInt("type")
-        binding.recyclerLoad.visibility = View.GONE
-        binding.recyclerLoad.run {
-            layoutManager = GridLayoutManager(mActivity, 2)
-            addItemDecoration(CommonItemDecoration(false, 2, padding, padding))
-            setRefreshAdapter(mAdapter, this@PetChildFragment)
-        }
+
+        binding.recyclerLayout.init(
+            CommonItemDecoration(false, 2, padding, padding),
+            mAdapter,
+            GridLayoutManager(mActivity, 2),
+            object : SwipRecyclerView.ILoadMoreListener {
+                override fun onLoadMore() {
+                    mViewModel.getDataByPage(false, type)
+                }
+            })
     }
 
     override fun createObserver() {
@@ -43,35 +49,24 @@ public class PetChildFragment() :
 
             if (it.isSuccess) {
 
+                binding.recyclerLayout.visibility = View.VISIBLE
                 when {
                     it.isRefresh -> {
-                        if (!it.hasMore) {
-                            binding.recyclerLoad.noMoreData()
-                        }
                         mAdapter.refreshAdapter(it.listData)
-                    }
-                    it.isFirstEmpty -> {
-
+                        binding.recyclerLayout.isRefreshing(false)
                     }
                     else -> {
                         mAdapter.loadMore(it.listData)
-                        binding.recyclerLoad.loadMoreFinished()
-                        if (!it.hasMore) {//没有更多数据了
-                            binding.recyclerLoad.noMoreData()
-                        }
                     }
                 }
+                binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
             }
-            binding.recyclerLoad.visibility = View.VISIBLE
+            binding.clayoutLoading.visibility = View.GONE
         }
     }
 
     override fun firstOnResume() {
         mViewModel.getDataByPage(true, type)
-    }
-
-    override fun onLoadMore() {
-        mViewModel.getDataByPage(false, type)
     }
 
     /**
@@ -88,5 +83,9 @@ public class PetChildFragment() :
             fragment.arguments = args
             return fragment
         }
+    }
+
+    override fun likeClick(videoData: VideoData) {
+        mViewModel.addOrUpdateVideoData(videoData)
     }
 }

@@ -25,14 +25,13 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityPandasBinding>
 
         StatusBarUtils.updataStatus(this, true, false, R.color.white)
         val title = intent.getStringExtra("title")
-        binding.tbPandas.title = title
-        binding.tbPandas.setNavigationOnClickListener {
-            finish()
-        }
+        binding.txtPandaName.text = title
+
+        binding.ibnPanda.setOnClickListener { finish() }
 
         binding.vpPandas.apply {
             adapter = ActivityPandaAdapter(this@PandaActivity, title!!, tabTitles)
-            offscreenPageLimit = OFFSCREEN_PAGE_LIMIT_DEFAULT
+            offscreenPageLimit = tabTitles.size
             currentItem = 0
             isSaveEnabled = false
         }

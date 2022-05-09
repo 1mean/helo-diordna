@@ -1,6 +1,7 @@
 package com.example.pandas.ui.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -126,17 +127,23 @@ public class LandscapeAdapter(private var data: LandscapeData) :
         val title = binding.txtLandscapeName
         val name = binding.txtLandscapeAuthor
         val layoutMore = binding.itemLandscapeMore
+        val counts = binding.txtVideoPlayCounts
+        val comments = binding.txtVideoPlayComment
 
         fun handle(position: Int) {
 
             val video = data.itemList[position - 1]
 
             loadRoundedCornerImage(itemView.context, 10, video.cover, cover)
-            duration.text = TimeUtils.getMMDuration(video.duration.toLong())
+            duration.text = TimeUtils.getDuration(video.duration.toLong())
             title.text = video.title
             video.user?.let {
                 name.text = it.userName
             }
+            val count = (1..1000).random()
+            Log.e("1mean","$count")
+            counts.text = StringBuilder(count.toString()).append("观看").toString()
+            comments.text = (1..100).random().toString()
             layoutMore.setOnClickListener {
 
             }

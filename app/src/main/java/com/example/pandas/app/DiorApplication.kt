@@ -2,12 +2,7 @@ package com.example.pandas.app
 
 import android.app.Application
 import android.util.Log
-import com.example.pandas.data.AppData
-import com.example.pandas.data.FootballData
-import com.example.pandas.data.UserData
 import com.example.pandas.sql.database.AppDataBase
-import com.example.pandas.sql.entity.PeriodType
-import com.example.pandas.sql.entity.User
 
 
 class DiorApplication : Application() {
@@ -32,6 +27,9 @@ class DiorApplication : Application() {
 
         Thread {
             val petDao = AppDataBase.getInstance().petVideoDao()
+
+//            val list = petDao.queryVideoData()
+//            petDao.deleteAllVideoData(list)
 
             /* add data */
 //            val list = AppData.getPetVideoData()

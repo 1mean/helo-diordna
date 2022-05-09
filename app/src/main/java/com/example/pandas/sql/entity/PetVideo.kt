@@ -5,6 +5,12 @@ import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
+/**
+ * video的基本信息
+ * @author: dongyiming
+ * @date: 11/6/21 9:28 下午
+ * @version: v1.0
+ */
 @Entity(tableName = "pet_video")
 data class PetVideo(
 
@@ -37,10 +43,14 @@ data class PetVideo(
     @ColumnInfo
     var period: Int = 0,//对应PetType
     @ColumnInfo
-    var isStar: Boolean = false,//明星熊猫
+    var isStar: Boolean = false,//视频分类（普通+精彩），不归属到counts表
+    @ColumnInfo
+    var isHot: Boolean = false,//热门视频
     //视频展示类型 0为普通视频，1为轮播图视频，2为横屏视频  3为cutepet页面轮播图
     @ColumnInfo
     var videoType: Int = 0,
     @Ignore
     var user: User? = null,
+    @Ignore
+    var videoData: VideoData? = null,
 )

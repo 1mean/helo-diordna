@@ -70,8 +70,8 @@
     <dimen name="item_home_padding_top">9dp</dimen>
     <dimen name="item_horizontal_padding">8dp</dimen>
     <dimen name="dimen_padding_pet">6dp</dimen>
-    <dimen name="dimen_padding_panda_list">8dp</dimen>
-    <dimen name="dimen_padding_panda_child">10dp</dimen>
+    <dimen name="dimen_padding_panda_list">14dp</dimen>
+    <dimen name="dimen_padding_panda_child">14dp</dimen>
 
     <!-- 修改BottomNavigationView框架 布局默认的间距，满足项目需求-->
     <dimen tools:override="true" name="design_bottom_navigation_margin">11dp</dimen>

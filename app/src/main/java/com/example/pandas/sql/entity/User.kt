@@ -33,7 +33,11 @@ data class User(
     @ColumnInfo
     var signature: String? = null,//个性签名
     @ColumnInfo
+    var exp: Int = 0,//当前等级的经验值
+    @ColumnInfo
+    var coin: Int = 0,//硬币
+    @ColumnInfo
     var reservedInt: Int = 0,//预留int字段
     @ColumnInfo
     var reservedString: String? = null//预留string字段
-): Parcelable
+) : Parcelable

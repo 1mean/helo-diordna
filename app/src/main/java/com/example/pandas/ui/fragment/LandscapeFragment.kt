@@ -41,7 +41,6 @@ public class LandscapeFragment :
 
         binding.swipLayout.run {
             setRefreshColor()
-            isRefreshing = true
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
                 mViewModel.getLandScapeData(true)
@@ -73,6 +72,7 @@ public class LandscapeFragment :
     }
 
     override fun firstOnResume() {
+        binding.swipLayout.isRefreshing = true
         mViewModel.getLandScapeData(true)
     }
 

@@ -8,10 +8,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.pandas.app.DiorApplication
 import com.example.pandas.sql.dao.PetVideoDao
-import com.example.pandas.sql.entity.History
-import com.example.pandas.sql.entity.MusicVo
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.User
+import com.example.pandas.sql.entity.*
 
 /**
  * @description: 版本管理
@@ -20,7 +17,7 @@ import com.example.pandas.sql.entity.User
  * @version: v1.0
  */
 @Database(
-    entities = [PetVideo::class, MusicVo::class, History::class, User::class],
+    entities = [PetVideo::class, MusicVo::class, History::class, User::class,VideoData::class],
     version = 3,
     exportSchema = false
 )

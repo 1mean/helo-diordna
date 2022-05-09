@@ -1518,7 +1518,7 @@ object MultiVideoData {
         panda1.authorId = 12444306
         panda1.cover =
             "https://i0.hdslb.com/bfs/archive/4932476ebb58a8cda88916f34b6ec75211b9171d.jpg"
-        panda1.videoType = 4
+        panda1.videoType = 0
         list.add(panda1)
 
         val panda2 = PetVideo()
@@ -1535,7 +1535,7 @@ object MultiVideoData {
         panda2.authorId = 12444306
         panda2.cover =
             "https://i1.hdslb.com/bfs/archive/f39061f388c773b7dd51da533995ef6ebbbf1d44.jpg"
-        panda2.videoType = 4
+        panda2.videoType = 0
         list.add(panda2)
 
         val panda3 = PetVideo()
@@ -1552,7 +1552,7 @@ object MultiVideoData {
         panda3.authorId = 12444306
         panda3.cover =
             "https://i2.hdslb.com/bfs/archive/5b8b1e0787a35863b61a78d4f699fe1a4a348c14.jpg"
-        panda3.videoType = 4
+        panda3.videoType = 0
         list.add(panda3)
 
         val panda4 = PetVideo()
@@ -1569,7 +1569,7 @@ object MultiVideoData {
         panda4.authorId = 12444306
         panda4.cover =
             "https://i0.hdslb.com/bfs/archive/6414be33221d8c52e786c64e9ed9bbb64a10927f.jpg"
-        panda4.videoType = 4
+        panda4.videoType = 0
         list.add(panda4)
 
         val panda5 = PetVideo()
@@ -1586,7 +1586,7 @@ object MultiVideoData {
         panda5.authorId = 12444306
         panda5.cover =
             "https://i1.hdslb.com/bfs/archive/9ccb306ca016b571a6cc070d0047c945e92ccbc6.jpg"
-        panda5.videoType = 4
+        panda5.videoType = 0
         list.add(panda5)
 
         val panda6 = PetVideo()
@@ -1603,7 +1603,7 @@ object MultiVideoData {
         panda6.authorId = 12444306
         panda6.cover =
             "https://i0.hdslb.com/bfs/archive/fb1d2f9593ddd7ecf19ad4e07543b64f59be88e2.jpg"
-        panda6.videoType = 4
+        panda6.videoType = 0
         list.add(panda6)
 
         val panda7 = PetVideo()
@@ -1620,7 +1620,7 @@ object MultiVideoData {
         panda7.authorId = 12444306
         panda7.cover =
             "https://i2.hdslb.com/bfs/archive/c70e74b75bf42444a34f5904c1bbf2989d0679a3.jpg"
-        panda7.videoType = 4
+        panda7.videoType = 0
         list.add(panda7)
 
         val panda8 = PetVideo()
@@ -1637,7 +1637,7 @@ object MultiVideoData {
         panda8.authorId = 12444306
         panda8.cover =
             "https://i2.hdslb.com/bfs/archive/9a57a27496a86cfa38b9d1b2e488ff972c782a5a.jpg"
-        panda8.videoType = 4
+        panda8.videoType = 0
         list.add(panda8)
 
         val panda9 = PetVideo()
@@ -1654,7 +1654,7 @@ object MultiVideoData {
         panda9.authorId = 12444306
         panda9.cover =
             "https://i2.hdslb.com/bfs/archive/45532ef9daf0abfb1e8a961ea3c67ea1b490aeb9.jpg"
-        panda9.videoType = 4
+        panda9.videoType = 0
         list.add(panda9)
 
         val panda10 = PetVideo()
@@ -1671,7 +1671,7 @@ object MultiVideoData {
         panda10.authorId = 12444306
         panda10.cover =
             "https://i1.hdslb.com/bfs/archive/bdbb7c01e1d01502182c3c922f2caead3eb2d721.jpg"
-        panda10.videoType = 4
+        panda10.videoType = 0
         list.add(panda10)
 
         val panda11 = PetVideo()
@@ -1688,7 +1688,7 @@ object MultiVideoData {
         panda11.authorId = 12444306
         panda11.cover =
             "https://i2.hdslb.com/bfs/archive/7ffef3debb4954dc98d16e15e5a4bb777311b690.jpg"
-        panda11.videoType = 4
+        panda11.videoType = 0
         list.add(panda11)
 
         val panda12 = PetVideo()
@@ -1705,7 +1705,7 @@ object MultiVideoData {
         panda12.authorId = 12444306
         panda12.cover =
             "https://i2.hdslb.com/bfs/archive/d3ede2807172b3d4f4f5723b64a37e3f666a5d6d.jpg"
-        panda12.videoType = 4
+        panda12.videoType = 0
         list.add(panda12)
 
         val panda13 = PetVideo()
@@ -1722,7 +1722,7 @@ object MultiVideoData {
         panda13.authorId = 12444306
         panda13.cover =
             "https://i0.hdslb.com/bfs/archive/b5757eab088e241ef62ad8b559aafb37fe311494.jpg"
-        panda13.videoType = 4
+        panda13.videoType = 0
         list.add(panda13)
 
         val panda14 = PetVideo()
@@ -1739,7 +1739,7 @@ object MultiVideoData {
         panda14.authorId = 12444306
         panda14.cover =
             "https://i1.hdslb.com/bfs/archive/b38625292f3663f9a06bdfe3afa1e3ad89ed2eca.jpg"
-        panda14.videoType = 4
+        panda14.videoType = 0
         list.add(panda14)
 
         val panda15 = PetVideo()
@@ -1756,7 +1756,7 @@ object MultiVideoData {
         panda15.authorId = 12444306
         panda15.cover =
             "https://i2.hdslb.com/bfs/archive/447141102b1e19eeabc829f6f99c7c8b3a783e54.jpg"
-        panda15.videoType = 4
+        panda15.videoType = 0
         list.add(panda15)
 
         val panda16 = PetVideo()
@@ -1773,7 +1773,7 @@ object MultiVideoData {
         panda16.authorId = 12444306
         panda16.cover =
             "https://i2.hdslb.com/bfs/archive/c78a48641a17ad57ad607b6325faebd27abb1d2e.jpg"
-        panda16.videoType = 4
+        panda16.videoType = 0
         list.add(panda16)
 
         val panda17 = PetVideo()
@@ -1790,7 +1790,7 @@ object MultiVideoData {
         panda17.authorId = 12444306
         panda17.cover =
             "https://i2.hdslb.com/bfs/archive/5a4c4bf2366f322d5fde173e82ac716c92b1c10e.jpg"
-        panda17.videoType = 4
+        panda17.videoType = 0
         list.add(panda17)
 
         val panda18 = PetVideo()
@@ -1807,7 +1807,7 @@ object MultiVideoData {
         panda18.authorId = 12444306
         panda18.cover =
             "https://i0.hdslb.com/bfs/archive/856824ebe11e2a9f9f1bea97e3d5cda25a5da892.jpg"
-        panda18.videoType = 4
+        panda18.videoType = 0
         list.add(panda18)
 
         val panda19 = PetVideo()
@@ -1824,7 +1824,7 @@ object MultiVideoData {
         panda19.authorId = 12444306
         panda19.cover =
             "https://i1.hdslb.com/bfs/archive/696b5c5b15b7f1ad24ad5b1bacf7fcbf2e5a9850.jpg"
-        panda19.videoType = 4
+        panda19.videoType = 0
         list.add(panda19)
 
         val panda20 = PetVideo()
@@ -1841,7 +1841,7 @@ object MultiVideoData {
         panda20.authorId = 12444306
         panda20.cover =
             "https://i1.hdslb.com/bfs/archive/1f3e91839b6ecc1e36cb4e8296e7ccb492208918.jpg"
-        panda20.videoType = 4
+        panda20.videoType = 0
         list.add(panda20)
 
         val panda21 = PetVideo()
@@ -1858,7 +1858,7 @@ object MultiVideoData {
         panda21.authorId = 12444306
         panda21.cover =
             "https://i0.hdslb.com/bfs/archive/25fe86b88486ffc5a5938032fb0b9fef75b3c607.jpg"
-        panda21.videoType = 4
+        panda21.videoType = 0
         list.add(panda21)
 
         val panda22 = PetVideo()
@@ -1875,7 +1875,7 @@ object MultiVideoData {
         panda22.authorId = 12444306
         panda22.cover =
             "https://i1.hdslb.com/bfs/archive/de3a6aadce7066d0ea8c7636efe56aa345b9349d.jpg"
-        panda22.videoType = 4
+        panda22.videoType = 0
         list.add(panda22)
 
         val panda23 = PetVideo()
@@ -1892,7 +1892,7 @@ object MultiVideoData {
         panda23.authorId = 12444306
         panda23.cover =
             "https://i2.hdslb.com/bfs/archive/8bad0080ae0ae12af91c357a1742ea328a19f7bf.jpg"
-        panda23.videoType = 4
+        panda23.videoType = 0
         list.add(panda23)
 
         val panda24 = PetVideo()
@@ -1909,7 +1909,7 @@ object MultiVideoData {
         panda24.authorId = 12444306
         panda24.cover =
             "https://i2.hdslb.com/bfs/archive/1014a8fa30a2bb8487d6a9f6e9a402615716e0b8.jpg"
-        panda24.videoType = 4
+        panda24.videoType = 0
         list.add(panda24)
 
         val panda25 = PetVideo()
@@ -1926,7 +1926,7 @@ object MultiVideoData {
         panda25.authorId = 12444306
         panda25.cover =
             "https://i1.hdslb.com/bfs/archive/ad659eff6084fd6535e04a533d3353eee3f58116.jpg"
-        panda25.videoType = 4
+        panda25.videoType = 0
         list.add(panda25)
 
         val panda26 = PetVideo()
@@ -1943,7 +1943,7 @@ object MultiVideoData {
         panda26.authorId = 12444306
         panda26.cover =
             "https://i1.hdslb.com/bfs/archive/630cdd0a53113afa80fa7e5c6df6571ba43488d9.jpg"
-        panda26.videoType = 4
+        panda26.videoType = 0
         list.add(panda26)
 
         return list

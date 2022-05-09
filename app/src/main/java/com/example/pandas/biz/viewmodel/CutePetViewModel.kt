@@ -1,10 +1,14 @@
 package com.example.pandas.biz.viewmodel
+
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.sql.entity.VideoData
+import kotlinx.coroutines.launch
 
 /**
  * @description: 获取宠物信息
@@ -79,5 +83,11 @@ public class CutePetViewModel : BaseViewModel() {
                 )
                 pageDataWrapper.value = dataList
             })
+    }
+
+    fun addOrUpdateVideoData(videoData: VideoData) {
+        viewModelScope.launch {
+            PetManagerCoroutine.addOrUpdateVideoData(videoData)
+        }
     }
 }

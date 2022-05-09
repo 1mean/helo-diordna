@@ -1,5 +1,6 @@
 package com.example.pandas.biz.manager
 
+import android.util.Log
 import com.example.pandas.bean.*
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.PetViewData
@@ -7,10 +8,7 @@ import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.dao.PetVideoDao
 import com.example.pandas.sql.database.AppDataBase
-import com.example.pandas.sql.entity.History
-import com.example.pandas.sql.entity.MusicVo
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.User
+import com.example.pandas.sql.entity.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -32,7 +30,7 @@ class PetManager {
     suspend fun getPetByPage(startIndex: Int, counts: Int): MutableList<PetViewData> {
 
         return withContext(Dispatchers.IO) {
-            delay(300)
+            delay(500)
             val list = petDao.queryByTypeAndPage(VideoType.PANDA.ordinal, startIndex, counts)
             if (list.isNotEmpty()) {
                 list.forEach {
@@ -130,6 +128,7 @@ class PetManager {
     suspend fun getCutePetBannerData(): MutableList<PetViewData> {
 
         return withContext(Dispatchers.IO) {
+            delay(500)
             petDao.queryByVideoType(3)
         }
     }
@@ -151,6 +150,8 @@ class PetManager {
                 if (video.authorId != 0) {
                     val user = petDao.queryUserByCode(video.authorId)
                     video.user = user
+                    val data = petDao.queryVideoDataByCode(video.code)
+                    video.videoData = data
                 }
             }
             list
@@ -166,7 +167,7 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
 
-            delay(300)
+            delay(500)
             val data = PageCommonData()
             if (isFresh) {
                 data.run {
@@ -199,7 +200,7 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
 
-            delay(300)
+            delay(500)
             val itemList = petDao.queryVideoByType(VideoType.LANDSCAPE.ordinal, startIndex, counts)
             itemList.forEach {
                 it.user = petDao.queryUserByCode(it.authorId)
@@ -216,7 +217,7 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
 
-            delay(300)
+            delay(500)
             val list = petDao.queryHotVideo(startIndex, counts)
             list.forEach {
                 val code = it.authorId
@@ -236,7 +237,7 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
 
-            delay(300)
+            delay(500)
             petDao.queryVideosByCode(code, startIndex, counts)
         }
     }
@@ -296,10 +297,18 @@ class PetManager {
         period: Int,
         startIndex: Int,
         counts: Int
-    ): MutableList<PetViewData> {
+    ): MutableList<PetVideo> {
 
         return withContext(Dispatchers.IO) {
-            petDao.queryPeriedByKey("%$words%", period, startIndex, counts)
+            delay(300)
+            val list = petDao.queryPeriedByKey("%$words%", period, startIndex, counts)
+            Log.e("1mean", "${list.size}")
+            if (list.isNotEmpty()) {
+                list.forEach {
+                    it.user = petDao.queryUserByCode(it.authorId)
+                }
+            }
+            list
         }
     }
 
@@ -307,10 +316,17 @@ class PetManager {
         period: Int,
         startIndex: Int,
         counts: Int
-    ): MutableList<PetViewData> {
+    ): MutableList<PetVideo> {
 
         return withContext(Dispatchers.IO) {
-            petDao.queryByPeried(period, startIndex, counts)
+            delay(300)
+            val list = petDao.queryByPeried(period, startIndex, counts)
+            if (list.isNotEmpty()) {
+                list.forEach {
+                    it.user = petDao.queryUserByCode(it.authorId)
+                }
+            }
+            list
         }
     }
 
@@ -349,20 +365,48 @@ class PetManager {
         }
     }
 
+    /**
+     * 更新VideoData
+     */
+    suspend fun addOrUpdateVideoData(videoData: VideoData) {
+
+        withContext(Dispatchers.IO) {
+
+            val data = petDao.queryVideoDataByCode(videoData.videoCode)
+            if (data == null) {
+                petDao.insertVideoData(videoData)
+            } else {
+                petDao.updateVideoData(videoData)
+            }
+        }
+    }
+
     private fun getBannerList(): MutableList<BannerItem> {
 
         val list = mutableListOf<BannerItem>()
 
-        val bannerItem1 = BannerItem(
-            "https://i1.hdslb.com/bfs/archive/9b90018d3acfe1a1c6a66e42fd658eb45dd8df03.jpg",
+//        val bannerItem1 = BannerItem(
+//            "https://i1.hdslb.com/bfs/archive/9b90018d3acfe1a1c6a66e42fd658eb45dd8df03.jpg",
+//            1384
+//        )
+//        val bannerItem2 = BannerItem(
+//            "https://i1.hdslb.com/bfs/archive/eba5e50279a3573a75a60c7dd4c50e79a2e524e6.jpg",
+//            2024
+//        )
+//        val bannerItem3 = BannerItem(
+//            "https://i1.hdslb.com/bfs/archive/39c0e958687971efcd5c954d514169144bde472d.png",
+//            1139
+//        )
+        val bannerItem2 = BannerItem(
+            "https://i1.hdslb.com/bfs/archive/ee94e3b7d40c952cc0d788756ee9aba2c70cfbab.jpg",
             1384
         )
-        val bannerItem2 = BannerItem(
-            "https://i1.hdslb.com/bfs/archive/eba5e50279a3573a75a60c7dd4c50e79a2e524e6.jpg",
+        val bannerItem1 = BannerItem(
+            "https://i0.hdslb.com/bfs/archive/379515e38a37fdd2f1499878ce828d41b2aa4c7c.jpg",
             2024
         )
         val bannerItem3 = BannerItem(
-            "https://i1.hdslb.com/bfs/archive/39c0e958687971efcd5c954d514169144bde472d.png",
+            "https://i0.hdslb.com/bfs/archive/b70c22b3cf19ece328cca80d89d95d0f35aaeb1a.jpg",
             1139
         )
         list.add(bannerItem1)

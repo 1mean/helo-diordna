@@ -35,7 +35,6 @@ public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefr
 
         binding.swipLayout.run {
             setRefreshColor()
-            isRefreshing = true
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
                 mViewModel.getLoveData(true)
@@ -62,6 +61,7 @@ public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefr
     }
 
     override fun firstOnResume() {
+        binding.swipLayout.isRefreshing = true
         mViewModel.getLoveData(true)
     }
 

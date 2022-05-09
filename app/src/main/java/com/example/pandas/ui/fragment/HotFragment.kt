@@ -35,7 +35,6 @@ public class HotFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefresh
 
         binding.swipLayout.run {
             setRefreshColor()
-            isRefreshing = true
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
                 mViewModel.getHotData(true)
@@ -66,6 +65,7 @@ public class HotFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefresh
     }
 
     override fun firstOnResume() {
+        binding.swipLayout.isRefreshing = true
         mViewModel.getHotData(true)
     }
 

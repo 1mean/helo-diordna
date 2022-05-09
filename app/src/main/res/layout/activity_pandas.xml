@@ -6,20 +6,39 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_pandas"
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_panda_top"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
-            app:navigationIcon="@mipmap/img_more_back"
-            app:titleTextAppearance="@style/styles_toolbar_message" />
+            android:layout_height="57dp">
 
-    <View
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ibn_panda"
+                android:layout_width="57dp"
+                android:layout_height="match_parent"
+                android:src="@mipmap/img_back_1"
+                app:layout_constraintTop_toTopOf="@id/clayout_panda_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_panda_top"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_panda_top"
+                android:background="@null" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_panda_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/color_video_name_txt"
+                app:layout_constraintTop_toTopOf="@id/clayout_panda_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_panda_top"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_panda_top"
+                android:layout_marginStart="59dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--<View
             android:layout_width="match_parent"
             android:layout_height="0.3dp"
             android:background="@color/color_music_start_bg"
-            android:outlineSpotShadowColor="@color/color_music_divider_shadow"
-            android:outlineAmbientShadowColor="@color/color_music_divider_shadow"
-            android:elevation="2dp" />
+            android:elevation="4dp" />-->
 
     <com.google.android.material.tabs.TabLayout
             android:id="@+id/tl_pandas"
@@ -27,11 +46,16 @@
             android:layout_height="40dp"
             app:tabMaxWidth="0dp"
             app:tabRippleColor="@android:color/transparent"
-            app:tabTextColor="@color/color_home_tab_text"
+            app:tabTextColor="@color/grey600"
             app:tabIndicatorColor="@color/color_tab_indicator"
             app:tabSelectedTextColor="@color/color_tab_text_selected"
-            app:tabTextAppearance="@style/VideoTabLayoutTextStyle"
-            app:tabIndicator="@drawable/layer_video_indicator" />
+            app:tabTextAppearance="@style/SelfTabLayoutTextStyle"
+            app:tabIndicator="@drawable/layer_panda_indicator" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0.67dp"
+            android:background="@color/color_bg_user_divider" />
 
     <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_pandas"

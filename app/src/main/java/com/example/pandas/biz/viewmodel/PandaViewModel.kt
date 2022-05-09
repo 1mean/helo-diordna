@@ -6,6 +6,7 @@ import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.sql.entity.PeriodType
+import com.example.pandas.sql.entity.PetVideo
 
 /**
  * @description: PandaViewModel
@@ -15,7 +16,7 @@ import com.example.pandas.sql.entity.PeriodType
  */
 public class PandaViewModel : BaseViewModel() {
 
-    val pandaResult: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
+    val pandaResult: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
 
     private var startIndex = 0
     private var hasMore = false
@@ -50,7 +51,7 @@ public class PandaViewModel : BaseViewModel() {
                 isSuccess = false,
                 errMessage = it.errorMsg,
                 isRefresh = isRefresh,
-                listData = mutableListOf<PetViewData>()
+                listData = mutableListOf<PetVideo>()
             )
             pandaResult.value = dataList
         })
@@ -87,7 +88,7 @@ public class PandaViewModel : BaseViewModel() {
                 isSuccess = false,
                 errMessage = it.errorMsg,
                 isRefresh = isRefresh,
-                listData = mutableListOf<PetViewData>()
+                listData = mutableListOf<PetVideo>()
             )
             pandaResult.value = dataList
         })

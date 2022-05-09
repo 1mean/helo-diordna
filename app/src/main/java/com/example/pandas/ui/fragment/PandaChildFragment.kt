@@ -2,15 +2,16 @@ package com.example.pandas.ui.fragment
 
 import CommonItemDecoration
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.PandaViewModel
-import com.example.pandas.databinding.LayoutRefreshLoadmore2Binding
+import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.PandaListAdapter
-import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView2
+import com.example.pandas.ui.ext.init
+import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
  * @description: PandaChildFragment
@@ -18,8 +19,7 @@ import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView2
  * @date: 3/28/22 1:07 上午
  * @version: v1.0
  */
-public class PandaChildFragment : BaseFragment<PandaViewModel, LayoutRefreshLoadmore2Binding>(),
-    LoadMoreRecyclerView2.ILoadMoreListener {
+public class PandaChildFragment : BaseFragment<PandaViewModel, LayoutSwipRefreshBinding>() {
 
     private var key: String? = null
     private var type = -1
@@ -32,14 +32,27 @@ public class PandaChildFragment : BaseFragment<PandaViewModel, LayoutRefreshLoad
         type = requireArguments().getInt("type")
         key = requireArguments().getString("key")
 
-        binding.recyclerLayout.apply {
-            layoutManager = GridLayoutManager(mActivity, 2)
-            addItemDecoration(CommonItemDecoration(false, 2, padding, padding))
-            setRefreshAdapter(mAdapter, this@PandaChildFragment)
-        }
-        binding.swipLayout.setOnRefreshListener {
-            key?.let {
-                mViewModel.getPandas(true, it, type)
+        binding.swipLayout.setBackgroundResource(R.color.white)
+
+        binding.recyclerLayout.init(
+            CommonItemDecoration(false, 2, padding, padding),
+            mAdapter,
+            GridLayoutManager(mActivity, 2),
+            object : SwipRecyclerView.ILoadMoreListener {
+                override fun onLoadMore() {
+                    key?.let {
+                        mViewModel.getPandas(false, it, type)
+                    }
+                }
+            })
+
+        binding.swipLayout.run {
+            setRefreshColor()
+            setOnRefreshListener {
+                binding.recyclerLayout.isRefreshing(true)
+                key?.let {
+                    mViewModel.getPandas(true, it, type)
+                }
             }
         }
     }
@@ -48,33 +61,28 @@ public class PandaChildFragment : BaseFragment<PandaViewModel, LayoutRefreshLoad
 
         mViewModel.pandaResult.observe(viewLifecycleOwner) {
             if (it.isSuccess) {
-                Log.e("1mean", "isFirstEmpty: ${it.isFirstEmpty}")
+                binding.recyclerLayout.visibility = View.VISIBLE
                 when {
-                    it.isFirstEmpty -> viewState(true)
+                    it.isFirstEmpty -> {
+                        binding.layoutEmpty.llayoutEmpty.visibility = View.VISIBLE
+                    }
                     it.isRefresh -> {
-                        viewState(false)
-                        binding.recyclerLayout.isFreshing(false)
-                        binding.swipLayout.isRefreshing = false
-                        if (!it.hasMore) {
-                            binding.recyclerLayout.noMoreData()
-                        }
+                        binding.recyclerLayout.isRefreshing(false)
                         mAdapter.refreshAdapter(it.listData)
                     }
                     else -> {
                         mAdapter.loadMore(it.listData)
-                        if (it.hasMore) {
-                            binding.recyclerLayout.loadMoreFinished()
-                        } else {
-                            binding.recyclerLayout.noMoreData()
-                        }
                     }
                 }
+                binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
             }
             binding.swipLayout.visibility = View.VISIBLE
+            binding.swipLayout.isRefreshing = false
         }
     }
 
     override fun firstOnResume() {
+        binding.swipLayout.isRefreshing = true
         key?.let {
             mViewModel.getPandas(true, it, type)
         }
@@ -91,22 +99,6 @@ public class PandaChildFragment : BaseFragment<PandaViewModel, LayoutRefreshLoad
             val fragment = PandaChildFragment()
             fragment.arguments = args
             return fragment
-        }
-    }
-
-    override fun onLoadMore() {
-        key?.let {
-            mViewModel.getPandas(false, it, type)
-        }
-    }
-
-    private fun viewState(isEmpty: Boolean) {
-        if (isEmpty) {
-            binding.recyclerLayout.visibility = View.GONE
-            binding.txtEmpty.visibility = View.VISIBLE
-        } else {
-            binding.recyclerLayout.visibility = View.VISIBLE
-            binding.txtEmpty.visibility = View.GONE
         }
     }
 }
