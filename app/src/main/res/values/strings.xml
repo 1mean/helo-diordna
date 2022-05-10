@@ -85,6 +85,7 @@
     <string name="str_setting_more">更多服务</string>
     <string name="str_setting_more_info">免费流量卡</string>
     <string name="str_setting_other_info">新皮肤上线了</string>
+    <string name="str_mine_friends">我的好友</string>
 
     <!--common-->
     <string name="str_news">消息</string>

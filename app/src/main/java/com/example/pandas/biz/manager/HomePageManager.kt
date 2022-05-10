@@ -1,6 +1,8 @@
 package com.example.pandas.biz.manager
 
+import android.content.Context
 import android.util.Log
+import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.*
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.PetViewData
@@ -9,6 +11,7 @@ import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.dao.PetVideoDao
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.sql.entity.*
+import com.example.pandas.utils.SPUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -378,6 +381,25 @@ class PetManager {
             } else {
                 petDao.updateVideoData(videoData)
             }
+        }
+    }
+
+    suspend fun getAllFollowUsers(context: Context): MutableList<User> {
+
+        return withContext(Dispatchers.IO) {
+
+            delay(300)
+            val list = SPUtils.getList<String>(context, AppInfos.ATTENTION_KEY)
+            Log.e("111111mean","list:$list")
+            val users = mutableListOf<User>()
+            if (list.isNotEmpty()) {
+                list.forEach {
+                    Log.e("111111mean","it:$it")
+                    val user = petDao.queryUserByCode(it.toInt())
+                    users.add(user)
+                }
+            }
+            users
         }
     }
 

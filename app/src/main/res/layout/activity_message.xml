@@ -22,12 +22,19 @@
             android:layout_height="0.6dp"
             android:background="@color/color_video_divider" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/img_new_notice_empty"
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center_horizontal" />
+
     <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="200dp"
             android:text="暂时没有任何消息"
+            android:layout_marginTop="13dp"
             android:textSize="15sp"
-            android:textColor="@color/gray" />
+            android:textColor="@color/color_landscape_item_author" />
 </androidx.appcompat.widget.LinearLayoutCompat>

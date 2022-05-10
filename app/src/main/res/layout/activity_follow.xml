@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+    <include
+            android:id="@+id/layout_follow_top"
+            layout="@layout/layout_top" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/color_music_start_bg"
+            android:outlineSpotShadowColor="@color/color_music_divider_shadow"
+            android:outlineAmbientShadowColor="@color/color_music_divider_shadow"
+            android:elevation="2dp" />
+
+    <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_follow"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:tabMaxWidth="0dp"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabTextColor="@color/grey600"
+            app:tabIndicatorColor="@color/color_tab_indicator"
+            app:tabSelectedTextColor="@color/color_tab_text_selected"
+            app:tabTextAppearance="@style/SelfTabLayoutTextStyle"
+            app:tabIndicator="@drawable/layer_follow_indicator" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0.33dp"
+            android:background="@color/color_bg_user_divider" />
+
+    <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp2_follow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+</androidx.appcompat.widget.LinearLayoutCompat>

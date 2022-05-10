@@ -149,6 +149,88 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_mine_zone"
+                style="@style/style_mine_top_clayout">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_mine_zone"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_mine_zone"
+                    app:layout_constraintRight_toRightOf="@id/clayout_mine_zone"
+                    app:layout_constraintTop_toTopOf="@id/clayout_mine_zone"
+                    android:text="15"
+                    style="@style/style_mine_top_text" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_mine_zone"
+                    app:layout_constraintRight_toRightOf="@id/clayout_mine_zone"
+                    app:layout_constraintTop_toBottomOf="@id/txt_mine_zone"
+                    style="@style/style_mine_top_text_name"
+                    android:text="@string/str_zone" />
+
+            <View
+                    style="@style/style_mine_top_drivider"
+                    app:layout_constraintTop_toTopOf="@id/clayout_mine_zone"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_mine_zone"
+                    app:layout_constraintRight_toRightOf="@id/clayout_mine_zone" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_mine_follow"
+                style="@style/style_mine_top_clayout">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_mine_follow"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_mine_follow"
+                    app:layout_constraintRight_toRightOf="@id/clayout_mine_follow"
+                    app:layout_constraintTop_toTopOf="@id/clayout_mine_follow"
+                    style="@style/style_mine_top_text" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_mine_follow"
+                    app:layout_constraintRight_toRightOf="@id/clayout_mine_follow"
+                    app:layout_constraintTop_toBottomOf="@id/txt_mine_follow"
+                    style="@style/style_mine_top_text_name"
+                    android:text="@string/str_follow" />
+
+            <View
+                    style="@style/style_mine_top_drivider"
+                    app:layout_constraintTop_toTopOf="@id/clayout_mine_follow"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_mine_follow"
+                    app:layout_constraintRight_toRightOf="@id/clayout_mine_follow" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_mine_fans"
+                style="@style/style_mine_top_clayout">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_mine_fans"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_mine_fans"
+                    app:layout_constraintRight_toRightOf="@id/clayout_mine_fans"
+                    app:layout_constraintTop_toTopOf="@id/clayout_mine_fans"
+                    android:text="6"
+                    style="@style/style_mine_top_text" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_mine_fans"
+                    app:layout_constraintRight_toRightOf="@id/clayout_mine_fans"
+                    app:layout_constraintTop_toBottomOf="@id/txt_mine_fans"
+                    style="@style/style_mine_top_text_name"
+                    android:text="@string/str_fans" />
+
+            <View
+                    style="@style/style_mine_top_drivider"
+                    app:layout_constraintTop_toTopOf="@id/clayout_mine_fans"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_mine_fans"
+                    app:layout_constraintRight_toRightOf="@id/clayout_mine_fans" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_mine"

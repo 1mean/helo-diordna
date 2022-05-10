@@ -1,8 +1,8 @@
 package com.example.pandas.app
 
 import android.app.Application
-import android.util.Log
 import com.example.pandas.sql.database.AppDataBase
+import com.example.pandas.utils.SPUtils
 
 
 class DiorApplication : Application() {
@@ -13,14 +13,12 @@ class DiorApplication : Application() {
         fun instance() = _instance
     }
 
-
     override fun onCreate() {
         super.onCreate()
         _instance = this
         CrashHandler.init(this)
         //
         //initdata()
-
     }
 
     private fun initdata() {
