@@ -2,8 +2,8 @@ package com.example.pandas.ui.adapter
 
 import androidx.fragment.app.Fragment
 import com.example.pandas.ui.fragment.CutePetFragment
-import com.example.pandas.ui.fragment.EyepetozerFragment
 import com.example.pandas.ui.fragment.HomeFragment
+import com.example.pandas.ui.fragment.OtherFragment
 import com.example.pandas.ui.fragment.SelfFragment
 
 /**
@@ -31,7 +31,7 @@ public class FragmentFactory {
                 when (page) {
                     PAGE_ONE -> mFragment = HomeFragment()
                     PAGE_TWO -> mFragment = CutePetFragment()
-                    PAGE_THREE -> mFragment = EyepetozerFragment()
+                    PAGE_THREE -> mFragment = OtherFragment()
                     PAGE_FOUR -> mFragment = SelfFragment()
                 }
                 fragments[page] = mFragment!!

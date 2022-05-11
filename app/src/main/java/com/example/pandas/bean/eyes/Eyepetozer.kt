@@ -26,7 +26,7 @@ data class Item(
 data class Data(
     val ad: Boolean,
     val adTrack: Any,
-    val author: Author? =null,
+    val author: Author? = null,
     val brandWebsiteInfo: Any,
     val campaign: Any,
     val category: String,
@@ -223,8 +223,9 @@ data class Label(
     val text: String
 )
 
+//size报错：2158606266超出了Int的范围，int范围-2·31-2·31-1，即-2147483648——2147483647
 data class Url(
     val name: String,
-    val size: Int,
+    val size: Long,
     val url: String
 )

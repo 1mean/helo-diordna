@@ -54,6 +54,8 @@
     <color name="color_eye_txt_time">#919AA0</color>
     <color name="color_eye_txt_name">#DBD5D2</color>
     <color name="color_eye_rv_bg">#EFF3F3</color>
+    <color name="color_eye_bg_top_divider">#F7F7F7</color>
+    <color name="color_eye_txt_share">#61666D</color>
 
     <!--video-->
     <color name="color_tab_text_selected">#F26E9A</color>
@@ -134,6 +136,9 @@
     <color name="color_bg_user_divider">#E7E7E7</color>
     <color name="color_user_dialog_txt_cancel">#505050</color>
 
+    <!--eye-->
+    <color name="color_bg_eye_tab_indicator">#222222</color>
+    <color name="color_text_eye_unselect">#888888</color>
 
     <!--other-->
     <color name="color_progress_loadmore">#FF5B9A</color>

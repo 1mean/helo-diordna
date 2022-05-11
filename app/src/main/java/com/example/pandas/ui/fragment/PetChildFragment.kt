@@ -2,6 +2,7 @@ package com.example.pandas.ui.fragment
 
 import CommonItemDecoration
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R

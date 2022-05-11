@@ -1,10 +1,7 @@
 package com.example.pandas.ui.fragment
 
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
@@ -20,7 +17,6 @@ import com.example.pandas.ui.adapter.HomePagerAdapter
 import com.example.pandas.ui.view.TabEntity
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
-import com.google.android.material.tabs.TabLayout
 import java.util.*
 
 
@@ -87,19 +83,8 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
         //binding.bar.setExpanded(true,true)
     }
 
-    private fun setTabTypeface(tab: TabLayout.Tab) {
-        for (i in 0 until tab.view.childCount) {
-            val tabViewChild: View = tab.view.getChildAt(i)
-            if (tabViewChild is TextView) {
-                (tabViewChild as TextView).typeface = Typeface.defaultFromStyle(Typeface.BOLD)
-            }
-        }
-    }
+    override fun createObserver() {}
 
-    override fun createObserver() {
-    }
-
-    override fun firstOnResume() {
-    }
+    override fun firstOnResume() {}
 
 }

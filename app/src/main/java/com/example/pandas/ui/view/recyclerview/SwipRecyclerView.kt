@@ -187,7 +187,6 @@ class SwipRecyclerView : RecyclerView {
         isLoadingData = false
         this.hasMore = hasMore
 
-        Log.e("1mean", "wrapAdapter: $wrapAdapter")
         loadMoreView?.onLoadFinished(isEmpty, hasMore)
     }
 

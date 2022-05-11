@@ -1,5 +1,6 @@
 package com.example.pandas.biz.http
 
+import android.util.Log
 import com.example.pandas.bean.eyes.*
 
 /**
@@ -14,6 +15,7 @@ object EyepetozerConvert {
 
     fun convert(eyepetozer: Eyepetozer?): MutableList<EyepetozerBean> {
 
+        Log.e("EyepetozerConvert", "eyepetozer:$eyepetozer")
         val list: MutableList<EyepetozerBean> = mutableListOf()
         val itemList = eyepetozer?.itemList
         if (itemList != null && itemList.isNotEmpty()) {

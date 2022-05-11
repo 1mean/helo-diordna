@@ -42,7 +42,7 @@ public class EyepetozerViewModel : BaseViewModel() {
                     isSuccess = true,
                     isRefresh = isRefresh,
                     isEmpty = it.isEmpty(),
-                    hasMore = it.size == 20,
+                    hasMore = it.size > 0,
                     isFirstEmpty = isRefresh && it.isEmpty(),
                     listData = it
                 )

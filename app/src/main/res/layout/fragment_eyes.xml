@@ -6,38 +6,6 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="32.66dp"
-            android:background="@color/color_white_lucency" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clayout_eye_top"
-            android:layout_width="match_parent"
-            android:layout_height="46.6dp">
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_eye_top"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/clayout_eye_top"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_eye_top"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_eye_top"
-                app:layout_constraintRight_toRightOf="@id/clayout_eye_top"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                android:text="@string/str_eyepetizer"
-                android:textColor="@color/color_talk_name" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            app:layout_constraintTop_toTopOf="@id/clayout_music_top"
-            app:layout_constraintLeft_toLeftOf="@id/clayout_music_top"
-            app:layout_constraintRight_toRightOf="@id/clayout_music_top"
-            android:background="@color/color_video_divider" />
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
