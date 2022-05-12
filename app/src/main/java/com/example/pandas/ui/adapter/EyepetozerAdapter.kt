@@ -12,6 +12,7 @@ import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadEmptyCircleImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.ui.activity.EyePlayingActivity
+import com.example.pandas.utils.NumUtils
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -20,8 +21,12 @@ import com.example.pandas.utils.TimeUtils
  * @date: 2021/12/23 10:28 上午
  * @version: v1.0
  */
-public class EyepetozerAdapter(list: MutableList<EyepetozerBean>) :
+public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
     BaseCommonAdapter<EyepetozerBean>(list) {
+
+    fun getItemData(position: Int): EyepetozerBean {
+        return list.get(position)
+    }
 
     override fun getLayoutId(): Int = R.layout.item_video_eye
 
@@ -36,10 +41,18 @@ public class EyepetozerAdapter(list: MutableList<EyepetozerBean>) :
         val shareView = holder.getWidget<LinearLayoutCompat>(R.id.llayout_eye_item_share)
         val commentView = holder.getWidget<LinearLayoutCompat>(R.id.llayout_eye_item_comments)
         val likeView = holder.getWidget<LinearLayoutCompat>(R.id.llayout_eye_item_like)
+        val likeImg = holder.getWidget<AppCompatImageView>(R.id.img_eye_item_Like)
+        val likeTxt = holder.getWidget<AppCompatTextView>(R.id.txt_eye_item_like)
+        val comments = holder.getWidget<AppCompatTextView>(R.id.txt_eye_item_comments)
 
         val context = holder.itemView.context
         val user = data.user
 
+        if (data.isLiked) {
+            likeImg.setImageResource(R.mipmap.img_eye_item_liked)
+        } else {
+            likeImg.setImageResource(R.mipmap.img_eye_item_like)
+        }
         descripetion.text = data.title
         duration.text = TimeUtils.getMMDuration(data.duration.toLong())
 
@@ -62,6 +75,15 @@ public class EyepetozerAdapter(list: MutableList<EyepetozerBean>) :
                 userName.text = it.userName
             }
         }
+
+        if (data.collectionCount == 0) {
+            likeTxt.text = "赞"
+        } else {
+            likeTxt.text = NumUtils.getShortNum(data.collectionCount)
+        }
+
+        comments.text = NumUtils.getShortNum(data.replyCount)
+
         holder.itemView.setOnClickListener {
             val intent = Intent(context, EyePlayingActivity::class.java)
             intent.putExtra("EyepetozerBean", data)
@@ -69,6 +91,7 @@ public class EyepetozerAdapter(list: MutableList<EyepetozerBean>) :
         }
 
         shareView.setOnClickListener {
+
 
         }
 
@@ -78,6 +101,21 @@ public class EyepetozerAdapter(list: MutableList<EyepetozerBean>) :
 
         likeView.setOnClickListener {
 
+            if (data.isLiked) {
+                data.isLiked = false
+                data.collectionCount -= 1
+                if (data.collectionCount == 0) {
+                    likeTxt.text = "赞"
+                } else {
+                    likeTxt.text = NumUtils.getShortNum(data.collectionCount)
+                }
+                likeImg.setImageResource(R.mipmap.img_eye_item_like)
+            } else {
+                data.isLiked = true
+                data.collectionCount += 1
+                likeTxt.text = NumUtils.getShortNum(data.collectionCount)
+                likeImg.setImageResource(R.mipmap.img_eye_item_liked)
+            }
         }
     }
 }

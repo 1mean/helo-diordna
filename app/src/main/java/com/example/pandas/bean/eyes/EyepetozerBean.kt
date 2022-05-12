@@ -33,7 +33,9 @@ data class EyepetozerBean(
     var realCollectionCount: Int = 0,//当作收藏数用吧
     var count: Int = 0,//card数
     var horizontalCardList: MutableList<String>? = null,//HorizontalScrollCard的url
+    var isLiked: Boolean = false,
 
     var user: EyepetozerUser? = null
 
-):Parcelable
+
+) : Parcelable

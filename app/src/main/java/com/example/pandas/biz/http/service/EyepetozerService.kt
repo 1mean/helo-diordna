@@ -99,7 +99,7 @@ interface EyepetozerService {
     //作者信息
     //http://baobab.kaiyanapp.com/api/v4/pgcs/detail/tab?id=571
 
-//获取排行榜的 Info
+    //获取排行榜的 Info
     //http://baobab.kaiyanapp.com/api/v4/rankList
 
     ////获取搜索信息
@@ -108,7 +108,7 @@ interface EyepetozerService {
     //热门搜索关键词
     // http://baobab.kaiyanapp.com/api/v3/queries/hot
 
-//关注
+    //关注
     // http://baobab.kaiyanapp.com/api/v4/tabs/follow
 
     //热门搜索词

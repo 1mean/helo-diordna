@@ -79,6 +79,18 @@
                 app:cardCornerRadius="5dp"
                 app:cardElevation="0dp">
 
+            <!--show_timeout="0" 才能保证永远显示controller-->
+            <com.google.android.exoplayer2.ui.StyledPlayerView
+                    android:id="@+id/player_eye"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:show_buffering="never"
+                    app:show_timeout="0"
+                    app:hide_on_touch="false"
+                    android:background="@color/black"
+                    app:keep_content_on_player_reset="true"
+                    app:controller_layout_id="@layout/item_reco_player" />
+
             <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_video"
                     android:layout_width="match_parent"
@@ -172,8 +184,8 @@
                     android:src="@mipmap/img_eye_item_comment" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/style_eye_item_bottom_text"
-                    android:text="12" />
+                    android:id="@+id/txt_eye_item_comments"
+                    style="@style/style_eye_item_bottom_text" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -181,12 +193,12 @@
                 style="@style/style_eye_item_bottom">
 
             <androidx.appcompat.widget.AppCompatImageView
-                    style="@style/style_eye_item_bottom_img"
-                    android:src="@mipmap/img_eye_item_like" />
+                    android:id="@+id/img_eye_item_Like"
+                    style="@style/style_eye_item_bottom_img" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/style_eye_item_bottom_text"
-                    android:text="17" />
+                    android:id="@+id/txt_eye_item_like"
+                    style="@style/style_eye_item_bottom_text" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
