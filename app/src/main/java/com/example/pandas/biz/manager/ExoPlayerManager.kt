@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.Uri
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import java.io.File
@@ -12,7 +11,7 @@ import java.io.File
 /**
  * @description: 处理全局的Exoplayer
  * @author: dongyiming
- * @date: 2/28/22 4:38 下午
+ * @date: 5/12/22 4:38 下午
  * @version: v1.0
  */
 public class ExoPlayerManager private constructor() {
@@ -20,6 +19,10 @@ public class ExoPlayerManager private constructor() {
     private var mCurPos: Int = -1 //当前视频播放的位置
     private var mLastPos: Int = mCurPos //上次播放的位置，用于恢复播放
 
+    //用于存储临时的记录信息，针对从网络获取的视频
+    private val tempVideoMap = HashMap<Int, PlayingInfo>()
+
+    private var mCurVideoCode: Int = -1 //当前播放的视频id
 
     private var _mPlayer: ExoPlayer? = null
     private val mPlayer get() = _mPlayer!!
@@ -38,7 +41,6 @@ public class ExoPlayerManager private constructor() {
 
         if (_mPlayer == null) {
             _mPlayer = ExoPlayer.Builder(context).build()
-            mPlayer.addListener(mListener)
         }
     }
 
@@ -53,13 +55,17 @@ public class ExoPlayerManager private constructor() {
      * @date: 5/12/22 10:02 下午
      * @version: v1.0
      */
-    fun setUpPlay(playerView: StyledPlayerView, repeatMode: Int): ExoPlayerManager {
+    fun setUpPlay(
+        playerView: StyledPlayerView,
+        repeatMode: Int,
+        listener: Player.Listener
+    ): ExoPlayerManager {
 
         playerView.player = null
         playerView.player = mPlayer
 
         mPlayer.repeatMode = repeatMode
-
+        mPlayer.addListener(listener)
         return this
     }
 
@@ -75,11 +81,26 @@ public class ExoPlayerManager private constructor() {
         return this
     }
 
-    fun play(url:String):ExoPlayerManager{
+    /**
+     * 开始播放 并存储播放视频的基本信息
+     *
+     * @date: 5/13/22 9:10 下午
+     * @version: v1.0
+     */
+    fun play(playInfo: PlayingInfo): ExoPlayerManager {
 
-        if (mPlayer.playbackState == Player.STATE_IDLE) {
+        if (playInfo.videoCode == 0 || playInfo.playUrl.isEmpty()) {
+            throw Exception("PlayInfo is error : videoCode=${playInfo.videoCode},playUrl=${playInfo.playUrl}")
+        }
 
-            val currentMediaItem = MediaItem.fromUri(url)
+        if (mCurVideoCode == playInfo.videoCode) {//继续播放之前的资源
+            mPlayer.prepare()
+        } else {
+            mCurVideoCode = playInfo.videoCode
+            tempVideoMap[mCurVideoCode] = playInfo
+
+            val currentMediaItem = MediaItem.fromUri(playInfo.playUrl)
+            mPlayer.clearMediaItems()//清空之前的资源文件
             mPlayer.addMediaItem(currentMediaItem)
             mPlayer.playWhenReady = true
             mPlayer.prepare()
@@ -87,41 +108,37 @@ public class ExoPlayerManager private constructor() {
         return this
     }
 
-    fun stop(){
+    fun stopPlayer() {
 
+        if (mPlayer.isPlaying) {
+            val playInfo = tempVideoMap.get(mCurVideoCode)
+            playInfo?.playPos = mPlayer.currentPosition
+            mPlayer.stop()
+        }
+    }
+
+    fun stop() {
         if (mPlayer.isPlaying) {
             mPlayer.stop()
         }
     }
 
-    private val mListener: Player.Listener = object : Player.Listener {
 
-        override fun onIsLoadingChanged(isLoading: Boolean) {
-            super.onIsLoadingChanged(isLoading)
-        }
-
-        override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
-            super.onMediaItemTransition(mediaItem, reason)
-        }
-
-        override fun onPlayWhenReadyChanged(playWhenReady: Boolean, reason: Int) {
-            super.onPlayWhenReadyChanged(playWhenReady, reason)
-        }
-
-        override fun onPlaybackStateChanged(playbackState: Int) {
-            super.onPlaybackStateChanged(playbackState)
-        }
-
-        override fun onPlayerError(error: PlaybackException) {
-            super.onPlayerError(error)
-        }
+    fun getCurrentState(): Int {
+        return mPlayer.playbackState
     }
 
+    fun isPlayIng(): Boolean = mPlayer.isPlaying
 
     fun release() {
         mPlayer.release()
-        mPlayer.removeListener(mListener)
         _mPlayer = null
         mCurPos = -1
     }
+
+    data class PlayingInfo(
+        var videoCode: Int = 0,
+        var playUrl: String = "",
+        var playPos: Long = 0
+    )
 }

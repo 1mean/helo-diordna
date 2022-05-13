@@ -96,7 +96,6 @@ public class RecommendFragment : BaseLazyFragment<HomePageViewModel, FragmentRec
                     val firstPos = manager.findFirstVisibleItemPosition()
                     val lastPos = manager.findLastVisibleItemPosition()
                     //下一次滑动时，通过position来关闭当前已经在运行的view
-                    var currentItem = 0
                     for (position in firstPos..lastPos) {
 
                         val type = mRecyclerView.adapter?.getItemViewType(position)
@@ -108,7 +107,7 @@ public class RecommendFragment : BaseLazyFragment<HomePageViewModel, FragmentRec
 
                             val holder =
                                 mRecyclerView.findViewHolderForLayoutPosition(position) as RecommendAdapter.VideoHolder
-                            val itemView = mRecyclerView.getChildAt(currentItem) ?: continue
+                            val itemView = mRecyclerView.getChildAt(position - firstPos) ?: continue
 //                            val holder = itemView.tag as RecommendAdapter.VideoHolder
                             val rect = Rect()
                             itemView.getLocalVisibleRect(rect)
@@ -139,7 +138,6 @@ public class RecommendFragment : BaseLazyFragment<HomePageViewModel, FragmentRec
                                 break
                             }
                         }
-                        currentItem += 1
                     }
                 }
                 RecyclerView.SCROLL_STATE_DRAGGING -> {

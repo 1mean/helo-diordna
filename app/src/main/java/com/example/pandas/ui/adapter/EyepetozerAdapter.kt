@@ -1,9 +1,13 @@
 package com.example.pandas.ui.adapter
 
 import android.content.Intent
+import android.util.Log
+import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
@@ -25,7 +29,25 @@ public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
     BaseCommonAdapter<EyepetozerBean>(list) {
 
     fun getItemData(position: Int): EyepetozerBean {
-        return list.get(position)
+        return list[position]
+    }
+
+    fun prePlayView(position: Int, holder: RecyclerView.ViewHolder?, isHide: Boolean) {
+
+        holder?.let {
+            val hd = holder as BaseViewHolder
+            Log.e("eyeFragment", "hd: $hd")
+            val playshelter = hd.getWidget<ConstraintLayout>(R.id.clayout_eye_item)
+            val cover = hd.getWidget<AppCompatImageView>(R.id.img_video)
+            if (isHide) {
+                playshelter.visibility = View.GONE
+                cover.visibility = View.GONE
+
+            } else {
+                playshelter.visibility = View.VISIBLE
+                cover.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun getLayoutId(): Int = R.layout.item_video_eye
@@ -44,6 +66,8 @@ public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
         val likeImg = holder.getWidget<AppCompatImageView>(R.id.img_eye_item_Like)
         val likeTxt = holder.getWidget<AppCompatTextView>(R.id.txt_eye_item_like)
         val comments = holder.getWidget<AppCompatTextView>(R.id.txt_eye_item_comments)
+        val playImg = holder.getWidget<AppCompatImageView>(R.id.img_eye_item_play)
+        val playshelter = holder.getWidget<ConstraintLayout>(R.id.clayout_eye_item)
 
         val context = holder.itemView.context
         val user = data.user

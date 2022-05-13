@@ -3,6 +3,7 @@ package com.example.pandas.utils
 import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Rect
 import android.os.Build
 import android.util.DisplayMetrics
 import android.view.View
@@ -96,5 +97,17 @@ object ScreenUtil {
                     or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     or View.SYSTEM_UI_FLAG_FULLSCREEN)
         }
+    }
+
+    /**
+     * 当前view是否至少一半在可视屏幕
+     */
+    fun isOverHalfViewVisiable(itemView: View): Boolean {
+
+        val rect = Rect()
+        itemView.getLocalVisibleRect(rect)
+        val visibleHeight = rect.height()//可见的高度
+        val totalHeight = itemView.layoutParams.height//总高度
+        return visibleHeight >= (totalHeight / 2)
     }
 }

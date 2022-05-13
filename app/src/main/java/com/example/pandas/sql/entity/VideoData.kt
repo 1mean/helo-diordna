@@ -39,7 +39,7 @@ public data class VideoData(
     @ColumnInfo
     var comments: Int = 0,//评论数
     @ColumnInfo
-    var playPosition: Int = 0,//视频历史进度
+    var playPosition: Int = 0,//视频历史进度  改成Long
     @ColumnInfo
     var coins: Int = 0,//投币数
     @ColumnInfo
