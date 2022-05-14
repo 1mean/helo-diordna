@@ -37,10 +37,11 @@ public class ExoPlayerManager private constructor() {
         val holder = ExoPlayerManager()
     }
 
-    fun initPlayer(context: Context) {
+    fun initPlayer(context: Context, listener: Player.Listener) {
 
         if (_mPlayer == null) {
             _mPlayer = ExoPlayer.Builder(context).build()
+            mPlayer.addListener(listener)
         }
     }
 
@@ -57,15 +58,13 @@ public class ExoPlayerManager private constructor() {
      */
     fun setUpPlay(
         playerView: StyledPlayerView,
-        repeatMode: Int,
-        listener: Player.Listener
+        repeatMode: Int
     ): ExoPlayerManager {
 
         playerView.player = null
         playerView.player = mPlayer
 
         mPlayer.repeatMode = repeatMode
-        mPlayer.addListener(listener)
         return this
     }
 

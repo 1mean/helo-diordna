@@ -36,7 +36,6 @@ public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
 
         holder?.let {
             val hd = holder as BaseViewHolder
-            Log.e("eyeFragment", "hd: $hd")
             val playshelter = hd.getWidget<ConstraintLayout>(R.id.clayout_eye_item)
             val cover = hd.getWidget<AppCompatImageView>(R.id.img_video)
             if (isHide) {
