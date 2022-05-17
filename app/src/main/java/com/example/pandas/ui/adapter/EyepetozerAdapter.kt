@@ -1,7 +1,6 @@
 package com.example.pandas.ui.adapter
 
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -18,6 +17,7 @@ import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.ui.activity.EyePlayingActivity
 import com.example.pandas.utils.NumUtils
 import com.example.pandas.utils.TimeUtils
+import com.google.android.exoplayer2.ui.StyledPlayerView
 
 /**
  * @description: EyepetozerAdapter
@@ -32,20 +32,24 @@ public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
         return list[position]
     }
 
-    fun prePlayView(position: Int, holder: RecyclerView.ViewHolder?, isHide: Boolean) {
+    fun updateItemView(position: Int, isPlaying: Boolean,holder: RecyclerView.ViewHolder?) {
 
         holder?.let {
+
             val hd = holder as BaseViewHolder
             val playshelter = hd.getWidget<ConstraintLayout>(R.id.clayout_eye_item)
             val cover = hd.getWidget<AppCompatImageView>(R.id.img_video)
-            if (isHide) {
+            val player = hd.getWidget<StyledPlayerView>(R.id.player_eye)
+            if (isPlaying) {
                 playshelter.visibility = View.GONE
                 cover.visibility = View.GONE
-
+                player.showController()
             } else {
                 playshelter.visibility = View.VISIBLE
                 cover.visibility = View.VISIBLE
             }
+            val data = list[position]
+            data.isPlaying = isPlaying
         }
     }
 
@@ -67,6 +71,17 @@ public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
         val comments = holder.getWidget<AppCompatTextView>(R.id.txt_eye_item_comments)
         val playImg = holder.getWidget<AppCompatImageView>(R.id.img_eye_item_play)
         val playshelter = holder.getWidget<ConstraintLayout>(R.id.clayout_eye_item)
+        val player = holder.getWidget<StyledPlayerView>(R.id.player_eye)
+
+        if (data.isPlaying) {
+            //player.visibility = View.VISIBLE
+            playshelter.visibility = View.GONE
+            cover.visibility = View.GONE
+        } else {
+            //player.visibility = View.GONE
+            playshelter.visibility = View.VISIBLE
+            cover.visibility = View.VISIBLE
+        }
 
         val context = holder.itemView.context
         val user = data.user

@@ -34,6 +34,7 @@ data class EyepetozerBean(
     var count: Int = 0,//card数
     var horizontalCardList: MutableList<String>? = null,//HorizontalScrollCard的url
     var isLiked: Boolean = false,
+    var isPlaying: Boolean = false,
 
     var user: EyepetozerUser? = null
 

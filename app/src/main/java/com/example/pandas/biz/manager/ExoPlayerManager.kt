@@ -2,6 +2,7 @@ package com.example.pandas.biz.manager
 
 import android.content.Context
 import android.net.Uri
+import com.example.pandas.bean.eyes.EyepetozerBean
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -86,7 +87,7 @@ public class ExoPlayerManager private constructor() {
      * @date: 5/13/22 9:10 下午
      * @version: v1.0
      */
-    fun play(playInfo: PlayingInfo): ExoPlayerManager {
+    fun play(playInfo: PlayingInfo,position:Int): ExoPlayerManager {
 
         if (playInfo.videoCode == 0 || playInfo.playUrl.isEmpty()) {
             throw Exception("PlayInfo is error : videoCode=${playInfo.videoCode},playUrl=${playInfo.playUrl}")
@@ -98,13 +99,34 @@ public class ExoPlayerManager private constructor() {
             mCurVideoCode = playInfo.videoCode
             tempVideoMap[mCurVideoCode] = playInfo
 
-            val currentMediaItem = MediaItem.fromUri(playInfo.playUrl)
-            mPlayer.clearMediaItems()//清空之前的资源文件
-            mPlayer.addMediaItem(currentMediaItem)
+//            val currentMediaItem = MediaItem.fromUri(playInfo.playUrl)
+//            mPlayer.clearMediaItems()//清空之前的资源文件
+//            mPlayer.addMediaItem(currentMediaItem)
+            mPlayer.seekTo(position,0)
             mPlayer.playWhenReady = true
             mPlayer.prepare()
         }
         return this
+    }
+
+    fun addMediaItems(list: MutableList<EyepetozerBean>) {
+
+        if (list.isEmpty()) return
+
+        list.forEach {
+            val currentMediaItem = MediaItem.fromUri(it.playUrl!!)
+            mPlayer.addMediaItem(currentMediaItem)
+        }
+    }
+
+    fun refreshMediaItem(list: MutableList<EyepetozerBean>) {
+
+        if (list.isEmpty()) return
+        if (mPlayer.mediaItemCount > 0) mPlayer.clearMediaItems()
+        list.forEach {
+            val currentMediaItem = MediaItem.fromUri(it.playUrl!!)
+            mPlayer.addMediaItem(currentMediaItem)
+        }
     }
 
     fun stopPlayer() {
@@ -116,10 +138,20 @@ public class ExoPlayerManager private constructor() {
         }
     }
 
+    fun prePare(){
+
+        mPlayer.prepare()
+    }
+
     fun stop() {
         if (mPlayer.isPlaying) {
             mPlayer.stop()
         }
+    }
+
+    fun switchVideo() {
+
+        mPlayer.seekTo(2, 2)
     }
 
 

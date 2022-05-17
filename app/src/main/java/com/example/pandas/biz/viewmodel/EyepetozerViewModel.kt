@@ -32,6 +32,8 @@ public class EyepetozerViewModel : BaseViewModel() {
      */
     fun initData(isRefresh: Boolean) {
 
+
+        Log.e("eyeFragment","initData")
         if (isRefresh) {
             startIndex = 0
         }
