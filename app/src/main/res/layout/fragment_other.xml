@@ -11,21 +11,36 @@
             android:layout_height="32.66dp"
             android:background="@color/color_white_lucency" />
 
-    <com.flyco.tablayout.CommonTabLayout
-            android:id="@+id/tab_eye"
-            android:layout_width="104dp"
-            android:layout_height="50dp"
-            tl:tl_iconVisible="false"
-            tl:tl_textSelectColor="@color/color_bg_eye_tab_indicator"
-            tl:tl_textUnselectColor="@color/color_text_eye_unselect"
-            tl:tl_indicator_color="@color/color_bg_eye_tab_indicator"
-            tl:tl_textBold="SELECT"
-            android:layout_gravity="center_horizontal"
-            tl:tl_indicator_width="13dp"
-            tl:tl_indicator_height="3dp"
-            tl:tl_indicator_corner_radius="5dp"
-            tl:tl_indicator_margin_bottom="5dp"
-            tl:tl_textsize="16dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_other_top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        <com.flyco.tablayout.CommonTabLayout
+                android:id="@+id/tab_eye"
+                android:layout_width="104dp"
+                android:layout_height="match_parent"
+                tl:tl_iconVisible="false"
+                tl:tl_textSelectColor="@color/color_bg_eye_tab_indicator"
+                tl:tl_textUnselectColor="@color/color_text_eye_unselect"
+                tl:tl_indicator_color="@color/color_bg_eye_tab_indicator"
+                tl:tl_textBold="SELECT"
+                tl:layout_constraintLeft_toLeftOf="@id/clayout_other_top"
+                tl:layout_constraintRight_toRightOf="@id/clayout_other_top"
+                tl:tl_indicator_width="13dp"
+                tl:tl_indicator_height="3dp"
+                tl:tl_indicator_corner_radius="5dp"
+                tl:tl_indicator_margin_bottom="5dp"
+                tl:tl_textsize="16dp" />
+
+        <!--<androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ibn_other"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                tl:layout_constraintRight_toRightOf="@id/clayout_other_top"
+                android:background="@null"
+                android:src="@mipmap/img_other_search" />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
             android:layout_width="match_parent"

@@ -1,44 +1,112 @@
 package com.example.pandas.biz.http
 
-import android.util.Log
 import com.example.pandas.bean.eyes.*
 
 /**
  * 只保留video
- * @param:
- * @return:
  * @author: dongyiming
  * @date: 4/8/22 3:02 下午
  * @version: v2.0
  */
 object EyepetozerConvert {
 
-    fun convert(eyepetozer: Eyepetozer?): MutableList<EyepetozerBean> {
-
-        Log.e("EyepetozerConvert", "eyepetozer:$eyepetozer")
-        val list: MutableList<EyepetozerBean> = mutableListOf()
+    fun convertAll(eyepetozer: Eyepetozer?): MutableList<EyepetozerItem> {
+        val list: MutableList<EyepetozerItem> = mutableListOf()
         val itemList = eyepetozer?.itemList
-        if (itemList != null && itemList.isNotEmpty()) {
-            for (item in itemList) {
-
-                //目前界面展示三种item_type
-                when (item.type) {
-//                    "horizontalScrollCard" -> {
-//                        list.add(buildScrollCard(item))
-//                    }
-//                    "textHeader" -> {
-//                        list.add(buildHeader(item))
-//                    }
-                    "video" -> {
-                        list.add(buildVideo(item, true))
-                    }
-                    "videoSmallCard" -> {
-                        list.add(buildVideo(item, false))
+        itemList?.let {
+            if (it.isNotEmpty()) {
+                for (item in it) {
+                    //目前界面展示三种item_type
+                    when (item.type) {
+                        "horizontalScrollCard" -> {
+                            list.add(buildScrollCard(item))
+                        }
+                        "textHeader" -> {
+                            list.add(buildHeader(item))
+                        }
+                        "video" -> {
+                            list.add(buildVideo(item, true))
+                        }
+                        "videoSmallCard" -> {
+                            list.add(buildVideo(item, false))
+                        }
                     }
                 }
             }
         }
         return list
+    }
+
+    fun convertOnlyVideo(eyepetozer: Eyepetozer?): MutableList<EyepetozerItem> {
+        val list: MutableList<EyepetozerItem> = mutableListOf()
+        val itemList = eyepetozer?.itemList
+        itemList?.let {
+            if (it.isNotEmpty()) {
+                for (item in it) {
+                    //目前界面展示三种item_type
+                    when (item.type) {
+                        "video" -> {
+                            list.add(buildVideo(item, true))
+                        }
+                        "videoSmallCard" -> {
+                            list.add(buildVideo(item, false))
+                        }
+                    }
+                }
+            }
+        }
+        return list
+    }
+
+    fun convertTitleVideo(eyepetozer: Eyepetozer?): MutableList<EyepetozerItem> {
+        val list: MutableList<EyepetozerItem> = mutableListOf()
+        val itemList = eyepetozer?.itemList
+        itemList?.let {
+            if (it.isNotEmpty()) {
+                for (item in it) {
+                    //目前界面展示三种item_type
+                    when (item.type) {
+                        "textHeader" -> {
+                            list.add(buildHeader(item))
+                        }
+                        "video" -> {
+                            list.add(buildVideo(item, true))
+                        }
+                    }
+                }
+            }
+        }
+        return list
+    }
+
+    fun convertEyepetozerData(eyepetozer: Eyepetozer?): EyepetozerData {
+
+        var eyepetozerData = EyepetozerData()
+        eyepetozer?.let {
+
+            eyepetozerData = EyepetozerData(
+                date = it.date,
+                nextPageUrl = it.nextPageUrl,
+                nextPublishTime = it.nextPublishTime
+            )
+            val list: MutableList<EyepetozerItem> = mutableListOf()
+            val itemList = it.itemList
+            if (itemList.isNotEmpty()) {
+                for (item in itemList) {
+                    //目前界面展示三种item_type
+                    when (item.type) {
+                        "textHeader" -> {
+                            list.add(buildHeader(item))
+                        }
+                        "video" -> {
+                            list.add(buildVideo(item, true))
+                        }
+                    }
+                }
+            }
+            eyepetozerData.itemList = list
+        }
+        return eyepetozerData
     }
 
     /**
@@ -47,9 +115,9 @@ object EyepetozerConvert {
      * @date: 2021/12/22 10:18 下午
      * @version: v1.0
      */
-    private fun buildScrollCard(item: Item): EyepetozerBean {
+    private fun buildScrollCard(item: Item): EyepetozerItem {
 
-        val eyeBean = EyepetozerBean()
+        val eyeBean = EyepetozerItem()
         val horizontalCardList: MutableList<String> = mutableListOf()
         eyeBean.type = 1
         eyeBean.count = item.data.count
@@ -67,8 +135,8 @@ object EyepetozerConvert {
      * @date: 2021/12/22 10:18 下午
      * @version: v1.0
      */
-    private fun buildHeader(item: Item): EyepetozerBean =
-        EyepetozerBean(type = 2, title = item.data.text)
+    private fun buildHeader(item: Item): EyepetozerItem =
+        EyepetozerItem(type = 2, title = item.data.text)
 
     /**
      * 重构Video
@@ -76,9 +144,9 @@ object EyepetozerConvert {
      * @date: 2021/12/22 10:18 下午
      * @version: v1.0
      */
-    private fun buildVideo(item: Item, flag: Boolean): EyepetozerBean {
+    private fun buildVideo(item: Item, flag: Boolean): EyepetozerItem {
 
-        val eyeBean = EyepetozerBean()
+        val eyeBean = EyepetozerItem()
         val data = item.data
         val consumption = data.consumption
         val author = data.author
@@ -94,8 +162,8 @@ object EyepetozerConvert {
         eyeBean.replyCount = consumption.replyCount
         eyeBean.realCollectionCount = consumption.realCollectionCount
         author?.let {
-            eyeBean.userCode = author.id
-            eyeBean.user = createAuthor(author)
+            eyeBean.userCode = it.id
+            eyeBean.user = createAuthor(it)
         }
         eyeBean.category = data.category
         eyeBean.playUrl = data.playUrl

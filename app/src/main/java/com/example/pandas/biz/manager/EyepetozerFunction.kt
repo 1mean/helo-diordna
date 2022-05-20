@@ -8,11 +8,11 @@ import io.reactivex.rxjava3.functions.Function
  * @date: 2021/12/22 7:36 下午
  * @version: v1.0
  */
-class EyepetozerFunction : Function<Eyepetozer, MutableList<EyepetozerBean>> {
+class EyepetozerFunction : Function<Eyepetozer, MutableList<EyepetozerItem>> {
 
-    override fun apply(eyepetozer: Eyepetozer?): MutableList<EyepetozerBean> {
+    override fun apply(eyepetozer: Eyepetozer?): MutableList<EyepetozerItem> {
 
-        val list: MutableList<EyepetozerBean> = mutableListOf()
+        val list: MutableList<EyepetozerItem> = mutableListOf()
         val itemList = eyepetozer?.itemList
         if (itemList != null && itemList.isNotEmpty()) {
             for (item in itemList) {
@@ -43,9 +43,9 @@ class EyepetozerFunction : Function<Eyepetozer, MutableList<EyepetozerBean>> {
      * @date: 2021/12/22 10:18 下午
      * @version: v1.0
      */
-    private fun buildScrollCard(item: Item): EyepetozerBean {
+    private fun buildScrollCard(item: Item): EyepetozerItem {
 
-        val eyeBean = EyepetozerBean()
+        val eyeBean = EyepetozerItem()
         val horizontalCardList: MutableList<String> = mutableListOf()
         eyeBean.type = 1
         eyeBean.count = item.data.count
@@ -63,8 +63,8 @@ class EyepetozerFunction : Function<Eyepetozer, MutableList<EyepetozerBean>> {
      * @date: 2021/12/22 10:18 下午
      * @version: v1.0
      */
-    private fun buildHeader(item: Item): EyepetozerBean =
-        EyepetozerBean(type = 2, title = item.data.text)
+    private fun buildHeader(item: Item): EyepetozerItem =
+        EyepetozerItem(type = 2, title = item.data.text)
 
     /**
      * 重构Video
@@ -72,9 +72,9 @@ class EyepetozerFunction : Function<Eyepetozer, MutableList<EyepetozerBean>> {
      * @date: 2021/12/22 10:18 下午
      * @version: v1.0
      */
-    private fun buildVideo(item: Item, flag: Boolean): EyepetozerBean {
+    private fun buildVideo(item: Item, flag: Boolean): EyepetozerItem {
 
-        val eyeBean = EyepetozerBean()
+        val eyeBean = EyepetozerItem()
         val data = item.data
         val consumption = data.consumption
         val author = data.author

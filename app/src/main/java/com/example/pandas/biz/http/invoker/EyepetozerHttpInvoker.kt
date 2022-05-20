@@ -1,7 +1,7 @@
 package com.example.pandas.biz.http.invoker
 
 import com.example.pandas.bean.eyes.Eyepetozer
-import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.http.RetrofitBuilder
 import com.example.pandas.biz.http.service.EyepetozerService
 import com.example.pandas.biz.interaction.IEyepetozerHttpInvoker
@@ -26,12 +26,12 @@ public class EyepetozerHttpInvoker : IEyepetozerHttpInvoker {
     }
 
     override fun tabsSelected(subscriber: ResourceObserver<Eyepetozer>) {
-        eyepetozerService?.tabsSelected()?.subscribeOn(Schedulers.io())
+        eyepetozerService?.discoveryHot()?.subscribeOn(Schedulers.io())
             ?.unsubscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe(subscriber)
     }
 
-    override fun discoveryHot(subscriber: ResourceObserver<MutableList<EyepetozerBean>>) {
+    override fun discoveryHot(subscriber: ResourceObserver<MutableList<EyepetozerItem>>) {
 
         eyepetozerService?.discoveryHot()?.map(EyepetozerFunction())?.subscribeOn(Schedulers.io())
             ?.unsubscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())
@@ -41,7 +41,7 @@ public class EyepetozerHttpInvoker : IEyepetozerHttpInvoker {
     override fun discoveryHot(
         startIndx: Int,
         count: Int,
-        subscriber: ResourceObserver<MutableList<EyepetozerBean>>
+        subscriber: ResourceObserver<MutableList<EyepetozerItem>>
     ) {
         eyepetozerService?.discoveryHot(startIndx, count)?.map(EyepetozerFunction())
             ?.subscribeOn(Schedulers.io())
@@ -51,7 +51,7 @@ public class EyepetozerHttpInvoker : IEyepetozerHttpInvoker {
 
     override fun getRecommendVideos(
         videoId: Int,
-        subscriber: ResourceObserver<MutableList<EyepetozerBean>>
+        subscriber: ResourceObserver<MutableList<EyepetozerItem>>
     ) {
         eyepetozerService?.getRecommendVideo(videoId)?.map(EyepetozerFunction())
             ?.subscribeOn(Schedulers.io())

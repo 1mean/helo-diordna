@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.pandas.base.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
-import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.manager.httpManager
 
 /**
@@ -15,7 +15,7 @@ import com.example.pandas.biz.manager.httpManager
  */
 public class VerticalVideoModel : BaseViewModel() {
 
-    val recommendWrapper: MutableLiveData<UIDataWrapper<EyepetozerBean>> by lazy { MutableLiveData() }
+    val recommendWrapper: MutableLiveData<UIDataWrapper<EyepetozerItem>> by lazy { MutableLiveData() }
 
     /**
      * 初始化界面数据
@@ -24,7 +24,7 @@ public class VerticalVideoModel : BaseViewModel() {
      * @return:
      * @version: v1.0
      */
-    fun getRecoList(video: EyepetozerBean) {
+    fun getRecoList(video: EyepetozerItem) {
 
         request({ httpManager.getRecommendVideos(video.videoId) },
             { list ->
@@ -43,7 +43,7 @@ public class VerticalVideoModel : BaseViewModel() {
                 val dataList = UIDataWrapper(
                     isSuccess = false,
                     errMessage = it.errorMsg,
-                    listData = mutableListOf<EyepetozerBean>()
+                    listData = mutableListOf<EyepetozerItem>()
                 )
                 recommendWrapper.value = dataList
             })

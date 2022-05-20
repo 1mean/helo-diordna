@@ -5,23 +5,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseCMFragment
-import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.manager.ExoPlayerManager
 import com.example.pandas.biz.viewmodel.EyepetozerViewModel
-import com.example.pandas.databinding.FragmentMainBinding
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.EyepetozerAdapter
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.ScreenUtil
-import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.util.Util
 
@@ -32,7 +27,8 @@ import com.google.android.exoplayer2.util.Util
  * @version: v1.0
  */
 public class EyepetozerFragment :
-    BaseCMFragment<EyepetozerViewModel, LayoutSwipRefreshBinding>() {
+    BaseCMFragment<EyepetozerViewModel, LayoutSwipRefreshBinding>(),
+    ExoPlayerManager.OnExoListListener {
 
     private var existDataInView = false//界面是否存在数据，下次出错不会影响界面显示
 
@@ -41,13 +37,12 @@ public class EyepetozerFragment :
 
     private var isCurVideoDetach = false
 
-    private val paddingBottom: Int
-        get() = resources.getDimension(R.dimen.common_lh_10_dimens).toInt()
 
     private val mAdapter: EyepetozerAdapter by lazy { EyepetozerAdapter(mutableListOf()) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        val paddingBottom: Int = resources.getDimension(R.dimen.common_lh_10_dimens).toInt()
         binding.recyclerLayout.run {
             init(
                 CommonItemDecoration(paddingBottom = paddingBottom),
@@ -55,7 +50,6 @@ public class EyepetozerFragment :
                 LinearLayoutManager(mActivity),
                 object : SwipRecyclerView.ILoadMoreListener {
                     override fun onLoadMore() {
-                        Log.e("eyeFragment", "onLoadMore")
                         mViewModel.initData(false)
                     }
                 })
@@ -67,7 +61,6 @@ public class EyepetozerFragment :
             setRefreshColor()
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
-                //ExoPlayerManager.instance.stopPlayer()
                 mViewModel.initData(true)
             }
         }
@@ -76,34 +69,7 @@ public class EyepetozerFragment :
     override fun onStart() {
         super.onStart()
         if (Util.SDK_INT > 23) {
-            ExoPlayerManager.instance.initPlayer(mActivity, object : Player.Listener {
-                override fun onPlaybackStateChanged(playbackState: Int) {
-                    when (playbackState) {
-                        Player.STATE_BUFFERING -> {//这里处理上一个item的界面
-                            if (lastPos != -1) {
-                                val holder =
-                                    binding.recyclerLayout.findViewHolderForLayoutPosition(lastPos)
-                                holder?.let {
-                                    mAdapter.updateItemView(lastPos, false, holder)
-                                }
-                            }
-                            Log.e("eyeFragment", "STATE_BUFFERING")
-                        }
-                        Player.STATE_READY -> {//拖动结束后也会触发
-                            Log.e("eyeFragment", "STATE_READY")
-                            val holder =
-                                binding.recyclerLayout.findViewHolderForLayoutPosition(curPos)
-                            mAdapter.updateItemView(curPos, true, holder)
-                        }
-                        Player.STATE_IDLE -> {//暂停不会触发
-                            Log.e("eyeFragment", "STATE_IDLE")
-                        }
-                        Player.STATE_ENDED -> {//播放结束
-                            Log.e("eyeFragment", "STATE_ENDED")
-                        }
-                    }
-                }
-            })
+            ExoPlayerManager.instance.initPlayer(mActivity).addExoListener(this)
         }
     }
 
@@ -117,7 +83,7 @@ public class EyepetozerFragment :
         if (!ExoPlayerManager.instance.isPlayIng()) {
             ExoPlayerManager.instance.prePare()
         }
-        Log.e("eyeFragment","state: ${lifecycle.currentState}")
+        Log.e("eyeFragment", "state: ${lifecycle.currentState}")
     }
 
     override fun onPause() {
@@ -125,14 +91,13 @@ public class EyepetozerFragment :
         if (ExoPlayerManager.instance.isPlayIng()) {
             ExoPlayerManager.instance.stopPlayer()
         }
-        Log.e("eyeFragment","onPause")
+        Log.e("eyeFragment", "onPause")
     }
 
     override fun createObserver() {
 
         mViewModel.eyepetozerWrapper.observe(viewLifecycleOwner) {
 
-            Log.e("eyeFragment", "size: ${it.listData.size}")
             if (it.isSuccess) {
                 when {
                     it.isFirstEmpty -> {
@@ -195,7 +160,7 @@ public class EyepetozerFragment :
                 //getChildAt(i): i为当前view在当前可见的几个view里的位置，而不是adapter容器里的position
                 val itemView = mRecyclerView.getChildAt(pos - firstPos)
                 if (ScreenUtil.isOverHalfViewVisiable(itemView)) {//ItemView可视高度超过一半才满足播放条件
-                    startPlay(pos, itemView)
+                    startPlay(true, pos, itemView)
                     break
                 }
             }
@@ -205,20 +170,19 @@ public class EyepetozerFragment :
     /**
      * 处理视频的播放，包括ExoPlayer逻辑和界面View的处理
      */
-    private fun startPlay(position: Int, itemView: View) {
+    private fun startPlay(isRefresh: Boolean, position: Int, itemView: View) {
 
         //1.先处理界面
-        val holder = binding.recyclerLayout.findViewHolderForLayoutPosition(position)
         val playerView = itemView.findViewById<StyledPlayerView>(R.id.player_eye)
 
         existDataInView = true
 
-        lastPos = curPos
+        lastPos = if (isRefresh) -1 else curPos
         //2.初始化播放器
         curPos = position
 
         val data = mAdapter.getItemData(position)
-        ExoPlayerManager.instance.setUpPlay(playerView, 0)
+        ExoPlayerManager.instance.addPlayerView(playerView, 1)
             .play(ExoPlayerManager.PlayingInfo(data.videoId, data.playUrl!!), position)
     }
 
@@ -255,29 +219,11 @@ public class EyepetozerFragment :
                     val itemView = mRecyclerView.getChildAt(pos - firstPos)
                     if (ScreenUtil.isOverHalfViewVisiable(itemView)) {
                         if (pos != curPos) {
-                            startPlay(pos, itemView)
+                            startPlay(false, pos, itemView)
                         }
                         return
                     }
                 }
-            }
-        }
-    }
-
-    private fun startFirstItemView() {
-        val mRecyclerView = binding.recyclerLayout
-        val manager = mRecyclerView.layoutManager as LinearLayoutManager
-        val firstPos = manager.findFirstVisibleItemPosition()
-        val lastPos = manager.findLastVisibleItemPosition()
-
-        if (firstPos == -1 || lastPos == -1) return
-
-        //这里只处理当前播放视频，滑动结束后仍然在屏幕内
-        for (pos in firstPos..lastPos) {
-            val itemView = mRecyclerView.getChildAt(pos - firstPos)
-            if (ScreenUtil.isOverHalfViewVisiable(itemView)) {//ItemView可视高度超过一半才满足播放条件
-                startPlay(pos, itemView)
-                break
             }
         }
     }
@@ -304,4 +250,18 @@ public class EyepetozerFragment :
             }
 
         }
+
+    override fun closeLastPlayedView(lastPos: Int) {
+        val holder =
+            binding.recyclerLayout.findViewHolderForLayoutPosition(lastPos)
+        holder?.let {
+            mAdapter.updateItemView(lastPos, false, holder)
+        }
+    }
+
+    override fun updateCurPlayerView(curPos: Int) {
+        val holder =
+            binding.recyclerLayout.findViewHolderForLayoutPosition(curPos)
+        mAdapter.updateItemView(curPos, true, holder)
+    }
 }

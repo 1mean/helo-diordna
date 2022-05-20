@@ -47,6 +47,7 @@
     <color name="color_bg_self">#f4f7f9</color>
     <color name="color_bg_mine">#E6EBF5</color>
     <color name="color_item_bg_mine_info">#11000000</color>
+    <color name="color_self_txt_setting">#484D54</color>
 
     <!--eye-->
     <color name="color_eye_view_bg">#ededed</color>
@@ -139,6 +140,8 @@
     <!--eye-->
     <color name="color_bg_eye_tab_indicator">#222222</color>
     <color name="color_text_eye_unselect">#888888</color>
+    <color name="color_bg_eye_divider">#C5C5C5</color>
+    <color name="color_txt_eye_name">#B6B6B6</color>
 
     <!--other-->
     <color name="color_progress_loadmore">#FF5B9A</color>

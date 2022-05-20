@@ -1,4 +1,5 @@
 package com.example.pandas.bean
+
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.RecommendData
 
@@ -30,5 +31,4 @@ data class UIDataWrapper<T>(
     val loveData: PageCommonData = PageCommonData(),
     //山水数据
     val landscapeData: LandscapeData = LandscapeData()
-
 )

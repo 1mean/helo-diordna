@@ -1,9 +1,8 @@
 package com.example.pandas.biz.interaction
 
 import com.example.pandas.bean.eyes.Eyepetozer
-import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.bean.eyes.EyepetozerItem
 import io.reactivex.rxjava3.observers.ResourceObserver
-import java.util.*
 
 /**
  * @description: TODO
@@ -18,16 +17,16 @@ interface IEyepetozerHttpInvoker {
 
     fun tabsSelected(subscriber: ResourceObserver<Eyepetozer>)
 
-    fun discoveryHot(subscriber: ResourceObserver<MutableList<EyepetozerBean>>)
+    fun discoveryHot(subscriber: ResourceObserver<MutableList<EyepetozerItem>>)
 
     fun discoveryHot(
         startIndx: Int,
         count: Int,
-        subscriber: ResourceObserver<MutableList<EyepetozerBean>>
+        subscriber: ResourceObserver<MutableList<EyepetozerItem>>
     )
 
     fun getRecommendVideos(
         videoId: Int,
-        subscriber: ResourceObserver<MutableList<EyepetozerBean>>
+        subscriber: ResourceObserver<MutableList<EyepetozerItem>>
     )
 }

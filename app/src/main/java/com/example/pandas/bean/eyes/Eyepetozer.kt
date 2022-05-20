@@ -11,7 +11,9 @@ data class Eyepetozer(
     val count: Int,
     val itemList: List<Item>,
     val nextPageUrl: String,
-    val total: Int
+    val total: Int,
+    val date:Long,
+    val nextPublishTime:Long
 )
 
 data class Item(

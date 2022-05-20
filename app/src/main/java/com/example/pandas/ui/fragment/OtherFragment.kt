@@ -34,7 +34,7 @@ public class OtherFragment : BaseLazyFragment<EyepetozerViewModel, FragmentOther
                     if (position == 0) {
                         return EyepetozerFragment()
                     } else {
-                        return EyepetozerFragment()
+                        return EyeOtherFragment()
                     }
                 }
 

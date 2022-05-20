@@ -3,7 +3,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.utils.TimeUtils
 
@@ -13,12 +13,12 @@ import com.example.pandas.utils.TimeUtils
  * @date: 4/8/22 11:41 下午
  * @version: v1.0
  */
-public class EyeRecAdapter(list: MutableList<EyepetozerBean>) :
-    BaseCommonAdapter<EyepetozerBean>(list) {
+public class EyeRecAdapter(list: MutableList<EyepetozerItem>) :
+    BaseCommonAdapter<EyepetozerItem>(list) {
 
     override fun getLayoutId(): Int = R.layout.adapter_eye_item
 
-    override fun convert(holder: BaseViewHolder, data: EyepetozerBean, position: Int) {
+    override fun convert(holder: BaseViewHolder, data: EyepetozerItem, position: Int) {
 
         val context = holder.itemView.context
         val cover = holder.getWidget<AppCompatImageView>(R.id.img_eye_item_cover)

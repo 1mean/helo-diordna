@@ -26,8 +26,14 @@ interface EyepetozerService {
      * @version: v1.0
      */
     @GET("tabs/selected")
-    public fun tabsSelected(): Observable<Eyepetozer>
+    suspend fun tabsSelected(
+        @Query("date") date: Long, //时间
+        @Query("num") num: Int, //
+        @Query("page") page: Int
+    ): Eyepetozer
 
+    @GET("tabs/selected")
+    suspend fun tabsSelected(): Eyepetozer
 
     /**
      * 获取热门分类数据
@@ -77,6 +83,7 @@ interface EyepetozerService {
 
     @GET("video/related")
     suspend fun getRecommend(@Query("id") id: Int): Eyepetozer
+
     /**
      * <热门评论>
      *
@@ -111,7 +118,64 @@ interface EyepetozerService {
     //关注
     // http://baobab.kaiyanapp.com/api/v4/tabs/follow
 
-    //热门搜索词
-    //http://baobab.kaiyanapp.com/api/v3/queries/hot
-
+//    ### 首页
+//
+//    1.发现更多
+//
+//    - 请求地址： http://baobab.kaiyanapp.com/api/v7/index/tab/discovery
+//
+//    2.每日推荐
+//
+//    - 请求地址： http://baobab.kaiyanapp.com/api/v5/index/tab/allRec
+//
+//    3.日报精选
+//
+//    - 请求地址 ： http://baobab.kaiyanapp.com/api/v5/index/tab/feed
+//
+//
+//    ### 社区
+//
+//    1.推荐
+//
+//    - 请求地址： http://baobab.kaiyanapp.com/api/v7/community/tab/rec
+//
+//    2.关注
+//
+//    - 请求地址： http://baobab.kaiyanapp.com/api/v6/community/tab/follow
+//
+//
+//    ### 通知
+//
+//    1.主题
+//
+//    - 请求地址： http://baobab.kaiyanapp.com/api/v7/tag/tabList
+//
+//    2.通知
+//
+//    - 请求地址 ：  http://baobab.kaiyanapp.com/api/v3/messages
+//
+//    3.互动
+//
+//    - 请求地址 ：  http://baobab.kaiyanapp.com/api/v7/topic/list
+//
+//    ### 视频详情页
+//
+//    1.相关推荐
+//
+//    - 请求地址 ：http://baobab.kaiyanapp.com/api/v4/video/related?id=186856
+//
+//
+//    |参数说明 |说明 |是否必须 |默认值 |
+//    |-|-|-|-|
+//    |id|当前播放视频的id，从跳转页面视频item中获取|是|无|
+//
+//
+//    2. 评论
+//
+//    - 请求地址 ：http://baobab.kaiyanapp.com/api/v2/replies/video?videoId=186856
+//
+//
+//    |参数说明 |说明 |是否必须 |默认值 |
+//    |-|-|-|-|
+//    |videoId|当前播放视频的id，从跳转页面视频item中获取|是|无|
 }

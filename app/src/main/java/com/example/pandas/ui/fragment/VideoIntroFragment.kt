@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
-import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.controller.VideoIntroController
 import com.example.pandas.biz.interaction.CommonResultListener
 import com.example.pandas.databinding.FragmentVideoIntroBinding
@@ -26,9 +26,9 @@ import com.example.pandas.utils.TimeUtils
  * @date: 12/29/21 11:39 下午
  * @version: v1.0
  */
-public class VideoIntroFragment : Fragment(), CommonResultListener<MutableList<EyepetozerBean>> {
+public class VideoIntroFragment : Fragment(), CommonResultListener<MutableList<EyepetozerItem>> {
 
-    var eyepetozerBean: EyepetozerBean? = null
+    var eyepetozerBean: EyepetozerItem? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -40,7 +40,7 @@ public class VideoIntroFragment : Fragment(), CommonResultListener<MutableList<E
                 super.onCreate(owner)
 
                 eyepetozerBean =
-                    activity?.intent?.getParcelableExtra<EyepetozerBean>("EyepetozerBean")
+                    activity?.intent?.getParcelableExtra<EyepetozerItem>("EyepetozerItem")
             }
         })
     }
@@ -84,7 +84,7 @@ public class VideoIntroFragment : Fragment(), CommonResultListener<MutableList<E
         _binding = null
     }
 
-    override fun onResult(data: MutableList<EyepetozerBean>) {
+    override fun onResult(data: MutableList<EyepetozerItem>) {
 
         val adapter = VideoRecommendAdapter(data)
         val recyclerView = binding.rvVideo

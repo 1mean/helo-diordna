@@ -14,7 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadEmptyCircleImage
 import com.example.pandas.biz.viewmodel.EyepetozerViewModel
@@ -41,7 +41,7 @@ import kotlinx.coroutines.launch
 public class EyePlayingActivity : BaseActivity<EyepetozerViewModel, ActivityEyePlayBinding>() {
 
     private var mPlayer: ExoPlayer? = null
-    private var eyepetozerBean: EyepetozerBean? = null
+    private var eyepetozerBean: EyepetozerItem? = null
 
     private var vedioUrl: String? = null
     private var isFullScreen: Boolean = false
@@ -56,7 +56,7 @@ public class EyePlayingActivity : BaseActivity<EyepetozerViewModel, ActivityEyeP
 
         val paddingBottom = resources.getDimension(R.dimen.common_lh_15_dimens).toInt()
 
-        eyepetozerBean = intent.getParcelableExtra<EyepetozerBean>("EyepetozerBean")
+        eyepetozerBean = intent.getParcelableExtra<EyepetozerItem>("EyepetozerItem")
         vedioUrl = eyepetozerBean?.playUrl
 
 

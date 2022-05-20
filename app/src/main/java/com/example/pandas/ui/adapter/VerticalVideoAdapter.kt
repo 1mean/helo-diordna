@@ -1,9 +1,8 @@
 package com.example.pandas.ui.adapter
-import android.util.Log
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.bean.eyes.EyepetozerItem
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.ui.PlayerView
 
@@ -14,15 +13,15 @@ import com.google.android.exoplayer2.ui.PlayerView
  * @version: v1.0
  */
 public class VerticalVideoAdapter(
-    private val list: MutableList<EyepetozerBean>,
+    private val list: MutableList<EyepetozerItem>,
     private val call: VideoCallBack
-) : BaseCommonAdapter<EyepetozerBean>(list) {
+) : BaseCommonAdapter<EyepetozerItem>(list) {
 
     private var mPlayer: ExoPlayer? = null
 
     override fun getLayoutId(): Int = R.layout.adapter_vertical_video
 
-    override fun convert(holder: BaseViewHolder, data: EyepetozerBean, position: Int) {
+    override fun convert(holder: BaseViewHolder, data: EyepetozerItem, position: Int) {
 
         call.play(data.playUrl, holder.getWidget(R.id.playView))
 //        if (data.playUrl != null) {

@@ -67,7 +67,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
         StatusBarUtils.setStatusBarMode(this, false, R.color.black)
 
-//        val eyepetozerBean = getIntent().getParcelableExtra<EyepetozerBean>("EyepetozerBean")
+//        val eyepetozerBean = getIntent().getParcelableExtra<EyepetozerItem>("EyepetozerItem")
 //        vedioUrl = eyepetozerBean?.playUrl
 
         code = intent.getIntExtra(AppInfos.VIDEO_PLAY_KEY, -1)

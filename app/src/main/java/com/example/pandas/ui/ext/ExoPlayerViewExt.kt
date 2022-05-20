@@ -36,3 +36,4 @@ fun VideoPlayingActivity.closeFullScreen(){
     params.height = (200 * applicationContext.resources.displayMetrics.density).toInt()
     binding.playView.layoutParams = params
 }
+

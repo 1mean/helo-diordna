@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadEmptyCircleImage
 import com.example.pandas.biz.ext.loadImage
@@ -25,10 +25,10 @@ import com.google.android.exoplayer2.ui.StyledPlayerView
  * @date: 2021/12/23 10:28 上午
  * @version: v1.0
  */
-public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
-    BaseCommonAdapter<EyepetozerBean>(list) {
+public class EyepetozerAdapter(private val list: MutableList<EyepetozerItem>) :
+    BaseCommonAdapter<EyepetozerItem>(list) {
 
-    fun getItemData(position: Int): EyepetozerBean {
+    fun getItemData(position: Int): EyepetozerItem {
         return list[position]
     }
 
@@ -55,7 +55,7 @@ public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
 
     override fun getLayoutId(): Int = R.layout.item_video_eye
 
-    override fun convert(holder: BaseViewHolder, data: EyepetozerBean, position: Int) {
+    override fun convert(holder: BaseViewHolder, data: EyepetozerItem, position: Int) {
 
         val cover = holder.getWidget<AppCompatImageView>(R.id.img_video)
         val userIcon = holder.getWidget<AppCompatImageView>(R.id.img_user)
@@ -124,7 +124,7 @@ public class EyepetozerAdapter(private val list: MutableList<EyepetozerBean>) :
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, EyePlayingActivity::class.java)
-            intent.putExtra("EyepetozerBean", data)
+            intent.putExtra("EyepetozerItem", data)
             context.startActivity(intent)
         }
 

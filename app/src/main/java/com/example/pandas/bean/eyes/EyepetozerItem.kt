@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
  * @version: v1.0
  */
 @Parcelize
-data class EyepetozerBean(
+data class EyepetozerItem(
 
     //squareCardCollection数据不做保存
     //type: horizontalScrollCard/textHeader/video/squareCardCollection/

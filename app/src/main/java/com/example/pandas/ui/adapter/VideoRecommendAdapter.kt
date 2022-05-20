@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.databinding.ItemVideoIntroBinding
 import com.example.pandas.utils.TimeUtils
 
@@ -16,7 +16,7 @@ import com.example.pandas.utils.TimeUtils
  * @date: 12/30/21 10:49 下午
  * @version: v1.0
  */
-public class VideoRecommendAdapter(private val mutableList: MutableList<EyepetozerBean>) :
+public class VideoRecommendAdapter(private val mutableList: MutableList<EyepetozerItem>) :
     RecyclerView.Adapter<VideoRecommendAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

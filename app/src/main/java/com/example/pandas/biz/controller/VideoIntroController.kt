@@ -1,6 +1,6 @@
 package com.example.pandas.biz.controller
 
-import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.http.invoker.EyepetozerHttpInvoker
 import com.example.pandas.biz.interaction.CommonResultListener
 import io.reactivex.rxjava3.observers.ResourceObserver
@@ -11,7 +11,7 @@ import io.reactivex.rxjava3.observers.ResourceObserver
  * @date: 12/30/21 10:53 下午
  * @version: v1.0
  */
-public class VideoIntroController(private val listener: CommonResultListener<MutableList<EyepetozerBean>>) {
+public class VideoIntroController(private val listener: CommonResultListener<MutableList<EyepetozerItem>>) {
 
     private var invoker: EyepetozerHttpInvoker? = null
 
@@ -21,8 +21,8 @@ public class VideoIntroController(private val listener: CommonResultListener<Mut
 
     fun getRecommendVideos(videoId: Int) {
 
-        val observer = object : ResourceObserver<MutableList<EyepetozerBean>>() {
-            override fun onNext(list: MutableList<EyepetozerBean>) {
+        val observer = object : ResourceObserver<MutableList<EyepetozerItem>>() {
+            override fun onNext(list: MutableList<EyepetozerItem>) {
 
                 listener.onResult(list)
             }

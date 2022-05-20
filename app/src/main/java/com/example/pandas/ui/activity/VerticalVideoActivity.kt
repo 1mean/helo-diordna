@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.bean.eyes.EyepetozerBean
+import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.viewmodel.VerticalVideoModel
 import com.example.pandas.databinding.ActivityVerticalVideoplayBinding
 import com.example.pandas.ui.adapter.VerticalVideoAdapter
@@ -31,7 +31,7 @@ public class VerticalVideoActivity :
     VerticalVideoAdapter.VideoCallBack {
 
     private var mPlayer: ExoPlayer? = null
-    private var video: EyepetozerBean? = null
+    private var video: EyepetozerItem? = null
     private val mAdapter: VerticalVideoAdapter by lazy {
         VerticalVideoAdapter(
             mutableListOf(),
