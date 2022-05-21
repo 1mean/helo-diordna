@@ -81,11 +81,13 @@
 
     <!--self-->
     <string name="str_setting_info">账号、推出</string>
-    <string name="str_setting_other">个性设置</string>
+    <string name="str_mine_exp">我的积分</string>
     <string name="str_setting_more">更多服务</string>
     <string name="str_setting_more_info">免费流量卡</string>
     <string name="str_setting_other_info">新皮肤上线了</string>
     <string name="str_mine_friends">我的好友</string>
+    <string name="str_setting_timing">定时关闭</string>
+    <string name="str_setting_logout">退出登陆</string>
 
     <!--common-->
     <string name="str_news">消息</string>
@@ -108,5 +110,6 @@
     <string name="str_attention_cancel">取消关注</string>
     <string name="str_followed">已关注</string>
     <string name="str_coin">硬币</string>
+    <string name="str_mine_zone">个人中心</string>
 
 </resources>

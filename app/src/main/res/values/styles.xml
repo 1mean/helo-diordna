@@ -234,7 +234,7 @@
         <item name="android:layout_marginStart">12dp</item>
         <item name="android:textColor">@color/color_self_txt_setting</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
     <style name="style_self_setting_desc">
         <item name="android:layout_width">wrap_content</item>
@@ -248,6 +248,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginEnd">12dp</item>
-        <item name="android:src">@mipmap/img_self_arrow_right</item>
+        <item name="android:src">@mipmap/img_left_arrow_right</item>
     </style>
 </resources>

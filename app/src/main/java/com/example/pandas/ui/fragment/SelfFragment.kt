@@ -29,11 +29,11 @@ public class SelfFragment : BaseLazyFragment<SelfViewModel, FragmentMineBinding>
         binding.clayoutSetting.setOnClickListener {
             showToast("设置")
         }
-        binding.clayoutOtherSetting.setOnClickListener {
-            showToast("个性设置")
+        binding.clayoutMineExp.setOnClickListener {
+            showToast("个人积分")
         }
-        binding.clayoutMoreSetting.setOnClickListener {
-            showToast("更多服务")
+        binding.clayoutSettingTiming.setOnClickListener {
+            showToast("定时关闭")
         }
         binding.clayoutSelf.setOnClickListener {
             mActivity.startActivity(Intent(mActivity, SelfInfoActivity::class.java))
