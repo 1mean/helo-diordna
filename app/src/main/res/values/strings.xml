@@ -88,6 +88,7 @@
     <string name="str_mine_friends">我的好友</string>
     <string name="str_setting_timing">定时关闭</string>
     <string name="str_setting_logout">退出登陆</string>
+    <string name="str_setting_about">关于项目</string>
 
     <!--common-->
     <string name="str_news">消息</string>

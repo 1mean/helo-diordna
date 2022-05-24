@@ -67,6 +67,9 @@ interface PetVideoDao {
     @Update(onConflict = OnConflictStrategy.ABORT) //发生冲突解决办法：终止操作，抛出异常
     fun updateVideoData(data: VideoData)
 
+    @Update(onConflict = OnConflictStrategy.ABORT)
+    suspend fun updatePetVideo(video: PetVideo)
+
     /* -----------查------------------------------------- */
     //如果查询多个结果返回的数据类不是数据实体类，无需给 Room 解析对应数据表，也无需添加 @Entity 注解
     //Room不允许在UI线程中访问数据库，而造成ui卡顿，需要将查询操作定义成异步，通过不同框架的集成

@@ -109,6 +109,11 @@ dependencies {
     //圆角
     implementation 'com.github.KuangGang:RoundCorners:2.0.0'
 
+    //AgentWeb
+    implementation 'com.just.agentweb:agentweb-androidx:4.1.4'
+    implementation 'com.just.agentweb:filechooser-androidx:4.1.4'
+    implementation 'com.download.library:downloader-androidx:4.1.4'
+
     var lifecycle_version = "2.4.0"
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")

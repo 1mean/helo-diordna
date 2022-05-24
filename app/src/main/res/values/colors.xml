@@ -43,12 +43,13 @@
     <color name="color_mine_txt_zone_counts">#212121</color>
     <color name="color_mine_txt_zone">#999A97</color>
     <color name="color_mine_txt_download">#454E54</color>
-    <color name="color_self_clayout_bg">#f5f8f8</color>
-    <color name="color_bg_self">#E8ECEE</color>
+    <color name="color_self_clayout_bg">#f5f8fa</color>
+    <color name="color_bg_self">#e9ecee</color>
     <color name="color_bg_mine">#E6EBF5</color>
     <color name="color_item_bg_mine_info">#11000000</color>
     <color name="color_self_txt_setting">#484D54</color>
     <color name="color_self_txt_coin">#262626</color>
+    <color name="color_self_txt_log">#818892</color>
 
     <!--eye-->
     <color name="color_eye_view_bg">#ededed</color>

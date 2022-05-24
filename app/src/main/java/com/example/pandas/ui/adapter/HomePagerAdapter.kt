@@ -1,7 +1,8 @@
 package com.example.pandas.ui.adapter
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.pandas.ui.fragment.*
 
@@ -11,8 +12,11 @@ import com.example.pandas.ui.fragment.*
  * @date: 1/4/22 12:48 下午
  * @version: v1.0
  */
-public class HomePagerAdapter(private val tabList: List<String>, fragment: FragmentActivity) :
-    FragmentStateAdapter(fragment) {
+public class HomePagerAdapter(
+    private val tabList: List<String>, childFragmentManager: FragmentManager,
+    lifecycle: Lifecycle
+) :
+    FragmentStateAdapter(childFragmentManager, lifecycle) {
 
     private var fragments = HashMap<Int, Fragment>()
 

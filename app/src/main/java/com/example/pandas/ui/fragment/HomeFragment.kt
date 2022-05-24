@@ -41,7 +41,7 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
         ).into(binding.imgHead)
 
         binding.viewpager.run {
-            adapter = HomePagerAdapter(tabTitles, requireActivity())
+            adapter = HomePagerAdapter(tabTitles, childFragmentManager, lifecycle)
             offscreenPageLimit = tabTitles.size
             setCurrentItem(1, false)
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

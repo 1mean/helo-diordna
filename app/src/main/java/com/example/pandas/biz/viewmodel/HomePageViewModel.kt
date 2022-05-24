@@ -59,7 +59,7 @@ class HomePageViewModel : BaseViewModel() {
         if (isRefresh) {
             petIndex = 0
         }
-        request({ PetManagerCoroutine.getPetByPage(petIndex,21) },
+        request({ PetManagerCoroutine.getPetByPage(petIndex, 21) },
             {
                 //请求数据成功
                 pandaHasMore = if (it.size > 20) {
@@ -108,15 +108,16 @@ class HomePageViewModel : BaseViewModel() {
             kotlin.runCatching {
                 PetManagerCoroutine.getRecommendByPage(recoIndex)
             }.onSuccess {
-                recoIndex += if (recoIndex == 0) 10 else 11
+
                 val wrapper = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = isRefresh,
                     isEmpty = it.itemList.isEmpty() && it.bannerList.isEmpty(),
-                    hasMore = if (isRefresh) it.itemList.size == 10 else it.itemList.size == 11,
+                    hasMore = it.itemList.size == 11,
                     isFirstEmpty = isRefresh && it.itemList.isEmpty() && it.bannerList.isEmpty(),
                     recoData = it
                 )
+                recoIndex += 11
                 recommendDataWrapper.value = wrapper
             }.onFailure {
 
@@ -248,6 +249,13 @@ class HomePageViewModel : BaseViewModel() {
                 )
                 hotDataWrapper.value = dataList
             }
+        }
+    }
+
+    fun addOrUpdateVideoData(videoCode: Int, playPos: Long) {
+
+        viewModelScope.launch {
+            PetManagerCoroutine.addOrUpdateVideoData(videoCode, playPos.toInt())
         }
     }
 }

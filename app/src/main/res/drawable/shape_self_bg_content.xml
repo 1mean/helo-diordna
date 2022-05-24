@@ -6,5 +6,5 @@
             android:topLeftRadius="20dp"
             android:topRightRadius="20dp" />
     <!--内部填充色-->
-    <solid android:color="@color/color_bg_love2" />
+    <solid android:color="@color/color_self_clayout_bg" />
 </shape>

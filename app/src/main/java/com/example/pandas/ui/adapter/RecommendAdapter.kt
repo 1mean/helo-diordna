@@ -41,6 +41,8 @@ public class RecommendAdapter(
     private var isBannerFresh = true //是否刷新banner
 
 
+    fun getItemData(position: Int): PetVideo = data.itemList[position - 1]
+
     override fun getItemViewType(position: Int): Int {
 
         if (position == 0) {
@@ -168,7 +170,7 @@ public class RecommendAdapter(
             if (type == VideoType.HONGLOU.ordinal) {
                 follow.visibility = View.VISIBLE
                 up.visibility = View.GONE
-                follow.setTextColor(ContextCompat.getColor(context,R.color.color_bg_reco_type))
+                follow.setTextColor(ContextCompat.getColor(context, R.color.color_bg_reco_type))
                 follow.setBackgroundResource(R.drawable.shape_bg_reco_type)
                 follow.text = context.resources.getString(R.string.str_hl)
             } else {
@@ -176,7 +178,12 @@ public class RecommendAdapter(
                 if (isAttention) {
                     follow.visibility = View.VISIBLE
                     up.visibility = View.GONE
-                    follow.setTextColor(ContextCompat.getColor(context,R.color.color_txt_reco_followed))
+                    follow.setTextColor(
+                        ContextCompat.getColor(
+                            context,
+                            R.color.color_txt_reco_followed
+                        )
+                    )
                     follow.setBackgroundResource(R.drawable.shape_bg_reco_followed)
                     follow.text = context.resources.getString(R.string.str_followed)
                 } else {
@@ -226,26 +233,28 @@ public class RecommendAdapter(
         val cover = binding.imgRecoVideo
         val shelter = binding.layoutRecoVideoShelter
         val title = binding.txtRecoVideoTitle
+        val playerView = binding.playerReco
 
-        fun startPlay() {
-            shelter.visibility = View.GONE
-        }
-
-        fun stopPlay() {
-            shelter.visibility = View.VISIBLE
-        }
-
-        fun getFileName(position: Int): String? {
-
-            return data.itemList[position - 1].fileName
+        fun updateItemView(position: Int, isHide: Boolean) {
+            val petVideo = data.itemList[position - 1]
+            petVideo.isPlaying = isHide
+            if (isHide) {
+                shelter.visibility = View.GONE
+                playerView.showController()
+            } else {
+                shelter.visibility = View.VISIBLE
+            }
         }
 
         fun handle(position: Int) {
 
-            itemView.tag = this
-
-            shelter.visibility = View.VISIBLE
             val petVideo = data.itemList[position - 1]
+            if (petVideo.isPlaying) {//正在播放中
+                shelter.visibility = View.GONE
+                playerView.showController()
+            } else {
+                shelter.visibility = View.VISIBLE
+            }
             //把http图片换成https就能加载出来
             // l = petVideo.cover.replace("http", "https")
             Glide.with(itemView.context).load(petVideo.cover)

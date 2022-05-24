@@ -100,13 +100,15 @@ class PetManager {
     suspend fun getRecommendByPage(startIndex: Int): RecommendData<PetVideo> {
 
         return withContext(Dispatchers.IO) {
+            delay(300)
             val recommendData = RecommendData<PetVideo>()
             if (startIndex == 0) {//首页
                 recommendData.bannerList = petDao.queryRecoBanner(1)
-                val list = petDao.queryStarByPage(startIndex, 10)
+                val list = petDao.queryStarByPage(startIndex, 11)
                 if (list.isNotEmpty()) {
                     list.forEach {
                         it.user = petDao.queryUserByCode(it.authorId)
+                        it.videoData = petDao.queryVideoDataByCode(it.code)
                     }
                 }
                 recommendData.itemList = list
@@ -115,6 +117,7 @@ class PetManager {
                 if (list.isNotEmpty()) {
                     list.forEach {
                         it.user = petDao.queryUserByCode(it.authorId)
+                        it.videoData = petDao.queryVideoDataByCode(it.code)
                     }
                 }
                 recommendData.itemList = list
@@ -384,17 +387,32 @@ class PetManager {
         }
     }
 
+    suspend fun addOrUpdateVideoData(videoCode: Int, playPos: Int) {
+
+        withContext(Dispatchers.IO) {
+
+            val data = petDao.queryVideoDataByCode(videoCode)
+            if (data == null) {
+                val videoData = VideoData(videoCode = videoCode, playPosition = playPos)
+                petDao.insertVideoData(videoData)
+            } else {
+                data.playPosition = playPos
+                petDao.updateVideoData(data)
+            }
+        }
+    }
+
     suspend fun getAllFollowUsers(context: Context): MutableList<User> {
 
         return withContext(Dispatchers.IO) {
 
             delay(300)
             val list = SPUtils.getList<String>(context, AppInfos.ATTENTION_KEY)
-            Log.e("111111mean","list:$list")
+            Log.e("111111mean", "list:$list")
             val users = mutableListOf<User>()
             if (list.isNotEmpty()) {
                 list.forEach {
-                    Log.e("111111mean","it:$it")
+                    Log.e("111111mean", "it:$it")
                     val user = petDao.queryUserByCode(it.toInt())
                     users.add(user)
                 }

@@ -1,29 +1,28 @@
 package com.example.pandas.ui.fragment
 
 import android.content.Intent
-import android.graphics.Rect
-import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pandas.R
-import com.example.pandas.base.fragment.BaseLazyFragment
+import com.example.pandas.base.fragment.BaseCMFragment
 import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.biz.ext.getUrl
 import com.example.pandas.biz.interaction.OnItemmmmClickListener
+import com.example.pandas.biz.manager.ExoCommonManager
 import com.example.pandas.biz.viewmodel.HomePageViewModel
-import com.example.pandas.databinding.FragmentRecommendBinding
+import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.activity.VideoPlayingActivity
 import com.example.pandas.ui.adapter.RecommendAdapter
-import com.example.pandas.ui.ext.initReco
-import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.Player
+import com.example.pandas.ui.adapter.decoration.RecommendDecoration
+import com.example.pandas.ui.ext.init
+import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
+import com.example.pandas.utils.ScreenUtil
 import com.google.android.exoplayer2.util.Util
 
 /**
@@ -35,8 +34,9 @@ import com.google.android.exoplayer2.util.Util
  * @date: 1/4/22 3:05 下午
  * @version: v1.0
  */
-public class RecommendFragment : BaseLazyFragment<HomePageViewModel, FragmentRecommendBinding>(),
-    LoadMoreRecyclerView.ILoadMoreListener, OnItemmmmClickListener<Int> {
+public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRefreshBinding>(),
+    OnItemmmmClickListener<Int>,
+    ExoCommonManager.OnExoListListener {
 
     private val mAdapter: RecommendAdapter by lazy {
         RecommendAdapter(
@@ -46,7 +46,6 @@ public class RecommendFragment : BaseLazyFragment<HomePageViewModel, FragmentRec
         )
     }
 
-    private var mPlayer: ExoPlayer? = null
     private var mPosition = -1 //当前正在播放的视频的实际position
 
     private val requestLauncher =
@@ -58,23 +57,32 @@ public class RecommendFragment : BaseLazyFragment<HomePageViewModel, FragmentRec
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.layoutReco.visibility = View.GONE
-        binding.rview.initReco(GridLayoutManager(activity, 2), mAdapter, this)
-        binding.refreshReco.run {
-            setColorSchemeResources(R.color.green)
+        binding.recyclerLayout.init(
+            RecommendDecoration(mActivity),
+            mAdapter,
+            GridLayoutManager(activity, 2),
+            object : SwipRecyclerView.ILoadMoreListener {
+                override fun onLoadMore() {
+                    mViewModel.getRecommendData(false)
+                }
+            })
+
+        binding.swipLayout.run {
+            setRefreshColor()
             setOnRefreshListener {
-                binding.rview.isFreshing(true)
+                binding.recyclerLayout.isRefreshing(true)
                 mViewModel.getRecommendData(true)
             }
         }
-        binding.rview.addOnScrollListener(recyclerViewScrollListener)
-        binding.rview.addOnChildAttachStateChangeListener(childAttachStateChangeListener)
+
+        binding.recyclerLayout.addOnScrollListener(recyclerViewScrollListener)
+        binding.recyclerLayout.addOnChildAttachStateChangeListener(childAttachStateChangeListener)
     }
 
     override fun onStart() {
         super.onStart()
         if (Util.SDK_INT > 23) {
-            mPlayer = ExoPlayer.Builder(mActivity).build()
+            ExoCommonManager.instance.initPlayer(mActivity).addExoListener(this)
         }
     }
 
@@ -89,60 +97,60 @@ public class RecommendFragment : BaseLazyFragment<HomePageViewModel, FragmentRec
             when (newState) {
                 RecyclerView.SCROLL_STATE_IDLE -> {
 
-                    val mRecyclerView = recyclerView as LoadMoreRecyclerView
+                    val mRecyclerView = recyclerView as SwipRecyclerView
                     val manager = mRecyclerView.layoutManager as LinearLayoutManager
-                    val count = manager.childCount
-                    //val count = mRecyclerView.childCount
                     val firstPos = manager.findFirstVisibleItemPosition()
                     val lastPos = manager.findLastVisibleItemPosition()
                     //下一次滑动时，通过position来关闭当前已经在运行的view
                     for (position in firstPos..lastPos) {
 
-                        val type = mRecyclerView.adapter?.getItemViewType(position)
-                        if (type == 3) {//横屏视频
+                        if (mAdapter.getItemViewType(position) == 3) {//横屏视频
 
-                            if (mPlayer!!.isPlaying && position == mPosition) {//在当前可视界面
+                            //1,一直在当前播放item的可视范围内滑动，那么不进行任何操作
+                            val itemData = mAdapter.getItemData(position)
+
+                            Log.e(
+                                "RecommendFragment",
+                                "${ExoCommonManager.instance.isCurrentPlayingVideo(itemData.code)}"
+                            )
+                            if (ExoCommonManager.instance.isCurrentPlayingVideo(itemData.code)) return
+
+                            //2，上一个视频已经结束播放
+                            val itemView = mRecyclerView.getChildAt(position - firstPos) ?: return
+
+                            if (ExoCommonManager.instance.isCurrentStopVideo(itemData.code)) {
+                                ExoCommonManager.instance.prePare()
                                 return
                             }
 
-                            val holder =
-                                mRecyclerView.findViewHolderForLayoutPosition(position) as RecommendAdapter.VideoHolder
-                            val itemView = mRecyclerView.getChildAt(position - firstPos) ?: continue
-//                            val holder = itemView.tag as RecommendAdapter.VideoHolder
-                            val rect = Rect()
-                            itemView.getLocalVisibleRect(rect)
-                            val visibleHeight = rect.height()//可见的高度
-                            val totalHeight = itemView.layoutParams.height//总高度
-                            if (visibleHeight >= (totalHeight / 2)) {
+                            if (ScreenUtil.isOverHalfViewVisiable(itemView)) {
 
-                                holder.startPlay()
+                                val holder =
+                                    mRecyclerView.findViewHolderForLayoutPosition(position) as RecommendAdapter.VideoHolder
 
-                                holder.playView.player = null//黑屏的处理。看api注释
-                                holder.playView.player = mPlayer
+                                val file = getUrl(mActivity, itemData.fileName!!)
 
-                                if (position == mPosition) {//回到上次播放的地方，播放列表里还是那个item
-                                    mPlayer?.prepare()
+                                val currentPos: Long = if (itemData.videoData == null) {
+                                    0L
                                 } else {
-                                    val file = getUrl(mActivity, holder.getFileName(position)!!)
-                                    val firstLocalMediaItem = MediaItem.fromUri(Uri.fromFile(file))
-
-                                    mPlayer?.run {
-                                        clearMediaItems()
-                                        repeatMode = Player.REPEAT_MODE_ALL
-                                        addMediaItem(firstLocalMediaItem)
-                                        playWhenReady = true//3.设置播放方式为自动播放
-                                        prepare()//设置播放器状态为prepare
-                                    }
-                                    mPosition = position
+                                    itemData.videoData!!.playPosition.toLong()
                                 }
+                                val playInfo =
+                                    ExoCommonManager.PlayingInfo(
+                                        itemData.code,
+                                        "",
+                                        file,
+                                        currentPos
+                                    )
+
+                                Log.e("1mean","playInfo: $playInfo")
+                                ExoCommonManager.instance.addPlayerView(holder.playView, 1)
+                                    .playLocalFile(playInfo,position)
+
                                 break
                             }
                         }
                     }
-                }
-                RecyclerView.SCROLL_STATE_DRAGGING -> {
-                }
-                RecyclerView.SCROLL_STATE_SETTLING -> {
                 }
             }
         }
@@ -154,82 +162,74 @@ public class RecommendFragment : BaseLazyFragment<HomePageViewModel, FragmentRec
             }
 
             override fun onChildViewDetachedFromWindow(view: View) {
-
-                val position = binding.rview.getChildAdapterPosition(view)
-                if (position == mPosition) {//正在运行的视频被滑出屏幕
-                    val holder =
-                        binding.rview.findViewHolderForLayoutPosition(position) as RecommendAdapter.VideoHolder
-                    if (mPlayer?.isPlaying == true) {
-                        mPlayer?.stop()
-                        holder.stopPlay()
+                val position = binding.recyclerLayout.getChildAdapterPosition(view)
+                val type = mAdapter.getItemViewType(position)
+                if (type == 3) {
+                    val videoData = mAdapter.getItemData(position)
+                    if (ExoCommonManager.instance.isCurrentPlayingVideo(videoData.code)) {//正在运行的视频被滑出屏幕
+                        val video = mAdapter.getItemData(position)
+                        mViewModel.addOrUpdateVideoData(video.code,ExoCommonManager.instance.getCurrentPos())
+                        updateCurPlayerView(position, false)
+                        ExoCommonManager.instance.stopPlayer(videoData.code)
                     }
                 }
             }
-
         }
 
-    override fun onStop() {
-        super.onStop()
-        if (Util.SDK_INT > 23) {
-
-        }
+    override fun onPause() {
+        super.onPause()
+        Log.e("1asdasdmean","onPause")
     }
 
-    override fun onLoadMore() {
-        mViewModel.getRecommendData(false)
+    override fun closeLastPlayedView(lastPos: Int) {
+    }
+
+    override fun updateCurPlayerView(curPos: Int, isHide: Boolean) {
+
+        val holder =
+            binding.recyclerLayout.findViewHolderForLayoutPosition(curPos)
+        if (holder is RecommendAdapter.VideoHolder) {
+            holder.updateItemView(curPos, isHide)
+        }
     }
 
     override fun createObserver() {
 
         mViewModel.recommendDataWrapper.observe(viewLifecycleOwner) {
 
-            binding.layoutReco.visibility = View.VISIBLE
-            if (it.isSuccess) {//成功
-
+            if (it.isSuccess) {
+                binding.recyclerLayout.visibility = View.VISIBLE
                 when {
-                    //没有数据
-                    it.isFirstEmpty -> {
-                        binding.refreshReco.isRefreshing = false
-                        binding.rview.noMoreData()
-                    }
-                    //刷新的第一页
                     it.isRefresh -> {
-                        binding.rview.isFreshing(false)
                         mAdapter.refreshData(it.recoData)
-                        binding.refreshReco.isRefreshing = false
-                        if (!it.hasMore) {
-                            binding.rview.noMoreData()
-                        }
+                        binding.recyclerLayout.isRefreshing(false)
                     }
-                    //加载更多
                     else -> {
-                        if (it.hasMore) {//还有更多数据
-                            binding.rview.loadMoreFinished()
-                        } else {//已经是最后一页数据了
-                            binding.rview.noMoreData()
-                        }
                         mAdapter.addData(it.recoData)
                     }
                 }
-            } else {//失败
-                binding.rview.noMoreData()
-                binding.refreshReco.isRefreshing = false
+                binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
             }
+            binding.swipLayout.visibility = View.VISIBLE
+            binding.swipLayout.isRefreshing = false
         }
     }
 
     override fun firstOnResume() {
-        binding.refreshReco.isRefreshing = true
-        binding.rview.isFreshing(true)
+        binding.swipLayout.isRefreshing = true
         mViewModel.getRecommendData(true)
+    }
+
+    override fun againOnResume() {
+        Log.e("1asdasdmean","againOnResume")
     }
 
     override fun onClick(position: Int, t: Int) {
 
-        if (mPlayer != null && mPlayer!!.isPlaying) {
-            mPlayer!!.stop()
-            mPosition = -1
-        }
+//        if (mPlayer != null && mPlayer!!.isPlaying) {
+//            mPlayer!!.stop()
+//            mPosition = -1
+//        }
         val intent = Intent(mActivity, VideoPlayingActivity::class.java).apply {
             putExtra("code", t)
         }
@@ -241,7 +241,7 @@ public class RecommendFragment : BaseLazyFragment<HomePageViewModel, FragmentRec
      */
     private fun startPlay() {
 
-        val mRecyclerView = binding.rview
+        /*val mRecyclerView = binding.recyclerLayout
         val manager = mRecyclerView.layoutManager as LinearLayoutManager
 
         val firstPos = manager.findFirstVisibleItemPosition()
@@ -291,6 +291,6 @@ public class RecommendFragment : BaseLazyFragment<HomePageViewModel, FragmentRec
                 }
             }
             currentItem += 1
-        }
+        }*/
     }
 }
