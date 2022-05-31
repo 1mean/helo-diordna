@@ -31,30 +31,107 @@
                     android:id="@+id/txt_video_info_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@id/img_video_info_head"
+                    app:layout_constraintTop_toTopOf="@id/cl_author"
                     app:layout_constraintLeft_toRightOf="@id/img_video_info_head"
+                    android:layout_marginTop="9dp"
                     android:layout_marginStart="20dp"
                     android:textSize="12sp"
                     android:textColor="@color/color_talk_name"
+                    android:includeFontPadding="false"
                     android:gravity="center" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_video_info_time"
+                    android:id="@+id/txt_video_info_fans"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_video_info_name"
-                    android:layout_marginTop="1dp"
                     app:layout_constraintLeft_toLeftOf="@id/txt_video_info_name"
-                    android:textColor="@color/color_video_comment_txt"
+                    app:layout_constraintBottom_toBottomOf="@id/cl_author"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/color_txt_user_unattention"
+                    android:textSize="10sp"
+                    android:includeFontPadding="false"
                     tools:ignore="SmallSp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_video_info_videos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/txt_video_info_fans"
+                    app:layout_constraintBottom_toBottomOf="@id/txt_video_info_fans"
+                    android:textColor="@color/color_txt_user_unattention"
+                    android:layout_marginStart="11dp"
+                    android:textSize="10sp"
+                    android:includeFontPadding="false"
+                    tools:ignore="SmallSp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clayout_video_info_follow"
+                    android:layout_width="65dp"
+                    android:layout_height="24dp"
+                    app:layout_constraintTop_toTopOf="@id/cl_author"
+                    app:layout_constraintRight_toRightOf="@id/cl_author"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/shape_user_attention">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/llayout_info_attention"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="10dp"
+                            android:src="@mipmap/img_video_info_add" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:includeFontPadding="false"
+                            android:layout_gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textColor="@color/white"
+                            android:text="@string/str_follow" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/llayout_info_attentioned"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:src="@mipmap/img_video_info_more" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:includeFontPadding="false"
+                            android:layout_gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textColor="@color/color_txt_user_unattention"
+                            android:text="@string/str_followed" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_video_info_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp">
 
@@ -62,13 +139,66 @@
                     android:id="@+id/txt_video_info_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="normal"
                     android:textSize="16sp"
                     app:layout_constraintTop_toTopOf="@id/cl_video_info_desc"
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:maxEms="19"
-                    android:textColor="@color/color_video_name_txt" />
+                    android:maxLines="1"
+                    android:textColor="@color/color_video_item_title" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_info_counts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_video_info_desc"
+                    app:layout_constraintTop_toBottomOf="@id/txt_video_info_title"
+                    android:src="@mipmap/img_video_play_times" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_info_counts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:layout_constraintLeft_toRightOf="@id/image_info_counts"
+                    app:layout_constraintBottom_toBottomOf="@id/image_info_counts"
+                    android:layout_marginStart="3dp"
+                    android:textColor="@color/color_eye_txt_time"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textSize="11sp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_info_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:layout_constraintLeft_toRightOf="@id/txt_info_counts"
+                    app:layout_constraintBottom_toBottomOf="@id/image_info_counts"
+                    android:layout_marginStart="11dp"
+                    android:src="@mipmap/img_video_comment" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_info_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:layout_constraintLeft_toRightOf="@id/image_info_comment"
+                    app:layout_constraintBottom_toBottomOf="@id/image_info_counts"
+                    android:layout_marginStart="3dp"
+                    android:textColor="@color/color_eye_txt_time"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textSize="11sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_info_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:layout_constraintLeft_toRightOf="@id/txt_info_comment"
+                    app:layout_constraintBottom_toBottomOf="@id/image_info_counts"
+                    android:layout_marginStart="12dp"
+                    android:textColor="@color/color_eye_txt_time"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textSize="11sp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -185,14 +315,15 @@
 
         <View
                 android:layout_width="match_parent"
-                android:layout_height="0.3dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/color_video_divider" />
+                android:layout_height="0.33dp"
+                android:layout_marginTop="14dp"
+                android:background="@color/color_bg_video_item_divider" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_video_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
                 android:nestedScrollingEnabled="false" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>

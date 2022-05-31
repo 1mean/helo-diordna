@@ -113,17 +113,53 @@ public class ExoCommonManager private constructor() {
         }
         mPlayer.playWhenReady = true
         mPlayer.prepare()
-        Log.e("1mean", "count: ${mPlayer.mediaItemCount}, playPos:${playInfo.playPos}")
     }
 
-    fun stopPlayer(videoCode: Int) {
+    fun stopPlayer() {
 
-        tempMediaIndexMap.updatePlayPos(videoCode, mPlayer.currentPosition)
-        mPlayer.stop()
+        if (mPlayer.isPlaying) {
+            val videoCode = mPlayer.currentMediaItem?.mediaId
+            videoCode?.let {
+                if (it.isEmpty()) return
+                tempMediaIndexMap.updatePlayPos(it.toInt(), mPlayer.currentPosition)
+                mPlayer.stop()
+            }
+        }
+    }
+
+    /**
+     * 继续播放之前暂停的视频，包括页面返回
+     */
+    fun continuePlay(videoCode: Int, repeatMode: Int, playerView: StyledPlayerView) {
+
+        val playItem = tempMediaIndexMap.get(videoCode)
+        playItem?.let {
+            val index = tempMediaIndexMap.indexOf(videoCode)
+            val mediaItem = mPlayer.getMediaItemAt(index)
+            if (mediaItem.mediaId == videoCode.toString()) {
+
+
+                playerView.player = null
+                playerView.player = mPlayer
+                mPlayer.repeatMode = repeatMode
+
+                mPlayer.seekTo(index, it.playPos)
+                mPlayer.playWhenReady = true
+                mPlayer.prepare()
+            }
+        }
     }
 
     fun getCurrentPos(): Long = mPlayer.currentPosition
     fun isPlayIng(): Boolean = mPlayer.isPlaying
+    fun getCurrentItemPos(): Int = mCurPos
+    fun getCurrentVideoCode(): Int {
+        mPlayer.currentMediaItem?.mediaId?.toInt()
+        mPlayer.currentMediaItem?.let {
+            return it.mediaId.toInt()
+        }
+        return -1
+    }
 
 
     fun prePare() {
@@ -201,6 +237,7 @@ public class ExoCommonManager private constructor() {
                 }
                 Player.STATE_IDLE -> {//暂停不会触发
                     Log.e("ExoCommonManager", "STATE_IDLE")
+                    exoListener!!.updateCurPlayerView(mCurPos, false)
                 }
                 Player.STATE_ENDED -> {//播放结束
                     Log.e("ExoCommonManager", "STATE_ENDED")

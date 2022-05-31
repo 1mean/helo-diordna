@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.bean.LandscapeData
@@ -21,7 +22,7 @@ import com.example.pandas.utils.TimeUtils
  * @date: 2/4/22 5:31 下午
  * @version: v1.0
  */
-public class LandscapeAdapter(private var data: LandscapeData) :
+public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data: LandscapeData) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_BANNER = 1 //山水轮播图
@@ -112,7 +113,7 @@ public class LandscapeAdapter(private var data: LandscapeData) :
                 )
                 val adapter = LandViewPagerAdapter(list)
 
-                this.banner.setAdapter(adapter)
+                this.banner.setLifecycleRegistry(lifecycle).setAdapter(adapter)
                     .setIndicator(indicator!!, true)
                     .setAutoPlayed(true)
             }
@@ -141,7 +142,7 @@ public class LandscapeAdapter(private var data: LandscapeData) :
                 name.text = it.userName
             }
             val count = (1..1000).random()
-            Log.e("1mean","$count")
+            Log.e("1mean", "$count")
             counts.text = StringBuilder(count.toString()).append("观看").toString()
             comments.text = (1..100).random().toString()
             layoutMore.setOnClickListener {

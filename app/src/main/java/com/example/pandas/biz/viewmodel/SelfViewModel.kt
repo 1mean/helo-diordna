@@ -48,20 +48,4 @@ public class SelfViewModel : BaseViewModel() {
             followUser.value = PetManagerCoroutine.getAllFollowUsers(context)
         }
     }
-
-    fun unFollow(context: Context, userCode: Int) {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                SPUtils.removeFromList<String>(context, AppInfos.ATTENTION_KEY, userCode.toString())
-            }
-        }
-    }
-
-    fun follow(context: Context, userCode: Int) {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                SPUtils.saveList<String>(context, AppInfos.ATTENTION_KEY, userCode.toString())
-            }
-        }
-    }
 }

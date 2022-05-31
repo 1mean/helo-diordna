@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="32dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginStart="12dp"
+            android:textColor="@color/black_33"
+            android:textSize="13sp"
+            android:text="@string/str_hot_comments" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llayout_comment_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginEnd="12dp"
+            android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/img_comment_setting"
+                android:layout_gravity="center_vertical"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_comment_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_txt_tab"
+                android:textSize="13sp"
+                android:layout_marginStart="3dp"
+                android:text="@string/str_by_time" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

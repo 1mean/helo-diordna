@@ -237,5 +237,20 @@ interface PetVideoDao {
     fun queryHistoryByCode(code: Int): History
 
     @Query("select * from User where userCode=(:code)")
-    fun queryUserByCode(code: Int): User
+    suspend fun queryUserByCode(code: Int): User
+
+    @Query("select * from pet_video where type = (:type) and authorId=(:authorId) and code!=(:code) limit 0,(:counts)")
+    suspend fun queryRecommendVideos(
+        type: Int,
+        authorId: Int,
+        code: Int,
+        counts: Int
+    ): MutableList<PetVideo>
+
+    @Query("select * from pet_video where type = (:type) and authorId !=(:authorId) limit 0,(:counts)")
+    suspend fun queryRecoVideosByType(
+        type: Int,
+        authorId: Int,
+        counts: Int
+    ): MutableList<PetVideo>
 }

@@ -23,7 +23,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 public class LandscapeFragment :
     BaseLazyFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
 
-    private val mAdapter: LandscapeAdapter by lazy { LandscapeAdapter(LandscapeData()) }
+    private val mAdapter: LandscapeAdapter by lazy { LandscapeAdapter(lifecycle, LandscapeData()) }
 
     override fun initView(savedInstanceState: Bundle?) {
 

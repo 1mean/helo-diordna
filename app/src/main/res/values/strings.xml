@@ -27,7 +27,7 @@
     <string name="string_load_finished">加载完成</string>
     <string name="txt_follow">关注</string>
     <string name="no_comment_string">看看下面～来发评论吧</string>
-    <string name="keeping_nice_string">发一条友善的评论～</string>
+    <string name="keeping_nice_string">发一条友善的评论</string>
 
 
     <!--   love   -->
@@ -112,5 +112,11 @@
     <string name="str_followed">已关注</string>
     <string name="str_coin">硬币</string>
     <string name="str_mine_zone">个人中心</string>
+    <string name="str_hot_comments">热门评论</string>
+    <string name="str_by_time">按时间</string>
+    <string name="str_by_hot">按热度</string>
+    <string name="str_up_like">UP主觉得很赞</string>
+    <string name="str_send">发布</string>
+    <string name="str_sending">发送中...</string>
 
 </resources>

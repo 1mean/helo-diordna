@@ -13,7 +13,6 @@
             app:showDividers="middle"
             android:background="@color/white">
 
-
         <com.google.android.exoplayer2.ui.PlayerView
                 android:id="@+id/playView"
                 android:layout_width="match_parent"
@@ -37,18 +36,20 @@
 
                 android:layout_marginTop="-2dp"
 
-                app:unplayed_color="@color/color_video_timebar_unplayed"
+                app:unplayed_color="@color/color_white_lucency"
                 app:played_color="@color/color_tab_indicator"
 
-                app:buffered_color="@color/color_video_timebar_buffered"
-                android:visibility="gone"
-                />
+                app:buffered_color="@color/color_white_lucency"
+                android:visibility="gone" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
-                android:id="@+id/cl_tab"
-                android:background="@color/white_fd">
+                android:background="@color/white_fd"
+                android:outlineSpotShadowColor="#44000000"
+                android:outlineAmbientShadowColor="#44000000"
+                android:elevation="15dp"
+                android:id="@+id/cl_tab">
 
             <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabView"
@@ -59,11 +60,10 @@
                     app:layout_constraintLeft_toLeftOf="@id/cl_tab"
                     android:layout_marginStart="25dp"
                     app:tabMaxWidth="0dp"
-                    android:paddingBottom="5dp"
                     app:tabRippleColor="@android:color/transparent"
                     app:tabTextColor="@color/color_tab_text"
                     app:tabIndicatorColor="@color/color_tab_indicator"
-                    app:tabSelectedTextColor="@color/color_tab_text_selected"
+                    app:tabSelectedTextColor="@color/color_video_tab_selected"
                     app:tabTextAppearance="@style/VideoTabLayoutTextStyle"
                     app:tabIndicator="@drawable/layer_video_indicator">
 
@@ -88,14 +88,11 @@
                     android:background="@color/color_caption_bg"
                     android:src="@mipmap/img_caption_close" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <View
+        <!--<View
                 android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:background="@color/color_music_start_bg"
-                android:outlineSpotShadowColor="@color/color_video_divider_shadow"
-                android:outlineAmbientShadowColor="@color/color_video_divider_shadow"
-                android:elevation="4dp" />
+                android:layout_height="0.33dp"
+                android:background="@color/color_bg_video_item_divider" />-->
+
 
         <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_video"

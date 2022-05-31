@@ -2,7 +2,6 @@ package com.example.pandas.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
@@ -10,7 +9,6 @@ import com.example.pandas.biz.viewmodel.ErrorViewModel
 import com.example.pandas.databinding.ActivityErrorBinding
 import com.example.pandas.ui.adapter.ErrorAdapter
 import com.example.pandas.utils.StatusBarUtils
-import com.just.agentweb.AgentWeb
 
 /**
  * @description: ErrorActivity

@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -23,6 +24,7 @@ import com.example.pandas.databinding.ActivityVideoBinding
 import com.example.pandas.ui.adapter.VideoFragmentAdapter
 import com.example.pandas.ui.ext.closeFullScreen
 import com.example.pandas.ui.ext.fullScreen
+import com.example.pandas.utils.KeyboardUtils
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -36,7 +38,6 @@ import com.google.android.exoplayer2.util.Util
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
 import java.io.File
-import java.util.*
 
 
 /**
@@ -55,6 +56,8 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     private var isFullScreen: Boolean = false
     private var isAttachedToWindow: Boolean = false
     private val MAX_UPDATE_INTERVAL_MS = 1000L
+
+    private var isFirstVisible: Boolean = true
 
     private val requestLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -75,7 +78,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         lifecycleScope.launch {
 
             val viewPager = binding.vpVideo
-            viewPager.adapter = VideoFragmentAdapter(this@VideoPlayingActivity)
+            viewPager.adapter = VideoFragmentAdapter(supportFragmentManager, lifecycle)
             viewPager.offscreenPageLimit = ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
             TabLayoutMediator(
                 binding.tabView, viewPager, true
@@ -125,15 +128,16 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     override fun onStart() {
         super.onStart()
-        if (Util.SDK_INT > 23) {
-            initPlayer()
-        }
     }
 
     override fun onResume() {
         super.onResume()
-        if (Util.SDK_INT <= 23) {
-            initPlayer()
+
+        if (isFirstVisible) {
+            if (code != -1) {
+                mViewModel.getVideoInfo(code)
+            }
+            isFirstVisible = false
         }
     }
 
@@ -188,13 +192,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         mPlayer?.pause()
     }
 
-    private fun initPlayer() {
-
-        if (code == -1) {
-            return
-        }
-        mViewModel.getVideoInfo(code)
-    }
 
     private val listener = object : Player.Listener {
 
@@ -315,4 +312,18 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         mPlayer?.release()
         mPlayer = null
     }
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+
+        if (ev.action == MotionEvent.ACTION_DOWN) {
+
+            val view = currentFocus
+            val isShow = KeyboardUtils.isShouldHideKeyboard(view, ev)
+            if (isShow) {
+                KeyboardUtils.hideKeyboard(this)
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
 }

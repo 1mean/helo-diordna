@@ -15,18 +15,18 @@
         <entry key="app/src/main/res/layout/card_item_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_attention_cancel.xml" value="0.25427350427350426" />
         <entry key="app/src/main/res/layout/footer_recyclerview.xml" value="0.2423076923076923" />
+        <entry key="app/src/main/res/layout/fragment_comment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_mine.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_music_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_room.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_self.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_comments.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_recommend_video.xml" value="0.2423076923076923" />
+        <entry key="app/src/main/res/layout/item_top_comments.xml" value="0.1" />
         <entry key="app/src/main/res/layout/layout_exoplay_music_list.xml" value="0.125" />
       </map>
     </option>
-  </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/pandas/ui/SplashActivity.kt" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

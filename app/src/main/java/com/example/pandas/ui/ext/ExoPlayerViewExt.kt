@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
 import androidx.core.view.WindowCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.ui.activity.VideoPlayingActivity
+import com.example.pandas.ui.fragment.RecommendFragment
+import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 fun VideoPlayingActivity.fullScreen() {
 

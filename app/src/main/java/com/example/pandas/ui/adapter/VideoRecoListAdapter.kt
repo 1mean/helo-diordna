@@ -1,72 +1,58 @@
 package com.example.pandas.ui.adapter
 
-import android.annotation.SuppressLint
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.pandas.R
+import com.example.pandas.base.adapter.BaseCommonAdapter
+import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.interaction.OnVideoItemClickLIstener
-import com.example.pandas.databinding.ItemVideoIntroBinding
-import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
+import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.utils.NumUtils
 import com.example.pandas.utils.TimeUtils
 
 /**
- * @description: TODO
+ * @description: 播放详情页推荐视频列表
  * @author: dongyiming
  * @date: 2/15/22 9:50 下午
  * @version: v1.0
  */
 public class VideoRecoListAdapter(
-    private val list: MutableList<PetViewData>,
+    list: MutableList<PetVideo>,
     private val listener: OnVideoItemClickLIstener
 ) :
-    RecyclerView.Adapter<BaseEmptyViewHolder>() {
+    BaseCommonAdapter<PetVideo>(list) {
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun refresh(data: MutableList<PetViewData>) {
-        if (list != data && data.isNotEmpty()) {
-            list.clear()
-            list.addAll(data)
-            notifyDataSetChanged()
+    override fun getLayoutId(): Int = R.layout.item_video_intro
+
+    override fun convert(holder: BaseViewHolder, data: PetVideo, position: Int) {
+
+        val context = holder.itemView.context
+        val cover = holder.getWidget<AppCompatImageView>(R.id.img_video_reco_cover)
+        val duration = holder.getWidget<AppCompatTextView>(R.id.txt_video_reco_duration)
+        val title = holder.getWidget<AppCompatTextView>(R.id.txt_video_reco_title)
+        val name = holder.getWidget<AppCompatTextView>(R.id.txt_video_reco_name)
+        val playCounts = holder.getWidget<AppCompatTextView>(R.id.txt_video_info_counts)
+        val comments = holder.getWidget<AppCompatTextView>(R.id.txt_video_info_comment)
+        val loadMoreLayout = holder.getWidget<ConstraintLayout>(R.id.clayout_video_info_more)
+
+        data.cover?.let {
+            loadRoundedCornerImage(context, 15, it, cover)
         }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
-        val binding =
-            ItemVideoIntroBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: BaseEmptyViewHolder, position: Int) {
-        (holder as MyViewHolder).handle(position)
-    }
-
-    override fun getItemCount(): Int = list.size
-
-    inner class MyViewHolder(binding: ItemVideoIntroBinding) :
-        BaseEmptyViewHolder(binding.root) {
-
-        val cover = binding.imgVideoRecoCover
-        val duration = binding.txtVideoRecoDuration
-        val title = binding.txtVideoRecoTitle
-        val name = binding.txtVideoRecoName
-        val time = binding.textVideoRecoTime
-
-        fun handle(position: Int) {
-
-            val video = list[position]
-            loadRoundedCornerImage(itemView.context, 13, video.cover, cover)
-            title.text = video.title
-            video.user?.let {
-                name.text = it.userName
-            }
-            duration.text = TimeUtils.getDuration(video.duration.toLong())
-            time.text = video.releaseTime
-
-            itemView.setOnClickListener {
-                listener.onClick(position, video.code)
-            }
+        duration.text = TimeUtils.getDuration(data.duration.toLong())
+        title.text = data.title
+        data.user?.let {
+            name.text = it.userName
         }
+        holder.itemView.setOnClickListener {
+            listener.onClick(position, data.code)
+        }
+
+        val count = (1..100000).random()
+        val comment = (1..100).random()
+        playCounts.text = NumUtils.getShortNum(count)
+        comments.text = comment.toString()
     }
 }

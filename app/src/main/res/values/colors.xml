@@ -77,6 +77,12 @@
     <color name="color_video_timebar_buffered">#cfd8dc</color>
     <color name="color_video_timebar_unplayed">#77D3D3D3</color>
     <color name="color_reco_video_bg">#33000000</color>
+    <color name="color_bg_video_item_divider">#E2E6E5</color>
+    <color name="color_video_tab_selected">#FF5A9A</color>
+    <color name="color_name_vip">#FF569A</color>
+    <color name="color_comment_name">#757575</color>
+    <color name="color_bg_comment_like">#F4F4F4</color>
+    <color name="color_edit_cursor_comment">#FF4D9B</color>
 
     <!--home fragment-->
     <color name="color_search_text">#acb3b8</color>

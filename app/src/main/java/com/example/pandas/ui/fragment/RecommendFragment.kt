@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.base.fragment.BaseCMFragment
 import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.biz.ext.getUrl
-import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.manager.ExoCommonManager
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
@@ -35,7 +34,7 @@ import com.google.android.exoplayer2.util.Util
  * @version: v1.0
  */
 public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRefreshBinding>(),
-    OnItemmmmClickListener<Int>,
+    RecommendAdapter.OnRecoItemClickListener,
     ExoCommonManager.OnExoListListener {
 
     private val mAdapter: RecommendAdapter by lazy {
@@ -51,7 +50,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
     private val requestLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == AppCompatActivity.RESULT_OK) {
-                startPlay()
+                //startPlay()
             }
         }
 
@@ -108,16 +107,14 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
 
                             //1,一直在当前播放item的可视范围内滑动，那么不进行任何操作
                             val itemData = mAdapter.getItemData(position)
-
-                            Log.e(
-                                "RecommendFragment",
-                                "${ExoCommonManager.instance.isCurrentPlayingVideo(itemData.code)}"
-                            )
-                            if (ExoCommonManager.instance.isCurrentPlayingVideo(itemData.code)) return
-
-                            //2，上一个视频已经结束播放
                             val itemView = mRecyclerView.getChildAt(position - firstPos) ?: return
-
+                            if (ExoCommonManager.instance.isCurrentPlayingVideo(itemData.code)) {
+                                if (!ScreenUtil.isOverHalfViewVisiable(itemView)) {
+                                    ExoCommonManager.instance.stopPlayer()
+                                }
+                                return
+                            }
+                            //2，上一个视频已经结束播放
                             if (ExoCommonManager.instance.isCurrentStopVideo(itemData.code)) {
                                 ExoCommonManager.instance.prePare()
                                 return
@@ -143,12 +140,11 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                                         currentPos
                                     )
 
-                                Log.e("1mean","playInfo: $playInfo")
                                 ExoCommonManager.instance.addPlayerView(holder.playView, 1)
-                                    .playLocalFile(playInfo,position)
+                                    .playLocalFile(playInfo, position)
 
-                                break
                             }
+                            return
                         }
                     }
                 }
@@ -167,27 +163,46 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                 if (type == 3) {
                     val videoData = mAdapter.getItemData(position)
                     if (ExoCommonManager.instance.isCurrentPlayingVideo(videoData.code)) {//正在运行的视频被滑出屏幕
-                        val video = mAdapter.getItemData(position)
-                        mViewModel.addOrUpdateVideoData(video.code,ExoCommonManager.instance.getCurrentPos())
-                        updateCurPlayerView(position, false)
-                        ExoCommonManager.instance.stopPlayer(videoData.code)
+                        mViewModel.addOrUpdateVideoData(
+                            videoData.code,
+                            ExoCommonManager.instance.getCurrentPos()
+                        )
+                        ExoCommonManager.instance.stopPlayer()
                     }
                 }
             }
         }
 
+    /**
+     * 关闭正在播放的视频，并且存储历史记录
+     */
     override fun onPause() {
         super.onPause()
-        Log.e("1asdasdmean","onPause")
+        ExoCommonManager.instance.stopPlayer()
+        mViewModel.addOrUpdateVideoData(
+            ExoCommonManager.instance.getCurrentVideoCode(),
+            ExoCommonManager.instance.getCurrentPos()
+        )
+    }
+
+    /**
+     * 如果有video，播放
+     */
+    override fun againOnResume() {
+        Log.e("1asdasdmean", "againOnResume")
+        playVideo()
     }
 
     override fun closeLastPlayedView(lastPos: Int) {
+
+
     }
 
     override fun updateCurPlayerView(curPos: Int, isHide: Boolean) {
 
         val holder =
             binding.recyclerLayout.findViewHolderForLayoutPosition(curPos)
+        Log.e("RecommendFragment", "updateCurPlayerView: $holder")
         if (holder is RecommendAdapter.VideoHolder) {
             holder.updateItemView(curPos, isHide)
         }
@@ -220,77 +235,43 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
         mViewModel.getRecommendData(true)
     }
 
-    override fun againOnResume() {
-        Log.e("1asdasdmean","againOnResume")
-    }
+    override fun onClick(position: Int, type: Int, videoCode: Int) {
 
-    override fun onClick(position: Int, t: Int) {
-
-//        if (mPlayer != null && mPlayer!!.isPlaying) {
-//            mPlayer!!.stop()
-//            mPosition = -1
-//        }
+        if (type == 3) {
+            ExoCommonManager.instance.stopPlayer()
+            mViewModel.addOrUpdateVideoData(
+                ExoCommonManager.instance.getCurrentVideoCode(),
+                ExoCommonManager.instance.getCurrentPos()
+            )
+        }
         val intent = Intent(mActivity, VideoPlayingActivity::class.java).apply {
-            putExtra("code", t)
+            putExtra("code", videoCode)
         }
         requestLauncher.launch(intent)
     }
 
     /**
-     * 开始播放
+     * 播放屏幕中的横屏视频
      */
-    private fun startPlay() {
+    private fun playVideo() {
 
-        /*val mRecyclerView = binding.recyclerLayout
+        val mRecyclerView = binding.recyclerLayout
         val manager = mRecyclerView.layoutManager as LinearLayoutManager
-
         val firstPos = manager.findFirstVisibleItemPosition()
         val lastPos = manager.findLastVisibleItemPosition()
-        //下一次滑动时，通过position来关闭当前已经在运行的view
-        var currentItem = 0
         for (position in firstPos..lastPos) {
-
-            val type = mRecyclerView.adapter?.getItemViewType(position)
-            if (type == 3) {//横屏视频
-
-                if (mPlayer!!.isPlaying && position == mPosition) {//在当前可视界面
-                    return
-                }
-
-                val holder =
-                    mRecyclerView.findViewHolderForLayoutPosition(position) as RecommendAdapter.VideoHolder
-                val itemView = mRecyclerView.getChildAt(currentItem) ?: continue
-//                            val holder = itemView.tag as RecommendAdapter.VideoHolder
-                val rect = Rect()
-                itemView.getLocalVisibleRect(rect)
-                val visibleHeight = rect.height()//可见的高度
-                val totalHeight = itemView.layoutParams.height//总高度
-                if (visibleHeight >= (totalHeight / 2)) {
-
-                    holder.startPlay()
-
-                    holder.playView.player = null//黑屏的处理。看api注释
-                    holder.playView.player = mPlayer
-
-                    if (position == mPosition) {//回到上次播放的地方，播放列表里还是那个item
-                        mPlayer?.prepare()
-                    } else {
-                        val file = getUrl(mActivity, holder.getFileName(position)!!)
-                        val firstLocalMediaItem = MediaItem.fromUri(Uri.fromFile(file))
-
-                        mPlayer?.run {
-                            clearMediaItems()
-                            repeatMode = Player.REPEAT_MODE_ALL
-                            addMediaItem(firstLocalMediaItem)
-                            playWhenReady = true//3.设置播放方式为自动播放
-                            prepare()//设置播放器状态为prepare
-                        }
-                        mPosition = position
+            if (mAdapter.getItemViewType(position) == 3) {//横屏视频
+                val itemData = mAdapter.getItemData(position)
+                val itemView = mRecyclerView.getChildAt(position - firstPos) ?: return
+                if (ScreenUtil.isOverHalfViewVisiable(itemView)) {
+                    val holder = mRecyclerView.findViewHolderForLayoutPosition(position)
+                    if (holder is RecommendAdapter.VideoHolder) {
+                        ExoCommonManager.instance.continuePlay(itemData.code, 1, holder.playerView)
                     }
-                    break
                 }
+                return
             }
-            currentItem += 1
-        }*/
+        }
     }
+
 }

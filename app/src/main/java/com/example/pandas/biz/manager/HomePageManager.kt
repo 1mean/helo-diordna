@@ -266,15 +266,32 @@ class PetManager {
         }
     }
 
-    suspend fun getVideoByCode(code: Int): PetVideo {
+    /**
+     * 获取当前视频信息，用户信息，和推荐视频
+     */
+    suspend fun getVideoInfo(code: Int, counts: Int): VideoInfo {
 
         return withContext(Dispatchers.IO) {
             val video = petDao.queryVideoByCode(code)
-            if (video.authorId != 0) {
-                val user = petDao.queryUserByCode(video.authorId)
-                video.user = user
+            video.user = petDao.queryUserByCode(video.authorId)
+            video.videoData = petDao.queryVideoDataByCode(code)
+            val list = petDao.queryRecommendVideos(video.type, video.authorId, code, counts)
+            if (list.isNotEmpty()) {
+                list.forEach {
+                    it.user = petDao.queryUserByCode(it.authorId)
+                }
             }
-            video
+            if (list.size < counts) {
+                val list1 =
+                    petDao.queryRecoVideosByType(video.type, video.authorId, (counts - list.size))
+                if (list1.isNotEmpty()) {
+                    list1.forEach {
+                        it.user = petDao.queryUserByCode(it.authorId)
+                    }
+                }
+                list.addAll(list1)
+            }
+            VideoInfo(video, list)
         }
     }
 
@@ -396,8 +413,10 @@ class PetManager {
                 val videoData = VideoData(videoCode = videoCode, playPosition = playPos)
                 petDao.insertVideoData(videoData)
             } else {
-                data.playPosition = playPos
-                petDao.updateVideoData(data)
+                if (data.playPosition != playPos) {
+                    data.playPosition = playPos
+                    petDao.updateVideoData(data)
+                }
             }
         }
     }

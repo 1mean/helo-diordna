@@ -3,10 +3,11 @@ package com.example.pandas.ui.ext;
 import CommonItemDecoration
 import android.app.Activity
 import android.content.Context
+import android.graphics.Typeface
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pandas.R
@@ -111,6 +112,17 @@ fun hideSoftKeyboard(activity: Activity?) {
 }
 
 /**
+ * 设置字体加粗
+ */
+fun setTextType(isBold: Boolean, value: TextView) {
+    if (isBold) {
+        value.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
+    } else {
+        value.typeface = Typeface.defaultFromStyle(Typeface.NORMAL)
+    }
+}
+
+/**
  * 图片像素为65px
  */
 fun setLevelImageResourse(level: Int, imageView: AppCompatImageView) {
@@ -127,5 +139,4 @@ fun setLevelImageResourse(level: Int, imageView: AppCompatImageView) {
         8 -> imageView.setImageResource(R.mipmap.img_level8)
         9 -> imageView.setImageResource(R.mipmap.img_level9)
     }
-
 }

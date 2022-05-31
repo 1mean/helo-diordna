@@ -75,17 +75,4 @@ public class UserInfoViewModel : BaseViewModel() {
             }
         }
     }
-
-    fun addAttention(context: Context, userCode: Int) {
-
-        viewModelScope.launch(Dispatchers.IO) {
-            SPUtils.saveList(context, AppInfos.ATTENTION_KEY, userCode.toString())
-        }
-    }
-
-    fun deleteAttention(context: Context, userCode: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            SPUtils.removeFromList(context, AppInfos.ATTENTION_KEY, userCode.toString())
-        }
-    }
 }

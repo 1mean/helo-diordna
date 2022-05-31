@@ -31,7 +31,7 @@ import com.example.pandas.utils.TimeUtils
 public class RecommendAdapter(
     private val lifecycle: Lifecycle,
     private var data: RecommendData<PetVideo>,
-    private val listener: OnItemmmmClickListener<Int>
+    private val listener: OnRecoItemClickListener
 ) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
@@ -196,7 +196,7 @@ public class RecommendAdapter(
             title.text = petVideo.title
 
             itemView.setOnClickListener {
-                listener.onClick(position, petVideo.code)
+                listener.onClick(position, 2, petVideo.code)
             }
         }
     }
@@ -217,9 +217,8 @@ public class RecommendAdapter(
                     ContextCompat.getColor(itemView.context, R.color.white)
                 )
                 val adapter = RecoViewPagerAdapter(list)
-                this.banner.setLifecycleRegistry(lifecycle)
 
-                this.banner.setAdapter(adapter)
+                this.banner.setLifecycleRegistry(lifecycle).setAdapter(adapter)
                     .setIndicator(indicator, true)
                     .setAutoPlayed(true)
             }
@@ -262,14 +261,18 @@ public class RecommendAdapter(
             title.text = petVideo.title
             itemView.setOnClickListener {
                 shelter.visibility = View.VISIBLE
-                listener.onClick(position, petVideo.code)
+                listener.onClick(position, 3, petVideo.code)
             }
 
             playView.setOnClickListener {
                 shelter.visibility = View.VISIBLE
-                listener.onClick(position, petVideo.code)
+                listener.onClick(position, 3, petVideo.code)
             }
         }
     }
 
+    public interface OnRecoItemClickListener {
+
+        fun onClick(position: Int, type: Int, videoCode: Int)
+    }
 }

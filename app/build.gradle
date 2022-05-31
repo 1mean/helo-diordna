@@ -109,10 +109,11 @@ dependencies {
     //圆角
     implementation 'com.github.KuangGang:RoundCorners:2.0.0'
 
-    //AgentWeb
-    implementation 'com.just.agentweb:agentweb-androidx:4.1.4'
-    implementation 'com.just.agentweb:filechooser-androidx:4.1.4'
-    implementation 'com.download.library:downloader-androidx:4.1.4'
+    //阴影+水波
+    implementation 'com.github.lihangleo2:ShadowLayout:3.2.4'
+
+    //popu弹窗
+    implementation 'com.github.li-xiaojun:XPopup:2.8.2'
 
     var lifecycle_version = "2.4.0"
     // ViewModel

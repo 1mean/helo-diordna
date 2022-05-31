@@ -9,8 +9,10 @@ import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.AppException
 import com.example.pandas.biz.http.exception.ExceptionHandle
 import com.example.pandas.utils.SPUtils
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * @description: BaseViewModel
@@ -41,11 +43,39 @@ open class BaseViewModel : ViewModel() {
     fun isAttention(context: Context, id: Int): Boolean {
 
         val list = SPUtils.getList<String>(context, AppInfos.ATTENTION_KEY)
-        Log.e("1mean", "id:$id, list:$list")
         if (list.isEmpty()) {
             return false
         } else {
             return list.contains(id.toString())
+        }
+    }
+
+    fun follow(context: Context, userCode: Int) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                SPUtils.saveList<String>(context, AppInfos.ATTENTION_KEY, userCode.toString())
+            }
+        }
+    }
+
+    fun unFollow(context: Context, userCode: Int) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                SPUtils.removeFromList<String>(context, AppInfos.ATTENTION_KEY, userCode.toString())
+            }
+        }
+    }
+
+    fun addAttention(context: Context, userCode: Int) {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            SPUtils.saveList(context, AppInfos.ATTENTION_KEY, userCode.toString())
+        }
+    }
+
+    fun deleteAttention(context: Context, userCode: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            SPUtils.removeFromList(context, AppInfos.ATTENTION_KEY, userCode.toString())
         }
     }
 

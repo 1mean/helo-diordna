@@ -8,6 +8,7 @@ package com.example.pandas.app
  */
 object AppInfos {
 
+    val AUTHOR_ID = 1074309089 //作者ID
     val DEBUG_LOG_TAG = "pandas_log" //debug版本的默认删除日志tag
     val SEARCH_KEY = "history" //搜索历史记录存入sp的key
     val ATTENTION_KEY = "attention" //搜索关注列表的key
@@ -38,4 +39,6 @@ object AppInfos {
         "human_baby" to "https://i1.hdslb.com/bfs/archive/3ff9843ac7c088c541d56b7f1fb642486651b7da.jpg",
         "art" to "https://i0.hdslb.com/bfs/archive/cd2661ecb62a563fa5cd2bb1ab837192516d858d.jpg"
     )
+
+    val headImgUrl = "https://i0.hdslb.com/bfs/face/member/noface.jpg@240w_240h_1c_1s.webp"
 }

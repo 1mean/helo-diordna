@@ -2,7 +2,9 @@ package com.example.pandas.ui.fragment
 
 import android.graphics.Typeface
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,9 +14,13 @@ import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.startUserInfoActivity
 import com.example.pandas.biz.interaction.OnVideoItemClickLIstener
 import com.example.pandas.biz.viewmodel.VideoViewModel
+import com.example.pandas.databinding.DialogAttentionCancelBinding
 import com.example.pandas.databinding.FragmentInformationBinding
 import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.adapter.VideoRecoListAdapter
+import com.example.pandas.utils.NumUtils
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.lang.StringBuilder
 
 /**
  * @description: VideoInfosFragment
@@ -35,8 +41,8 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
     private var isLike = false
     private var isLove = false
     private var isCollect = false
-
-    private var user: User? = null
+    private var isAttention = false
+    private lateinit var bottomSheetDialog: BottomSheetDialog
 
     override fun lazyLoadTime(): Long = 0
 
@@ -53,23 +59,37 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
             adapter = mAdapter
         }
 
-        binding.imgVideoInfoHead.setOnClickListener {
-            user?.let {
-                startUserInfoActivity(mActivity, it)
-            }
+        binding.clayoutVideoInfoFollow.setOnClickListener {
+
         }
     }
 
     override fun createObserver() {
 
-        mViewModel.videoInfo.observe(viewLifecycleOwner) {
+        mViewModel.videos.observe(viewLifecycleOwner) {
 
-            if (it.isStar) {
+            val videoInfo = it.videoInfo
+            val recoList = it.recoVideos
+
+            if (videoInfo.isStar) {
                 isLove = true
                 binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
             }
 
-            it.user?.let { author ->
+            binding.txtInfoTime.text = videoInfo.releaseTime
+
+            val playCounts = (1..1000 * 100).random()
+            val commentCounts = (1..100).random()
+            val fansCounts = (1..5000).random()
+            val videoCounts = (1..50).random()
+            binding.txtInfoCounts.text = NumUtils.getShortNum(playCounts)
+            binding.txtInfoComment.text = commentCounts.toString()
+            binding.txtVideoInfoFans.text =
+                StringBuilder(fansCounts.toString()).append("粉丝").toString()
+            binding.txtVideoInfoVideos.text =
+                StringBuilder(videoCounts.toString()).append("视频").toString()
+
+            videoInfo.user?.let { author ->
 
                 author.headUrl?.let { loadCircleImage(mActivity, it, binding.imgVideoInfoHead) }
                 if (author.isVip == 1) {//是会员
@@ -81,37 +101,75 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                         )
                     )
                 }
-                user = author
+                binding.txtVideoInfoName.text = author.userName
+
+                isAttention = mViewModel.isAttention(mActivity, author.userCode)
+                if (isAttention) {//已关注
+                    binding.llayoutInfoAttention.visibility = View.GONE
+                    binding.llayoutInfoAttentioned.visibility = View.VISIBLE
+                    binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_unattention)
+                }
+
+                binding.imgVideoInfoHead.setOnClickListener {
+                    startUserInfoActivity(mActivity, author)
+                }
+
+                binding.clayoutVideoInfoFollow.setOnClickListener {
+                    if (isAttention) {
+                        bottomSheetDialog = BottomSheetDialog(mActivity)
+                        val dBinding = DialogAttentionCancelBinding.inflate(LayoutInflater.from(mActivity))
+
+                        dBinding.rlayoutAdd.setOnClickListener {
+                            Toast.makeText(mActivity, "加入特别关注", Toast.LENGTH_SHORT).show()
+                            bottomSheetDialog.dismiss()
+                        }
+                        dBinding.rlayoutGroup.setOnClickListener {
+                            Toast.makeText(mActivity, "加入默认分组", Toast.LENGTH_SHORT).show()
+                            bottomSheetDialog.dismiss()
+                        }
+                        dBinding.rlayoutCancel.setOnClickListener { _ ->
+                            mViewModel.deleteAttention(mActivity, author.userCode)
+                            binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_attention)
+                            binding.llayoutInfoAttention.visibility = View.VISIBLE
+                            binding.llayoutInfoAttentioned.visibility = View.GONE
+                            Toast.makeText(mActivity, "已取消关注", Toast.LENGTH_SHORT).show()
+                            isAttention = false
+                            bottomSheetDialog.dismiss()
+                        }
+                        dBinding.txtCancel.setOnClickListener {
+                            bottomSheetDialog.dismiss()
+                        }
+                        bottomSheetDialog.setContentView(dBinding.root)
+                        bottomSheetDialog.setCancelable(true)
+                        bottomSheetDialog.setCanceledOnTouchOutside(true)
+                        bottomSheetDialog.show()
+                    } else {
+                        isAttention = true
+                        mViewModel.follow(mActivity,author.userCode)
+                        binding.llayoutInfoAttention.visibility = View.GONE
+                        binding.llayoutInfoAttentioned.visibility = View.VISIBLE
+                        binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_unattention)
+                        Toast.makeText(mActivity, "已关注", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
 
-            if (it.user == null) {
-                it.cover?.let { cover ->
+            if (videoInfo.user == null) {
+                videoInfo.cover?.let { cover ->
                     loadCircleImage(mActivity, cover, binding.imgVideoInfoHead)
                 }
             }
 
-            it.user?.let { user ->
-                binding.txtVideoInfoName.text = user.userName
-            }
-
-            it.releaseTime?.let { time ->
-                binding.txtVideoInfoTime.text = time
-            }
-            it.title?.let { title ->
+            videoInfo.title?.let { title ->
                 binding.txtVideoInfoTitle.text = title
             }
 
+            mAdapter.refreshAdapter(recoList)
             binding.viewVideoInfo.visibility = View.VISIBLE
-        }
-
-        mViewModel.recommendVideos.observe(viewLifecycleOwner) { list ->
-
-            mAdapter.refresh(list)
         }
     }
 
     override fun firstOnResume() {
-        mViewModel.getRecommendVideos()
     }
 
 

@@ -76,4 +76,7 @@
     <!-- 修改BottomNavigationView框架 布局默认的间距，满足项目需求-->
     <dimen tools:override="true" name="design_bottom_navigation_margin">11dp</dimen>
 
+    <!--video-->
+    <dimen name="dimen_comment_item_padding_top">8dp</dimen>
+    <dimen name="dimen_comment_item_padding_bottom">10dp</dimen>
 </resources>

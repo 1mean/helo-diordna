@@ -17,7 +17,6 @@ import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.controller.VideoIntroController
 import com.example.pandas.biz.interaction.CommonResultListener
 import com.example.pandas.databinding.FragmentVideoIntroBinding
-import com.example.pandas.ui.adapter.VideoRecommendAdapter
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -86,10 +85,10 @@ public class VideoIntroFragment : Fragment(), CommonResultListener<MutableList<E
 
     override fun onResult(data: MutableList<EyepetozerItem>) {
 
-        val adapter = VideoRecommendAdapter(data)
+        //val adapter = VideoRecommendAdapter(data)
         val recyclerView = binding.rvVideo
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = adapter
+        //recyclerView.adapter = adapter
     }
 
     override fun onFailure(errorMessage: String) {

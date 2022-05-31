@@ -58,6 +58,11 @@ fun loadEmptyCircleImage(context: Context, view: ImageView) {
     Glide.with(context).load(R.mipmap.img_holder).apply(options).into(view)
 }
 
+fun loadHeadCircleImage(context: Context, url: String, view: ImageView) {
+    val options = RequestOptions.bitmapTransform(CircleCrop())
+    Glide.with(context).load(url).placeholder(R.mipmap.img_place_header).apply(options).into(view)
+}
+
 fun loadLayoutBackGround(context: Context, url: String, view: View) {
 
 //    Glide.with(mContext)

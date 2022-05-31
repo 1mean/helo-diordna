@@ -21,7 +21,7 @@ import com.example.pandas.ui.ext.setRefreshColor
 public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
 
     private val mAdapter: MyLoveFragmentAdapter by lazy {
-        MyLoveFragmentAdapter(PageCommonData())
+        MyLoveFragmentAdapter(lifecycle, PageCommonData())
     }
 
     override fun initView(savedInstanceState: Bundle?) {

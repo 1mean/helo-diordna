@@ -709,7 +709,7 @@ object UserData {
         user64.level = 6
         user64.isVip = 1
         user64.headUrl =
-            "https://i1.hdslb.com/bfs/face/e2c1f4af98ed60b119ee5783c3c2807e5fdb8ad1.jpg"
+            "https://i2.hdslb.com/bfs/face/3e9f3aa5b47ee5f208eb8604afe71370a1040f6d.jpg"
         user64.userName = "cicada十八"
         user64.signature = ""
         list.add(user64)

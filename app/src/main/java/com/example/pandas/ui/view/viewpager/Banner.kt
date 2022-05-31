@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import kotlin.math.abs
 
 /**
@@ -33,7 +32,7 @@ import kotlin.math.abs
  * @date: 2021/12/24 10:55 上午
  * @version: v1.0
  */
-public class Banner : RelativeLayout, LifecycleObserver {
+class Banner : RelativeLayout, LifecycleObserver {
 
     private var scaledTouchSlop: Int = 0
     private var _mViewPager: ViewPager2? = null
@@ -86,9 +85,29 @@ public class Banner : RelativeLayout, LifecycleObserver {
         addView(_mViewPager)
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    public fun onPause() {
+
+        if (isAutoPlayed() && isStartPlaying && isAttached) {
+            Log.e("banner", "onPause")
+            stopPlaying()
+        }
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    public fun onResume() {
+        if (isAutoPlayed() && getRealCount() > 1 && !isStartPlaying && isAttached) {
+            Log.e("banner", "onResume")
+            startPlaying()
+        }
+    }
+
+    private var isAttached: Boolean = false
+
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        Log.e("1mean", "onAttachedToWindow")
+        isAttached = true
+        Log.e("banner", "onAttachedToWindow")
         if (isAutoPlayed() && getRealCount() > 1 && !isStartPlaying) {
             startPlaying()
         }
@@ -96,8 +115,8 @@ public class Banner : RelativeLayout, LifecycleObserver {
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-
-        Log.e("1mean", "banner onDetachedFromWindow " + isAutoPlayed())
+        isAttached = false
+        Log.e("banner", "banner onDetachedFromWindow " + isAutoPlayed())
         if (isAutoPlayed()) {
             stopPlaying()
         }
@@ -336,18 +355,6 @@ public class Banner : RelativeLayout, LifecycleObserver {
     fun setLifecycleRegistry(lifecycleRegistry: Lifecycle): Banner {
         lifecycleRegistry.addObserver(this)
         return this
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    public fun onPause() {
-        Log.e("1mean", "onPause")
-        stopPlaying()
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    public fun onResume() {
-        Log.e("1mean", "onResume")
-        startPlaying()
     }
 
     /* --对外暴露的方法--------------------------------------------------------------------------- */

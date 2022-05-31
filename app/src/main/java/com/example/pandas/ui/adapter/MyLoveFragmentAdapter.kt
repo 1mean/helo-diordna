@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
@@ -30,6 +31,7 @@ import kotlinx.coroutines.flow.flow
  * @version: v1.0
  */
 public class MyLoveFragmentAdapter(
+    private val lifecycle: Lifecycle,
     private var data: PageCommonData
 ) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
@@ -201,7 +203,7 @@ public class MyLoveFragmentAdapter(
             )
             val adapter = ImageAdapter(list)
 
-            this.banner.setAdapter(adapter)
+            this.banner.setLifecycleRegistry(lifecycle).setAdapter(adapter)
                 .setIndicator(indicator, true)
                 .setAutoPlayed(true)
         }
