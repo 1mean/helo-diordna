@@ -56,9 +56,9 @@ public class CommentAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun sendComment(comment:VideoComment){
-        Log.e("1mean","comment: $comment")
-        list.add(0,comment)
+    fun sendComment(comment: VideoComment) {
+        Log.e("1mean", "comment: $comment")
+        list.add(0, comment)
         notifyDataSetChanged()
     }
 
@@ -120,7 +120,8 @@ public class CommentAdapter(
                 name.text = it.userName
             }
 
-            content.text = videoComment.content
+            content.setContent("林清", videoComment.content, 0)
+//            content.text = videoComment.content
             date.text = TimeUtils.parseTime(videoComment.commitTime)
 
             viewInit(videoComment)

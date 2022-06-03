@@ -1,6 +1,5 @@
 package com.example.pandas.ui.view.recyclerview
 
-import AdapterWrapper
 import OnItemClickListener
 import OnItemLongClickListener
 import android.annotation.SuppressLint

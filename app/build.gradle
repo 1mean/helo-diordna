@@ -115,6 +115,9 @@ dependencies {
     //popu弹窗
     implementation 'com.github.li-xiaojun:XPopup:2.8.2'
 
+    //SuperTextView
+
+
     var lifecycle_version = "2.4.0"
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")

@@ -1,3 +1,7 @@
+package com.example.pandas.ui.view.recyclerview
+
+import OnItemClickListener
+import OnItemLongClickListener
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager

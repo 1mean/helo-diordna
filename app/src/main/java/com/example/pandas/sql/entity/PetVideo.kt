@@ -55,5 +55,9 @@ data class PetVideo(
     var videoData: VideoData? = null,
 
     @Ignore
-    var isPlaying: Boolean = false  //是否正在播放中，用于状态标识
+    var isPlaying: Boolean = false,  //是否正在播放中，用于状态标识
+
+    @Ignore
+    //是否标记为核心最可爱的视频
+    var hasFlag:Boolean = false
 )

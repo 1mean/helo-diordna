@@ -2,7 +2,6 @@
 <resources>
 
     <declare-styleable name="MyViewPager2">
-
         <attr name="loop_time" format="integer" />
         <attr name="auto_loop" format="boolean" />
 
@@ -10,16 +9,12 @@
         <attr name="indicator_width" format="dimension"/>
         <attr name="indicator_height" format="dimension" />
         <attr name="indicator_space" format="dimension" />
-
-
-
         <attr name="indicator_radius" format="dimension" />
 
         <!-- 以下为公用属性 -->
         <attr name="indicator_selected_width" format="dimension" />
         <!--CircleIndicator-->
         <attr name="indicator_normal_width" format="dimension" />
-
 
         <attr name="indicator_normal_color" format="reference|color" />
         <attr name="indicator_selected_color" format="reference|color" />
@@ -28,7 +23,20 @@
         <attr name="indicator_marginTop" format="dimension" />
         <attr name="indicator_marginRight" format="dimension" />
         <attr name="indicator_marginBottom" format="dimension" />
+    </declare-styleable>
 
+    <declare-styleable name="ExtendTextView">
+        <!--颜色部分-->
+        <attr name="normal_textColor" format="reference|color" />
+        <attr name="clickable_textColor" format="reference|color" />
+
+        <!--大小-->
+        <attr name="normal_textSize" format="dimension"/>
+        <attr name="clickable_textSize" format="dimension" />
+
+        <!--内容-->
+        <attr name="clickable_content" format="string" />
 
     </declare-styleable>
+
 </resources>
