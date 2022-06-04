@@ -34,8 +34,17 @@
         <attr name="normal_textSize" format="dimension"/>
         <attr name="clickable_textSize" format="dimension" />
 
+        <!--行间距-->
+        <attr name="column_padding" format="dimension" />
+        <attr name="margin_left" format="dimension" />
+        <attr name="margin_right" format="dimension" />
+        <attr name="margin_top" format="dimension" />
+        <attr name="margin_bottom" format="dimension" />
+
         <!--内容-->
-        <attr name="clickable_content" format="string" />
+        <attr name="normal_content" format="string" />
+        <attr name="user_from" format="string" />
+        <attr name="user_to" format="string" />
 
     </declare-styleable>
 

@@ -9,17 +9,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <com.example.pandas.ui.view.recyclerview.NestedScrollableHost
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-            <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
-                    android:id="@+id/recycler_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:nestedScrollingEnabled="false"
-                    android:visibility="gone" />
-        </com.example.pandas.ui.view.recyclerview.NestedScrollableHost>
+        <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
+                android:id="@+id/recycler_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false"
+                android:visibility="gone" />
 
         <include
                 android:id="@+id/layout_error"

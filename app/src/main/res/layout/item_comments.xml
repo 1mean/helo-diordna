@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:stv="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -60,27 +59,29 @@
             android:layout_marginTop="7dp"
             android:layout_marginStart="59dp"
             android:layout_marginEnd="12dp"
+            app:margin_left="@dimen/dimen_comment_content_margin_left"
+            app:margin_right="@dimen/dimen_comment_content_margin_right"
+            app:margin_top="2dp"
+            app:margin_bottom="2dp"
             app:normal_textColor="@color/grey900"
-            android:textSize="15sp"
-            android:lineSpacingExtra="4dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp" />
-<!--
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_comment_item_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@id/llayout_comment_item_name"
-            app:layout_constraintTop_toBottomOf="@id/txt_comment_item_date"
-            android:layout_marginTop="7dp"
-            android:layout_marginStart="59dp"
-            android:layout_marginEnd="12dp"
-            android:textColor="@color/grey900"
-            android:textSize="15sp"
-            android:lineSpacingExtra="4dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp" />
--->
+            app:clickable_textColor="@color/color_comment_reply_user"
+            app:normal_textSize="@dimen/common_sz_15_dimens" />
+    <!--
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_comment_item_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/llayout_comment_item_name"
+                app:layout_constraintTop_toBottomOf="@id/txt_comment_item_date"
+                android:layout_marginTop="7dp"
+                android:layout_marginStart="59dp"
+                android:layout_marginEnd="12dp"
+                android:textColor="@color/grey900"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp" />
+    -->
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/llayout_comment_item_like"
@@ -216,7 +217,6 @@
             android:layout_marginEnd="12dp"
             android:background="@drawable/shape_bg_comment_like"
             app:layout_constraintTop_toBottomOf="@id/clayout_comment_uplike">
-
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

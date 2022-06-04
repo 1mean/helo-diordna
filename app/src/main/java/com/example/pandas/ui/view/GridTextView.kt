@@ -99,7 +99,7 @@ public class GridTextView : ViewGroup {
 
             if (list.isNotEmpty()) {
 
-                for (position in 0 until list.size) {
+                for (position in list.indices) {
 
                     val childView = getChildAt(position)
                     if (childView != null) {

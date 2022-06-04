@@ -10,7 +10,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.bean.VideoComment
-import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadHeadCircleImage
 import com.example.pandas.databinding.ItemCommentsBinding
 import com.example.pandas.databinding.ItemTopCommentsBinding
@@ -120,13 +119,12 @@ public class CommentAdapter(
                 name.text = it.userName
             }
 
-            content.setContent("林清", videoComment.content, 0)
+            content.setContent(videoComment.content, "张三", "里斯", 0)
 //            content.text = videoComment.content
             date.text = TimeUtils.parseTime(videoComment.commitTime)
 
             viewInit(videoComment)
             onClick(videoComment)
-
         }
 
         private fun viewInit(videoComment: VideoComment) {
