@@ -18,7 +18,7 @@ import kotlin.math.ceil
 
 /**
  * @description: 只适用于本项目评论文字的TextView
- *
+ *   --TODO:`更多`的功能放到后面
  *
  *
  * @author: dongyiming
@@ -45,7 +45,6 @@ public class ExtendTextView : View {
     //设定属性
     private var totalHeight: Int = 0
     private var maxWidth: Int = 0
-    private val lineSpace: Int = 5 //行间距
     private val maxLines = Integer.MAX_VALUE //最大行数
 
 
@@ -96,21 +95,26 @@ public class ExtendTextView : View {
     }
 
     /**
-     * 目前四种状态
+     * 目前项目里评论文字的四种状态
+     * - 0，普通
      * - 1，名 up：---
+     *      - 和花UP: 你好吗
      * - 2，回复 @名：---
+     *      - 回复 @和花 :这里和花是UP，不需要带UP标识，@和花都变色
      * - 3，名 回复 名：---
+     *      - 和花 回复 @和叶 :你好啊
      */
-    fun setContent(content: String, from: String, to: String, state: Int) {
+    fun setContent(content: String, from: String, to: String, state: Int, isUp: Boolean) {
 
         this.contentText = content
         this.userFromText = from
         this.userToText = to
 
         when (state) {
-            0 -> mText = "$userFromText: $contentText"
-            1 -> mText = "回复 @$userToText: $contentText"
-            2 -> mText = "@userFromText 回复 @$userToText :$contentText"
+            0 -> mText = "$contentText"
+            1 -> mText = "$userFromText: $contentText"
+            2 -> mText = "回复 @$userToText :$contentText"
+            3 -> mText = "$userFromText 回复 @$userToText :$contentText"
         }
     }
 
@@ -120,8 +124,7 @@ public class ExtendTextView : View {
         val measureWidth = measureWidth(widthMeasureSpec)
         val measureHeight = measureHeight(heightMeasureSpec)
 
-        Log.e("12333asdasd333mean", "$mText")
-        Log.e("12333asdasd333mean", "$measureWidth, $measureHeight")
+        Log.e("ExtendTextView", "最终测量结果：宽=$measureWidth, 高(减行间距加上下顶)=$measureHeight")
         setMeasuredDimension(measureWidth, measureHeight)
     }
 
@@ -138,7 +141,8 @@ public class ExtendTextView : View {
         //初始化高度
         val metrics = mPaint.fontMetrics //字体的各种指标属性
         Log.e("1mean", "descent=${metrics.descent},bottom=${metrics.bottom}")
-        lineHeight = (ceil((metrics.descent - metrics.top).toDouble()) + lineSpace).toInt()
+        lineHeight =
+            ceil((metrics.descent - metrics.top).toDouble()).toInt() + columnPadding.toInt()
 
         Log.e(
             "12333asdasd333mean",
@@ -172,14 +176,12 @@ public class ExtendTextView : View {
                     return@forEach
                 }
             }
-
-            Log.e(
-                "12333asdasd333mean",
-                "lineNum: $lineNum ,lineHeight: $lineHeight ,lineSpace:$lineSpace"
-            )
-            totalHeight = lineNum * lineHeight - lineSpace
+            //总高度需要减去一个columnPadding,然后加上marginTop和marginBottom
+            totalHeight =
+                lineNum * lineHeight - columnPadding.toInt() + marginTop.toInt() + marginBottom.toInt()
         }
-        var result = totalHeight + marginTop.toInt() + marginBottom.toInt()
+        Log.e("ExtendTextView", "测量结果：行数=$lineNum, 行高(含行间距)=$lineHeight, 行间距=$columnPadding")
+        var result = totalHeight
         if (mode == MeasureSpec.AT_MOST) {
             result = size
         } else if (mode == MeasureSpec.EXACTLY) {
@@ -216,7 +218,7 @@ public class ExtendTextView : View {
         val mString = Vector<String>()
         val metrics = mPaint.fontMetrics //字体的各种指标属性
         val height = ceil((metrics.descent - metrics.top).toDouble())
-        lineHeight = (height + lineSpace).toInt()
+        lineHeight = (height + columnPadding).toInt()
 
         //默认基线在原点，无法显示，为了让文字可以显示出来，不至于被遮盖，特别是第一行，这个值要根据字体大小设置
         val x = 0
@@ -250,7 +252,7 @@ public class ExtendTextView : View {
                 }
                 index++
             }
-            totalHeight = lineNum * lineHeight - lineSpace
+            totalHeight = lineNum * lineHeight - columnPadding.toInt()
             for (i in 0 until lineNum) {
                 //其实设置y的只就是为了迎合这个函数，要是不清楚可以自己百度一下
                 Log.e("adasdasdasd", "x: $x ,y=${(y + lineHeight * i)}")
@@ -264,6 +266,49 @@ public class ExtendTextView : View {
                     (y + lineHeight * i).toFloat(), mPaint
                 )
             }
+        }
+    }
+
+    /**
+     * 目前项目里评论文字的四种状态
+     * - 0，普通
+     * - 1，名 up：---
+     *      - 和花UP: 你好吗
+     * - 2，回复 @名：---
+     *      - 回复 @和花 :这里和花是UP，不需要带UP标识，@和花都变色
+     * - 3，名 回复 名：---
+     *      - 和花 回复 @和叶 :你好啊
+     */
+    private fun drawState(state: Int) {
+
+        var lineWidth = 0
+        var lineHeight = 0
+        var lineNum = 1
+        var start = 0 //定位，用于截取字符串
+        var index = 0
+
+        val mString = Vector<String>()
+        val metrics = mPaint.fontMetrics //字体的各种指标属性
+        val height = ceil((metrics.descent - metrics.top).toDouble())
+        lineHeight = (height + columnPadding).toInt()
+
+        //默认基线在原点，无法显示，为了让文字可以显示出来，不至于被遮盖，特别是第一行，这个值要根据字体大小设置
+        val x = 0
+        val y = height.toInt()
+
+
+        val toTextLength = userToText.length
+        if (state == 1) {
+            val fromTextLength = userFromText.length
+
+
+
+
+
+
+
+
+
         }
     }
 }

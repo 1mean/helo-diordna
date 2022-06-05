@@ -83,7 +83,7 @@
     <color name="color_comment_name">#757575</color>
     <color name="color_bg_comment_like">#F4F4F4</color>
     <color name="color_edit_cursor_comment">#FF4D9B</color>
-    <color name="color_comment_reply_user">#008AC9</color>
+    <color name="color_comment_reply_user">#0091DE</color>
 
     <!--home fragment-->
     <color name="color_search_text">#acb3b8</color>

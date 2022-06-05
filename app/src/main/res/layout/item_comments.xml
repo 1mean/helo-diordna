@@ -50,7 +50,7 @@
             app:layout_constraintTop_toBottomOf="@id/llayout_comment_item_name"
             android:layout_marginTop="2dp" />
 
-    <com.example.pandas.ui.view.ExtendTextView
+    <!--<com.example.pandas.ui.view.ExtendTextView
             android:id="@+id/txt_comment_item_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,27 +61,27 @@
             android:layout_marginEnd="12dp"
             app:margin_left="@dimen/dimen_comment_content_margin_left"
             app:margin_right="@dimen/dimen_comment_content_margin_right"
-            app:margin_top="2dp"
-            app:margin_bottom="2dp"
+            app:column_padding="@dimen/common_lh_4_dimens"
+            app:margin_top="3dp"
+            app:margin_bottom="3dp"
             app:normal_textColor="@color/grey900"
             app:clickable_textColor="@color/color_comment_reply_user"
-            app:normal_textSize="@dimen/common_sz_15_dimens" />
-    <!--
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_comment_item_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="@id/llayout_comment_item_name"
-                app:layout_constraintTop_toBottomOf="@id/txt_comment_item_date"
-                android:layout_marginTop="7dp"
-                android:layout_marginStart="59dp"
-                android:layout_marginEnd="12dp"
-                android:textColor="@color/grey900"
-                android:textSize="15sp"
-                android:lineSpacingExtra="4dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp" />
-    -->
+            app:normal_textSize="@dimen/common_sz_15_dimens" />-->
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_comment_item_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/llayout_comment_item_name"
+            app:layout_constraintTop_toBottomOf="@id/txt_comment_item_date"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="59dp"
+            android:layout_marginEnd="12dp"
+            android:textColor="@color/grey900"
+            android:textSize="15sp"
+            android:lineSpacingExtra="4dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/llayout_comment_item_like"
@@ -211,21 +211,82 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llayout_comment_more"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="12dp"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
             android:background="@drawable/shape_bg_comment_like"
             app:layout_constraintTop_toBottomOf="@id/clayout_comment_uplike">
 
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_comment1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:paddingTop="7dp"
+                android:lineSpacingExtra="4dp"
+                android:text="我去你大爷的我去你大爷的我去你大爷的我去你大爷的我去你大爷的我去你大爷的我去你大爷的我去你大爷的我去你大爷的"
+                android:textColor="@color/grey900"
+                android:textSize="14sp"
+                android:maxLines="2"
+                android:ellipsize="end" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_comment2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:paddingTop="7dp"
+                android:text="我去你大爷的"
+                android:textSize="14sp"
+                android:textColor="@color/grey900"
+                android:maxLines="2"
+                android:ellipsize="end" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_message_all"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:orientation="horizontal"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_item_comment_counts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_message_all"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_message_all"
+                    android:layout_marginBottom="3dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_comment_reply_user"
+                    android:text="共6条回复" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:layout_constraintLeft_toRightOf="@id/txt_item_comment_counts"
+                    app:layout_constraintBottom_toBottomOf="@id/txt_item_comment_counts"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginBottom="2dp"
+                    android:src="@mipmap/img_comment_all" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <View
             android:layout_width="0dp"
             android:layout_height="0.33dp"
-            app:layout_constraintTop_toBottomOf="@id/clayout_comment_uplike"
+            app:layout_constraintTop_toBottomOf="@id/llayout_comment_more"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="4dp"
             android:background="@color/color_bg_user_divider" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,10 @@
 package com.example.pandas.ui.adapter
 
 import android.annotation.SuppressLint
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -102,6 +106,12 @@ public class CommentAdapter(
         val date = binding.txtCommentItemDate
         val upLikeView = binding.clayoutCommentUplike
 
+        val comment1 = binding.txtComment1
+        val comment2 = binding.txtComment2
+        val layoutAll = binding.clayoutMessageAll
+        val commentCounts = binding.txtItemCommentCounts
+        val clickableColor = ContextCompat.getColor(context,R.color.color_comment_reply_user)
+
         fun handle(position: Int) {
 
             val videoComment = list[position - 1]
@@ -119,8 +129,13 @@ public class CommentAdapter(
                 name.text = it.userName
             }
 
-            content.setContent(videoComment.content, "张三", "里斯", 0)
-//            content.text = videoComment.content
+            val builder = SpannableStringBuilder(videoComment.content)
+            val colorSpan = ForegroundColorSpan(clickableColor)
+            builder.setSpan(colorSpan,2,5,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            //content.setContent(videoComment.content, "张三", "里斯", 0)
+            content.text = builder
+
             date.text = TimeUtils.parseTime(videoComment.commitTime)
 
             viewInit(videoComment)

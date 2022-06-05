@@ -59,5 +59,8 @@ data class PetVideo(
 
     @Ignore
     //是否标记为核心最可爱的视频
-    var hasFlag:Boolean = false
+    var hasFlag: Boolean = false,
+    @Ignore
+    //是否是竖屏视屏
+    var isVertical: Boolean = false
 )

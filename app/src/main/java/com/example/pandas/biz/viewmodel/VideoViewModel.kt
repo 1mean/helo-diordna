@@ -75,7 +75,7 @@ public class VideoViewModel : BaseViewModel() {
         request({
             val list = TempData.getComments(20)
             list.forEach {
-                val user = PetManagerCoroutine.getUser(it.userCode)
+                val user = PetManagerCoroutine.getUser(it.fromUserCode)
                 it.user = user
             }
             list
@@ -109,7 +109,7 @@ public class VideoViewModel : BaseViewModel() {
 
             val comment = VideoComment()
             comment.commitTime = System.currentTimeMillis()
-            comment.userCode = AppInfos.AUTHOR_ID
+            comment.fromUserCode = AppInfos.AUTHOR_ID
             comment.type = 0
             comment.content = content
             videoInfo.value?.let {
