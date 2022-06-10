@@ -1,8 +1,8 @@
 package com.example.pandas.data
 
-import com.example.pandas.bean.VideoComment
+import com.example.pandas.sql.entity.VideoComment
 
-object TempData {
+object CommentData {
 
     private val list = mutableListOf<VideoComment>()
     fun getList(): MutableList<VideoComment> {
@@ -264,7 +264,7 @@ object TempData {
         comment23.videoCode = 1982
         comment23.content = "坐着吃笋的花花真是可爱惨了。"
         comment23.type = 1
-        comment23.fromUserCode = 2087432052
+        comment23.fromUserCode = 384395600
         comment23.commitTime = 1653990012000
         comment23.likeNum = (0..100).random()
         comment23.isUpLike = false
@@ -275,7 +275,7 @@ object TempData {
         comment24.videoCode = 1982
         comment24.content = "16:9小能能"
         comment24.type = 1
-        comment24.fromUserCode = 396343652
+        comment24.fromUserCode = 30738231
         comment24.commitTime = 1653990032000
         comment24.likeNum = (0..100).random()
         comment24.isUpLike = false
@@ -357,10 +357,10 @@ object TempData {
         comment30.videoCode = 1982
         comment30.content = "现在花花吃苹果比以前好很多了！！再给她一点时间，我相信她慢慢的每件事情都能做好"
         comment30.type = 3
-        comment28.fromUserCode = 435041418
-        comment28.fromUserName = "来1碗小仙女Oo"
-        comment28.toUserCode = 19429622
-        comment28.toUserName = "我跟白敬亭私奔了"
+        comment30.fromUserCode = 435041418
+        comment30.fromUserName = "来1碗小仙女Oo"
+        comment30.toUserCode = 19429622
+        comment30.toUserName = "我跟白敬亭私奔了"
         comment30.commitTime = 1653849896000
         comment30.likeNum = (0..100).random()
         comment30.isUpLike = false
@@ -478,34 +478,4 @@ object TempData {
         39546503,
         1998535,
     )
-
-    val contents = arrayListOf<String>(
-        "我不是你喜欢的😊",
-        "毛呢我不是你喜欢的我不是你喜欢的我不是你喜欢的我不是你喜欢的我不是你喜欢的我不是你喜欢的",
-        "我不是你喜欢的我不是你喜欢阿萨德大事阿斯顿是你喜欢的我不是你喜欢的"
-    )
-
-    fun getComments(count: Int): MutableList<VideoComment> {
-
-        val list = mutableListOf<VideoComment>()
-        var time = 1653849393000
-        for (i in 1..count) {
-            var isUpLike = false
-            val num1 = (0..100).random()
-            if (num1 > 70) {
-                isUpLike = true
-            }
-            val num2 = (1..200).random()
-            val comment = VideoComment(
-                fromUserCode = userCode.random(),
-                commitTime = time.toLong(),
-                content = contents.random(),
-                isUpLike = isUpLike,
-                likeNum = num2
-            )
-            time -= 2000000
-            list.add(comment)
-        }
-        return list
-    }
 }

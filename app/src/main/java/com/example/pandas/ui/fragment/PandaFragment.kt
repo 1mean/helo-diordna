@@ -1,6 +1,5 @@
 package com.example.pandas.ui.fragment
 
-import CommonItemDecoration
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
@@ -9,6 +8,7 @@ import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.PandasAdapter
+import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView

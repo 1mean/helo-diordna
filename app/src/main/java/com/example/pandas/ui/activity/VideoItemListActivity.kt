@@ -1,6 +1,5 @@
 package com.example.pandas.ui.activity
 
-import CommonItemDecoration
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
@@ -9,6 +8,7 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.PandaViewModel
 import com.example.pandas.databinding.ActivityVideoListBinding
 import com.example.pandas.ui.adapter.PandaListAdapter
+import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView

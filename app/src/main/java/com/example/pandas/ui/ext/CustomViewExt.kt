@@ -1,6 +1,5 @@
 package com.example.pandas.ui.ext;
 
-import CommonItemDecoration
 import android.app.Activity
 import android.content.Context
 import android.graphics.Typeface
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pandas.R
 import com.example.pandas.ui.adapter.SleepVideoItemAdapter
+import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.adapter.decoration.RecommendDecoration
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.recyclerview.CommonFooter

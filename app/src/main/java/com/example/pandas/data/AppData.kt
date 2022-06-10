@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
+import com.example.pandas.sql.entity.VideoComment
 
 object AppData {
 
@@ -79,5 +80,9 @@ object AppData {
 
     fun getUser(): MutableList<User> {
         return UserData.getAll()
+    }
+
+    fun getComment():MutableList<VideoComment>{
+        return CommentData.getList()
     }
 }

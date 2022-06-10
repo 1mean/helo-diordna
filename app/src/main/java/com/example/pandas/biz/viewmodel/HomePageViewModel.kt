@@ -256,7 +256,7 @@ class HomePageViewModel : BaseViewModel() {
 
         if (videoCode == -1) return
         viewModelScope.launch {
-            PetManagerCoroutine.addOrUpdateVideoData(videoCode, playPos.toInt())
+            PetManagerCoroutine.addOrUpdateVideoData(videoCode, playPos)
         }
     }
 }

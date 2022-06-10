@@ -1,6 +1,5 @@
 package com.example.pandas.ui.activity
 
-import CommonItemDecoration
 import EyeRecAdapter
 import android.os.Bundle
 import android.os.Handler
@@ -19,6 +18,7 @@ import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadEmptyCircleImage
 import com.example.pandas.biz.viewmodel.EyepetozerViewModel
 import com.example.pandas.databinding.ActivityEyePlayBinding
+import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem

@@ -1,4 +1,4 @@
-package com.example.pandas.ui.view
+package com.example.pandas.ui.view.span
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -18,9 +18,7 @@ import kotlin.math.ceil
 
 /**
  * @description: 只适用于本项目评论文字的TextView
- *   --TODO:`更多`的功能放到后面
- *
- *
+ *   --TODO:不用自定义就能解决，先不用
  * @author: dongyiming
  * @date: 6/2/22 11:05 下午
  * @version: v1.0
@@ -90,7 +88,6 @@ public class ExtendTextView : View {
         mPaint.textSize = normalTextSize
         mPaint.color = normalTextColor
 
-        Log.e("12333asdasd333mean", "marginTop: $marginTop")
         maxWidth = ScreenUtil.getScreenWidth(context) - marginLeft.toInt() - marginRight.toInt()
     }
 
@@ -144,10 +141,6 @@ public class ExtendTextView : View {
         lineHeight =
             ceil((metrics.descent - metrics.top).toDouble()).toInt() + columnPadding.toInt()
 
-        Log.e(
-            "12333asdasd333mean",
-            "(descent-top)= ${ceil((metrics.descent - metrics.top).toDouble())}"
-        )
         var index = 0
         if (mText.isNotEmpty()) {
             mText.forEach { _ ->

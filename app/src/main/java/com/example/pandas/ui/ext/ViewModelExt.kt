@@ -35,9 +35,9 @@ fun startVideoPlayActivity(context: Context, code: Int) {
 /**
  * 后续数据修改成id
  */
-fun startUserInfoActivity(context: Context, user: User) {
+fun startUserInfoActivity(context: Context, userCode: Int) {
     val intent = Intent(context, UserInfoActivity::class.java).apply {
-        putExtra("user", user)
+        putExtra("userCode", userCode)
     }
     context.startActivity(intent)
 }

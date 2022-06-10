@@ -13,17 +13,20 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.ext.getUrl
+import com.example.pandas.biz.interaction.CommentsListener
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.ActivityVideoBinding
 import com.example.pandas.ui.adapter.VideoFragmentAdapter
 import com.example.pandas.ui.ext.closeFullScreen
 import com.example.pandas.ui.ext.fullScreen
+import com.example.pandas.ui.fragment.CommentListFragment
 import com.example.pandas.utils.KeyboardUtils
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.exoplayer2.ExoPlayer
@@ -34,7 +37,6 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.util.DebugTextViewHelper
 import com.google.android.exoplayer2.util.EventLogger
-import com.google.android.exoplayer2.util.Util
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
 import java.io.File
@@ -46,7 +48,8 @@ import java.io.File
  * @date: 12/29/21 3:48 下午
  * @version: v1.0
  */
-public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBinding>() {
+public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBinding>(),
+    CommentsListener {
 
     private val tabNames = arrayListOf("简介", "评论")
     private var mPlayer: ExoPlayer? = null
@@ -139,11 +142,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             }
             isFirstVisible = false
         }
-    }
-
-    override fun onkeyBack() {
-        setResult(RESULT_OK)
-        finish()
     }
 
     override fun createObserver() {
@@ -324,6 +322,47 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             }
         }
         return super.dispatchTouchEvent(ev)
+    }
+
+    override fun showCommentsFragment(commentId: Int) {
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            setCustomAnimations(
+                R.anim.animate_fragment_in,
+                R.anim.animate_fragment_out
+            )
+            add(R.id.llayout_video_info, CommentListFragment.newInstance(commentId))
+        }
+    }
+
+    override fun closeCommentFragment() {
+        if (supportFragmentManager.fragments.isNotEmpty()) {
+            supportFragmentManager.fragments.forEach {
+                if (it is CommentListFragment) {
+                    supportFragmentManager.beginTransaction().setCustomAnimations(
+                        R.anim.animate_fragment_in,
+                        R.anim.animate_fragment_out
+                    ).remove(it).commit()
+                    return@forEach
+                }
+            }
+        }
+    }
+
+    override fun onkeyBack() {
+        if (supportFragmentManager.fragments.isNotEmpty()) {
+            supportFragmentManager.fragments.forEach {
+                if (it is CommentListFragment) {
+                    supportFragmentManager.beginTransaction().setCustomAnimations(
+                        R.anim.animate_fragment_in,
+                        R.anim.animate_fragment_out
+                    ).remove(it).commit()
+                    return
+                }
+            }
+        }
+        setResult(RESULT_OK)
+        finish()
     }
 
 }

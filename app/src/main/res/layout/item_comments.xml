@@ -3,7 +3,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_landscape_item">
 
     <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_comment_item_head"
@@ -50,7 +51,7 @@
             app:layout_constraintTop_toBottomOf="@id/llayout_comment_item_name"
             android:layout_marginTop="2dp" />
 
-    <!--<com.example.pandas.ui.view.ExtendTextView
+    <!--<com.example.pandas.ui.view.span.ExtendTextView
             android:id="@+id/txt_comment_item_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -219,6 +220,7 @@
             android:orientation="vertical"
             android:paddingTop="5dp"
             android:paddingBottom="10dp"
+            android:visibility="gone"
             android:background="@drawable/shape_bg_comment_like"
             app:layout_constraintTop_toBottomOf="@id/clayout_comment_uplike">
 
@@ -230,7 +232,6 @@
                 android:layout_marginEnd="10dp"
                 android:paddingTop="7dp"
                 android:lineSpacingExtra="4dp"
-                android:text="我去你大爷的我去你大爷的我去你大爷的我去你大爷的我去你大爷的我去你大爷的我去你大爷的我去你大爷的我去你大爷的"
                 android:textColor="@color/grey900"
                 android:textSize="14sp"
                 android:maxLines="2"
@@ -243,8 +244,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:paddingTop="7dp"
-                android:text="我去你大爷的"
                 android:textSize="14sp"
+                android:lineSpacingExtra="4dp"
                 android:textColor="@color/grey900"
                 android:maxLines="2"
                 android:ellipsize="end" />
@@ -265,8 +266,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/clayout_message_all"
                     android:layout_marginBottom="3dp"
                     android:textSize="12sp"
-                    android:textColor="@color/color_comment_reply_user"
-                    android:text="共6条回复" />
+                    android:textColor="@color/color_comment_reply_user" />
 
             <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"

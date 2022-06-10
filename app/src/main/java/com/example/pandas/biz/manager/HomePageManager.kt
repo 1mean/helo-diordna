@@ -404,7 +404,7 @@ class PetManager {
         }
     }
 
-    suspend fun addOrUpdateVideoData(videoCode: Int, playPos: Int) {
+    suspend fun addOrUpdateVideoData(videoCode: Int, playPos: Long) {
 
         withContext(Dispatchers.IO) {
 
@@ -437,6 +437,119 @@ class PetManager {
                 }
             }
             users
+        }
+    }
+
+    /****视频弹幕界面*************************************************************************/
+    suspend fun getVideoCommentByPage(
+        videoCode: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<CommentAndUser> {
+
+        return withContext(Dispatchers.IO) {
+
+            //先获取一级弹幕
+            val list = petDao.queryVideoCommentByPage(videoCode, startIndex, counts, 1)
+            if (list.isNotEmpty()) {
+                list.forEach {
+                    val childList =
+                        petDao.queryVideoChildComment(it.comment.videoCode, it.comment.commentId)
+                    if (childList.isNotEmpty()) {
+                        it.comment.replyComments = childList
+                    }
+                }
+            }
+            list
+        }
+    }
+
+    /**
+     * 获取弹幕的回复信息
+     */
+    suspend fun getCommentReplyByPage(
+        videoCode: Int,
+        commentId: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<CommentAndUser> {
+
+        return withContext(Dispatchers.IO) {
+
+            if (startIndex == 0) {
+                val comments = mutableListOf<CommentAndUser>()
+                val topComment = petDao.queryCommentUserByCommentId(videoCode, commentId)
+                comments.add(0, topComment)
+                val list = petDao.queryReplyByPage(videoCode, commentId, startIndex, counts - 1)
+                if (list.isNotEmpty()) {
+                    comments.addAll(list)
+                }
+                Log.e("HomePageMnanger", "size: ${comments.size}")
+                comments
+            } else {
+                petDao.queryReplyByPage(videoCode, commentId, startIndex, counts)
+            }
+        }
+    }
+
+    suspend fun saveComment(
+        replyInfo: ReplyInfo?,
+        content: String,
+        videoCode: Int
+    ): CommentAndUser {
+        return withContext(Dispatchers.IO) {
+            val comment = VideoComment()
+            //当没有评论时，获取到的id是null，以String类型返回
+            var maxCommentId = petDao.queryMaxCommentId(videoCode)
+            if (maxCommentId.isNullOrEmpty()) {
+                maxCommentId = "0"
+            }
+            comment.commentId = maxCommentId.toInt() + 1
+            if (replyInfo == null) {
+                comment.type = 1
+            } else {
+                comment.type = 2
+                comment.fromUserName = AppInfos.AUTHOR_NAME
+                comment.toUserName = replyInfo.replyUserName
+                comment.toUserCode = replyInfo.replyUserCode
+                comment.topCommentId = replyInfo.commentId
+            }
+            val user = petDao.queryUserByCode(AppInfos.AUTHOR_ID)
+            comment.fromUserCode = AppInfos.AUTHOR_ID
+            comment.commitTime = System.currentTimeMillis()
+            comment.content = content
+            comment.videoCode = videoCode
+            //petDao.insertComment(comment)
+            delay(300)
+            CommentAndUser(comment, user)
+        }
+    }
+
+    suspend fun saveReply(
+        replyInfo: ReplyInfo,
+        content: String
+    ): CommentAndUser {
+        return withContext(Dispatchers.IO) {
+            val comment = VideoComment()
+            //当没有评论时，获取到的id是null，以String类型返回
+            var maxCommentId = petDao.queryMaxCommentId(replyInfo.videoCode)
+            if (maxCommentId.isNullOrEmpty()) {
+                maxCommentId = "0"
+            }
+            comment.commentId = maxCommentId.toInt() + 1
+            comment.type = replyInfo.type
+            comment.fromUserName = AppInfos.AUTHOR_NAME
+            comment.toUserName = replyInfo.replyUserName
+            comment.toUserCode = replyInfo.replyUserCode
+            comment.topCommentId = replyInfo.commentId
+            val user = petDao.queryUserByCode(AppInfos.AUTHOR_ID)
+            comment.fromUserCode = AppInfos.AUTHOR_ID
+            comment.commitTime = System.currentTimeMillis()
+            comment.content = content
+            comment.videoCode = replyInfo.videoCode
+            //petDao.insertComment(comment)
+            delay(300)
+            CommentAndUser(comment, user)
         }
     }
 

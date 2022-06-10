@@ -1,8 +1,6 @@
 package com.example.pandas.ui.fragment
 
-import CommonItemDecoration
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
@@ -11,6 +9,7 @@ import com.example.pandas.biz.viewmodel.CutePetViewModel
 import com.example.pandas.databinding.LayoutLoadingRefreshBinding
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.CutePetChildAdapter
+import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 

@@ -118,5 +118,6 @@
     <string name="str_up_like">UP主觉得很赞</string>
     <string name="str_send">发布</string>
     <string name="str_sending">发送中...</string>
+    <string name="str_comment_list">评论详情</string>
 
 </resources>

@@ -9,6 +9,7 @@ package com.example.pandas.app
 object AppInfos {
 
     val AUTHOR_ID = 1074309089 //作者ID
+    val AUTHOR_NAME = "和叶小可怜" //作者ID
     val DEBUG_LOG_TAG = "pandas_log" //debug版本的默认删除日志tag
     val SEARCH_KEY = "history" //搜索历史记录存入sp的key
     val ATTENTION_KEY = "attention" //搜索关注列表的key

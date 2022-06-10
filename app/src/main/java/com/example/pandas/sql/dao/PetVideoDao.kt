@@ -1,6 +1,7 @@
 package com.example.pandas.sql.dao
 
 import androidx.room.*
+import com.example.pandas.bean.CommentAndUser
 import com.example.pandas.bean.CoverDownLoad
 import com.example.pandas.bean.SearchInfo
 import com.example.pandas.bean.pet.PetViewData
@@ -33,10 +34,16 @@ interface PetVideoDao {
     fun insertUsers(users: MutableList<User>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertComment(comments: MutableList<VideoComment>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: User)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertVideoData(videoData: VideoData)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertComment(comment: VideoComment)
 
     /* -----------删------------------------------------- */
 
@@ -51,6 +58,9 @@ interface PetVideoDao {
 
     @Delete
     fun deleteAllVideoData(list: MutableList<VideoData>)
+
+    @Delete
+    fun deleteAllComments(list: MutableList<VideoComment>)
 
 
     /* -----------更新------------------------------------- */
@@ -253,4 +263,42 @@ interface PetVideoDao {
         authorId: Int,
         counts: Int
     ): MutableList<PetVideo>
+
+    @Transaction
+    @Query("select * from comment where videoCode=(:videoCode) and type=(:type) order by commitTime asc limit (:startIndex),(:page)")
+    suspend fun queryVideoCommentByPage(
+        videoCode: Int,
+        startIndex: Int,
+        page: Int,
+        type: Int
+    ): MutableList<CommentAndUser>
+
+    @Transaction
+    @Query("select * from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode) order by commitTime asc")
+    suspend fun queryVideoChildComment(
+        videoCode: Int,
+        topCommentCode: Int,
+    ): MutableList<CommentAndUser>
+
+    @Transaction
+    @Query("select * from comment where videoCode=(:videoCode) and commentId=(:commentId)")
+    suspend fun queryCommentUserByCommentId(
+        videoCode: Int,
+        commentId: Int
+    ): CommentAndUser
+
+    @Transaction
+    @Query("select * from comment where videoCode=(:videoCode) and topCommentId=(:commentId) order by commitTime asc limit (:startIndex),(:page)")
+    suspend fun queryReplyByPage(
+        videoCode: Int,
+        commentId: Int,
+        startIndex: Int,
+        page: Int
+    ): MutableList<CommentAndUser>
+
+    /**
+     * 查询最大的commentId,当视频没有任何评论时，如果直接返回Int类型会报错，转换成String返回，哪怕是null
+     */
+    @Query("select max(commentId) from comment where videoCode=(:videoCode)")
+    suspend fun queryMaxCommentId(videoCode: Int): String
 }

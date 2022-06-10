@@ -2,15 +2,14 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pandas.app.AppInfos
 import com.example.pandas.base.BaseViewModel
+import com.example.pandas.bean.CommentAndUser
+import com.example.pandas.bean.ReplyInfo
 import com.example.pandas.bean.UIDataWrapper
-import com.example.pandas.bean.VideoComment
 import com.example.pandas.bean.VideoInfo
 import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.ExceptionHandle
 import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.data.TempData
 import com.example.pandas.sql.entity.History
 import com.example.pandas.sql.entity.PetVideo
 import com.google.android.exoplayer2.util.Util
@@ -28,8 +27,10 @@ public class VideoViewModel : BaseViewModel() {
     val videoInfo: MutableLiveData<PetVideo> by lazy { MutableLiveData() }
     val videos: MutableLiveData<VideoInfo> by lazy { MutableLiveData() }
     val isVideoItemClicked: MutableLiveData<Int> by lazy { MutableLiveData() }
-    val createComment: MutableLiveData<VideoComment> by lazy { MutableLiveData() }
-    val comments: MutableLiveData<UIDataWrapper<VideoComment>> by lazy { MutableLiveData() }
+    val createComment: MutableLiveData<CommentAndUser> by lazy { MutableLiveData() }
+    val createReply: MutableLiveData<CommentAndUser> by lazy { MutableLiveData() }
+    val comments: MutableLiveData<UIDataWrapper<CommentAndUser>> by lazy { MutableLiveData() }
+    val commentReply: MutableLiveData<UIDataWrapper<CommentAndUser>> by lazy { MutableLiveData() }
 
     fun getVideoInfo(code: Int) {
 
@@ -70,53 +71,105 @@ public class VideoViewModel : BaseViewModel() {
         }.start()
     }
 
+    var hasCommentsMore = false
+    var startCommentsIndex = 0
     fun getComments(isRefresh: Boolean) {
 
+        if (isRefresh) {
+            startCommentsIndex = 0
+        }
         request({
-            val list = TempData.getComments(20)
-            list.forEach {
-                val user = PetManagerCoroutine.getUser(it.fromUserCode)
-                it.user = user
-            }
-            list
+            PetManagerCoroutine.getVideoCommentByPage(
+                videoInfo.value!!.code,
+                startCommentsIndex,
+                21
+            )
         }, {
+            if (it.isNotEmpty() && it.size > 20) {
+                hasCommentsMore = true
+                it.removeLast()
+            } else {
+                hasCommentsMore = false
+            }
             val dataList = UIDataWrapper(
                 isSuccess = true,
                 isRefresh = isRefresh,
                 isEmpty = it.isEmpty(),
-                hasMore = it.size == 20,
+                hasMore = hasCommentsMore,
                 isFirstEmpty = isRefresh && it.isEmpty(),
                 listData = it
             )
+            startCommentsIndex += 20
             comments.value = dataList
         }, {
             val dataList = UIDataWrapper(
                 isSuccess = false,
                 errMessage = it.errorMsg,
                 isRefresh = isRefresh,
-                listData = mutableListOf<VideoComment>()
+                listData = mutableListOf<CommentAndUser>()
             )
             comments.value = dataList
         })
     }
 
+    var hasMore = false
+    var startIndex = 0
+    fun getCommentReply(isRefresh: Boolean, commentId: Int) {
+
+        if (isRefresh) {
+            startIndex = 0
+        }
+        request({
+            PetManagerCoroutine.getCommentReplyByPage(
+                videoInfo.value!!.code,
+                commentId,
+                startIndex,
+                21
+            )
+        }, {
+            if (it.isNotEmpty() && it.size > 20) {
+                hasMore = true
+                it.removeLast()
+            } else {
+                hasMore = false
+            }
+            val dataList = UIDataWrapper(
+                isSuccess = true,
+                isRefresh = isRefresh,
+                isEmpty = it.isEmpty(),
+                hasMore = hasMore,
+                isFirstEmpty = isRefresh && it.isEmpty(),
+                listData = it
+            )
+            startIndex += 20
+            commentReply.value = dataList
+        }, {
+            val dataList = UIDataWrapper(
+                isSuccess = false,
+                errMessage = it.errorMsg,
+                isRefresh = isRefresh,
+                listData = mutableListOf<CommentAndUser>()
+            )
+            commentReply.value = dataList
+        })
+    }
+
+
     /**
      * 生成一条弹幕
      */
-    fun createComment(content: String) {
+    fun saveComment(replyInfo: ReplyInfo?, content: String) {
 
         viewModelScope.launch {
-
-            val comment = VideoComment()
-            comment.commitTime = System.currentTimeMillis()
-            comment.fromUserCode = AppInfos.AUTHOR_ID
-            comment.type = 0
-            comment.content = content
             videoInfo.value?.let {
-                comment.videoCode = it.code
-                comment.user = PetManagerCoroutine.getUser(AppInfos.AUTHOR_ID)
+                createComment.value = PetManagerCoroutine.saveComment(replyInfo, content, it.code)
             }
-            createComment.value = comment
+        }
+    }
+
+    fun saveReply(replyInfo: ReplyInfo, content: String) {
+        viewModelScope.launch {
+            createReply.value = PetManagerCoroutine.saveReply(replyInfo, content)
         }
     }
 }

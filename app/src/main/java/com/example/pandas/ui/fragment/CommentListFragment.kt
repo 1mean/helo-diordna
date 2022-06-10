@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
@@ -15,35 +14,34 @@ import com.example.pandas.bean.ReplyInfo
 import com.example.pandas.biz.interaction.CommentsListener
 import com.example.pandas.biz.manager.KeyboardManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
-import com.example.pandas.databinding.FragmentCommentBinding
-import com.example.pandas.ui.adapter.CommentAdapter
+import com.example.pandas.databinding.FragmentCommentListBinding
+import com.example.pandas.ui.adapter.CommentListAdapter
+import com.example.pandas.ui.adapter.decoration.CommentItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
 
-
 /**
- * @description: video评论
+ * @description: 弹幕列表
  * @author: dongyiming
- * @date: 12/29/21 11:42 下午
+ * @date: 6/9/22 4:53 下午
  * @version: v1.0
  */
-public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentCommentBinding>(),
-    CommentAdapter.OnCommentClickListener {
+public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentListBinding>(),
+    CommentListAdapter.ItemClickListener {
 
+    private var commentId: Int? = null
+    private var commentListener: CommentsListener? = null
     private var loadingPopup: LoadingPopupView? = null
-
     private var replyInfo: ReplyInfo? = null
 
-    private var commentListener: CommentsListener? = null
-
-    private val km: KeyboardManager by lazy { KeyboardManager(mActivity) }
-
-    private val mAdapter: CommentAdapter by lazy { CommentAdapter(mutableListOf(), this) }
+    private val mAdapter: CommentListAdapter by lazy { CommentListAdapter(mutableListOf(), this) }
 
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
+
+    private val km: KeyboardManager by lazy { KeyboardManager(mActivity) }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -56,22 +54,30 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.rvComment.init(
-            null,
+        commentId = requireArguments().getInt("commentId")
+        val paddingBottom = mActivity.resources.getDimension(R.dimen.common_lh_10_dimens).toInt()
+        binding.recyclerLayout.init(
+            CommentItemDecoration(paddingBottom),
             mAdapter,
             LinearLayoutManager(context),
             object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
-                    mViewModel.getComments(false)
+                    commentId?.let {
+                        mViewModel.getCommentReply(false, it)
+                    }
                 }
             })
-
-        binding.refreshComment.run {
+        binding.swipRefresh.run {
             setRefreshColor()
             setOnRefreshListener {
-                binding.rvComment.isRefreshing(true)
-                mViewModel.getComments(true)
+                binding.recyclerLayout.isRefreshing(true)
+                commentId?.let {
+                    mViewModel.getCommentReply(true, it)
+                }
             }
+        }
+        binding.btnClose.setOnClickListener {
+            commentListener?.closeCommentFragment()
         }
 
         val color1 = ContextCompat.getColor(mActivity, R.color.color_name_vip)
@@ -115,60 +121,38 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
         binding.txtCommentSend.setOnClickListener { sendMessage() } //发送弹幕
     }
 
-
     override fun createObserver() {
 
-        mViewModel.comments.observe(viewLifecycleOwner) {
-
+        mViewModel.commentReply.observe(viewLifecycleOwner) {
             if (it.isSuccess) {
                 when {
                     it.isRefresh -> {
                         mAdapter.update(true, it.listData)
-                        binding.rvComment.isRefreshing(false)
+                        binding.recyclerLayout.isRefreshing(false)
                     }
                     else -> {
                         mAdapter.update(false, it.listData)
                     }
                 }
-                binding.rvComment.loadMoreFinished(it.isEmpty, it.hasMore)
+                binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
             }
-            binding.clayoutComment.visibility = View.VISIBLE
-            binding.refreshComment.isRefreshing = false
+            binding.swipRefresh.isRefreshing = false
         }
 
-        mViewModel.createComment.observe(viewLifecycleOwner) {
+        mViewModel.createReply.observe(viewLifecycleOwner) {
 
-            Log.e("1mean", "it: $it")
-            if (it.comment.type == 1) {
-                binding.rvComment.scrollToPosition(0)
-            }
+            binding.recyclerLayout.scrollToPosition(2)
             loadingPopup!!.dismiss()
             mAdapter.addComment(it)
             km.hideKeyBoard(mActivity, mActivity.window.decorView)
+
         }
     }
 
     override fun firstOnResume() {
-
-        binding.refreshComment.isRefreshing = true
-        mViewModel.getComments(true)
-    }
-
-    override fun orderClcik(orderMode: Int) {
-
-    }
-
-    override fun addItemReply(replyInfo: ReplyInfo) {
-        this.replyInfo = replyInfo
-        binding.editVideo.isFocusable = true
-        binding.editVideo.isFocusableInTouchMode = true
-        binding.editVideo.requestFocus()
-        binding.editVideo.hint = "回复 @${replyInfo.replyUserName} :"
-        km.showKeyBoard(mActivity, binding.editVideo)
-    }
-
-    override fun showAllComment(commentId: Int) {
-        commentListener?.showCommentsFragment(commentId)
+        commentId?.let {
+            mViewModel.getCommentReply(true, it)
+        }
     }
 
     private fun sendMessage() {
@@ -184,8 +168,44 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
                 } else {
                     loadingPopup!!.show()
                 }
-                mViewModel.saveComment(replyInfo, content)
+                if (replyInfo == null) {
+                    val commentUser = mAdapter.getItemPisition(0)
+                    val comment = commentUser.comment
+                    val user = commentUser.user
+                    mViewModel.saveReply(
+                        ReplyInfo(
+                            comment.commentId,
+                            comment.videoCode,
+                            2,
+                            user.userName!!,
+                            user.userCode
+                        ), content
+                    )
+                } else {
+                    mViewModel.saveReply(replyInfo!!, content)
+                }
             }
         }
+    }
+
+    companion object {
+
+        fun newInstance(commentId: Int): CommentListFragment {
+            val args = Bundle().apply {
+                putInt("commentId", commentId)
+            }
+            val fragment = CommentListFragment()
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+    override fun reply(reply: ReplyInfo) {
+        this.replyInfo = reply
+        binding.editVideo.isFocusable = true
+        binding.editVideo.isFocusableInTouchMode = true
+        binding.editVideo.requestFocus()
+        binding.editVideo.hint = "回复 @${reply.replyUserName} :"
+        km.showKeyBoard(mActivity, binding.editVideo)
     }
 }

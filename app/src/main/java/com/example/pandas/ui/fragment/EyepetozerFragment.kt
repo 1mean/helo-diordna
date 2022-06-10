@@ -1,6 +1,5 @@
 package com.example.pandas.ui.fragment
 
-import CommonItemDecoration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,6 +12,7 @@ import com.example.pandas.biz.manager.ExoPlayerManager
 import com.example.pandas.biz.viewmodel.EyepetozerViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.EyepetozerAdapter
+import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView

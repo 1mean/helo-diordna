@@ -12,7 +12,6 @@ import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.viewmodel.UserInfoViewModel
 import com.example.pandas.databinding.ActivityUserBinding
 import com.example.pandas.databinding.DialogAttentionCancelBinding
-import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.adapter.UserInfoPageAdapter
 import com.example.pandas.ui.ext.setLevelImageResourse
 import com.example.pandas.utils.StatusBarUtils
@@ -27,7 +26,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  */
 public class UserInfoActivity : BaseActivity<UserInfoViewModel, ActivityUserBinding>() {
 
-    private var user: User? = null
+    private var userCode: Int? = null
 
     private val tabList = listOf<String>("投稿", "动态", "主页")
 
@@ -36,9 +35,35 @@ public class UserInfoActivity : BaseActivity<UserInfoViewModel, ActivityUserBind
     override fun initView(savedInstanceState: Bundle?) {
 
         StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
-        user = intent.getParcelableExtra<User>("user")
+        userCode = intent.getIntExtra("userCode", -1)
 
-        user?.let {
+        binding.vpUser.run {
+            offscreenPageLimit = tabList.size
+            adapter = UserInfoPageAdapter(this@UserInfoActivity)
+        }
+
+
+        TabLayoutMediator(
+            binding.tbUser, binding.vpUser, true
+        ) { tab, position ->
+            tab.text = tabList[position]
+        }.attach()
+
+        //binding.tbUser.getTabAt(2)?.select()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        userCode?.let {
+            mViewModel.getUserInfo(it)
+            mViewModel.getUserVideos(it, true)
+
+        }
+    }
+
+    override fun createObserver() {
+
+        mViewModel.userInfo.observe(this) {
             if (it.isVip == 1) {
                 //binding.txtUserName.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
                 binding.txtUserName.setTextColor(
@@ -102,32 +127,6 @@ public class UserInfoActivity : BaseActivity<UserInfoViewModel, ActivityUserBind
                 }
             }
         }
-
-        binding.vpUser.run {
-            offscreenPageLimit = tabList.size
-            adapter = UserInfoPageAdapter(this@UserInfoActivity)
-        }
-
-
-        TabLayoutMediator(
-            binding.tbUser, binding.vpUser, true
-        ) { tab, position ->
-            tab.text = tabList[position]
-        }.attach()
-
-        //binding.tbUser.getTabAt(2)?.select()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        user?.let {
-            mViewModel.getUserVideos(it.userCode, true)
-        }
-    }
-
-    override fun createObserver() {
-
-
     }
 
 }

@@ -5,7 +5,8 @@
         android:id="@+id/footer"
         android:layout_width="match_parent"
         tools:viewBindingIgnore="true"
-        android:layout_height="60dp">
+        android:layout_height="60dp"
+        android:background="@color/white">
 
     <ProgressBar
             android:id="@+id/progressBar"

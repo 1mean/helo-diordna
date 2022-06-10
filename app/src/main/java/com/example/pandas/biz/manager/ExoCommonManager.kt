@@ -85,6 +85,7 @@ public class ExoCommonManager private constructor() {
      */
     fun playLocalFile(playInfo: PlayingInfo, position: Int) {
 
+        //TODO:正式版本改掉，return
         if (playInfo.videoCode == 0 || !playInfo.file.exists()) {
             throw Exception("PlayInfo is error : videoCode=${playInfo.videoCode},file=${playInfo.file}")
         }
@@ -93,7 +94,7 @@ public class ExoCommonManager private constructor() {
         val playPos = playInfo.playPos
 
         this.mCurPos = position
-
+        ///sdcard/Android/data/com.example.hello_diordna/files
         val playItem = tempMediaIndexMap.get(videoCode)
         if (playItem != null) {//已经存在于播放器内，直接切换至即可
 

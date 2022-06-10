@@ -111,7 +111,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                 }
 
                 binding.imgVideoInfoHead.setOnClickListener {
-                    startUserInfoActivity(mActivity, author)
+                    startUserInfoActivity(mActivity, author.userCode)
                 }
 
                 binding.clayoutVideoInfoFollow.setOnClickListener {

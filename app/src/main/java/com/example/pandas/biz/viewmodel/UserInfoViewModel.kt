@@ -1,16 +1,14 @@
 package com.example.pandas.biz.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pandas.app.AppInfos
 import com.example.pandas.base.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.ExceptionHandle
 import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.utils.SPUtils
+import com.example.pandas.sql.entity.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -27,6 +25,13 @@ public class UserInfoViewModel : BaseViewModel() {
     var authorId: Int = 0
 
     val userVideos: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
+    val userInfo: MutableLiveData<User> by lazy { MutableLiveData() }
+
+    fun getUserInfo(code: Int) {
+        viewModelScope.launch {
+            userInfo.value = PetManagerCoroutine.getUser(code)
+        }
+    }
 
     fun getUserVideos(code: Int, isRefresh: Boolean) {
 
