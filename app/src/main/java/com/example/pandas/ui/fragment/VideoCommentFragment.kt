@@ -95,7 +95,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
             }
         })
 
-        km.setListener(object :
+        km.setOnSoftKeyBoardChangeListener(object :
             KeyboardManager.OnSoftKeyBoardChangeListener {
             override fun keyBoardShow(height: Int) {
                 binding.imgCommentSmile.visibility = View.GONE
@@ -144,7 +144,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
             }
             loadingPopup!!.dismiss()
             mAdapter.addComment(it)
-            km.hideKeyBoard(mActivity, mActivity.window.decorView)
+            km.hideKeyBoard(mActivity, binding.editVideo)
         }
     }
 
@@ -187,5 +187,11 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
                 mViewModel.saveComment(replyInfo, content)
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        km.ondestory()
+        commentListener = null
     }
 }

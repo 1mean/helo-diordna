@@ -17,8 +17,12 @@
             android:icon="@drawable/selector_button_video"
             android:title="@string/home_button3" />
     <item
+            android:id="@+id/menu_face"
+            android:icon="@drawable/selector_button_face"
+            android:title="@string/home_button4" />
+    <item
             android:id="@+id/menu_mine"
             android:icon="@drawable/selector_button_mine"
-            android:title="@string/home_button4" />
+            android:title="@string/home_button5" />
 
 </menu>

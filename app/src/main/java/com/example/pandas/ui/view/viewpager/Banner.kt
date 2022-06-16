@@ -427,7 +427,6 @@ class Banner : RelativeLayout, LifecycleObserver {
      */
     fun setAdapter(adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>): Banner {
 
-
         wrapAdapter = BannerAdapterWrapper()
         wrapAdapter!!.registerAdapter(adapter as RecyclerView.Adapter<RecyclerView.ViewHolder>)
         mViewPager.adapter = wrapAdapter

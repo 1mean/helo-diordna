@@ -95,6 +95,8 @@ public abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragm
 
         if (isFirstShow) {
             onVisible()
+        } else {
+            againOnResume()
         }
     }
 
@@ -193,4 +195,6 @@ public abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragm
     open fun getCurrentLifeOwner(): ViewModelStoreOwner {
         return this
     }
+
+    open fun againOnResume(){}
 }

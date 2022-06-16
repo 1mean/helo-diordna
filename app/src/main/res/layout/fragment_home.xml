@@ -27,6 +27,7 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tb_home"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     app:layout_scrollFlags="scroll">
@@ -41,18 +42,18 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edit"
-                        android:layout_width="188dp"
+                        android:layout_width="144dp"
                         android:layout_height="30dp"
-                        android:drawableStart="@mipmap/img_home_search"
+                        android:drawableStart="@mipmap/img_home_edit_search"
                         android:background="@drawable/shape_home_search"
                         android:textSize="13sp"
-                        android:drawablePadding="6dp"
+                        android:drawablePadding="9dp"
                         android:paddingStart="12dp"
                         android:focusable="false"
                         android:textColor="@color/color_search_text"
                         android:textColorHint="@color/color_search_text"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="17dp"
                         android:hint="大熊猫和花"
                         tools:ignore="RtlSymmetry" />
 
@@ -65,15 +66,36 @@
                         android:layout_gravity="center_vertical|right"
                         tools:ignore="RtlHardcoded" />
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/ib_more"
+                <RelativeLayout
+                        android:id="@+id/rlayout_home_music"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
-                        android:src="@mipmap/img_home_music"
-                        android:background="@null"
                         android:layout_gravity="center_vertical|right"
-                        tools:ignore="RtlHardcoded" />
+                        tools:ignore="RtlHardcoded">
 
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/img_home_music"
+                            android:layout_centerInParent="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:layout_gravity="center_vertical|right"
+                        tools:ignore="RtlHardcoded">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_dark"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@mipmap/img_home_message"
+                            android:background="@null"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center_vertical|right"
+                            tools:ignore="RtlHardcoded" />
+                </RelativeLayout>
             </androidx.appcompat.widget.Toolbar>
 
             <!--
@@ -96,17 +118,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     tl:tl_iconVisible="false"
-                    tl:tl_textSelectColor="@color/color_tab_text_selected"
+                    tl:tl_textSelectColor="@color/color_home_tab_text_selected"
                     tl:tl_textUnselectColor="@color/color_home_tab_text"
-                    tl:tl_indicator_color="@color/color_tab_indicator"
+                    tl:tl_indicator_color="@color/color_home_tab_text_selected"
                     tl:tl_textBold="SELECT"
-                    tl:tl_indicator_width="28dp"
+                    tl:tl_indicator_width="34dp"
                     tl:tl_indicator_height="3dp"
                     tl:tl_textsize="15dp" />
 
             <View
                     android:layout_width="match_parent"
-                    android:layout_height="0.66dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/color_home_divider" />
         </com.google.android.material.appbar.AppBarLayout>
 

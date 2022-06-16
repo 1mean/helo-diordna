@@ -14,8 +14,13 @@ import com.example.pandas.R
  */
 public class RecommendDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
-    private var padding: Int = context.resources.getDimension(R.dimen.item_home_padding).toInt()
-    private var paddingTop: Int = context.resources.getDimension(R.dimen.common_lh_7_dimens).toInt()
+    private var paddingItem: Int = context.resources.getDimension(R.dimen.item_home_padding).toInt()
+    private var paddingBannerLeft: Int =
+        context.resources.getDimension(R.dimen.common_lh_7_dimens).toInt()
+    private var paddingBannerBottom: Int =
+        context.resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
+    private var paddingBannerTop: Int =
+        context.resources.getDimension(R.dimen.common_lh_8_dimens).toInt()
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -26,13 +31,15 @@ public class RecommendDecoration(context: Context) : RecyclerView.ItemDecoration
         super.getItemOffsets(outRect, view, parent, state)
 
         val position = parent.getChildAdapterPosition(view)
-        val midPadding = padding / 2
-        if (position == 0 || position % 11 == 0) { //轮播图
-            outRect.set(padding, padding, padding, 0)
+        val midPadding = paddingItem / 2
+        if (position == 0) {
+            outRect.set(paddingBannerLeft, paddingBannerTop, paddingBannerLeft, paddingBannerBottom)
+        } else if (position % 11 == 0) { //轮播图
+            outRect.set(paddingItem, 0, paddingItem, paddingItem)
         } else if (((position % 11) % 2) == 0) {//GlideView右列
-            outRect.set(midPadding, paddingTop, padding, 0)
+            outRect.set(midPadding, 0, paddingItem, paddingItem)
         } else {//GlideView左列
-            outRect.set(padding, paddingTop, midPadding, 0)
+            outRect.set(paddingItem, 0, midPadding, paddingItem)
         }
     }
 }

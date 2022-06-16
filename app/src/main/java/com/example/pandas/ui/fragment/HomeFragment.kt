@@ -5,16 +5,19 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.base.fragment.BaseFragment
+import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.ext.loadLocalCircleImage
 import com.example.pandas.biz.viewmodel.MainViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
 import com.example.pandas.ui.activity.MessageActivity
 import com.example.pandas.ui.activity.SearchActivity
 import com.example.pandas.ui.adapter.HomePagerAdapter
 import com.example.pandas.ui.view.TabEntity
+import com.example.pandas.utils.SPUtils
+import com.example.pandas.utils.StatusBarUtils
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import java.util.*
@@ -28,17 +31,11 @@ import java.util.*
  */
 public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 
-    private val tabTitles = arrayListOf("大熊猫", "推荐", "热门", "最爱", "山水")
+    private val tabTitles = arrayListOf("分类", "推荐", "热门", "最爱", "山水", "熊猫")
 
     override fun lazyLoadTime(): Long = 0
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
     override fun initView(savedInstanceState: Bundle?) {
-
-        Glide.with(requireContext()).load(R.mipmap.jia).apply(
-            RequestOptions.bitmapTransform(
-                CircleCrop()
-            )
-        ).into(binding.imgHead)
 
         binding.viewpager.run {
             adapter = HomePagerAdapter(tabTitles, childFragmentManager, lifecycle)
@@ -80,11 +77,34 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
             mActivity.startActivity(Intent(mActivity, MessageActivity::class.java))
         }
 
+        binding.rlayoutHomeMusic.setOnClickListener {
+
+        }
+
         //binding.bar.setExpanded(true,true)
     }
 
-    override fun createObserver() {}
+    override fun createObserver() {
 
-    override fun firstOnResume() {}
+        mViewModel.userInfo.observe(viewLifecycleOwner) {
 
+            it.headUrl?.let { url ->
+                loadCircleImage(mActivity, url, binding.imgHead)
+            }
+        }
+        loadLocalCircleImage(mActivity,R.mipmap.img_fanren_1,binding.imgDark)
+    }
+
+    override fun firstOnResume() {
+        mViewModel.getUserInfo()
+    }
+
+    override fun againOnResume() {
+        super.againOnResume()
+        if (AppInfos.APP_FLAG) {
+            val color = SPUtils.getString(mActivity, AppInfos.THEME_COLOR)
+            binding.tbHome.setBackgroundResource(R.color.red)
+            StatusBarUtils.updataStatus(mActivity, false, true, R.color.red)
+        }
+    }
 }

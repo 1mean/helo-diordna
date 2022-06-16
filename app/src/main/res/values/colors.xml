@@ -87,11 +87,13 @@
     <color name="color_text_comment_title">#909AA0</color>
 
     <!--home fragment-->
-    <color name="color_search_text">#acb3b8</color>
-    <color name="color_home_tab_text">#61656B</color>
+    <color name="color_search_text">#ACB4BB</color>
+    <color name="color_home_tab_text">#60696C</color>
+    <color name="color_home_tab_text_selected">#FF569A</color>
     <color name="color_viewpager_bg">#F1F2F4</color>
     <color name="color_card_name">#919A9D</color>
-    <color name="color_home_viewpager_bg">#99989C9F</color>
+    <color name="color_home_viewpager_bg">#989C9F</color>
+    <color name="color_bg_reco">#EFF3F3</color>
 
     <!--love  -->
     <color name="color_txt_love_pet">#111111</color>
@@ -153,10 +155,14 @@
     <color name="color_bg_eye_divider">#C5C5C5</color>
     <color name="color_txt_eye_name">#B6B6B6</color>
 
+    <!--face-->
+    <color name="color_txt_face_desc">#8B8B8B</color>
+
     <!--other-->
     <color name="color_progress_loadmore">#FF5B9A</color>
     <color name="color_text_loading">#919A9D</color>
     <color name="color_bg_loading">#f0f3f3</color>
     <color name="color_bg_cute_pet">#FAFAFA</color>
+    <color name="color_bg_indicator">#22000000</color>
 
 </resources>

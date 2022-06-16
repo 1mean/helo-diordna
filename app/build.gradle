@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'com.chaquo.python'
 }
 
 android {
@@ -14,6 +15,20 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            // 指定abi，如需在模拟器调试，增加"x86"，否则指定"armeabi-v7a"即可
+            abiFilters "armeabi-v7a", "x86"
+        }
+        python {
+            pip {
+                install 'requests==2.24.0'
+                install 'numpy'
+                install 'datetime'
+                install 'matplotlib'
+                install 'lxml'
+            }
+        }
     }
     buildTypes {
         release {
@@ -115,7 +130,9 @@ dependencies {
     //popu弹窗
     implementation 'com.github.li-xiaojun:XPopup:2.8.2'
 
-    //SuperTextView
+    //leak-android
+    // debugImplementation because LeakCanary should only run in debug builds.
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
 
     var lifecycle_version = "2.4.0"

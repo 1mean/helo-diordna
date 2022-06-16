@@ -61,6 +61,7 @@ public class Indicator : View, Iindicator {
         } else {
             GONE
         }
+        setBackgroundResource(R.color.color_bg_indicator)
         requestLayout()//重新测量和布局
     }
 
@@ -74,6 +75,7 @@ public class Indicator : View, Iindicator {
         } else {
             GONE
         }
+        setBackgroundResource(R.color.color_bg_indicator)
         requestLayout()//重新测量和布局
     }
 

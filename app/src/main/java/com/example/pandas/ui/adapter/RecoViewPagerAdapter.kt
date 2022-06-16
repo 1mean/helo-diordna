@@ -9,15 +9,15 @@ import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 
 /**
- * @description: TODO
+ * @description: RecoViewPagerAdapter
  * @author: dongyiming
  * @date: 1/23/22 12:35 下午
  * @version: v1.0
  */
 public class RecoViewPagerAdapter(private val list: MutableList<PetVideo>) :
-    RecyclerView.Adapter<BaseEmptyViewHolder>() {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         val binding = ViewpagerRecommendBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -27,13 +27,13 @@ public class RecoViewPagerAdapter(private val list: MutableList<PetVideo>) :
         return MyHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: BaseEmptyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as MyHolder).handle(position)
     }
 
     override fun getItemCount(): Int = list.size
 
-    inner class MyHolder(binding: ViewpagerRecommendBinding) : BaseEmptyViewHolder(binding.root) {
+    inner class MyHolder(binding: ViewpagerRecommendBinding) : RecyclerView.ViewHolder(binding.root) {
 
         val cover = binding.imgRecommendBg
         val title = binding.txtRecommendTitle

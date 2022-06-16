@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="32.66dp"
+            android:background="@color/color_white_lucency" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_face_top"
+            android:layout_width="match_parent"
+            android:layout_height="43dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_face_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_face_top"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_face_top"
+                android:layout_marginStart="14dp"
+                android:textSize="16sp"
+                android:textColor="@color/color_self_txt_coin"
+                android:text="@string/str_face_reco" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_face_desc"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:background="@color/grey200">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开始使用，输入网址"
+                android:textSize="11sp"
+                android:textColor="@color/color_txt_face_desc"
+                app:layout_constraintTop_toTopOf="@id/clayout_face_desc"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_face_desc"
+                app:layout_constraintRight_toRightOf="@id/clayout_face_desc"
+                android:layout_marginEnd="45dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_face_download"
+            android:layout_width="match_parent"
+            android:layout_height="208dp">
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_face"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="@id/clayout_face_download"
+                android:hint="将视频分享的网址链接，粘贴到这里就能开始下载了！！！"
+                android:textSize="14sp"
+                android:lineSpacingExtra="5dp"
+                android:gravity="top"
+                android:textCursorDrawable="@drawable/shape_search_edit"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="13dp"
+                android:background="@null"
+                android:layout_marginEnd="30dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_face_getinfo"
+                android:layout_width="102dp"
+                android:layout_height="38dp"
+                android:text="获取视频信息"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_face_download"
+                android:layout_marginStart="14dp"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_face_download"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/shape_user_attention" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_face_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_face_download"
+                app:layout_constraintRight_toRightOf="@id/clayout_face_download"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="60dp"
+                android:src="@mipmap/img_face_delete"
+                android:background="@null" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="192dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="5dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_face_video_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_face_shelter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#22000000">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/img_eye_item_play"
+                    app:layout_constraintTop_toTopOf="@id/clayout_face_shelter"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_face_shelter"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_face_shelter"
+                    app:layout_constraintRight_toRightOf="@id/clayout_face_shelter" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_face_video_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="@id/clayout_face_shelter"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_face_shelter"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:background="@drawable/shape_eye_duration"
+                    android:gravity="center"
+                    android:includeFontPadding="false" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

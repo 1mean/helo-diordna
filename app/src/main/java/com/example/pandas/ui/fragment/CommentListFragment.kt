@@ -36,6 +36,7 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
     private var commentListener: CommentsListener? = null
     private var loadingPopup: LoadingPopupView? = null
     private var replyInfo: ReplyInfo? = null
+    private var isKeyBoardShow = false
 
     private val mAdapter: CommentListAdapter by lazy { CommentListAdapter(mutableListOf(), this) }
 
@@ -101,15 +102,17 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
             }
         })
 
-        km.setListener(object :
+        km.setOnSoftKeyBoardChangeListener(object :
             KeyboardManager.OnSoftKeyBoardChangeListener {
             override fun keyBoardShow(height: Int) {
+                isKeyBoardShow = true
                 binding.imgCommentSmile.visibility = View.GONE
                 binding.txtCommentSend.visibility = View.VISIBLE
             }
 
             override fun keyBoardHide(height: Int) {
                 replyInfo = null
+                isKeyBoardShow = false
                 binding.imgCommentSmile.visibility = View.VISIBLE
                 binding.txtCommentSend.visibility = View.GONE
                 binding.editVideo.clearFocus()
@@ -142,9 +145,9 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
         mViewModel.createReply.observe(viewLifecycleOwner) {
 
             binding.recyclerLayout.scrollToPosition(2)
-            loadingPopup!!.dismiss()
+            loadingPopup?.dismiss()
             mAdapter.addComment(it)
-            km.hideKeyBoard(mActivity, mActivity.window.decorView)
+            km.hideKeyBoard(mActivity, binding.editVideo)
 
         }
     }
@@ -206,6 +209,15 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
         binding.editVideo.isFocusableInTouchMode = true
         binding.editVideo.requestFocus()
         binding.editVideo.hint = "回复 @${reply.replyUserName} :"
-        km.showKeyBoard(mActivity, binding.editVideo)
+        if (!isKeyBoardShow) {//可以加edit已经获取了焦点
+            km.showKeyBoard(mActivity, binding.editVideo)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        km.ondestory()
+        loadingPopup = null
+        isKeyBoardShow = false
     }
 }

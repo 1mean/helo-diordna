@@ -1,6 +1,8 @@
 package com.example.pandas.ui.activity
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -9,6 +11,8 @@ import android.os.Message
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -27,7 +31,7 @@ import com.example.pandas.ui.adapter.VideoFragmentAdapter
 import com.example.pandas.ui.ext.closeFullScreen
 import com.example.pandas.ui.ext.fullScreen
 import com.example.pandas.ui.fragment.CommentListFragment
-import com.example.pandas.utils.KeyboardUtils
+import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -313,12 +317,43 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
 
-        if (ev.action == MotionEvent.ACTION_DOWN) {
-
-            val view = currentFocus
-            val isShow = KeyboardUtils.isShouldHideKeyboard(view, ev)
-            if (isShow) {
-                KeyboardUtils.hideKeyboard(this)
+        if (ev.action == MotionEvent.ACTION_UP) {
+            val view = currentFocus //界面里只给editext设置focus，其他地方点击为null
+            Log.e("VideoPlayingActivity2", "focusView: $view")
+            if (view != null) {
+                val consumed = super.dispatchTouchEvent(ev)
+                Log.e("VideoPlayingActivity2", "consumed: $consumed")
+                val viewTmp = currentFocus
+                val viewNew = viewTmp ?: view
+                Log.e("VideoPlayingActivity2", "viewNew: $viewNew , view: $view")
+                if (viewNew == view) {
+                    val parentView = view.parent as ConstraintLayout
+                    if (parentView != null) {
+                        val rect = Rect()
+                        val coordinates = IntArray(2)
+//                    view.getLocationOnScreen(coordinates)
+                        parentView.getLocationOnScreen(coordinates)
+                        rect.set(
+                            0,
+                            coordinates[1],
+                            parentView.width,
+                            coordinates[1] + parentView.height
+                        )
+                        Log.e("VideoPlayingActivity2", "rect: $rect")
+                        val x = ev.x.toInt()
+                        val y = ev.y.toInt()
+                        Log.e("VideoPlayingActivity2", "x: $x , y: $y ,${rect.contains(x, y)}")
+                        if (rect.contains(x, y)) {
+                            return consumed
+                        }
+                    }
+                } else if (viewNew is EditText) {
+                    return consumed
+                }
+                val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                im.hideSoftInputFromWindow(viewNew.windowToken, 0);
+                viewNew.clearFocus()
+                return consumed
             }
         }
         return super.dispatchTouchEvent(ev)

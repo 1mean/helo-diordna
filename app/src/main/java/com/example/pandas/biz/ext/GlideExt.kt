@@ -49,6 +49,11 @@ fun loadCircleImage(context: Context, url: String, view: ImageView) {
     Glide.with(context).load(url).apply(options).into(view)
 }
 
+fun loadLocalCircleImage(context: Context, urlRes: Int, view: ImageView) {
+    val options = RequestOptions.bitmapTransform(CircleCrop())
+    Glide.with(context).load(urlRes).apply(options).into(view)
+}
+
 fun loadImage(context: Context, url: String, view: ImageView) {
     Glide.with(context).load(url).placeholder(R.mipmap.img_holder).into(view)
 }

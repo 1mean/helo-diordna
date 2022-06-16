@@ -1,10 +1,19 @@
 package com.example.pandas.ui.activity
 
 import android.Manifest
+import android.content.Context
+import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation
+import com.chaquo.python.Python
+import com.chaquo.python.android.AndroidPlatform
 import com.example.pandas.R
 import com.example.pandas.base.BaseViewModel
 import com.example.pandas.base.activity.BaseActivity
@@ -40,6 +49,14 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
 
         requestPermissions.launch(permissions)
 
+//        if (!Python.isStarted()) {
+//            Python.start(AndroidPlatform(this))
+//        }
+//        val py = Python.getInstance()
+//        val module = py.getModule("test1")
+//        val list = module.callAttr("parseUrl")
+//        Log.e("1mean","python解析： $list")
+
 //        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
 //            override fun handleOnBackPressed() {
 //                val nav = Navigation.findNavController(this@MainActivity, R.id.main_navigation)
@@ -62,4 +79,42 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
     override fun createObserver() {
     }
 
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+
+        if (ev.action == MotionEvent.ACTION_UP) {
+            val view = currentFocus //界面里只给editext设置focus，其他地方点击为null
+            if (view != null && view is EditText) {
+                val consumed = super.dispatchTouchEvent(ev)
+                val viewTmp = currentFocus
+                val viewNew = viewTmp ?: view
+                if (viewNew == view) {
+                    val parentView = view.parent as ConstraintLayout
+                    if (parentView != null) {
+                        val rect = Rect()
+                        val coordinates = IntArray(2)
+//                    view.getLocationOnScreen(coordinates)
+                        parentView.getLocationOnScreen(coordinates)
+                        rect.set(
+                            0,
+                            coordinates[1],
+                            parentView.width,
+                            coordinates[1] + parentView.height
+                        )
+                        val x = ev.x.toInt()
+                        val y = ev.y.toInt()
+                        if (rect.contains(x, y)) {
+                            return consumed
+                        }
+                    } else if (viewNew is EditText) {
+                        return consumed
+                    }
+                    val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    im.hideSoftInputFromWindow(viewNew.windowToken, 0)
+                    viewNew.clearFocus()
+                    return consumed
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
 }

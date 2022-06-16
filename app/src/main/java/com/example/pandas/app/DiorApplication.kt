@@ -1,9 +1,11 @@
 package com.example.pandas.app
 
 import android.app.Application
+import com.example.pandas.BuildConfig
 import com.example.pandas.data.AppData
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.utils.SPUtils
+import leakcanary.LeakCanary
 
 
 class DiorApplication : Application() {
@@ -18,7 +20,7 @@ class DiorApplication : Application() {
         super.onCreate()
         _instance = this
         CrashHandler.init(this)
-        //
+
         //initdata()
     }
 

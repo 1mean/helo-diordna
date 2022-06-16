@@ -51,7 +51,7 @@ public class HomeActivity : BaseActivity<MainViewModel, ActivityHomeBinding>(),
 
         binding.vpHome.apply {
             adapter = HomeAdapter(this@HomeActivity)
-            offscreenPageLimit = 4
+            offscreenPageLimit = 5
             setCurrentItem(0, false)
             isUserInputEnabled = false //禁止滑动
         }

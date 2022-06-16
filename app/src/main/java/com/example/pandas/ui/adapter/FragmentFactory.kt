@@ -1,10 +1,7 @@
 package com.example.pandas.ui.adapter
 
 import androidx.fragment.app.Fragment
-import com.example.pandas.ui.fragment.CutePetFragment
-import com.example.pandas.ui.fragment.HomeFragment
-import com.example.pandas.ui.fragment.OtherFragment
-import com.example.pandas.ui.fragment.SelfFragment
+import com.example.pandas.ui.fragment.*
 
 /**
  * @description: 创建home界面的4个fragment
@@ -20,6 +17,7 @@ public class FragmentFactory {
         private const val PAGE_TWO = 1
         private const val PAGE_THREE = 2
         private const val PAGE_FOUR = 3
+        private const val PAGE_FIVE = 4
 
         var fragments = HashMap<Int, Fragment>()
 
@@ -32,7 +30,8 @@ public class FragmentFactory {
                     PAGE_ONE -> mFragment = HomeFragment()
                     PAGE_TWO -> mFragment = CutePetFragment()
                     PAGE_THREE -> mFragment = OtherFragment()
-                    PAGE_FOUR -> mFragment = SelfFragment()
+                    PAGE_FOUR -> mFragment = FaceFragment()
+                    PAGE_FIVE -> mFragment = SelfFragment()
                 }
                 fragments[page] = mFragment!!
             }

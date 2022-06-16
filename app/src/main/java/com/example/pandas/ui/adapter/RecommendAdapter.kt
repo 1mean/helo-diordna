@@ -218,7 +218,8 @@ public class RecommendAdapter(
                 )
                 val adapter = RecoViewPagerAdapter(list)
 
-                this.banner.setLifecycleRegistry(lifecycle).setAdapter(adapter)
+                this.banner.setLifecycleRegistry(lifecycle)
+                    .setAdapter(adapter)
                     .setIndicator(indicator, true)
                     .setAutoPlayed(true)
             }

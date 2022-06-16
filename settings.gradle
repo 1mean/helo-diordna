@@ -1,1 +1,8 @@
+//python环境相关
+pluginManagement {
+    repositories {
+        maven { url "https://chaquo.com/maven" }
+    }
+}
 include ':app', ':helo_base'
+

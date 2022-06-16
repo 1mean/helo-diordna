@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseCMFragment
 import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.biz.ext.getUrl
@@ -67,6 +68,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
             })
 
         binding.swipLayout.run {
+            setBackgroundResource(R.color.color_bg_reco)
             setRefreshColor()
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
