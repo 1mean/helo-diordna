@@ -91,6 +91,8 @@ class HomePageViewModel : BaseViewModel() {
             })
     }
 
+    private var hasMoreReco = false
+
     /**
      *  首页-推荐
      *
@@ -100,24 +102,31 @@ class HomePageViewModel : BaseViewModel() {
      */
     fun getRecommendData(isRefresh: Boolean) {
 
+        var page = 0
         if (isRefresh) {
             recoIndex = 0
+            page = 23
+        } else {
+            page = 12
         }
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getRecommendByPage(recoIndex)
+                PetManagerCoroutine.getRecommendByPage(recoIndex, page)
             }.onSuccess {
-
+                hasMoreReco = it.itemList.isNotEmpty() && it.itemList.size >= page
+                if (hasMoreReco) {
+                    it.itemList.removeLast()
+                }
                 val wrapper = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = isRefresh,
                     isEmpty = it.itemList.isEmpty() && it.bannerList.isEmpty(),
-                    hasMore = it.itemList.size == 11,
+                    hasMore = hasMoreReco,
                     isFirstEmpty = isRefresh && it.itemList.isEmpty() && it.bannerList.isEmpty(),
                     recoData = it
                 )
-                recoIndex += 11
+                recoIndex += if (isRefresh) 22 else 11
                 recommendDataWrapper.value = wrapper
             }.onFailure {
 

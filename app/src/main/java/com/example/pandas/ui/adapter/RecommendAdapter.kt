@@ -11,16 +11,17 @@ import com.bumptech.glide.Glide
 import com.example.pandas.R
 import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.bean.pet.VideoType
-import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.databinding.CardItemLayoutBinding
+import com.example.pandas.databinding.DialogHomeItemBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.databinding.ItemRecommendVideoBinding
 import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.viewpager.Indicator
 import com.example.pandas.utils.NumUtils
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.TimeUtils
+import com.example.pandas.utils.VibrateUtils
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 /**
  * @description: 首页-推荐
@@ -31,9 +32,9 @@ import com.example.pandas.utils.TimeUtils
 public class RecommendAdapter(
     private val lifecycle: Lifecycle,
     private var data: RecommendData<PetVideo>,
-    private val listener: OnRecoItemClickListener
+    private val listener: RecoViewListener
 ) :
-    RecyclerView.Adapter<BaseEmptyViewHolder>() {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_BANNER = 1//轮播图
     private val TYPE_ITEM = 2//普通视频，一行2列
@@ -78,7 +79,15 @@ public class RecommendAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
+    override fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        if (holder is VideoHolder) {
+            //val position = (holder as VideoHolder).layoutPosition
+            listener.itemDetachedFromWindow()
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         when (viewType) {
             TYPE_ITEM -> {//普通视频
@@ -109,7 +118,7 @@ public class RecommendAdapter(
         }
     }
 
-    override fun onBindViewHolder(holder: BaseEmptyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         when (getItemViewType(position)) {
 
@@ -125,17 +134,16 @@ public class RecommendAdapter(
         }
     }
 
-    override fun getItemCount(): Int {
-
+    override fun getItemCount(): Int =
         if (data.bannerList.isEmpty() && data.itemList.isEmpty()) {
-            return 0
+            0
         } else {
-            return data.itemList.size + 1
+            data.itemList.size + 1
         }
-    }
 
-    inner class CardHolder(binding: CardItemLayoutBinding) : BaseEmptyViewHolder(binding.root) {
+    inner class CardHolder(binding: CardItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
+        val context = itemView.context
         val cover = binding.imgCover
         val duration = binding.txtDuration
         val name = binding.txtName
@@ -144,12 +152,12 @@ public class RecommendAdapter(
         private val up = binding.imgRecoAuthor
         private val videoCounts = binding.txtRecoVideoCounts
         private val comments = binding.txtRecoVideoComments
+        private val moreView = binding.clayoutRecoItemMore
         private val num = 1 * 1000 * 100
         private val commentNum = 1 * 100
 
         fun handle(position: Int) {
 
-            val context = itemView.context
             val petVideo = data.itemList[position - 1]
             val duration = TimeUtils.getDuration(petVideo.duration.toLong())
 
@@ -191,7 +199,15 @@ public class RecommendAdapter(
                     up.visibility = View.VISIBLE
                 }
             }
+            itemView.setOnLongClickListener {
+                showDialog()
+                VibrateUtils.vibrate(context, 2000)
+                true
+            }
 
+            moreView.setOnClickListener {
+                showDialog()
+            }
 
             title.text = petVideo.title
 
@@ -199,10 +215,39 @@ public class RecommendAdapter(
                 listener.onClick(position, 2, petVideo.code)
             }
         }
+
+        private fun showDialog() {
+            val dialog = BottomSheetDialog(context)
+            val dialogBinding = DialogHomeItemBinding.inflate(LayoutInflater.from(context))
+            dialogBinding.rlayoutDialogCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialogBinding.txtHomeDialog1.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialogBinding.txtHomeDialog2.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialogBinding.txtHomeDialog3.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialogBinding.txtHomeDialog4.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialogBinding.llayoutDialogTop.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialog.run {
+                setContentView(dialogBinding.root)
+                setCanceledOnTouchOutside(true)
+                setCancelable(true)
+                show()
+            }
+        }
     }
 
     inner class BannerHolder(binding: ItemBannerRecommendBinding) :
-        BaseEmptyViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root) {
 
         private val banner = binding.banner
         fun handle() {
@@ -227,7 +272,7 @@ public class RecommendAdapter(
     }
 
     inner class VideoHolder(binding: ItemRecommendVideoBinding) :
-        BaseEmptyViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root) {
 
         val playView = binding.playerReco
         val cover = binding.imgRecoVideo
@@ -272,8 +317,10 @@ public class RecommendAdapter(
         }
     }
 
-    public interface OnRecoItemClickListener {
+    public interface RecoViewListener {
 
         fun onClick(position: Int, type: Int, videoCode: Int)
+
+        fun itemDetachedFromWindow()
     }
 }

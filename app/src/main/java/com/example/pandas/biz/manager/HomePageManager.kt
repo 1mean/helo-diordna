@@ -97,14 +97,14 @@ class PetManager {
      * @date: 1/22/22 7:47 下午
      * @version: v1.0
      */
-    suspend fun getRecommendByPage(startIndex: Int): RecommendData<PetVideo> {
+    suspend fun getRecommendByPage(startIndex: Int, counts: Int): RecommendData<PetVideo> {
 
         return withContext(Dispatchers.IO) {
             delay(300)
             val recommendData = RecommendData<PetVideo>()
             if (startIndex == 0) {//首页
                 recommendData.bannerList = petDao.queryRecoBanner(1)
-                val list = petDao.queryStarByPage(startIndex, 11)
+                val list = petDao.queryStarByPage(startIndex, counts)
                 if (list.isNotEmpty()) {
                     list.forEach {
                         it.user = petDao.queryUserByCode(it.authorId)
@@ -113,7 +113,7 @@ class PetManager {
                 }
                 recommendData.itemList = list
             } else {
-                val list = petDao.queryStarByPage(startIndex, 11)
+                val list = petDao.queryStarByPage(startIndex, counts)
                 if (list.isNotEmpty()) {
                     list.forEach {
                         it.user = petDao.queryUserByCode(it.authorId)

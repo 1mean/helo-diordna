@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_bg_home_dialog"
+        android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llayout_dialog_top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:background="@drawable/ripple_bg_home_item_dialog"
+            android:orientation="horizontal"
+            android:focusable="true">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/img_dialog_play" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="13dp"
+                android:text="@string/str_play_after"
+                android:textSize="14sp"
+                android:includeFontPadding="false"
+                android:textColor="@color/color_video_name_txt" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0.67dp"
+            android:layout_marginStart="24dp"
+            android:background="@color/color_home_divider" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="24dp"
+                android:text="@string/str_retroaction"
+                android:includeFontPadding="false"
+                android:textSize="14sp"
+                android:textColor="@color/color_video_name_txt" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="7dp"
+                android:text="(选择后将优化首页此类内容)"
+                android:includeFontPadding="false"
+                android:textSize="12sp"
+                android:textColor="@color/color_card_name" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_home_dialog1"
+                style="@style/style_home_dialog_text"
+                android:text="恐怖血腥" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_home_dialog2"
+                style="@style/style_home_dialog_text"
+                android:text="色情低俗" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_home_dialog3"
+                style="@style/style_home_dialog_text"
+                android:text="封面恶心" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_home_dialog4"
+                style="@style/style_home_dialog_text"
+                android:text="标题党/封面党" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_bg_reco" />
+
+    <RelativeLayout
+            android:id="@+id/rlayout_dialog_cancel"
+            android:layout_width="match_parent"
+            android:clickable="true"
+            android:layout_height="55dp"
+            android:focusable="true">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/str_cannel"
+                android:textSize="15sp"
+                android:textColor="@color/color_mine_txt_download" />
+    </RelativeLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

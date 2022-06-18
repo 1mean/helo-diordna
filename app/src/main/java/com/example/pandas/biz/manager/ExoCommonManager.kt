@@ -90,6 +90,8 @@ public class ExoCommonManager private constructor() {
             throw Exception("PlayInfo is error : videoCode=${playInfo.videoCode},file=${playInfo.file}")
         }
 
+        Log.e("1mean","player state= ${mPlayer.playbackState}")
+
         val videoCode = playInfo.videoCode
         val playPos = playInfo.playPos
 
@@ -123,7 +125,7 @@ public class ExoCommonManager private constructor() {
             videoCode?.let {
                 if (it.isEmpty()) return
                 tempMediaIndexMap.updatePlayPos(it.toInt(), mPlayer.currentPosition)
-                mPlayer.stop()
+                mPlayer.pause()
             }
         }
     }
@@ -199,9 +201,11 @@ public class ExoCommonManager private constructor() {
     }
 
     fun release() {
-        mPlayer.release()
-        _mPlayer = null
-        mCurPos = -1
+        if (_mPlayer != null) {
+            mPlayer.release()
+            _mPlayer = null
+            mCurPos = -1
+        }
     }
 
     private val mListener = object : Player.Listener {

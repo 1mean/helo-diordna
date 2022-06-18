@@ -121,5 +121,7 @@
     <string name="str_sending">发送中...</string>
     <string name="str_comment_list">评论详情</string>
     <string name="str_face_reco">人脸识别</string>
+    <string name="str_play_after">添加至稍后再看</string>
+    <string name="str_retroaction">反馈</string>
 
 </resources>
