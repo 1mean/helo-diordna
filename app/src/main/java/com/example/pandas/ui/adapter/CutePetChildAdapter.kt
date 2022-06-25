@@ -94,7 +94,7 @@ public class CutePetChildAdapter(
         title.text = petVideo.title
 
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, data.code)
+            startVideoPlayActivity(context, data.code,false)
         }
     }
 

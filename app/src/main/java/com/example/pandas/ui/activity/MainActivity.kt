@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -17,6 +18,7 @@ import com.chaquo.python.android.AndroidPlatform
 import com.example.pandas.R
 import com.example.pandas.base.BaseViewModel
 import com.example.pandas.base.activity.BaseActivity
+import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.databinding.ActivityMainBinding
 import com.example.pandas.utils.StatusBarUtils
 
@@ -116,5 +118,18 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
             }
         }
         return super.dispatchTouchEvent(ev)
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+
+        when(keyCode){
+            KeyEvent.KEYCODE_VOLUME_UP->{
+                PlayerManager.instance.observeHomeSystemVoice()
+            }
+            KeyEvent.KEYCODE_VOLUME_DOWN->{
+                PlayerManager.instance.observeHomeSystemVoice()
+            }
+        }
+        return super.onKeyDown(keyCode, event)
     }
 }

@@ -6,7 +6,6 @@ import com.example.pandas.base.BaseViewModel
 import com.example.pandas.bean.LandscapeData
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.pet.PageCommonData
-import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.ExceptionHandle
@@ -44,7 +43,7 @@ class HomePageViewModel : BaseViewModel() {
      *   }
      ************************************************************************************/
 
-    val petDataWrapper: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
+    val petDataWrapper: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
 
     val recommendDataWrapper: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
 
@@ -59,7 +58,7 @@ class HomePageViewModel : BaseViewModel() {
         if (isRefresh) {
             petIndex = 0
         }
-        request({ PetManagerCoroutine.getPetByPage(petIndex, 21) },
+        request({ PetManagerCoroutine.getPetByPage(petIndex, 21, isRefresh) },
             {
                 //请求数据成功
                 pandaHasMore = if (it.size > 20) {
@@ -85,7 +84,7 @@ class HomePageViewModel : BaseViewModel() {
                     isSuccess = false,
                     errMessage = it.errorMsg,
                     isRefresh = isRefresh,
-                    listData = mutableListOf<PetViewData>()
+                    listData = mutableListOf<PetVideo>()
                 )
                 petDataWrapper.value = dataList
             })
@@ -261,11 +260,12 @@ class HomePageViewModel : BaseViewModel() {
         }
     }
 
-    fun addOrUpdateVideoData(videoCode: Int, playPos: Long) {
+    fun addOrUpdateVideoData(videoCode: String?, playPos: Long) {
 
-        if (videoCode == -1) return
-        viewModelScope.launch {
-            PetManagerCoroutine.addOrUpdateVideoData(videoCode, playPos)
+        videoCode?.let {
+            viewModelScope.launch {
+                PetManagerCoroutine.addOrUpdateVideoData(it.toInt(), playPos)
+            }
         }
     }
 }

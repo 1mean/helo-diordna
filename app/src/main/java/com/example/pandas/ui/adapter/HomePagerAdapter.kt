@@ -30,7 +30,7 @@ public class HomePagerAdapter(
                 "推荐" -> {
                     RecommendFragment()
                 }
-                "分类" -> {
+                "熊猫" -> {
                     PandaFragment()
                 }
                 "热门" -> {
@@ -42,7 +42,7 @@ public class HomePagerAdapter(
                 "山水" -> {
                     LandscapeFragment()
                 }
-                "熊猫" -> {
+                "音乐" -> {
                     LandscapeFragment()
                 }
                 else -> {

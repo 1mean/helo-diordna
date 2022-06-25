@@ -13,16 +13,29 @@
             app:showDividers="middle"
             android:background="@color/white">
 
-        <com.google.android.exoplayer2.ui.PlayerView
+        <!--相关属性-->
+        <!--keep_content_on_player_reset：当播放器重置时，当前显示的视频帧或媒体插图是否保持可见(退出时播放器不会黑屏，会显示最后一帧)-->
+        <!--shutter_background_color：视图的背景颜色-->
+        <!--surface_type：视频播放的surface视图类型 建议在视频应用程序中使用surface_view  建议仅音频应用程序none使用-->
+        <!--resize_mode：控制视频和专辑艺术如何在视图中调整大小-->
+        <!--show_buffering：播放器缓冲时是否显示缓冲旋转器 有效的值never，when_playing，always-->
+        <!--hide_during_ads：播放控件是否在广告期间隐藏。如果控件已启用且播放器暂停，则始终在广告期间显示控件-->
+        <!--auto_show：播放控件是否在播放开始、暂停、结束或失败时自动显示-->
+        <!--use_controller：是否可以显示播放控件-->
+        <!--animation_enabled：控件显示和消失的动画-->
+        <com.google.android.exoplayer2.ui.StyledPlayerView
                 android:id="@+id/playView"
                 android:layout_width="match_parent"
                 android:layout_height="202dp"
                 app:show_buffering="when_playing"
-                app:show_shuffle_button="true"
                 app:hide_on_touch="true"
                 android:background="@color/black"
+                app:surface_type="surface_view"
+                app:keep_content_on_player_reset="true"
+                app:animation_enabled="false"
+                app:show_timeout="5000"
+                app:use_controller="true"
                 app:controller_layout_id="@layout/layout_video_controller" />
-
         <!-- 使用三个 0dp 讲控件所有的padding设置为0 -->
         <com.google.android.exoplayer2.ui.DefaultTimeBar
                 android:id="@+id/exo_time"

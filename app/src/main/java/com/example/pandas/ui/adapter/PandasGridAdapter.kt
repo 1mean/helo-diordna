@@ -3,6 +3,7 @@ package com.example.pandas.ui.adapter
 import android.content.Intent
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
@@ -28,11 +29,16 @@ public class PandasGridAdapter(list: MutableList<GridItem>) : BaseCommonAdapter<
         val name = holder.getWidget<AppCompatTextView>(R.id.txt_pandas_top)
 
         loadCircleImage(holder.itemView.context, data.item2, image)
+        if (position == 0) {
+            name.setTextColor(ContextCompat.getColor(context,R.color.color_txt_item_name))
+        }else {
+            name.setTextColor(ContextCompat.getColor(context,R.color.color_video_name_txt))
+        }
         name.text = data.item1
 
         holder.itemView.setOnClickListener {
 
-            if (position < 5) {
+            if (position == 0) {
                 val intent = Intent(context, PandaActivity::class.java)
                 intent.putExtra("title", data.item1)
                 context.startActivity(intent)

@@ -9,13 +9,14 @@ package com.example.pandas.sql.entity
  *  - 5，old，老年
  *  - 6，all,成长记录
  */
-enum class PeriodType {
+enum class PeriodType(val value: String) {
 
-    BABY,
-    MOM,
-    GROUP,
-    SINGLE,
-    OLD,
-    ALL,
-    KNOWLEDGE,
+    BABY("大熊猫宝宝"),
+    MOM("熊猫母子"),
+    GROUP("大熊猫少年班"),
+    SINGLE("成年大熊猫"),
+    OLD("老年大熊猫"),
+    ALL("大熊猫成长记录"),
+    KNOWLEDGE("大熊猫百科"),
+    CUTE("最萌")
 }

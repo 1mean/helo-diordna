@@ -19,6 +19,7 @@ public class CommonItemDecoration(
 ) : RecyclerView.ItemDecoration() {
 
     private var columnIndex = 0//当前view属于第几列
+    private val paddingMid = paddingHorizontal / 2
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -27,7 +28,6 @@ public class CommonItemDecoration(
         state: RecyclerView.State
     ) {
         val position = parent.getChildAdapterPosition(view)
-        val paddingMid = paddingHorizontal / 2
 
         columnIndex = if (hasTop) {
             (position - 1) % spanCount

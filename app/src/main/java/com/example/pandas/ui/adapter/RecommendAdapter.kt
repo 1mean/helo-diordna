@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.pandas.R
 import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.bean.pet.VideoType
+import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.databinding.CardItemLayoutBinding
 import com.example.pandas.databinding.DialogHomeItemBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
@@ -82,7 +84,7 @@ public class RecommendAdapter(
     override fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {
         super.onViewDetachedFromWindow(holder)
         if (holder is VideoHolder) {
-            //val position = (holder as VideoHolder).layoutPosition
+//            val position = (holder as VideoHolder).layoutPosition
             listener.itemDetachedFromWindow()
         }
     }
@@ -274,11 +276,15 @@ public class RecommendAdapter(
     inner class VideoHolder(binding: ItemRecommendVideoBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        val context = itemView.context
         val playView = binding.playerReco
         val cover = binding.imgRecoVideo
         val shelter = binding.layoutRecoVideoShelter
         val title = binding.txtRecoVideoTitle
         val playerView = binding.playerReco
+        val moreView = binding.btnMore
+        val duration = binding.txtHomeVideoDuration
+        val voice = binding.playerReco.findViewById<AppCompatImageButton>(R.id.exo_voice)
 
         fun updateItemView(position: Int, isHide: Boolean) {
             val petVideo = data.itemList[position - 1]
@@ -305,14 +311,63 @@ public class RecommendAdapter(
             Glide.with(itemView.context).load(petVideo.cover)
                 .into(cover)
             title.text = petVideo.title
+            duration.text = TimeUtils.getDuration(petVideo.duration.toLong())
+
+            if (PlayerManager.instance.isHomePageVoiceOpen) {
+                voice.setImageResource(R.mipmap.img_voice_open)
+            } else {
+                voice.setImageResource(R.mipmap.img_voice_close)
+            }
             itemView.setOnClickListener {
-                shelter.visibility = View.VISIBLE
+                shelter.postDelayed({ shelter.visibility = View.VISIBLE }, 150)
                 listener.onClick(position, 3, petVideo.code)
             }
 
             playView.setOnClickListener {
-                shelter.visibility = View.VISIBLE
+                shelter.postDelayed({ shelter.visibility = View.VISIBLE }, 150)
                 listener.onClick(position, 3, petVideo.code)
+            }
+
+            moreView.setOnClickListener {
+                showDialog()
+            }
+
+            voice.setOnClickListener {
+                if (PlayerManager.instance.isHomePageVoiceOpen) {
+                    voice.setImageResource(R.mipmap.img_voice_close)
+                } else {
+                    voice.setImageResource(R.mipmap.img_voice_open)
+                }
+                listener.updatePlayerVoice()
+            }
+        }
+
+        private fun showDialog() {
+            val dialog = BottomSheetDialog(context)
+            val dialogBinding = DialogHomeItemBinding.inflate(LayoutInflater.from(context))
+            dialogBinding.rlayoutDialogCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialogBinding.txtHomeDialog1.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialogBinding.txtHomeDialog2.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialogBinding.txtHomeDialog3.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialogBinding.txtHomeDialog4.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialogBinding.llayoutDialogTop.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialog.run {
+                setContentView(dialogBinding.root)
+                setCanceledOnTouchOutside(true)
+                setCancelable(true)
+                show()
             }
         }
     }
@@ -322,5 +377,7 @@ public class RecommendAdapter(
         fun onClick(position: Int, type: Int, videoCode: Int)
 
         fun itemDetachedFromWindow()
+
+        fun updatePlayerVoice()
     }
 }

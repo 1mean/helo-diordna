@@ -32,7 +32,10 @@ public class VideoViewModel : BaseViewModel() {
     val comments: MutableLiveData<UIDataWrapper<CommentAndUser>> by lazy { MutableLiveData() }
     val commentReply: MutableLiveData<UIDataWrapper<CommentAndUser>> by lazy { MutableLiveData() }
 
-    fun getVideoInfo(code: Int) {
+    /**
+     * 获取播放的视频的信息和推荐视频
+     */
+    fun getVideoInfoAndRelations(code: Int) {
 
         viewModelScope.launch {
             runCatching {
@@ -56,8 +59,7 @@ public class VideoViewModel : BaseViewModel() {
 
 
     fun saveHistory(code: Int, currentPosition: Long) {
-
-        Thread {
+        viewModelScope.launch {
             val formatBuilder = StringBuilder()
             val formatter = Formatter(formatBuilder, Locale.getDefault())
             val position = Util.getStringForTime(formatBuilder, formatter, currentPosition)
@@ -68,7 +70,8 @@ public class VideoViewModel : BaseViewModel() {
                     playPosition = position
                 )
             PetManagerCoroutine.saveHistory(history)
-        }.start()
+            PetManagerCoroutine.addOrUpdateVideoData(code, currentPosition)
+        }
     }
 
     var hasCommentsMore = false

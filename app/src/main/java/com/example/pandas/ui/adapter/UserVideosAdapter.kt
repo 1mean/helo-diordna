@@ -39,7 +39,7 @@ public class UserVideosAdapter(list: MutableList<PetViewData>) :
             time.text = subTime
         }
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, data.code)
+            startVideoPlayActivity(context, data.code,false)
         }
     }
 

@@ -143,7 +143,6 @@
                     app:layout_constraintTop_toTopOf="@id/cl_video_info_desc"
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:maxEms="19"
-                    android:maxLines="1"
                     android:textColor="@color/color_video_item_title" />
 
             <androidx.appcompat.widget.AppCompatImageView

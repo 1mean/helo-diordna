@@ -5,7 +5,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.biz.ext.loadRoundedCornerImage
+import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.utils.TimeUtils
@@ -26,15 +26,10 @@ public class PandaListAdapter(list: MutableList<PetVideo>) :
         val context = holder.itemView.context
         val cover = holder.getWidget<AppCompatImageView>(R.id.img_pandas_item_cover)
         val title = holder.getWidget<AppCompatTextView>(R.id.txt_pandas_item_title)
-        val name = holder.getWidget<AppCompatTextView>(R.id.txt_panda_item_name)
         val duration = holder.getWidget<AppCompatTextView>(R.id.txt_panda_item_duration)
 
         data.cover?.let {
-            loadRoundedCornerImage(context, 10, it, cover)
-        }
-
-        data.user?.let {
-            name.text = it.userName
+            loadImage(context, it, cover)
         }
 
         duration.text = TimeUtils.getDuration(data.duration.toLong())
@@ -42,7 +37,7 @@ public class PandaListAdapter(list: MutableList<PetVideo>) :
         title.text = data.title
 
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, data.code)
+            startVideoPlayActivity(context, data.code, false)
         }
     }
 

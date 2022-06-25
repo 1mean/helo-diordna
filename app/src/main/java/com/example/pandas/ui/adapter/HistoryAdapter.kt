@@ -46,7 +46,7 @@ public class HistoryAdapter(private val list: MutableList<HistoryItem>) :
                     StringBuilder(position).append(" / ").append(videoDuration).toString()
             }
             holder.itemView.setOnClickListener {
-                startVideoPlayActivity(context, video.code)
+                startVideoPlayActivity(context, video.code,false)
             }
         }
     }

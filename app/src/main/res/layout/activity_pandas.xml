@@ -1,66 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:background="@color/color_eye_rv_bg">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clayout_panda_top"
+    <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="57dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:elevation="0dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            >
 
-        <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/ibn_panda"
-                android:layout_width="57dp"
-                android:layout_height="match_parent"
-                android:src="@mipmap/img_back_1"
-                app:layout_constraintTop_toTopOf="@id/clayout_panda_top"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_panda_top"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_panda_top"
-                android:background="@null" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_panda_top"
+                android:layout_width="match_parent"
+                android:background="@color/white_fd"
+                android:layout_height="57dp"
+                app:layout_scrollFlags="scroll"
+                android:elevation="0.5dp"
+                >
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_panda_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/color_video_name_txt"
-                app:layout_constraintTop_toTopOf="@id/clayout_panda_top"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_panda_top"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_panda_top"
-                android:layout_marginStart="59dp" />
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ibn_panda"
+                    android:layout_width="57dp"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/img_back_1"
+                    app:layout_constraintTop_toTopOf="@id/clayout_panda_top"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_panda_top"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_panda_top"
+                    android:background="@null" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_panda_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_video_name_txt"
+                    app:layout_constraintTop_toTopOf="@id/clayout_panda_top"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_panda_top"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_panda_top"
+                    android:layout_marginStart="59dp" />
 
-    <!--<View
-            android:layout_width="match_parent"
-            android:layout_height="0.3dp"
-            android:background="@color/color_music_start_bg"
-            android:elevation="4dp" />-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tl_pandas"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            app:tabMaxWidth="0dp"
-            app:tabRippleColor="@android:color/transparent"
-            app:tabTextColor="@color/grey600"
-            app:tabIndicatorColor="@color/color_tab_indicator"
-            app:tabSelectedTextColor="@color/color_tab_text_selected"
-            app:tabTextAppearance="@style/SelfTabLayoutTextStyle"
-            app:tabIndicator="@drawable/layer_panda_indicator" />
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tl_pandas"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:tabMaxWidth="0dp"
+                app:tabRippleColor="@android:color/transparent"
+                android:background="@color/white_fd"
+                app:tabTextColor="@color/grey600"
+                app:tabIndicatorColor="@color/color_txt_panda_selected"
+                app:tabSelectedTextColor="@color/color_txt_panda_selected"
+                app:tabTextAppearance="@style/SelfTabLayoutTextStyle"
+                app:tabIndicator="@drawable/layer_panda_indicator" />
 
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="0.67dp"
-            android:background="@color/color_bg_user_divider" />
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.67dp"
+                android:background="@color/color_bg_user_divider" />
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_pandas"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
 
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -23,6 +23,7 @@ public class AdapterWrapper(private val mAdapter: RecyclerView.Adapter<RecyclerV
     private var onItemLongClickListener: OnItemLongClickListener? = null
 
     private var footer: View? = null
+    private var headerVH: FooterViewHolder? = null
 
     fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
         this.onItemClickListener = onItemClickListener
@@ -59,7 +60,14 @@ public class AdapterWrapper(private val mAdapter: RecyclerView.Adapter<RecyclerV
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         if (viewType == TYPE_ITEM_FOOTER) {
-            return FooterViewHolder(footer!!)
+
+            footer?.let {
+                //解决BUG: java.lang.IllegalArgumentException: Called attach on a child which is not detached: FooterViewHolder
+                if (headerVH == null) {
+                    headerVH = FooterViewHolder(it)
+                }
+            }
+            return headerVH!!
         } else {
             val holder = mAdapter.onCreateViewHolder(parent, viewType)
             onItemClickListener?.let { listener ->

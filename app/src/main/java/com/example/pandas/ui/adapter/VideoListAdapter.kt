@@ -42,7 +42,7 @@ public class VideoListAdapter(private val list: MutableList<PetViewData>) :
 
         }
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(holder.itemView.context, video.code)
+            startVideoPlayActivity(holder.itemView.context, video.code,false)
         }
     }
 

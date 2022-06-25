@@ -34,10 +34,11 @@ public class ActivityPandaAdapter(
 
         var type = 0
         when (position) {
-            0 -> type = PeriodType.BABY.ordinal
-            1 -> type = PeriodType.MOM.ordinal
-            2 -> type = PeriodType.GROUP.ordinal
-            3 -> type = PeriodType.SINGLE.ordinal
+            0 -> type = PeriodType.CUTE.ordinal
+            1 -> type = PeriodType.BABY.ordinal
+            2 -> type = PeriodType.MOM.ordinal
+            3 -> type = PeriodType.GROUP.ordinal
+            4 -> type = PeriodType.SINGLE.ordinal
         }
         return type
     }

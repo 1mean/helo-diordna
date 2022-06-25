@@ -42,7 +42,7 @@ public class CacheItemAdapter(private val list: MutableList<PetViewData>) :
 
         more.setOnClickListener { }
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, data.code)
+            startVideoPlayActivity(context, data.code,false)
         }
     }
 

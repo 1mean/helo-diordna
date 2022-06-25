@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="189dp"
         app:cardCornerRadius="5dp"
-        app:cardElevation="0dp"
+        app:cardElevation="0.3dp"
         android:background="@color/white">
 
     <androidx.recyclerview.widget.RecyclerView

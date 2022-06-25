@@ -31,7 +31,7 @@ import java.util.*
  */
 public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 
-    private val tabTitles = arrayListOf("分类", "推荐", "热门", "最爱", "山水", "熊猫")
+    private val tabTitles = arrayListOf("熊猫", "推荐", "热门", "最爱", "山水", "音乐")
 
     override fun lazyLoadTime(): Long = 0
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity

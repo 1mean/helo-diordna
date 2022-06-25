@@ -30,11 +30,15 @@ class PetManager {
         AppDataBase.getInstance().petVideoDao()
     }
 
-    suspend fun getPetByPage(startIndex: Int, counts: Int): MutableList<PetViewData> {
+    suspend fun getPetByPage(
+        startIndex: Int,
+        counts: Int,
+        isRefresh: Boolean
+    ): MutableList<PetVideo> {
 
         return withContext(Dispatchers.IO) {
-            delay(500)
-            val list = petDao.queryByTypeAndPage(VideoType.PANDA.ordinal, startIndex, counts)
+            delay(200)
+            val list = petDao.queryLovedPanda(startIndex, counts)
             if (list.isNotEmpty()) {
                 list.forEach {
                     it.user = petDao.queryUserByCode(it.authorId)
@@ -100,7 +104,6 @@ class PetManager {
     suspend fun getRecommendByPage(startIndex: Int, counts: Int): RecommendData<PetVideo> {
 
         return withContext(Dispatchers.IO) {
-            delay(300)
             val recommendData = RecommendData<PetVideo>()
             if (startIndex == 0) {//首页
                 recommendData.bannerList = petDao.queryRecoBanner(1)
@@ -255,14 +258,16 @@ class PetManager {
         }
     }
 
-    fun saveHistory(history: History) {
-        val localHistory = petDao.queryHistoryByCode(history.code)
-        if (localHistory == null) {//不存在的，一定为null
-            petDao.insertHistory(history)
-        } else {
-            localHistory.lastTime = history.lastTime
-            localHistory.playPosition = history.playPosition
-            petDao.updateHistory(localHistory)
+    suspend fun saveHistory(history: History) {
+        withContext(Dispatchers.IO) {
+            val localHistory = petDao.queryHistoryByCode(history.code)
+            if (localHistory == null) {//不存在的，一定为null
+                petDao.insertHistory(history)
+            } else {
+                localHistory.lastTime = history.lastTime
+                localHistory.playPosition = history.playPosition
+                petDao.updateHistory(localHistory)
+            }
         }
     }
 
@@ -324,34 +329,50 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
             delay(300)
-            val list = petDao.queryPeriedByKey("%$words%", period, startIndex, counts)
-            Log.e("1mean", "${list.size}")
-            if (list.isNotEmpty()) {
-                list.forEach {
-                    it.user = petDao.queryUserByCode(it.authorId)
-                }
+            if (period == PeriodType.CUTE.ordinal) {
+                petDao.queryLovedByKey("%$words%", startIndex, counts)
+            } else {
+                petDao.queryPeriedByKey("%$words%", period, startIndex, counts)
             }
-            list
+//            if (list.isNotEmpty()) {
+//                list.forEach {
+//                    it.user = petDao.queryUserByCode(it.authorId)
+//                }
+//            }
         }
     }
 
-    suspend fun searchByPeriod(
-        period: Int,
+    suspend fun getPandas(
+        name: String,
         startIndex: Int,
         counts: Int
     ): MutableList<PetVideo> {
 
         return withContext(Dispatchers.IO) {
-            delay(300)
-            val list = petDao.queryByPeried(period, startIndex, counts)
-            if (list.isNotEmpty()) {
-                list.forEach {
-                    it.user = petDao.queryUserByCode(it.authorId)
+
+            when (name) {
+                "熊猫宝宝" -> {
+                    petDao.queryByPeried(PeriodType.BABY.ordinal, startIndex, counts)
+                }
+                "带崽熊猫" -> {
+                    petDao.queryByPeried(PeriodType.MOM.ordinal, startIndex, counts)
+                }
+                "幼年班" -> {
+                    petDao.queryByPeried(PeriodType.GROUP.ordinal, startIndex, counts)
+                }
+                "成长记录" -> {
+                    petDao.queryByPeried(PeriodType.ALL.ordinal, startIndex, counts)
+                }
+                "熊猫科普" -> {
+                    petDao.queryByPeried(PeriodType.KNOWLEDGE.ordinal, startIndex, counts)
+                }
+                else -> {
+                    petDao.queryPandaByName("%$name%", startIndex, counts)
                 }
             }
-            list
         }
     }
+
 
     suspend fun searchByPage(words: String, startIndex: Int): MutableList<PetViewData> {
 

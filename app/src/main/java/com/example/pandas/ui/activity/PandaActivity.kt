@@ -19,11 +19,11 @@ import com.google.android.material.tabs.TabLayoutMediator
  */
 public class PandaActivity : BaseActivity<PandaViewModel, ActivityPandasBinding>() {
 
-    private val tabTitles = arrayListOf("宝宝", "妈妈", "幼年班", "成年")
+    private val tabTitles = arrayListOf("最萌", "宝宝", "妈妈", "合班","成年")
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.updataStatus(this, true, false, R.color.white)
+        StatusBarUtils.updataStatus(this, true, false, R.color.white_fd)
         val title = intent.getStringExtra("title")
         binding.txtPandaName.text = title
 

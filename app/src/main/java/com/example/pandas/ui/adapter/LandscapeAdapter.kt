@@ -149,7 +149,7 @@ public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data
 
             }
             itemView.setOnClickListener {
-                startVideoPlayActivity(itemView.context, video.code)
+                startVideoPlayActivity(itemView.context, video.code,false)
             }
         }
     }

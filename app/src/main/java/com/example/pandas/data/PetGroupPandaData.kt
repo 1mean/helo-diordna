@@ -98,7 +98,7 @@ object PetGroupPandaData {
         panda6.fileName = "panda_group_panda6"
         panda6.code = 342
         panda6.duration = 169
-        panda6.period = PeriodType.GROUP.ordinal
+        panda6.period = PeriodType.MOM.ordinal
         panda6.isStar = false
         panda6.title = "和花被干妈和姐姐前后夹击，rua成了小熊饼干"
         panda6.releaseTime = "2021-12-21 14:29:58"

@@ -1,49 +1,44 @@
 package com.example.pandas.ui.activity
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Rect
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.util.Log
+import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.FrameLayout
-import android.widget.TextView
+import android.widget.ImageButton
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.base.activity.BaseActivity
+import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getUrl
+import com.example.pandas.biz.ext.launchVideoPlayActivity
 import com.example.pandas.biz.interaction.CommentsListener
+import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.ActivityVideoBinding
 import com.example.pandas.ui.adapter.VideoFragmentAdapter
 import com.example.pandas.ui.ext.closeFullScreen
 import com.example.pandas.ui.ext.fullScreen
 import com.example.pandas.ui.fragment.CommentListFragment
-import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.util.DebugTextViewHelper
-import com.google.android.exoplayer2.util.EventLogger
+import com.google.android.exoplayer2.ui.StyledPlayerView
+import com.google.android.exoplayer2.util.Util
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
-import java.io.File
 
 
 /**
@@ -56,7 +51,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     CommentsListener {
 
     private val tabNames = arrayListOf("简介", "评论")
-    private var mPlayer: ExoPlayer? = null
 
     private var vedioUrl: String? = null
     private var code: Int = -1
@@ -65,11 +59,12 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     private val MAX_UPDATE_INTERVAL_MS = 1000L
 
     private var isFirstVisible: Boolean = true
+    private var isPlayIng: Boolean = false
 
     private val requestLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
-                mPlayer?.play()
+                //mPlayer?.play()
             }
         }
 
@@ -77,13 +72,10 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
         StatusBarUtils.setStatusBarMode(this, false, R.color.black)
 
-//        val eyepetozerBean = getIntent().getParcelableExtra<EyepetozerItem>("EyepetozerItem")
-//        vedioUrl = eyepetozerBean?.playUrl
-
-        code = intent.getIntExtra(AppInfos.VIDEO_PLAY_KEY, -1)
+        code = intent.getIntExtra("code", -1)
+        isPlayIng = intent.getBooleanExtra("isPlaying", false)
 
         lifecycleScope.launch {
-
             val viewPager = binding.vpVideo
             viewPager.adapter = VideoFragmentAdapter(supportFragmentManager, lifecycle)
             viewPager.offscreenPageLimit = ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
@@ -94,20 +86,22 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             }.attach()
         }
         val left = binding.playView.findViewById<ConstraintLayout>(R.id.clayout_video_close)
-        val full = binding.playView.findViewById<ConstraintLayout>(R.id.clayout_video_full)
+        //val full = binding.playView.findViewById<ConstraintLayout>(R.id.clayout_video_full)
         val controllerView = binding.playView.findViewById<FrameLayout>(R.id.flayout_controller)
+        val fullScreenButton = binding.playView.findViewById<AppCompatImageButton>(R.id.btn_fullscreen)
         left.setOnClickListener {
             //保存历史记录
-            mPlayer?.let { play ->
-                val currentPosition = play.currentPosition
-                mViewModel.saveHistory(code, currentPosition)
-            }
-            mPlayer?.release()
-            mPlayer = null
+//            mPlayer?.let { play ->
+//                val currentPosition = play.currentPosition
+//                mViewModel.saveHistory(code, currentPosition)
+//            }
+//            mPlayer?.release()
+//            mPlayer = null
             finish()
         }
 
-        full.setOnClickListener {
+
+        fullScreenButton.setOnClickListener {
             isFullScreen = if (isFullScreen) {//全屏
                 closeFullScreen()
                 false
@@ -128,21 +122,30 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 //            }
         }
 
-        binding.playView.setControllerVisibilityListener {
-            updateTimeBar(it == View.VISIBLE)
-        }
+        binding.playView.setControllerVisibilityListener(StyledPlayerView.ControllerVisibilityListener { visibility ->
+            updateTimeBar(
+                visibility
+            )
+        })
     }
 
     override fun onStart() {
         super.onStart()
+        if (Util.SDK_INT > 23) {
+            PlayerManager.instance.initPlayer(this)
+        }
     }
 
     override fun onResume() {
         super.onResume()
 
         if (isFirstVisible) {
+
+            if (isPlayIng) {
+                PlayerManager.instance.addPlayerViewAndPlay(binding.playView)
+            }
             if (code != -1) {
-                mViewModel.getVideoInfo(code)
+                mViewModel.getVideoInfoAndRelations(code)
             }
             isFirstVisible = false
         }
@@ -152,100 +155,35 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
         mViewModel.videoInfo.observe(this) {
 
-            if (mPlayer == null) {
+            if (!isPlayIng) {
                 val file = getUrl(this, it.fileName!!)
                 if (file.exists()) {
-                    initPlayer(file)
+                    //initPlayer(file)
+                    val currentPos: Long = if (it.videoData == null) {
+                        0L
+                    } else {
+                        it.videoData!!.playPosition
+                    }
+                    val mediaInfo = MediaInfo(it.code, file.absolutePath, currentPos)
+                    PlayerManager.instance.setRepeatMode(Player.REPEAT_MODE_ONE)
+                        .addPlayerView(binding.playView)
+                        .startPlay(true, -1, mediaInfo)
                 }
             }
         }
 
         mViewModel.isVideoItemClicked.observe(this) { code ->
-            mPlayer?.pause()
-            val intent = Intent(this, VideoPlayingActivity::class.java).apply {
-                putExtra("code", code)
-            }
-            requestLauncher.launch(intent)
-        }
-    }
-
-    private fun initPlayer(file: File) {
-
-        //1.创建SimpleExoPlayer实例
-        mPlayer = ExoPlayer.Builder(this).build()
-        binding.playView.player = mPlayer
-
-        Log.e("1mean", "fileName: ${file.absolutePath}")
-        //2.创建播放菜单并添加到播放器
-        val firstLocalMediaItem = MediaItem.fromUri(Uri.fromFile(file))
-        binding.playView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT
-
-        mPlayer?.run {
-            setRepeatMode()//设置重复播放模式
-            addListener(listener)
-            addMediaItem(firstLocalMediaItem)
-            playWhenReady = true//3.设置播放方式为自动播放
-            prepare()//设置播放器状态为prepare
+            PlayerManager.instance.stopPlayer()
+            launchVideoPlayActivity(this, code, false, requestLauncher)
         }
     }
 
     override fun onStop() {
         super.onStop()
-        mPlayer?.pause()
-    }
 
-
-    private val listener = object : Player.Listener {
-
-        override fun onPlayWhenReadyChanged(
-            playWhenReady: Boolean,
-            reason: Int
-        ) {//playWhenReady标志来指示用户打算播放
-            super.onPlayWhenReadyChanged(playWhenReady, reason)
+        //释放资源
+        if (Util.SDK_INT > 23) {
         }
-
-        override fun onPlaybackStateChanged(playbackState: Int) {
-            when (playbackState) {
-                Player.STATE_READY -> {//player 可以立即从当前位置进行播放
-                }
-                Player.STATE_IDLE -> {//这是初始状态，播放器停止时的状态以及播放失败时的状态
-                }
-                Player.STATE_BUFFERING -> {//player 无法立即从当前位置进行播放。这主要是因为需要加载更多数据
-                }
-                Player.STATE_ENDED -> {//播放器播放完所有媒体
-                }
-            }
-        }
-
-        override fun onIsPlayingChanged(isPlaying: Boolean) {
-            super.onIsPlayingChanged(isPlaying)
-        }
-
-        override fun onPlayerError(error: PlaybackException) {
-
-        }
-    }
-
-    //设置播放模式
-    //REPEAT_MODE_OFF（顺序播放）、REPEAT_MODE_ONE（仅播放一次）和REPEAT_MODE_ALL（重复播放）
-    fun setRepeatMode() {
-        mPlayer?.repeatMode = Player.REPEAT_MODE_ALL
-    }
-
-    //监控其播放过程中的重要log信息，可以通过按钮点击实时监控信息
-    fun loglistener() {
-        /* 扩展：注册并添加listener */
-        val trackSelector = DefaultTrackSelector(this)
-        trackSelector.parameters = DefaultTrackSelector.ParametersBuilder(this).build()
-        mPlayer?.addAnalyticsListener(EventLogger(trackSelector))
-    }
-
-    //使用exoplayer自带的debug helper来显示实时调试信息
-    fun debugHelper(debugTextView: TextView) {
-
-        /* 扩展：使用exoplayer自带的debug helper来显示实时调试信息 */
-        val debugViewHelper = DebugTextViewHelper(mPlayer!!, debugTextView)
-        debugViewHelper.start()
     }
 
     private var lastClickTime: Long = 0
@@ -262,8 +200,8 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     /**
      * isVisibility: 控制器是否会显示/全屏，显示/全屏状态下隐藏时间进度条
      */
-    private fun updateTimeBar(isVisibility: Boolean) {
-        if (!isVisibility && !isFullScreen) {
+    private fun updateTimeBar(isVisibility: Int) {
+        if (isVisibility == View.GONE && !isFullScreen) {
             binding.exoTime.visibility = View.VISIBLE
             updateTimeTask.sendEmptyMessage(0)
         } else {
@@ -279,14 +217,12 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                 return
             }
 
-            mPlayer?.let { player ->
-                binding.exoTime.run {
-                    setDuration(player.duration)
-                    setBufferedPosition(player.bufferedPosition)
-                    setPosition(player.currentPosition)
-                }
-                sendEmptyMessageDelayed(0, MAX_UPDATE_INTERVAL_MS)
+            binding.exoTime.run {
+                setDuration(PlayerManager.instance.duration())
+                setBufferedPosition(PlayerManager.instance.bufferedPos())
+                setPosition(PlayerManager.instance.currentPosition())
             }
+            sendEmptyMessageDelayed(0, MAX_UPDATE_INTERVAL_MS)
         }
     }
 
@@ -305,14 +241,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     override fun onDestroy() {
         super.onDestroy()
 
-        updateTimeTask.removeMessages(0)
-        //保存历史记录
-        mPlayer?.let { play ->
-            val currentPosition = play.currentPosition
-            mViewModel.saveHistory(code, currentPosition)
-        }
-        mPlayer?.release()
-        mPlayer = null
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
@@ -396,8 +324,32 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                 }
             }
         }
-        setResult(RESULT_OK)
+
+        updateTimeTask.removeMessages(0)
+        //保存历史记录
+        mViewModel.saveHistory(code, PlayerManager.instance.currentPosition())
+
+        //在activity关闭时，必须释放掉绑定的视图，否则造成内存泄漏
+        binding.playView.player = null
+
+        //暂停需要时间来处理，自己调用暂停
+        PlayerManager.instance.stopPlayer()
+
+
         finish()
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+
+        when (keyCode) {
+            KeyEvent.KEYCODE_VOLUME_UP -> {
+                PlayerManager.instance.observeSystemVoice()
+            }
+            KeyEvent.KEYCODE_VOLUME_DOWN -> {
+                PlayerManager.instance.observeSystemVoice()
+            }
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
 }

@@ -2,8 +2,8 @@ package com.example.pandas.biz.ext
 
 import android.content.Context
 import android.content.Intent
+import androidx.activity.result.ActivityResultLauncher
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.activity.UserInfoActivity
 import com.example.pandas.ui.activity.VideoPlayingActivity
 
@@ -25,12 +25,27 @@ fun SwipeRefreshLayout.init(distance: Int): SwipeRefreshLayout {
     return this
 }
 
-fun startVideoPlayActivity(context: Context, code: Int) {
+fun startVideoPlayActivity(context: Context, code: Int, isPlaying: Boolean) {
     val intent = Intent(context, VideoPlayingActivity::class.java).apply {
         putExtra("code", code)
+        putExtra("isPlaying", isPlaying)
     }
     context.startActivity(intent)
 }
+
+fun launchVideoPlayActivity(
+    context: Context,
+    code: Int,
+    isPlaying: Boolean,
+    launcher: ActivityResultLauncher<Intent>
+) {
+    val intent = Intent(context, VideoPlayingActivity::class.java).apply {
+        putExtra("code", code)
+        putExtra("isPlaying", isPlaying)
+    }
+    launcher.launch(intent)
+}
+
 
 /**
  * 后续数据修改成id

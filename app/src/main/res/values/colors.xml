@@ -161,6 +161,9 @@
     <!--face-->
     <color name="color_txt_face_desc">#8B8B8B</color>
 
+    <!--panda activity-->
+    <color name="color_txt_panda_selected">#FF569A</color>
+
     <!--other-->
     <color name="color_progress_loadmore">#FF5B9A</color>
     <color name="color_text_loading">#919A9D</color>

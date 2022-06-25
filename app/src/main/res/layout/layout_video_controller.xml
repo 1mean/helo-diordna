@@ -59,22 +59,23 @@
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/exo_pause"
+                <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/exo_play_pause"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         android:layout_gravity="center_vertical"
-                        android:src="@mipmap/img_video_pausing" />
+                        android:background="@null" />
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <!--<androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/exo_play"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:visibility="gone"
+                        android:background="@null"
                         android:layout_marginStart="12dp"
                         android:layout_gravity="center_vertical"
-                        android:src="@mipmap/img_video_playing" />
+                        android:src="@mipmap/img_video_playing" />-->
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/exo_position"
@@ -89,11 +90,12 @@
 
                 <com.google.android.exoplayer2.ui.DefaultTimeBar
                         android:id="@+id/exo_progress"
-                        android:layout_width="match_parent"
+                        android:layout_width="215dp"
                         android:layout_height="match_parent"
                         app:bar_height="2dp"
                         android:layout_marginStart="3dp"
-                        android:layout_marginEnd="75dp"
+                        app:scrubber_color="@color/color_tab_indicator"
+                        app:scrubber_drawable="@mipmap/img_scrubber"
                         app:unplayed_color="@color/color_video_timebar_unplayed"
                         app:played_color="@color/color_tab_indicator"
                         app:buffered_color="@color/color_video_timebar_buffered" />
@@ -105,28 +107,18 @@
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="10sp"
-                        android:layout_marginStart="-72dp"
+                        android:layout_marginStart="3dp"
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
                         tools:ignore="SmallSp" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/clayout_video_full"
+                <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btn_fullscreen"
                         android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="7dp"
-                        >
-                    <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/img_video_fulling"
-                            app:layout_constraintTop_toTopOf="@id/clayout_video_full"
-                            app:layout_constraintBottom_toBottomOf="@id/clayout_video_full"
-                            app:layout_constraintLeft_toLeftOf="@id/clayout_video_full"
-                            app:layout_constraintRight_toRightOf="@id/clayout_video_full"
-                            />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
+                        android:layout_height="30dp"
+                        android:layout_marginStart="3dp"
+                        android:src="@mipmap/img_video_fulling"
+                        android:background="@null" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

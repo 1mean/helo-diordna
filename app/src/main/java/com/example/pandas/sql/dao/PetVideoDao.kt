@@ -150,6 +150,12 @@ interface PetVideoDao {
     @Query("select code,title,cover,authorId,duration,videoType from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryByTypeAndPage(type: Int, startIndex: Int, count: Int): MutableList<PetViewData>
 
+    @Query("select * from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
+    suspend fun queryVideoByPage(type: Int, startIndex: Int, count: Int): MutableList<PetVideo>
+
+    @Query("select * from pet_video where  type=0 and videoType=0 and isStar=1 limit (:startIndex),(:count)")
+    suspend fun queryLovedPanda(startIndex: Int, count: Int): MutableList<PetVideo>
+
     @Query("select * from pet_video where type=(:type) and videoType=0 order by releaseTime desc limit (:startIndex),(:count)")
     suspend fun queryPageType(type: Int, startIndex: Int, count: Int): MutableList<PetVideo>
 
@@ -219,6 +225,20 @@ interface PetVideoDao {
     suspend fun queryPeriedByKey(
         words: String,
         period: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetVideo>
+
+    @Query("select * from pet_video where type=0 and videoType=0 and title like (:words) limit (:startIndex),(:counts)")
+    suspend fun queryPandaByName(
+        words: String,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetVideo>
+
+    @Query("select * from pet_video where type=0 and videoType=0 and isStar=1 and title like (:words) limit (:startIndex),(:counts)")
+    suspend fun queryLovedByKey(
+        words: String,
         startIndex: Int,
         counts: Int
     ): MutableList<PetVideo>

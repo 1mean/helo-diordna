@@ -8,7 +8,7 @@ import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.PandasAdapter
-import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
+import com.example.pandas.ui.adapter.decoration.PandaItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
@@ -29,7 +29,7 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefre
         val paddingHorinzontal = resources.getDimension(R.dimen.item_panda_paddingLeft).toInt()
 
         binding.recyclerLayout.init(
-            CommonItemDecoration(true, 2, paddingTop, paddingHorinzontal),
+            PandaItemDecoration(paddingTop, paddingHorinzontal),
             pandasAdapter,
             GridLayoutManager(mActivity, 2),
             object : SwipRecyclerView.ILoadMoreListener {
@@ -39,6 +39,7 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefre
             })
 
         binding.swipLayout.run {
+            setBackgroundResource(R.color.color_eye_rv_bg)
             setRefreshColor()
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)

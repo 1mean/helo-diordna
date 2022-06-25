@@ -3,11 +3,15 @@ package com.example.pandas.biz.manager
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import android.widget.TextView
 import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.ui.StyledPlayerView
+import com.google.android.exoplayer2.util.DebugTextViewHelper
+import kotlinx.coroutines.delay
+import java.io.File
 
 /**
  * @description: PlayerManager
@@ -27,6 +31,8 @@ public class PlayerManager private constructor() {
     private val tempMediaIndexMap = MediaIndexMap()//存储资源文件信息
 
     private var oldPlayerView: StyledPlayerView? = null //上一个加载的Playerview
+
+    var isHomePageVoiceOpen = false//home页面默认关闭声音
 
     companion object {
         val instance = Holder.holder
@@ -61,6 +67,19 @@ public class PlayerManager private constructor() {
     }
 
     /**
+     * 适合只切换视图的场景,此时状态为ready，但是ready = false
+     */
+    fun addPlayerViewAndPlay(playerView: StyledPlayerView) {
+
+        playerView.player = null
+        playerView.player = mPlayer
+
+//        StyledPlayerView.switchTargetView(mPlayer, oldPlayerView, playerView)
+        oldPlayerView = playerView
+        mPlayer.playWhenReady = true
+    }
+
+    /**
      * 添加界面操作的回调
      */
     fun addPlayerListener(mListener: ExoPlayerListener): PlayerManager {
@@ -72,9 +91,9 @@ public class PlayerManager private constructor() {
 
     /**
      * 设置循环模式
-     *      - REPEAT_MODE_OFF(0):不重复,播放结束后继续资源列表里的下一个视频，直至列表结束到Player.STATE_ENDED
-     *      - REPEAT_MODE_ONE(1):循环当前视频
-     *      - REPEAT_MODE_ALL(2):循环播放整个资源列表
+     *   - REPEAT_MODE_OFF(0):不重复,播放结束后继续资源列表里的下一个视频，直至列表结束到Player.STATE_ENDED
+     *   - REPEAT_MODE_ONE(1):循环当前视频
+     *   - REPEAT_MODE_ALL(2):循环播放整个资源列表
      */
     fun setRepeatMode(repeatMode: Int): PlayerManager {
         mPlayer.repeatMode = repeatMode
@@ -96,7 +115,23 @@ public class PlayerManager private constructor() {
      */
     fun startPlay(isLocalSource: Boolean, position: Int, mediaInfo: MediaInfo) {
 
+        mPlayer.volume = mPlayer.deviceVolume.toFloat()
         if (isLocalSource) {
+            playLocalFile(mediaInfo, position)
+        }
+    }
+
+    /**
+     * 针对一页只有一个可播放的item的处理
+     */
+    fun startOneLocalPlayer(mediaInfo: MediaInfo, position: Int) {
+
+        if (!mPlayer.isPlaying) {
+            if (isHomePageVoiceOpen) {
+                mPlayer.volume = mPlayer.deviceVolume.toFloat()
+            } else {
+                mPlayer.volume = 0f
+            }
             playLocalFile(mediaInfo, position)
         }
     }
@@ -107,43 +142,33 @@ public class PlayerManager private constructor() {
      */
     private fun playLocalFile(mediaInfo: MediaInfo, position: Int) {
 
-        if (mediaInfo.videoCode == 0 || !mediaInfo.file.exists()) {
-            Log.e(
-                AppInfos.DEBUG_LOG_TAG,
-                "MediaInfo has a error with: videoCode=${mediaInfo.videoCode},file=${mediaInfo.file}"
-            )
+        if (!File(mediaInfo.playUrl).exists()) {
+            Log.e(AppInfos.DEBUG_LOG_TAG, "media source is null")
             return
         }
-        val videoCode = mediaInfo.videoCode
         val playPos = mediaInfo.playPos
-
-        if (mPlayer.playbackState == Player.STATE_READY && !mPlayer.playWhenReady) {//pause()后的状态
-            mPlayer.currentMediaItem?.let {
-                if (it.mediaId == mediaInfo.videoCode.toString()) {//继续播放同一个视频
-                    mPlayer.playWhenReady = true
-                    return
-                }
-            }
+        val videoCode = mediaInfo.videoCode
+        if (position != -1) {
+            this.mCurPos = position
         }
-        this.mCurPos = position
-        val playItem = tempMediaIndexMap.get(videoCode)
-        if (playItem != null) {//已经存在于播放器内，直接切换至即可
 
+        val playItem = tempMediaIndexMap.get(videoCode)
+        if (playItem != null) {
             val index = tempMediaIndexMap.indexOf(videoCode)
             val mediaItem = mPlayer.getMediaItemAt(index)
+            Log.e("PlayerManager", "seekTo: $index ,$videoCode,${mediaItem.mediaId}")
             if (mediaItem.mediaId == videoCode.toString()) {
                 mPlayer.seekTo(index, playItem.playPos)
-            } else {
-                Log.e(AppInfos.DEBUG_LOG_TAG, "media source is error")
             }
         } else {
             val mediaItem =
-                MediaItem.Builder().setUri(Uri.fromFile(mediaInfo.file))
+                MediaItem.Builder().setUri(Uri.fromFile(File(mediaInfo.playUrl)))
                     .setMediaId(mediaInfo.videoCode.toString()).build()
             mPlayer.addMediaItem(mPlayer.mediaItemCount, mediaItem)
             val index = tempMediaIndexMap.add(mediaInfo)
             mPlayer.seekTo(index, playPos)
         }
+
         mPlayer.playWhenReady = true
         mPlayer.prepare()
     }
@@ -161,6 +186,8 @@ public class PlayerManager private constructor() {
      *   - playWhenReady = true 或者 play() 恢复播放
      */
     fun stopPlayer() {
+
+        //出现问题：快速滑到后又快速划出屏幕，此时视频还在缓存状态，无法关闭。此时界面无需处理
         if (mPlayer.isPlaying) {
             val videoCode = mPlayer.currentMediaItem?.mediaId
             videoCode?.let {
@@ -169,10 +196,82 @@ public class PlayerManager private constructor() {
                     return
                 }
                 tempMediaIndexMap.updatePlayingPosition(it.toInt(), mPlayer.currentPosition)
-                mPlayer.pause()
+                playerListener?.stopMedia(it, mPlayer.currentPosition)
+            }
+        }
+        mPlayer.pause()
+    }
+
+    fun pausePlayer() {
+        playerListener = null
+    }
+
+    /**
+     * 继续同一个视频，视图不同就切换，视图相同就不做任何处理，用于切换不同场景
+     * TODO:如果视图相同，是否做处理，还需要看后续业务
+     */
+    fun continueSameMedia(videoCode: Int, newView: StyledPlayerView): Boolean {
+        val mediaId = mPlayer.currentMediaItem?.mediaId
+        mediaId?.let {
+            if (it.isEmpty()) {
+                Log.e(AppInfos.DEBUG_LOG_TAG, "mediaId is null")
+                return false
+            }
+
+            Log.e("PlayerManager", "${mPlayer.playbackState}, ${mPlayer.playWhenReady}")
+            if (it == videoCode.toString()) {
+                if (newView != oldPlayerView) {
+                    newView.player = null
+                    newView.player = mPlayer
+                    //StyledPlayerView.switchTargetView(mPlayer, oldPlayerView, newView)
+                    oldPlayerView = newView
+                    mPlayer.playWhenReady = true
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    /**
+     * 当系统音为0时，开启视频音量，调大系统音时，视频音仍然为0，这个只能自己处理
+     */
+    fun updateHomePageVolumn() {
+        if (isHomePageVoiceOpen) {
+            mPlayer.volume = 0f
+        } else {
+            mPlayer.volume = mPlayer.deviceVolume.toFloat()
+        }
+        isHomePageVoiceOpen = !isHomePageVoiceOpen
+    }
+
+    /**
+     * 监听MainActivity的音量调整
+     */
+    fun observeHomeSystemVoice() {
+
+        if (_mPlayer != null) {
+            if (isHomePageVoiceOpen) {
+                mPlayer.volume = mPlayer.deviceVolume.toFloat()
             }
         }
     }
+
+    /**
+     * 监听常规页面声音变化
+     */
+    fun observeSystemVoice() {
+        if (_mPlayer != null) {
+            mPlayer.volume = mPlayer.deviceVolume.toFloat()
+        }
+    }
+
+    fun getPlayerVoice(): Float = mPlayer.volume
+    fun isPlaying(): Boolean = mPlayer.isPlaying
+    fun currentMediaId(): String? = mPlayer.currentMediaItem?.mediaId
+    fun currentPosition(): Long = mPlayer.currentPosition
+    fun duration(): Long = mPlayer.duration
+    fun bufferedPos(): Long = mPlayer.bufferedPosition
 
     /**
      * 注销、释放资源
@@ -184,17 +283,42 @@ public class PlayerManager private constructor() {
             mPlayer.clearMediaItems()
             mPlayer.release()
             _mPlayer = null
+            playerListener = null
             mCurPos = -1
         }
     }
 
-    fun isCurrentPlayingVideo(videoCode: Int): Boolean {
+    /**
+     * ********当前页面只有一个可播放的视频时***************************************************
+     *
+     * 处理以下三种特殊/简单的情况(不需要切换view的情况)：
+     *  - 满足播放条件，当前视频就是正在播放中的视频，不做处理，终止后续一切操作
+     *  - 满足播放条件，当前视频为刚刚暂停的视频，直接设置 playWhenReady = true 继续播放，且终止后续一切操作
+     *  - 不满足播放条件时，如果正在播放就暂停播放，没有播放不做处理，然后终止后续一切操作
+     */
+    fun handleOn(isOverHalf: Boolean, videoCode: Int, position: Int): Boolean {
 
-        val item = mPlayer.currentMediaItem
-        item?.let {
-            if (it.mediaId == videoCode.toString() && mPlayer.isPlaying) {
-                return true
+        if (isOverHalf) {
+            if (mPlayer.isPlaying) {
+                mPlayer.currentMediaItem?.let {
+                    if (it.mediaId == videoCode.toString()) {
+                        return true
+                    }
+                }
+            } else {
+                if (mPlayer.playbackState == Player.STATE_READY && !mPlayer.playWhenReady) {//pause()后的状态
+                    mPlayer.currentMediaItem?.let {
+                        if (it.mediaId == videoCode.toString()) {//继续播放同一个视频
+                            this.mCurPos = position
+                            mPlayer.playWhenReady = true
+                            return true
+                        }
+                    }
+                }
             }
+        } else {//没超过一半，如果在播放中，立即停止播放，如果没有播放不做处理
+            stopPlayer()
+            return true
         }
         return false
     }
@@ -220,16 +344,16 @@ public class PlayerManager private constructor() {
                  *      - 立马回调 onIsPlayingChanged(): isPlaying=true
                  */
                 Player.STATE_BUFFERING -> {//可以通过isPlaying和seek动作来处理界面相关
-                    Log.e("ExoPlayManager", "STATE_BUFFERING")
+                    Log.e("PlayerManager", "STATE_BUFFERING")
                 }
                 Player.STATE_READY -> {//视频已经准备好，此时isPlaying=true
-                    Log.e("ExoPlayManager", "STATE_READY")
+                    Log.e("PlayerManager", "STATE_READY")
                 }
                 Player.STATE_IDLE -> {//暂停不会触发
-                    Log.e("ExoPlayManager", "STATE_IDLE")
+                    Log.e("PlayerManager", "STATE_IDLE")
                 }
                 Player.STATE_ENDED -> {//播放结束
-                    Log.e("ExoPlayManager", "STATE_ENDED")
+                    Log.e("PlayerManager", "STATE_ENDED")
                 }
             }
         }
@@ -241,11 +365,13 @@ public class PlayerManager private constructor() {
 
         override fun onPlayerError(error: PlaybackException) {
             super.onPlayerError(error)
+            Log.e("PlayerManager","error:${error.message.toString()}")
         }
 
         //当 #{isPlaying()} 的值改变时调用 ，是否player正在播放中
         override fun onIsPlayingChanged(isPlaying: Boolean) {
             super.onIsPlayingChanged(isPlaying)
+            Log.e("PlayerManager", "isPlaying: $isPlaying, playerListener: $playerListener")
             playerListener?.updatePlayerView(isPlaying, mCurPos)
         }
 
@@ -254,6 +380,16 @@ public class PlayerManager private constructor() {
             super.onIsLoadingChanged(isLoading)
         }
     }
+
+
+    //使用exoplayer自带的debug helper来显示实时调试信息
+    fun debugHelper(debugTextView: TextView) {
+
+        /* 扩展：使用exoplayer自带的debug helper来显示实时调试信息 */
+        val debugViewHelper = DebugTextViewHelper(mPlayer, debugTextView)
+        debugViewHelper.start()
+    }
+
 
     /**
      * 存储PlayingInfo,播放器内的资源位置和存入时的位置相同
@@ -272,7 +408,7 @@ public class PlayerManager private constructor() {
                 keys.indexOf(playInfo.videoCode)
             } else {
                 playInfoMap[playInfo.videoCode] = playInfo
-                playInfoMap.size
+                playInfoMap.size - 1
             }
         }
 

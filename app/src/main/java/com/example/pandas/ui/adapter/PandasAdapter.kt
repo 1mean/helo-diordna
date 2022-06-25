@@ -1,18 +1,23 @@
 package com.example.pandas.ui.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pandas.bean.GridItem
-import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.databinding.AdapterPandansTopBinding
 import com.example.pandas.databinding.AdapterPandasItemBinding
+import com.example.pandas.databinding.ItemTitleAdapterPandaBinding
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
+import com.example.pandas.ui.ext.getHomePandaDesc
 import com.example.pandas.utils.TimeUtils
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.interfaces.OnConfirmListener
 
 /**
  * @description: PandasAdapter
@@ -20,17 +25,18 @@ import com.example.pandas.utils.TimeUtils
  * @date: 1/12/22 7:53 下午
  * @version: v1.0
  */
-public class PandasAdapter(private val list: MutableList<PetViewData>) :
+public class PandasAdapter(private val list: MutableList<PetVideo>) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
     private val TYPE_TOP = 1
     private val TYPE_ITEM = 2
+    private val TYPE_TITLE = 3
 
     override fun getItemCount(): Int {
         if (list.isEmpty()) {
             return 0
         } else {
-            return list.size + 1
+            return list.size + 2
         }
     }
 
@@ -38,7 +44,7 @@ public class PandasAdapter(private val list: MutableList<PetViewData>) :
      * 下拉刷新后，数据刷新
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun refreshData(data: MutableList<PetViewData>) {
+    fun refreshData(data: MutableList<PetVideo>) {
 
         list.clear()
         if (data.isNotEmpty()) {
@@ -48,16 +54,18 @@ public class PandasAdapter(private val list: MutableList<PetViewData>) :
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addData(data: MutableList<PetViewData>) {
+    fun addData(data: MutableList<PetVideo>) {
         val size = list.size
         if (data.isNotEmpty()) {
             list.addAll(data)
         }
-        notifyItemRangeInserted(size + 1, data.size)
+        notifyItemRangeInserted(size + 2, data.size)
     }
 
     override fun getItemViewType(position: Int): Int = if (position == 0) {
         TYPE_TOP
+    } else if (position == 1) {
+        TYPE_TITLE
     } else {
         TYPE_ITEM
     }
@@ -71,6 +79,13 @@ public class PandasAdapter(private val list: MutableList<PetViewData>) :
                 false
             )
             return PandasTopViewHolder(binding)
+        } else if (viewType == TYPE_TITLE) {
+            val binding = ItemTitleAdapterPandaBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+            return TitleViewHolder(binding)
         } else {
             val binding = AdapterPandasItemBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -85,7 +100,7 @@ public class PandasAdapter(private val list: MutableList<PetViewData>) :
 
         if (getItemViewType(position) == TYPE_TOP) {
             (holder as PandasTopViewHolder).handle()
-        } else {
+        } else if (getItemViewType(position) == TYPE_ITEM) {
             (holder as MyViewHolder).handle(position)
         }
     }
@@ -93,14 +108,16 @@ public class PandasAdapter(private val list: MutableList<PetViewData>) :
     inner class MyViewHolder(binding: AdapterPandasItemBinding) :
         BaseEmptyViewHolder(binding.root) {
 
-        val cover = binding.imgCover
-        val duration = binding.txtDuration
-        val name = binding.txtName
-        val title = binding.txtTitle
+        val cover = binding.clayoutPandaItemCover
+        val duration = binding.txtHomePandaItemDuration
+        val name = binding.txtHomePandaItemName
+        val title = binding.txtHomePandaItemTitle
+        val typeName = binding.txtHomePandaItemTypename
+        val deleteView = binding.clayoutHomePandaItemDelete
 
         fun handle(position: Int) {
 
-            val petVideo = list[position - 1]
+            val petVideo = list[position - 2]
             val duration = TimeUtils.getDuration(petVideo.duration.toLong())
 
             //把http图片换成https就能加载出来
@@ -109,10 +126,25 @@ public class PandasAdapter(private val list: MutableList<PetViewData>) :
             petVideo.user?.let {
                 name.text = it.userName
             }
+            typeName.text = getHomePandaDesc(petVideo.period, petVideo.title!!)
             title.text = petVideo.title
 
             itemView.setOnClickListener {
-                startVideoPlayActivity(itemView.context, petVideo.code)
+                startVideoPlayActivity(itemView.context, petVideo.code, false)
+            }
+            deleteView.setOnClickListener {
+
+                val popuView =
+                    XPopup.Builder(itemView.context).isDestroyOnDismiss(true)
+                        .asConfirm("删除", "对当前视频不感兴趣，删除视频", "取消", "确定", object : OnConfirmListener {
+                            override fun onConfirm() {
+                                Log.e("1mean", "删除position: $position")
+                                list.removeAt(position - 2)
+                                notifyItemRemoved(position)
+                                notifyItemRangeChanged(position, list.size)
+                            }
+                        }, null, false)
+                popuView.show()
             }
         }
     }
@@ -132,16 +164,24 @@ public class PandasAdapter(private val list: MutableList<PetViewData>) :
         }
     }
 
+    inner class TitleViewHolder(binding: ItemTitleAdapterPandaBinding) :
+        BaseEmptyViewHolder(binding.root) {
+
+    }
+
     private fun getGridItems(): MutableList<GridItem> {
 
         val list = mutableListOf<GridItem>()
         val item1 = GridItem(
             "和花",
-            "https://i2.hdslb.com/bfs/face/8549bcf2c31f51b01d82e0c72a87435e0ff8c5c7.jpg@150w_150h.jpg"
+//            "https://i2.hdslb.com/bfs/face/8549bcf2c31f51b01d82e0c72a87435e0ff8c5c7.jpg@150w_150h.jpg"
+            "https://i0.hdslb.com/bfs/face/a17f6f515d7bcc37ee8e452b343a2d1267c6c0a4.jpg@240w_240h_1c_1s.webp"
         )
         val item2 = GridItem(
             "绩笑",
-            "https://i2.hdslb.com/bfs/face/930b9dd25ccf5fa954fe30c0a7253180317b8e5f.jpg@150w_150h.jpg"
+            "https://i0.hdslb.com/bfs/face/356ff0f1c971b048f7c3df4c605fc7ba13a0560b.jpg@240w_240h_1c_1s.webp"
+//            "https://i1.hdslb.com/bfs/face/05aaa9aae4702fed985ffb473dfaf76e060544ae.jpg@240w_240h_1c_1s.webp"
+//            "https://i2.hdslb.com/bfs/face/94c778b5d966b770ee0de419d6d276930a94902f.jpg@240w_240h_1c_1s.webp"
         )
         val item3 = GridItem(
             "肉肉",
@@ -149,7 +189,9 @@ public class PandasAdapter(private val list: MutableList<PetViewData>) :
         )
         val item4 = GridItem(
             "萌兰",
-            "https://i2.hdslb.com/bfs/face/e191d68ab725809f1bfd4b58ef76d3118a4ec3a8.jpg@150w_150h.jpg"
+//            "https://i1.hdslb.com/bfs/face/17809b9419f6a481d28ab6e0d56cb70fe67c2cbc.jpg@240w_240h_1c_1s.webp"
+//            "https://i1.hdslb.com/bfs/face/fef5776f3c2139de2e154792f3c567f407107365.jpg@240w_240h_1c_1s.webp"
+            "https://i0.hdslb.com/bfs/face/8c49cc01d26a2e521a2404bd7686fe3baa940b4a.jpg@240w_240h_1c_1s.webp"
         )
         val item5 = GridItem(
             "奥利奥",

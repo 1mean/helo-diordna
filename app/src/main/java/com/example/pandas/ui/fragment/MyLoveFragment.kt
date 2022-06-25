@@ -3,6 +3,7 @@ package com.example.pandas.ui.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.biz.viewmodel.HomePageViewModel
@@ -34,6 +35,7 @@ public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefr
         )
 
         binding.swipLayout.run {
+            setBackgroundResource(R.color.color_bg_love2)
             setRefreshColor()
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)

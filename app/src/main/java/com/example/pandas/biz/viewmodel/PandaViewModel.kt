@@ -3,9 +3,7 @@ package com.example.pandas.biz.viewmodel
 import androidx.lifecycle.MutableLiveData
 import com.example.pandas.base.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
-import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.sql.entity.PeriodType
 import com.example.pandas.sql.entity.PetVideo
 
 /**
@@ -59,13 +57,12 @@ public class PandaViewModel : BaseViewModel() {
 
     fun getPandas(isRefresh: Boolean, title: String) {
 
-        val period = getVideoType(title)
         if (isRefresh) {
             startIndex = 0
         }
 
         request({
-            PetManagerCoroutine.searchByPeriod(period, startIndex, 21)
+            PetManagerCoroutine.getPandas(title, startIndex, 21)
         }, {
 
             hasMore = if (it.isNotEmpty() && it.size > 20) {
@@ -92,13 +89,5 @@ public class PandaViewModel : BaseViewModel() {
             )
             pandaResult.value = dataList
         })
-    }
-
-    private fun getVideoType(title: String): Int = when (title) {
-        "熊猫宝宝" -> PeriodType.BABY.ordinal
-        "带崽熊猫" -> PeriodType.MOM.ordinal
-        "幼年班" -> PeriodType.GROUP.ordinal
-        "成长记录" -> PeriodType.ALL.ordinal
-        else -> PeriodType.KNOWLEDGE.ordinal
     }
 }

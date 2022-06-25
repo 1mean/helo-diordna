@@ -1,6 +1,7 @@
 package com.example.pandas.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
@@ -32,8 +33,6 @@ public class PandaChildFragment : BaseFragment<PandaViewModel, LayoutSwipRefresh
         type = requireArguments().getInt("type")
         key = requireArguments().getString("key")
 
-        binding.swipLayout.setBackgroundResource(R.color.white)
-
         binding.recyclerLayout.init(
             CommonItemDecoration(false, 2, padding, padding),
             mAdapter,
@@ -47,6 +46,7 @@ public class PandaChildFragment : BaseFragment<PandaViewModel, LayoutSwipRefresh
             })
 
         binding.swipLayout.run {
+            setBackgroundResource(R.color.color_eye_rv_bg)
             setRefreshColor()
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
