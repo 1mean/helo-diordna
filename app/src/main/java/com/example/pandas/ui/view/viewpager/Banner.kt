@@ -154,8 +154,8 @@ class Banner : RelativeLayout, LifecycleObserver {
             lastX = ev.rawX
             lastY = ev.rawY
             if (mViewPager.isUserInputEnabled) {
-                val distanceX: Float = Math.abs(lastX - startX)
-                val distanceY: Float = Math.abs(lastY - startY)
+                val distanceX: Float = abs(lastX - startX)
+                val distanceY: Float = abs(lastY - startY)
                 val disallowIntercept =
                     if (mViewPager.orientation == ViewPager2.ORIENTATION_HORIZONTAL) {
                         distanceX > scaledTouchSlop && distanceX > distanceY

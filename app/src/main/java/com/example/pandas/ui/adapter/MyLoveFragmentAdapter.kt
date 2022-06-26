@@ -56,17 +56,17 @@ public class MyLoveFragmentAdapter(
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = 8
+    override fun getItemCount(): Int = 6
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
             0 -> TYPE_BANNER
-            1 -> TYPE_MOVIE
-            2 -> TYPE_MUSIC
-            3 -> TYPE_FOOTBALL
-            4 -> TYPE_ART
-            5 -> TYPE_BABY
-            6 -> TYPE_HONGLOU
+            //1 -> TYPE_MOVIE
+            //2 -> TYPE_MUSIC
+            1 -> TYPE_FOOTBALL
+            2 -> TYPE_ART
+            3 -> TYPE_BABY
+            4 -> TYPE_HONGLOU
             else -> TYPE_BEAUTY
         }
     }

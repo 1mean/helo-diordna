@@ -6,12 +6,15 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import io.reactivex.rxjava3.internal.functions.ObjectHelper
+import kotlin.math.abs
 
 
 /**
@@ -81,6 +84,7 @@ class SwipRecyclerView : RecyclerView {
         adapter.registerAdapterDataObserver(observer)
         observer.onChanged()
         setAdapter(wrapAdapter)
+        addOnItemTouchListener(touchListener)
     }
 
     /**
@@ -196,5 +200,45 @@ class SwipRecyclerView : RecyclerView {
     fun addFooterView(footerView: View) {
         this.footerView = footerView
         this.loadMoreView = footerView as SwipLoadMoreView
+    }
+
+    var downX = 0
+    var downY = 0
+    private val touchListener = object : OnItemTouchListener {
+        override fun onInterceptTouchEvent(rv: RecyclerView, ev: MotionEvent): Boolean {
+
+            val x = ev.x.toInt()
+            val y = ev.y.toInt()
+            when (ev.action) {
+
+                MotionEvent.ACTION_DOWN -> {
+                    parent.requestDisallowInterceptTouchEvent(true)
+                }
+                MotionEvent.ACTION_MOVE -> {
+
+                    val deltaX = x - downX
+                    val deltaY = y - downY
+                    if (abs(deltaX) > abs(deltaY)) {
+
+                        parent.requestDisallowInterceptTouchEvent(false)
+                    } else {
+                        parent.requestDisallowInterceptTouchEvent(true)
+                    }
+                }
+                MotionEvent.ACTION_UP -> {
+                    parent.requestDisallowInterceptTouchEvent(false)
+                }
+            }
+            downX = x
+            downY = y
+
+            return false
+        }
+
+        override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+        }
+
+        override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+        }
     }
 }
