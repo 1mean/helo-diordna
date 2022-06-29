@@ -7,10 +7,13 @@ import com.example.pandas.bean.LandscapeData
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.RecommendData
+import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.ExceptionHandle
 import com.example.pandas.biz.manager.PetManagerCoroutine
+import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.sql.entity.VideoAndUser
 import kotlinx.coroutines.launch
 
 /**
@@ -52,6 +55,10 @@ class HomePageViewModel : BaseViewModel() {
     val landScapeDataWrapper: MutableLiveData<UIDataWrapper<LandscapeData>> by lazy { MutableLiveData() }
 
     val hotDataWrapper: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
+
+    val musicData: MutableLiveData<MutableList<VideoAndUser>> by lazy { MutableLiveData() }
+
+    val songDataWrapper: MutableLiveData<UIDataWrapper<MusicVo>> by lazy { MutableLiveData() }
 
     fun getPagePet(isRefresh: Boolean) {
 
@@ -256,6 +263,58 @@ class HomePageViewModel : BaseViewModel() {
                     listData = mutableListOf()
                 )
                 hotDataWrapper.value = dataList
+            }
+        }
+    }
+
+    fun getMusicTopData() {
+        viewModelScope.launch {
+            musicData.value =
+                PetManagerCoroutine.getVideosByVideoType(VideoType.MUSIC.ordinal, 0, 2)
+        }
+    }
+
+    var songHasMore = false
+    fun getSongData(isRefresh: Boolean) {
+
+        if (isRefresh) {
+            landIndex = 0
+        }
+        viewModelScope.launch {
+
+            kotlin.runCatching {
+                PetManagerCoroutine.getPageMusic(landIndex, 21)
+            }.onSuccess {
+
+                songHasMore = if (it.size > 20) {
+                    it.removeLast()
+                    true
+                } else {
+                    false
+                }
+
+                val dataList = UIDataWrapper(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    isEmpty = it.isEmpty(),
+                    hasMore = songHasMore,
+                    isFirstEmpty = isRefresh && it.isEmpty(),
+                    listData = it
+                )
+                landIndex += 10
+                songDataWrapper.value = dataList
+            }.onFailure {
+
+                it.message?.loge()
+                it.printStackTrace()
+                val exception = ExceptionHandle.handleException(it)
+                val dataList = UIDataWrapper<MusicVo>(
+                    isSuccess = false,
+                    errMessage = exception.errorMsg,
+                    isRefresh = isRefresh,
+                    landscapeData = LandscapeData()
+                )
+                songDataWrapper.value = dataList
             }
         }
     }

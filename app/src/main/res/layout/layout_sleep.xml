@@ -37,9 +37,10 @@
                     app:layout_constraintRight_toRightOf="@id/layout_sleep_title"
                     android:layout_marginEnd="25dp"
                     android:textSize="11sp"
-                    android:text="更多"
+                    android:text="@string/str_more"
                     android:includeFontPadding="false"
                     android:gravity="center_vertical"
+                    android:visibility="gone"
                     android:textColor="@color/color_txt_sleep_more" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -49,7 +50,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/layout_sleep_title"
                     app:layout_constraintRight_toRightOf="@id/layout_sleep_title"
                     android:layout_marginEnd="12dp"
-                    android:src="@mipmap/img_arrow_right" />
+                    android:src="@mipmap/img_love_arrow_right" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView

@@ -70,6 +70,21 @@ fun SwipRecyclerView.init(
     setRefreshAdapter(adapter, listener)
     return this
 }
+fun SwipRecyclerView.init2(
+    itemDecoration: RecyclerView.ItemDecoration? = null,
+    adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>,
+    manager: RecyclerView.LayoutManager,
+    listener: SwipRecyclerView.ILoadMoreListener
+): SwipRecyclerView {
+
+    addFooterView(CommonFooter(context))
+    layoutManager = manager
+    itemDecoration?.let {
+        addItemDecoration(it)
+    }
+    setRefreshAdapterIgnore(adapter, listener)
+    return this
+}
 
 fun SwipRecyclerView.initNoFooter(
     itemDecoration: RecyclerView.ItemDecoration? = null,

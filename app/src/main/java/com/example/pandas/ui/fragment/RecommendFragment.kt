@@ -50,15 +50,17 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.recyclerLayout.init(
-            RecommendDecoration(mActivity),
-            mAdapter,
-            GridLayoutManager(activity, 2),
-            object : SwipRecyclerView.ILoadMoreListener {
-                override fun onLoadMore() {
-                    mViewModel.getRecommendData(false)
-                }
-            })
+        binding.recyclerLayout.run {
+            init(
+                RecommendDecoration(mActivity), mAdapter,
+                GridLayoutManager(activity, 2),
+                object : SwipRecyclerView.ILoadMoreListener {
+                    override fun onLoadMore() {
+                        mViewModel.getRecommendData(false)
+                    }
+                })
+            addOnScrollListener(recyclerViewScrollListener)
+        }
 
         binding.swipLayout.run {
             setBackgroundResource(R.color.color_bg_reco)
@@ -68,7 +70,6 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                 mViewModel.getRecommendData(true)
             }
         }
-        binding.recyclerLayout.addOnScrollListener(recyclerViewScrollListener)
     }
 
     override fun onStart() {

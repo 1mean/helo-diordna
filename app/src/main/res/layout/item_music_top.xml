@@ -2,24 +2,35 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="135dp"
+        android:layout_height="115dp"
         android:orientation="vertical"
         tools:viewBindingIgnore="true">
 
     <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_sleep_cover"
+            android:id="@+id/img_music_top_cover"
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:scaleType="fitXY" />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_sleep_title"
+            android:id="@+id/txt_music_top_title"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:maxLines="2"
+            android:maxLines="1"
             android:textSize="13sp"
             android:ellipsize="end"
+            android:includeFontPadding="false"
             android:textColor="@color/black" />
+
+    <!--<androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_music_top_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textSize="11sp"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:textColor="@color/color_home_music_text_unselected" />-->
 
 </androidx.appcompat.widget.LinearLayoutCompat>

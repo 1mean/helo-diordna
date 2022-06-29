@@ -49,18 +49,22 @@ class PetManager {
     }
 
     /**
-     * 获取相关videoType的分页数据
+     * <获取VideoTpe类型，获取视频的分页数据，数据包括video和相关联的user>
+     * @param:
+     * @return: VideoAndUser
+     * @author: dongyiming
+     * @date: 6/27/22 3:25 下午
+     * @version: v1.0
      */
-    suspend fun getPageByType(type: Int, startIndex: Int, counts: Int): MutableList<PetViewData> {
+    suspend fun getVideosByVideoType(
+        type: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<VideoAndUser> {
 
         return withContext(Dispatchers.IO) {
-            val list = petDao.queryVideoByType(type, startIndex, counts)
-            if (list.isNotEmpty()) {
-                list.forEach {
-                    it.user = petDao.queryUserByCode(it.authorId)
-                }
-            }
-            list
+            delay(200)
+            petDao.queryVideosByVideoType(type, startIndex, counts)
         }
     }
 

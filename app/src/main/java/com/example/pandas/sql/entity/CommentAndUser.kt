@@ -1,4 +1,4 @@
-package com.example.pandas.bean
+package com.example.pandas.sql.entity
 
 import androidx.room.Embedded
 import androidx.room.Relation

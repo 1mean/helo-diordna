@@ -20,7 +20,7 @@ public class LandScapeItemDecoration(private val padding:Int):RecyclerView.ItemD
 
         val position = parent.getChildAdapterPosition(view)
         if (position == 0) {
-            outRect.set(padding,padding,padding,0)
+            outRect.set(0,padding,0,0)
         }
     }
 }

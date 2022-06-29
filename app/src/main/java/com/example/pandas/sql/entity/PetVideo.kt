@@ -37,7 +37,7 @@ data class PetVideo(
     @ColumnInfo
     var cover: String? = null,//封面路径
     @ColumnInfo
-    var type: Int = 0,//动物类型
+    var type: Int = 0,//视频的内容的类型 对应 ${VideoType}
     @ColumnInfo
     var authorId: Int = 0,//发布者唯一id
     @ColumnInfo

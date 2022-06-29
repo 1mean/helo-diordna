@@ -60,6 +60,14 @@
     <color name="color_eye_bg_top_divider">#F7F7F7</color>
     <color name="color_eye_txt_share">#61666D</color>
 
+    <!--music-->
+    <color name="color_bg_music_fragment">#f5f8fa</color>
+    <color name="color_home_music_top_title">#848E95</color>
+    <color name="color_home_music_indicator">#D8F3FB</color>
+    <color name="color_home_music_text_unselected">#808894</color>
+    <color name="color_home_music_desc">#D39542</color>
+
+
     <!--video-->
     <color name="color_tab_text_selected">#F26E9A</color>
     <color name="color_tab_text">#757575</color>
@@ -93,14 +101,14 @@
     <color name="color_viewpager_bg">#F1F2F4</color>
     <color name="color_card_name">#919A9D</color>
     <color name="color_home_viewpager_bg">#989C9F</color>
-<!--    <color name="color_bg_reco">#EFF3F3</color>-->
+    <!--    <color name="color_bg_reco">#EFF3F3</color>-->
     <color name="color_bg_reco">#F0F3F3</color>
     <color name="color_bg_home_dialog">#F4F8F8</color>
     <color name="color_txt_dialog">#484E4F</color>
 
     <!--love  -->
     <color name="color_txt_love_pet">#111111</color>
-    <color name="color_txt_singer">#888888</color>
+    <color name="color_txt_singer">#7F8791</color>
     <color name="color_txt_sleep_more">#cdcdcd</color>
     <color name="color_talk_name">#333333</color>
     <color name="color_talk_item_pressed">#f46844</color>

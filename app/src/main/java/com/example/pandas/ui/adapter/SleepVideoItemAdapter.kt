@@ -1,15 +1,13 @@
 package com.example.pandas.ui.adapter
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import com.example.pandas.R
+import com.example.pandas.base.adapter.BaseCommonAdapter
+import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.pet.PetViewData
+import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.ext.startVideoPlayActivity
-import com.example.pandas.databinding.AdapterSleepVideoItemBinding
-import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 
 /**
  * @description: SleepVideoItemAdapter
@@ -17,39 +15,21 @@ import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
  * @date: 2/3/22 10:05 下午
  * @version: v1.0
  */
-public class SleepVideoItemAdapter(private val list: MutableList<PetViewData>) :
-    RecyclerView.Adapter<BaseEmptyViewHolder>() {
+class SleepVideoItemAdapter(list: MutableList<PetViewData>) :
+    BaseCommonAdapter<PetViewData>(list) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
-        val binding =
-            AdapterSleepVideoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
-    }
+    override fun getLayoutId(): Int = R.layout.adapter_sleep_video_item
 
-    override fun onBindViewHolder(holder: BaseEmptyViewHolder, position: Int) {
-        (holder as MyViewHolder).handle(position)
-    }
+    override fun convert(holder: BaseViewHolder, data: PetViewData, position: Int) {
+        val cover = holder.getWidget<AppCompatImageView>(R.id.img_sleep_cover)
+        val title = holder.getWidget<AppCompatTextView>(R.id.txt_sleep_title)
+        val context = holder.itemView.context
 
-    override fun getItemCount(): Int = list.size
+        loadRoundedCornerImage(context, 20, data.cover, cover)
+        title.text = data.title
 
-    private inner class MyViewHolder(binding: AdapterSleepVideoItemBinding) :
-        BaseEmptyViewHolder(binding.root) {
-        val cover = binding.imgSleepCover
-        val title = binding.txtSleepTitle
-
-        fun handle(position: Int) {
-
-            if (list.isNotEmpty()) {
-
-                val options = RequestOptions.bitmapTransform(RoundedCorners(20))
-                val video = list[position]
-                Glide.with(itemView.context).load(video.cover).apply(options).into(cover)
-                title.text = video.title
-
-                itemView.setOnClickListener {
-                    startVideoPlayActivity(itemView.context, video.code,false)
-                }
-            }
+        holder.itemView.setOnClickListener {
+            startVideoPlayActivity(context, data.code, false)
         }
     }
 }

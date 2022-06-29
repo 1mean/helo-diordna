@@ -43,7 +43,7 @@ public class HomePagerAdapter(
                     LandscapeFragment()
                 }
                 "音乐" -> {
-                    LandscapeFragment()
+                    MusicFragment()
                 }
                 else -> {
                     Fragment()

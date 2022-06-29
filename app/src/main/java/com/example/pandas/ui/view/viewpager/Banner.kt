@@ -150,6 +150,7 @@ class Banner : RelativeLayout, LifecycleObserver {
             startY = ev.rawY
             lastX = ev.rawX
             lastY = ev.rawY
+            parent.requestDisallowInterceptTouchEvent(true)
         } else if (action == MotionEvent.ACTION_MOVE) {
             lastX = ev.rawX
             lastY = ev.rawY

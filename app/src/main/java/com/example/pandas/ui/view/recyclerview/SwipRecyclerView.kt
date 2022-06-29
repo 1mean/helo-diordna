@@ -87,6 +87,26 @@ class SwipRecyclerView : RecyclerView {
         addOnItemTouchListener(touchListener)
     }
 
+    fun setRefreshAdapterIgnore(adapter: Adapter<out ViewHolder>, listener: ILoadMoreListener?) {
+
+        mListener = listener
+        wrapAdapter = AdapterWrapper(adapter as Adapter<ViewHolder>)
+        footerView?.let {
+            wrapAdapter!!.addFooter(it)
+        }
+        onItemClickListener?.let {
+            wrapAdapter!!.setOnItemClickListener(it)
+        }
+        onItemLongClickListener?.let {
+            wrapAdapter!!.setOnItemLongClickListener(it)
+        }
+
+        val observer = DataObserver()
+        adapter.registerAdapterDataObserver(observer)
+        observer.onChanged()
+        setAdapter(wrapAdapter)
+    }
+
     /**
      * 滑动状态改变的回调
      * @author: dongyiming
@@ -219,7 +239,6 @@ class SwipRecyclerView : RecyclerView {
                     val deltaX = x - downX
                     val deltaY = y - downY
                     if (abs(deltaX) > abs(deltaY)) {
-
                         parent.requestDisallowInterceptTouchEvent(false)
                     } else {
                         parent.requestDisallowInterceptTouchEvent(true)

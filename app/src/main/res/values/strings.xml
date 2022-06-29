@@ -124,5 +124,8 @@
     <string name="str_play_after">添加至稍后再看</string>
     <string name="str_retroaction">反馈</string>
     <string name="str_recommend_video">推荐视频</string>
+    <string name="str_more">更多</string>
+    <string name="str_music_video">音乐视频</string>
+    <string name="str_new_song">新歌</string>
 
 </resources>

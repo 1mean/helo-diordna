@@ -103,7 +103,6 @@
             android:layout_marginStart="3dp"
             android:textColor="@color/color_landscape_item_author"
             android:gravity="center"
-            android:text="23观看"
             android:includeFontPadding="false"
             android:textSize="12sp" />
 

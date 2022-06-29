@@ -3,7 +3,7 @@ package com.example.pandas.biz.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.BaseViewModel
-import com.example.pandas.bean.CommentAndUser
+import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.bean.ReplyInfo
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.VideoInfo

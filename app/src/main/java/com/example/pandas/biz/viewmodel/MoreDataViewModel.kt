@@ -4,9 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
-import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.sql.entity.MusicVo
+import com.example.pandas.sql.entity.VideoAndUser
 import kotlinx.coroutines.launch
 
 /**
@@ -21,7 +21,7 @@ public class MoreDataViewModel : BaseViewModel() {
     private var videoStartIndex = 0
     private var musicStartIndex = 0
 
-    val moreDataResult: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
+    val itemListResult: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
     val musicResult: MutableLiveData<UIDataWrapper<MusicVo>> by lazy { MutableLiveData() }
     val musicCount: MutableLiveData<Int> by lazy { MutableLiveData() }
 
@@ -33,28 +33,37 @@ public class MoreDataViewModel : BaseViewModel() {
         }
     }
 
-    fun getListResult() {
+    var hasMoreData: Boolean = false
+    fun getListResult(isRefresh: Boolean) {
 
-        request({ PetManagerCoroutine.getPageByType(currentType, videoStartIndex, 20) },
+        if (isRefresh) {
+            videoStartIndex = 0
+        }
+        request({ PetManagerCoroutine.getVideosByVideoType(currentType, videoStartIndex, 21) },
             {
-                val dataList = UIDataWrapper<PetViewData>(
+
+                hasMoreData = it.size >= 21
+                if (hasMoreData) {
+                    it.removeLast()
+                }
+                val dataList = UIDataWrapper(
                     isSuccess = true,
-                    isRefresh = videoStartIndex == 0,
-                    hasMore = it.size == 20,
+                    isRefresh = isRefresh,
+                    hasMore = hasMoreData,
                     isEmpty = it.isEmpty(),
                     listData = it
                 )
                 videoStartIndex += 20
-                moreDataResult.value = dataList
+                itemListResult.value = dataList
             },
             {
                 val dataList = UIDataWrapper(
                     isSuccess = false,
-                    isRefresh = videoStartIndex == 0,
+                    isRefresh = isRefresh,
                     errMessage = it.errorMsg,
-                    listData = mutableListOf<PetViewData>()
+                    listData = mutableListOf<VideoAndUser>()
                 )
-                moreDataResult.value = dataList
+                itemListResult.value = dataList
             })
     }
 

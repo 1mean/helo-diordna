@@ -12,7 +12,7 @@ import com.example.pandas.bean.LandscapeData
 import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.databinding.AdapterLandscapeItemBinding
-import com.example.pandas.databinding.ItemBannerRecommendBinding
+import com.example.pandas.databinding.LayoutBannerLandscapeBinding
 import com.example.pandas.ui.view.viewpager.Indicator
 import com.example.pandas.utils.TimeUtils
 
@@ -65,7 +65,7 @@ public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data
 
         when (viewType) {
             TYPE_BANNER -> {
-                val binding = ItemBannerRecommendBinding.inflate(
+                val binding = LayoutBannerLandscapeBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -95,10 +95,10 @@ public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data
         }
     }
 
-    inner class BannerHolder(binding: ItemBannerRecommendBinding) :
+    inner class BannerHolder(binding: LayoutBannerLandscapeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        private val banner = binding.banner
+        private val banner = binding.bannerLandscape
         var indicator: Indicator? = null
         fun handle(position: Int) {
             //轮播图数据
@@ -114,8 +114,9 @@ public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data
                 val adapter = LandViewPagerAdapter(list)
 
                 this.banner.setLifecycleRegistry(lifecycle).setAdapter(adapter)
-                    .setIndicator(indicator!!, true)
-                    .setAutoPlayed(true)
+                    .setPagePadding(20, 40, 15)
+                    //.setIndicator(indicator!!, true)
+                    //.setAutoPlayed(true)
             }
         }
     }
@@ -149,7 +150,7 @@ public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data
 
             }
             itemView.setOnClickListener {
-                startVideoPlayActivity(itemView.context, video.code,false)
+                startVideoPlayActivity(itemView.context, video.code, false)
             }
         }
     }

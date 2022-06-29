@@ -1,7 +1,7 @@
 package com.example.pandas.sql.dao
 
 import androidx.room.*
-import com.example.pandas.bean.CommentAndUser
+import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.bean.CoverDownLoad
 import com.example.pandas.bean.SearchInfo
 import com.example.pandas.bean.pet.PetViewData
@@ -192,6 +192,10 @@ interface PetVideoDao {
 
     @Query("select code,title,cover,authorId,duration,videoType from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryVideoByType(type: Int, startIndex: Int, count: Int): MutableList<PetViewData>
+
+    @Transaction
+    @Query("select * from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
+    suspend fun queryVideosByVideoType(type: Int, startIndex: Int, count: Int): MutableList<VideoAndUser>
 
     @Query("select code,title,cover,authorId,duration,fileName from pet_video where fileName=(:fileName)")
     suspend fun queryVideoByFileName(fileName: String): PetViewData

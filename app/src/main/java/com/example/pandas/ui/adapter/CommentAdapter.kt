@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
-import com.example.pandas.bean.CommentAndUser
+import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.bean.ReplyInfo
 import com.example.pandas.biz.ext.loadHeadCircleImage
 import com.example.pandas.biz.ext.startUserInfoActivity
