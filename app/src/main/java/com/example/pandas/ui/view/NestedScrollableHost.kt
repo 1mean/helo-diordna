@@ -2,6 +2,7 @@ package com.example.pandas.ui.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.view.ViewTreeObserver
@@ -69,7 +70,7 @@ public class NestedScrollableHost : FrameLayout {
 
     private fun handleInterceptTouchEvent(e: MotionEvent) {
         if (parentViewPager == null) return
-        val orientation = parentViewPager!!.getOrientation()
+        val orientation = parentViewPager!!.orientation
 
         // Early return if child can't scroll in same direction as parent
         if (!canChildScroll(orientation, -1f) && !canChildScroll(orientation, 1f)) {
@@ -99,7 +100,9 @@ public class NestedScrollableHost : FrameLayout {
             if (scaledDx > touchSlop || scaledDy > touchSlop) {
                 if (isVpHorizontal == (scaledDy > scaledDx)) {
                     // Gesture is perpendicular, allow all parents to intercept
-                    parent.requestDisallowInterceptTouchEvent(false)
+                    // 修改：上下滑动时，不拦截，释放给MusicFragment的RecyclerView内部处理，
+                    // 解决内部viewpager滑动到底部后切换到外部vp2的页面
+                    parent.requestDisallowInterceptTouchEvent(true)
                 } else {
                     // Gesture is parallel, query child if movement in that direction is possible
                     val canChildScroll = if (isVpHorizontal) {

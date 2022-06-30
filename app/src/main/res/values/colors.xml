@@ -63,8 +63,8 @@
     <!--music-->
     <color name="color_bg_music_fragment">#f5f8fa</color>
     <color name="color_home_music_top_title">#848E95</color>
-    <color name="color_home_music_indicator">#D8F3FB</color>
     <color name="color_home_music_text_unselected">#808894</color>
+    <color name="color_home_music_indicator">#D8F3FB</color>
     <color name="color_home_music_desc">#D39542</color>
 
 

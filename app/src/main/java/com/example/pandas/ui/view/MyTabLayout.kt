@@ -2,6 +2,7 @@ package com.example.pandas.ui.view
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.view.MotionEvent
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.example.pandas.R
@@ -24,7 +25,7 @@ public class MyTabLayout : TabLayout {
         attrs,
         defStyleAttr
     ) {
-        init()
+        //init()
     }
 
     private fun init() {
@@ -83,5 +84,10 @@ public class MyTabLayout : TabLayout {
                 this.addTab(tab)
             }
         }
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        parent.requestDisallowInterceptTouchEvent(true)
+        return super.dispatchTouchEvent(ev)
     }
 }

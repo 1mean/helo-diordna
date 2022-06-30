@@ -17,6 +17,7 @@ import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.recyclerview.CommonFooter
 import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
+import com.example.pandas.ui.view.recyclerview.SwipRecyclerView2
 
 
 /**
@@ -70,19 +71,20 @@ fun SwipRecyclerView.init(
     setRefreshAdapter(adapter, listener)
     return this
 }
-fun SwipRecyclerView.init2(
+
+fun SwipRecyclerView2.init2(
     itemDecoration: RecyclerView.ItemDecoration? = null,
     adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>,
     manager: RecyclerView.LayoutManager,
-    listener: SwipRecyclerView.ILoadMoreListener
-): SwipRecyclerView {
+    listener: SwipRecyclerView2.ILoadMoreListener
+): SwipRecyclerView2 {
 
     addFooterView(CommonFooter(context))
     layoutManager = manager
     itemDecoration?.let {
         addItemDecoration(it)
     }
-    setRefreshAdapterIgnore(adapter, listener)
+    setRefreshAdapter(adapter, listener)
     return this
 }
 

@@ -47,6 +47,10 @@
         <item name="android:textSize">13sp</item>
     </style>
 
+    <style name="MusicTabLayoutTextStyle">
+        <item name="android:textSize">13sp</item>
+    </style>
+
     <style name="UserInfoTabStyle">
         <item name="android:textSize">16sp</item>
     </style>

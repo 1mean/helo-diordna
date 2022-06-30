@@ -3,7 +3,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
+    <com.example.pandas.ui.view.recyclerview.SwipRecyclerView2
             android:id="@+id/rv_loadmore"
             android:overScrollMode="never"
             android:layout_width="match_parent"
