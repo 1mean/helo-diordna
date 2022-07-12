@@ -30,7 +30,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  * - AppbarLayout和SwipeRefreshLayout的滑动冲突导致卡顿和下拉刷新错误，监听AppbarLayout偏移为0时才允许下拉
  * 2，未解决问题(已知)
  * - MusicFragment里无法完成HomeFragment顶部折叠的操作，上下滑动会被内部折叠消耗
- * - 内部vp2的RecyclerView与SwipeRefreshLayout的冲突
+ * - 内部vp2的RecyclerView与SwipeRefreshLayout的冲突(已解决)
  *    - 当vp2其中一个页面上滑到中间，然后切换到vp2的其他页面，往下滑动到AppbarLayout的偏移为0，此时再切回之前页面
  *    - 当往下拖动最初的页面时，无法拖动，且触发了下拉刷新
  *
@@ -59,14 +59,9 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
             adapter = MusicVPAdapter(childFragmentManager, lifecycle, mTitles)
             offscreenPageLimit = mTitles.size
             currentItem = 0
-            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    //binding.tabMusic.set
-                }
-            })
         }
 
-        val padding = mActivity.resources.getDimension(R.dimen.common_lh_10_dimens).toInt()
+        val padding = mActivity.resources.getDimension(R.dimen.common_lh_18_dimens).toInt()
 
         binding.recyclerHomeMusicTop.run {
             addItemDecoration(CommonItemDecoration(false, 2, 0, padding, 0))
@@ -91,42 +86,37 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
 
         //解决AppBarLayout和SwipeRefreshLayout的滑动冲突问题,同时也解决了SwipeRefreshLayout和Recyclerview的滑动冲突问题
         binding.barHomeMusic.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-            //像上滑动时，verticalOffset为负值，完全展示时为0
 
-            Log.e("MusicFragment", "verticalOffset: $verticalOffset")
+            //像上滑动时，verticalOffset为负值，完全展示时为0
+            //判断偏移为0，且子vp2的所有item的top距离为0，才允许下拉刷新
             this.verticalOffset = verticalOffset
-//            binding.swipMusic.isEnabled = verticalOffset >= 0
             if (verticalOffset < 0) {
                 binding.swipMusic.isEnabled = false
-            } else if (verticalOffset == 0) {
+            } else if (verticalOffset == 0) {//当滑动到偏移为0时处理，再往下拉不会触发监听
                 val fragments = childFragmentManager.fragments
-                if (fragments.isNotEmpty()) {
-                    fragments.forEach {
-                        if (it != null && it is MusicChildFragment) {
+                val currentItem = binding.vp2Music.currentItem
+                if (fragments.isNotEmpty() && fragments.size > currentItem) {
+                    fragments[currentItem]?.let {
+                        if (it is MusicChildFragment) {
                             val topValue = (it as MusicChildFragment).getChildTop()
-                            if (topValue < 0) {
-                                isEnable = false
+                            if (topValue == 0) {
+                                binding.swipMusic.isEnabled = true
                             }
                         }
                     }
-                    binding.swipMusic.isEnabled = isEnable
-//                    val fragment = fragments[binding.vp2Music.currentItem]
-//                    if (fragment != null && fragment is MusicChildFragment) {
-//                        val topValue = (fragment as MusicChildFragment).getChildTop()
-//                        val e = Log.e("MusicFragment", "topvalue: $topValue")
-//                        binding.swipMusic.isEnabled = topValue >= 0
-//                    }
                 }
             }
         })
+
+        binding.clayoutTopTitle.setOnClickListener {
+
+        }
     }
 
-    fun getBarVerticalOffset(): Int {
-        return verticalOffset
-    }
+    fun getBarVerticalOffset(): Int = verticalOffset
 
-    fun stopSwipeRefreshLayout() {
-        binding.swipMusic.isEnabled = false
+    fun setSwipeRefreshEnable(isEnable: Boolean) {
+        binding.swipMusic.isEnabled = isEnable
     }
 
     override fun createObserver() {

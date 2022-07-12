@@ -26,6 +26,11 @@ import com.example.pandas.utils.ScreenUtil
 import com.google.android.exoplayer2.Player.REPEAT_MODE_ONE
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.util.Util
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.scheduling.ExperimentalCoroutineDispatcher
+import java.util.concurrent.Executors
 
 /**
  * @description: 首页-推荐
@@ -92,6 +97,20 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                     startPlay()
                 }
             }
+        }
+
+        //当顶部Appbar偏移为负时，向下拉出，
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            Log.e("1mean", "dy:$dy, dx:$dx")
+//            if (recyclerView.childCount <= 0) return
+//            recyclerView.getChildAt(0)?.let {
+//                if (parentFragment is HomeFragment) {
+//                    if ((parentFragment as HomeFragment).getVerticalOffset() < 0) {
+//
+//                    }
+//                }
+//            }
         }
     }
 

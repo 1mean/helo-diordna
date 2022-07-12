@@ -183,6 +183,11 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
         //释放资源
         if (Util.SDK_INT > 23) {
+            //暂停需要时间来处理，自己调用暂停
+            PlayerManager.instance.stopPlayer()
+
+            //在activity关闭时，必须释放掉绑定的视图，否则造成内存泄漏
+            binding.playView.player = null
         }
     }
 
@@ -329,11 +334,12 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         //保存历史记录
         mViewModel.saveHistory(code, PlayerManager.instance.currentPosition())
 
-        //在activity关闭时，必须释放掉绑定的视图，否则造成内存泄漏
-        binding.playView.player = null
 
-        //暂停需要时间来处理，自己调用暂停
-        PlayerManager.instance.stopPlayer()
+//        //暂停需要时间来处理，自己调用暂停
+//        PlayerManager.instance.stopPlayer()
+//
+//        //在activity关闭时，必须释放掉绑定的视图，否则造成内存泄漏
+//        binding.playView.player = null
 
 
         finish()

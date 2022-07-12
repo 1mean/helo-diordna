@@ -50,6 +50,7 @@
     <color name="color_self_txt_setting">#484D54</color>
     <color name="color_self_txt_coin">#262626</color>
     <color name="color_self_txt_log">#818892</color>
+    <color name="color_self_tab_indicator">#00BBFF</color>
 
     <!--eye-->
     <color name="color_eye_view_bg">#ededed</color>

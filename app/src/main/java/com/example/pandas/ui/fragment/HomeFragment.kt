@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.base.fragment.BaseFragment
@@ -20,6 +19,7 @@ import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
+import com.google.android.material.appbar.AppBarLayout
 import java.util.*
 
 
@@ -33,6 +33,7 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 
     private val tabTitles = arrayListOf("熊猫", "推荐", "热门", "最爱", "山水", "音乐")
 
+    private var verticalOffset: Int = 0 //Appbar偏移
     override fun lazyLoadTime(): Long = 0
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
     override fun initView(savedInstanceState: Bundle?) {
@@ -80,8 +81,18 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
         binding.rlayoutHomeMusic.setOnClickListener {
 
         }
+        binding.bar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
 
-        //binding.bar.setExpanded(true,true)
+            this.verticalOffset = verticalOffset
+
+        })
+
+//        binding.bar.setExpanded(true,true)
+    }
+
+    fun getVerticalOffset(): Int = verticalOffset
+
+    fun setSwipeRefreshEnable(isEnable: Boolean) {
     }
 
     override fun createObserver() {
@@ -92,7 +103,7 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
                 loadCircleImage(mActivity, url, binding.imgHead)
             }
         }
-        loadLocalCircleImage(mActivity,R.mipmap.img_fanren_1,binding.imgDark)
+        loadLocalCircleImage(mActivity, R.mipmap.img_fanren_1, binding.imgDark)
     }
 
     override fun firstOnResume() {

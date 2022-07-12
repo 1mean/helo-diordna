@@ -14,6 +14,7 @@
     <dimen name="common_sz_16_dimens">16sp</dimen>
     <dimen name="common_sz_17_dimens">17sp</dimen>
     <dimen name="common_sz_18_dimens">18sp</dimen>
+    <dimen name="common_sz_23_dimens">23sp</dimen>
     <dimen name="common_sz_25_dimens">25sp</dimen>
 
     <!-- 普通长度 @auther dongyiming -->

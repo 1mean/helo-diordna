@@ -71,10 +71,7 @@ public class PlayerManager private constructor() {
      */
     fun addPlayerViewAndPlay(playerView: StyledPlayerView) {
 
-        playerView.player = null
-        playerView.player = mPlayer
-
-//        StyledPlayerView.switchTargetView(mPlayer, oldPlayerView, playerView)
+        StyledPlayerView.switchTargetView(mPlayer, oldPlayerView, playerView)
         oldPlayerView = playerView
         mPlayer.playWhenReady = true
     }
@@ -142,9 +139,12 @@ public class PlayerManager private constructor() {
      */
     private fun playLocalFile(mediaInfo: MediaInfo, position: Int) {
 
-        if (!File(mediaInfo.playUrl).exists()) {
-            Log.e(AppInfos.DEBUG_LOG_TAG, "media source is null")
-            return
+//        if (!File(mediaInfo.playUrl).exists()) {
+//            Log.e(AppInfos.DEBUG_LOG_TAG, "media source is null")
+//            return
+//        }
+        require(!File(mediaInfo.playUrl).exists()){
+            "media source is null"
         }
         val playPos = mediaInfo.playPos
         val videoCode = mediaInfo.videoCode

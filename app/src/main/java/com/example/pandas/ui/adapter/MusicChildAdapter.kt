@@ -1,4 +1,5 @@
 package com.example.pandas.ui.adapter
+
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -46,26 +47,29 @@ public class MusicChildAdapter(private val list: MutableList<MusicVo>) :
         if (data.isNotEmpty()) {
             val size = list.size
             list.addAll(data)
-            notifyItemRangeInserted(size, data.size)
+            notifyItemRangeInserted(size + 1, data.size)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        if (viewType == TYPE_MUSIC_ITEM) {
-            val binding = AdapterMusicChildBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-            return MusicItemViewHolder(binding)
-        } else {
-            val binding = LayoutTopMusicBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-            return MusicTopViewHolder(binding)
+        when (viewType) {
+            TYPE_MUSIC_ITEM -> {
+                val binding = AdapterMusicChildBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+                return MusicItemViewHolder(binding)
+            }
+            else -> {
+                val binding = LayoutTopMusicBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+                return MusicTopViewHolder(binding)
+            }
         }
     }
 
@@ -73,6 +77,8 @@ public class MusicChildAdapter(private val list: MutableList<MusicVo>) :
 
         if (getItemViewType(position) == TYPE_MUSIC_ITEM) {
             (holder as MusicItemViewHolder).handle(position)
+        } else if (getItemViewType(position) == TYPE_TOP) {
+            (holder as MusicTopViewHolder).handle()
         }
     }
 
@@ -105,6 +111,8 @@ public class MusicChildAdapter(private val list: MutableList<MusicVo>) :
 
     inner class MusicTopViewHolder(binding: LayoutTopMusicBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        fun handle() {
 
+        }
     }
 }

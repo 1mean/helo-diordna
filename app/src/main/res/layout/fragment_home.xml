@@ -21,15 +21,16 @@
         <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/bar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 app:elevation="0dp"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+            <!--enterAlways:下拉时，立即显示Appbar-->
             <androidx.appcompat.widget.Toolbar
                     android:id="@+id/tb_home"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    app:layout_scrollFlags="scroll">
+                    android:layout_height="match_parent"
+                    app:layout_scrollFlags="scroll|enterAlways">
 
                 <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/img_head"
@@ -112,29 +113,34 @@
             <!--                    app:tabIndicatorColor="@color/color_tab_indicator"-->
             <!--                    app:tabIndicator="@drawable/layer_video_indicator" />-->
 
-            <com.flyco.tablayout.CommonTabLayout
-                    android:id="@+id/tab"
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    tl:tl_iconVisible="false"
-                    tl:tl_textSelectColor="@color/color_home_tab_text_selected"
-                    tl:tl_textUnselectColor="@color/color_home_tab_text"
-                    tl:tl_indicator_color="@color/color_home_tab_text_selected"
-                    tl:tl_textBold="SELECT"
-                    tl:tl_indicator_width="34dp"
-                    tl:tl_indicator_height="3dp"
-                    tl:tl_textsize="15dp" />
-
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/color_home_divider" />
         </com.google.android.material.appbar.AppBarLayout>
+
+        <com.flyco.tablayout.CommonTabLayout
+                android:id="@+id/tab"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                tl:tl_iconVisible="false"
+                tl:tl_textSelectColor="@color/color_home_tab_text_selected"
+                tl:tl_textUnselectColor="@color/color_home_tab_text"
+                tl:tl_indicator_color="@color/color_home_tab_text_selected"
+                tl:tl_textBold="SELECT"
+                tl:tl_indicator_width="34dp"
+                tl:tl_indicator_height="3dp"
+                tl:tl_textsize="15dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="36dp"
+                android:background="@color/color_home_divider"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="36.5dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

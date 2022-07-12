@@ -46,15 +46,12 @@ public class MySwipeRefreshLayout : SwipeRefreshLayout {
                     return false
                 } /*else if (abs(distanceY) < mTouchSlop) {
                     return false
-                }*/ else{
-                    //bug:
-                    parent.requestDisallowInterceptTouchEvent(true)
-                }
+                }*/
             }
             MotionEvent.ACTION_UP -> {
             }
         }
-        Log.e("1mean","onInterceptTouchEvent: ${super.onInterceptTouchEvent(event)}")
+        Log.e("1mean", "onInterceptTouchEvent: ${super.onInterceptTouchEvent(event)}")
         return super.onInterceptTouchEvent(event)
     }
 }

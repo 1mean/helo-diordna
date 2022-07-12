@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
 import com.example.pandas.R
@@ -31,6 +32,10 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
         Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
 
+    override fun onSupportNavigateUp(): Boolean {
+        return findNavController(this, R.id.main_navigation).navigateUp()
+    }
+
     private val requestPermissions =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
 
@@ -46,8 +51,6 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
 
         StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
-
-        Navigation.findNavController(this, R.id.main_navigation)
 
         requestPermissions.launch(permissions)
 

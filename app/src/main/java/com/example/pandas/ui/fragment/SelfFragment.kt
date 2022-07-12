@@ -8,6 +8,8 @@ import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentMineBinding
 import com.example.pandas.ui.activity.*
+import com.example.pandas.ui.adapter.SelfViewPagerAdapter
+
 
 /**
  * @description: SelfFragment
@@ -17,47 +19,22 @@ import com.example.pandas.ui.activity.*
  */
 public class SelfFragment : BaseLazyFragment<SelfViewModel, FragmentMineBinding>() {
 
+    private val titles = arrayOf("动态", "艺人")
+    private val pagerAdapter: SelfViewPagerAdapter by lazy { SelfViewPagerAdapter(mActivity) }
+
     override fun initView(savedInstanceState: Bundle?) {
 
-        loadCircleImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
-        binding.clayoutDownload.setOnClickListener {
-            startActivity(Intent(activity, LocalCacheActivity::class.java))
+        binding.vp2Self.run {
+            adapter = pagerAdapter
+            currentItem = 0
         }
-        binding.clayoutHistory.setOnClickListener {
-            startActivity(Intent(activity, HistoryActivity::class.java))
-        }
-        binding.clayoutSetting.setOnClickListener {
-            showToast("设置")
-        }
-        binding.clayoutMineExp.setOnClickListener {
-            showToast("个人积分")
-        }
-        binding.clayoutSettingTiming.setOnClickListener {
-            showToast("定时关闭")
-        }
-        binding.clayoutSelf.setOnClickListener {
-            mActivity.startActivity(Intent(mActivity, SelfInfoActivity::class.java))
-        }
-        binding.cvError.setOnClickListener {
-            mActivity.startActivity(Intent(mActivity, ErrorActivity::class.java))
-        }
-        binding.clayoutMineFollow.setOnClickListener {
-            val intent =
-                Intent(mActivity, FollowAndFansActivity::class.java).putExtra("FollowsOrFans", 0)
-            mActivity.startActivity(intent)
-        }
-        binding.clayoutMineFans.setOnClickListener {
-            val intent =
-                Intent(mActivity, FollowAndFansActivity::class.java).putExtra("FollowsOrFans", 1)
-            mActivity.startActivity(intent)
-        }
+
+        binding.slideTabSetting.setViewPager(binding.vp2Self, titles)
     }
 
     override fun createObserver() {
 
-        mViewModel.follows.observe(viewLifecycleOwner) {
-            binding.txtMineFollow.text = it.size.toString()
-        }
+
     }
 
     override fun firstOnResume() {

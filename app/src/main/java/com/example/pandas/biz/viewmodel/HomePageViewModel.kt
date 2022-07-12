@@ -301,7 +301,7 @@ class HomePageViewModel : BaseViewModel() {
                     isFirstEmpty = isRefresh && it.isEmpty(),
                     listData = it
                 )
-                landIndex += 10
+                landIndex += 20
                 songDataWrapper.value = dataList
             }.onFailure {
 
