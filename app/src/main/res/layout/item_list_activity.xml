@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="163dp"
+        android:layout_height="147dp"
+        android:background="@color/white"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="0.1dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/clayout_list_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="92dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_cover_list_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clayout_shelter_list_activty"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/shape_video_shelter">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_name_list_activity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="@id/clayout_shelter_list_activty"
+                        android:layout_marginStart="4dp"
+                        app:layout_constraintBottom_toBottomOf="@id/clayout_shelter_list_activty"
+                        android:layout_marginBottom="3dp"
+                        android:textColor="@color/white"
+                        android:maxEms="9"
+                        android:ellipsize="end"
+                        android:textSize="11sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_duration_list_activity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="@id/clayout_shelter_list_activty"
+                        android:layout_marginEnd="6dp"
+                        app:layout_constraintBottom_toBottomOf="@id/clayout_shelter_list_activty"
+                        android:layout_marginBottom="3dp"
+                        android:textColor="@color/white"
+                        android:textSize="11sp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_title_list_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/black_33"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:layout_marginStart="7dp"
+                android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_type_list_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/color_txt_tab"
+                android:textSize="11sp"
+                android:gravity="center"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:includeFontPadding="false"
+                android:layout_marginStart="7dp"
+                android:background="@drawable/shape_type_list_activity" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.cardview.widget.CardView>

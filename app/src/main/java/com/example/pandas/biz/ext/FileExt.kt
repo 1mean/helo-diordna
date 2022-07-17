@@ -1,6 +1,8 @@
 package com.example.pandas.biz.ext
 
 import android.content.Context
+import com.example.pandas.app.getExtFilePath
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.utils.FileUtils
 import java.io.File
 
@@ -30,107 +32,99 @@ fun getMusicUrl(context: Context, fileName: String): String {
 }
 
 /**
- * 从本地获取视频目录
+ * 通过 [PetVideo.fileName] 来获取app专属空间内的视频文件
+ * @param: fileName
+ * @return:
+ * @author: dongyiming
+ * @date: 7/17/22 5:02 下午
+ * @version: v1.0
  */
-fun getUrl(context: Context, fileName: String): File {
+fun getLocalFilePath(context: Context, fileName: String): File {
 
-    // localFile: /storage/emulated/0/Android/data/com.example.hello_diordna/files
     val localFile = FileUtils.getExternalFileDirectory(context, "")
-    val builder = StringBuilder("/videos")
     var finalPath = ""
     when {
-        fileName.startsWith("bird") ->
-            finalPath =
-                builder.append(File.separator).append("bird").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("beauty") ->
-            finalPath =
-                builder.append(File.separator).append("beauty").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("bird") ->
-            finalPath =
-                builder.append(File.separator).append("bird").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("pet_fox") ->
-            finalPath =
-                builder.append(File.separator).append("fox").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("pet_monkey") ->
-            finalPath =
-                builder.append(File.separator).append("monkey").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("video_banner") ->
-            finalPath =
-                builder.append(File.separator).append("all").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("panda_group") ->
-            finalPath =
-                builder.append(File.separator).append("group").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("landscape") ->
-            finalPath =
-                builder.append(File.separator).append("landscape").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("panda_mom") ->
-            finalPath =
-                builder.append(File.separator).append("mom").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("panda_baby") ->
-            finalPath =
-                builder.append(File.separator).append("baby").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("music") ->
-            finalPath =
-                builder.append(File.separator).append("music").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("panda_all") ->
-            finalPath =
-                builder.append(File.separator).append("all").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("panda_knowledge") ->
-            finalPath =
-                builder.append(File.separator).append("knowledge").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("penguin") ->
-            finalPath =
-                builder.append(File.separator).append("penguin").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("red_panda") ->
-            finalPath =
-                builder.append(File.separator).append("red_panda").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
         fileName.startsWith("pet_bear") ->
-            finalPath =
-                builder.append(File.separator).append("bear").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("single") ->
-            finalPath =
-                builder.append(File.separator).append("single").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
+            finalPath = appendVideoFile("animal", "bear", fileName)
+        fileName.startsWith("bird") ->
+            finalPath = appendVideoFile("animal", "bird", fileName)
         fileName.startsWith("cat") ->
-            finalPath =
-                builder.append(File.separator).append("cat").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
+            finalPath = appendVideoFile("animal", "cat", fileName)
+        fileName.startsWith("pet_fox") ->
+            finalPath = appendVideoFile("animal", "fox", fileName)
+        fileName.startsWith("pet_monkey") ->
+            finalPath = appendVideoFile("animal", "monkey", fileName)
+        fileName.startsWith("penguin") ->
+            finalPath = appendVideoFile("animal", "penguin", fileName)
+        fileName.startsWith("red_panda") ->
+            finalPath = appendVideoFile("animal", "red_panda", fileName)
+        fileName.startsWith("landscape") ->
+            finalPath = appendVideoFile("China", "landscape", fileName)
         fileName.startsWith("honglou") ->
-            finalPath =
-                builder.append(File.separator).append("honglou").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
-        fileName.startsWith("baby") ->
-            finalPath =
-                builder.append(File.separator).append("human_baby").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
+            finalPath = appendVideoFile("culture", "honglou", fileName)
         fileName.startsWith("art") ->
-            finalPath =
-                builder.append(File.separator).append("art").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
+            finalPath = appendVideoFile("entertainment", "art", fileName)
         fileName.startsWith("tv") ->
-            finalPath =
-                builder.append(File.separator).append("tv").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
+            finalPath = appendVideoFile("entertainment", "tv", fileName)
+        fileName.startsWith("beauty") ->
+            finalPath = appendVideoFile("entertainment", "beauty", fileName)
+        fileName.startsWith("baby") ->
+            finalPath = appendVideoFile("entertainment", "human_baby", fileName)
+        fileName.startsWith("music") ->
+            finalPath = appendVideoFile("entertainment", "music", fileName)
         fileName.startsWith("football") ->
-            finalPath =
-                builder.append(File.separator).append("football").append(File.separator)
-                    .append(fileName).append(".mp4").toString()
+            finalPath = appendVideoFile("sports", "football", fileName)
+        fileName.startsWith("panda_all") ->
+            finalPath = appendVideoFile("panda", "all", fileName)
+        fileName.startsWith("panda_baby") ->
+            finalPath = appendVideoFile("panda", "baby", fileName)
+        fileName.startsWith("panda_group") ->
+            finalPath = appendVideoFile("panda", "group", fileName)
+        fileName.startsWith("panda_knowledge") ->
+            finalPath = appendVideoFile("panda", "knowledge", fileName)
+        fileName.startsWith("panda_mom") ->
+            finalPath = appendVideoFile("panda", "mom", fileName)
+        fileName.startsWith("single") ->
+            finalPath = appendVideoFile("panda", "single", fileName)
+        fileName.startsWith("video_banner") ->
+            finalPath = appendVideoFile("panda", "all", fileName)
     }
     return File(localFile, finalPath)
 }
+
+/**
+ * 拼接多级file目录
+ *  - /sdcard/Android/data/com.example.hello_diordna/files/videos/animal/bear/pet_bear1.mp4
+ * @param: "animal" "bear" "pet_bear1"
+ * @return:
+ * @version: v1.0
+ */
+private fun appendVideoFile(vararg fileNames: String): String {
+
+    val builder = StringBuilder("videos").append(File.separator)
+    fileNames.forEachIndexed { index, name ->
+        builder.append(name)
+        if (index == fileNames.size - 1) {
+            builder.append(".mp4")
+        } else {
+            builder.append(File.separator)
+        }
+    }
+    return builder.toString()
+}
+
+/**
+ * 通过文件名获取文件夹目录
+ * @param:
+ * @return:
+ * @author: dongyiming
+ * @date: 7/17/22 6:49 下午
+ * @version: v1.0
+ */
+fun getVideoLocalPath(context: Context, fileName: String): String {
+    val path = getExtFilePath(fileName)
+    val localFile = FileUtils.getExternalFileDirectory(context, "")
+    val finalPath = StringBuilder("videos").append(File.separator).append(path).toString()
+    return File(localFile, finalPath).absolutePath
+}
+

@@ -5,13 +5,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.app.AppInfos
+import com.example.pandas.app.getFileCover
+import com.example.pandas.app.getUiName
 import com.example.pandas.base.BaseViewModel
+import com.example.pandas.bean.CachaListItem
+import com.example.pandas.bean.CacheListItemData
+import com.example.pandas.biz.ext.getVideoLocalPath
 import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.sql.entity.User
+import com.example.pandas.utils.FileUtils
 import com.example.pandas.utils.SPUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
 
 /**
  * @description: SelfViewModel
@@ -26,7 +33,9 @@ public class SelfViewModel : BaseViewModel() {
     private val _follows: MutableLiveData<MutableList<String>> by lazy { MutableLiveData() }
     val follows: LiveData<MutableList<String>> = _follows
 
+
     val followUser: MutableLiveData<MutableList<User>> by lazy { MutableLiveData() }
+    val cacheList: MutableLiveData<MutableList<CacheListItemData>> by lazy { MutableLiveData() }
 
     fun getUserInfo() {
         viewModelScope.launch {
@@ -46,6 +55,51 @@ public class SelfViewModel : BaseViewModel() {
 
         viewModelScope.launch {
             followUser.value = PetManagerCoroutine.getAllFollowUsers(context)
+        }
+    }
+
+    /**
+     * 获取本地videos文件夹里的目录
+     */
+    fun getCacheList(context: Context) {
+
+        viewModelScope.launch {
+            cacheList.value = withContext(Dispatchers.Default) {
+                val list = mutableListOf<CacheListItemData>()
+                val localFile = FileUtils.getExternalFileDirectory(context, "")
+                localFile?.list()?.forEach {
+                    if (it.equals("videos")) {
+                        val videoFile = File(localFile, it)
+                        if (videoFile.isDirectory) {
+                            val fileList = videoFile.listFiles()
+                            fileList?.forEach { file ->//一级目录
+                                if (file.isDirectory) {//过滤隐藏文件
+                                    val cacheItem = CacheListItemData()
+                                    val cacheItemList = mutableListOf<CachaListItem>()
+                                    cacheItem.title = getUiName(file.name)
+                                    val secondFiles = file.listFiles()
+                                    secondFiles?.forEach { secondFile ->
+                                        if (secondFile.isDirectory) {//过滤隐藏文件
+                                            val item = CachaListItem()
+                                            secondFile.listFiles()?.let {
+                                                item.counts = it.size
+                                            }
+                                            item.name = getUiName(secondFile.name)
+                                            item.url = getFileCover(secondFile.name)
+                                            item.localFilePath =
+                                                getVideoLocalPath(context, secondFile.name)
+                                            cacheItemList.add(item)
+                                        }
+                                    }
+                                    cacheItem.data = cacheItemList
+                                    list.add(cacheItem)
+                                }
+                            }
+                        }
+                    }
+                }
+                list
+            }
         }
     }
 }

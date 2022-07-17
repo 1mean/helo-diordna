@@ -28,8 +28,8 @@ public class FollowAndFansActivity : BaseActivity<SelfViewModel, ActivityFollowB
         StatusBarUtils.updataStatus(this, true, false, R.color.white)
 
         val index = intent.getIntExtra("FollowsOrFans", -1)
-        binding.layoutFollowTop.ibnFinish.setOnClickListener { finish() }
-        binding.layoutFollowTop.txtPandaName.text = resources.getString(R.string.str_mine_friends)
+        binding.layoutFollowTop.ibnTopFinish.setOnClickListener { finish() }
+        binding.layoutFollowTop.txtTopName.text = resources.getString(R.string.str_mine_friends)
 
         binding.vp2Follow.run {
             offscreenPageLimit = tabTitles.size

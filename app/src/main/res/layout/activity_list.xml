@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/llayout_activity_list"
+        android:visibility="gone"
+        android:background="@color/color_bg_list_activity">
+
+    <include
+            android:id="@+id/view_list_top"
+            layout="@layout/layout_top" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
+                android:id="@+id/recyclerview_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

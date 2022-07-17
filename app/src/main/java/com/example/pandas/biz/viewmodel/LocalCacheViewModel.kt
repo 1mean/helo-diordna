@@ -3,13 +3,18 @@ package com.example.pandas.biz.viewmodel
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.pandas.app.AppInfos
+import com.example.pandas.app.fileDesc
 import com.example.pandas.base.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.manager.PetManagerCoroutine
+import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.sql.entity.VideoAndUser
 import com.example.pandas.utils.FileUtils
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 
@@ -22,11 +27,7 @@ import java.io.File
 public class LocalCacheViewModel : BaseViewModel() {
 
     val selectFileName: MutableLiveData<String> by lazy { MutableLiveData() }
-    val cacheList: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
-
-    fun setSelectFileName(newFileName: String) {
-        selectFileName.value = newFileName
-    }
+    val localVideos: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
 
     /**
      * 获取本地videos文件夹里的目录
@@ -44,7 +45,7 @@ public class LocalCacheViewModel : BaseViewModel() {
                         if (file.isDirectory) {//过滤隐藏文件
                             val video = PetViewData()
                             video.title = file.name
-                            val url = AppInfos.fileUrl.getValue(file.name)
+                            val url = fileDesc.getValue(file.name)
                             video.cover = url
                             list.add(video)
                         }
@@ -58,28 +59,31 @@ public class LocalCacheViewModel : BaseViewModel() {
     private var times = 0
     private var counts = 20
     private var mp4List = mutableListOf<File>()
-    fun getItemList(isShow: Boolean, context: Context) {
+    fun getLocalVideos(isRefresh: Boolean, localPath: String) {
 
-        if (isShow) {
-            times = 0
-            if (mp4List.isNotEmpty()) {
-                mp4List.clear()
-            }
+        require(File(localPath).exists()) {
+            "local cache path is not exist"
         }
 
         request({
-            withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
 
-                val list = getAllFiles(context)
-                val videoList = mutableListOf<PetViewData>()
+                if (isRefresh) {
+                    times = 0
+                    if (mp4List.isNotEmpty()) {
+                        mp4List.clear()
+                    }
+                    mp4List = File(localPath).listFiles()!!.toMutableList()
+                }
+                val videoList = mutableListOf<VideoAndUser>()
                 val pageList =
-                    if ((times + 1) * counts >= list.size) {//最后一批数据
-                        list.subList(
+                    if ((times + 1) * counts >= mp4List.size) {//最后一批数据
+                        mp4List.subList(
                             times * counts,
-                            list.size
+                            mp4List.size
                         )
                     } else {
-                        list.subList(
+                        mp4List.subList(
                             times * counts,
                             (times + 1) * counts + 1
                         )
@@ -89,7 +93,6 @@ public class LocalCacheViewModel : BaseViewModel() {
                     Log.e("1mean", "file: ${file.name}")
                     val fileName = file.name.split(".")[0]
                     val data = PetManagerCoroutine.getVideoByFileName(fileName)
-                    Log.e("filename-data", "fileName: $fileName , ,data:$data")
                     videoList.add(data)
                 }
                 videoList
@@ -98,55 +101,28 @@ public class LocalCacheViewModel : BaseViewModel() {
             {
                 //请求数据成功
                 times += 1
-                Log.e("111111mean", "lit.size: ${it.size}")
                 val hasMore = it.size > counts
                 if (hasMore) {
                     it.removeLast()
                 }
                 val dataList = UIDataWrapper(
                     isSuccess = true,
-                    isRefresh = isShow,
+                    isRefresh = isRefresh,
                     isEmpty = it.isEmpty(),
                     hasMore = hasMore,
                     listData = it
                 )
-                cacheList.value = dataList
+                localVideos.value = dataList
             },
             {
                 //请求数据失败
                 val dataList = UIDataWrapper(
                     isSuccess = false,
-                    isRefresh = isShow,
+                    isRefresh = isRefresh,
                     errMessage = it.errorMsg,
-                    listData = mutableListOf<PetViewData>()
+                    listData = mutableListOf<VideoAndUser>()
                 )
-                cacheList.value = dataList
+                localVideos.value = dataList
             })
-    }
-
-    /**
-     * 获取指定文件夹下的所有mp4文件
-     */
-    private fun getAllFiles(context: Context): MutableList<File> {
-
-        if (mp4List.isEmpty()) {
-            val localFile = FileUtils.getExternalFileDirectory(context, "")
-            if (localFile != null) {
-                val itemFile = File(localFile, "/videos/".plus(selectFileName.value))
-                if (itemFile.isDirectory) {
-                    val videoList = itemFile.listFiles()
-                    Log.e("1madaean", "videoList: ${videoList.size}")
-                    if (videoList != null && videoList.isNotEmpty()) {
-                        //过滤掉不是mp4的文件,目前已经物理删除
-//                        mp4List = videoList.filter { file ->
-//                            file.name.endsWith("mp4")
-//                        }.toMutableList()
-                        mp4List = videoList.toMutableList()
-                        Log.e("1madaean", "mp4List: ${mp4List.size}")
-                    }
-                }
-            }
-        }
-        return mp4List
     }
 }

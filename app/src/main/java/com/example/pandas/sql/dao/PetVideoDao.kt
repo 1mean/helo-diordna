@@ -194,11 +194,12 @@ interface PetVideoDao {
     suspend fun queryVideoByType(type: Int, startIndex: Int, count: Int): MutableList<PetViewData>
 
     @Transaction
+    @Query("select * from pet_video where fileName=(:fileName)")
+    suspend fun queryVideoByFileName(fileName: String): VideoAndUser
+
+    @Transaction
     @Query("select * from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryVideosByVideoType(type: Int, startIndex: Int, count: Int): MutableList<VideoAndUser>
-
-    @Query("select code,title,cover,authorId,duration,fileName from pet_video where fileName=(:fileName)")
-    suspend fun queryVideoByFileName(fileName: String): PetViewData
 
     @Query("select count(*) from music")
     suspend fun queryMusicCounts(): Int

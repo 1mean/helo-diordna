@@ -143,7 +143,7 @@ public class PlayerManager private constructor() {
 //            Log.e(AppInfos.DEBUG_LOG_TAG, "media source is null")
 //            return
 //        }
-        require(!File(mediaInfo.playUrl).exists()){
+        require(File(mediaInfo.playUrl).exists()){
             "media source is null"
         }
         val playPos = mediaInfo.playPos

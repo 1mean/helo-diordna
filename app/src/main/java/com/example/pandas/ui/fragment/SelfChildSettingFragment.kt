@@ -56,6 +56,9 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
                 Intent(mActivity, FollowAndFansActivity::class.java).putExtra("FollowsOrFans", 1)
             mActivity.startActivity(intent)
         }
+        binding.txtMineName.setOnClickListener {
+            mActivity.startActivity(Intent(mActivity, SelfInfoActivity::class.java))
+        }
     }
 
     override fun createObserver() {
@@ -66,6 +69,7 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
     }
 
     override fun firstOnResume() {
+        mViewModel.getCurrentFollows(mActivity)
     }
 
 }

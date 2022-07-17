@@ -1,7 +1,6 @@
 package com.example.pandas.base.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +24,8 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
     private var _binding: VB? = null
     val binding: VB get() = _binding!!
 
+    private var isFirstVisible = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,6 +34,16 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
 
         initView(savedInstanceState)
         createObserver()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!isFirstVisible) {
+            firstOnResume()
+            isFirstVisible = true
+        } else {
+            againOnResume()
+        }
     }
 
     private fun initViewBinding(): View {
@@ -81,6 +92,10 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
     open fun onkeyBack() {
         finish()
     }
+
+    open fun firstOnResume() {}
+
+    open fun againOnResume() {}
 
     /**
      * 创建观察者

@@ -51,6 +51,7 @@
     <color name="color_self_txt_coin">#262626</color>
     <color name="color_self_txt_log">#818892</color>
     <color name="color_self_tab_indicator">#00BBFF</color>
+    <color name="color_self_cache_title">#d0effc</color>
 
     <!--eye-->
     <color name="color_eye_view_bg">#ededed</color>
@@ -179,5 +180,6 @@
     <color name="color_bg_loading">#f0f3f3</color>
     <color name="color_bg_cute_pet">#FAFAFA</color>
     <color name="color_bg_indicator">#22000000</color>
+    <color name="color_bg_list_activity">#F1F7F6</color>
 
 </resources>

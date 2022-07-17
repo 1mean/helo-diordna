@@ -31,7 +31,7 @@ public class CacheItemFragment : BaseFragment<LocalCacheViewModel, FragmentMoreB
 
     override fun createObserver() {
 
-        mViewModel.cacheList.observe(viewLifecycleOwner) {
+        mViewModel.localVideos.observe(viewLifecycleOwner) {
             Log.e(
                 "111111mean",
                 "size: ${it.listData.size}, isRefresh: ${it.isRefresh}, hasMore: ${it.hasMore}"
@@ -41,14 +41,14 @@ public class CacheItemFragment : BaseFragment<LocalCacheViewModel, FragmentMoreB
                     if (!it.hasMore) {
                         binding.recyclerLoad.noMoreData()
                     }
-                    mAdapter.refreshAdapter(it.listData)
+                    //mAdapter.refreshAdapter(it.listData)
                 } else {
                     if (!it.hasMore) {
                         binding.recyclerLoad.noMoreData()
                     } else {
                         binding.recyclerLoad.loadMoreFinished()
                     }
-                    mAdapter.loadMore(it.listData)
+                   // mAdapter.loadMore(it.listData)
                 }
             }
         }
@@ -61,7 +61,7 @@ public class CacheItemFragment : BaseFragment<LocalCacheViewModel, FragmentMoreB
     override fun onHiddenChanged(hidden: Boolean) {
 
         if (!hidden) {
-            mViewModel.getItemList(true, mActivity)
+            //mViewModel.getItemList(true, mActivity)
         } else {
             binding.recyclerLoad.clearState()
             mAdapter.clear()
@@ -75,6 +75,6 @@ public class CacheItemFragment : BaseFragment<LocalCacheViewModel, FragmentMoreB
     override fun lazyLoadTime(): Long = 0
 
     override fun onLoadMore() {
-        mViewModel.getItemList(false, mActivity)
+        //mViewModel.getItemList(false, mActivity)
     }
 }

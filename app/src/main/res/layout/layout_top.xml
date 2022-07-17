@@ -4,11 +4,11 @@
         android:id="@+id/clayout_cm_top"
         android:layout_width="match_parent"
         android:background="@color/white"
-        android:layout_height="57dp">
+        android:layout_height="56dp">
 
     <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/ibn_finish"
-            android:layout_width="57dp"
+            android:id="@+id/ibn_top_finish"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:src="@mipmap/img_back_1"
             app:layout_constraintTop_toTopOf="parent"
@@ -17,12 +17,23 @@
             android:background="@null" />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_panda_name"
+            android:id="@+id/txt_top_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="@color/color_video_name_txt"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/ibn_finish" />
+            app:layout_constraintLeft_toRightOf="@id/ibn_top_finish"
+            android:layout_marginStart="5dp" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibn_top_search"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/img_search"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@null" />
 </androidx.constraintlayout.widget.ConstraintLayout>

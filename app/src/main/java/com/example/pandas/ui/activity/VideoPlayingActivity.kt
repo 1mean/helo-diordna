@@ -13,7 +13,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.FrameLayout
-import android.widget.ImageButton
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +22,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.bean.MediaInfo
-import com.example.pandas.biz.ext.getUrl
+import com.example.pandas.biz.ext.getLocalFilePath
 import com.example.pandas.biz.ext.launchVideoPlayActivity
 import com.example.pandas.biz.interaction.CommentsListener
 import com.example.pandas.biz.manager.PlayerManager
@@ -156,7 +155,8 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         mViewModel.videoInfo.observe(this) {
 
             if (!isPlayIng) {
-                val file = getUrl(this, it.fileName!!)
+                val file = getLocalFilePath(this, it.fileName!!)
+                Log.e("1mean","file: $file")
                 if (file.exists()) {
                     //initPlayer(file)
                     val currentPos: Long = if (it.videoData == null) {

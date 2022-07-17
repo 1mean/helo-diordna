@@ -19,7 +19,7 @@ import com.example.pandas.ui.adapter.SelfViewPagerAdapter
  */
 public class SelfFragment : BaseLazyFragment<SelfViewModel, FragmentMineBinding>() {
 
-    private val titles = arrayOf("动态", "艺人")
+    private val titles = arrayOf("设置", "缓存")
     private val pagerAdapter: SelfViewPagerAdapter by lazy { SelfViewPagerAdapter(mActivity) }
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -42,6 +42,5 @@ public class SelfFragment : BaseLazyFragment<SelfViewModel, FragmentMineBinding>
 
     override fun onResume() {
         super.onResume()
-        mViewModel.getCurrentFollows(mActivity)
     }
 }

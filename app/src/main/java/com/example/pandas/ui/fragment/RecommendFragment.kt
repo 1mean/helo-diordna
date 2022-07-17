@@ -11,7 +11,7 @@ import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseCMFragment
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.bean.pet.RecommendData
-import com.example.pandas.biz.ext.getUrl
+import com.example.pandas.biz.ext.getLocalFilePath
 import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.manager.PlayerManager
@@ -26,11 +26,6 @@ import com.example.pandas.utils.ScreenUtil
 import com.google.android.exoplayer2.Player.REPEAT_MODE_ONE
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.util.Util
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.scheduling.ExperimentalCoroutineDispatcher
-import java.util.concurrent.Executors
 
 /**
  * @description: 首页-推荐
@@ -210,7 +205,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                     if (PlayerManager.instance.handleOn(isOverHalf, videoCode, position)) {
                         return
                     }
-                    val file = getUrl(mActivity, itemData.fileName!!)
+                    val file = getLocalFilePath(mActivity, itemData.fileName!!)
                     val currentPos: Long = if (itemData.videoData == null) {
                         0L
                     } else {
@@ -246,7 +241,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                     if (PlayerManager.instance.continueSameMedia(videoCode, childView)) {
                         return
                     }
-                    val file = getUrl(mActivity, itemData.fileName!!)
+                    val file = getLocalFilePath(mActivity, itemData.fileName!!)
                     val currentPos: Long = if (itemData.videoData == null) {
                         0L
                     } else {

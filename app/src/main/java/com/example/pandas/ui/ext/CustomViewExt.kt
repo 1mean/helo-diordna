@@ -7,6 +7,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pandas.R
@@ -59,7 +60,7 @@ fun SwipeRefreshLayout.setRefreshColor(): SwipeRefreshLayout {
 fun SwipRecyclerView.init(
     itemDecoration: RecyclerView.ItemDecoration? = null,
     adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>,
-    manager: RecyclerView.LayoutManager,
+    manager: RecyclerView.LayoutManager = LinearLayoutManager(context),
     listener: SwipRecyclerView.ILoadMoreListener
 ): SwipRecyclerView {
 
@@ -75,7 +76,7 @@ fun SwipRecyclerView.init(
 fun SwipRecyclerView2.init2(
     itemDecoration: RecyclerView.ItemDecoration? = null,
     adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>,
-    manager: RecyclerView.LayoutManager,
+    manager: RecyclerView.LayoutManager= LinearLayoutManager(context),
     listener: SwipRecyclerView2.ILoadMoreListener
 ): SwipRecyclerView2 {
 

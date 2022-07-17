@@ -36,6 +36,7 @@ object FileUtils {
      * 获取外部专属空间的特定type的文件夹目录
      * 应用卸载，文件清除
      * @version: v1.0
+     * @type:为null时，默认获取file目录
      */
     fun getExternalFileDirectory(context: Context, type: String): File? {
 

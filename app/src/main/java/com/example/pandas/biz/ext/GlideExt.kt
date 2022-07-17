@@ -11,8 +11,10 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
@@ -36,10 +38,22 @@ import java.io.File
  * @version: v1.0
  */
 fun loadRoundedCornerImage(context: Context, radius: Int, url: String, view: ImageView) {
-
     val options = RequestOptions.bitmapTransform(RoundedCorners(radius))
     Glide.with(context).load(url).apply(options).into(view)
 }
+
+/**
+ *
+ * 设置图片样式为居中显示，然后裁剪边框
+ *
+ * 布局中设置Image的style为center时，裁剪不会生效
+ */
+fun loadCenterRoundedCornerImage(context: Context, radius: Int, url: String, view: ImageView) {
+    val options =
+        RequestOptions.bitmapTransform(MultiTransformation(CenterCrop(), RoundedCorners(radius)))
+    Glide.with(context).load(url).apply(options).into(view)
+}
+
 
 /**
  * 加载圆形图片

@@ -15,12 +15,11 @@ import com.example.pandas.ui.adapter.CacheListAdapter
  * @date: 3/8/22 4:47 下午
  * @version: v1.0
  */
-public class CacheListFragment : BaseFragment<LocalCacheViewModel, FragmentCacheListBinding>(),
-    OnItemmmmClickListener<String> {
+public class CacheListFragment : BaseFragment<LocalCacheViewModel, FragmentCacheListBinding>(){
 
     private val mFragment by lazy { CacheItemFragment() }
 
-    private val mAdapter: CacheListAdapter by lazy { CacheListAdapter(mutableListOf(), this) }
+    private val mAdapter: CacheListAdapter by lazy { CacheListAdapter(mutableListOf()) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -36,7 +35,7 @@ public class CacheListFragment : BaseFragment<LocalCacheViewModel, FragmentCache
 
     override fun firstOnResume() {
         val list = mViewModel.getCacheList(mActivity)
-        mAdapter.refreshAdapter(list)
+        //mAdapter.refreshAdapter(list)
     }
 
     override fun lazyLoadTime(): Long = 0
@@ -45,8 +44,8 @@ public class CacheListFragment : BaseFragment<LocalCacheViewModel, FragmentCache
         return mActivity
     }
 
-    override fun onClick(position: Int, t: String) {
-        mViewModel.setSelectFileName(t)
-    }
+//    override fun onClick(position: Int, t: String) {
+//        mViewModel.setSelectFileName(t)
+//    }
 
 }

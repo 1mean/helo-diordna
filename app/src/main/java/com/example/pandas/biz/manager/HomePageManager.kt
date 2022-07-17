@@ -90,12 +90,8 @@ class PetManager {
     }
 
 
-    suspend fun getVideoByFileName(fileName: String): PetViewData {
-
-        val video = petDao.queryVideoByFileName(fileName)
-        video.user = petDao.queryUserByCode(video.authorId)
-        return video
-    }
+    suspend fun getVideoByFileName(fileName: String): VideoAndUser =
+        petDao.queryVideoByFileName(fileName)
 
 
     /**
