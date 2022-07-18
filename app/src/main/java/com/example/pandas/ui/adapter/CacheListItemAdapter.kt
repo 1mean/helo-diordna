@@ -6,7 +6,6 @@ import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.CachaListItem
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
-import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.ui.activity.ListActivity
 
 /**
@@ -31,9 +30,10 @@ public class CacheListItemAdapter(list: MutableList<CachaListItem>) :
         name.text = data.name
         counts.text = data.counts.toString()
         holder.itemView.setOnClickListener {
-            val intent = Intent(context,ListActivity::class.java).apply {
-                putExtra("localFilePath",data.localFilePath)
-                putExtra("title",data.name)
+            val intent = Intent(context, ListActivity::class.java).apply {
+                putExtra("localFilePath", data.localFilePath)
+                putExtra("title", data.name)
+                putExtra("list_type", 2)
             }
             context.startActivity(intent)
         }

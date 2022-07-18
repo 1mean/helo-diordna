@@ -5,6 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 /**
+ * 【等分必须满足，paddingleft + paddingright 的和相同】
  * @description: common ItemDecoration
  * @author: dongyiming
  * @date: 4/12/22 6:06 下午

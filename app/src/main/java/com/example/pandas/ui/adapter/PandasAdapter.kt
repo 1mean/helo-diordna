@@ -202,7 +202,7 @@ public class PandasAdapter(private val list: MutableList<PetVideo>) :
             "https://i2.hdslb.com/bfs/face/5c7a2b4cabcbd0621cacd1aa238379d6bbfd3923.jpg@150w_150h.jpg"
         )
         val item7 = GridItem(
-            "带崽熊猫",
+            "熊猫妈妈",
             "https://i2.hdslb.com/bfs/face/000f55df2f0e9c28d486b8bb015e4913cb5e1823.jpg@150w_150h.jpg"
         )
         val item8 = GridItem(

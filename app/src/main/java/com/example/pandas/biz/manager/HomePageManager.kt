@@ -346,15 +346,15 @@ class PetManager {
         name: String,
         startIndex: Int,
         counts: Int
-    ): MutableList<PetVideo> {
+    ): MutableList<VideoAndUser> {
 
-        return withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.Default) {
 
             when (name) {
                 "熊猫宝宝" -> {
                     petDao.queryByPeried(PeriodType.BABY.ordinal, startIndex, counts)
                 }
-                "带崽熊猫" -> {
+                "熊猫妈妈" -> {
                     petDao.queryByPeried(PeriodType.MOM.ordinal, startIndex, counts)
                 }
                 "幼年班" -> {
@@ -372,7 +372,6 @@ class PetManager {
             }
         }
     }
-
 
     suspend fun searchByPage(words: String, startIndex: Int): MutableList<PetViewData> {
 

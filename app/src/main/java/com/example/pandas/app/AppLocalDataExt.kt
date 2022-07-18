@@ -71,7 +71,7 @@ public enum class FileExtName(private var fileName: String, private var uiName: 
         override fun getFileName() = "animal/bird"
     },
     CAT("cat", "猫") {
-        override fun getFileName() = "animal/all"
+        override fun getFileName() = "animal/cat"
     },
     FOX("fox", "狐狸") {
         override fun getFileName() = "animal/fox"

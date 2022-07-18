@@ -199,7 +199,27 @@ interface PetVideoDao {
 
     @Transaction
     @Query("select * from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
-    suspend fun queryVideosByVideoType(type: Int, startIndex: Int, count: Int): MutableList<VideoAndUser>
+    suspend fun queryVideosByVideoType(
+        type: Int,
+        startIndex: Int,
+        count: Int
+    ): MutableList<VideoAndUser>
+
+    @Transaction
+    @Query("select * from pet_video where period=(:period) and type=0 and videoType=0 limit (:startIndex),(:counts)")
+    suspend fun queryByPeried(
+        period: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<VideoAndUser>
+
+    @Transaction
+    @Query("select * from pet_video where type=0 and videoType=0 and title like (:words) limit (:startIndex),(:counts)")
+    suspend fun queryPandaByName(
+        words: String,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<VideoAndUser>
 
     @Query("select count(*) from music")
     suspend fun queryMusicCounts(): Int
@@ -234,23 +254,9 @@ interface PetVideoDao {
         counts: Int
     ): MutableList<PetVideo>
 
-    @Query("select * from pet_video where type=0 and videoType=0 and title like (:words) limit (:startIndex),(:counts)")
-    suspend fun queryPandaByName(
-        words: String,
-        startIndex: Int,
-        counts: Int
-    ): MutableList<PetVideo>
-
     @Query("select * from pet_video where type=0 and videoType=0 and isStar=1 and title like (:words) limit (:startIndex),(:counts)")
     suspend fun queryLovedByKey(
         words: String,
-        startIndex: Int,
-        counts: Int
-    ): MutableList<PetVideo>
-
-    @Query("select * from pet_video where period=(:period) and type=0 and videoType=0 limit (:startIndex),(:counts)")
-    suspend fun queryByPeried(
-        period: Int,
         startIndex: Int,
         counts: Int
     ): MutableList<PetVideo>

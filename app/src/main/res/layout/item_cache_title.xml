@@ -17,7 +17,7 @@
             android:includeFontPadding="false"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="10dp"
             android:gravity="center"
             android:background="@drawable/shape_bg_self_cache_title" />
 

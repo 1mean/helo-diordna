@@ -23,6 +23,10 @@ import com.example.pandas.utils.StatusBarUtils
  */
 public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBinding>() {
 
+    /**
+     *  type = 1 从PandaFragment进入
+     *  type = 2 从本地缓存列表进入
+     */
     private var type: Int = -1
     private var localFilePath: String? = null
     private var title: String? = null
@@ -45,9 +49,7 @@ public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBindin
             setRefreshColor()
             setOnRefreshListener {
                 binding.recyclerviewList.isRefreshing(true)
-                localFilePath?.let {
-                    mViewModel.getLocalVideos(true, it)
-                }
+                request(true)
             }
         }
 
@@ -64,10 +66,7 @@ public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBindin
             GridLayoutManager(this, 2),
             listener = object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
-
-                    localFilePath?.let {
-                        mViewModel.getLocalVideos(false, it)
-                    }
+                    request(false)
                 }
             }
         )
@@ -99,6 +98,24 @@ public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBindin
             binding.refreshList.isRefreshing = false
             binding.llayoutActivityList.visibility = View.VISIBLE
         }
+
+        mViewModel.pandaResult.observe(this) {
+
+            if (it.isSuccess) {
+                when {
+                    it.isRefresh -> {
+                        mAdapter.refreshAdapter(it.listData)
+                        binding.recyclerviewList.isRefreshing(false)
+                    }
+                    else -> {
+                        mAdapter.loadMore(it.listData)
+                    }
+                }
+                binding.recyclerviewList.loadMoreFinished(it.isEmpty, it.hasMore)
+            }
+            binding.refreshList.isRefreshing = false
+            binding.llayoutActivityList.visibility = View.VISIBLE
+        }
     }
 
     override fun firstOnResume() {
@@ -107,8 +124,21 @@ public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBindin
         title?.let {
             binding.viewListTop.txtTopName.text = it
         }
-        localFilePath?.let {
-            mViewModel.getLocalVideos(true, it)
+        request(true)
+    }
+
+    private fun request(isRefresh: Boolean) {
+        when (type) {
+            1 -> {
+                title?.let {
+                    mViewModel.getPandas(isRefresh, it)
+                }
+            }
+            2 -> {
+                localFilePath?.let {
+                    mViewModel.getLocalVideos(isRefresh, it)
+                }
+            }
         }
     }
 }

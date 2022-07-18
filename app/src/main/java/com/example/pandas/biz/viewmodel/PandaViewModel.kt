@@ -57,37 +57,5 @@ public class PandaViewModel : BaseViewModel() {
 
     fun getPandas(isRefresh: Boolean, title: String) {
 
-        if (isRefresh) {
-            startIndex = 0
-        }
-
-        request({
-            PetManagerCoroutine.getPandas(title, startIndex, 21)
-        }, {
-
-            hasMore = if (it.isNotEmpty() && it.size > 20) {
-                it.removeLast()
-                true
-            } else {
-                false
-            }
-            val dataList = UIDataWrapper(
-                isSuccess = true,
-                isRefresh = isRefresh,
-                hasMore = hasMore,
-                isFirstEmpty = isRefresh && it.isEmpty(),
-                listData = it
-            )
-            startIndex += 20
-            pandaResult.value = dataList
-        }, {
-            val dataList = UIDataWrapper(
-                isSuccess = false,
-                errMessage = it.errorMsg,
-                isRefresh = isRefresh,
-                listData = mutableListOf<PetVideo>()
-            )
-            pandaResult.value = dataList
-        })
     }
 }

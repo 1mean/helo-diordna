@@ -9,6 +9,7 @@ import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentCacheListBinding
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.CacheListAdapter
+import com.example.pandas.ui.adapter.decoration.CommonItemDecoration2
 
 /**
  * @description: 我的-缓存

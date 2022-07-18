@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pandas.R
 import com.example.pandas.bean.CacheListItemData
 import com.example.pandas.databinding.AdapterCacheListBinding
 import com.example.pandas.databinding.ItemCacheTitleBinding
+import com.example.pandas.ui.adapter.decoration.CacheListItemDecoration
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 
 /**
@@ -79,10 +81,16 @@ public class CacheListAdapter(private val list: MutableList<CacheListItemData>) 
         RecyclerView.ViewHolder(binding.root) {
 
         val rv = binding.rvCacheItem
+        val paddingMid =
+            itemView.context.resources.getDimension(R.dimen.common_lh_10_dimens).toInt()
+        val paddingBtm =
+            itemView.context.resources.getDimension(R.dimen.common_lh_15_dimens).toInt()
+
         fun handle(position: Int) {
             val data = list[position / 2].data
             rv.run {
-                addItemDecoration(CommonItemDecoration(false, 3, 0, 30, 30))
+//                addItemDecoration(CommonItemDecoration(false, 3, 0, paddingMid, paddingBtm))
+                addItemDecoration(CacheListItemDecoration())
                 layoutManager = GridLayoutManager(context, 3)
                 adapter = CacheListItemAdapter(data)
             }
