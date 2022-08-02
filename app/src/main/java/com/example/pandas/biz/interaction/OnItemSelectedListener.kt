@@ -6,6 +6,5 @@ package com.example.pandas.biz.interaction
  * @version: v1.0
  */
 public interface OnItemSelectedListener {
-
     fun callback()
 }

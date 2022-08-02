@@ -11,10 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import com.example.pandas.base.BaseViewModel
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.ParameterizedType
 

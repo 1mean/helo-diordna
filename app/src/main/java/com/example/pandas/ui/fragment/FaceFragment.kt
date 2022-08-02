@@ -6,7 +6,7 @@ import android.text.TextWatcher
 import android.util.Log
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
-import com.example.pandas.base.BaseViewModel
+import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.manager.KeyboardManager

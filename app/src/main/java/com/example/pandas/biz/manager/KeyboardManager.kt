@@ -131,7 +131,7 @@ class KeyboardManager(private val activity: Activity) {
         }
     }
 
-    fun ondestory() {
+    fun onDestroy() {
         activity.window.decorView.viewTreeObserver.removeOnGlobalLayoutListener(listener)
         km = null
     }

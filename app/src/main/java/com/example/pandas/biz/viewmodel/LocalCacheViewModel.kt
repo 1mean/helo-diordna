@@ -4,11 +4,10 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.pandas.app.fileDesc
-import com.example.pandas.base.BaseViewModel
+import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoAndUser
 import com.example.pandas.utils.FileUtils
 import kotlinx.coroutines.Dispatchers

@@ -1,4 +1,5 @@
 package com.example.pandas.ui.adapter
+
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
@@ -14,7 +15,7 @@ import com.example.pandas.biz.interaction.OnItemmmmClickListener
  * @version: v1.0
  */
 public class HotSearchAdapter(
-    private val list: MutableList<String>,
+    private val list: MutableList<String> = mutableListOf(),
     private val listener: OnItemmmmClickListener<String>
 ) :
     BaseCommonAdapter<String>(list) {

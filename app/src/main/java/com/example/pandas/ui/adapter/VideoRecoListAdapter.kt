@@ -6,7 +6,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.interaction.OnVideoItemClickLIstener
 import com.example.pandas.sql.entity.PetVideo
@@ -20,7 +19,7 @@ import com.example.pandas.utils.TimeUtils
  * @version: v1.0
  */
 public class VideoRecoListAdapter(
-    list: MutableList<PetVideo>,
+    list: MutableList<PetVideo> = mutableListOf(),
     private val listener: OnVideoItemClickLIstener
 ) :
     BaseCommonAdapter<PetVideo>(list) {

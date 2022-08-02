@@ -14,7 +14,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewbinding.ViewBinding
-import com.example.pandas.base.BaseViewModel
+import com.example.pandas.base.viewmodel.BaseViewModel
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.ParameterizedType
 
@@ -102,8 +102,8 @@ public abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragm
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
         mHandler.removeCallbacksAndMessages(null)
+        _binding = null
     }
 
     /**

@@ -1,7 +1,6 @@
 package com.example.pandas.sql.dao
 
 import androidx.room.*
-import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.bean.CoverDownLoad
 import com.example.pandas.bean.SearchInfo
 import com.example.pandas.bean.pet.PetViewData
@@ -243,7 +242,7 @@ interface PetVideoDao {
     @Query("select * from pet_video where code=(:code)")
     suspend fun queryVideoByCode(code: Int): PetVideo
 
-    @Query("select title,code from pet_video where title like (:words) limit 0,20")
+    @Query("select title,code from pet_video where title like (:words) limit 0,10")
     suspend fun queryByKeyWords(words: String): MutableList<SearchInfo>
 
     @Query("select * from pet_video where period=(:period) and type=0 and videoType=0 and title like (:words) limit (:startIndex),(:counts)")
@@ -261,12 +260,13 @@ interface PetVideoDao {
         counts: Int
     ): MutableList<PetVideo>
 
-    @Query("select code,title,cover,authorId,duration,videoType from pet_video where title like (:words) limit (:startIndex),(:counts)")
+    @Transaction
+    @Query("select * from pet_video where title like (:words) limit (:startIndex),(:counts)")
     suspend fun queryWordsByPage(
         words: String,
         startIndex: Int,
         counts: Int
-    ): MutableList<PetViewData>
+    ): MutableList<VideoAndUser>
 
     @Query("select * from history order by lastTime desc limit (:startIndex),(:count)")
     suspend fun queryHistoryByPage(startIndex: Int, count: Int): MutableList<History>
@@ -279,6 +279,9 @@ interface PetVideoDao {
 
     @Query("select * from User where userCode=(:code)")
     suspend fun queryUserByCode(code: Int): User
+
+    @Query("select count(*) from pet_video where authorId=(:userCode)")
+    suspend fun queryUserVideoCounts(userCode: Int): Int
 
     @Query("select * from pet_video where type = (:type) and authorId=(:authorId) and code!=(:code) limit 0,(:counts)")
     suspend fun queryRecommendVideos(
@@ -332,4 +335,7 @@ interface PetVideoDao {
      */
     @Query("select max(commentId) from comment where videoCode=(:videoCode)")
     suspend fun queryMaxCommentId(videoCode: Int): String
+
+    @Query("select count(*) from comment where videoCode=(:videoCode)")
+    suspend fun queryCommentCounts(videoCode: Int): Int
 }

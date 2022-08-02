@@ -1,7 +1,6 @@
-package com.example.pandas.base
+package com.example.pandas.base.viewmodel
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.app.AppInfos
@@ -52,7 +51,7 @@ open class BaseViewModel : ViewModel() {
 
     fun follow(context: Context, userCode: Int) {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
                 SPUtils.saveList<String>(context, AppInfos.ATTENTION_KEY, userCode.toString())
             }
         }
@@ -60,7 +59,7 @@ open class BaseViewModel : ViewModel() {
 
     fun unFollow(context: Context, userCode: Int) {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
                 SPUtils.removeFromList<String>(context, AppInfos.ATTENTION_KEY, userCode.toString())
             }
         }
@@ -68,14 +67,16 @@ open class BaseViewModel : ViewModel() {
 
     fun addAttention(context: Context, userCode: Int) {
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Default) {
             SPUtils.saveList(context, AppInfos.ATTENTION_KEY, userCode.toString())
         }
     }
 
     fun deleteAttention(context: Context, userCode: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            SPUtils.removeFromList(context, AppInfos.ATTENTION_KEY, userCode.toString())
+        viewModelScope.launch {
+            withContext(Dispatchers.Default) {
+                SPUtils.removeFromList(context, AppInfos.ATTENTION_KEY, userCode.toString())
+            }
         }
     }
 

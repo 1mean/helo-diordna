@@ -128,5 +128,6 @@
     <string name="str_music_video">音乐视频</string>
     <string name="str_new_song">新歌</string>
     <string name="str_video">视频</string>
+    <string name="str_clear_history_records">清除历史记录</string>
 
 </resources>

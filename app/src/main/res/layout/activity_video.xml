@@ -23,7 +23,11 @@
         <!--auto_show：播放控件是否在播放开始、暂停、结束或失败时自动显示-->
         <!--use_controller：是否可以显示播放控件-->
         <!--animation_enabled：控件显示和消失的动画-->
-        <com.google.android.exoplayer2.ui.StyledPlayerView
+
+        <!--解决BUG-->
+        <!--app:auto_show="false"：解决双击播放或暂停时，controllerView会突然从隐藏到显示 -->
+        <!--controllerView隐藏时第一次双击，大概率会触发StyledPlayerView的performClick方法里会执行显示，false判断可中断其显示 -->
+        <com.example.pandas.ui.view.MyStyledPlayerView
                 android:id="@+id/playView"
                 android:layout_width="match_parent"
                 android:layout_height="202dp"
@@ -35,6 +39,7 @@
                 app:animation_enabled="false"
                 app:show_timeout="5000"
                 app:use_controller="true"
+                app:auto_show="false"
                 app:controller_layout_id="@layout/layout_video_controller" />
         <!-- 使用三个 0dp 讲控件所有的padding设置为0 -->
         <com.google.android.exoplayer2.ui.DefaultTimeBar
@@ -52,8 +57,7 @@
                 app:unplayed_color="@color/color_white_lucency"
                 app:played_color="@color/color_tab_indicator"
 
-                app:buffered_color="@color/color_white_lucency"
-                android:visibility="gone" />
+                app:buffered_color="@color/color_white_lucency" />
 
         <!--<androidx.fragment.app.FragmentContainerView
                 android:layout_width="match_parent"
@@ -77,7 +81,7 @@
                         android:elevation="15dp"
                         android:id="@+id/cl_tab">
 
-                    <com.google.android.material.tabs.TabLayout
+                    <!--<com.google.android.material.tabs.TabLayout
                             android:id="@+id/tabView"
                             android:layout_width="153dp"
                             android:layout_height="0dp"
@@ -91,17 +95,27 @@
                             app:tabIndicatorColor="@color/color_tab_indicator"
                             app:tabSelectedTextColor="@color/color_video_tab_selected"
                             app:tabTextAppearance="@style/VideoTabLayoutTextStyle"
-                            app:tabIndicator="@drawable/layer_video_indicator">
+                            app:tabIndicator="@drawable/layer_video_indicator"/>-->
 
-                        <com.google.android.material.tabs.TabItem
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent" />
+                    <com.example.helo_base.magic.MagicIndicator
+                            android:id="@+id/tabView"
+                            android:layout_width="200dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintTop_toTopOf="@id/cl_tab"
+                            app:layout_constraintBottom_toBottomOf="@id/cl_tab"
+                            app:layout_constraintLeft_toLeftOf="@id/cl_tab"
+                            android:layout_marginStart="25dp" />
 
-                        <com.google.android.material.tabs.TabItem
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent" />
+                    <androidx.appcompat.widget.AppCompatImageButton
+                            android:layout_width="40dp"
+                            android:layout_height="30dp"
+                            app:layout_constraintTop_toTopOf="@id/cl_tab"
+                            app:layout_constraintBottom_toBottomOf="@id/cl_tab"
+                            app:layout_constraintRight_toRightOf="@id/cl_tab"
+                            android:layout_marginEnd="12dp"
+                            android:src="@mipmap/img_tanmu_close"
+                            android:background="@drawable/shape_video_danmu_close" />
 
-                    </com.google.android.material.tabs.TabLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.viewpager2.widget.ViewPager2

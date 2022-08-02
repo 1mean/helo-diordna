@@ -143,7 +143,7 @@ public class PlayerManager private constructor() {
 //            Log.e(AppInfos.DEBUG_LOG_TAG, "media source is null")
 //            return
 //        }
-        require(File(mediaInfo.playUrl).exists()){
+        require(File(mediaInfo.playUrl).exists()) {
             "media source is null"
         }
         val playPos = mediaInfo.playPos
@@ -204,6 +204,18 @@ public class PlayerManager private constructor() {
 
     fun pausePlayer() {
         playerListener = null
+    }
+
+    fun doubleTap() {
+        if (mPlayer.isPlaying) {
+            mPlayer.pause()
+        } else {
+            mPlayer.playWhenReady = true
+        }
+    }
+
+    fun setpos(){
+        mPlayer.currentPosition
     }
 
     /**
@@ -288,6 +300,10 @@ public class PlayerManager private constructor() {
         }
     }
 
+    fun seekTo(position:Long){
+        mPlayer.seekTo(position)
+    }
+
     /**
      * ********当前页面只有一个可播放的视频时***************************************************
      *
@@ -365,7 +381,7 @@ public class PlayerManager private constructor() {
 
         override fun onPlayerError(error: PlaybackException) {
             super.onPlayerError(error)
-            Log.e("PlayerManager","error:${error.message.toString()}")
+            Log.e("PlayerManager", "error:${error.message.toString()}")
         }
 
         //当 #{isPlaying()} 的值改变时调用 ，是否player正在播放中

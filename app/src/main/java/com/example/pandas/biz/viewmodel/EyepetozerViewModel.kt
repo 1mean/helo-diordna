@@ -3,7 +3,7 @@ package com.example.pandas.biz.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pandas.base.BaseViewModel
+import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.eyes.EyepetozerData
 import com.example.pandas.bean.eyes.EyepetozerItem

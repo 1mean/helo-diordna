@@ -1,5 +1,5 @@
 package com.example.pandas.biz.viewmodel
-import com.example.pandas.base.BaseViewModel
+import com.example.pandas.base.viewmodel.BaseViewModel
 
 /**
  * @description: MessageViewModel

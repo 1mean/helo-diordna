@@ -216,7 +216,7 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
 
     override fun onPause() {
         super.onPause()
-        km.ondestory()
+        km.onDestroy()
         loadingPopup = null
         isKeyBoardShow = false
     }

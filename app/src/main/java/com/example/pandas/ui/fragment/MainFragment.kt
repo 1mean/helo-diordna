@@ -2,7 +2,7 @@ package com.example.pandas.ui.fragment
 
 import android.os.Bundle
 import com.example.pandas.R
-import com.example.pandas.base.BaseViewModel
+import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.databinding.FragmentMainBinding
 import com.example.pandas.ui.adapter.HomeAdapter

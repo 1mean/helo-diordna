@@ -84,4 +84,5 @@
     <dimen name="dimen_comment_item_padding_bottom">10dp</dimen>
     <dimen name="dimen_comment_content_margin_left">59dp</dimen>
     <dimen name="dimen_comment_content_margin_right">12dp</dimen>
+    <dimen name="dimen_video_tabitem_margin">25dp</dimen>
 </resources>

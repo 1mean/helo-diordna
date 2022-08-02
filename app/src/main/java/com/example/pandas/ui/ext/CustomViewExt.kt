@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pandas.R
+import com.example.pandas.ui.activity.SearchActivity
 import com.example.pandas.ui.adapter.SleepVideoItemAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.adapter.decoration.RecommendDecoration
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
+import com.example.pandas.ui.fragment.SearchListFragment
 import com.example.pandas.ui.view.recyclerview.CommonFooter
 import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView

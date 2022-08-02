@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
@@ -12,12 +11,9 @@ import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
-import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
-import com.chaquo.python.Python
-import com.chaquo.python.android.AndroidPlatform
 import com.example.pandas.R
-import com.example.pandas.base.BaseViewModel
+import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.databinding.ActivityMainBinding

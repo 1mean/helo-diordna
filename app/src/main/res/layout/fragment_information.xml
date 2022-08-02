@@ -142,7 +142,6 @@
                     android:textSize="16sp"
                     app:layout_constraintTop_toTopOf="@id/cl_video_info_desc"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    android:maxEms="19"
                     android:textColor="@color/color_video_item_title" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -225,6 +224,7 @@
                         android:layout_marginTop="4dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_video_like"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"

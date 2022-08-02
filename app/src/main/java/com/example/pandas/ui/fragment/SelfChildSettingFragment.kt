@@ -4,12 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.app.AppInfos
-import com.example.pandas.base.BaseViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentChildSettingBinding
-import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.activity.*
 
 /**

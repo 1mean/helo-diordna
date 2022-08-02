@@ -120,7 +120,7 @@
     <color name="color_bg_card1">#29F3FF</color>
 
     <!--search-->
-    <color name="color_text_search_cancel">#60676c</color>
+    <color name="color_text_search_cancel">#5E676D</color>
     <color name="color_text_search_num">#95999d</color>
     <color name="color_bg_hot_shape">#fc8f51</color>
     <color name="color_bg_new_shape">#fd7193</color>
@@ -128,6 +128,7 @@
     <color name="color_search_txt_clear">#929a9d</color>
     <color name="color_search_list_divider">#E4E5E5</color>
     <color name="color_search_text_like">#F76395</color>
+    <color name="color_search_edit_cursor">#919AA0</color>
 
     <!--more info-->
     <color name="color_bar_txt_title">#191919</color>

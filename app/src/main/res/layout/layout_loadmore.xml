@@ -4,9 +4,10 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-    <com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
+    <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
             android:id="@+id/recycler_load"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,26 +1,23 @@
 package com.example.pandas.ui.fragment
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.startUserInfoActivity
 import com.example.pandas.biz.interaction.OnVideoItemClickLIstener
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.DialogAttentionCancelBinding
 import com.example.pandas.databinding.FragmentInformationBinding
-import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.adapter.VideoRecoListAdapter
-import com.example.pandas.utils.NumUtils
+import com.example.pandas.ui.ext.initLikeContainer
+import com.example.pandas.ui.ext.initUser
+import com.example.pandas.ui.ext.initVideo
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import java.lang.StringBuilder
 
 /**
  * @description: VideoInfosFragment
@@ -31,14 +28,9 @@ import java.lang.StringBuilder
 public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformationBinding>(),
     View.OnClickListener, OnVideoItemClickLIstener {
 
-    private val mAdapter: VideoRecoListAdapter by lazy {
-        VideoRecoListAdapter(
-            mutableListOf(),
-            this
-        )
-    }
+    private val mAdapter: VideoRecoListAdapter by lazy { VideoRecoListAdapter(listener = this) }
 
-    private var isLike = false
+    var isLike = false
     private var isLove = false
     private var isCollect = false
     private var isAttention = false
@@ -68,56 +60,26 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
 
         mViewModel.videos.observe(viewLifecycleOwner) {
 
-            val videoInfo = it.videoInfo
-            val recoList = it.recoVideos
+            initVideo(it.videoInfo)
+            initLikeContainer(it)
 
-            if (videoInfo.isStar) {
-                isLove = true
-                binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
-            }
+            it.videoInfo.user?.let { author ->
 
-            binding.txtInfoTime.text = videoInfo.releaseTime
-
-            val playCounts = (1..1000 * 100).random()
-            val commentCounts = (1..100).random()
-            val fansCounts = (1..5000).random()
-            val videoCounts = (1..50).random()
-            binding.txtInfoCounts.text = NumUtils.getShortNum(playCounts)
-            binding.txtInfoComment.text = commentCounts.toString()
-            binding.txtVideoInfoFans.text =
-                StringBuilder(fansCounts.toString()).append("粉丝").toString()
-            binding.txtVideoInfoVideos.text =
-                StringBuilder(videoCounts.toString()).append("视频").toString()
-
-            videoInfo.user?.let { author ->
-
-                author.headUrl?.let { loadCircleImage(mActivity, it, binding.imgVideoInfoHead) }
-                if (author.isVip == 1) {//是会员
-                    binding.txtVideoInfoName.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
-                    binding.txtVideoInfoName.setTextColor(
-                        ContextCompat.getColor(
-                            mActivity,
-                            R.color.color_name_txt
-                        )
-                    )
-                }
-                binding.txtVideoInfoName.text = author.userName
+                initUser(author)
 
                 isAttention = mViewModel.isAttention(mActivity, author.userCode)
+
                 if (isAttention) {//已关注
                     binding.llayoutInfoAttention.visibility = View.GONE
                     binding.llayoutInfoAttentioned.visibility = View.VISIBLE
                     binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_unattention)
                 }
 
-                binding.imgVideoInfoHead.setOnClickListener {
-                    startUserInfoActivity(mActivity, author.userCode)
-                }
-
                 binding.clayoutVideoInfoFollow.setOnClickListener {
                     if (isAttention) {
                         bottomSheetDialog = BottomSheetDialog(mActivity)
-                        val dBinding = DialogAttentionCancelBinding.inflate(LayoutInflater.from(mActivity))
+                        val dBinding =
+                            DialogAttentionCancelBinding.inflate(LayoutInflater.from(mActivity))
 
                         dBinding.rlayoutAdd.setOnClickListener {
                             Toast.makeText(mActivity, "加入特别关注", Toast.LENGTH_SHORT).show()
@@ -145,7 +107,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                         bottomSheetDialog.show()
                     } else {
                         isAttention = true
-                        mViewModel.follow(mActivity,author.userCode)
+                        mViewModel.follow(mActivity, author.userCode)
                         binding.llayoutInfoAttention.visibility = View.GONE
                         binding.llayoutInfoAttentioned.visibility = View.VISIBLE
                         binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_unattention)
@@ -154,17 +116,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                 }
             }
 
-            if (videoInfo.user == null) {
-                videoInfo.cover?.let { cover ->
-                    loadCircleImage(mActivity, cover, binding.imgVideoInfoHead)
-                }
-            }
-
-            videoInfo.title?.let { title ->
-                binding.txtVideoInfoTitle.text = title
-            }
-
-            mAdapter.refreshAdapter(recoList)
+            mAdapter.refreshAdapter(it.recoVideos)
             binding.viewVideoInfo.visibility = View.VISIBLE
         }
     }

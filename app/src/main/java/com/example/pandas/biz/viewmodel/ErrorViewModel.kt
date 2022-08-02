@@ -3,7 +3,7 @@ package com.example.pandas.biz.viewmodel
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pandas.base.BaseViewModel
+import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.utils.FileUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

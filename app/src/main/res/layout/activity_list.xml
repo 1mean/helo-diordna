@@ -5,7 +5,7 @@
         android:orientation="vertical"
         android:id="@+id/llayout_activity_list"
         android:visibility="gone"
-        android:background="@color/color_bg_list_activity">
+        android:background="@color/color_bg_reco">
 
     <include
             android:id="@+id/view_list_top"

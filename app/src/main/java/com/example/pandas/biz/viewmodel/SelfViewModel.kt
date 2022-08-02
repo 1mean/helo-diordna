@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.getFileCover
 import com.example.pandas.app.getUiName
-import com.example.pandas.base.BaseViewModel
+import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.bean.CachaListItem
 import com.example.pandas.bean.CacheListItemData
 import com.example.pandas.biz.ext.getVideoLocalPath

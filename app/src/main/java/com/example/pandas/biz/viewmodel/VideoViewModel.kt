@@ -2,7 +2,7 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pandas.base.BaseViewModel
+import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.bean.ReplyInfo
 import com.example.pandas.bean.UIDataWrapper
@@ -12,6 +12,7 @@ import com.example.pandas.biz.http.exception.ExceptionHandle
 import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.sql.entity.History
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.sql.entity.VideoData
 import com.google.android.exoplayer2.util.Util
 import kotlinx.coroutines.launch
 import java.util.*
@@ -173,6 +174,12 @@ public class VideoViewModel : BaseViewModel() {
     fun saveReply(replyInfo: ReplyInfo, content: String) {
         viewModelScope.launch {
             createReply.value = PetManagerCoroutine.saveReply(replyInfo, content)
+        }
+    }
+
+    fun addOrUpdateVideoData(videoData: VideoData) {
+        viewModelScope.launch {
+            PetManagerCoroutine.addOrUpdateVideoData(videoData)
         }
     }
 }

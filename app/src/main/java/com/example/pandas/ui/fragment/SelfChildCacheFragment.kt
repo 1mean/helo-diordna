@@ -2,14 +2,10 @@ package com.example.pandas.ui.fragment
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pandas.base.BaseViewModel
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentCacheListBinding
-import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.CacheListAdapter
-import com.example.pandas.ui.adapter.decoration.CommonItemDecoration2
 
 /**
  * @description: 我的-缓存

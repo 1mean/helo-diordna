@@ -11,10 +11,8 @@ import androidx.room.Relation
  */
 data class VideoAndUser(
 
-    @Embedded val video: PetVideo,
-    @Relation(
-        parentColumn = "authorId",
-        entityColumn = "userCode"
-    )
+    @Embedded
+    val video: PetVideo,
+    @Relation(parentColumn = "authorId", entityColumn = "userCode")
     val user: User
 )

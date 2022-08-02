@@ -191,7 +191,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
 
     override fun onDestroy() {
         super.onDestroy()
-        km.ondestory()
+        km.onDestroy()
         commentListener = null
     }
 }
