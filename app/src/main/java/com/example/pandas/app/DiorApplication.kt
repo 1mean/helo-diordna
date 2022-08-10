@@ -2,6 +2,8 @@ package com.example.pandas.app
 
 import android.app.Application
 import com.example.pandas.sql.database.AppDataBase
+import com.example.pandas.um.UmInitConfig
+import com.umeng.commonsdk.UMConfigure
 
 
 class DiorApplication : Application() {
@@ -17,7 +19,17 @@ class DiorApplication : Application() {
         _instance = this
         CrashHandler.init(this)
 
+        //友盟初始化
+        UMConfigure.preInit(applicationContext, AppInfos.appKey, AppInfos.channel)
+
+        val initConfig = UmInitConfig()
+        initConfig.UMinit(applicationContext)
+
         //initdata()
+    }
+
+    fun killUmProcess(){
+
     }
 
     private fun initdata() {

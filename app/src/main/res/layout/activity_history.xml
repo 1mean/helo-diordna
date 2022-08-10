@@ -6,13 +6,44 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tbar_history"
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_history_top"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            app:navigationIcon="@mipmap/img_toolbar_back"
-            app:title="@string/str_history"
-            app:titleTextAppearance="@style/styles_cache_toolbar" />
+            android:layout_height="56dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ibn_history_back"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_history_top"
+                android:background="@null"
+                android:src="@mipmap/img_back_1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_history_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/ibn_history_back"
+                android:layout_marginStart="4dp"
+                app:layout_constraintTop_toTopOf="@id/clayout_history_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_history_top"
+                android:includeFontPadding="false"
+                android:textSize="16sp"
+                android:textColor="@color/color_history_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_history_manager"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:layout_constraintTop_toTopOf="@id/clayout_history_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_history_top"
+                app:layout_constraintRight_toRightOf="@id/clayout_history_top"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textColor="@color/color_history_manager"
+                android:text="@string/str_manager" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
             android:layout_width="match_parent"

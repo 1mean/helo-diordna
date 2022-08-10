@@ -1,10 +1,9 @@
-package com.example.pandas.ui.view
+package com.example.pandas.ui.view.dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import com.example.pandas.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 

@@ -12,12 +12,14 @@ import com.bumptech.glide.Glide
 import com.example.pandas.R
 import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.bean.pet.VideoType
+import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.databinding.CardItemLayoutBinding
 import com.example.pandas.databinding.DialogHomeItemBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.databinding.ItemRecommendVideoBinding
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.ui.view.dialog.MoreBottomSheetDialog
 import com.example.pandas.ui.view.viewpager.Indicator
 import com.example.pandas.utils.NumUtils
 import com.example.pandas.utils.SPUtils
@@ -276,6 +278,8 @@ public class RecommendAdapter(
     inner class VideoHolder(binding: ItemRecommendVideoBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        var dialog: MoreBottomSheetDialog? = null
+
         val context = itemView.context
         val playView = binding.playerReco
         val cover = binding.imgRecoVideo
@@ -343,32 +347,14 @@ public class RecommendAdapter(
         }
 
         private fun showDialog() {
-            val dialog = BottomSheetDialog(context)
-            val dialogBinding = DialogHomeItemBinding.inflate(LayoutInflater.from(context))
-            dialogBinding.rlayoutDialogCancel.setOnClickListener {
-                dialog.dismiss()
+
+            if (dialog == null) {
+                dialog = MoreBottomSheetDialog(context, object : ItemClickListener<String> {
+                    override fun onItemClick(t: String) {
+                    }
+                })
             }
-            dialogBinding.txtHomeDialog1.setOnClickListener {
-                dialog.dismiss()
-            }
-            dialogBinding.txtHomeDialog2.setOnClickListener {
-                dialog.dismiss()
-            }
-            dialogBinding.txtHomeDialog3.setOnClickListener {
-                dialog.dismiss()
-            }
-            dialogBinding.txtHomeDialog4.setOnClickListener {
-                dialog.dismiss()
-            }
-            dialogBinding.llayoutDialogTop.setOnClickListener {
-                dialog.dismiss()
-            }
-            dialog.run {
-                setContentView(dialogBinding.root)
-                setCanceledOnTouchOutside(true)
-                setCancelable(true)
-                show()
-            }
+            dialog!!.onShow()
         }
     }
 

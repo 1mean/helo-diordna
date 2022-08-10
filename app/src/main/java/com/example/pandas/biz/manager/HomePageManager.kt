@@ -302,6 +302,7 @@ class PetManager {
             if (list.isNotEmpty()) {
                 list.forEach {
                     it.user = petDao.queryUserByCode(it.authorId)
+                    it.videoData = petDao.queryVideoDataByCode(it.code)
                 }
             }
             if (list.size < counts) {
@@ -310,6 +311,7 @@ class PetManager {
                 if (list1.isNotEmpty()) {
                     list1.forEach {
                         it.user = petDao.queryUserByCode(it.authorId)
+                        it.videoData = petDao.queryVideoDataByCode(it.code)
                     }
                 }
                 list.addAll(list1)
@@ -400,13 +402,15 @@ class PetManager {
 
     suspend fun getHistory(startIndex: Int, counts: Int): MutableList<HistoryItem> {
 
-        return withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.Default) {
 
             val historyList = mutableListOf<HistoryItem>()
             val history = petDao.queryHistoryByPage(startIndex, counts)
             history.forEach {
+                val petVideo = petDao.queryVideoByCode(it.code)
                 val viewData = petDao.queryViewDataByCode(it.code)
-                val historyItem = HistoryItem(it, viewData)
+                val user = petDao.queryUserByCode(petVideo.authorId)
+                val historyItem = HistoryItem(it, viewData, user)
                 historyList.add(historyItem)
             }
             historyList
@@ -437,7 +441,7 @@ class PetManager {
 
     suspend fun addOrUpdateVideoData(videoCode: Int, playPos: Long) {
 
-        withContext(Dispatchers.IO) {
+        withContext(Dispatchers.Default) {
 
             val data = petDao.queryVideoDataByCode(videoCode)
             if (data == null) {

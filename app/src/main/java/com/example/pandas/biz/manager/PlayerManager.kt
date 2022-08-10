@@ -69,10 +69,9 @@ public class PlayerManager private constructor() {
     /**
      * 适合只切换视图的场景,此时状态为ready，但是ready = false
      */
-    fun addPlayerViewAndPlay(playerView: StyledPlayerView) {
+    fun switchViewAndGoOn(playerView: StyledPlayerView) {
 
-        StyledPlayerView.switchTargetView(mPlayer, oldPlayerView, playerView)
-        oldPlayerView = playerView
+        addPlayerView(playerView)
         mPlayer.playWhenReady = true
     }
 
@@ -137,22 +136,25 @@ public class PlayerManager private constructor() {
      * 播放本地资源文件，并存储播放记录等信息
      *    - sdcard/Android/data/com.example.hello_diordna/files
      */
+
+    /**
+     * <开始播放本地资源>
+     * @param: MediaInfo：本地资源信息，标识/播放源/起始位
+     * @author: dongyiming
+     * @date: 8/7/22 10:58 上午
+     * @version: v1.0
+     */
     private fun playLocalFile(mediaInfo: MediaInfo, position: Int) {
 
-//        if (!File(mediaInfo.playUrl).exists()) {
-//            Log.e(AppInfos.DEBUG_LOG_TAG, "media source is null")
-//            return
-//        }
         require(File(mediaInfo.playUrl).exists()) {
             "media source is null"
         }
         val playPos = mediaInfo.playPos
         val videoCode = mediaInfo.videoCode
-        if (position != -1) {
-            this.mCurPos = position
-        }
+        if (position != -1) this.mCurPos = position
 
-        val playItem = tempMediaIndexMap.get(videoCode)
+        //缓存进度，资源列表里的mediaInfo无法得到进度值，就无法通过seekTo进行切换
+        val playItem = tempMediaIndexMap.get(videoCode)//资源是否已存在于缓存中
         if (playItem != null) {
             val index = tempMediaIndexMap.indexOf(videoCode)
             val mediaItem = mPlayer.getMediaItemAt(index)
@@ -196,7 +198,7 @@ public class PlayerManager private constructor() {
                     return
                 }
                 tempMediaIndexMap.updatePlayingPosition(it.toInt(), mPlayer.currentPosition)
-                playerListener?.stopMedia(it, mPlayer.currentPosition)
+                //playerListener?.stopMedia(it, mPlayer.currentPosition)
             }
         }
         mPlayer.pause()
@@ -214,7 +216,7 @@ public class PlayerManager private constructor() {
         }
     }
 
-    fun setpos(){
+    fun setpos() {
         mPlayer.currentPosition
     }
 
@@ -300,7 +302,7 @@ public class PlayerManager private constructor() {
         }
     }
 
-    fun seekTo(position:Long){
+    fun seekTo(position: Long) {
         mPlayer.seekTo(position)
     }
 

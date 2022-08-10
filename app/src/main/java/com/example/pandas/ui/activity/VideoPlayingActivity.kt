@@ -67,6 +67,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     var cnAdapter: CommonNavigatorAdapter? = null
 
+
     private val requestLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -86,6 +87,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         val left = binding.playView.findViewById<ConstraintLayout>(R.id.clayout_video_close)
         //val full = binding.playView.findViewById<ConstraintLayout>(R.id.clayout_video_full)
         val controllerView = binding.playView.findViewById<FrameLayout>(R.id.flayout_controller)
+
         exoProgress = binding.playView.findViewById(R.id.exo_play_progress)
         val fullScreenButton =
             binding.playView.findViewById<AppCompatImageButton>(R.id.btn_fullscreen)
@@ -118,7 +120,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
             override fun onDown() {
                 super.onDown()
-                Log.e("VideoPlayingActivity", "onDown")
                 finalPosition = PlayerManager.instance.currentPosition().toFloat()
             }
 
@@ -128,13 +129,10 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                     PlayerManager.instance.seekTo(finalPosition.toLong())
                     isOnScroll = false
                 }
-                Log.e("VideoPlayingActivity", "onUp")
             }
 
             override fun onDoubleTapProgressUp(posX: Float, posY: Float) {
                 super.onDoubleTapProgressUp(posX, posY)
-                Log.e("VideoPlayingActivity", "onDoubleTapProgressUp")
-
                 PlayerManager.instance.doubleTap()
             }
 
@@ -190,7 +188,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         if (isFirstVisible) {
 
             if (isPlayIng) {
-                PlayerManager.instance.addPlayerViewAndPlay(binding.playView)
+                PlayerManager.instance.switchViewAndGoOn(binding.playView)
             }
             if (code != -1) {
                 mViewModel.getVideoInfoAndRelations(code)

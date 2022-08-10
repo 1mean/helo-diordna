@@ -84,96 +84,6 @@ fun VideoPlayingActivity.initViewPager() {
     commonNavigator.adapter = cnAdapter
     binding.tabView.setNavigator(commonNavigator)
     ViewPagerHelper.bind(binding.tabView, binding.vpVideo)
-
-//    tabNames.forEachIndexed { index, s ->
-//        binding.tabView.addTab(binding.tabView.newTab(), index)
-//        val tab = binding.tabView.getTabAt(index)
-//        val view = View.inflate(this, R.layout.tb_item_videoplay, null)
-//        val name = view?.findViewById<AppCompatTextView>(R.id.txt_tb_title_video)
-//        val counts = view?.findViewById<AppCompatTextView>(R.id.txt_tb_comment_counts)
-//        if (index == 1) {
-//            counts?.visibility = View.VISIBLE
-//            counts?.text = "2"
-//        } else {
-//            counts?.visibility = View.GONE
-//        }
-//        name?.text = s
-//        tab?.customView = view
-//    }
-//
-//    binding.vpVideo.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//
-//        private var scrollState = ViewPager2.SCROLL_STATE_IDLE
-//        private var previousScrollState = ViewPager2.SCROLL_STATE_IDLE
-//
-//        override fun onPageSelected(position: Int) {
-//            super.onPageSelected(position)
-//
-//            if (binding.tabView != null && binding.tabView.getSelectedTabPosition() != position && position < binding.tabView.getTabCount()) {
-//                // Select the tab, only updating the indicator if we're not being dragged/settled
-//                // (since onPageScrolled will handle that).
-//                val updateIndicator = (scrollState == ViewPager2.SCROLL_STATE_IDLE
-//                        || (scrollState == ViewPager2.SCROLL_STATE_SETTLING
-//                        && previousScrollState == ViewPager2.SCROLL_STATE_IDLE))
-//                binding.tabView.selectTab(binding.tabView.getTabAt(position), updateIndicator)
-//            }
-//        }
-//
-//        override fun onPageScrolled(
-//            position: Int,
-//            positionOffset: Float,
-//            positionOffsetPixels: Int
-//        ) {
-//            val updateText =
-//                scrollState != ViewPager2.SCROLL_STATE_SETTLING || previousScrollState == ViewPager2.SCROLL_STATE_DRAGGING
-//            val updateIndicator =
-//                !(scrollState == ViewPager2.SCROLL_STATE_SETTLING && previousScrollState == ViewPager2.SCROLL_STATE_IDLE)
-//            binding.tabView.setScrollPosition(position, positionOffset, updateText, updateIndicator)
-//        }
-//
-//        override fun onPageScrollStateChanged(state: Int) {
-//            previousScrollState = scrollState
-//            scrollState = state
-//        }
-//    })
-//
-//    binding.tabView.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-//        override fun onTabSelected(tab: TabLayout.Tab?) {
-//            tab?.let {
-//                it.customView?.let { view ->
-//                    val title = view.findViewById<AppCompatTextView>(R.id.txt_tb_title_video)
-//                    val paint = title.paint
-//                    title.setTextColor(
-//                        ContextCompat.getColor(
-//                            this@initViewPager,
-//                            R.color.color_video_tab_selected
-//                        )
-//                    )
-//                }
-//                binding.vpVideo.currentItem = it.position
-//            }
-//        }
-//
-//        override fun onTabUnselected(tab: TabLayout.Tab?) {
-//            tab?.let {
-//                it.customView?.let { view ->
-//                    val title = view.findViewById<AppCompatTextView>(R.id.txt_tb_title_video)
-//                    val paint = title.paint
-//                    title.setTextColor(
-//                        ContextCompat.getColor(
-//                            this@initViewPager,
-//                            R.color.color_tab_text
-//                        )
-//                    )
-//                    title.background = null
-//                }
-//            }
-//        }
-//
-//        override fun onTabReselected(tab: TabLayout.Tab?) {
-//
-//        }
-//    })
 }
 
 fun VideoPlayingActivity.showTimeBar(timeBar: DefaultTimeBar?) {
@@ -189,16 +99,13 @@ fun VideoPlayingActivity.showTimeBar(timeBar: DefaultTimeBar?) {
 
 fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
 
-    Log.e("1mean", "videoCode: ${videoInfo.videoInfo.videoData}")
     val video = videoInfo.videoInfo
-
     var videoData = video.videoData
+
     videoData?.let {
         if (it.isLike) {
-            isLike = true
             binding.imgLike.setImageResource(R.mipmap.img_like_pressed)
         } else {
-            isLike = false
             binding.imgLike.setImageResource(R.mipmap.img_like_unpress)
         }
         if (it.likes > 0) {
@@ -220,8 +127,7 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
     }
 
     binding.itemLike.setOnClickListener {
-        Log.e("1mean","isLike: $isLike")
-        if (isLike) {
+        if (videoData != null && videoData!!.isLike) {
             binding.imgLike.setImageResource(R.mipmap.img_like_unpress)
             showToast("取消点赞")
             videoData?.let {
@@ -234,11 +140,9 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
                 }
                 mViewModel.addOrUpdateVideoData(it)
             }
-            isLike = false
         } else {
             setAnimation(binding.imgLike)
             binding.imgLike.setImageResource(R.mipmap.img_like_pressed)
-            Log.e("1mean","videoData: $videoData")
             if (videoData == null) {
                 videoData = VideoData(videoCode = video.code, likes = 1, isLike = true)
                 binding.txtVideoLike.text = videoData!!.likes.toString()
@@ -250,7 +154,42 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
                 mViewModel.addOrUpdateVideoData(videoData!!)
             }
             showToast("点赞收到！")
-            isLike = true
+        }
+    }
+
+    binding.itemLove.setOnClickListener {
+        if (videoData != null && videoData!!.isLove) {
+            binding.imgLove.setImageResource(R.mipmap.img_love_unpress)
+            videoData!!.isLove = false
+            mViewModel.addOrUpdateVideoData(videoData!!)
+        } else {
+            binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
+            if (videoData == null) {
+                videoData = VideoData(videoCode = video.code, isLove = true)
+                mViewModel.addOrUpdateVideoData(videoData!!)
+            } else {
+                videoData!!.isLove = true
+                mViewModel.addOrUpdateVideoData(videoData!!)
+            }
+            setAnimation(binding.imgLove)
+        }
+    }
+
+    binding.itemCollect.setOnClickListener {
+        if (videoData != null && videoData!!.isCollect) {
+            binding.imgCollect.setImageResource(R.mipmap.img_collect_unpress)
+            videoData!!.isCollect = false
+            mViewModel.addOrUpdateVideoData(videoData!!)
+        } else {
+            binding.imgCollect.setImageResource(R.mipmap.img_collect_pressed)
+            if (videoData == null) {
+                videoData = VideoData(videoCode = video.code, isCollect = true)
+                mViewModel.addOrUpdateVideoData(videoData!!)
+            } else {
+                videoData!!.isCollect = true
+                mViewModel.addOrUpdateVideoData(videoData!!)
+            }
+            setAnimation(binding.imgCollect)
         }
     }
 }

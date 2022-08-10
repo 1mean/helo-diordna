@@ -7,9 +7,10 @@ import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadRoundedCornerImage
+import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.interaction.OnVideoItemClickLIstener
 import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.utils.NumUtils
+import com.example.pandas.ui.view.dialog.MoreBottomSheetDialog
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -23,6 +24,8 @@ public class VideoRecoListAdapter(
     private val listener: OnVideoItemClickLIstener
 ) :
     BaseCommonAdapter<PetVideo>(list) {
+
+    private var dialog: MoreBottomSheetDialog? = null
 
     override fun getLayoutId(): Int = R.layout.item_video_intro
 
@@ -49,9 +52,28 @@ public class VideoRecoListAdapter(
             listener.onClick(position, data.code)
         }
 
-        val count = (1..100000).random()
-        val comment = (1..100).random()
-        playCounts.text = NumUtils.getShortNum(count)
-        comments.text = comment.toString()
+        loadMoreLayout.setOnClickListener {
+            if (dialog == null) {
+                dialog = MoreBottomSheetDialog(context, object : ItemClickListener<String> {
+                    override fun onItemClick(t: String) {
+                    }
+                })
+            }
+            dialog!!.onShow()
+        }
+
+        val videoData = data.videoData
+        if (videoData == null) {
+            playCounts.text = "0"
+            comments.text = " - "
+        } else {
+            playCounts.text = videoData.plays.toString()
+            val counts = videoData.comments
+            if (counts == 0) {
+                comments.text = " - "
+            } else {
+                comments.text = counts.toString()
+            }
+        }
     }
 }

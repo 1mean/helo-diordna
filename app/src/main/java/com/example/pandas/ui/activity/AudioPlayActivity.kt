@@ -23,7 +23,7 @@ import com.example.pandas.databinding.ActivityAudioBinding
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.ui.adapter.AudioMenuAdapter
 import com.example.pandas.ui.service.AudioPlayService
-import com.example.pandas.ui.view.FixedHeightBottomSheetDialog
+import com.example.pandas.ui.view.dialog.FixedHeightBottomSheetDialog
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.exoplayer2.ui.TimeBar
 import com.google.android.exoplayer2.util.Util

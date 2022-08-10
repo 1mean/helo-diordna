@@ -33,5 +33,4 @@ dependencies {
 
     //viewpager2的申明不能写在依赖的module里，必须在当前的module
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
-
 }

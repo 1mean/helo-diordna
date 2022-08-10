@@ -6,4 +6,6 @@
  */
 public class hello {
 
+    fun test(){
+    }
 }

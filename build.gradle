@@ -4,6 +4,8 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+
+        maven { url 'https://repo1.maven.org/maven2/' }//友盟相关
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.3'
@@ -21,6 +23,8 @@ allprojects {
         google()
         jcenter()//有几次老框架还是依赖˛
         maven { url "https://jitpack.io" }
+
+        maven { url 'https://repo1.maven.org/maven2/' }//友盟相关
     }
 }
 

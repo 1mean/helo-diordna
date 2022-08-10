@@ -14,6 +14,4 @@ public interface ExoPlayerListener {
      *  - curPos: 当前需要操作的item在adapter里的位置
      */
     fun updatePlayerView(isVisible: Boolean, curPos: Int)
-
-    fun stopMedia(videoCode: String?, playPos: Long)
 }

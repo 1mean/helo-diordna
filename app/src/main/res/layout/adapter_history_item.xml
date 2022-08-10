@@ -9,13 +9,24 @@
         android:background="@drawable/ripple_landscape_item">
 
     <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ibn_history_item_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@mipmap/img_history_unselect"
+            android:visibility="visible"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_history_cover"
             android:layout_width="128dp"
             android:layout_height="72dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
             android:scaleType="fitXY"
+            app:layout_constraintLeft_toRightOf="@id/ibn_history_item_select"
             android:layout_marginStart="12dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -30,12 +41,16 @@
             android:layout_marginEnd="4dp"
             android:gravity="center"
             android:maxLines="1"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
             android:background="@drawable/shape_history_item_duration"
             tools:ignore="SmallSp" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_history_name"
-            android:layout_width="194dp"
+            android:layout_width="wrap_content"
             android:layout_height="37dp"
             app:layout_constraintTop_toTopOf="@id/img_history_cover"
             app:layout_constraintLeft_toRightOf="@id/img_history_cover"
@@ -43,7 +58,29 @@
             android:textColor="@color/color_video_item_title"
             android:textSize="14sp"
             android:maxLines="2"
+            android:maxEms="13"
             android:ellipsize="end" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_history_up"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:src="@mipmap/img_up1"
+            app:layout_constraintBottom_toBottomOf="@id/img_history_cover"
+            android:layout_marginBottom="17dp"
+            app:layout_constraintLeft_toLeftOf="@id/txt_history_name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_history_up"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            app:layout_constraintLeft_toRightOf="@id/img_history_up"
+            app:layout_constraintBottom_toBottomOf="@id/img_history_up"
+            android:layout_marginStart="3dp"
+            android:textColor="@color/color_txt_history_time"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textSize="12sp" />
 
     <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_history_video_time"

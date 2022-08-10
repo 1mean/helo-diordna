@@ -27,6 +27,11 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
             setRefreshAdapter(mAdapter, this@HistoryActivity)
         }
 
+        binding.txtHistoryTitle.text = resources.getString(R.string.str_history)
+    }
+
+    override fun firstOnResume() {
+        super.firstOnResume()
         mViewModel.getPageHistory(true)
     }
 

@@ -16,6 +16,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        manifestPlaceholders = [qqappid:"db-oz8v5apet3arcdy"]
+
         ndk {
             // 指定abi，如需在模拟器调试，增加"x86"，否则指定"armeabi-v7a"即可
             abiFilters "armeabi-v7a", "x86"
@@ -145,4 +147,28 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
     // Annotation processor,添加 apply plugin: 'kotlin-kapt'
     kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
+
+    /**友盟****************************************************************************************/
+    // 友盟基础组件库（所有友盟业务SDK都依赖基础组件库）
+    implementation 'com.umeng.umsdk:common:9.4.7'//必选
+    implementation 'com.umeng.umsdk:asms:1.4.1'//必选
+
+    // 分享相关库
+    implementation 'com.umeng.umsdk:share-core:7.1.6'//分享核心库，必选
+    implementation 'com.umeng.umsdk:share-board:7.1.6'//分享面板功能，可选
+    implementation 'com.umeng.umsdk:link:1.1.0'//集成智能超链U-Link，可选，如要统计分享回流次数和分享新增用户指标则必选
+
+    // 第三方平台相关库，可根据需要自行选择
+    implementation 'com.umeng.umsdk:share-wx:7.1.6' //微信完整版
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0'//微信官方依赖库，必选
+
+    implementation 'com.umeng.umsdk:share-qq:7.1.6'//QQ完整版
+    implementation 'com.tencent.tauth:qqopensdk:3.53.0'//QQ官方依赖库，必选
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'//QQ SDK在3.53.0版本及以上时需要集成okhttp官方依赖库，必选
+
+    //implementation 'com.umeng.umsdk:share-sina:7.1.6'//新浪微博完整版
+    //新浪微博官方SDK依赖库，必选，如在线集成失败请本地下载离线包https://counsel.umeng.com/api/activity/download?fileName=activity/67/openDefault-10.10.0.aar
+    //implementation 'com.sina.weibo.sdk:core:10.10.0:openDefaultRelease@aar'
+    /**友盟****************************************************************************************/
+
 }

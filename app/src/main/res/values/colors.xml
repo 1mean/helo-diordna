@@ -175,6 +175,10 @@
     <!--panda activity-->
     <color name="color_txt_panda_selected">#FF569A</color>
 
+    <!--history-->
+    <color name="color_history_title">#17191E</color>
+    <color name="color_history_manager">#61666A</color>
+
     <!--other-->
     <color name="color_progress_loadmore">#FF5B9A</color>
     <color name="color_text_loading">#919A9D</color>

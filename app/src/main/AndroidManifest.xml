@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         package="com.example.pandas">
+
+    <!--从Android 11开始，必须要在AndroidManifest.xml清单文件中加入query权限申请，才能检测到手机上安装的三方应用包安装状态-->
+    <queries>
+        <package android:name="com.instagram.android" />
+        <package android:name="com.tencent.mm" />
+        <package android:name="com.tencent.mobileqq" />
+        <package android:name="com.tencent.wework" />
+        <package android:name="com.qzone" />
+        <package android:name="com.sina.weibo" />
+        <package android:name="com.alibaba.android.rimet" />
+        <package android:name="com.eg.android.AlipayGphone" />
+        <package android:name="com.donews.renren.android" />
+        <package android:name="com.douban.frodo" />
+        <package android:name="com.youdao.note" />
+        <package android:name="im.yixin" />
+        <package android:name="com.yinxiang" />
+        <package android:name="com.facebook.katana" />
+        <package android:name="com.linkedin.android" />
+    </queries>
 
     <application
             android:networkSecurityConfig="@xml/network_security_config"
@@ -11,14 +31,27 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+
+        <!--明确引用org.apache.http.legacy库，避免QQ官方open sdk在Android 9上报错 -->
+        <uses-library
+                android:name="org.apache.http.legacy"
+                android:required="false" />
+
         <activity
                 android:name="com.example.pandas.ui.activity.MainActivity"
                 android:exported="true"
                 android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!--集成友盟测试配置，可以被外部唤起的第一个Activity-->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="um.62e9ec5305844627b50de961" />
             </intent-filter>
         </activity>
 
@@ -43,6 +76,46 @@
                 android:name=".ui.activity.VideoPlayingActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize" />
 
+        <activity
+                android:name="com.tencent.tauth.AuthActivity"
+                android:launchMode="singleTask"
+                android:noHistory="true"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="${qqappid}" />
+            </intent-filter>
+        </activity>
+
+        <activity
+                tools:replace="android:configChanges"
+                android:name="com.tencent.connect.common.AssistActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!--分享7.1.7SDK适配微信官方的v6.8.0版本，需要在工程AndroidManifest.xml清单文件中增加-->
+        <activity
+                android:name=".ui.activity.WXEntryActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:exported="true"
+
+                android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!--分享7.1.7SDK适配微信官方的v6.8.0版本，需要在工程AndroidManifest.xml清单文件中增加-->
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="${applicationId}.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/filepaths" />
+        </provider>
+
         <!--service-->
         <service android:name=".ui.service.AudioPlayService" />
     </application>
@@ -52,4 +125,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!--友盟单独需要的权限-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
 </manifest>

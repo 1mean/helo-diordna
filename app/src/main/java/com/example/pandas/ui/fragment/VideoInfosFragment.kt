@@ -1,23 +1,25 @@
 package com.example.pandas.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.biz.ext.startUserInfoActivity
+import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.interaction.OnVideoItemClickLIstener
 import com.example.pandas.biz.viewmodel.VideoViewModel
-import com.example.pandas.databinding.DialogAttentionCancelBinding
 import com.example.pandas.databinding.FragmentInformationBinding
 import com.example.pandas.ui.adapter.VideoRecoListAdapter
 import com.example.pandas.ui.ext.initLikeContainer
 import com.example.pandas.ui.ext.initUser
 import com.example.pandas.ui.ext.initVideo
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.example.pandas.ui.view.dialog.AttentionBottomSheetDialog
+import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
+import com.example.pandas.um.shareManager
+import com.umeng.socialize.UMShareListener
+import com.umeng.socialize.bean.SHARE_MEDIA
 
 /**
  * @description: VideoInfosFragment
@@ -26,24 +28,23 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
  * @version: v1.0
  */
 public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformationBinding>(),
-    View.OnClickListener, OnVideoItemClickLIstener {
+    OnVideoItemClickLIstener {
 
     private val mAdapter: VideoRecoListAdapter by lazy { VideoRecoListAdapter(listener = this) }
 
-    var isLike = false
-    private var isLove = false
-    private var isCollect = false
+    private var userCode: Int = -1
     private var isAttention = false
-    private lateinit var bottomSheetDialog: BottomSheetDialog
+    private val bottomSheetDialog: AttentionBottomSheetDialog by lazy {
+        AttentionBottomSheetDialog(
+            mActivity,
+            itemClickListener
+        )
+    }
+    private val shareDialog by lazy { ShareBottomSheetDialog(mActivity, shareItemListener) }
 
     override fun lazyLoadTime(): Long = 0
 
     override fun initView(savedInstanceState: Bundle?) {
-
-        binding.itemLike.setOnClickListener(this)
-        binding.itemLove.setOnClickListener(this)
-        binding.itemCollect.setOnClickListener(this)
-        binding.itemShare.setOnClickListener(this)
 
         binding.rvVideoRecommend.run {
 
@@ -54,7 +55,40 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
         binding.clayoutVideoInfoFollow.setOnClickListener {
 
         }
+
+        binding.itemShare.setOnClickListener {
+            shareDialog.addData().onShow()
+        }
     }
+
+    private val shareItemListener = object : ItemClickListener<String> {
+        override fun onItemClick(t: String) {
+
+            mViewModel.videoInfo.value?.let {
+                if (t == "微信") {
+                    shareManager.shareLocalVideo(mActivity, it, SHARE_MEDIA.WEIXIN)
+                } else if (t == "QQ") {
+                    shareManager.shareLocalVideo(mActivity, it, SHARE_MEDIA.QQ)
+                }
+            }
+        }
+    }
+
+
+    private val mShareListener: UMShareListener = object : UMShareListener {
+        override fun onStart(p0: SHARE_MEDIA?) {
+        }
+
+        override fun onResult(p0: SHARE_MEDIA?) {
+        }
+
+        override fun onError(p0: SHARE_MEDIA?, p1: Throwable?) {
+        }
+
+        override fun onCancel(p0: SHARE_MEDIA?) {
+        }
+    }
+
 
     override fun createObserver() {
 
@@ -67,6 +101,8 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
 
                 initUser(author)
 
+                userCode = author.userCode
+
                 isAttention = mViewModel.isAttention(mActivity, author.userCode)
 
                 if (isAttention) {//已关注
@@ -77,34 +113,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
 
                 binding.clayoutVideoInfoFollow.setOnClickListener {
                     if (isAttention) {
-                        bottomSheetDialog = BottomSheetDialog(mActivity)
-                        val dBinding =
-                            DialogAttentionCancelBinding.inflate(LayoutInflater.from(mActivity))
-
-                        dBinding.rlayoutAdd.setOnClickListener {
-                            Toast.makeText(mActivity, "加入特别关注", Toast.LENGTH_SHORT).show()
-                            bottomSheetDialog.dismiss()
-                        }
-                        dBinding.rlayoutGroup.setOnClickListener {
-                            Toast.makeText(mActivity, "加入默认分组", Toast.LENGTH_SHORT).show()
-                            bottomSheetDialog.dismiss()
-                        }
-                        dBinding.rlayoutCancel.setOnClickListener { _ ->
-                            mViewModel.deleteAttention(mActivity, author.userCode)
-                            binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_attention)
-                            binding.llayoutInfoAttention.visibility = View.VISIBLE
-                            binding.llayoutInfoAttentioned.visibility = View.GONE
-                            Toast.makeText(mActivity, "已取消关注", Toast.LENGTH_SHORT).show()
-                            isAttention = false
-                            bottomSheetDialog.dismiss()
-                        }
-                        dBinding.txtCancel.setOnClickListener {
-                            bottomSheetDialog.dismiss()
-                        }
-                        bottomSheetDialog.setContentView(dBinding.root)
-                        bottomSheetDialog.setCancelable(true)
-                        bottomSheetDialog.setCanceledOnTouchOutside(true)
-                        bottomSheetDialog.show()
+                        bottomSheetDialog.onShow()
                     } else {
                         isAttention = true
                         mViewModel.follow(mActivity, author.userCode)
@@ -121,47 +130,34 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
         }
     }
 
+    val itemClickListener: ItemClickListener<Int> = object : ItemClickListener<Int> {
+        override fun onItemClick(t: Int) {
+
+            when (t) {
+                0 -> {//加入特别关注
+                    Toast.makeText(mActivity, "加入特别关注", Toast.LENGTH_SHORT).show()
+                }
+                1 -> {//设置分组
+                    Toast.makeText(mActivity, "加入默认分组", Toast.LENGTH_SHORT).show()
+                }
+                2 -> {//取消关注
+                    mViewModel.deleteAttention(mActivity, userCode)
+                    binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_attention)
+                    binding.llayoutInfoAttention.visibility = View.VISIBLE
+                    binding.llayoutInfoAttentioned.visibility = View.GONE
+                    Toast.makeText(mActivity, "已取消关注", Toast.LENGTH_SHORT).show()
+                    isAttention = false
+                }
+            }
+        }
+    }
+
     override fun firstOnResume() {
     }
 
 
     override fun getCurrentLifeOwner(): ViewModelStoreOwner {
         return mActivity
-    }
-
-    override fun onClick(v: View?) {
-
-        when (v!!.id) {
-
-            R.id.item_like -> {
-                if (isLike) {
-                    binding.imgLike.setImageResource(R.mipmap.img_like_unpress)
-                } else {
-                    binding.imgLike.setImageResource(R.mipmap.img_like_pressed)
-                }
-                isLike = !isLike
-            }
-
-            R.id.item_love -> {
-                if (isLove) {
-                    binding.imgLove.setImageResource(R.mipmap.img_love_unpress)
-                } else {
-                    binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
-                }
-                isLove = !isLove
-            }
-            R.id.item_collect -> {
-                if (isCollect) {
-                    binding.imgCollect.setImageResource(R.mipmap.img_collect_unpress)
-                } else {
-                    binding.imgCollect.setImageResource(R.mipmap.img_collect_pressed)
-                }
-                isCollect = !isCollect
-            }
-            R.id.item_share -> {
-
-            }
-        }
     }
 
     override fun onClick(position: Int, code: Int) {

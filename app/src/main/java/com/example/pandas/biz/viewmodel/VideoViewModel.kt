@@ -1,5 +1,6 @@
 package com.example.pandas.biz.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.viewmodel.BaseViewModel
@@ -14,8 +15,11 @@ import com.example.pandas.sql.entity.History
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.google.android.exoplayer2.util.Util
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.random.Random
 
 /**
  * @description: VideoViewModel

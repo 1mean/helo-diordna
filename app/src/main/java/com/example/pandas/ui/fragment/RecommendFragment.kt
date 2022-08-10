@@ -117,6 +117,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
         super.onPause()
         if (PlayerManager.instance.isPlaying()) {
             PlayerManager.instance.stopPlayer()
+            //mViewModel.addOrUpdateVideoData(videoCode, playPos)
         }
     }
 
@@ -162,6 +163,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
 
     override fun itemDetachedFromWindow() {
         PlayerManager.instance.stopPlayer()
+        //mViewModel.addOrUpdateVideoData(videoCode, playPos)
     }
 
     override fun updatePlayerVoice() {
@@ -175,10 +177,6 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
             if (holder is RecommendAdapter.VideoHolder) {
                 (holder as RecommendAdapter.VideoHolder).updateItemView(curPos, isVisible)
             }
-        }
-
-        override fun stopMedia(videoCode: String?, playPos: Long) {
-            mViewModel.addOrUpdateVideoData(videoCode, playPos)
         }
     }
 

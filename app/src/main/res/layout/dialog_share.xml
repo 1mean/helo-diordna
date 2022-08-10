@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F4F8F8"
+        android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:text="@string/str_share"
+            android:gravity="bottom"
+            android:paddingStart="22dp"
+            android:textSize="12sp"
+            android:textColor="#484D51"
+            tools:ignore="RtlSymmetry" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_share_top"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:layout_marginTop="12dp" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0.33dp"
+            android:layout_marginTop="16dp"
+            android:background="#E2E6E6" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_share_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:layout_marginTop="16dp" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginTop="16dp"
+            android:background="#EFF3F3" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_share_close"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="@string/str_cannel"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="#444E55" />
+</androidx.appcompat.widget.LinearLayoutCompat>
