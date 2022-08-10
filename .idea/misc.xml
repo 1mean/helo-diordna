@@ -9,9 +9,11 @@
         <entry key="app/src/main/res/drawable/selector_button_minefriend.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/selector_button_setting.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/layout/activity_audio.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_history.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_more.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_video.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/adapter_history_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/adapter_pandas_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/card_item_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_attention_cancel.xml" value="0.25427350427350426" />

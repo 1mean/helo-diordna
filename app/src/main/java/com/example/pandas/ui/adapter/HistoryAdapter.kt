@@ -18,12 +18,76 @@ import com.example.pandas.utils.TimeUtils
  * @date: 3/11/22 12:37 上午
  * @version: v1.0
  */
-public class HistoryAdapter(private val list: MutableList<HistoryItem>) :
+public class HistoryAdapter(
+    private val list: MutableList<HistoryItem> = mutableListOf(),
+    private val listener: HistoryListener
+) :
     BaseCommonAdapter<HistoryItem>(list) {
 
     var isShow: Boolean = false
+    var isSelectAll:Boolean = false
+
+    var selectPositions: MutableList<Int> = mutableListOf()
 
     override fun getLayoutId(): Int = R.layout.adapter_history_item
+
+    interface HistoryListener {
+        fun onLongClick()
+    }
+
+    override fun loadMore(newList: MutableList<HistoryItem>) {
+        if (newList.isNotEmpty()) {
+            val size = list.size
+            if (isSelectAll) {
+                newList.forEach {
+                    it.selected = true
+                    list.add(it)
+                }
+            } else {
+                list.addAll(newList)
+            }
+            notifyItemRangeInserted(size, list.size)
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun manager(isClose: Boolean) {
+
+        if (isClose) {
+            if (isShow) {
+                if (selectPositions.isNotEmpty()) {
+                    selectPositions.forEach {
+                        list[it].selected = false
+                    }
+                }
+                isShow = false
+                selectPositions.clear()
+                notifyDataSetChanged()
+            }
+        } else {
+            isShow = true
+            notifyDataSetChanged()
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun isSelectAll(selectAll: Boolean) {
+
+        isSelectAll = selectAll
+        if (!isShow) return
+        selectPositions.clear()
+        if (selectAll) {
+            list.forEachIndexed { index, historyItem ->
+                historyItem.selected = true
+                selectPositions.add(index)
+            }
+        } else {
+            list.forEachIndexed { index, historyItem ->
+                historyItem.selected = false
+            }
+        }
+        notifyDataSetChanged()
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun notifyAdapter() {
@@ -76,12 +140,14 @@ public class HistoryAdapter(private val list: MutableList<HistoryItem>) :
                 if (!isShow) {
                     notifyAdapter()
                     isShow = true
+                    listener.onLongClick()
                 }
                 true
             }
 
             holder.itemView.setOnClickListener { _ ->
                 if (isShow) {
+                    selectPositions.add(position)
                     if (data.selected) {
                         select.setImageResource(R.mipmap.img_history_unselect)
                     } else {

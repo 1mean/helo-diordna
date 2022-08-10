@@ -130,5 +130,7 @@
     <string name="str_new_song">新歌</string>
     <string name="str_video">视频</string>
     <string name="str_clear_history_records">清除历史记录</string>
+    <string name="str_select_all">全选</string>
+    <string name="str_delete">删除</string>
 
 </resources>
