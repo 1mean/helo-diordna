@@ -136,13 +136,10 @@ public class PandasAdapter(private val list: MutableList<PetVideo>) :
 
                 val popuView =
                     XPopup.Builder(itemView.context).isDestroyOnDismiss(true)
-                        .asConfirm("删除", "对当前视频不感兴趣，删除视频", "取消", "确定", object : OnConfirmListener {
-                            override fun onConfirm() {
-                                Log.e("1mean", "删除position: $position")
-                                list.removeAt(position - 2)
-                                notifyItemRemoved(position)
-                                notifyItemRangeChanged(position, list.size)
-                            }
+                        .asConfirm("删除", "对当前视频不感兴趣，删除视频", "取消", "确定", {
+                            list.removeAt(position - 2)
+                            notifyItemRemoved(position)
+                            notifyItemRangeChanged(position, list.size)
                         }, null, false)
                 popuView.show()
             }

@@ -9,15 +9,14 @@
             android:id="@+id/llayout_dialog_top"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:clickable="true"
             android:background="@drawable/ripple_bg_home_item_dialog"
-            android:orientation="horizontal"
-            android:focusable="true">
+            android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:clickable="false"
                 android:layout_gravity="center_vertical"
                 android:src="@mipmap/img_dialog_play" />
 
@@ -28,6 +27,7 @@
                 android:layout_marginStart="13dp"
                 android:text="@string/str_play_after"
                 android:textSize="14sp"
+                android:clickable="false"
                 android:includeFontPadding="false"
                 android:textColor="@color/color_video_name_txt" />
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -105,9 +105,7 @@
     <RelativeLayout
             android:id="@+id/rlayout_dialog_cancel"
             android:layout_width="match_parent"
-            android:clickable="true"
-            android:layout_height="55dp"
-            android:focusable="true">
+            android:layout_height="55dp">
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"

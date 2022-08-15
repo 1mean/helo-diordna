@@ -25,8 +25,4 @@ data class History(
     var reservedInt: Int = 0,//预留int字段
     @ColumnInfo
     var reservedString: String? = null,//预留string字段
-
-    @Ignore //补充字段
-    var authorId: Int = 0
-
 )

@@ -94,7 +94,7 @@ fun SwipRecyclerView2.init2(
 fun SwipRecyclerView.initNoFooter(
     itemDecoration: RecyclerView.ItemDecoration? = null,
     adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>,
-    manager: RecyclerView.LayoutManager,
+    manager: RecyclerView.LayoutManager = LinearLayoutManager(context),
     listener: SwipRecyclerView.ILoadMoreListener?
 ): SwipRecyclerView {
 

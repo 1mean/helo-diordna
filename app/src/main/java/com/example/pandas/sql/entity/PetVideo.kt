@@ -56,6 +56,8 @@ data class PetVideo(
     var user: User? = null,
     @Ignore
     var videoData: VideoData? = null,
+
+
     @Ignore
-    var isPlaying: Boolean = false,  //是否正在播放中，用于状态标识
+    var booleanFlag: Boolean = false,//布尔型标记位，用于帮助解决数据状态的标识
 )

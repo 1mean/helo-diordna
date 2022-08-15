@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/layout/activity_more.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_video.xml" value="0.1" />
         <entry key="app/src/main/res/layout/adapter_history_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/adapter_later.xml" value="0.1" />
         <entry key="app/src/main/res/layout/adapter_pandas_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/card_item_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_attention_cancel.xml" value="0.25427350427350426" />

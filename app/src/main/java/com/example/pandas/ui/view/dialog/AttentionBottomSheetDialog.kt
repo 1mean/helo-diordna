@@ -2,6 +2,7 @@ package com.example.pandas.ui.view.dialog
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.pandas.biz.interaction.ItemClickListener

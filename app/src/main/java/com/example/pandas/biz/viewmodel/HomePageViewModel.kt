@@ -327,4 +327,10 @@ class HomePageViewModel : BaseViewModel() {
             }
         }
     }
+
+    fun addLaterPlayer(videoCode:Int){
+        viewModelScope.launch {
+            PetManagerCoroutine.addLater(videoCode)
+        }
+    }
 }

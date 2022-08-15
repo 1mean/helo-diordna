@@ -1,6 +1,7 @@
 package com.example.pandas.ui.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -10,6 +11,7 @@ import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.HistoryItem
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.ext.startVideoPlayActivity
+import com.example.pandas.sql.entity.History
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -19,49 +21,89 @@ import com.example.pandas.utils.TimeUtils
  * @version: v1.0
  */
 public class HistoryAdapter(
-    private val list: MutableList<HistoryItem> = mutableListOf(),
+    private var list: MutableList<HistoryItem> = mutableListOf(),
     private val listener: HistoryListener
 ) :
     BaseCommonAdapter<HistoryItem>(list) {
 
-    var isShow: Boolean = false
-    var isSelectAll:Boolean = false
+    private var isShow: Boolean = false
+    private var isSelectAll: Boolean = false
 
-    var selectPositions: MutableList<Int> = mutableListOf()
+    private var selectMaps: MutableMap<Int, History> = mutableMapOf()
 
     override fun getLayoutId(): Int = R.layout.adapter_history_item
 
     interface HistoryListener {
         fun onLongClick()
+
+        fun cancelAllSelected()
     }
 
-    override fun loadMore(newList: MutableList<HistoryItem>) {
+    fun getSelectList(): MutableList<History> {
+        if (selectMaps.isNotEmpty()) {
+            return selectMaps.values.toMutableList()
+        }
+        return mutableListOf()
+    }
+
+
+    fun delete(){
+        if (isSelectAll) {
+            list.clear()
+            selectMaps.clear()
+        } else {
+            //解决ConcurrentModificationException异常，调用list.remove()方法导致modCount和expectedModCount的值不一致。
+            // 注意，像使用for-each进行迭代实际上也会出现这种问题
+            val iterator = list.iterator()
+            while (iterator.hasNext()) {
+                val next = iterator.next()
+                if (next.selected) {
+                    iterator.remove()
+                }
+            }
+            selectMaps.clear()
+        }
+        notifyAdapter()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun onRefreshAdapter(newList: MutableList<HistoryItem>) {
+
+        if (newList.isNotEmpty() && newList != list) {
+            list.clear()
+            list.addAll(newList)
+            notifyDataSetChanged()
+        }
+    }
+
+    fun onLoadMore(newList: MutableList<HistoryItem>) {
+
         if (newList.isNotEmpty()) {
             val size = list.size
             if (isSelectAll) {
-                newList.forEach {
-                    it.selected = true
-                    list.add(it)
+                newList.forEachIndexed { index, historyItem ->
+                    historyItem.selected = true
+                    historyItem.history?.let { selectMaps.put(size + index, it) }
                 }
-            } else {
-                list.addAll(newList)
             }
-            notifyItemRangeInserted(size, list.size)
+            list.addAll(newList)
+            notifyItemRangeInserted(size, newList.size)
         }
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun manager(isClose: Boolean) {
 
-        if (isClose) {
+        if (isClose) {//关闭删除界面
+            isSelectAll = false
             if (isShow) {
-                if (selectPositions.isNotEmpty()) {
-                    selectPositions.forEach {
+                if (selectMaps.isNotEmpty()) {
+                    selectMaps.keys.forEach {
                         list[it].selected = false
                     }
                 }
                 isShow = false
-                selectPositions.clear()
+                selectMaps.clear()
                 notifyDataSetChanged()
             }
         } else {
@@ -73,17 +115,18 @@ public class HistoryAdapter(
     @SuppressLint("NotifyDataSetChanged")
     fun isSelectAll(selectAll: Boolean) {
 
-        isSelectAll = selectAll
+        Log.e("HistoryAdapter", "isSelectAll: selectAll")
+        isSelectAll = !selectAll
         if (!isShow) return
-        selectPositions.clear()
-        if (selectAll) {
-            list.forEachIndexed { index, historyItem ->
-                historyItem.selected = true
-                selectPositions.add(index)
+        selectMaps.clear()
+        if (selectAll) {//全选后，点击取消去选
+            list.forEachIndexed { _, historyItem ->
+                historyItem.selected = false
             }
         } else {
             list.forEachIndexed { index, historyItem ->
-                historyItem.selected = false
+                historyItem.selected = true
+                selectMaps[index] = historyItem.history!!
             }
         }
         notifyDataSetChanged()
@@ -138,19 +181,28 @@ public class HistoryAdapter(
 
             holder.itemView.setOnLongClickListener {
                 if (!isShow) {
-                    notifyAdapter()
+                    data.selected = true
+                    data.history?.let { it1 -> selectMaps.put(position, it1) }
                     isShow = true
                     listener.onLongClick()
+                    notifyAdapter()
                 }
                 true
             }
 
             holder.itemView.setOnClickListener { _ ->
                 if (isShow) {
-                    selectPositions.add(position)
+                    if (isSelectAll) {
+                        isSelectAll = false
+                        listener.cancelAllSelected()
+                    }
                     if (data.selected) {
+                        if (selectMaps.containsKey(position)) {
+                            selectMaps.remove(position)
+                        }
                         select.setImageResource(R.mipmap.img_history_unselect)
                     } else {
+                        data.history?.let { it1 -> selectMaps.put(position, it1) }
                         select.setImageResource(R.mipmap.img_history_selected)
                     }
                     data.selected = !data.selected

@@ -57,6 +57,11 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
         binding.txtMineName.setOnClickListener {
             mActivity.startActivity(Intent(mActivity, SelfInfoActivity::class.java))
         }
+
+        binding.clayoutLater.setOnClickListener {
+            val intent = Intent(mActivity,LaterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun createObserver() {

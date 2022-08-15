@@ -259,7 +259,7 @@ class PetManager {
     }
 
     suspend fun saveHistory(history: History) {
-        withContext(Dispatchers.IO) {
+        withContext(Dispatchers.Default) {
             val localHistory = petDao.queryHistoryByCode(history.code)
             if (localHistory == null) {//不存在的，一定为null
                 petDao.insertHistory(history)
@@ -270,6 +270,51 @@ class PetManager {
             }
         }
     }
+
+    suspend fun removeHistory(list: MutableList<History>, isAll: Boolean) {
+        withContext(Dispatchers.Default) {
+            if (isAll) {
+                petDao.deleteAllHistory()
+            } else {
+                petDao.deleteAllHistory(list)
+            }
+        }
+    }
+
+    suspend fun removeLaters(list: MutableList<PetVideo>, isAll: Boolean) {
+        withContext(Dispatchers.Default) {
+            if (isAll) {
+                val laters = petDao.queryAllLaters()
+                laters.forEach {
+                    it.isLaterPlay = false
+                    petDao.updateVideoData(it)
+                }
+            } else {
+                list.forEach {
+                    it.videoData?.let { data ->
+                        data.isLaterPlay = false
+                        petDao.updateVideoData(data)
+                    }
+                }
+            }
+        }
+    }
+
+    suspend fun addLater(videoCode: Int) {
+
+        withContext(Dispatchers.Default) {
+
+            val videoData = petDao.queryVideoDataByCode(videoCode)
+            if (videoData == null) {
+                val vd = VideoData(videoCode = videoCode, isLaterPlay = true)
+                petDao.insertVideoData(vd)
+            } else {
+                videoData.isLaterPlay = true
+                petDao.updateVideoData(videoData)
+            }
+        }
+    }
+
 
     /**
      * 获取当前视频信息，用户信息，和推荐视频
@@ -414,6 +459,24 @@ class PetManager {
                 historyList.add(historyItem)
             }
             historyList
+        }
+    }
+
+    suspend fun getLater(startIndex: Int, counts: Int): MutableList<PetVideo> {
+
+        return withContext(Dispatchers.Default) {
+
+            val laters = mutableListOf<PetVideo>()
+            val videoDatas = petDao.queryLaterByPage(startIndex, counts)
+            videoDatas.forEach {
+
+                val videoUser = petDao.queryVideoUserByCode(it.videoCode)
+                val video = videoUser.video
+                video.user = videoUser.user
+                video.videoData = it
+                laters.add(video)
+            }
+            laters
         }
     }
 

@@ -3,6 +3,7 @@ package com.example.pandas.ui.fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -168,6 +169,11 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
 
     override fun updatePlayerVoice() {
         PlayerManager.instance.updateHomePageVolumn()
+    }
+
+    override fun addLaterPLay(videoCode: Int) {
+        mViewModel.addLaterPlayer(videoCode)
+        Toast.makeText(mActivity, "添加成功", Toast.LENGTH_SHORT).show()
     }
 
     private val playerListener = object : ExoPlayerListener {

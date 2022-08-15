@@ -147,6 +147,7 @@ public class RecommendAdapter(
 
     inner class CardHolder(binding: CardItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
+        var dialog: MoreBottomSheetDialog? = null
         val context = itemView.context
         val cover = binding.imgCover
         val duration = binding.txtDuration
@@ -204,13 +205,13 @@ public class RecommendAdapter(
                 }
             }
             itemView.setOnLongClickListener {
-                showDialog()
+                showDialog(petVideo.code)
                 VibrateUtils.vibrate(context, 2000)
                 true
             }
 
             moreView.setOnClickListener {
-                showDialog()
+                showDialog(petVideo.code)
             }
 
             title.text = petVideo.title
@@ -220,33 +221,18 @@ public class RecommendAdapter(
             }
         }
 
-        private fun showDialog() {
-            val dialog = BottomSheetDialog(context)
-            val dialogBinding = DialogHomeItemBinding.inflate(LayoutInflater.from(context))
-            dialogBinding.rlayoutDialogCancel.setOnClickListener {
-                dialog.dismiss()
+        private fun showDialog(videoCode: Int) {
+
+            if (dialog == null) {
+                dialog = MoreBottomSheetDialog(context, object : ItemClickListener<Int> {
+                    override fun onItemClick(t: Int) {
+                        if (t == 0) {//添加到稍后再看
+                            listener.addLaterPLay(videoCode)
+                        }
+                    }
+                })
             }
-            dialogBinding.txtHomeDialog1.setOnClickListener {
-                dialog.dismiss()
-            }
-            dialogBinding.txtHomeDialog2.setOnClickListener {
-                dialog.dismiss()
-            }
-            dialogBinding.txtHomeDialog3.setOnClickListener {
-                dialog.dismiss()
-            }
-            dialogBinding.txtHomeDialog4.setOnClickListener {
-                dialog.dismiss()
-            }
-            dialogBinding.llayoutDialogTop.setOnClickListener {
-                dialog.dismiss()
-            }
-            dialog.run {
-                setContentView(dialogBinding.root)
-                setCanceledOnTouchOutside(true)
-                setCancelable(true)
-                show()
-            }
+            dialog!!.onShow()
         }
     }
 
@@ -292,7 +278,7 @@ public class RecommendAdapter(
 
         fun updateItemView(position: Int, isHide: Boolean) {
             val petVideo = data.itemList[position - 1]
-            petVideo.isPlaying = isHide
+            petVideo.booleanFlag = isHide
             if (isHide) {
                 shelter.visibility = View.GONE
                 playerView.showController()
@@ -304,7 +290,7 @@ public class RecommendAdapter(
         fun handle(position: Int) {
 
             val petVideo = data.itemList[position - 1]
-            if (petVideo.isPlaying) {//正在播放中
+            if (petVideo.booleanFlag) {//正在播放中
                 shelter.visibility = View.GONE
                 playerView.showController()
             } else {
@@ -333,7 +319,7 @@ public class RecommendAdapter(
             }
 
             moreView.setOnClickListener {
-                showDialog()
+                showDialog(petVideo.code)
             }
 
             voice.setOnClickListener {
@@ -346,11 +332,14 @@ public class RecommendAdapter(
             }
         }
 
-        private fun showDialog() {
+        private fun showDialog(videoCode: Int) {
 
             if (dialog == null) {
-                dialog = MoreBottomSheetDialog(context, object : ItemClickListener<String> {
-                    override fun onItemClick(t: String) {
+                dialog = MoreBottomSheetDialog(context, object : ItemClickListener<Int> {
+                    override fun onItemClick(t: Int) {
+                        if (t == 0) {//添加到稍后再看
+                            listener.addLaterPLay(videoCode)
+                        }
                     }
                 })
             }
@@ -365,5 +354,7 @@ public class RecommendAdapter(
         fun itemDetachedFromWindow()
 
         fun updatePlayerVoice()
+
+        fun addLaterPLay(videoCode: Int)
     }
 }

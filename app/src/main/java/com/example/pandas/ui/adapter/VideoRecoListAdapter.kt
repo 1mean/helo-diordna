@@ -54,8 +54,8 @@ public class VideoRecoListAdapter(
 
         loadMoreLayout.setOnClickListener {
             if (dialog == null) {
-                dialog = MoreBottomSheetDialog(context, object : ItemClickListener<String> {
-                    override fun onItemClick(t: String) {
+                dialog = MoreBottomSheetDialog(context, object : ItemClickListener<Int> {
+                    override fun onItemClick(t: Int) {
                     }
                 })
             }

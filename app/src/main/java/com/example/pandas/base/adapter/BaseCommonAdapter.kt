@@ -30,7 +30,7 @@ public abstract class BaseCommonAdapter<T>(private val data: MutableList<T>) :
     /**
      * 添加更多数据
      */
-    open fun loadMore(list: MutableList<T>) {
+    fun loadMore(list: MutableList<T>) {
         if (list.isNotEmpty()) {
             val size = data.size
             data.addAll(list)

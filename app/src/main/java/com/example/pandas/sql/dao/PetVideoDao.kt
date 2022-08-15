@@ -61,6 +61,12 @@ interface PetVideoDao {
     @Delete
     fun deleteAllComments(list: MutableList<VideoComment>)
 
+    @Query("delete from history")
+    fun deleteAllHistory()
+
+    @Delete
+    fun deleteAllHistory(list: MutableList<History>)
+
 
     /* -----------更新------------------------------------- */
 
@@ -197,6 +203,10 @@ interface PetVideoDao {
     suspend fun queryVideoByFileName(fileName: String): VideoAndUser
 
     @Transaction
+    @Query("select * from pet_video where code=(:videoCode)")
+    suspend fun queryVideoUserByCode(videoCode: Int): VideoAndUser
+
+    @Transaction
     @Query("select * from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryVideosByVideoType(
         type: Int,
@@ -270,6 +280,12 @@ interface PetVideoDao {
 
     @Query("select * from history order by lastTime desc limit (:startIndex),(:count)")
     suspend fun queryHistoryByPage(startIndex: Int, count: Int): MutableList<History>
+
+    @Query("select * from video_data where isLaterPlay=1 limit (:startIndex),(:count)")
+    suspend fun queryLaterByPage(startIndex: Int, count: Int): MutableList<VideoData>
+
+    @Query("select * from video_data where isLaterPlay=1")
+    suspend fun queryAllLaters(): MutableList<VideoData>
 
     @Query("select code,title,cover,authorId,duration from pet_video where code=(:code)")
     suspend fun queryViewDataByCode(code: Int): PetViewData

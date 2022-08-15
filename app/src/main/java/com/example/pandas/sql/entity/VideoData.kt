@@ -1,6 +1,8 @@
 package com.example.pandas.sql.entity
+
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 /**
@@ -27,6 +29,8 @@ public data class VideoData(
     @ColumnInfo
     var isPay: Boolean = false,//是否投币
     @ColumnInfo
+    var isLaterPlay: Boolean = false,//是否稍后再看
+    @ColumnInfo
     var loves: Int = 0,//喜欢数
     @ColumnInfo
     var likes: Int = 0,//点赞数
@@ -45,5 +49,13 @@ public data class VideoData(
     @ColumnInfo
     var reservedInt: Int = 0,//预留int字段
     @ColumnInfo
-    var reservedString: String? = null//预留string字段
+    var reservedString: String? = null,//预留string字段
+
+    @Ignore
+    var laterTime:Long = 0,//稍后再看添加的时间
+    @Ignore
+    var collectTime:Long = 0,//收藏的时间
+    @Ignore
+    var shareTime:Long = 0,//分享的时间
+
 )

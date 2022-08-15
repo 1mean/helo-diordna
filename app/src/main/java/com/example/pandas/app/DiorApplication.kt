@@ -1,6 +1,7 @@
 package com.example.pandas.app
 
 import android.app.Application
+import com.example.pandas.data.AppData
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.um.UmInitConfig
 import com.umeng.commonsdk.UMConfigure
@@ -28,10 +29,6 @@ class DiorApplication : Application() {
         //initdata()
     }
 
-    fun killUmProcess(){
-
-    }
-
     private fun initdata() {
 
         Thread {
@@ -41,14 +38,14 @@ class DiorApplication : Application() {
 //            petDao.deleteAllVideoData(list)
 
             /* add data */
-//            val list = AppData.getPetVideoData()
-//            val list1 = AppData.getMusicData()
-//            val list2 = AppData.getUser()
-//            val list3 = AppData.getComment()
-//            petDao.insertAll(list)
-//            petDao.insertMusics(list1)
-//            petDao.insertUsers(list2)
-//            petDao.insertComment(list3)
+            val list = AppData.getPetVideoData()
+            val list1 = AppData.getMusicData()
+            val list2 = AppData.getUser()
+            val list3 = AppData.getComment()
+            petDao.insertAll(list)
+            petDao.insertMusics(list1)
+            petDao.insertUsers(list2)
+            petDao.insertComment(list3)
 
 
         }.start()

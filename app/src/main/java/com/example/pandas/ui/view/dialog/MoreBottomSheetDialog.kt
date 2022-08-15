@@ -16,7 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
  */
 public class MoreBottomSheetDialog(
     context: Context,
-    private val listener: ItemClickListener<String>
+    private val listener: ItemClickListener<Int>
 ) :
     BottomSheetDialog(context) {
 
@@ -35,6 +35,7 @@ public class MoreBottomSheetDialog(
 
     private fun initWidget() {
 
+        binding.rlayoutDialogCancel.isClickable = true
         binding.rlayoutDialogCancel.setOnClickListener {
             dismiss()
         }
@@ -51,6 +52,7 @@ public class MoreBottomSheetDialog(
             dismiss()
         }
         binding.llayoutDialogTop.setOnClickListener {
+            listener.onItemClick(0)
             dismiss()
         }
     }

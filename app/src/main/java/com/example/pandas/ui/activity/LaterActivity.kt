@@ -10,34 +10,35 @@ import androidx.appcompat.widget.AppCompatButton
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
-import com.example.pandas.databinding.ActivityHistoryBinding
-import com.example.pandas.ui.adapter.HistoryAdapter
+import com.example.pandas.databinding.ActivityLaterBinding
+import com.example.pandas.ui.adapter.LaterAdapter
 import com.example.pandas.ui.adapter.decoration.LandScapeItemDecoration
 import com.example.pandas.ui.ext.init
+import com.example.pandas.ui.ext.initNoFooter
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
 
-
 /**
- * @description: HistoryActivity
+ * @description: 稍后再看
  * @author: dongyiming
- * @date: 3/11/22 12:05 上午
+ * @date: 8/13/22 11:18 上午
  * @version: v1.0
  */
-public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBinding>(),
-    HistoryAdapter.HistoryListener {
+public class LaterActivity : BaseActivity<HistoryViewModeL, ActivityLaterBinding>(),
+    LaterAdapter.LaterListener {
 
     private var selectAll: Boolean = false
 
-    private val mAdapter: HistoryAdapter by lazy { HistoryAdapter(listener = this) }
+    private val mAdapter: LaterAdapter by lazy { LaterAdapter(listener = this) }
 
     override fun initView(savedInstanceState: Bundle?) {
+
         StatusBarUtils.setStatusBarMode(this, true, R.color.white)
 
-        val padding = resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
+        //val padding = resources.getDimension(R.dimen.common_lh_3_dimens).toInt()
 
-        binding.rvHistory.init(
-            LandScapeItemDecoration(padding),
+        binding.rvLater.initNoFooter(
+            null,
             mAdapter,
             listener = object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
@@ -45,25 +46,25 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
                 }
             })
 
-        binding.txtHistoryTitle.text = resources.getString(R.string.str_history)
+        binding.txtLaterTitle.text = resources.getString(R.string.str_mine_later)
 
-        binding.txtHistoryManager.setOnClickListener {
-            val manager = binding.txtHistoryManager.text
+        binding.ibnLaterBack.setOnClickListener {
+            finish()
+        }
+
+        binding.txtLaterManager.setOnClickListener {
+            val manager = binding.txtLaterManager.text
             if (manager == "管理") {
                 mAdapter.manager(false)
-                binding.clayoutHistoryBottom.visibility = View.VISIBLE
-                binding.txtHistoryManager.text = resources.getString(R.string.str_cannel)
+                binding.clayoutLaterBottom.visibility = View.VISIBLE
+                binding.txtLaterManager.text = resources.getString(R.string.str_cannel)
             } else {
                 selectAll = false
                 mAdapter.manager(true)
                 binding.imgSelectAll.setImageResource(R.mipmap.img_history_unselect)
-                binding.clayoutHistoryBottom.visibility = View.GONE
-                binding.txtHistoryManager.text = resources.getString(R.string.str_manager)
+                binding.clayoutLaterBottom.visibility = View.GONE
+                binding.txtLaterManager.text = resources.getString(R.string.str_manager)
             }
-        }
-
-        binding.ibnHistoryBack.setOnClickListener {
-            finish()
         }
 
         binding.clayoutSelectAll.setOnClickListener {
@@ -77,16 +78,10 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
             selectAll = !selectAll
         }
 
-        binding.txtHistoryDelete.setOnClickListener {
+        binding.txtLaterDelete.setOnClickListener {
 
             val selectList = mAdapter.getSelectList()
             if (selectList.isNotEmpty()) {
-//                val popuView =
-//                    XPopup.Builder(this).isDestroyOnDismiss(true)
-//                        .asConfirm("删除", "对当前视频不感兴趣，删除视频", "取消", "确定", {
-//                            mAdapter.delete()
-//                        }, null, false)
-//                popuView.show()
                 val popuView = layoutInflater.inflate(R.layout.dialog_history_delete_layout, null)
                 val sure = popuView.findViewById<AppCompatButton>(R.id.txt_history_dialog_yes)
                 val cancel = popuView.findViewById<AppCompatButton>(R.id.txt_history_dialog_no)
@@ -110,19 +105,15 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
 
                 sure.setOnClickListener {
 
-                    Log.e(
-                        "deleteHistory",
-                        "select size:${selectList.size}, adapter counts:${mAdapter.itemCount}"
-                    )
                     if (selectList.size == mAdapter.itemCount) {//删除所有
-                        mViewModel.removeHistory(selectList, true)
+                        mViewModel.removeLaters(selectList, true)
                     } else {
-                        mViewModel.removeHistory(selectList, false)
+                        mViewModel.removeLaters(selectList, false)
                     }
                     mAdapter.delete()
                     popWindow.dismiss()
-                    binding.clayoutHistoryBottom.visibility = View.GONE
-                    binding.txtHistoryManager.text = resources.getString(R.string.str_manager)
+                    binding.clayoutLaterBottom.visibility = View.GONE
+                    binding.txtLaterManager.text = resources.getString(R.string.str_manager)
                 }
 
                 cancel.setOnClickListener {
@@ -134,28 +125,28 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
 
     override fun firstOnResume() {
         super.firstOnResume()
-        mViewModel.getPageHistory(true)
+        mViewModel.getPageLater(true)
     }
 
     override fun createObserver() {
 
-        mViewModel.historyResult.observe(this) {
+        mViewModel.laterResult.observe(this) {
             if (it.isSuccess) {
                 if (it.isRefresh) {
-                    mAdapter.onRefreshAdapter(it.listData)
-                    binding.rvHistory.isRefreshing(false)
+                    mAdapter.refreshAdapter(it.listData)
+                    binding.rvLater.isRefreshing(false)
                 } else {
                     mAdapter.onLoadMore(it.listData)
                 }
-                binding.rvHistory.loadMoreFinished(it.isEmpty, it.hasMore)
+                binding.rvLater.loadMoreFinished(it.isEmpty, it.hasMore)
             }
         }
     }
 
     override fun onLongClick() {
 
-        binding.clayoutHistoryBottom.visibility = View.VISIBLE
-        binding.txtHistoryManager.text = resources.getString(R.string.str_cannel)
+        binding.clayoutLaterBottom.visibility = View.VISIBLE
+        binding.txtLaterManager.text = resources.getString(R.string.str_cannel)
     }
 
     override fun cancelAllSelected() {
