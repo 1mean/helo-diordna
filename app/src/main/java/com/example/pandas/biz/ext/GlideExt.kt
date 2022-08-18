@@ -48,10 +48,14 @@ fun loadRoundedCornerImage(context: Context, radius: Int, url: String, view: Ima
  *
  * 布局中设置Image的style为center时，裁剪不会生效
  */
-fun loadCenterRoundedCornerImage(context: Context, radius: Int, url: String, view: ImageView) {
+fun loadCenterRoundedCornerImage(context: Context, radius: Int, url: String?, view: ImageView) {
     val options =
         RequestOptions.bitmapTransform(MultiTransformation(CenterCrop(), RoundedCorners(radius)))
-    Glide.with(context).load(url).apply(options).into(view)
+    if (url == null) {
+        Glide.with(context).load(R.mipmap.img_null_01).apply(options).into(view)
+    } else {
+        Glide.with(context).load(url).apply(options).into(view)
+    }
 }
 
 

@@ -9,10 +9,12 @@
         <entry key="app/src/main/res/drawable/selector_button_minefriend.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/selector_button_setting.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/layout/activity_audio.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_create_group.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_history.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_more.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_video.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/adapter_collect.xml" value="0.1" />
         <entry key="app/src/main/res/layout/adapter_history_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/adapter_later.xml" value="0.1" />
         <entry key="app/src/main/res/layout/adapter_pandas_item.xml" value="0.1" />
@@ -32,6 +34,7 @@
         <entry key="app/src/main/res/layout/item_recommend_video.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_top_comments.xml" value="0.1" />
         <entry key="app/src/main/res/layout/layout_exoplay_music_list.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/layout_sending.xml" value="0.1" />
         <entry key="app/src/main/res/layout/layout_video_controller.xml" value="0.1" />
       </map>
     </option>

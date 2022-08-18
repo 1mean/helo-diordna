@@ -1,22 +1,26 @@
 package com.example.pandas.ui.ext;
 
+import android.animation.ObjectAnimator
 import android.app.Activity
 import android.content.Context
 import android.graphics.Typeface
+import android.os.Build
+import android.view.Gravity
+import android.view.View
+import android.view.animation.LinearInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pandas.R
-import com.example.pandas.ui.activity.SearchActivity
 import com.example.pandas.ui.adapter.SleepVideoItemAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.adapter.decoration.RecommendDecoration
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
-import com.example.pandas.ui.fragment.SearchListFragment
 import com.example.pandas.ui.view.recyclerview.CommonFooter
 import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
@@ -78,7 +82,7 @@ fun SwipRecyclerView.init(
 fun SwipRecyclerView2.init2(
     itemDecoration: RecyclerView.ItemDecoration? = null,
     adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>,
-    manager: RecyclerView.LayoutManager= LinearLayoutManager(context),
+    manager: RecyclerView.LayoutManager = LinearLayoutManager(context),
     listener: SwipRecyclerView2.ILoadMoreListener
 ): SwipRecyclerView2 {
 
@@ -142,6 +146,21 @@ fun setTextType(isBold: Boolean, value: TextView) {
     }
 }
 
+fun toastTopShow(activity: Activity, content: String) {
+
+    val height: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        val metrics = activity.windowManager.currentWindowMetrics
+        metrics.bounds.height()
+    } else {
+        @Suppress("DEPRECATION")
+        activity.windowManager.defaultDisplay.height
+    }
+    val toast = Toast.makeText(activity, content, Toast.LENGTH_SHORT)
+    //setGravity已经在30以后的版本不生效了，setview的方式官方也不推荐了，使用常规toast或SnakeBar吧
+    toast.setGravity(Gravity.CENTER, 0, height / 3)
+    toast.show()
+}
+
 /**
  * 图片像素为65px
  */
@@ -159,4 +178,21 @@ fun setLevelImageResourse(level: Int, imageView: AppCompatImageView) {
         8 -> imageView.setImageResource(R.mipmap.img_level8)
         9 -> imageView.setImageResource(R.mipmap.img_level9)
     }
+}
+
+fun addHorizontalAnimation(view: View) {
+    val translationX =
+        ObjectAnimator.ofFloat(
+            view,
+            "translationX",
+            0f,
+            view.width * 0.2f,
+            0f,
+            -view.width * 0.2f,
+            0f
+        )
+    translationX.repeatCount = 2
+    translationX.interpolator = LinearInterpolator()
+    translationX.duration = 200
+    translationX.start()
 }

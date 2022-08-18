@@ -51,11 +51,10 @@ public data class VideoData(
     @ColumnInfo
     var reservedString: String? = null,//预留string字段
 
-    @Ignore
+    @ColumnInfo
     var laterTime:Long = 0,//稍后再看添加的时间
-    @Ignore
+    @ColumnInfo
     var collectTime:Long = 0,//收藏的时间
-    @Ignore
+    @ColumnInfo
     var shareTime:Long = 0,//分享的时间
-
 )

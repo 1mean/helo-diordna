@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/color_bg_delete_dialog">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_dialog_delete_top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_delete_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_dialog_delete_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_dialog_delete_top"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_dialog_delete_top"
+                android:layout_marginStart="20dp"
+                android:src="@mipmap/img_dialog_delete" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_dialog_delete_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_dialog_delete_top"
+                app:layout_constraintLeft_toRightOf="@id/img_delete_dialog"
+                android:layout_marginStart="19dp"
+                android:text="@string/str_delete_group"
+                android:textSize="14sp"
+                android:textColor="@color/color_history_title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#EFF3F3" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_delete_close"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/str_cannel"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="#444E55" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

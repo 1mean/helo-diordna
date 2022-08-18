@@ -176,19 +176,26 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
     }
 
     binding.itemCollect.setOnClickListener {
+        Log.e("1mean", "videoData : $videoData")
         if (videoData != null && videoData!!.isCollect) {
             binding.imgCollect.setImageResource(R.mipmap.img_collect_unpress)
             videoData!!.isCollect = false
             mViewModel.addOrUpdateVideoData(videoData!!)
+            mViewModel.deleteCollection(video.code, "默认收藏夹")
         } else {
             binding.imgCollect.setImageResource(R.mipmap.img_collect_pressed)
             if (videoData == null) {
-                videoData = VideoData(videoCode = video.code, isCollect = true)
-                mViewModel.addOrUpdateVideoData(videoData!!)
+                videoData = VideoData(
+                    videoCode = video.code,
+                    isCollect = true,
+                    collectTime = System.currentTimeMillis()
+                )
             } else {
                 videoData!!.isCollect = true
-                mViewModel.addOrUpdateVideoData(videoData!!)
+                videoData!!.collectTime = System.currentTimeMillis()
             }
+            mViewModel.addOrUpdateVideoData(videoData!!)
+            mViewModel.addCollection(video.code, "默认收藏夹")
             setAnimation(binding.imgCollect)
         }
     }

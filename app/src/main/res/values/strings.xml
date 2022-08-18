@@ -134,5 +134,15 @@
     <string name="str_delete">删除</string>
     <string name="str_delte_history">清除已选中的历史记录吗？</string>
     <string name="str_sure">确定</string>
+    <string name="str_create">创建</string>
+    <string name="str_finish">完成</string>
+    <string name="str_name_mc">名称</string>
+    <string name="str_introduce">简介</string>
+    <string name="str_add_introduce">可填写简介</string>
+    <string name="str_open">公开</string>
+    <string name="str_cover">封面</string>
+    <string name="str_close_function">功能暂时关闭</string>
+    <string name="str_please_waiting">请稍候...</string>
+    <string name="str_delete_group">删除收藏夹</string>
 
 </resources>

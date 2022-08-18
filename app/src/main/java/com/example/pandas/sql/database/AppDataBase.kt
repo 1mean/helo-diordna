@@ -17,7 +17,7 @@ import com.example.pandas.sql.entity.*
  * @version: v1.0
  */
 @Database(
-    entities = [PetVideo::class, MusicVo::class, History::class, User::class, VideoData::class, VideoComment::class],
+    entities = [PetVideo::class, MusicVo::class, History::class, User::class, VideoData::class, VideoComment::class, Group::class, GroupVideoItem::class],
     version = 3,
     exportSchema = false
 )

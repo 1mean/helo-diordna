@@ -29,6 +29,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/clayout_later_top"
                 android:includeFontPadding="false"
                 android:textSize="16sp"
+                android:text="@string/str_mine_later"
                 android:textColor="@color/color_history_title" />
 
         <androidx.appcompat.widget.AppCompatTextView

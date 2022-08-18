@@ -62,6 +62,11 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
             val intent = Intent(mActivity,LaterActivity::class.java)
             startActivity(intent)
         }
+
+        binding.clayoutCollect.setOnClickListener {
+            val intent = Intent(mActivity,CollectActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun createObserver() {

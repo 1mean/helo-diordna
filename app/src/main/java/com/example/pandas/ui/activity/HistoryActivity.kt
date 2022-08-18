@@ -45,8 +45,6 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
                 }
             })
 
-        binding.txtHistoryTitle.text = resources.getString(R.string.str_history)
-
         binding.txtHistoryManager.setOnClickListener {
             val manager = binding.txtHistoryManager.text
             if (manager == "管理") {

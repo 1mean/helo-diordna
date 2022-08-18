@@ -47,7 +47,6 @@ class DiorApplication : Application() {
             petDao.insertUsers(list2)
             petDao.insertComment(list3)
 
-
         }.start()
     }
 }

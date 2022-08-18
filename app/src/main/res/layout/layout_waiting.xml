@@ -27,6 +27,6 @@
             app:layout_constraintLeft_toRightOf="@id/progressBar"
             android:layout_marginStart="18dp"
             android:textColor="@color/color_video_item_title"
-            android:text="@string/str_sending"
+            android:text="@string/str_please_waiting"
             android:textSize="13sp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

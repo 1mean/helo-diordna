@@ -46,8 +46,6 @@ public class LaterActivity : BaseActivity<HistoryViewModeL, ActivityLaterBinding
                 }
             })
 
-        binding.txtLaterTitle.text = resources.getString(R.string.str_mine_later)
-
         binding.ibnLaterBack.setOnClickListener {
             finish()
         }
@@ -95,7 +93,6 @@ public class LaterActivity : BaseActivity<HistoryViewModeL, ActivityLaterBinding
                 window.attributes = lp
 
                 popWindow.showAtLocation(binding.clayoutSelectAll, Gravity.CENTER, 0, 0)
-
 
                 popWindow.setOnDismissListener {
                     lp.alpha = 1.0f

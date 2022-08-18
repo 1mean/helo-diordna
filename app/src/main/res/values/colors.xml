@@ -179,6 +179,15 @@
     <color name="color_history_title">#17191E</color>
     <color name="color_history_manager">#61666A</color>
 
+    <!--collect-->
+    <color name="color_collect_creator">#949DA0</color>
+    <color name="color_creator_bg">#F1F2F4</color>
+    <color name="color_creator_item_bg">#F6F7F9</color>
+    <color name="color_craetor_switch">#fa6597</color>
+    <color name="color_craetor_switch_closed">#e5e5e5</color>
+    <color name="color_craetor_text">#c2c5ca</color>
+    <color name="color_bg_delete_dialog">#F6F7F9</color>
+
     <!--other-->
     <color name="color_progress_loadmore">#FF5B9A</color>
     <color name="color_text_loading">#919A9D</color>

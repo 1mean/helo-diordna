@@ -72,7 +72,10 @@
         <activity android:name=".ui.activity.HomeActivity" />
         <activity android:name=".ui.activity.FollowAndFansActivity" />
         <activity android:name=".ui.activity.LaterActivity" />
+        <activity android:name=".ui.activity.CollectActivity" />
+        <activity android:name=".ui.activity.GroupCreateActivity" />
         <activity android:name=".ui.activity.ListActivity" />
+        <activity android:name=".ui.activity.CollectListActivity" />
         <activity
                 android:name=".ui.activity.VideoPlayingActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize" />

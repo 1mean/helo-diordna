@@ -6,9 +6,9 @@ import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.bean.HistoryItem
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.biz.manager.PetManagerCoroutine
+import com.example.pandas.sql.entity.Group
 import com.example.pandas.sql.entity.History
 import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.VideoData
 import kotlinx.coroutines.launch
 
 /**
@@ -21,6 +21,9 @@ public class HistoryViewModeL : BaseViewModel() {
 
     val historyResult: MutableLiveData<UIDataWrapper<HistoryItem>> by lazy { MutableLiveData() }
     val laterResult: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
+    val collectResult: MutableLiveData<UIDataWrapper<Group>> by lazy { MutableLiveData() }
+    val createResult: MutableLiveData<Boolean> by lazy { MutableLiveData() }
+    val removeResult: MutableLiveData<Boolean> by lazy { MutableLiveData() }
 
     private var startIndex = 0
     private var index = 0
@@ -91,6 +94,27 @@ public class HistoryViewModeL : BaseViewModel() {
             })
     }
 
+    fun getCollects() {
+
+        request({ PetManagerCoroutine.getCollects() },
+            {
+                val dataList = UIDataWrapper(
+                    isSuccess = true,
+                    isEmpty = it.isEmpty(),
+                    listData = it
+                )
+                collectResult.value = dataList
+            },
+            {
+                val dataList = UIDataWrapper(
+                    isSuccess = false,
+                    errMessage = it.errorMsg,
+                    listData = mutableListOf<Group>()
+                )
+                collectResult.value = dataList
+            })
+    }
+
     fun removeHistory(list: MutableList<History>, removeAll: Boolean) {
 
         viewModelScope.launch {
@@ -105,5 +129,16 @@ public class HistoryViewModeL : BaseViewModel() {
         }
     }
 
+    fun createAGroup(groupName: String, groupDesc: String, isOpen: Boolean) {
 
+        viewModelScope.launch {
+            createResult.value = PetManagerCoroutine.createGroup(groupName, groupDesc, isOpen)
+        }
+    }
+
+    fun removeGroup(groupCode: Int) {
+        viewModelScope.launch {
+            removeResult.value = PetManagerCoroutine.removeGroup(groupCode)
+        }
+    }
 }

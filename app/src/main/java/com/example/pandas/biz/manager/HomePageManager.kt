@@ -306,15 +306,58 @@ class PetManager {
 
             val videoData = petDao.queryVideoDataByCode(videoCode)
             if (videoData == null) {
-                val vd = VideoData(videoCode = videoCode, isLaterPlay = true)
+                val vd = VideoData(
+                    videoCode = videoCode,
+                    isLaterPlay = true,
+                    laterTime = System.currentTimeMillis()
+                )
                 petDao.insertVideoData(vd)
             } else {
                 videoData.isLaterPlay = true
+                videoData.laterTime = System.currentTimeMillis()
                 petDao.updateVideoData(videoData)
             }
         }
     }
 
+    suspend fun createGroup(groupName: String, groupDesc: String, isOpen: Boolean): Boolean {
+
+        return withContext(Dispatchers.Default) {
+
+            val maxCode = petDao.queryMaxGroupCode()
+            val currentGroupCode = if (maxCode.isNullOrEmpty()) {
+                0
+            } else {
+                maxCode.toInt() + 1
+            }
+            val group = Group(
+                groupName = groupName,
+                groupDesc = groupDesc,
+                isOpen = isOpen,
+                groupCode = currentGroupCode,
+                createTime = System.currentTimeMillis(),
+                updateTime = System.currentTimeMillis(),
+                creatorCode = AppInfos.AUTHOR_ID
+            )
+            petDao.insertGroupInfo(group)
+            delay(1000)
+            true
+        }
+    }
+
+    suspend fun removeGroup(groupCode: Int):Boolean {
+
+        return withContext(Dispatchers.Default) {
+
+            val group = petDao.queryGroupByCode(groupCode)
+            group?.let {
+                petDao.deleteGroup(it)
+                petDao.deleteGroupItems(it.groupCode)
+            }
+            delay(1000)
+            true
+        }
+    }
 
     /**
      * 获取当前视频信息，用户信息，和推荐视频
@@ -361,6 +404,7 @@ class PetManager {
                 }
                 list.addAll(list1)
             }
+            Log.e("1mean", "videoData1: ${video.videoData}")
             VideoInfo(video, list)
         }
     }
@@ -480,6 +524,31 @@ class PetManager {
         }
     }
 
+    suspend fun getCollects(): MutableList<Group> {
+
+        return withContext(Dispatchers.Default) {
+
+            val groupInfos = petDao.queryGroupNoType(99)
+            val group = petDao.queryGroupByType(99)
+            group?.let {
+                groupInfos.add(0, it)
+            }
+
+            if (groupInfos.isNotEmpty()) {
+                groupInfos.forEach {
+                    val items = petDao.queryGroupItems(it.groupCode)
+                    if (items.isNotEmpty()) {
+                        val item = items[0]
+                        val video = petDao.queryVideoByCode(item.videoCode)
+                        it.groupCover = video.cover
+                        it.groupItems = items
+                    }
+                }
+            }
+            groupInfos
+        }
+    }
+
     suspend fun getUser(userCode: Int): User {
 
         return withContext(Dispatchers.IO) {
@@ -494,10 +563,76 @@ class PetManager {
 
         withContext(Dispatchers.Default) {
             val data = petDao.queryVideoDataByCode(videoData.videoCode)
+            Log.e("videoData", "data: $data, videoData:$videoData")
             if (data == null) {
                 petDao.insertVideoData(videoData)
             } else {
+                videoData.id = data.id
                 petDao.updateVideoData(videoData)
+            }
+        }
+    }
+
+    suspend fun addCollection(groupName: String, videoCode: Int) {
+
+        withContext(Dispatchers.Default) {
+
+            val group = petDao.queryGroupByName(groupName)
+            group?.let {
+
+                val item = petDao.queryGroupItem(it.groupCode, videoCode)
+                if (item == null) {
+                    val groupItem = GroupVideoItem(groupCode = it.groupCode, videoCode = videoCode)
+                    petDao.insertGroupItem(groupItem)
+                }
+                val counts = petDao.queryGroupItemCounts(it.groupCode)
+                it.updateTime = System.currentTimeMillis()
+                it.videoCounts = counts
+                petDao.updateGroupInfo(it)
+            }
+
+            if (group == null) {
+
+                val maxCode = petDao.queryMaxGroupCode()
+                val currentGroupCode = if (maxCode.isNullOrEmpty()) {
+                    0
+                } else {
+                    maxCode.toInt() + 1
+                }
+                val groupInfo = Group().apply {
+                    groupCode = currentGroupCode
+                    this.groupName = groupName
+                    videoCounts = 1
+                    createTime = System.currentTimeMillis()
+                    updateTime = System.currentTimeMillis()
+                    creatorCode = AppInfos.AUTHOR_ID
+                    type = 99
+                }
+                petDao.insertGroupInfo(groupInfo)
+
+                val item = petDao.queryGroupItem(currentGroupCode, videoCode)
+                if (item == null) {
+                    val groupItem =
+                        GroupVideoItem(groupCode = currentGroupCode, videoCode = videoCode)
+                    petDao.insertGroupItem(groupItem)
+                }
+            }
+        }
+    }
+
+    suspend fun deleteCollection(groupName: String, videoCode: Int) {
+
+        withContext(Dispatchers.Default) {
+
+            val group = petDao.queryGroupByName(groupName)
+            group?.let {
+                val item = petDao.queryGroupItem(it.groupCode, videoCode)
+                item?.let { groupItem ->
+                    petDao.deleteGroupItem(groupItem)
+                    it.videoCounts = petDao.queryGroupItemCounts(it.groupCode)
+                    it.updateTime = System.currentTimeMillis()
+                    petDao.updateGroupInfo(it)
+                }
             }
         }
     }

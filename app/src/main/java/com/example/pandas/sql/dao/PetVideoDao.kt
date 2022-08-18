@@ -42,12 +42,24 @@ interface PetVideoDao {
     fun insertVideoData(videoData: VideoData)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertGroupItem(groupVideoItem: GroupVideoItem)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertGroupInfo(groupInfo: Group)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertComment(comment: VideoComment)
 
     /* -----------删------------------------------------- */
 
     @Delete
     fun delete(video: PetVideo)
+
+    @Delete
+    fun deleteGroupItem(groupItem: GroupVideoItem)
+
+    @Delete
+    fun deleteGroup(group: Group)
 
     @Delete
     fun deleteAll(list: MutableList<PetVideo>)
@@ -63,6 +75,9 @@ interface PetVideoDao {
 
     @Query("delete from history")
     fun deleteAllHistory()
+
+    @Query("delete from group_item where groupCode=(:groupCode)")
+    fun deleteGroupItems(groupCode: Int)
 
     @Delete
     fun deleteAllHistory(list: MutableList<History>)
@@ -81,6 +96,12 @@ interface PetVideoDao {
 
     @Update(onConflict = OnConflictStrategy.ABORT) //发生冲突解决办法：终止操作，抛出异常
     fun updateVideoData(data: VideoData)
+
+    @Update(onConflict = OnConflictStrategy.ABORT) //发生冲突解决办法：终止操作，抛出异常
+    fun updateGroupInfo(group: Group)
+
+    @Update(onConflict = OnConflictStrategy.ABORT) //发生冲突解决办法：终止操作，抛出异常
+    fun updateGroupItem(groupItem: GroupVideoItem)
 
     @Update(onConflict = OnConflictStrategy.ABORT)
     suspend fun updatePetVideo(video: PetVideo)
@@ -350,8 +371,38 @@ interface PetVideoDao {
      * 查询最大的commentId,当视频没有任何评论时，如果直接返回Int类型会报错，转换成String返回，哪怕是null
      */
     @Query("select max(commentId) from comment where videoCode=(:videoCode)")
-    suspend fun queryMaxCommentId(videoCode: Int): String
+    suspend fun queryMaxCommentId(videoCode: Int): String?
 
     @Query("select count(*) from comment where videoCode=(:videoCode)")
     suspend fun queryCommentCounts(videoCode: Int): Int
+
+
+    /**群组************************************************************************************/
+
+    @Query("select * from group_info where groupName=(:name)")
+    suspend fun queryGroupByName(name: String): Group?
+
+    @Query("select * from group_info where groupCode=(:groupCode)")
+    suspend fun queryGroupByCode(groupCode: Int): Group?
+
+    @Query("select * from group_item where groupCode=(:groupCode) and videoCode=(:videoCode)")
+    suspend fun queryGroupItem(groupCode: Int, videoCode: Int): GroupVideoItem?
+
+    @Query("select max(groupCode) from group_info")
+    suspend fun queryMaxGroupCode(): String?
+
+    @Query("select count(*) from group_item where groupCode=(:groupCode)")
+    suspend fun queryGroupItemCounts(groupCode: Int): Int
+
+    @Query("select * from group_info order by updateTime desc")
+    suspend fun queryAllGroups(): MutableList<Group>
+
+    @Query("select * from group_info where type=(:type)")
+    suspend fun queryGroupByType(type: Int): Group?
+
+    @Query("select * from group_info where type!=(:type) order by updateTime desc")
+    suspend fun queryGroupNoType(type: Int): MutableList<Group>
+
+    @Query("select * from group_item where groupCode=(:groupCode)")
+    suspend fun queryGroupItems(groupCode: Int): MutableList<GroupVideoItem>
 }
