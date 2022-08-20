@@ -345,7 +345,7 @@ class PetManager {
         }
     }
 
-    suspend fun removeGroup(groupCode: Int):Boolean {
+    suspend fun removeGroup(groupCode: Int): Boolean {
 
         return withContext(Dispatchers.Default) {
 
@@ -536,16 +536,36 @@ class PetManager {
 
             if (groupInfos.isNotEmpty()) {
                 groupInfos.forEach {
-                    val items = petDao.queryGroupItems(it.groupCode)
-                    if (items.isNotEmpty()) {
-                        val item = items[0]
-                        val video = petDao.queryVideoByCode(item.videoCode)
-                        it.groupCover = video.cover
-                        it.groupItems = items
+                    val counts = petDao.queryGroupItemCounts(it.groupCode)
+                    if (counts > 0) {
+                        it.videoCounts = counts
+                        val topItem = petDao.queryGroupItemsAndVideo(it.groupCode)
+                        it.groupCover = topItem.video.cover
                     }
                 }
             }
             groupInfos
+        }
+    }
+
+    suspend fun getPageGroupItems(
+        groupCode: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetVideo> {
+
+        return withContext(Dispatchers.Default) {
+            val list = mutableListOf<PetVideo>()
+            val items = petDao.queryGroupItemsAndVideos(groupCode, startIndex, counts)
+            if (items.isNotEmpty()) {
+                items.forEach {
+                    val video = it.video
+                    video.user = petDao.queryUserByCode(video.authorId)
+                    video.videoData = petDao.queryVideoDataByCode(video.code)
+                    list.add(video)
+                }
+            }
+            list
         }
     }
 
@@ -573,16 +593,74 @@ class PetManager {
         }
     }
 
+    suspend fun addOrUpdateVideoData(videoCode: Int, isLike: Boolean) {
+
+        withContext(Dispatchers.Default) {
+            val data = petDao.queryVideoDataByCode(videoCode)
+            data?.let {
+                it.isLike = isLike
+                if (isLike) {
+                    it.likes += 1
+                } else {
+                    it.likes -= 1
+                }
+                petDao.updateVideoData(it)
+            }
+            if (data == null) {
+                val videoData =
+                    VideoData(videoCode = videoCode, isLike = isLike, plays = 1)
+                if (isLike) {
+                    videoData.likes = 1
+                }
+                petDao.insertVideoData(videoData)
+            }
+        }
+    }
+
+    suspend fun updateIsCollect(videoCode: Int, isCollect: Boolean) {
+
+        withContext(Dispatchers.Default) {
+            val data = petDao.queryVideoDataByCode(videoCode)
+            data?.let {
+                it.isCollect = isCollect
+                if (isCollect) {
+                    it.collectTime = System.currentTimeMillis()
+                } else {
+                    it.collectTime = 0L
+                }
+                petDao.updateVideoData(it)
+            }
+        }
+    }
+
+    suspend fun updateLove(videoCode: Int, isLove: Boolean) {
+
+        withContext(Dispatchers.Default) {
+            val data = petDao.queryVideoDataByCode(videoCode)
+            data?.let {
+                it.isLove = isLove
+                petDao.updateVideoData(it)
+            }
+        }
+    }
+
+
     suspend fun addCollection(groupName: String, videoCode: Int) {
 
         withContext(Dispatchers.Default) {
 
             val group = petDao.queryGroupByName(groupName)
+
             group?.let {
 
                 val item = petDao.queryGroupItem(it.groupCode, videoCode)
+                Log.e("insertGroupItem", "queryGroupItem1: videoCode:$videoCode, item:$item")
                 if (item == null) {
                     val groupItem = GroupVideoItem(groupCode = it.groupCode, videoCode = videoCode)
+                    Log.e(
+                        "insertGroupItem",
+                        "insertGroupItem1: groupCode=${it.groupCode},videoCode:$videoCode"
+                    )
                     petDao.insertGroupItem(groupItem)
                 }
                 val counts = petDao.queryGroupItemCounts(it.groupCode)
@@ -611,9 +689,14 @@ class PetManager {
                 petDao.insertGroupInfo(groupInfo)
 
                 val item = petDao.queryGroupItem(currentGroupCode, videoCode)
+                Log.e("insertGroupItem", "queryGroupItem2: videoCode:$videoCode, item:$item")
                 if (item == null) {
                     val groupItem =
                         GroupVideoItem(groupCode = currentGroupCode, videoCode = videoCode)
+                    Log.e(
+                        "insertGroupItem",
+                        "insertGroupItem2: groupCode=$currentGroupCode,videoCode:$videoCode"
+                    )
                     petDao.insertGroupItem(groupItem)
                 }
             }

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_setting_top"
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ibn_setting_back"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_setting_top"
+                android:background="@null"
+                android:src="@mipmap/img_back_1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_setting_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_setting_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_setting_top"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_setting_top"
+                app:layout_constraintRight_toRightOf="@id/clayout_setting_top"
+                android:includeFontPadding="false"
+                android:textSize="16sp"
+                android:text="@string/str_setting"
+                android:textColor="@color/color_history_title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            style="@style/style_setting_activity_drivider"
+            android:background="@color/color_bg_setting_drivider" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                android:text="@string/str_view_setting"
+                android:textColor="@color/color_txt_setting_item_title"
+                android:textSize="12sp"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                tools:ignore="RtlSymmetry" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_set_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/style_setting_item_name_text"
+                    app:layout_constraintTop_toTopOf="@id/clayout_set_layout"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_set_layout"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_set_layout"
+                    android:text="首页布局样式" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/style_setting_item_desc_text"
+                    app:layout_constraintTop_toTopOf="@id/clayout_set_layout"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_set_layout"
+                    app:layout_constraintRight_toRightOf="@id/clayout_set_layout"
+                    android:text="经典" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+                style="@style/style_setting_activity_item_drivider"
+                android:background="@color/color_bg_setting_item_drivider" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_set_home"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/style_setting_item_name_text"
+                    app:layout_constraintTop_toTopOf="@id/clayout_set_home"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_set_home"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_set_home"
+                    android:text="首页推荐设置" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/style_setting_item_desc_text"
+                    app:layout_constraintTop_toTopOf="@id/clayout_set_home"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_set_home"
+                    app:layout_constraintRight_toRightOf="@id/clayout_set_home"
+                    android:text="双列" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+            style="@style/style_setting_activity_drivider"
+            android:background="@color/color_bg_setting_drivider" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                android:text="@string/str_network"
+                android:textColor="@color/color_txt_setting_item_title"
+                android:textSize="12sp"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                tools:ignore="RtlSymmetry" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_set_wifi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/style_setting_item_name_text"
+                    app:layout_constraintTop_toTopOf="@id/clayout_set_wifi"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_set_wifi"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_set_wifi"
+                    android:text="仅仅Wi-Fi联网" />
+
+            <com.example.pandas.ui.view.SwitchButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_set_wifi"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_set_wifi"
+                    app:layout_constraintRight_toRightOf="@id/clayout_set_wifi"
+                    app:sb_checked="true"
+                    app:sb_checked_color="@color/color_bg_setting_button_checked"
+                    app:sb_uncheck_color="@color/color_bg_setting_button_unchecked"
+                    android:layout_marginEnd="15dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+            style="@style/style_setting_activity_drivider"
+            android:background="@color/color_bg_setting_drivider" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_set_dark"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="45dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_set_dark"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_set_dark"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_set_dark"
+                android:text="深色设置" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/img_self_arrow_right"
+                app:layout_constraintTop_toTopOf="@id/clayout_set_dark"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_set_dark"
+                app:layout_constraintRight_toRightOf="@id/clayout_set_dark"
+                android:layout_marginEnd="16dp" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.66dp"
+                android:background="@color/color_bg_cm_drivider"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_set_dark"
+                android:layout_marginStart="12dp"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_set_dark" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

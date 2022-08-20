@@ -1,25 +1,21 @@
 package com.example.pandas.biz.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.bean.ReplyInfo
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.VideoInfo
 import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.ExceptionHandle
 import com.example.pandas.biz.manager.PetManagerCoroutine
+import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.sql.entity.History
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.google.android.exoplayer2.util.Util
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
-import kotlin.random.Random
 
 /**
  * @description: VideoViewModel
@@ -184,6 +180,24 @@ public class VideoViewModel : BaseViewModel() {
     fun addOrUpdateVideoData(videoData: VideoData) {
         viewModelScope.launch {
             PetManagerCoroutine.addOrUpdateVideoData(videoData)
+        }
+    }
+
+    fun updateLike(videoCode: Int, islike: Boolean) {
+        viewModelScope.launch {
+            PetManagerCoroutine.addOrUpdateVideoData(videoCode, islike)
+        }
+    }
+
+    fun updataCollect(videoCode: Int, isCollect: Boolean) {
+        viewModelScope.launch {
+            PetManagerCoroutine.updateIsCollect(videoCode, isCollect)
+        }
+    }
+
+    fun updateLove(videoCode: Int, isLove: Boolean) {
+        viewModelScope.launch {
+            PetManagerCoroutine.updateLove(videoCode, isLove)
         }
     }
 

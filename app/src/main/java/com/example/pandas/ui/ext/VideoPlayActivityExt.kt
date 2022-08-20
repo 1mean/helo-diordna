@@ -100,7 +100,7 @@ fun VideoPlayingActivity.showTimeBar(timeBar: DefaultTimeBar?) {
 fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
 
     val video = videoInfo.videoInfo
-    var videoData = video.videoData
+    val videoData = video.videoData
 
     videoData?.let {
         if (it.isLike) {
@@ -127,74 +127,51 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
     }
 
     binding.itemLike.setOnClickListener {
-        if (videoData != null && videoData!!.isLike) {
+        if (videoData != null && videoData.isLike) {
             binding.imgLike.setImageResource(R.mipmap.img_like_unpress)
             showToast("取消点赞")
-            videoData?.let {
+            videoData.let {
                 it.likes -= 1
-                it.isLike = false
                 if (it.likes == 0) {
                     binding.txtVideoLike.text = "点赞"
                 } else {
                     binding.txtVideoLike.text = it.likes.toString()
                 }
-                mViewModel.addOrUpdateVideoData(it)
+                mViewModel.updateLike(it.videoCode, false)
             }
         } else {
             setAnimation(binding.imgLike)
             binding.imgLike.setImageResource(R.mipmap.img_like_pressed)
             if (videoData == null) {
-                videoData = VideoData(videoCode = video.code, likes = 1, isLike = true)
-                binding.txtVideoLike.text = videoData!!.likes.toString()
-                mViewModel.addOrUpdateVideoData(videoData!!)
+                binding.txtVideoLike.text = "1"
             } else {
-                videoData!!.likes += 1
-                videoData!!.isLike = true
-                binding.txtVideoLike.text = videoData!!.likes.toString()
-                mViewModel.addOrUpdateVideoData(videoData!!)
+                binding.txtVideoLike.text = (videoData.likes + 1).toString()
             }
+            mViewModel.updateLike(video.code, true)
             showToast("点赞收到！")
         }
     }
 
     binding.itemLove.setOnClickListener {
-        if (videoData != null && videoData!!.isLove) {
+        if (videoData != null && videoData.isLove) {
             binding.imgLove.setImageResource(R.mipmap.img_love_unpress)
-            videoData!!.isLove = false
-            mViewModel.addOrUpdateVideoData(videoData!!)
+            mViewModel.updateLove(video.code, false)
         } else {
             binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
-            if (videoData == null) {
-                videoData = VideoData(videoCode = video.code, isLove = true)
-                mViewModel.addOrUpdateVideoData(videoData!!)
-            } else {
-                videoData!!.isLove = true
-                mViewModel.addOrUpdateVideoData(videoData!!)
-            }
+            mViewModel.updateLove(video.code, true)
             setAnimation(binding.imgLove)
         }
     }
 
     binding.itemCollect.setOnClickListener {
         Log.e("1mean", "videoData : $videoData")
-        if (videoData != null && videoData!!.isCollect) {
+        if (videoData != null && videoData.isCollect) {
             binding.imgCollect.setImageResource(R.mipmap.img_collect_unpress)
-            videoData!!.isCollect = false
-            mViewModel.addOrUpdateVideoData(videoData!!)
+            mViewModel.updataCollect(video.code, false)
             mViewModel.deleteCollection(video.code, "默认收藏夹")
         } else {
             binding.imgCollect.setImageResource(R.mipmap.img_collect_pressed)
-            if (videoData == null) {
-                videoData = VideoData(
-                    videoCode = video.code,
-                    isCollect = true,
-                    collectTime = System.currentTimeMillis()
-                )
-            } else {
-                videoData!!.isCollect = true
-                videoData!!.collectTime = System.currentTimeMillis()
-            }
-            mViewModel.addOrUpdateVideoData(videoData!!)
+            mViewModel.updataCollect(video.code, true)
             mViewModel.addCollection(video.code, "默认收藏夹")
             setAnimation(binding.imgCollect)
         }

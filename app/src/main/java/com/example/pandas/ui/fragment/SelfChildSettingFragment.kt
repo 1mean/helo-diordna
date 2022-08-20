@@ -9,6 +9,7 @@ import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentChildSettingBinding
 import com.example.pandas.ui.activity.*
+import com.example.pandas.ui.ext.startToActivity
 
 /**
  * @description: 我的-设置
@@ -30,7 +31,7 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
             startActivity(Intent(activity, HistoryActivity::class.java))
         }
         binding.clayoutSetting.setOnClickListener {
-            showToast("设置")
+            startToActivity(mActivity,SettingActivity::class.java)
         }
         binding.clayoutMineExp.setOnClickListener {
             showToast("个人积分")

@@ -3,6 +3,7 @@ package com.example.pandas.ui.ext;
 import android.animation.ObjectAnimator
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Build
 import android.view.Gravity
@@ -195,4 +196,10 @@ fun addHorizontalAnimation(view: View) {
     translationX.interpolator = LinearInterpolator()
     translationX.duration = 200
     translationX.start()
+}
+
+fun startToActivity(activity: Activity, mClass: Class<*>) {
+
+    val intent = Intent(activity, mClass)
+    activity.startActivity(intent)
 }

@@ -22,10 +22,12 @@ public class HistoryViewModeL : BaseViewModel() {
     val historyResult: MutableLiveData<UIDataWrapper<HistoryItem>> by lazy { MutableLiveData() }
     val laterResult: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
     val collectResult: MutableLiveData<UIDataWrapper<Group>> by lazy { MutableLiveData() }
+    val groupListResult: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
     val createResult: MutableLiveData<Boolean> by lazy { MutableLiveData() }
     val removeResult: MutableLiveData<Boolean> by lazy { MutableLiveData() }
 
     private var startIndex = 0
+    private var groupStartIndex = 0
     private var index = 0
 
     fun getPageHistory(isRefresh: Boolean) {
@@ -91,6 +93,36 @@ public class HistoryViewModeL : BaseViewModel() {
                     listData = mutableListOf<PetVideo>()
                 )
                 laterResult.value = dataList
+            })
+    }
+
+    fun getPageGroupItem(isRefresh: Boolean, groupCode: Int) {
+
+        if (isRefresh) {
+            groupStartIndex = 0
+        }
+        request({ PetManagerCoroutine.getPageGroupItems(groupCode, groupStartIndex, 21) },
+            {
+                val hasMore = it.size > 20
+                groupStartIndex += 20
+                if (hasMore) {
+                    it.removeLast()
+                }
+                val dataList = UIDataWrapper(
+                    isSuccess = true,
+                    isEmpty = it.isEmpty(),
+                    hasMore = hasMore,
+                    listData = it
+                )
+                groupListResult.value = dataList
+            },
+            {
+                val dataList = UIDataWrapper(
+                    isSuccess = false,
+                    errMessage = it.errorMsg,
+                    listData = mutableListOf<PetVideo>()
+                )
+                groupListResult.value = dataList
             })
     }
 

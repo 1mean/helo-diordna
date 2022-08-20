@@ -43,8 +43,8 @@
     <color name="color_mine_txt_zone_counts">#212121</color>
     <color name="color_mine_txt_zone">#999A97</color>
     <color name="color_mine_txt_download">#454E54</color>
-    <color name="color_self_clayout_bg">#f5f8fa</color>
-    <color name="color_bg_self">#e9ecee</color>
+    <color name="color_bg_self">#EBECF0</color>
+    <color name="color_bg_self_child">#F6F7FB</color>
     <color name="color_bg_mine">#E6EBF5</color>
     <color name="color_item_bg_mine_info">#11000000</color>
     <color name="color_self_txt_setting">#484D54</color>
@@ -187,6 +187,18 @@
     <color name="color_craetor_switch_closed">#e5e5e5</color>
     <color name="color_craetor_text">#c2c5ca</color>
     <color name="color_bg_delete_dialog">#F6F7F9</color>
+    <color name="color_txt_group_creator">#94999D</color>
+    <color name="color_txt_group_title">#18191D</color>
+
+    <!--setting-->
+    <color name="color_txt_setting_item_title">#83888E</color>
+    <color name="color_bg_setting_drivider">#F9FAFE</color>
+    <color name="color_bg_setting_item_drivider">#F3F4F8</color>
+    <color name="color_txt_setting_item_desc">#838790</color>
+    <color name="color_bg_setting_button_checked">#00A8FF</color>
+    <color name="color_bg_setting_button_unchecked">#DBDBDB</color>
+
+
 
     <!--other-->
     <color name="color_progress_loadmore">#FF5B9A</color>
@@ -195,5 +207,6 @@
     <color name="color_bg_cute_pet">#FAFAFA</color>
     <color name="color_bg_indicator">#22000000</color>
     <color name="color_bg_list_activity">#F1F7F6</color>
+    <color name="color_bg_cm_drivider">#e4e6e5</color>
 
 </resources>

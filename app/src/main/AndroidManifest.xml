@@ -49,8 +49,10 @@
             <!--集成友盟测试配置，可以被外部唤起的第一个Activity-->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="um.62e9ec5305844627b50de961" />
             </intent-filter>
         </activity>
@@ -76,6 +78,7 @@
         <activity android:name=".ui.activity.GroupCreateActivity" />
         <activity android:name=".ui.activity.ListActivity" />
         <activity android:name=".ui.activity.CollectListActivity" />
+        <activity android:name=".ui.activity.SettingActivity" />
         <activity
                 android:name=".ui.activity.VideoPlayingActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize" />

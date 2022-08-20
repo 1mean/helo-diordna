@@ -50,11 +50,7 @@ public class CollectAdapter(
         val openView = holder.getWidget<AppCompatTextView>(R.id.txt_collect_open)
         val moreLayout = holder.getWidget<ConstraintLayout>(R.id.clayout_collect_more)
 
-        val items = data.groupItems
-
-        items?.let {
-            counts.text = it.size.toString()
-        }
+        counts.text = data.videoCounts.toString()
 
         if (data.groupName == "默认收藏夹") {
             moreLayout.visibility = View.GONE
@@ -92,8 +88,7 @@ public class CollectAdapter(
         holder.itemView.setOnClickListener {
 
             val intent = Intent(context, CollectListActivity::class.java).apply {
-                putExtra("groupCode", data.groupCode)
-                putExtra("cover", data.groupCover)
+                putExtra("group",data)
             }
             context.startActivity(intent)
         }

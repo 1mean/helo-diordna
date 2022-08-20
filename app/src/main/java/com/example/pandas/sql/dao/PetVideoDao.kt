@@ -405,4 +405,24 @@ interface PetVideoDao {
 
     @Query("select * from group_item where groupCode=(:groupCode)")
     suspend fun queryGroupItems(groupCode: Int): MutableList<GroupVideoItem>
+
+
+    @Query("select * from group_item where groupCode=(:groupCode) order by id desc limit (:startIndex),(:counts)")
+    suspend fun queryGroupItemsByPage(
+        groupCode: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<GroupVideoItem>
+
+    @Transaction
+    @Query("select * from group_item where groupCode=(:groupCode) order by id desc limit (:startIndex),(:counts)")
+    suspend fun queryGroupItemsAndVideos(
+        groupCode: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<GroupItemAndVideo>
+
+    @Transaction
+    @Query("select * from group_item where groupCode=(:groupCode) order by id desc limit 1")
+    suspend fun queryGroupItemsAndVideo(groupCode: Int): GroupItemAndVideo
 }
