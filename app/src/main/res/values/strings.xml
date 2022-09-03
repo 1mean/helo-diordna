@@ -146,5 +146,6 @@
     <string name="str_delete_group">删除收藏夹</string>
     <string name="str_view_setting">界面设置</string>
     <string name="str_network">网络</string>
+    <string name="str_storage">缓存设置</string>
 
 </resources>

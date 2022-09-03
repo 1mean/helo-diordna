@@ -19,7 +19,7 @@ object PetGroupPandaData {
         panda1.code = 337
         panda1.duration = 69
         panda1.period = PeriodType.GROUP.ordinal
-        panda1.isStar = false
+        panda1.star = false
         panda1.title = "双倍可爱！全球首次拍到野生大熊猫亚成体双胞胎"
         panda1.releaseTime = "2019-12-19 15:42:34"
         panda1.originalUrl = "https://www.bilibili.com/video/BV1rJ411t7wJ"
@@ -35,7 +35,7 @@ object PetGroupPandaData {
         panda2.code = 338
         panda2.duration = 72
         panda2.period = PeriodType.GROUP.ordinal
-        panda2.isStar = true
+        panda2.star = true
         panda2.title = "和花：打架不叫我，急死熊啦"
         panda2.releaseTime = "2021-12-12 09:00:13"
         panda2.originalUrl = "https://www.bilibili.com/video/BV13i4y1d7uh"
@@ -51,7 +51,7 @@ object PetGroupPandaData {
         panda3.code = 339
         panda3.duration = 27
         panda3.period = PeriodType.GROUP.ordinal
-        panda3.isStar = false
+        panda3.star = false
         panda3.title = "大熊猫艾玖：妹儿，少熊不宜把眼睛闭上和花：放开我，我要吃瓜"
         panda3.releaseTime = "2021-12-13 13:27:19"
         panda3.originalUrl = "https://www.bilibili.com/video/BV1HL411E7z9"
@@ -67,7 +67,7 @@ object PetGroupPandaData {
         panda4.code = 340
         panda4.duration = 48
         panda4.period = PeriodType.GROUP.ordinal
-        panda4.isStar = false
+        panda4.star = false
         panda4.title = "大熊猫和花教你如何在不经意间抢走竹子还不伤感情"
         panda4.releaseTime = "2021-12-14 11:28:52"
         panda4.originalUrl = "https://www.bilibili.com/video/BV1VL411E7vb"
@@ -83,7 +83,7 @@ object PetGroupPandaData {
         panda5.code = 341
         panda5.duration = 53
         panda5.period = PeriodType.GROUP.ordinal
-        panda5.isStar = false
+        panda5.star = false
         panda5.title = "和花要参加奥运会为国争光天天埋头苦练"
         panda5.releaseTime = "2021-12-14 20:00:04"
         panda5.originalUrl = "https://www.bilibili.com/video/BV1NL411j7yV"
@@ -99,7 +99,7 @@ object PetGroupPandaData {
         panda6.code = 342
         panda6.duration = 169
         panda6.period = PeriodType.MOM.ordinal
-        panda6.isStar = false
+        panda6.star = false
         panda6.title = "和花被干妈和姐姐前后夹击，rua成了小熊饼干"
         panda6.releaseTime = "2021-12-21 14:29:58"
         panda6.originalUrl = "https://www.bilibili.com/video/BV1Q44y1E7sj"
@@ -115,7 +115,7 @@ object PetGroupPandaData {
         panda7.code = 343
         panda7.duration = 71
         panda7.period = PeriodType.GROUP.ordinal
-        panda7.isStar = false
+        panda7.star = false
         panda7.title = "【和花&和叶】小卖部快点开门！哎，别插队呀！"
         panda7.releaseTime = "2022-01-05 17:03:30"
         panda7.originalUrl = "https://www.bilibili.com/video/BV17m4y1X7FZ"
@@ -131,7 +131,7 @@ object PetGroupPandaData {
         panda8.code = 344
         panda8.duration = 72
         panda8.period = PeriodType.GROUP.ordinal
-        panda8.isStar = true
+        panda8.star = true
         panda8.title = "【和花&艾玖】没有熊一起玩，那就自己下沟里溜达吧"
         panda8.releaseTime = "2022-01-07 14:51:54"
         panda8.originalUrl = "https://www.bilibili.com/video/BV1Ji4y197vt"
@@ -147,7 +147,7 @@ object PetGroupPandaData {
         panda9.code = 345
         panda9.duration = 58
         panda9.period = PeriodType.GROUP.ordinal
-        panda9.isStar = true
+        panda9.star = true
         panda9.title = "这么黏熊可爱的和花，你难道不心动吗？"
         panda9.releaseTime = "2021-12-20 22:07:01"
         panda9.originalUrl = "https://www.bilibili.com/video/BV1ub4y1v7Ai"
@@ -163,7 +163,7 @@ object PetGroupPandaData {
         panda10.code = 346
         panda10.duration = 453
         panda10.period = PeriodType.GROUP.ordinal
-        panda10.isStar = true
+        panda10.star = true
         panda10.title = "好家伙！这场音乐会居然集齐了全国宝阵容？"
         panda10.releaseTime = "2022-01-01 12:00:03"
         panda10.originalUrl = "https://www.bilibili.com/video/BV14r4y1m7uR"
@@ -179,7 +179,7 @@ object PetGroupPandaData {
         panda11.code = 347
         panda11.duration = 122
         panda11.period = PeriodType.GROUP.ordinal
-        panda11.isStar = true
+        panda11.star = true
         panda11.title = "叔姨们的魔性解说"
         panda11.releaseTime = "2022-01-05 16:22:41"
         panda11.originalUrl = "https://www.bilibili.com/video/BV1ZD4y1F7Pp"
@@ -230,7 +230,7 @@ object PetGroupPandaData {
         panda14.originalUrl = "https://www.bilibili.com/video/BV1Fm4y1D7je?share_source=copy_web"
         panda14.tags = "萌宠,和花,动物,熊猫"
         panda14.authorId = 384395600
-        panda14.isStar = true
+        panda14.star = true
         panda14.cover =
             "https://i1.hdslb.com/bfs/archive/6659f4f5221f6d004c015ce5d44e9788957decb5.jpg"
         list.add(panda14)
@@ -246,7 +246,7 @@ object PetGroupPandaData {
         panda15.originalUrl = "https://www.bilibili.com/video/BV1qD4y1F7Rd?share_source=copy_web"
         panda15.tags = "大熊猫和花、和叶、艾玖、润玥"
         panda15.authorId = 384395600
-        panda15.isStar = true
+        panda15.star = true
         panda15.cover =
             "https://i0.hdslb.com/bfs/archive/6c8a7b2c45bd204a1f2698e9ff88439f902f7ba0.jpg"
         list.add(panda15)
@@ -257,7 +257,7 @@ object PetGroupPandaData {
         panda16.code = 337
         panda16.duration = 34
         panda16.period = PeriodType.GROUP.ordinal
-        panda16.isStar = true
+        panda16.star = true
         panda16.title = "北川绝美睡颜"
         panda16.releaseTime = "2020-09-21 18:29:20"
         panda16.originalUrl = "https://www.bilibili.com/video/BV17h411X7sH/"
@@ -273,7 +273,7 @@ object PetGroupPandaData {
         panda17.code = 492
         panda17.duration = 135
         panda17.period = PeriodType.GROUP.ordinal
-        panda17.isStar = false
+        panda17.star = false
         panda17.title = "萌头萌脑小包包，有点乖哦！"
         panda17.releaseTime = "2022-01-12 18:33:16"
         panda17.originalUrl = "https://www.bilibili.com/video/BV1cb4y1H7Rr"
@@ -290,7 +290,7 @@ object PetGroupPandaData {
         panda18.code = 493
         panda18.duration = 64
         panda18.period = PeriodType.GROUP.ordinal
-        panda18.isStar = false
+        panda18.star = false
         panda18.title = "奇一和福来一起睡觉真有意思，奇一还特意把福来脸掰过来。【大熊猫奇一和福来】"
         panda18.releaseTime = "2022-01-18 00:24:41"
         panda18.originalUrl = "https://www.bilibili.com/video/BV18m4y1U7Kx"
@@ -307,7 +307,7 @@ object PetGroupPandaData {
         panda19.code = 494
         panda19.duration = 85
         panda19.period = PeriodType.GROUP.ordinal
-        panda19.isStar = true
+        panda19.star = true
         panda19.title = "【大熊猫和花】和花脚一滑摔个底朝天，马上去找润玥撒娇求安慰"
         panda19.releaseTime = "2022-02-03 18:14:46"
         panda19.originalUrl = "https://www.bilibili.com/video/BV1QZ4y1d7my"
@@ -324,7 +324,7 @@ object PetGroupPandaData {
         panda20.code = 495
         panda20.duration = 68
         panda20.period = PeriodType.GROUP.ordinal
-        panda20.isStar = true
+        panda20.star = true
         panda20.title = "【大熊猫和花】和花花之沉浸式揉朵朵！"
         panda20.releaseTime = "2022-02-02 00:18:31"
         panda20.originalUrl = "https://www.bilibili.com/video/BV1kb4y1E7Hf"
@@ -341,7 +341,7 @@ object PetGroupPandaData {
         panda21.code = 496
         panda21.duration = 96
         panda21.period = PeriodType.GROUP.ordinal
-        panda21.isStar = false
+        panda21.star = false
         panda21.title = "【胖哒高能时刻】和花:幸好屁股肉多，不然就摔疼了"
         panda21.releaseTime = "2022-01-26 11:00:01"
         panda21.originalUrl = "https://www.bilibili.com/video/BV1PS4y1L7K6"
@@ -358,7 +358,7 @@ object PetGroupPandaData {
         panda22.code = 497
         panda22.duration = 246
         panda22.period = PeriodType.GROUP.ordinal
-        panda22.isStar = false
+        panda22.star = false
         panda22.title = "萌家三兄妹"
         panda22.releaseTime = "2021-05-19 15:13:05"
         panda22.originalUrl = "https://www.bilibili.com/video/BV1qb4y1o7bB"
@@ -375,7 +375,7 @@ object PetGroupPandaData {
         panda23.code = 498
         panda23.duration = 76
         panda23.period = PeriodType.GROUP.ordinal
-        panda23.isStar = true
+        panda23.star = true
         panda23.title = "大熊猫和花：PP抱枕很舒服！"
         panda23.releaseTime = "2022-01-16 18:05:09"
         panda23.originalUrl = "https://www.bilibili.com/video/BV1L34y1i7ss"
@@ -392,7 +392,7 @@ object PetGroupPandaData {
         panda24.code = 499
         panda24.duration = 65
         panda24.period = PeriodType.GROUP.ordinal
-        panda24.isStar = false
+        panda24.star = false
         panda24.title = "大熊猫和花最新BGM——我是花花侠"
         panda24.releaseTime = "2022-01-22 18:05:16"
         panda24.originalUrl = "https://www.bilibili.com/video/BV11b4y1J79b"
@@ -409,7 +409,7 @@ object PetGroupPandaData {
         panda25.code = 500
         panda25.duration = 69
         panda25.period = PeriodType.GROUP.ordinal
-        panda25.isStar = false
+        panda25.star = false
         panda25.title = "大熊猫和花：我是无敌的小坏坏！"
         panda25.releaseTime = "2022-01-24 18:05:12"
         panda25.originalUrl = "https://www.bilibili.com/video/BV15S4y177zd"
@@ -426,7 +426,7 @@ object PetGroupPandaData {
         panda26.code = 501
         panda26.duration = 83
         panda26.period = PeriodType.GROUP.ordinal
-        panda26.isStar = false
+        panda26.star = false
         panda26.title = "大熊猫和花：一咬二扒三上嘴，打架我在行"
         panda26.releaseTime = "2022-01-27 18:05:14"
         panda26.originalUrl = "https://www.bilibili.com/video/BV1Wb4y1n7di"
@@ -443,7 +443,7 @@ object PetGroupPandaData {
         panda27.code = 502
         panda27.duration = 90
         panda27.period = PeriodType.GROUP.ordinal
-        panda27.isStar = false
+        panda27.star = false
         panda27.title = "大熊猫和花：我陪着你吃饭饭！"
         panda27.releaseTime = "2022-02-01 18:05:03"
         panda27.originalUrl = "https://www.bilibili.com/video/BV1mq4y1h77z"
@@ -460,7 +460,7 @@ object PetGroupPandaData {
         panda28.code = 503
         panda28.duration = 90
         panda28.period = PeriodType.GROUP.ordinal
-        panda28.isStar = true
+        panda28.star = true
         panda28.title = "【大熊猫和花】花花自己找了一根竹竿吃得有滋有味"
         panda28.releaseTime = "2022-01-31 00:43:13"
         panda28.originalUrl = "https://www.bilibili.com/video/BV1mb4y1E7bt"
@@ -477,7 +477,7 @@ object PetGroupPandaData {
         panda29.code = 504
         panda29.duration = 71
         panda29.period = PeriodType.GROUP.ordinal
-        panda29.isStar = false
+        panda29.star = false
         panda29.title = "大熊猫和花：过年啦，开饭啦，抢苹果了！全都是我的~"
         panda29.releaseTime = "2022-01-31 18:05:04"
         panda29.originalUrl = "https://www.bilibili.com/video/BV1YY411t7xZ"
@@ -494,7 +494,7 @@ object PetGroupPandaData {
         panda30.code = 505
         panda30.duration = 184
         panda30.period = PeriodType.GROUP.ordinal
-        panda30.isStar = true
+        panda30.star = true
         panda30.title = "20161212奥莉奥、淼淼、园润三宝钓猫"
         panda30.releaseTime = "2016-12-26 21:48:49"
         panda30.originalUrl = "https://www.bilibili.com/video/BV11s411a7AG"
@@ -511,7 +511,7 @@ object PetGroupPandaData {
         panda31.code = 506
         panda31.duration = 183
         panda31.period = PeriodType.GROUP.ordinal
-        panda31.isStar = false
+        panda31.star = false
         panda31.title = "奥莉奥、圆润、淼淼 钓猫【超清】"
         panda31.releaseTime = "2017-03-23 20:47:14"
         panda31.originalUrl = "https://www.bilibili.com/video/BV1Lx411k7qp"
@@ -528,7 +528,7 @@ object PetGroupPandaData {
         panda32.code = 507
         panda32.duration = 97
         panda32.period = PeriodType.GROUP.ordinal
-        panda32.isStar = true
+        panda32.star = true
         panda32.title = "【润淼】润润：淼淼起来吧，窝给泥拿竹子来了"
         panda32.releaseTime = "2018-07-12 12:11:30"
         panda32.originalUrl = "https://www.bilibili.com/video/BV1bs411H7iT"
@@ -545,7 +545,7 @@ object PetGroupPandaData {
         panda33.code = 508
         panda33.duration = 96
         panda33.period = PeriodType.GROUP.ordinal
-        panda33.isStar = false
+        panda33.star = false
         panda33.title = "【大熊猫和花】谢谢艾玖的特制磨牙棒！01.30"
         panda33.releaseTime = "2022-01-31 09:13:55"
         panda33.originalUrl = "https://www.bilibili.com/video/BV1Zb4y1E77V"
@@ -562,7 +562,7 @@ object PetGroupPandaData {
         panda34.code = 509
         panda34.duration = 101
         panda34.period = PeriodType.GROUP.ordinal
-        panda34.isStar = true
+        panda34.star = true
         panda34.title = "爷爷没得事，你们聊你们的，我玩我的！【大熊猫和花】"
         panda34.releaseTime = "2022-01-15 15:14:36"
         panda34.originalUrl = "https://www.bilibili.com/video/BV1F44y1L7Xg"
@@ -579,7 +579,7 @@ object PetGroupPandaData {
         panda35.code = 510
         panda35.duration = 110
         panda35.period = PeriodType.GROUP.ordinal
-        panda35.isStar = false
+        panda35.star = false
         panda35.title = "和花榨汁“实锤”了，最后还duang了两下！【大熊猫和花】"
         panda35.releaseTime = "2022-01-29 22:51:09"
         panda35.originalUrl = "https://www.bilibili.com/video/BV1YP4y1N7cs"
@@ -596,7 +596,7 @@ object PetGroupPandaData {
         panda36.code = 511
         panda36.duration = 164
         panda36.period = PeriodType.GROUP.ordinal
-        panda36.isStar = false
+        panda36.star = false
         panda36.title = "菜总吃竹子，主任和姐姐撒娇，贴贴摊摊滚滚。。【大熊猫和花、润玥】"
         panda36.releaseTime = "2022-01-30 16:38:19"
         panda36.originalUrl = "https://www.bilibili.com/video/BV1cR4y1M7cg"
@@ -613,7 +613,7 @@ object PetGroupPandaData {
         panda37.code = 512
         panda37.duration = 71
         panda37.period = PeriodType.GROUP.ordinal
-        panda37.isStar = true
+        panda37.star = true
         panda37.title = "和花：猪八戒“耍”金箍棒，早晚要还“大师兄”"
         panda37.releaseTime = "2022-01-29 18:31:43"
         panda37.originalUrl = "https://www.bilibili.com/video/BV1H34y127Dj"
@@ -630,7 +630,7 @@ object PetGroupPandaData {
         panda38.code = 513
         panda38.duration = 24
         panda38.period = PeriodType.GROUP.ordinal
-        panda38.isStar = false
+        panda38.star = false
         panda38.title = "【七巧七喜】我感觉这是两个小朋友穿的熊猫装～还会推的！"
         panda38.releaseTime = "2022-01-21 23:56:16"
         panda38.originalUrl = "https://www.bilibili.com/video/BV1Jm4y1S7K3"
@@ -647,7 +647,7 @@ object PetGroupPandaData {
         panda39.code = 514
         panda39.duration = 68
         panda39.period = PeriodType.GROUP.ordinal
-        panda39.isStar = false
+        panda39.star = false
         panda39.title = "幼年三嘟围追奶爸，和花又没赶上趟！01.29【大熊猫和花&和叶&润玥&艾玖】"
         panda39.releaseTime = "2022-01-30 00:46:59"
         panda39.originalUrl = "https://www.bilibili.com/video/BV1XZ4y1Z7zm"
@@ -664,7 +664,7 @@ object PetGroupPandaData {
         panda40.code = 515
         panda40.duration = 169
         panda40.period = PeriodType.GROUP.ordinal
-        panda40.isStar = true
+        panda40.star = true
         panda40.title = "“玖菜花”刚睡醒，小木架快挤不下了【大熊猫艾玖&菜菜&和花】"
         panda40.releaseTime = "2021-09-23 18:25:19"
         panda40.originalUrl = "https://www.bilibili.com/video/BV1Xf4y1w7qS"
@@ -681,7 +681,7 @@ object PetGroupPandaData {
         panda41.code = 516
         panda41.duration = 170
         panda41.period = PeriodType.GROUP.ordinal
-        panda41.isStar = true
+        panda41.star = true
         panda41.title = "四嘟围追奶爸，场面一度失控01.29【大熊猫和花、和叶、润玥、艾玖】"
         panda41.releaseTime = "2022-01-30 00:12:11"
         panda41.originalUrl = "https://www.bilibili.com/video/BV1LP4y1N7CK"
@@ -698,7 +698,7 @@ object PetGroupPandaData {
         panda42.code = 517
         panda42.duration = 94
         panda42.period = PeriodType.GROUP.ordinal
-        panda42.isStar = true
+        panda42.star = true
         panda42.title = "【大熊猫润玥】【大熊猫艾玖】润二狗大战艾玖，到底谁先着地呢？"
         panda42.releaseTime = "2021-08-10 20:36:37"
         panda42.originalUrl = "https://www.bilibili.com/video/BV1Mb4y1674P"
@@ -715,7 +715,7 @@ object PetGroupPandaData {
         panda43.code = 518
         panda43.duration = 52
         panda43.period = PeriodType.GROUP.ordinal
-        panda43.isStar = false
+        panda43.star = false
         panda43.title = "【大熊猫润玥/艾玖】好家伙，功仔都要说声了不起"
         panda43.releaseTime = "2021-03-07 17:35:23"
         panda43.originalUrl = "https://www.bilibili.com/video/BV1or4y1A7BD"
@@ -732,7 +732,7 @@ object PetGroupPandaData {
         panda44.code = 519
         panda44.duration = 128
         panda44.period = PeriodType.GROUP.ordinal
-        panda44.isStar = false
+        panda44.star = false
         panda44.title = "【和花成长日记】“它好像知道自己很可爱欸！”"
         panda44.releaseTime = "2022-01-29 00:24:48"
         panda44.originalUrl = "https://www.bilibili.com/video/BV1vR4y1T7AZ"
@@ -749,7 +749,7 @@ object PetGroupPandaData {
         panda45.code = 520
         panda45.duration = 40
         panda45.period = PeriodType.GROUP.ordinal
-        panda45.isStar = false
+        panda45.star = false
         panda45.title = "陪小树君玩耍，和花花真是个乖宝宝"
         panda45.releaseTime = "2022-01-28 14:43:08"
         panda45.originalUrl = "https://www.bilibili.com/video/BV19S4y1o7yt"
@@ -766,7 +766,7 @@ object PetGroupPandaData {
         panda46.code = 521
         panda46.duration = 98
         panda46.period = PeriodType.GROUP.ordinal
-        panda46.isStar = true
+        panda46.star = true
         panda46.title = "猪猪熊们回家干饭啦"
         panda46.releaseTime = "2022-01-28 12:35:14"
         panda46.originalUrl = "https://www.bilibili.com/video/BV1x3411h729"
@@ -783,7 +783,7 @@ object PetGroupPandaData {
         panda47.code = 522
         panda47.duration = 71
         panda47.period = PeriodType.GROUP.ordinal
-        panda47.isStar = false
+        panda47.star = false
         panda47.title = "你在干嘛呀？大熊猫和花：我在吃笋笋！“吃饭专用”"
         panda47.releaseTime = "2022-01-28 18:05:29"
         panda47.originalUrl = "https://www.bilibili.com/video/BV19F411n7pP"
@@ -800,7 +800,7 @@ object PetGroupPandaData {
         panda48.code = 523
         panda48.duration = 191
         panda48.period = PeriodType.GROUP.ordinal
-        panda48.isStar = false
+        panda48.star = false
         panda48.title = "【绩笑】小姨我来了！"
         panda48.releaseTime = "2020-07-17 08:30:24"
         panda48.originalUrl = "https://www.bilibili.com/video/BV1LD4y1D7YM"
@@ -817,7 +817,7 @@ object PetGroupPandaData {
         panda49.code = 524
         panda49.duration = 159
         panda49.period = PeriodType.GROUP.ordinal
-        panda49.isStar = true
+        panda49.star = true
         panda49.title = "【大熊猫和花】好可爱哦！花花在灌木丛中打盹儿休息"
         panda49.releaseTime = "2021-12-17 20:19:31"
         panda49.originalUrl = "https://www.bilibili.com/video/BV1Q44y1E7Xd"
@@ -834,7 +834,7 @@ object PetGroupPandaData {
         panda50.code = 525
         panda50.duration = 184
         panda50.period = PeriodType.GROUP.ordinal
-        panda50.isStar = false
+        panda50.star = false
         panda50.title = "【大熊猫和花】花花好会摆pose，边走边摆，还对着镜头笑"
         panda50.releaseTime = "2022-01-28 10:01:54"
         panda50.originalUrl = "https://www.bilibili.com/video/BV1ab4y1E7Lb"
@@ -851,7 +851,7 @@ object PetGroupPandaData {
         panda51.code = 526
         panda51.duration = 267
         panda51.period = PeriodType.GROUP.ordinal
-        panda51.isStar = true
+        panda51.star = true
         panda51.title = "【大熊猫和花 艾玖】花花想要碰瓷艾玖姐姐，被姐姐识破后失落离开"
         panda51.releaseTime = "2022-01-26 18:40:00"
         panda51.originalUrl = "https://www.bilibili.com/video/BV1Wm4y1S7XW"
@@ -868,7 +868,7 @@ object PetGroupPandaData {
         panda52.code = 527
         panda52.duration = 159
         panda52.period = PeriodType.GROUP.ordinal
-        panda52.isStar = true
+        panda52.star = true
         panda52.title = "【大熊猫】和花古风（淑女版）"
         panda52.releaseTime = "2022-01-26 20:55:45"
         panda52.originalUrl = "https://www.bilibili.com/video/BV1yY41147Yj"
@@ -885,7 +885,7 @@ object PetGroupPandaData {
         panda53.code = 528
         panda53.duration = 80
         panda53.period = PeriodType.GROUP.ordinal
-        panda53.isStar = true
+        panda53.star = true
         panda53.title = "【大熊猫和花】和花吃竹子~~~皮儿"
         panda53.releaseTime = "2022-01-27 00:05:49"
         panda53.originalUrl = "https://www.bilibili.com/video/BV1b3411h7BG"
@@ -902,7 +902,7 @@ object PetGroupPandaData {
         panda54.code = 529
         panda54.duration = 34
         panda54.period = PeriodType.GROUP.ordinal
-        panda54.isStar = false
+        panda54.star = false
         panda54.title = "大熊猫和花和叶-臭迪迪竟然趁我不备偷偷爬树，得想个办法把他拉下来"
         panda54.releaseTime = "2022-01-26 18:47:34"
         panda54.originalUrl = "https://www.bilibili.com/video/BV1ha411m7XL"
@@ -919,7 +919,7 @@ object PetGroupPandaData {
         panda55.code = 530
         panda55.duration = 44
         panda55.period = PeriodType.GROUP.ordinal
-        panda55.isStar = true
+        panda55.star = true
         panda55.title = "巡视领地成和花"
         panda55.releaseTime = "2022-01-27 23:18:32"
         panda55.originalUrl = "https://www.bilibili.com/video/BV1nZ4y1Z7Wc"
@@ -936,7 +936,7 @@ object PetGroupPandaData {
         panda56.code = 531
         panda56.duration = 85
         panda56.period = PeriodType.GROUP.ordinal
-        panda56.isStar = false
+        panda56.star = false
         panda56.title = "【大熊猫七巧、七喜】大阿福家草原姐妹花的温馨小日子"
         panda56.releaseTime = "2021-10-30 11:30:09"
         panda56.originalUrl = "https://www.bilibili.com/video/BV1Yq4y1G7nv"
@@ -953,7 +953,7 @@ object PetGroupPandaData {
         panda57.code = 532
         panda57.duration = 59
         panda57.period = PeriodType.GROUP.ordinal
-        panda57.isStar = true
+        panda57.star = true
         panda57.title = "七巧七喜与新滑梯"
         panda57.releaseTime = "2020-11-02 23:34:11"
         panda57.originalUrl = "https://www.bilibili.com/video/BV1JV411172Y"
@@ -970,7 +970,7 @@ object PetGroupPandaData {
         panda58.code = 533
         panda58.duration = 213
         panda58.period = PeriodType.GROUP.ordinal
-        panda58.isStar = false
+        panda58.star = false
         panda58.title = "【原创】【七巧七喜】给我最爱姐妹花"
         panda58.releaseTime = "2016-09-26 10:48:47"
         panda58.originalUrl = "https://www.bilibili.com/video/BV1zs411t76B"
@@ -987,7 +987,7 @@ object PetGroupPandaData {
         panda59.code = 534
         panda59.duration = 80
         panda59.period = PeriodType.GROUP.ordinal
-        panda59.isStar = false
+        panda59.star = false
         panda59.title = "【大熊猫七巧、七喜】小汽水又吵姐姐睡觉了"
         panda59.releaseTime = "2021-02-10 11:47:11"
         panda59.originalUrl = "https://www.bilibili.com/video/BV1T54y1W7Zt"
@@ -1004,7 +1004,7 @@ object PetGroupPandaData {
         panda60.code = 535
         panda60.duration = 67
         panda60.period = PeriodType.GROUP.ordinal
-        panda60.isStar = true
+        panda60.star = true
         panda60.title = "【大熊猫七巧七喜】今天也是汽水欠rua的一天，等姐姐睡醒教你做熊"
         panda60.releaseTime = "2020-01-02 22:54:35"
         panda60.originalUrl = "https://www.bilibili.com/video/BV1uJ411j7to"
@@ -1021,7 +1021,7 @@ object PetGroupPandaData {
         panda61.code = 536
         panda61.duration = 92
         panda61.period = PeriodType.GROUP.ordinal
-        panda61.isStar = true
+        panda61.star = true
         panda61.title = "【大熊猫七巧、七喜】奇福的两个大胖闺女，巧喜姐妹花今天6岁啦"
         panda61.releaseTime = "2020-08-02 09:30:56"
         panda61.originalUrl = "https://www.bilibili.com/video/BV1bk4y1m77F"
@@ -1038,7 +1038,7 @@ object PetGroupPandaData {
         panda62.code = 537
         panda62.duration = 36
         panda62.period = PeriodType.GROUP.ordinal
-        panda62.isStar = false
+        panda62.star = false
         panda62.title = "【大熊猫七巧、七喜】饭饭抢着吃才香～"
         panda62.releaseTime = "2021-02-02 13:15:13"
         panda62.originalUrl = "https://www.bilibili.com/video/BV1br4y1K7Zi"
@@ -1055,7 +1055,7 @@ object PetGroupPandaData {
         panda63.code = 538
         panda63.duration = 30
         panda63.period = PeriodType.GROUP.ordinal
-        panda63.isStar = true
+        panda63.star = true
         panda63.title = "【大熊猫七巧七喜】寒来暑往 秋收冬藏"
         panda63.releaseTime = "2021-11-07 11:15:21"
         panda63.originalUrl = "https://www.bilibili.com/video/BV1mg411K7Nf"
@@ -1072,7 +1072,7 @@ object PetGroupPandaData {
         panda64.code = 539
         panda64.duration = 84
         panda64.period = PeriodType.GROUP.ordinal
-        panda64.isStar = false
+        panda64.star = false
         panda64.title = "【大熊猫七巧、七喜】第一次看巧儿生气，汽水该打pp啦～"
         panda64.releaseTime = "2020-05-26 18:16:56"
         panda64.originalUrl = "https://www.bilibili.com/video/BV1r54y1D7cW"
@@ -1089,7 +1089,7 @@ object PetGroupPandaData {
         panda65.code = 540
         panda65.duration = 215
         panda65.period = PeriodType.GROUP.ordinal
-        panda65.isStar = true
+        panda65.star = true
         panda65.title = "【大熊猫七巧、七喜】30秒左右高能 打雪仗的巧喜姐妹花"
         panda65.releaseTime = "2019-11-30 11:32:01"
         panda65.originalUrl = "https://www.bilibili.com/video/BV1CJ411Q7Bm"
@@ -1106,7 +1106,7 @@ object PetGroupPandaData {
         panda66.code = 541
         panda66.duration = 51
         panda66.period = PeriodType.GROUP.ordinal
-        panda66.isStar = false
+        panda66.star = false
         panda66.title = "宠妹的七巧撒娇的七喜"
         panda66.releaseTime = "2020-04-03 15:29:05"
         panda66.originalUrl = "https://www.bilibili.com/video/BV1vp4y117Gd"
@@ -1123,7 +1123,7 @@ object PetGroupPandaData {
         panda67.code = 542
         panda67.duration = 60
         panda67.period = PeriodType.GROUP.ordinal
-        panda67.isStar = true
+        panda67.star = true
         panda67.title = "七巧七喜吊篮悠闲晒太阳"
         panda67.releaseTime = "2021-01-13 19:01:30"
         panda67.originalUrl = "https://www.bilibili.com/video/BV1cr4y1M7WB"
@@ -1140,7 +1140,7 @@ object PetGroupPandaData {
         panda68.code = 543
         panda68.duration = 51
         panda68.period = PeriodType.GROUP.ordinal
-        panda68.isStar = true
+        panda68.star = true
         panda68.title = "【大熊猫七巧、七喜】麻麻不在身边，巧胖胖照顾汽水妹妹"
         panda68.releaseTime = "2020-04-07 21:30:29"
         panda68.originalUrl = "https://www.bilibili.com/video/BV12c411h7nK"
@@ -1157,7 +1157,7 @@ object PetGroupPandaData {
         panda69.code = 544
         panda69.duration = 18
         panda69.period = PeriodType.GROUP.ordinal
-        panda69.isStar = false
+        panda69.star = false
         panda69.title = "【大熊猫七巧.七喜】汽水妹妹喜欢黏着姐姐坐"
         panda69.releaseTime = "2020-10-10 20:28:31"
         panda69.originalUrl = "https://www.bilibili.com/video/BV1P541177DR"
@@ -1174,7 +1174,7 @@ object PetGroupPandaData {
         panda70.code = 545
         panda70.duration = 32
         panda70.period = PeriodType.GROUP.ordinal
-        panda70.isStar = true
+        panda70.star = true
         panda70.title = "【大熊猫七巧、七喜】姐妹俩面对面吃饭饭"
         panda70.releaseTime = "2021-05-15 19:00:01"
         panda70.originalUrl = "https://www.bilibili.com/video/BV1Lv41157Yv"
@@ -1191,7 +1191,7 @@ object PetGroupPandaData {
         panda71.code = 546
         panda71.duration = 40
         panda71.period = PeriodType.GROUP.ordinal
-        panda71.isStar = true
+        panda71.star = true
         panda71.title = "【大熊猫七巧七喜】姐妹俩靠在一起睡觉 躺着也对着睡"
         panda71.releaseTime = "2020-01-10 22:10:04"
         panda71.originalUrl = "https://www.bilibili.com/video/BV1mJ411H7UZ"
@@ -1208,7 +1208,7 @@ object PetGroupPandaData {
         panda72.code = 547
         panda72.duration = 99
         panda72.period = PeriodType.GROUP.ordinal
-        panda72.isStar = false
+        panda72.star = false
         panda72.title = "【大熊猫七巧、七喜】巧胖胖的摸脸杀"
         panda72.releaseTime = "2021-11-04 12:49:01"
         panda72.originalUrl = "https://www.bilibili.com/video/BV1yF411a7oZ"
@@ -1225,7 +1225,7 @@ object PetGroupPandaData {
         panda73.code = 548
         panda73.duration = 600
         panda73.period = PeriodType.GROUP.ordinal
-        panda73.isStar = false
+        panda73.star = false
         panda73.title = "【和花和叶】中午是弟弟陪花花在木架上玩，给姐姐rua，然后陪姐姐睡午觉！和叶真是暖心的弟弟！"
         panda73.releaseTime = "2022-01-11 15:30:04"
         panda73.originalUrl = "https://www.bilibili.com/video/BV1oS4y1Z7LD"
@@ -1242,7 +1242,7 @@ object PetGroupPandaData {
         panda74.code = 549
         panda74.duration = 72
         panda74.period = PeriodType.GROUP.ordinal
-        panda74.isStar = false
+        panda74.star = false
         panda74.title = "女明星喝水肯定要悄悄咪咪的！【大熊猫和花】"
         panda74.releaseTime = "2022-01-12 18:32:51"
         panda74.originalUrl = "https://www.bilibili.com/video/BV1gR4y1g7ej"
@@ -1259,7 +1259,7 @@ object PetGroupPandaData {
         panda75.code = 550
         panda75.duration = 68
         panda75.period = PeriodType.GROUP.ordinal
-        panda75.isStar = false
+        panda75.star = false
         panda75.title = "【大熊猫】和花后空翻 和花快乐乱剪  和花特写（悍女版）"
         panda75.releaseTime = "2022-01-22 20:00:12"
         panda75.originalUrl = "https://www.bilibili.com/video/BV17R4y1u7BH"
@@ -1276,7 +1276,7 @@ object PetGroupPandaData {
         panda76.code = 551
         panda76.duration = 79
         panda76.period = PeriodType.GROUP.ordinal
-        panda76.isStar = false
+        panda76.star = false
         panda76.title = "来熊啊～快把姐姐们拉走！“底层浪”实锤【大熊猫成浪成风绩笑】"
         panda76.releaseTime = "2022-01-14 20:56:41"
         panda76.originalUrl = "https://www.bilibili.com/video/BV1Bq4y1y7AN"
@@ -1293,7 +1293,7 @@ object PetGroupPandaData {
         panda77.code = 552
         panda77.duration = 212
         panda77.period = PeriodType.GROUP.ordinal
-        panda77.isStar = true
+        panda77.star = true
         panda77.title = "【大熊猫和花 和叶 润玥 艾玖】下班途中，和叶请润玥做新发型（或许是被迫？）"
         panda77.releaseTime = "2022-01-25 18:15:35"
         panda77.originalUrl = "https://www.bilibili.com/video/BV15b4y1n7qr"
@@ -1310,7 +1310,7 @@ object PetGroupPandaData {
         panda78.code = 553
         panda78.duration = 45
         panda78.period = PeriodType.GROUP.ordinal
-        panda78.isStar = false
+        panda78.star = false
         panda78.title = "一根小木棍和花花也可以玩好久，猫孩子能多点玩具多好啊"
         panda78.releaseTime = "2022-01-25 22:28:11"
         panda78.originalUrl = "https://www.bilibili.com/video/BV1S34y117r9"
@@ -1327,7 +1327,7 @@ object PetGroupPandaData {
         panda79.code = 554
         panda79.duration = 80
         panda79.period = PeriodType.GROUP.ordinal
-        panda79.isStar = false
+        panda79.star = false
         panda79.title = "大冬天泡澡的成风，出浴后还在妹妹身上擦水。【大熊猫成风、成浪】"
         panda79.releaseTime = "2022-01-25 13:00:18"
         panda79.originalUrl = "https://www.bilibili.com/video/BV1su41117rX"
@@ -1344,7 +1344,7 @@ object PetGroupPandaData {
         panda80.code = 555
         panda80.duration = 104
         panda80.period = PeriodType.GROUP.ordinal
-        panda80.isStar = false
+        panda80.star = false
         panda80.title = "认真吃竹子的小乖乖。【大熊猫和花】"
         panda80.releaseTime = "2022-01-25 20:02:33"
         panda80.originalUrl = "https://www.bilibili.com/video/BV1eq4y187vW"
@@ -1361,7 +1361,7 @@ object PetGroupPandaData {
         panda81.code = 556
         panda81.duration = 75
         panda81.period = PeriodType.GROUP.ordinal
-        panda81.isStar = true
+        panda81.star = true
         panda81.title = "大熊猫和花花今天精神饱满，适合被我牵走"
         panda81.releaseTime = "2022-01-02 18:05:06"
         panda81.originalUrl = "https://www.bilibili.com/video/BV1yb4y1Y7aM"
@@ -1378,7 +1378,7 @@ object PetGroupPandaData {
         panda82.code = 557
         panda82.duration = 259
         panda82.period = PeriodType.GROUP.ordinal
-        panda82.isStar = false
+        panda82.star = false
         panda82.title = "【大熊猫福双】双儿今天和小熊友们玩得开心吗？"
         panda82.releaseTime = "2022-01-25 21:53:42"
         panda82.originalUrl = "https://www.bilibili.com/video/BV1ru41117B6"
@@ -1395,7 +1395,7 @@ object PetGroupPandaData {
         panda83.code = 558
         panda83.duration = 721
         panda83.period = PeriodType.GROUP.ordinal
-        panda83.isStar = false
+        panda83.star = false
         panda83.title = "【大熊猫和花 润玥 和叶】决战小木架之巅：除了叶子弟弟是傻子，其它剧情我不告诉你"
         panda83.releaseTime = "2022-01-24 16:37:08"
         panda83.originalUrl = "https://www.bilibili.com/video/BV1TP4y1N7Xb"
@@ -1412,7 +1412,7 @@ object PetGroupPandaData {
         panda84.code = 559
         panda84.duration = 146
         panda84.period = PeriodType.GROUP.ordinal
-        panda84.isStar = false
+        panda84.star = false
         panda84.title = "【和花&和叶&润玥】喜欢凑热闹的小和花"
         panda84.releaseTime = "2022-01-21 11:30:08"
         panda84.originalUrl = "https://www.bilibili.com/video/BV1H44y1L7c8"
@@ -1429,7 +1429,7 @@ object PetGroupPandaData {
         panda85.code = 560
         panda85.duration = 138
         panda85.period = PeriodType.GROUP.ordinal
-        panda85.isStar = true
+        panda85.star = true
         panda85.title = "【和花成长日记】熟悉新场地的和花，一不留神脚底打滑摔下小木架"
         panda85.releaseTime = "2022-01-23 11:30:17"
         panda85.originalUrl = "https://www.bilibili.com/video/BV1Ef4y1F7kK"
@@ -1446,7 +1446,7 @@ object PetGroupPandaData {
         panda86.code = 561
         panda86.duration = 72
         panda86.period = PeriodType.GROUP.ordinal
-        panda86.isStar = true
+        panda86.star = true
         panda86.title = "爷爷用苹果引花花回家。【大熊猫和花】"
         panda86.releaseTime = "2022-01-23 18:10:57"
         panda86.originalUrl = "https://www.bilibili.com/video/BV1NT4y1y7AK"
@@ -1463,7 +1463,7 @@ object PetGroupPandaData {
         panda87.code = 562
         panda87.duration = 198
         panda87.period = PeriodType.GROUP.ordinal
-        panda87.isStar = false
+        panda87.star = false
         panda87.title = "大熊猫和花、和叶、润玥、艾玖—月亮四嘟回家记"
         panda87.releaseTime = "2022-01-23 18:36:42"
         panda87.originalUrl = "https://www.bilibili.com/video/BV1Uq4y1C7zw"
@@ -1480,7 +1480,7 @@ object PetGroupPandaData {
         panda88.code = 563
         panda88.duration = 51
         panda88.period = PeriodType.GROUP.ordinal
-        panda88.isStar = true
+        panda88.star = true
         panda88.title = "【大熊猫和花和叶艾玖】三姐弟对待下班的三种态度，你下班是属于哪种呢"
         panda88.releaseTime = "2022-01-22 23:00:10"
         panda88.originalUrl = "https://www.bilibili.com/video/BV1f44y1W7tN"
@@ -1497,7 +1497,7 @@ object PetGroupPandaData {
         panda89.code = 564
         panda89.duration = 64
         panda89.period = PeriodType.GROUP.ordinal
-        panda89.isStar = false
+        panda89.star = false
         panda89.title = "大熊猫和花~竟然这样喝水水！"
         panda89.releaseTime = "2022-01-23 18:05:06"
         panda89.originalUrl = "https://www.bilibili.com/video/BV1FL4y1t7iV"
@@ -1514,7 +1514,7 @@ object PetGroupPandaData {
         panda90.code = 565
         panda90.duration = 84
         panda90.period = PeriodType.GROUP.ordinal
-        panda90.isStar = false
+        panda90.star = false
         panda90.title = "“大熊猫和花”今天心情很好哦！"
         panda90.releaseTime = "2022-01-18 18:05:03"
         panda90.originalUrl = "https://www.bilibili.com/video/BV1xZ4y1f77X"
@@ -1531,7 +1531,7 @@ object PetGroupPandaData {
         panda91.code = 566
         panda91.duration = 66
         panda91.period = PeriodType.GROUP.ordinal
-        panda91.isStar = true
+        panda91.star = true
         panda91.title = "【大熊猫和花】这样的小熊毯子给我来一打！！"
         panda91.releaseTime = "2022-01-22 23:57:14"
         panda91.originalUrl = "https://www.bilibili.com/video/BV1KL411w7PT"
@@ -1548,7 +1548,7 @@ object PetGroupPandaData {
         panda92.code = 567
         panda92.duration = 56
         panda92.period = PeriodType.GROUP.ordinal
-        panda92.isStar = true
+        panda92.star = true
         panda92.title = "【胖哒高能时刻】和花:尴尬却不失迷人的脚底一滑"
         panda92.releaseTime = "2022-01-22 22:37:13"
         panda92.originalUrl = "https://www.bilibili.com/video/BV1Qq4y1c7Lj"
@@ -1565,7 +1565,7 @@ object PetGroupPandaData {
         panda93.code = 568
         panda93.duration = 45
         panda93.period = PeriodType.GROUP.ordinal
-        panda93.isStar = false
+        panda93.star = false
         panda93.title =
             "小树君：我终于倒下去了，不用再天天受折磨了，怡云战神，算你狠"
         panda93.releaseTime = "2022-01-18 08:31:19"
@@ -1583,7 +1583,7 @@ object PetGroupPandaData {
         panda94.code = 569
         panda94.duration = 69
         panda94.period = PeriodType.GROUP.ordinal
-        panda94.isStar = true
+        panda94.star = true
         panda94.title = "姐姐们有多宠和花？"
         panda94.releaseTime = "2022-01-04 18:05:10"
         panda94.originalUrl = "https://www.bilibili.com/video/BV1634y1q7fA"
@@ -1600,7 +1600,7 @@ object PetGroupPandaData {
         panda95.code = 570
         panda95.duration = 34
         panda95.period = PeriodType.GROUP.ordinal
-        panda95.isStar = false
+        panda95.star = false
         panda95.title = "大熊猫和花和叶-趴趴熊和懵懵熊"
         panda95.releaseTime = "2022-01-21 15:34:30"
         panda95.originalUrl = "https://www.bilibili.com/video/BV1Jf4y1F75U"
@@ -1617,7 +1617,7 @@ object PetGroupPandaData {
         panda96.code = 571
         panda96.duration = 44
         panda96.period = PeriodType.GROUP.ordinal
-        panda96.isStar = true
+        panda96.star = true
         panda96.title = "兜兜：哥哥是我最大的依靠【大熊猫包包兜兜】"
         panda96.releaseTime = "2020-11-15 15:31:03"
         panda96.originalUrl = "https://www.bilibili.com/video/BV1Pp4y1r7jw"
@@ -1634,7 +1634,7 @@ object PetGroupPandaData {
         panda97.code = 572
         panda97.duration = 71
         panda97.period = PeriodType.GROUP.ordinal
-        panda97.isStar = true
+        panda97.star = true
         panda97.title = "奇一生胖气，整个腮帮子气鼓鼓，一看就是哄不好的那种！"
         panda97.releaseTime = "2021-10-08 18:32:33"
         panda97.originalUrl = "https://www.bilibili.com/video/BV1UL411379X"
@@ -1651,7 +1651,7 @@ object PetGroupPandaData {
         panda98.code = 573
         panda98.duration = 66
         panda98.period = PeriodType.GROUP.ordinal
-        panda98.isStar = true
+        panda98.star = true
         panda98.title = "大熊猫是独居动物。奇一和福来：但我们是相亲相爱一家熊！"
         panda98.releaseTime = "2021-10-13 20:28:22"
         panda98.originalUrl = "https://www.bilibili.com/video/BV1g3411C7WT"
@@ -1668,7 +1668,7 @@ object PetGroupPandaData {
         panda99.code = 574
         panda99.duration = 64
         panda99.period = PeriodType.GROUP.ordinal
-        panda99.isStar = true
+        panda99.star = true
         panda99.title = "奇一哄睡来来，俩宝宝相依相偎，真好"
         panda99.releaseTime = "2021-10-23 19:22:35"
         panda99.originalUrl = "https://www.bilibili.com/video/BV1Ju411f7r6"
@@ -1685,7 +1685,7 @@ object PetGroupPandaData {
         panda100.code = 575
         panda100.duration = 15
         panda100.period = PeriodType.GROUP.ordinal
-        panda100.isStar = true
+        panda100.star = true
         panda100.title = "【奇一福来】我兔兔来来又是腻腻歪歪～亲亲抱抱～甜甜贴贴的一天（真是要疯了我，柠檬树几亩地都不够种！）"
         panda100.releaseTime = "2021-10-26 13:56:07"
         panda100.originalUrl = "https://www.bilibili.com/video/BV1sq4y1R7oC"
@@ -1702,7 +1702,7 @@ object PetGroupPandaData {
         panda101.code = 576
         panda101.duration = 42
         panda101.period = PeriodType.GROUP.ordinal
-        panda101.isStar = true
+        panda101.star = true
         panda101.title = "大熊猫和花和叶-迪迪贴贴姐姐"
         panda101.releaseTime = "2022-01-20 02:47:33"
         panda101.originalUrl = "https://www.bilibili.com/video/BV1rm4y1U7ff"
@@ -1719,7 +1719,7 @@ object PetGroupPandaData {
         panda102.code = 577
         panda102.duration = 150
         panda102.period = PeriodType.GROUP.ordinal
-        panda102.isStar = false
+        panda102.star = false
         panda102.title = "主任和叶总的姐弟感情有多好。【大熊猫和花、和叶】"
         panda102.releaseTime = "2022-01-20 18:23:11"
         panda102.originalUrl = "https://www.bilibili.com/video/BV1cS4y1o7CL"
@@ -1736,7 +1736,7 @@ object PetGroupPandaData {
         panda103.code = 578
         panda103.duration = 127
         panda103.period = PeriodType.GROUP.ordinal
-        panda103.isStar = false
+        panda103.star = false
         panda103.title = "小树杈上长熊猫蛋了，幼儿园的奶团子又开战啦"
         panda103.releaseTime = "2021-12-31 12:29:40"
         panda103.originalUrl = "https://www.bilibili.com/video/BV1134y1z7Wa"
@@ -1753,7 +1753,7 @@ object PetGroupPandaData {
         panda104.code = 579
         panda104.duration = 165
         panda104.period = PeriodType.GROUP.ordinal
-        panda104.isStar = true
+        panda104.star = true
         panda104.title = "大熊猫--姐姐们有多“宠”和花？"
         panda104.releaseTime = "2021-12-28 11:00:03"
         panda104.originalUrl = "https://www.bilibili.com/video/BV1ii4y1R7f7"
@@ -1770,7 +1770,7 @@ object PetGroupPandaData {
         panda105.code = 580
         panda105.duration = 32
         panda105.period = PeriodType.GROUP.ordinal
-        panda105.isStar = false
+        panda105.star = false
         panda105.title = "大熊猫和花-这小熊玩偶怎么会动的"
         panda105.releaseTime = "2022-01-18 19:02:20"
         panda105.originalUrl = "https://www.bilibili.com/video/BV1h3411Y78E"
@@ -1787,7 +1787,7 @@ object PetGroupPandaData {
         panda106.code = 581
         panda106.duration = 104
         panda106.period = PeriodType.GROUP.ordinal
-        panda106.isStar = false
+        panda106.star = false
         panda106.title = "小叶子战神初养成！菜总滑铁卢~和花睡大觉！【大熊猫和叶 润玥】"
         panda106.releaseTime = "2022-01-19 17:15:09"
         panda106.originalUrl = "https://www.bilibili.com/video/BV1B5411f7iK"
@@ -1804,7 +1804,7 @@ object PetGroupPandaData {
         panda107.code = 582
         panda107.duration = 24
         panda107.period = PeriodType.GROUP.ordinal
-        panda107.isStar = true
+        panda107.star = true
         panda107.title = "我可爱的 会奔跑 会卖萌的煤气罐罐：和花🌸"
         panda107.releaseTime = "2022-01-17 13:49:07"
         panda107.originalUrl = "https://www.bilibili.com/video/BV1nY411h7W8"
@@ -1821,7 +1821,7 @@ object PetGroupPandaData {
         panda108.code = 583
         panda108.duration = 246
         panda108.period = PeriodType.GROUP.ordinal
-        panda108.isStar = false
+        panda108.star = false
         panda108.title = "【和花】【艾玖】这是相差一个月的体型差吗？？！和花，你要加油干饭啦！！"
         panda108.releaseTime = "2022-01-17 19:00:00"
         panda108.originalUrl = "https://www.bilibili.com/video/BV1m34y1B7Mj"
@@ -1838,7 +1838,7 @@ object PetGroupPandaData {
         panda109.code = 584
         panda109.duration = 37
         panda109.period = PeriodType.GROUP.ordinal
-        panda109.isStar = false
+        panda109.star = false
         panda109.title = "[润玥]二狗学花花堵在小卖部的洞里"
         panda109.releaseTime = "2022-01-18 22:29:59"
         panda109.originalUrl = "https://www.bilibili.com/video/BV1Hq4y1C7GU"
@@ -1855,7 +1855,7 @@ object PetGroupPandaData {
         panda110.code = 585
         panda110.duration = 301
         panda110.period = PeriodType.GROUP.ordinal
-        panda110.isStar = true
+        panda110.star = true
         panda110.title = "【大熊猫和花、润玥、和叶】爷爷叫崽崽们加餐，花花和菜菜在前台开始吃播01.17"
         panda110.releaseTime = "2022-01-18 21:08:52"
         panda110.originalUrl = "https://www.bilibili.com/video/BV1W34y1i7v8"
@@ -1872,7 +1872,7 @@ object PetGroupPandaData {
         panda111.code = 586
         panda111.duration = 57
         panda111.period = PeriodType.GROUP.ordinal
-        panda111.isStar = true
+        panda111.star = true
         panda111.title = "【和花】胖fa睡醒有点懵，愣了一会，找了姐姐当枕头继续睡"
         panda111.releaseTime = "2022-01-16 18:38:19"
         panda111.originalUrl = "https://www.bilibili.com/video/BV11r4y1Y7Wc"
@@ -1889,7 +1889,7 @@ object PetGroupPandaData {
         panda112.code = 587
         panda112.duration = 56
         panda112.period = PeriodType.GROUP.ordinal
-        panda112.isStar = false
+        panda112.star = false
         panda112.title = "【奇一】熊猫闺蜜关系多好啊！比心❤️"
         panda112.releaseTime = "2021-11-19 16:11:30"
         panda112.originalUrl = "https://www.bilibili.com/video/BV1ng411N71i"
@@ -1906,7 +1906,7 @@ object PetGroupPandaData {
         panda113.code = 588
         panda113.duration = 39
         panda113.period = PeriodType.GROUP.ordinal
-        panda113.isStar = true
+        panda113.star = true
         panda113.title = "【大熊猫奇一】来来躺在兔兔肚肚上睡觉觉，两娃娃可太温馨了"
         panda113.releaseTime = "2021-10-07 17:32:08"
         panda113.originalUrl = "https://www.bilibili.com/video/BV1h44y1t7Ns"
@@ -1923,7 +1923,7 @@ object PetGroupPandaData {
         panda114.code = 589
         panda114.duration = 15
         panda114.period = PeriodType.GROUP.ordinal
-        panda114.isStar = true
+        panda114.star = true
         panda114.title = "大熊猫奇一：抱紧我的小来来，福顺：我也要抱抱"
         panda114.releaseTime = "2021-05-30 11:24:13"
         panda114.originalUrl = "https://www.bilibili.com/video/BV1H54y1V7Jy"
@@ -1940,7 +1940,7 @@ object PetGroupPandaData {
         panda115.code = 590
         panda115.duration = 33
         panda115.period = PeriodType.GROUP.ordinal
-        panda115.isStar = true
+        panda115.star = true
         panda115.title = "【大熊猫奇一】翻滚吧，兔兔来来"
         panda115.releaseTime = "2022-01-16 11:13:34"
         panda115.originalUrl = "https://www.bilibili.com/video/BV15Z4y1f7Yb"
@@ -1957,7 +1957,7 @@ object PetGroupPandaData {
         panda116.code = 591
         panda116.duration = 72
         panda116.period = PeriodType.GROUP.ordinal
-        panda116.isStar = true
+        panda116.star = true
         panda116.title = "你在干嘛呀？大熊猫和花：我在装可爱！"
         panda116.releaseTime = "2022-01-17 18:05:18"
         panda116.originalUrl = "https://www.bilibili.com/video/BV1RT4y117Ah"
@@ -1974,7 +1974,7 @@ object PetGroupPandaData {
         panda117.code = 592
         panda117.duration = 124
         panda117.period = PeriodType.GROUP.ordinal
-        panda117.isStar = true
+        panda117.star = true
         panda117.title = "【大熊猫和花】雪中悍刀行之“林中焊花行” 和花捉拿和叶"
         panda117.releaseTime = "2022-01-17 22:01:37"
         panda117.originalUrl = "https://www.bilibili.com/video/BV1gu411m7zB"
@@ -1991,7 +1991,7 @@ object PetGroupPandaData {
         panda118.code = 593
         panda118.duration = 75
         panda118.period = PeriodType.GROUP.ordinal
-        panda118.isStar = true
+        panda118.star = true
         panda118.title = "【大熊猫和花】菜菜姐对神烦花有多好？换只熊可能早被胖揍了"
         panda118.releaseTime = "2022-01-17 23:00:16"
         panda118.originalUrl = "https://www.bilibili.com/video/BV1AS4y1j7iJ"
@@ -2008,7 +2008,7 @@ object PetGroupPandaData {
         panda119.code = 594
         panda119.duration = 65
         panda119.period = PeriodType.GROUP.ordinal
-        panda119.isStar = false
+        panda119.star = false
         panda119.title = "[和花  和叶  润玥  艾玖]四只小可爱一起吃竹子"
         panda119.releaseTime = "2022-01-16 22:19:12"
         panda119.originalUrl = "https://www.bilibili.com/video/BV1wm4y1Q7Lr"
@@ -2025,7 +2025,7 @@ object PetGroupPandaData {
         panda120.code = 595
         panda120.duration = 50
         panda120.period = PeriodType.GROUP.ordinal
-        panda120.isStar = false
+        panda120.star = false
         panda120.title = "【大熊猫和叶】“大衣”破了又如何，我依旧是这条街最靓的仔"
         panda120.releaseTime = "2022-01-16 11:00:19"
         panda120.originalUrl = "https://www.bilibili.com/video/BV1im4y1U7NQ"
@@ -2042,7 +2042,7 @@ object PetGroupPandaData {
         panda121.code = 596
         panda121.duration = 108
         panda121.period = PeriodType.GROUP.ordinal
-        panda121.isStar = false
+        panda121.star = false
         panda121.title = "爷爷咋还不喊花花呢，人家今天乖得很哦！【大熊猫和花】"
         panda121.releaseTime = "2022-01-16 18:09:22"
         panda121.originalUrl = "https://www.bilibili.com/video/BV1vR4y1M7zA"
@@ -2059,7 +2059,7 @@ object PetGroupPandaData {
         panda122.code = 597
         panda122.duration = 68
         panda122.period = PeriodType.GROUP.ordinal
-        panda122.isStar = true
+        panda122.star = true
         panda122.title = "八只团子的笋笋时间，总觉得别人手里笋最香"
         panda122.releaseTime = "2020-12-07 16:33:20"
         panda122.originalUrl = "https://www.bilibili.com/video/BV18v411b7U5"
@@ -2076,7 +2076,7 @@ object PetGroupPandaData {
         panda123.code = 598
         panda123.duration = 155
         panda123.period = PeriodType.GROUP.ordinal
-        panda123.isStar = true
+        panda123.star = true
         panda123.title = "八只团子饭后的悠闲时光"
         panda123.releaseTime = "2021-01-19 13:02:47"
         panda123.originalUrl = "https://www.bilibili.com/video/BV1qp4y1x7Dn"
@@ -2093,7 +2093,7 @@ object PetGroupPandaData {
         panda124.code = 599
         panda124.duration = 196
         panda124.period = PeriodType.GROUP.ordinal
-        panda124.isStar = false
+        panda124.star = false
         panda124.title = "大熊猫是怎么下班的，和花解锁新姿势"
         panda124.releaseTime = "2021-12-27 19:48:29"
         panda124.originalUrl = "https://www.bilibili.com/video/BV1er4y1S7Lz"
@@ -2110,7 +2110,7 @@ object PetGroupPandaData {
         panda125.code = 600
         panda125.duration = 44
         panda125.period = PeriodType.GROUP.ordinal
-        panda125.isStar = true
+        panda125.star = true
         panda125.title = "【和花润玥和叶】趁着弟弟和姐姐睡着，胖fa开始了一顿输出，结果……"
         panda125.releaseTime = "2022-01-12 18:16:29"
         panda125.originalUrl = "https://www.bilibili.com/video/BV1uR4y1g7Fg"
@@ -2127,7 +2127,7 @@ object PetGroupPandaData {
         panda126.code = 601
         panda126.duration = 120
         panda126.period = PeriodType.GROUP.ordinal
-        panda126.isStar = true
+        panda126.star = true
         panda126.title = "【大熊猫和花】头有点重，撑着歇一下"
         panda126.releaseTime = "2022-01-14 22:52:25"
         panda126.originalUrl = "https://www.bilibili.com/video/BV1vq4y1k7TG"
@@ -2144,7 +2144,7 @@ object PetGroupPandaData {
         panda127.code = 602
         panda127.duration = 142
         panda127.period = PeriodType.GROUP.ordinal
-        panda127.isStar = false
+        panda127.star = false
         panda127.title = "和叶：一觉醒来，发现姐姐在认真干饭，一整个惊艳住了！"
         panda127.releaseTime = "2022-01-14 11:21:12"
         panda127.originalUrl = "https://www.bilibili.com/video/BV14m4y1U7Sq"
@@ -2161,7 +2161,7 @@ object PetGroupPandaData {
         panda128.code = 603
         panda128.duration = 244
         panda128.period = PeriodType.GROUP.ordinal
-        panda128.isStar = true
+        panda128.star = true
         panda128.title = "【和花和叶】花花追着叶子打，有本事别上树啊！"
         panda128.releaseTime = "2022-01-14 13:35:17"
         panda128.originalUrl = "https://www.bilibili.com/video/BV1RL411c7Hi"
@@ -2178,7 +2178,7 @@ object PetGroupPandaData {
         panda129.code = 604
         panda129.duration = 62
         panda129.period = PeriodType.GROUP.ordinal
-        panda129.isStar = true
+        panda129.star = true
         panda129.title = "可爱的乔兜兜"
         panda129.releaseTime = "2021-01-01 19:23:01"
         panda129.originalUrl = "https://www.bilibili.com/video/BV1ez4y1z7U1"
@@ -2195,7 +2195,7 @@ object PetGroupPandaData {
         panda130.code = 605
         panda130.duration = 27
         panda130.period = PeriodType.GROUP.ordinal
-        panda130.isStar = true
+        panda130.star = true
         panda130.title = "心上熊兜兜子2"
         panda130.releaseTime = "2021-04-18 10:41:02"
         panda130.originalUrl = "https://www.bilibili.com/video/BV1b64y1i7No"
@@ -2212,7 +2212,7 @@ object PetGroupPandaData {
         panda131.code = 606
         panda131.duration = 13
         panda131.period = PeriodType.GROUP.ordinal
-        panda131.isStar = true
+        panda131.star = true
         panda131.title = "大熊猫包包：你们看Tony兜给我扎的头发漂不漂亮？"
         panda131.releaseTime = "2021-06-25 22:57:17"
         panda131.originalUrl = "https://www.bilibili.com/video/BV1Dv411n7Cn"
@@ -2229,7 +2229,7 @@ object PetGroupPandaData {
         panda132.code = 607
         panda132.duration = 16
         panda132.period = PeriodType.GROUP.ordinal
-        panda132.isStar = false
+        panda132.star = false
         panda132.title = "兜兜子四处偷笋，太太太搞笑了!"
         panda132.releaseTime = "2021-06-11 15:35:14"
         panda132.originalUrl = "https://www.bilibili.com/video/BV1i54y1G7PM"
@@ -2246,7 +2246,7 @@ object PetGroupPandaData {
         panda133.code = 608
         panda133.duration = 31
         panda133.period = PeriodType.GROUP.ordinal
-        panda133.isStar = true
+        panda133.star = true
         panda133.title = "大熊猫包包：今天又被弟弟做了新发型"
         panda133.releaseTime = "2021-05-07 23:54:15"
         panda133.originalUrl = "https://www.bilibili.com/video/BV1Uq4y1f7g4"
@@ -2263,7 +2263,7 @@ object PetGroupPandaData {
         panda134.code = 609
         panda134.duration = 183
         panda134.period = PeriodType.GROUP.ordinal
-        panda134.isStar = true
+        panda134.star = true
         panda134.title = "【大熊猫和花】饲养员:这次把小苹果藏好，不然又……"
         panda134.releaseTime = "2022-01-14 13:00:03"
         panda134.originalUrl = "https://www.bilibili.com/video/BV13q4y117Cj"
@@ -2286,7 +2286,7 @@ object PetGroupPandaData {
         panda136.code = 611
         panda136.duration = 31
         panda136.period = PeriodType.GROUP.ordinal
-        panda136.isStar = true
+        panda136.star = true
         panda136.title = "大熊猫奇一：又是努力卖萌的一天"
         panda136.releaseTime = "2021-12-16 11:47:58"
         panda136.originalUrl = "https://www.bilibili.com/video/BV1qq4y1q7aB"
@@ -2303,7 +2303,7 @@ object PetGroupPandaData {
         panda137.code = 612
         panda137.duration = 20
         panda137.period = PeriodType.GROUP.ordinal
-        panda137.isStar = true
+        panda137.star = true
         panda137.title = "大熊猫奇一：来跟我们抱团取暖啊"
         panda137.releaseTime = "2021-04-17 19:01:17"
         panda137.originalUrl = "https://www.bilibili.com/video/BV1DK411F712"
@@ -2320,7 +2320,7 @@ object PetGroupPandaData {
         panda138.code = 613
         panda138.duration = 57
         panda138.period = PeriodType.GROUP.ordinal
-        panda138.isStar = false
+        panda138.star = false
         panda138.title = "现都说和花花这一届最不好带，我看谭爷爷还没喊，一起都跑到门口开始等放学了，谭爷爷的果赖模式就稍微启动了一下"
         panda138.releaseTime = "2022-01-12 12:25:53"
         panda138.originalUrl = "https://www.bilibili.com/video/BV1eS4y1Z7jG"
@@ -2337,7 +2337,7 @@ object PetGroupPandaData {
         panda139.code = 614
         panda139.duration = 99
         panda139.period = PeriodType.GROUP.ordinal
-        panda139.isStar = false
+        panda139.star = false
         panda139.title = "包兜干架！！【大熊猫乔包包&乔兜兜】"
         panda139.releaseTime = "2022-01-12 22:01:09"
         panda139.originalUrl = "https://www.bilibili.com/video/BV1iY41187Gu"
@@ -2354,7 +2354,7 @@ object PetGroupPandaData {
         panda140.code = 615
         panda140.duration = 95
         panda140.period = PeriodType.GROUP.ordinal
-        panda140.isStar = false
+        panda140.star = false
         panda140.title = "[和花  润玥]花花和二狗一起蹲守小卖部"
         panda140.releaseTime = "2022-01-10 23:07:54"
         panda140.originalUrl = "https://www.bilibili.com/video/BV1hS4y1Z7Wo"
@@ -2371,7 +2371,7 @@ object PetGroupPandaData {
         panda141.code = 616
         panda141.duration = 172
         panda141.period = PeriodType.GROUP.ordinal
-        panda141.isStar = false
+        panda141.star = false
         panda141.title = "熊猫是为什么稀有？“拯救”大熊猫福双"
         panda141.releaseTime = "2022-01-08 12:35:13"
         panda141.originalUrl = "https://www.bilibili.com/video/BV1eu41127ed"
@@ -2388,7 +2388,7 @@ object PetGroupPandaData {
         panda142.code = 617
         panda142.duration = 62
         panda142.period = PeriodType.GROUP.ordinal
-        panda142.isStar = false
+        panda142.star = false
         panda142.title = "[和花]这里就是为花花量身打造的"
         panda142.releaseTime = "2022-01-11 22:00:36"
         panda142.originalUrl = "https://www.bilibili.com/video/BV1tF411v7Kz"
@@ -2405,7 +2405,7 @@ object PetGroupPandaData {
         panda143.code = 618
         panda143.duration = 142
         panda143.period = PeriodType.GROUP.ordinal
-        panda143.isStar = true
+        panda143.star = true
         panda143.title = "【大熊猫】超震撼--和花爬上超高树！全过程 。励志"
         panda143.releaseTime = "2022-01-11 22:11:20"
         panda143.originalUrl = "https://www.bilibili.com/video/BV1C3411e7yo"
@@ -2422,7 +2422,7 @@ object PetGroupPandaData {
         panda144.code = 619
         panda144.duration = 154
         panda144.period = PeriodType.GROUP.ordinal
-        panda144.isStar = false
+        panda144.star = false
         panda144.title = "【大熊猫和花】把四肢吃掉，变成一个汤圆"
         panda144.releaseTime = "2021-12-20 09:45:13"
         panda144.originalUrl = "https://www.bilibili.com/video/BV1g3411x7hB"
@@ -2439,7 +2439,7 @@ object PetGroupPandaData {
         panda145.code = 620
         panda145.duration = 175
         panda145.period = PeriodType.GROUP.ordinal
-        panda145.isStar = true
+        panda145.star = true
         panda145.title = "【绩笑】你的头那么重，别靠我身上啊啊啊啊啊啊！"
         panda145.releaseTime = "2021-06-18 13:30:16"
         panda145.originalUrl = "https://www.bilibili.com/video/BV14o4y1k7Zt"
@@ -2456,7 +2456,7 @@ object PetGroupPandaData {
         panda146.code = 621
         panda146.duration = 147
         panda146.period = PeriodType.GROUP.ordinal
-        panda146.isStar = true
+        panda146.star = true
         panda146.title = "第一次见证和花爬高高！热泪盈眶了！【大熊猫和花】"
         panda146.releaseTime = "2022-01-03 01:06:23"
         panda146.originalUrl = "https://www.bilibili.com/video/BV19D4y1F79M"
@@ -2473,7 +2473,7 @@ object PetGroupPandaData {
         panda147.code = 622
         panda147.duration = 166
         panda147.period = PeriodType.GROUP.ordinal
-        panda147.isStar = false
+        panda147.star = false
         panda147.title = "和花生胖气，艾玖全程懵！最后谁才是底层熊??【大熊猫和花】"
         panda147.releaseTime = "2022-01-03 12:04:58"
         panda147.originalUrl = "https://www.bilibili.com/video/BV1aL4y1t7eN"
@@ -2490,7 +2490,7 @@ object PetGroupPandaData {
         panda148.code = 623
         panda148.duration = 69
         panda148.period = PeriodType.GROUP.ordinal
-        panda148.isStar = true
+        panda148.star = true
         panda148.title = "12.31花叶搬家前的菜菜，等花来！【大熊猫润玥】"
         panda148.releaseTime = "2022-01-04 17:53:58"
         panda148.originalUrl = "https://www.bilibili.com/video/BV1dq4y1C7F2"
@@ -2507,7 +2507,7 @@ object PetGroupPandaData {
         panda149.code = 624
         panda149.duration = 72
         panda149.period = PeriodType.GROUP.ordinal
-        panda149.isStar = true
+        panda149.star = true
         panda149.title = "和花亲自演示什么叫滚滚，萌萌哒滚滚！【大熊猫和花】"
         panda149.releaseTime = "2022-01-08 14:39:05"
         panda149.originalUrl = "https://www.bilibili.com/video/BV1b44y1571j"
@@ -2524,7 +2524,7 @@ object PetGroupPandaData {
         panda150.code = 625
         panda150.duration = 67
         panda150.period = PeriodType.GROUP.ordinal
-        panda150.isStar = true
+        panda150.star = true
         panda150.title = "和花倒栽葱，暖心菜菜姐速来救驾！【大熊猫和花 润玥】"
         panda150.releaseTime = "2022-01-09 23:00:22"
         panda150.originalUrl = "https://www.bilibili.com/video/BV1F3411v7Gv"
@@ -2541,7 +2541,7 @@ object PetGroupPandaData {
         panda151.code = 626
         panda151.duration = 226
         panda151.period = PeriodType.GROUP.ordinal
-        panda151.isStar = true
+        panda151.star = true
         panda151.title = "和花的回家大戏：花花，我怀疑你在遛爷爷和骗抱抱"
         panda151.releaseTime = "2022-01-05 23:00:13"
         panda151.originalUrl = "https://www.bilibili.com/video/BV1K34y167B4"
@@ -2558,7 +2558,7 @@ object PetGroupPandaData {
         panda152.code = 627
         panda152.duration = 62
         panda152.period = PeriodType.GROUP.ordinal
-        panda152.isStar = true
+        panda152.star = true
         panda152.title = "【大熊猫和花】小时候卡头，长大了卡背，花花你真的决定走谐星路线吗"
         panda152.releaseTime = "2022-01-06 23:00:09"
         panda152.originalUrl = "https://www.bilibili.com/video/BV15u411U7Ux"
@@ -2575,7 +2575,7 @@ object PetGroupPandaData {
         panda153.code = 628
         panda153.duration = 60
         panda153.period = PeriodType.GROUP.ordinal
-        panda153.isStar = true
+        panda153.star = true
         panda153.title = "【大熊猫和花】伸懒腰的花花，也太可爱了吧"
         panda153.releaseTime = "2022-01-10 23:00:09"
         panda153.originalUrl = "https://www.bilibili.com/video/BV1SL411V7pM"
@@ -2592,7 +2592,7 @@ object PetGroupPandaData {
         panda154.code = 629
         panda154.duration = 147
         panda154.period = PeriodType.GROUP.ordinal
-        panda154.isStar = false
+        panda154.star = false
         panda154.title = "火花（花花）下班实录，艾灸小吃醋啦"
         panda154.releaseTime = "2022-01-09 12:35:12"
         panda154.originalUrl = "https://www.bilibili.com/video/BV1sr4y1v7Bx"
@@ -2609,7 +2609,7 @@ object PetGroupPandaData {
         panda155.code = 630
         panda155.duration = 101
         panda155.period = PeriodType.GROUP.ordinal
-        panda155.isStar = false
+        panda155.star = false
         panda155.title = "【大熊猫和花】和花憋了一天，终于有机会胖揍小伙伴了"
         panda155.releaseTime = "2022-01-10 22:57:37"
         panda155.originalUrl = "https://www.bilibili.com/video/BV18S4y1j7Fa"
@@ -2626,7 +2626,7 @@ object PetGroupPandaData {
         panda156.code = 631
         panda156.duration = 83
         panda156.period = PeriodType.GROUP.ordinal
-        panda156.isStar = true
+        panda156.star = true
         panda156.title = "fa主任：你的小可爱滚过来了，你的小可爱又滚走了。【大熊猫和花】"
         panda156.releaseTime = "2022-01-10 22:14:29"
         panda156.originalUrl = "https://www.bilibili.com/video/BV19S4y1Z7KM"
@@ -2643,7 +2643,7 @@ object PetGroupPandaData {
         panda157.code = 632
         panda157.duration = 47
         panda157.period = PeriodType.GROUP.ordinal
-        panda157.isStar = false
+        panda157.star = false
         panda157.title = "大熊猫和花-韭菜花三姐妹蹲守小卖部！"
         panda157.releaseTime = "2022-01-10 20:32:49"
         panda157.originalUrl = "https://www.bilibili.com/video/BV1hL4y1b7Aq"
@@ -2660,7 +2660,7 @@ object PetGroupPandaData {
         panda158.code = 633
         panda158.duration = 42
         panda158.period = PeriodType.GROUP.ordinal
-        panda158.isStar = true
+        panda158.star = true
         panda158.title = "【大熊猫和花】本来不想笑的，但是和花你太搞笑了"
         panda158.releaseTime = "2022-01-10 10:15:07"
         panda158.originalUrl = "https://www.bilibili.com/video/BV1gP4y1J7gu"
@@ -2677,7 +2677,7 @@ object PetGroupPandaData {
         panda159.code = 634
         panda159.duration = 92
         panda159.period = PeriodType.GROUP.ordinal
-        panda159.isStar = true
+        panda159.star = true
         panda159.title = "【大熊猫润玥】爪爪的史诗级打包"
         panda159.releaseTime = "2021-12-16 00:54:25"
         panda159.originalUrl = "https://www.bilibili.com/video/BV11P4y1n7ud"
@@ -2694,7 +2694,7 @@ object PetGroupPandaData {
         panda160.code = 635
         panda160.duration = 116
         panda160.period = PeriodType.GROUP.ordinal
-        panda160.isStar = false
+        panda160.star = false
         panda160.title = "绩笑成风虐树"
         panda160.releaseTime = "2022-01-08 14:58:49"
         panda160.originalUrl = "https://www.bilibili.com/video/BV1Q34y1q7Tt"
@@ -2711,7 +2711,7 @@ object PetGroupPandaData {
         panda161.code = 636
         panda161.duration = 97
         panda161.period = PeriodType.GROUP.ordinal
-        panda161.isStar = true
+        panda161.star = true
         panda161.title = "穿行于树林间的小精灵>>>画风突变！【大熊猫和花 和叶】"
         panda161.releaseTime = "2022-01-10 13:14:30"
         panda161.originalUrl = "https://www.bilibili.com/video/BV1ym4y1D77s"
@@ -2728,7 +2728,7 @@ object PetGroupPandaData {
         panda162.code = 637
         panda162.duration = 738
         panda162.period = PeriodType.GROUP.ordinal
-        panda162.isStar = false
+        panda162.star = false
         panda162.title = "和叶弟弟欺负姐姐和花"
         panda162.releaseTime = "2021-12-20 04:45:32"
         panda162.originalUrl = "https://www.bilibili.com/video/BV1pb4y1q7Kh"
@@ -2745,7 +2745,7 @@ object PetGroupPandaData {
         panda163.code = 638
         panda163.duration = 139
         panda163.period = PeriodType.GROUP.ordinal
-        panda163.isStar = true
+        panda163.star = true
         panda163.title = "肉肉：就没见过这么神烦的熊猫"
         panda163.releaseTime = "2021-11-06 13:30:11"
         panda163.originalUrl = "https://www.bilibili.com/video/BV1qv411T73h"
@@ -2762,7 +2762,7 @@ object PetGroupPandaData {
         panda164.code = 639
         panda164.duration = 55
         panda164.period = PeriodType.GROUP.ordinal
-        panda164.isStar = true
+        panda164.star = true
         panda164.title = "大熊猫肉肉头套被踩变松狮"
         panda164.releaseTime = "2019-09-02 19:05:10"
         panda164.originalUrl = "https://www.bilibili.com/video/BV1H441117gq"
@@ -2779,7 +2779,7 @@ object PetGroupPandaData {
         panda165.code = 640
         panda165.duration = 143
         panda165.period = PeriodType.GROUP.ordinal
-        panda165.isStar = true
+        panda165.star = true
         panda165.title = "【大熊猫乔包包】长得这么甜美可爱，竟然是个男孩纸呀"
         panda165.releaseTime = "2020-11-13 22:21:40"
         panda165.originalUrl = "https://www.bilibili.com/video/BV1or4y1F7xU"
@@ -2796,7 +2796,7 @@ object PetGroupPandaData {
         panda166.code = 641
         panda166.duration = 125
         panda166.period = PeriodType.GROUP.ordinal
-        panda166.isStar = true
+        panda166.star = true
         panda166.title = "【大熊猫乔包包&乔兜兜】大脸兄弟，脸一个比一个大，萌感十足"
         panda166.releaseTime = "2020-11-27 01:35:04"
         panda166.originalUrl = "https://www.bilibili.com/video/BV1At4y1Y7sE"
@@ -2813,7 +2813,7 @@ object PetGroupPandaData {
         panda167.code = 642
         panda167.duration = 154
         panda167.period = PeriodType.GROUP.ordinal
-        panda167.isStar = true
+        panda167.star = true
         panda167.title = "水沟小公主 和花 从哪儿掉下去，就在哪儿歇会儿吧，还能找到小玩具自娱自乐"
         panda167.releaseTime = "2021-12-15 12:35:37"
         panda167.originalUrl = "https://www.bilibili.com/video/BV1oa411r7b9"
@@ -2830,7 +2830,7 @@ object PetGroupPandaData {
         panda168.code = 643
         panda168.duration = 63
         panda168.period = PeriodType.GROUP.ordinal
-        panda168.isStar = false
+        panda168.star = false
         panda168.title = "润玥：我只想好好吃个竹子，成和花你别搞我"
         panda168.releaseTime = "2021-11-19 22:32:15"
         panda168.originalUrl = "https://www.bilibili.com/video/BV1EL411M7TX"
@@ -2847,7 +2847,7 @@ object PetGroupPandaData {
         panda169.code = 644
         panda169.duration = 36
         panda169.period = PeriodType.GROUP.ordinal
-        panda169.isStar = true
+        panda169.star = true
         panda169.title = "【大熊猫和花】我是只倔强的熊，怎么喊我都不理"
         panda169.releaseTime = "2022-01-09 20:35:50"
         panda169.originalUrl = "https://www.bilibili.com/video/BV1zm4y1D7Pz"
@@ -2864,7 +2864,7 @@ object PetGroupPandaData {
         panda170.code = 645
         panda170.duration = 132
         panda170.period = PeriodType.GROUP.ordinal
-        panda170.isStar = false
+        panda170.star = false
         panda170.title = "进击吧，我的滚滚"
         panda170.releaseTime = "2017-06-10 19:43:42"
         panda170.originalUrl = "https://www.bilibili.com/video/BV1Ax411Y7fY"
@@ -2881,7 +2881,7 @@ object PetGroupPandaData {
         panda171.code = 646
         panda171.duration = 27
         panda171.period = PeriodType.GROUP.ordinal
-        panda171.isStar = false
+        panda171.star = false
         panda171.title = "对不起我胆子太小，下次打喷嚏能提前说声不？"
         panda171.releaseTime = "2017-04-17 18:49:27"
         panda171.originalUrl = "https://www.bilibili.com/video/BV18x411D7H4"
@@ -2898,7 +2898,7 @@ object PetGroupPandaData {
         panda172.code = 647
         panda172.duration = 210
         panda172.period = PeriodType.GROUP.ordinal
-        panda172.isStar = true
+        panda172.star = true
         panda172.title = "为了实现菜总的伟大计划，和花甘做垫脚熊！【大熊猫和花 润玥】"
         panda172.releaseTime = "2022-01-08 00:12:01"
         panda172.originalUrl = "https://www.bilibili.com/video/BV1kY411a7fh"
@@ -2915,7 +2915,7 @@ object PetGroupPandaData {
         panda173.code = 648
         panda173.duration = 65
         panda173.period = PeriodType.GROUP.ordinal
-        panda173.isStar = true
+        panda173.star = true
         panda173.title = "润玥：麻麻告诉过窝，要照顾好和花妹妹！"
         panda173.releaseTime = "2022-01-02 17:35:24"
         panda173.originalUrl = "https://www.bilibili.com/video/BV1iT4y1274S"
@@ -2932,7 +2932,7 @@ object PetGroupPandaData {
         panda174.code = 649
         panda174.duration = 40
         panda174.period = PeriodType.GROUP.ordinal
-        panda174.isStar = true
+        panda174.star = true
         panda174.title = "梅兰肉肉蹭架蹭的很开心"
         panda174.releaseTime = "2018-09-19 12:11:04"
         panda174.originalUrl = "https://www.bilibili.com/video/BV1rW41167HS"
@@ -2949,7 +2949,7 @@ object PetGroupPandaData {
         panda175.code = 1114
         panda175.duration = 34
         panda175.period = PeriodType.GROUP.ordinal
-        panda175.isStar = false
+        panda175.star = false
         panda175.title = "超会营业的兜兜子，c位预定~耿达熊猫幼儿园"
         panda175.releaseTime = "2022-01-12 23:00:18"
         panda175.originalUrl = "https://www.bilibili.com/video/BV1tT4y1m7w2"
@@ -2966,7 +2966,7 @@ object PetGroupPandaData {
         panda176.code = 1115
         panda176.duration = 11
         panda176.period = PeriodType.GROUP.ordinal
-        panda176.isStar = true
+        panda176.star = true
         panda176.title = "生龙活虎的场面，总有一只熊猫与众不同"
         panda176.releaseTime = "2022-01-30 12:35:00"
         panda176.originalUrl = "https://www.bilibili.com/video/BV1Ba41117Je"
@@ -2983,7 +2983,7 @@ object PetGroupPandaData {
         panda177.code = 1116
         panda177.duration = 393
         panda177.period = PeriodType.GROUP.ordinal
-        panda177.isStar = false
+        panda177.star = false
         panda177.title = "【大熊猫和花】20220207 花花再一次征服了大树枝"
         panda177.releaseTime = "2022-02-08 11:42:08"
         panda177.originalUrl = "https://www.bilibili.com/video/BV1ET4y1C7LL"
@@ -3000,7 +3000,7 @@ object PetGroupPandaData {
         panda178.code = 1117
         panda178.duration = 193
         panda178.period = PeriodType.GROUP.ordinal
-        panda178.isStar = true
+        panda178.star = true
         panda178.title = "【和花】冰滚滚不是冰墩墩"
         panda178.releaseTime = "2022-02-04 11:00:17"
         panda178.originalUrl = "https://www.bilibili.com/video/BV1sr4y1Y7UA"
@@ -3017,7 +3017,7 @@ object PetGroupPandaData {
         panda179.code = 1118
         panda179.duration = 48
         panda179.period = PeriodType.GROUP.ordinal
-        panda179.isStar = true
+        panda179.star = true
         panda179.title = "【大熊猫和花】花花是个好姐姐，主动给弟弟当垫jio石"
         panda179.releaseTime = "2022-01-25 22:00:08"
         panda179.originalUrl = "https://www.bilibili.com/video/BV1T3411Y7rQ"
@@ -3034,7 +3034,7 @@ object PetGroupPandaData {
         panda180.code = 1119
         panda180.duration = 30
         panda180.period = PeriodType.GROUP.ordinal
-        panda180.isStar = true
+        panda180.star = true
         panda180.title = "滚滚兄妹🐼在雪山喝冰镇盆盆奶"
         panda180.releaseTime = "2021-10-08 14:06:23"
         panda180.originalUrl = "https://www.bilibili.com/video/BV1bb4y1a7n5"
@@ -3051,7 +3051,7 @@ object PetGroupPandaData {
         panda181.code = 1120
         panda181.duration = 35
         panda181.period = PeriodType.GROUP.ordinal
-        panda181.isStar = true
+        panda181.star = true
         panda181.title = "太古里3d熊猫"
         panda181.releaseTime = "2022-01-30 20:21:26"
         panda181.originalUrl = "https://www.bilibili.com/video/BV1zL4y1W7xw"
@@ -3068,7 +3068,7 @@ object PetGroupPandaData {
         panda182.code = 1121
         panda182.duration = 83
         panda182.period = PeriodType.GROUP.ordinal
-        panda182.isStar = true
+        panda182.star = true
         panda182.title = "菜总威武，奶爸撒腿就跑～！【大熊猫润玥】"
         panda182.releaseTime = "2022-02-06 00:22:17"
         panda182.originalUrl = "https://www.bilibili.com/video/BV1bS4y1571P"
@@ -3085,7 +3085,7 @@ object PetGroupPandaData {
         panda183.code = 1122
         panda183.duration = 149
         panda183.period = PeriodType.GROUP.ordinal
-        panda183.isStar = false
+        panda183.star = false
         panda183.title = "基地熊第一次玩雪好开心！大熊猫绩笑被成风成浪rua得嗷嗷叫 220204"
         panda183.releaseTime = "2022-02-04 11:45:14"
         panda183.originalUrl = "https://www.bilibili.com/video/BV17b4y177Ni"
@@ -3102,7 +3102,7 @@ object PetGroupPandaData {
         panda184.code = 1123
         panda184.duration = 23
         panda184.period = PeriodType.GROUP.ordinal
-        panda184.isStar = false
+        panda184.star = false
         panda184.title = "没有巨美姐姐在身边的成兰...成为青青妹的垫脚凳～"
         panda184.releaseTime = "2019-05-22 16:50:10"
         panda184.originalUrl = "https://www.bilibili.com/video/BV1r44115781"
@@ -3119,7 +3119,7 @@ object PetGroupPandaData {
         panda185.code = 1124
         panda185.duration = 38
         panda185.period = PeriodType.GROUP.ordinal
-        panda185.isStar = true
+        panda185.star = true
         panda185.title = "乔兜兜，你怎么长的这么甜呀"
         panda185.releaseTime = "2022-02-06 08:58:05"
         panda185.originalUrl = "https://www.bilibili.com/video/BV1GS4y117Uv"
@@ -3136,7 +3136,7 @@ object PetGroupPandaData {
         panda186.code = 1125
         panda186.duration = 45
         panda186.period = PeriodType.GROUP.ordinal
-        panda186.isStar = true
+        panda186.star = true
         panda186.title = "[和花]估计花花在思考下班的时候怎么骗谭爷爷的抱抱"
         panda186.releaseTime = "2022-01-13 21:42:02"
         panda186.originalUrl = "https://www.bilibili.com/video/BV1QF411H7BB"
@@ -3153,7 +3153,7 @@ object PetGroupPandaData {
         panda187.code = 1126
         panda187.duration = 41
         panda187.period = PeriodType.GROUP.ordinal
-        panda187.isStar = true
+        panda187.star = true
         panda187.title = "【大熊猫和花】fafa的起床气有多重？"
         panda187.releaseTime = "2022-01-19 22:00:08"
         panda187.originalUrl = "https://www.bilibili.com/video/BV18Z4y1f7bm"
@@ -3170,7 +3170,7 @@ object PetGroupPandaData {
         panda188.code = 1127
         panda188.duration = 11
         panda188.period = PeriodType.GROUP.ordinal
-        panda188.isStar = true
+        panda188.star = true
         panda188.title = "【大熊猫和花】冰墩墩本墩"
         panda188.releaseTime = "2022-02-06 21:45:01"
         panda188.originalUrl = "https://www.bilibili.com/video/BV19R4y1j74q"
@@ -3187,7 +3187,7 @@ object PetGroupPandaData {
         panda189.code = 1128
         panda189.duration = 89
         panda189.period = PeriodType.GROUP.ordinal
-        panda189.isStar = true
+        panda189.star = true
         panda189.title = "和花花又来萌洗你们啦！困了也要营业！【大熊猫和花】"
         panda189.releaseTime = "2022-01-21 17:20:28"
         panda189.originalUrl = "https://www.bilibili.com/video/BV18u411m791"
@@ -3204,7 +3204,7 @@ object PetGroupPandaData {
         panda190.code = 1129
         panda190.duration = 51
         panda190.period = PeriodType.GROUP.ordinal
-        panda190.isStar = true
+        panda190.star = true
         panda190.title = "你俩怎么疑神疑鬼的？国宝的第六感，你不懂"
         panda190.releaseTime = "2019-08-10 19:00:55"
         panda190.originalUrl = "https://www.bilibili.com/video/BV1f4411Q7y2"
@@ -3221,7 +3221,7 @@ object PetGroupPandaData {
         panda191.code = 1130
         panda191.duration = 145
         panda191.period = PeriodType.GROUP.ordinal
-        panda191.isStar = true
+        panda191.star = true
         panda191.title = "宠粉女明星和花亮相，快门声彩虹pi不绝于耳～【大熊猫和花】"
         panda191.releaseTime = "2022-02-05 00:25:12"
         panda191.originalUrl = "https://www.bilibili.com/video/BV1aF411J7E6"
@@ -3238,7 +3238,7 @@ object PetGroupPandaData {
         panda192.code = 1230
         panda192.duration = 76
         panda192.period = PeriodType.GROUP.ordinal
-        panda192.isStar = false
+        panda192.star = false
         panda192.title = "熊猫画中游！国画+冬奥原来这么惊艳"
         panda192.releaseTime = "2022-02-06 18:50:06"
         panda192.originalUrl = "https://www.bilibili.com/video/BV1gr4y1h7Yq"
@@ -3254,7 +3254,7 @@ object PetGroupPandaData {
         panda193.code = 1231
         panda193.duration = 134
         panda193.period = PeriodType.GROUP.ordinal
-        panda193.isStar = false
+        panda193.star = false
         panda193.title = "和花：为了得到爷爷的抱抱，我可是煞费苦心😎"
         panda193.releaseTime = "2022-01-05 18:12:32"
         panda193.originalUrl = "https://www.bilibili.com/video/BV13F411v7fk"
@@ -3270,7 +3270,7 @@ object PetGroupPandaData {
         panda194.code = 1232
         panda194.duration = 52
         panda194.period = PeriodType.GROUP.ordinal
-        panda194.isStar = false
+        panda194.star = false
         panda194.title = "花花祝大家[冬至快乐]！都吃好喝好了吗?晚安！(≧∇≦)/【大熊猫和花】"
         panda194.releaseTime = "2021-12-21 23:11:14"
         panda194.originalUrl = "https://www.bilibili.com/video/BV11T4y1f7e8"
@@ -3286,7 +3286,7 @@ object PetGroupPandaData {
         panda195.code = 1233
         panda195.duration = 82
         panda195.period = PeriodType.GROUP.ordinal
-        panda195.isStar = false
+        panda195.star = false
         panda195.title = "假吃播主和花VS真吃学霸润玥 哈哈 爪爪吃饭好幸福的样子，花花你要加油呀！"
         panda195.releaseTime = "2021-12-13 11:32:01"
         panda195.originalUrl = "https://www.bilibili.com/video/BV1ai4y1d7pd"
@@ -3302,7 +3302,7 @@ object PetGroupPandaData {
         panda196.code = 1234
         panda196.duration = 35
         panda196.period = PeriodType.GROUP.ordinal
-        panda196.isStar = false
+        panda196.star = false
         panda196.title = "大熊猫和花-熊掌的味道，熊知道"
         panda196.releaseTime = "2022-01-06 19:01:34"
         panda196.originalUrl = "https://www.bilibili.com/video/BV1rb4y1n7Ld"
@@ -3318,7 +3318,7 @@ object PetGroupPandaData {
         panda197.code = 1235
         panda197.duration = 103
         panda197.period = PeriodType.GROUP.ordinal
-        panda197.isStar = false
+        panda197.star = false
         panda197.title = "黑熊园分别前的钓猫，谭爷爷熟悉的声音又响起"
         panda197.releaseTime = "2021-12-19 23:00:15"
         panda197.originalUrl = "https://www.bilibili.com/video/BV1ci4y1o7bv"
@@ -3334,7 +3334,7 @@ object PetGroupPandaData {
         panda198.code = 1236
         panda198.duration = 34
         panda198.period = PeriodType.GROUP.ordinal
-        panda198.isStar = false
+        panda198.star = false
         panda198.title = "大熊猫和花-熊猫蛋是怎么孵出来的"
         panda198.releaseTime = "2021-12-30 17:54:19"
         panda198.originalUrl = "https://www.bilibili.com/video/BV1fu411S7oy"
@@ -3350,7 +3350,7 @@ object PetGroupPandaData {
         panda199.code = 1237
         panda199.duration = 66
         panda199.period = PeriodType.GROUP.ordinal
-        panda199.isStar = false
+        panda199.star = false
         panda199.title = "萌兽 ✿✿ 【大熊猫和花】"
         panda199.releaseTime = "2022-01-11 13:04:19"
         panda199.originalUrl = "https://www.bilibili.com/video/BV1dS4y1Z7iW"
@@ -3366,7 +3366,7 @@ object PetGroupPandaData {
         panda200.code = 1238
         panda200.duration = 147
         panda200.period = PeriodType.GROUP.ordinal
-        panda200.isStar = false
+        panda200.star = false
         panda200.title =
             "【20220210 收猫】 润玥带着花花去了小卖部，路上突然杀出了一只成和叶，然后菜叶时不时就一起滚成了一只球，花花从员工通道出来看热闹，和姐姐迪迪一起等下班。"
         panda200.releaseTime = "2022-02-11 00:15:34"
@@ -3383,7 +3383,7 @@ object PetGroupPandaData {
         panda201.code = 1239
         panda201.duration = 133
         panda201.period = PeriodType.GROUP.ordinal
-        panda201.isStar = false
+        panda201.star = false
         panda201.title = "【大熊猫和花 润玥】菜花姐妹携小树枝祝亲妈新年快乐"
         panda201.releaseTime = "2022-01-31 19:56:13"
         panda201.originalUrl = "https://www.bilibili.com/video/BV1xm4y1o7ry"
@@ -3399,7 +3399,7 @@ object PetGroupPandaData {
         panda202.code = 1240
         panda202.duration = 93
         panda202.period = PeriodType.GROUP.ordinal
-        panda202.isStar = false
+        panda202.star = false
         panda202.title = "当你的小可爱突然坐到前台来表演“吃竹叽”。。【大熊猫和花】"
         panda202.releaseTime = "2022-02-10 21:32:08"
         panda202.originalUrl = "https://www.bilibili.com/video/BV1U3411j7KK"
@@ -3415,7 +3415,7 @@ object PetGroupPandaData {
         panda203.code = 1241
         panda203.duration = 106
         panda203.period = PeriodType.GROUP.ordinal
-        panda203.isStar = false
+        panda203.star = false
         panda203.title = "新年了，需要来点热闹的！这个版本的《祝福你》真是句句高能！"
         panda203.releaseTime = "2022-02-01 11:00:00"
         panda203.originalUrl = "https://www.bilibili.com/video/BV153411E7NM"
@@ -3431,7 +3431,7 @@ object PetGroupPandaData {
         panda204.code = 1242
         panda204.duration = 254
         panda204.period = PeriodType.GROUP.ordinal
-        panda204.isStar = false
+        panda204.star = false
         panda204.title = "幼年4嘟的阳光下午茶，每一帧都有戏！【大熊猫和花.和叶.润玥.艾玖】"
         panda204.releaseTime = "2022-02-10 20:04:17"
         panda204.originalUrl = "https://www.bilibili.com/video/BV14m4y1Z7xS"
@@ -3447,7 +3447,7 @@ object PetGroupPandaData {
         panda205.code = 1243
         panda205.duration = 124
         panda205.period = PeriodType.GROUP.ordinal
-        panda205.isStar = false
+        panda205.star = false
         panda205.title = "大熊猫多瓶瓶奶少，这是我见过最手忙脚乱的年夜饭现场"
         panda205.releaseTime = "2022-01-31 19:00:06"
         panda205.originalUrl = "https://www.bilibili.com/video/BV1fa41117CW"
@@ -3463,7 +3463,7 @@ object PetGroupPandaData {
         panda206.code = 1244
         panda206.duration = 81
         panda206.period = PeriodType.GROUP.ordinal
-        panda206.isStar = false
+        panda206.star = false
         panda206.title = "四川人民抱着今年刚分到的大熊猫，露出了满足的笑容"
         panda206.releaseTime = "2022-01-25 20:00:14"
         panda206.originalUrl = "https://www.bilibili.com/video/BV13S4y1L7dr"
@@ -3479,7 +3479,7 @@ object PetGroupPandaData {
         panda207.code = 1245
         panda207.duration = 195
         panda207.period = PeriodType.GROUP.ordinal
-        panda207.isStar = false
+        panda207.star = false
         panda207.title = "和花是永动熊，姐姐睡觉，反正她不睡。"
         panda207.releaseTime = "2022-02-07 14:28:32"
         panda207.originalUrl = "https://www.bilibili.com/video/BV1Tb4y177go"
@@ -3495,7 +3495,7 @@ object PetGroupPandaData {
         panda208.code = 1328
         panda208.duration = 74
         panda208.period = PeriodType.GROUP.ordinal
-        panda208.isStar = false
+        panda208.star = false
         panda208.title = "你在干嘛呀？大熊猫和花：我在躲猫猫哦！"
         panda208.releaseTime = "2022-02-12 18:05:00"
         panda208.originalUrl = "https://www.bilibili.com/video/BV1NF411n7pF"
@@ -3511,7 +3511,7 @@ object PetGroupPandaData {
         panda209.code = 1329
         panda209.duration = 62
         panda209.period = PeriodType.GROUP.ordinal
-        panda209.isStar = false
+        panda209.star = false
         panda209.title = "艾玖：花花，大竹片给姐姐帮你啃。和花：我呆了。。。【大熊猫】"
         panda209.releaseTime = "2022-02-12 18:53:19"
         panda209.originalUrl = "https://www.bilibili.com/video/BV14m4y1Z7rv"
@@ -3527,7 +3527,7 @@ object PetGroupPandaData {
         panda210.code = 1330
         panda210.duration = 34
         panda210.period = PeriodType.GROUP.ordinal
-        panda210.isStar = false
+        panda210.star = false
         panda210.title = "【大熊猫】和花一字马跨栏在冬奥什么水平"
         panda210.releaseTime = "2022-02-11 21:35:19"
         panda210.originalUrl = "https://www.bilibili.com/video/BV1su41197xs"
@@ -3543,7 +3543,7 @@ object PetGroupPandaData {
         panda211.code = 1331
         panda211.duration = 81
         panda211.period = PeriodType.GROUP.ordinal
-        panda211.isStar = false
+        panda211.star = false
         panda211.title = "和叶，这还没开始钓猫，就自个儿练上了?！【大熊猫和叶】"
         panda211.releaseTime = "2022-02-12 10:50:26"
         panda211.originalUrl = "https://www.bilibili.com/video/BV1vL4y137aC"
@@ -3559,7 +3559,7 @@ object PetGroupPandaData {
         panda212.code = 1332
         panda212.duration = 89
         panda212.period = PeriodType.GROUP.ordinal
-        panda212.isStar = true
+        panda212.star = true
         panda212.title = "和叶对和花撒娇"
         panda212.releaseTime = "2022-01-02 14:55:33"
         panda212.originalUrl = "https://www.bilibili.com/video/BV1Wb4y1e7k4"
@@ -3575,7 +3575,7 @@ object PetGroupPandaData {
         panda213.code = 1333
         panda213.duration = 81
         panda213.period = PeriodType.GROUP.ordinal
-        panda213.isStar = false
+        panda213.star = false
         panda213.title = "和叶追奶爸抱大腿"
         panda213.releaseTime = "2021-12-25 14:20:27"
         panda213.originalUrl = "https://www.bilibili.com/video/BV1cR4y1s7cV"
@@ -3591,7 +3591,7 @@ object PetGroupPandaData {
         panda214.code = 1334
         panda214.duration = 180
         panda214.period = PeriodType.GROUP.ordinal
-        panda214.isStar = false
+        panda214.star = false
         panda214.title = "发箍奶爸收和花和叶，姐弟俩一起耍耐皮"
         panda214.releaseTime = "2021-12-21 21:05:47"
         panda214.originalUrl = "https://www.bilibili.com/video/BV1VY411p7YU"
@@ -3607,7 +3607,7 @@ object PetGroupPandaData {
         panda215.code = 1335
         panda215.duration = 54
         panda215.period = PeriodType.GROUP.ordinal
-        panda215.isStar = false
+        panda215.star = false
         panda215.title = "[大熊猫和花和叶]2021年的最后一天，我们搬家啦"
         panda215.releaseTime = "2021-12-31 21:49:45"
         panda215.originalUrl = "https://www.bilibili.com/video/BV18T4y127cc"
@@ -3623,7 +3623,7 @@ object PetGroupPandaData {
         panda216.code = 1336
         panda216.duration = 81
         panda216.period = PeriodType.GROUP.ordinal
-        panda216.isStar = false
+        panda216.star = false
         panda216.title = "和叶：窝姐挑的竹竿儿，绝对好吃！【大熊猫和花】【大熊猫和叶】"
         panda216.releaseTime = "2021-12-17 13:37:39"
         panda216.originalUrl = "https://www.bilibili.com/video/BV19Q4y1a7YF"
@@ -3639,7 +3639,7 @@ object PetGroupPandaData {
         panda217.code = 1337
         panda217.duration = 24
         panda217.period = PeriodType.GROUP.ordinal
-        panda217.isStar = false
+        panda217.star = false
         panda217.title = "【大熊猫和花】11.20 我们是亲亲的姐弟，总会有一些心电感应！(*˘︶˘*).｡.:*♡"
         panda217.releaseTime = "2021-11-24 17:56:48"
         panda217.originalUrl = "https://www.bilibili.com/video/BV1vh41147Bj"
@@ -3655,7 +3655,7 @@ object PetGroupPandaData {
         panda218.code = 1338
         panda218.duration = 153
         panda218.period = PeriodType.GROUP.ordinal
-        panda218.isStar = false
+        panda218.star = false
         panda218.title = "【大熊猫和花】11.20 和叶，再来再来！！！"
         panda218.releaseTime = "2021-11-22 20:03:45"
         panda218.originalUrl = "https://www.bilibili.com/video/BV1544y1Y774"
@@ -3671,7 +3671,7 @@ object PetGroupPandaData {
         panda219.code = 1339
         panda219.duration = 78
         panda219.period = PeriodType.GROUP.ordinal
-        panda219.isStar = false
+        panda219.star = false
         panda219.title = "弟弟，我是不是全宇宙最腻害的姐姐。【大熊猫和花、和叶】"
         panda219.releaseTime = "2021-12-30 18:54:13"
         panda219.originalUrl = "https://www.bilibili.com/video/BV14Z4y1D7Ax"
@@ -3687,7 +3687,7 @@ object PetGroupPandaData {
         panda220.code = 1340
         panda220.duration = 64
         panda220.period = PeriodType.GROUP.ordinal
-        panda220.isStar = true
+        panda220.star = true
         panda220.title = "是顺利收猫的一天。【大熊猫和花、和叶】"
         panda220.releaseTime = "2021-12-19 20:26:20"
         panda220.originalUrl = "https://www.bilibili.com/video/BV1GQ4y1Y7Rd"
@@ -3703,7 +3703,7 @@ object PetGroupPandaData {
         panda221.code = 1341
         panda221.duration = 110
         panda221.period = PeriodType.GROUP.ordinal
-        panda221.isStar = false
+        panda221.star = false
         panda221.title = "和花：弟弟，你感动吗？和叶：我不敢（想）动！【大熊猫】"
         panda221.releaseTime = "2021-11-19 13:11:45"
         panda221.originalUrl = "https://www.bilibili.com/video/BV1Th41147JR"
@@ -3719,7 +3719,7 @@ object PetGroupPandaData {
         panda222.code = 1342
         panda222.duration = 45
         panda222.period = PeriodType.GROUP.ordinal
-        panda222.isStar = false
+        panda222.star = false
         panda222.title = "论女明星的自我修养。。被弟弟扑倒也不忘爬起来卖萌。【大熊猫和花、和叶】"
         panda222.releaseTime = "2021-11-04 17:25:19"
         panda222.originalUrl = "https://www.bilibili.com/video/BV1nQ4y1S7ji"
@@ -3735,7 +3735,7 @@ object PetGroupPandaData {
         panda223.code = 1343
         panda223.duration = 143
         panda223.period = PeriodType.GROUP.ordinal
-        panda223.isStar = true
+        panda223.star = true
         panda223.title = "一岁了，熊生顺遂，健康平安！～花叶生日会！【大熊猫和花、和叶】"
         panda223.releaseTime = "2021-07-04 18:05:14"
         panda223.originalUrl = "https://www.bilibili.com/video/BV1K54y1p7u9"
@@ -3751,7 +3751,7 @@ object PetGroupPandaData {
         panda224.code = 1344
         panda224.duration = 82
         panda224.period = PeriodType.GROUP.ordinal
-        panda224.isStar = false
+        panda224.star = false
         panda224.title = "您有一万吨柠檬，请查收。。花叶生日会【大熊猫和花、和叶】"
         panda224.releaseTime = "2021-07-05 18:04:04"
         panda224.originalUrl = "https://www.bilibili.com/video/BV1Zy4y1M7r7"
@@ -3767,7 +3767,7 @@ object PetGroupPandaData {
         panda225.code = 1345
         panda225.duration = 52
         panda225.period = PeriodType.GROUP.ordinal
-        panda225.isStar = false
+        panda225.star = false
         panda225.title = "叶子：姐，我教你倒栽葱。胖花：好，看我的。【大熊猫和花、和叶】"
         panda225.releaseTime = "2021-09-15 21:33:08"
         panda225.originalUrl = "https://www.bilibili.com/video/BV1RL411x7j2"
@@ -3783,7 +3783,7 @@ object PetGroupPandaData {
         panda226.code = 1346
         panda226.duration = 22
         panda226.period = PeriodType.GROUP.ordinal
-        panda226.isStar = false
+        panda226.star = false
         panda226.title = "认真玩倒立的和花被跑过来的小熊友吓出了狗叫声"
         panda226.releaseTime = "2021-12-22 16:38:35"
         panda226.originalUrl = "https://www.bilibili.com/video/BV1GZ4y1D7Xr"
@@ -3799,7 +3799,7 @@ object PetGroupPandaData {
         panda227.code = 1347
         panda227.duration = 106
         panda227.period = PeriodType.GROUP.ordinal
-        panda227.isStar = false
+        panda227.star = false
         panda227.title = "艾玖:活花，你不要过来呀！！我不带崽！(ー_ー)!!【大熊猫和花】【大熊猫艾玖】"
         panda227.releaseTime = "2021-12-19 09:30:00"
         panda227.originalUrl = "https://www.bilibili.com/video/BV1JQ4y1Y73F"
@@ -3815,7 +3815,7 @@ object PetGroupPandaData {
         panda228.code = 1348
         panda228.duration = 83
         panda228.period = PeriodType.GROUP.ordinal
-        panda228.isStar = false
+        panda228.star = false
         panda228.title = "爷爷：“火花，果赖，回来了”，花花：“爷爷喃？我要回去找爷爷。” ~1.3爷爷收和花【大熊猫】"
         panda228.releaseTime = "2022-01-03 19:38:10"
         panda228.originalUrl = "https://www.bilibili.com/video/BV1qL411V7VD"
@@ -3831,7 +3831,7 @@ object PetGroupPandaData {
         panda229.code = 1349
         panda229.duration = 62
         panda229.period = PeriodType.GROUP.ordinal
-        panda229.isStar = false
+        panda229.star = false
         panda229.title = "快来康康，小猪们跟着谭爷爷出门啦!"
         panda229.releaseTime = "2019-11-17 18:05:12"
         panda229.originalUrl = "https://www.bilibili.com/video/BV14J411U7de"
@@ -3847,7 +3847,7 @@ object PetGroupPandaData {
         panda230.code = 1350
         panda230.duration = 52
         panda230.period = PeriodType.GROUP.ordinal
-        panda230.isStar = false
+        panda230.star = false
         panda230.title = "花花：哪里跌倒就从哪里再战，还是不行那就换个目标【和花艾玖重阳金双】"
         panda230.releaseTime = "2021-08-10 15:56:44"
         panda230.originalUrl = "https://www.bilibili.com/video/BV1q3411r7Pe"
@@ -3863,7 +3863,7 @@ object PetGroupPandaData {
         panda231.code = 1351
         panda231.duration = 61
         panda231.period = PeriodType.GROUP.ordinal
-        panda231.isStar = false
+        panda231.star = false
         panda231.title = "有些岁月静好，是因为有最亲近的人相依相伴。【大熊猫和花、和叶】"
         panda231.releaseTime = "2022-01-06 23:10:39"
         panda231.originalUrl = "https://www.bilibili.com/video/BV1h44y1j74a"
@@ -3879,7 +3879,7 @@ object PetGroupPandaData {
         panda232.code = 1352
         panda232.duration = 184
         panda232.period = PeriodType.GROUP.ordinal
-        panda232.isStar = false
+        panda232.star = false
         panda232.title = "花花能有什么小心思呢"
         panda232.releaseTime = "2022-01-07 13:17:43"
         panda232.originalUrl = "https://www.bilibili.com/video/BV1ZR4y1u7qd"
@@ -3895,7 +3895,7 @@ object PetGroupPandaData {
         panda233.code = 1353
         panda233.duration = 52
         panda233.period = PeriodType.GROUP.ordinal
-        panda233.isStar = false
+        panda233.star = false
         panda233.title = "奶妈用苹果引玖菜花出兽舍。【大熊猫和花、艾玖、润玥】"
         panda233.releaseTime = "2021-12-10 16:29:34"
         panda233.originalUrl = "https://www.bilibili.com/video/BV1Ti4y1Z7q8"
@@ -3911,7 +3911,7 @@ object PetGroupPandaData {
         panda234.code = 1354
         panda234.duration = 122
         panda234.period = PeriodType.GROUP.ordinal
-        panda234.isStar = false
+        panda234.star = false
         panda234.title = "爷爷一直在喊“火花”，主任自顾自宠粉卖萌。【大熊猫和花】"
         panda234.releaseTime = "2022-01-05 18:58:39"
         panda234.originalUrl = "https://www.bilibili.com/video/BV1dr4y1m7PG"
@@ -3927,7 +3927,7 @@ object PetGroupPandaData {
         panda235.code = 1355
         panda235.duration = 54
         panda235.period = PeriodType.GROUP.ordinal
-        panda235.isStar = false
+        panda235.star = false
         panda235.title = "【和花】在小卖部门口挠耳朵的花花太可爱了"
         panda235.releaseTime = "2022-01-07 19:56:28"
         panda235.originalUrl = "https://www.bilibili.com/video/BV1QL411V71v"
@@ -3943,7 +3943,7 @@ object PetGroupPandaData {
         panda236.code = 1377
         panda236.duration = 34
         panda236.period = PeriodType.GROUP.ordinal
-        panda236.isStar = false
+        panda236.star = false
         panda236.title = "大熊猫和花-跟着爷爷有果果吃"
         panda236.releaseTime = "2022-02-13 18:03:34"
         panda236.originalUrl = "https://www.bilibili.com/video/BV1NR4y1L7Pw"
@@ -3959,7 +3959,7 @@ object PetGroupPandaData {
         panda237.code = 1378
         panda237.duration = 63
         panda237.period = PeriodType.GROUP.ordinal
-        panda237.isStar = false
+        panda237.star = false
         panda237.title = "和花的啃树吃草基地"
         panda237.releaseTime = "2022-02-13 17:07:42"
         panda237.originalUrl = "https://www.bilibili.com/video/BV1UY411V7MV"
@@ -3975,7 +3975,7 @@ object PetGroupPandaData {
         panda238.code = 1379
         panda238.duration = 9
         panda238.period = PeriodType.GROUP.ordinal
-        panda238.isStar = false
+        panda238.star = false
         panda238.title = "熊猫喜欢贴贴的原因找到了"
         panda238.releaseTime = "2022-02-13 12:35:18"
         panda238.originalUrl = "https://www.bilibili.com/video/BV1nY411L7Q5"
@@ -3991,7 +3991,7 @@ object PetGroupPandaData {
         panda239.code = 1380
         panda239.duration = 31
         panda239.period = PeriodType.GROUP.ordinal
-        panda239.isStar = false
+        panda239.star = false
         panda239.title = "冰墩墩和花花"
         panda239.releaseTime = "2022-02-10 11:19:25"
         panda239.originalUrl = "https://www.bilibili.com/video/BV14F411n7pj"
@@ -4007,7 +4007,7 @@ object PetGroupPandaData {
         panda240.code = 1381
         panda240.duration = 496
         panda240.period = PeriodType.GROUP.ordinal
-        panda240.isStar = false
+        panda240.star = false
         panda240.title = "【大熊猫和花 和叶 润玥】花花对着镜头，展示学习成果"
         panda240.releaseTime = "2022-01-20 16:15:33"
         panda240.originalUrl = "https://www.bilibili.com/video/BV13f4y1F7HK"

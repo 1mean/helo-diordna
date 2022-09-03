@@ -34,7 +34,7 @@ public class MusicTopAdapter(list: MutableList<VideoAndUser>) :
         title.text = video.title
 
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, video.code, false)
+            startVideoPlayActivity(context, video.code)
         }
     }
 }

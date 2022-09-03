@@ -130,7 +130,7 @@ public class PandasAdapter(private val list: MutableList<PetVideo>) :
             title.text = petVideo.title
 
             itemView.setOnClickListener {
-                startVideoPlayActivity(itemView.context, petVideo.code, false)
+                startVideoPlayActivity(itemView.context, petVideo.code)
             }
             deleteView.setOnClickListener {
 

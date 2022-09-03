@@ -19,17 +19,17 @@ public data class VideoData(
     @ColumnInfo
     var videoCode: Int = 0,//视频ID
     @ColumnInfo
-    var isLike: Boolean = false,//是否点赞
+    var like: Boolean = false,//是否点赞
     @ColumnInfo
-    var isHate: Boolean = false,//是否不喜欢
+    var hate: Boolean = false,//是否不喜欢
     @ColumnInfo
-    var isLove: Boolean = false,//是否喜欢
+    var love: Boolean = false,//是否喜欢
     @ColumnInfo
-    var isCollect: Boolean = false,//是否收藏
+    var collect: Boolean = false,//是否收藏
     @ColumnInfo
-    var isPay: Boolean = false,//是否投币
+    var pay: Boolean = false,//是否投币
     @ColumnInfo
-    var isLaterPlay: Boolean = false,//是否稍后再看
+    var laterPlay: Boolean = false,//是否稍后再看
     @ColumnInfo
     var loves: Int = 0,//喜欢数
     @ColumnInfo
@@ -49,7 +49,7 @@ public data class VideoData(
     @ColumnInfo
     var reservedInt: Int = 0,//预留int字段
     @ColumnInfo
-    var reservedString: String? = null,//预留string字段
+    var reservedString: String = "",//预留string字段
 
     @ColumnInfo
     var laterTime:Long = 0,//稍后再看添加的时间

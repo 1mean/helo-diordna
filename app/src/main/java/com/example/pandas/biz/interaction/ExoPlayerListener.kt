@@ -10,8 +10,8 @@ public interface ExoPlayerListener {
 
     /**
      * 对播放器显示的视图进行处理
-     *  - isVisible：显示/关闭
+     *  - hidePlayer：显示/关闭
      *  - curPos: 当前需要操作的item在adapter里的位置
      */
-    fun updatePlayerView(isVisible: Boolean, curPos: Int)
+    fun updatePlayerView(hidePlayer: Boolean, curPos: Int)
 }

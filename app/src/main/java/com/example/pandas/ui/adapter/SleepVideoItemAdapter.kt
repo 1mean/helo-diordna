@@ -29,7 +29,7 @@ class SleepVideoItemAdapter(list: MutableList<PetViewData>) :
         title.text = data.title
 
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, data.code, false)
+            startVideoPlayActivity(context, data.code)
         }
     }
 }

@@ -14,7 +14,7 @@ object ArtData {
         art1.fileName = "art_1"
         art1.code = 1978
         art1.duration = 77
-        art1.isStar = true
+        art1.star = true
         art1.title = "俄罗斯“祖国母亲在召唤”雕塑！雕塑底下是二战中战死的无数战士，顶上是怒吼着的祖国母亲，一手执剑，一手指向德国柏林的方向"
         art1.releaseTime = "2022-02-25 07:19:55"
         art1.originalUrl = "https://www.bilibili.com/video/BV1634y1r7kw"
@@ -28,7 +28,7 @@ object ArtData {
         art2.fileName = "art_2"
         art2.code = 1979
         art2.duration = 100
-        art2.isStar = true
+        art2.star = true
         art2.title =
             "2018_伏尔加格勒_祖国母亲在召唤_灯光秀_精彩剪辑  [2018_Volgograd_Motherland is calling_Light Show]"
         art2.releaseTime = "2020-03-29 15:12:25"
@@ -43,7 +43,7 @@ object ArtData {
         art3.fileName = "art_3"
         art3.code = 1980
         art3.duration = 20
-        art3.isStar = true
+        art3.star = true
         art3.title = "勒热夫战役纪念雕塑，牺牲的战士乘鹤归来"
         art3.releaseTime = "2021-12-11 20:24:46"
         art3.originalUrl = "https://www.bilibili.com/video/BV18r4y1D7k2"
@@ -57,7 +57,7 @@ object ArtData {
         art4.fileName = "art_4"
         art4.code = 1981
         art4.duration = 303
-        art4.isStar = true
+        art4.star = true
         art4.title = "勒热夫战役苏军士兵纪念碑"
         art4.releaseTime = "2020-07-04 19:21:57"
         art4.originalUrl = "https://www.bilibili.com/video/BV1tp4y1U72x"

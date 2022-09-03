@@ -90,9 +90,9 @@ fun VideoPlayingActivity.showTimeBar(timeBar: DefaultTimeBar?) {
 
     timeBar?.run {
         visibility = View.VISIBLE
-        setDuration(PlayerManager.instance.duration())
-        setBufferedPosition(PlayerManager.instance.bufferedPos())
-        setPosition(PlayerManager.instance.currentPosition())
+        setDuration(videoManager.getDuration())
+        setBufferedPosition(videoManager.bufferedPos())
+        setPosition(videoManager.getCurrentPos())
     }
 }
 
@@ -103,7 +103,7 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
     val videoData = video.videoData
 
     videoData?.let {
-        if (it.isLike) {
+        if (it.like) {
             binding.imgLike.setImageResource(R.mipmap.img_like_pressed)
         } else {
             binding.imgLike.setImageResource(R.mipmap.img_like_unpress)
@@ -113,13 +113,13 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
         } else {
             binding.txtVideoLike.text = "点赞"
         }
-        if (it.isLove) {
+        if (it.love) {
             binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
         } else {
             binding.imgLove.setImageResource(R.mipmap.img_love_unpress)
         }
 
-        if (it.isCollect) {
+        if (it.collect) {
             binding.imgCollect.setImageResource(R.mipmap.img_collect_pressed)
         } else {
             binding.imgCollect.setImageResource(R.mipmap.img_collect_unpress)
@@ -127,7 +127,7 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
     }
 
     binding.itemLike.setOnClickListener {
-        if (videoData != null && videoData.isLike) {
+        if (videoData != null && videoData.like) {
             binding.imgLike.setImageResource(R.mipmap.img_like_unpress)
             showToast("取消点赞")
             videoData.let {
@@ -153,7 +153,7 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
     }
 
     binding.itemLove.setOnClickListener {
-        if (videoData != null && videoData.isLove) {
+        if (videoData != null && videoData.love) {
             binding.imgLove.setImageResource(R.mipmap.img_love_unpress)
             mViewModel.updateLove(video.code, false)
         } else {
@@ -165,7 +165,7 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
 
     binding.itemCollect.setOnClickListener {
         Log.e("1mean", "videoData : $videoData")
-        if (videoData != null && videoData.isCollect) {
+        if (videoData != null && videoData.collect) {
             binding.imgCollect.setImageResource(R.mipmap.img_collect_unpress)
             mViewModel.updataCollect(video.code, false)
             mViewModel.deleteCollection(video.code, "默认收藏夹")
@@ -184,7 +184,7 @@ fun VideoInfosFragment.initUser(user: User) {
         loadCircleImage(mActivity, url, binding.imgVideoInfoHead)
     }
 
-    if (user.isVip == 1) {//是会员
+    if (user.vip == 1) {//是会员
         binding.txtVideoInfoName.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
         binding.txtVideoInfoName.setTextColor(
             ContextCompat.getColor(

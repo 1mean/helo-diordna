@@ -94,7 +94,7 @@ object MultiVideoData {
         panda1.code = 432
         panda1.duration = 73
         panda1.period = PeriodType.SINGLE.ordinal
-        panda1.isStar = true
+        panda1.star = true
         panda1.title = "有 些 事 ， 真 不 能 怪 纣 王"
         panda1.releaseTime = "2021-05-24 18:07:20"
         panda1.originalUrl = "https://www.bilibili.com/video/BV1Gq4y1j7d5"
@@ -111,7 +111,7 @@ object MultiVideoData {
         panda2.code = 433
         panda2.duration = 118
         panda2.period = PeriodType.SINGLE.ordinal
-        panda2.isStar = true
+        panda2.star = true
         panda2.title = "【北极狐】请叫我盛世美颜的雪原精灵"
         panda2.releaseTime = "2019-09-22 20:30:24"
         panda2.originalUrl = "https://www.bilibili.com/video/BV16J411g7ys"
@@ -128,7 +128,7 @@ object MultiVideoData {
         panda3.code = 434
         panda3.duration = 29
         panda3.period = PeriodType.SINGLE.ordinal
-        panda3.isStar = true
+        panda3.star = true
         panda3.title = "雪 中 狐 仙"
         panda3.releaseTime = "2022-01-12 19:13:59"
         panda3.originalUrl = "https://www.bilibili.com/video/BV12q4y1w7Lu"
@@ -145,7 +145,7 @@ object MultiVideoData {
         panda4.code = 435
         panda4.duration = 127
         panda4.period = PeriodType.SINGLE.ordinal
-        panda4.isStar = true
+        panda4.star = true
         panda4.title = "[混剪][北极狐]北极精灵——独属冰原的极致可爱与美丽"
         panda4.releaseTime = "2020-03-16 01:17:25"
         panda4.originalUrl = "https://www.bilibili.com/video/BV1fE411373z"
@@ -162,7 +162,7 @@ object MultiVideoData {
         panda5.code = 436
         panda5.duration = 268
         panda5.period = PeriodType.SINGLE.ordinal
-        panda5.isStar = true
+        panda5.star = true
         panda5.title = "【4K,60fps】🐺🦊北极雪狐"
         panda5.releaseTime = "2020-07-21 16:01:01"
         panda5.originalUrl = "https://www.bilibili.com/video/BV12h411o7hT"
@@ -179,7 +179,7 @@ object MultiVideoData {
         panda6.code = 437
         panda6.duration = 245
         panda6.period = PeriodType.SINGLE.ordinal
-        panda6.isStar = true
+        panda6.star = true
         panda6.title = "雪地里的赤狐 毛茸茸的看着真像个小妖精"
         panda6.releaseTime = "2019-07-17 18:13:59"
         panda6.originalUrl = "https://www.bilibili.com/video/BV1bt411g7uE"
@@ -196,7 +196,7 @@ object MultiVideoData {
         panda7.code = 438
         panda7.duration = 57
         panda7.period = PeriodType.SINGLE.ordinal
-        panda7.isStar = true
+        panda7.star = true
         panda7.title = "小狐狸撒娇嘤嘤嘤~ 好像是白金狐？"
         panda7.releaseTime = "2021-12-21 16:15:47"
         panda7.originalUrl = "https://www.bilibili.com/video/BV1dS4y1Q7NH"
@@ -213,7 +213,7 @@ object MultiVideoData {
         panda8.code = 439
         panda8.duration = 52
         panda8.period = PeriodType.SINGLE.ordinal
-        panda8.isStar = true
+        panda8.star = true
         panda8.title = "雪中最美，仙狐公主"
         panda8.releaseTime = "2022-01-23 15:58:28"
         panda8.originalUrl = "https://www.bilibili.com/video/BV1Sr4y1e7Ak"
@@ -230,7 +230,7 @@ object MultiVideoData {
         panda10.code = 441
         panda10.duration = 99
         panda10.period = PeriodType.SINGLE.ordinal
-        panda10.isStar = true
+        panda10.star = true
         panda10.title = "狐狸叫声集锦【三】uuuuuu"
         panda10.releaseTime = "2021-12-30 01:16:12"
         panda10.originalUrl = "https://www.bilibili.com/video/BV1ka411B7Vg"
@@ -247,7 +247,7 @@ object MultiVideoData {
         panda11.code = 442
         panda11.duration = 37
         panda11.period = PeriodType.SINGLE.ordinal
-        panda11.isStar = true
+        panda11.star = true
         panda11.title = "最 美 狐仙"
         panda11.releaseTime = "2022-01-09 13:35:30"
         panda11.originalUrl = "https://www.bilibili.com/video/BV1844y157gA"
@@ -264,7 +264,7 @@ object MultiVideoData {
         panda12.code = 443
         panda12.duration = 30
         panda12.period = PeriodType.SINGLE.ordinal
-        panda12.isStar = true
+        panda12.star = true
         panda12.title = "第一次玩雪的雪狐！"
         panda12.releaseTime = "2021-12-28 18:26:17"
         panda12.originalUrl = "https://www.bilibili.com/video/BV1Ua411678K"
@@ -281,7 +281,7 @@ object MultiVideoData {
         panda13.code = 444
         panda13.duration = 29
         panda13.period = PeriodType.SINGLE.ordinal
-        panda13.isStar = true
+        panda13.star = true
         panda13.title = "狐狸村的吵架日常，猜猜最后谁赢了？"
         panda13.releaseTime = "2022-01-04 21:28:06"
         panda13.originalUrl = "https://www.bilibili.com/video/BV1wr4y1v7wm"
@@ -298,7 +298,7 @@ object MultiVideoData {
         panda14.code = 445
         panda14.duration = 22
         panda14.period = PeriodType.SINGLE.ordinal
-        panda14.isStar = true
+        panda14.star = true
         panda14.title = "你喜欢萝莉还是大魔头？"
         panda14.releaseTime = "2021-11-26 19:04:28"
         panda14.originalUrl = "https://www.bilibili.com/video/BV1vq4y1B79x"
@@ -315,7 +315,7 @@ object MultiVideoData {
         panda15.code = 446
         panda15.duration = 121
         panda15.period = PeriodType.SINGLE.ordinal
-        panda15.isStar = true
+        panda15.star = true
         panda15.title = "-20℃密林深处，拍摄到了野生紫貂，太可爱了！"
         panda15.releaseTime = "2021-11-19 18:06:49"
         panda15.originalUrl = "https://www.bilibili.com/video/BV1i3411t7vt"
@@ -332,7 +332,7 @@ object MultiVideoData {
         panda16.code = 447
         panda16.duration = 110
         panda16.period = PeriodType.SINGLE.ordinal
-        panda16.isStar = true
+        panda16.star = true
         panda16.title = "北极狐：长成这样的北极狐你见过吗"
         panda16.releaseTime = "2021-12-13 18:00:15"
         panda16.originalUrl = "https://www.bilibili.com/video/BV1oZ4y197cq"
@@ -349,7 +349,7 @@ object MultiVideoData {
         panda18.code = 448
         panda18.duration = 136
         panda18.period = PeriodType.SINGLE.ordinal
-        panda18.isStar = true
+        panda18.star = true
         panda18.title = "传说中狡猾的狐狸——赤狐，居然会如此安静！"
         panda18.releaseTime = "2021-10-08 19:48:09"
         panda18.originalUrl = "https://www.bilibili.com/video/BV1JQ4y1B7qv"
@@ -366,7 +366,7 @@ object MultiVideoData {
         fox19.code = 1063
         fox19.duration = 23
         fox19.period = PeriodType.SINGLE.ordinal
-        fox19.isStar = true
+        fox19.star = true
         fox19.title = "【狐狸】你获得纣王体验卡一张"
         fox19.releaseTime = "2022-02-05 13:00:31"
         fox19.originalUrl = "https://www.bilibili.com/video/BV1Nb4y177Aw"
@@ -383,7 +383,7 @@ object MultiVideoData {
         fox20.code = 1064
         fox20.duration = 31
         fox20.period = PeriodType.SINGLE.ordinal
-        fox20.isStar = true
+        fox20.star = true
         fox20.title = "大雪中趴窝休息的暖暖狐 ©itseriksen"
         fox20.releaseTime = "2022-02-03 18:22:57"
         fox20.originalUrl = "https://www.bilibili.com/video/BV1d44y1p74N"
@@ -400,7 +400,7 @@ object MultiVideoData {
         fox21.code = 1065
         fox21.duration = 27
         fox21.period = PeriodType.SINGLE.ordinal
-        fox21.isStar = true
+        fox21.star = true
         fox21.title = "【赤狐】狐狸躺在地上吵架"
         fox21.releaseTime = "2021-12-31 12:14:01"
         fox21.originalUrl = "https://www.bilibili.com/video/BV1Yr4y1m7hF"
@@ -417,7 +417,7 @@ object MultiVideoData {
         fox22.code = 1066
         fox22.duration = 53
         fox22.period = PeriodType.SINGLE.ordinal
-        fox22.isStar = true
+        fox22.star = true
         fox22.title = "【赤狐】带个对象回家看饲养员"
         fox22.releaseTime = "2022-01-30 23:39:29"
         fox22.originalUrl = "https://www.bilibili.com/video/BV1oS4y1y7bo"
@@ -434,7 +434,7 @@ object MultiVideoData {
         fox23.code = 1067
         fox23.duration = 217
         fox23.period = PeriodType.SINGLE.ordinal
-        fox23.isStar = true
+        fox23.star = true
         fox23.title = "【狐狸村】茶狐.茶色白金狐小合集"
         fox23.releaseTime = "2022-01-05 00:58:54"
         fox23.originalUrl = "https://www.bilibili.com/video/BV17a411z77N"
@@ -451,7 +451,7 @@ object MultiVideoData {
         fox24.code = 1068
         fox24.duration = 21
         fox24.period = PeriodType.SINGLE.ordinal
-        fox24.isStar = true
+        fox24.star = true
         fox24.title = "狐狐试图舔掉自己的糖霜 ©itseriksen"
         fox24.releaseTime = "2022-02-01 14:48:14"
         fox24.originalUrl = "https://www.bilibili.com/video/BV1hr4y1Y7T5"
@@ -468,7 +468,7 @@ object MultiVideoData {
         fox25.code = 1069
         fox25.duration = 58
         fox25.period = PeriodType.SINGLE.ordinal
-        fox25.isStar = true
+        fox25.star = true
         fox25.title = "和小盆友van耍的小狐狸"
         fox25.releaseTime = "2020-01-26 18:51:49"
         fox25.originalUrl = "https://www.bilibili.com/video/BV1B7411k7b9"
@@ -485,7 +485,7 @@ object MultiVideoData {
         fox26.code = 1070
         fox26.duration = 208
         fox26.period = PeriodType.SINGLE.ordinal
-        fox26.isStar = true
+        fox26.star = true
         fox26.title = "近日的Alisa和阿奇"
         fox26.releaseTime = "2021-02-27 16:09:01"
         fox26.originalUrl = "https://www.bilibili.com/video/BV1CZ4y1A79n"
@@ -502,7 +502,7 @@ object MultiVideoData {
         fox27.code = 1071
         fox27.duration = 17
         fox27.period = PeriodType.SINGLE.ordinal
-        fox27.isStar = true
+        fox27.star = true
         fox27.title = "【赤狐】总之就是很委屈的狐狸（1）"
         fox27.releaseTime = "2021-12-26 20:28:03"
         fox27.originalUrl = "https://www.bilibili.com/video/BV1hb4y1v7RF"
@@ -519,7 +519,7 @@ object MultiVideoData {
         fox28.code = 1072
         fox28.duration = 115
         fox28.period = PeriodType.SINGLE.ordinal
-        fox28.isStar = true
+        fox28.star = true
         fox28.title = "晚安北极狐zzzZZZ"
         fox28.releaseTime = "2022-01-13 03:39:38"
         fox28.originalUrl = "https://www.bilibili.com/video/BV1Xm4y1D7Vu"
@@ -536,7 +536,7 @@ object MultiVideoData {
         fox29.code = 1073
         fox29.duration = 103
         fox29.period = PeriodType.SINGLE.ordinal
-        fox29.isStar = true
+        fox29.star = true
         fox29.title = "【秋日童话】邂逅武汉大学的小狐狸“珞珞”"
         fox29.releaseTime = "2019-11-06 20:30:55"
         fox29.originalUrl = "https://www.bilibili.com/video/BV1VE411i7gR"
@@ -553,7 +553,7 @@ object MultiVideoData {
         fox30.code = 1074
         fox30.duration = 277
         fox30.period = PeriodType.SINGLE.ordinal
-        fox30.isStar = true
+        fox30.star = true
         fox30.title = "【狐狸】旭山动物园的北极狐和赤狐"
         fox30.releaseTime = "2022-01-26 20:02:48"
         fox30.originalUrl = "https://www.bilibili.com/video/BV1JZ4y1Z7LU"
@@ -570,7 +570,7 @@ object MultiVideoData {
         fox31.code = 1075
         fox31.duration = 48
         fox31.period = PeriodType.SINGLE.ordinal
-        fox31.isStar = true
+        fox31.star = true
         fox31.title = "小狐狸吵架吵输了"
         fox31.releaseTime = "2021-11-19 19:39:39"
         fox31.originalUrl = "https://www.bilibili.com/video/BV1Ag411N7nq"
@@ -587,7 +587,7 @@ object MultiVideoData {
         fox32.code = 1076
         fox32.duration = 21
         fox32.period = PeriodType.SINGLE.ordinal
-        fox32.isStar = true
+        fox32.star = true
         fox32.title = "北狐牧场 呆呆狐和雪"
         fox32.releaseTime = "2021-12-04 13:36:51"
         fox32.originalUrl = "https://www.bilibili.com/video/BV1qg411A7HZ"
@@ -604,7 +604,7 @@ object MultiVideoData {
         fox33.code = 428
         fox33.duration = 73
         fox33.period = PeriodType.SINGLE.ordinal
-        fox33.isStar = true
+        fox33.star = true
         fox33.title = "【北极狐】雪中精灵"
         fox33.releaseTime = "2021-05-24 18:07:20"
         fox33.originalUrl = "https://www.bilibili.com/video/BV1Gq4y1j7d5"
@@ -623,7 +623,7 @@ object MultiVideoData {
         landscape25.fileName = "landscape_25"
         landscape25.code = 471
         landscape25.duration = 235
-        landscape25.isStar = true
+        landscape25.star = true
         landscape25.title = "我于人间，赏山河，踏风雪"
         landscape25.releaseTime = "2021-12-28 23:35:01"
         landscape25.originalUrl = "https://www.bilibili.com/video/BV1j3411v7pc"
@@ -639,7 +639,7 @@ object MultiVideoData {
         landscape22.fileName = "landscape_22"
         landscape22.code = 474
         landscape22.duration = 64
-        landscape22.isStar = true
+        landscape22.star = true
         landscape22.title = "紫禁城的大寒瑞雪 和故宫一起冰雪过大年！"
         landscape22.releaseTime = "2022-01-20 14:57:09"
         landscape22.originalUrl = "https://www.bilibili.com/video/BV1yL4y14718"
@@ -655,7 +655,7 @@ object MultiVideoData {
         landscape42.fileName = "landscape_42"
         landscape42.code = 475
         landscape42.duration = 88
-        landscape42.isStar = true
+        landscape42.star = true
         landscape42.title = "“檐上三寸雪   人间惊鸿客”"
         landscape42.releaseTime = "2022-01-05 18:07:29"
         landscape42.originalUrl = "https://www.bilibili.com/video/BV1P34y167B9"
@@ -671,7 +671,7 @@ object MultiVideoData {
         landscape26.fileName = "landscape_26"
         landscape26.code = 491
         landscape26.duration = 237
-        landscape26.isStar = true
+        landscape26.star = true
         landscape26.title = "“忽有故人心上过，回首山河已入冬。两处相思同淋雪，此生也算共白头。”"
         landscape26.releaseTime = "2020-11-25 14:26:45"
         landscape26.originalUrl = "https://www.bilibili.com/video/BV13K41137oz"
@@ -687,7 +687,7 @@ object MultiVideoData {
         landscape1.fileName = "landscape_1"
         landscape1.code = 450
         landscape1.duration = 31
-        landscape1.isStar = true
+        landscape1.star = true
         landscape1.title = "灵隐寺雪景｜夜深知雪重，时闻折竹声"
         landscape1.releaseTime = "2022-01-30 21:14:40"
         landscape1.originalUrl = "https://www.bilibili.com/video/BV12b4y1E7zT"
@@ -703,7 +703,7 @@ object MultiVideoData {
         landscape2.fileName = "landscape_2"
         landscape2.code = 451
         landscape2.duration = 61
-        landscape2.isStar = true
+        landscape2.star = true
         landscape2.title = "【临安·雪】绝美杭州西湖雪景  红衣和雪景最配呀~"
         landscape2.releaseTime = "2019-01-06 01:13:32"
         landscape2.originalUrl = "https://www.bilibili.com/video/BV1At411478b"
@@ -719,7 +719,7 @@ object MultiVideoData {
         landscape3.fileName = "landscape_3"
         landscape3.code = 452
         landscape3.duration = 26
-        landscape3.isStar = true
+        landscape3.star = true
         landscape3.title = "航拍雪中的西湖，你可以永远相信杭州的雪景"
         landscape3.releaseTime = "2022-01-30 01:10:43"
         landscape3.originalUrl = "https://www.bilibili.com/video/BV1hq4y1w773"
@@ -735,7 +735,7 @@ object MultiVideoData {
         landscape4.fileName = "landscape_4"
         landscape4.code = 453
         landscape4.duration = 268
-        landscape4.isStar = true
+        landscape4.star = true
         landscape4.title = "【忆江南】这群老戏骨 把“富春山居图”演活了"
         landscape4.releaseTime = "2022-02-01 14:14:54"
         landscape4.originalUrl = "https://www.bilibili.com/video/BV1RR4y1T7A9"
@@ -751,7 +751,7 @@ object MultiVideoData {
         landscape5.fileName = "landscape_5"
         landscape5.code = 454
         landscape5.duration = 65
-        landscape5.isStar = true
+        landscape5.star = true
         landscape5.title = "2022央视春晚最美节目《只此青绿》沙画版复刻来了！"
         landscape5.releaseTime = "2022-02-02 12:20:59"
         landscape5.originalUrl = "https://www.bilibili.com/video/BV1N3411E7fS"
@@ -767,7 +767,7 @@ object MultiVideoData {
         landscape6.fileName = "landscape_6"
         landscape6.code = 455
         landscape6.duration = 17
-        landscape6.isStar = true
+        landscape6.star = true
         landscape6.title = "滕王阁"
         landscape6.releaseTime = "2021-07-02 18:35:17"
         landscape6.originalUrl = "https://www.bilibili.com/video/BV1sf4y1b7Mb"
@@ -783,7 +783,7 @@ object MultiVideoData {
         landscape7.fileName = "landscape_7"
         landscape7.code = 456
         landscape7.duration = 12
-        landscape7.isStar = true
+        landscape7.star = true
         landscape7.title = "夜晚滕王阁"
         landscape7.releaseTime = "2021-07-04 18:25:00"
         landscape7.originalUrl = "https://www.bilibili.com/video/BV1NV411W73S"
@@ -799,7 +799,7 @@ object MultiVideoData {
         landscape8.fileName = "landscape_8"
         landscape8.code = 457
         landscape8.duration = 89
-        landscape8.isStar = true
+        landscape8.star = true
         landscape8.title = "2022年看见的第一座雪山竟然在苏州？姑苏夜雪，穹窿山一夜白头"
         landscape8.releaseTime = "2022-01-29 19:54:23"
         landscape8.originalUrl = "https://www.bilibili.com/video/BV1UL411F7wo"
@@ -815,7 +815,7 @@ object MultiVideoData {
         landscape9.fileName = "landscape_9"
         landscape9.code = 458
         landscape9.duration = 97
-        landscape9.isStar = true
+        landscape9.star = true
         landscape9.title = "最美的雪是一起看过的雪，快看乌镇下雪了，雪花纷纷飘落的时候，恰逢思念最浓"
         landscape9.releaseTime = "2022-01-29 12:57:39"
         landscape9.originalUrl = "https://www.bilibili.com/video/BV11a41117iv"
@@ -831,7 +831,7 @@ object MultiVideoData {
         landscape10.fileName = "landscape_10"
         landscape10.code = 459
         landscape10.duration = 102
-        landscape10.isStar = true
+        landscape10.star = true
         landscape10.title = "九寨沟 诺日朗瀑布"
         landscape10.releaseTime = "2022-01-09 14:47:03"
         landscape10.originalUrl = "https://www.bilibili.com/video/BV1NL411c71K"
@@ -847,7 +847,7 @@ object MultiVideoData {
         landscape11.fileName = "landscape_11"
         landscape11.code = 460
         landscape11.duration = 364
-        landscape11.isStar = true
+        landscape11.star = true
         landscape11.title = "【4K】襄阳视界：拍摄历时四年，6分钟带你看尽千年古城襄阳"
         landscape11.releaseTime = "2021-12-09 21:09:04"
         landscape11.originalUrl = "https://www.bilibili.com/video/BV1CP4y137zb"
@@ -863,7 +863,7 @@ object MultiVideoData {
         landscape12.fileName = "landscape_12"
         landscape12.code = 461
         landscape12.duration = 235
-        landscape12.isStar = true
+        landscape12.star = true
         landscape12.title = "你好，我是湖北"
         landscape12.releaseTime = "2021-04-12 11:45:05"
         landscape12.originalUrl = "https://www.bilibili.com/video/BV1oK411w7si"
@@ -879,7 +879,7 @@ object MultiVideoData {
         landscape13.fileName = "landscape_13"
         landscape13.code = 462
         landscape13.duration = 143
-        landscape13.isStar = true
+        landscape13.star = true
         landscape13.title = "谁说大海只能是蓝色，这里是大连庄河红海滩"
         landscape13.releaseTime = "2021-11-18 19:37:29"
         landscape13.originalUrl = "https://www.bilibili.com/video/BV1gr4y1k7Fo"
@@ -895,7 +895,7 @@ object MultiVideoData {
         landscape14.fileName = "landscape_14"
         landscape14.code = 463
         landscape14.duration = 200
-        landscape14.isStar = true
+        landscape14.star = true
         landscape14.title = "【4K】世界最大的红海滩，在中国"
         landscape14.releaseTime = "2020-10-14 20:35:07"
         landscape14.originalUrl = "https://www.bilibili.com/video/BV1zK4y1h72N"
@@ -911,7 +911,7 @@ object MultiVideoData {
         landscape15.fileName = "landscape_15"
         landscape15.code = 464
         landscape15.duration = 217
-        landscape15.isStar = true
+        landscape15.star = true
         landscape15.title = "禾 木 村 雪 夜【4K•航拍】"
         landscape15.releaseTime = "2021-10-08 14:39:27"
         landscape15.originalUrl = "https://www.bilibili.com/video/BV1hq4y1V76W"
@@ -927,7 +927,7 @@ object MultiVideoData {
         landscape16.fileName = "landscape_16"
         landscape16.code = 465
         landscape16.duration = 259
-        landscape16.isStar = true
+        landscape16.star = true
         landscape16.title = "垂枝梅丨美的不可思议"
         landscape16.releaseTime = "2021-03-31 19:00:12"
         landscape16.originalUrl = "https://www.bilibili.com/video/BV1T64y1Q7dd"
@@ -943,7 +943,7 @@ object MultiVideoData {
         landscape17.fileName = "landscape_17"
         landscape17.code = 466
         landscape17.duration = 221
-        landscape17.isStar = true
+        landscape17.star = true
         landscape17.title = "新疆2021之旅：领略一场冰与火之舞"
         landscape17.releaseTime = "2022-01-05 17:30:11"
         landscape17.originalUrl = "https://www.bilibili.com/video/BV1zu411U7Rn"
@@ -959,7 +959,7 @@ object MultiVideoData {
         landscape18.fileName = "landscape_18"
         landscape18.code = 467
         landscape18.duration = 32
-        landscape18.isStar = true
+        landscape18.star = true
         landscape18.title = "江西武功山日落云海延时摄影记录"
         landscape18.releaseTime = "2019-05-30 12:24:51"
         landscape18.originalUrl = "https://www.bilibili.com/video/BV1E4411H7U5"
@@ -975,7 +975,7 @@ object MultiVideoData {
         landscape19.fileName = "landscape_19"
         landscape19.code = 468
         landscape19.duration = 15
-        landscape19.isStar = true
+        landscape19.star = true
         landscape19.title = "2022年武功山的第一个壮观云海"
         landscape19.releaseTime = "2022-01-07 16:29:49"
         landscape19.originalUrl = "https://www.bilibili.com/video/BV1vS4y1T7MG"
@@ -991,7 +991,7 @@ object MultiVideoData {
         landscape20.fileName = "landscape_20"
         landscape20.code = 469
         landscape20.duration = 242
-        landscape20.isStar = true
+        landscape20.star = true
         landscape20.title = "上海城市宣传片（我见过最好的）"
         landscape20.releaseTime = "2018-06-02 13:39:51"
         landscape20.originalUrl = "https://www.bilibili.com/video/BV1uW411N729"
@@ -1007,7 +1007,7 @@ object MultiVideoData {
         landscape21.fileName = "landscape_21"
         landscape21.code = 470
         landscape21.duration = 27
-        landscape21.isStar = true
+        landscape21.star = true
         landscape21.title = "通向蔚蓝的街道～威海-火炬八街"
         landscape21.releaseTime = "2021-06-05 15:00:06"
         landscape21.originalUrl = "https://www.bilibili.com/video/BV1SU4y1V759"
@@ -1023,7 +1023,7 @@ object MultiVideoData {
         landscape23.fileName = "landscape_23"
         landscape23.code = 472
         landscape23.duration = 199
-        landscape23.isStar = true
+        landscape23.star = true
         landscape23.title = "“今日只与先生煮酒赏雪，不谈风月”"
         landscape23.releaseTime = "2020-12-31 12:34:09"
         landscape23.originalUrl = "https://www.bilibili.com/video/BV1Tp4y1B7db"
@@ -1039,7 +1039,7 @@ object MultiVideoData {
         landscape24.fileName = "landscape_24"
         landscape24.code = 473
         landscape24.duration = 92
-        landscape24.isStar = true
+        landscape24.star = true
         landscape24.title = "【闹元宵| 灯会合集】人间不值得 | 欢快版变奏"
         landscape24.releaseTime = "2021-02-23 20:50:05"
         landscape24.originalUrl = "https://www.bilibili.com/video/BV14y4y1J79R"
@@ -1055,7 +1055,7 @@ object MultiVideoData {
         landscape27.fileName = "landscape_27"
         landscape27.code = 476
         landscape27.duration = 254
-        landscape27.isStar = true
+        landscape27.star = true
         landscape27.title = "“先去你的塞外，再回我的江南”——《浮光》"
         landscape27.releaseTime = "2021-10-09 22:51:24"
         landscape27.originalUrl = "https://www.bilibili.com/video/BV1HP4y187AZ"
@@ -1071,7 +1071,7 @@ object MultiVideoData {
         landscape28.fileName = "landscape_28"
         landscape28.code = 477
         landscape28.duration = 161
-        landscape28.isStar = true
+        landscape28.star = true
         landscape28.title = "“忽人间已晚，山河已秋”"
         landscape28.releaseTime = "2021-10-02 13:58:40"
         landscape28.originalUrl = "https://www.bilibili.com/video/BV1FP4y187Rg"
@@ -1087,7 +1087,7 @@ object MultiVideoData {
         landscape29.fileName = "landscape_29"
         landscape29.code = 478
         landscape29.duration = 48
-        landscape29.isStar = true
+        landscape29.star = true
         landscape29.title = "阳春三月，邂逅伊犁杏花沟"
         landscape29.releaseTime = "2021-03-19 10:35:29"
         landscape29.originalUrl = "https://www.bilibili.com/video/BV1zX4y137XB"
@@ -1103,7 +1103,7 @@ object MultiVideoData {
         landscape30.fileName = "landscape_30"
         landscape30.code = 479
         landscape30.duration = 145
-        landscape30.isStar = true
+        landscape30.star = true
         landscape30.title = "漫步洱海"
         landscape30.releaseTime = "2021-12-09 20:23:15"
         landscape30.originalUrl = "https://www.bilibili.com/video/BV1sb4y1i7SC"
@@ -1119,7 +1119,7 @@ object MultiVideoData {
         landscape31.fileName = "landscape_31"
         landscape31.code = 480
         landscape31.duration = 12
-        landscape31.isStar = true
+        landscape31.star = true
         landscape31.title = "大理洱海，人间仙境"
         landscape31.releaseTime = "2019-10-29 10:54:01"
         landscape31.originalUrl = "https://www.bilibili.com/video/BV1vE411h7yR"
@@ -1135,7 +1135,7 @@ object MultiVideoData {
         landscape32.fileName = "landscape_32"
         landscape32.code = 481
         landscape32.duration = 312
-        landscape32.isStar = true
+        landscape32.star = true
         landscape32.title = "云顶天宫：老君山最新航拍【4K版】"
         landscape32.releaseTime = "2020-12-02 14:32:10"
         landscape32.originalUrl = "https://www.bilibili.com/video/BV1ca411F7PU"
@@ -1151,7 +1151,7 @@ object MultiVideoData {
         landscape33.fileName = "landscape_33"
         landscape33.code = 482
         landscape33.duration = 179
-        landscape33.isStar = true
+        landscape33.star = true
         landscape33.title = "这，真的是人间吗？老君山【4K】摄影"
         landscape33.releaseTime = "2020-12-09 21:43:30"
         landscape33.originalUrl = "https://www.bilibili.com/video/BV1Dv411b7Ee"
@@ -1167,7 +1167,7 @@ object MultiVideoData {
         landscape34.fileName = "landscape_34"
         landscape34.code = 483
         landscape34.duration = 24
-        landscape34.isStar = true
+        landscape34.star = true
         landscape34.title = "仙气飘飘，美若天宫，老君山风景区"
         landscape34.releaseTime = "2020-10-14 13:43:21"
         landscape34.originalUrl = "https://www.bilibili.com/video/BV1cp4y1k7En"
@@ -1183,7 +1183,7 @@ object MultiVideoData {
         landscape35.fileName = "landscape_35"
         landscape35.code = 484
         landscape35.duration = 10
-        landscape35.isStar = true
+        landscape35.star = true
         landscape35.title = "这不是特效！下雪后的庐山，简直就是人间仙境！"
         landscape35.releaseTime = "2018-12-09 11:07:45"
         landscape35.originalUrl = "https://www.bilibili.com/video/BV1dt411i7Vv"
@@ -1199,7 +1199,7 @@ object MultiVideoData {
         landscape36.fileName = "landscape_36"
         landscape36.code = 485
         landscape36.duration = 212
-        landscape36.isStar = true
+        landscape36.star = true
         landscape36.title = "“姑苏城外寒山寺”"
         landscape36.releaseTime = "2021-12-10 21:32:18"
         landscape36.originalUrl = "https://www.bilibili.com/video/BV1WF411z7Wc"
@@ -1215,7 +1215,7 @@ object MultiVideoData {
         landscape37.fileName = "landscape_37"
         landscape37.code = 486
         landscape37.duration = 209
-        landscape37.isStar = true
+        landscape37.star = true
         landscape37.title = "“你是姑苏檐下雨，亦是人间惊鸿客”"
         landscape37.releaseTime = "2021-10-14 13:11:51"
         landscape37.originalUrl = "https://www.bilibili.com/video/BV1Hq4y157Xt"
@@ -1231,7 +1231,7 @@ object MultiVideoData {
         landscape38.fileName = "landscape_38"
         landscape38.code = 487
         landscape38.duration = 248
-        landscape38.isStar = true
+        landscape38.star = true
         landscape38.title = "旅行：“见天地，见众生，见自己”"
         landscape38.releaseTime = "2021-08-25 00:37:05"
         landscape38.originalUrl = "https://www.bilibili.com/video/BV1Jf4y1N7Tq"
@@ -1247,7 +1247,7 @@ object MultiVideoData {
         landscape39.fileName = "landscape_39"
         landscape39.code = 488
         landscape39.duration = 227
-        landscape39.isStar = true
+        landscape39.star = true
         landscape39.title = "“一川烟草，满城风絮，梅子黄时雨”"
         landscape39.releaseTime = "2021-04-10 01:28:03"
         landscape39.originalUrl = "https://www.bilibili.com/video/BV1x64y1m7TA"
@@ -1263,7 +1263,7 @@ object MultiVideoData {
         landscape40.fileName = "landscape_40"
         landscape40.code = 489
         landscape40.duration = 236
-        landscape40.isStar = true
+        landscape40.star = true
         landscape40.title = "“小楼一夜听春雨，深巷明朝卖杏花”"
         landscape40.releaseTime = "2021-03-16 20:35:29"
         landscape40.originalUrl = "https://www.bilibili.com/video/BV1CK4y1U7Lc"
@@ -1279,7 +1279,7 @@ object MultiVideoData {
         landscape41.fileName = "landscape_41"
         landscape41.code = 490
         landscape41.duration = 94
-        landscape41.isStar = true
+        landscape41.star = true
         landscape41.title = "梦醒人间看微雨，江山还似旧温柔。"
         landscape41.releaseTime = "2021-09-22 16:11:52"
         landscape41.originalUrl = "https://www.bilibili.com/video/BV1T3411m7EL"
@@ -1295,7 +1295,7 @@ object MultiVideoData {
         landscape43.fileName = "landscape_43"
         landscape43.code = 1363
         landscape43.duration = 213
-        landscape43.isStar = true
+        landscape43.star = true
         landscape43.title = "冬奥会开幕式24节气倒计时[4K50P无水印纯净版]<北京龙江波影视>"
         landscape43.releaseTime = "2022-02-05 02:15:15"
         landscape43.originalUrl = "https://www.bilibili.com/video/BV17q4y1b793"
@@ -1310,7 +1310,7 @@ object MultiVideoData {
         landscape44.fileName = "landscape_44"
         landscape44.code = 1364
         landscape44.duration = 121
-        landscape44.isStar = true
+        landscape44.star = true
         landscape44.title = "双奥之城城市之光第九部正片《北京再相逢》正式发布！"
         landscape44.releaseTime = "2022-01-31 10:00:03"
         landscape44.originalUrl = "https://www.bilibili.com/video/BV1zS4y1V77j"
@@ -1325,7 +1325,7 @@ object MultiVideoData {
         landscape45.fileName = "landscape_45"
         landscape45.code = 1365
         landscape45.duration = 19
-        landscape45.isStar = true
+        landscape45.star = true
         landscape45.title = "来看看暴雨后的早晨，会出现什么奇观，50公里外的津沽棒清晰可见！"
         landscape45.releaseTime = "2021-09-25 16:46:42"
         landscape45.originalUrl = "https://www.bilibili.com/video/BV1bq4y1o7vq"
@@ -1340,7 +1340,7 @@ object MultiVideoData {
         landscape46.fileName = "landscape_46"
         landscape46.code = 1366
         landscape46.duration = 33
-        landscape46.isStar = true
+        landscape46.star = true
         landscape46.title = "武汉暴雨后天地相连"
         landscape46.releaseTime = "2019-08-02 13:23:02"
         landscape46.originalUrl = "https://www.bilibili.com/video/BV1Dt411F7xi"
@@ -1355,7 +1355,7 @@ object MultiVideoData {
         landscape47.fileName = "landscape_47"
         landscape47.code = 1367
         landscape47.duration = 12
-        landscape47.isStar = true
+        landscape47.star = true
         landscape47.title = "这是末日来临吗？不，这只是武汉下雨🌧️"
         landscape47.releaseTime = "2021-05-10 16:49:49"
         landscape47.originalUrl = "https://www.bilibili.com/video/BV1bq4y177hY"
@@ -1370,7 +1370,7 @@ object MultiVideoData {
         landscape48.fileName = "landscape_48"
         landscape48.code = 1368
         landscape48.duration = 64
-        landscape48.isStar = true
+        landscape48.star = true
         landscape48.title = "仲夏武汉：遇到超级魔幻的云"
         landscape48.releaseTime = "2019-08-07 20:57:54"
         landscape48.originalUrl = "https://www.bilibili.com/video/BV1tt411T7WY"
@@ -1385,7 +1385,7 @@ object MultiVideoData {
         landscape49.fileName = "landscape_49"
         landscape49.code = 1369
         landscape49.duration = 154
-        landscape49.isStar = true
+        landscape49.star = true
         landscape49.title = "【4K治愈】真实存在的动漫场景，在新疆！《伊犁的童话II：鹰的国》"
         landscape49.releaseTime = "2021-07-17 12:30:09"
         landscape49.originalUrl = "https://www.bilibili.com/video/BV1Hv411n7oc"
@@ -1400,7 +1400,7 @@ object MultiVideoData {
         landscape50.fileName = "landscape_50"
         landscape50.code = 1991
         landscape50.duration = 172
-        landscape50.isStar = true
+        landscape50.star = true
         landscape50.title = "送君一场姑苏雨，可否还我一句江南词…"
         landscape50.releaseTime = "2022-03-01 19:35:02"
         landscape50.originalUrl = "https://www.bilibili.com/video/BV1pY411G7DW"
@@ -1415,7 +1415,7 @@ object MultiVideoData {
         landscape51.fileName = "landscape_51"
         landscape51.code = 1992
         landscape51.duration = 94
-        landscape51.isStar = true
+        landscape51.star = true
         landscape51.title = "“雪是大浪漫，你是小人间”"
         landscape51.releaseTime = "2022-02-27 13:24:42"
         landscape51.originalUrl = "https://www.bilibili.com/video/BV1Xb4y1s7U7"
@@ -1430,7 +1430,7 @@ object MultiVideoData {
         landscape52.fileName = "landscape_52"
         landscape52.code = 1993
         landscape52.duration = 133
-        landscape52.isStar = true
+        landscape52.star = true
         landscape52.title = "“白雪纷纷醉红梅，惹人向往不自知”"
         landscape52.releaseTime = "2022-02-25 18:31:38"
         landscape52.originalUrl = "https://www.bilibili.com/video/BV193411L759"
@@ -1445,7 +1445,7 @@ object MultiVideoData {
         landscape53.fileName = "landscape_53"
         landscape53.code = 1994
         landscape53.duration = 125
-        landscape53.isStar = true
+        landscape53.star = true
         landscape53.title = "用120秒，爱上这个冰雪世界！"
         landscape53.releaseTime = "2022-02-25 14:53:41"
         landscape53.originalUrl = "https://www.bilibili.com/video/BV14u411D7B1"
@@ -1460,7 +1460,7 @@ object MultiVideoData {
         landscape54.fileName = "landscape_54"
         landscape54.code = 1995
         landscape54.duration = 32
-        landscape54.isStar = true
+        landscape54.star = true
         landscape54.title = "【明故宫】海棠春深，飞花满城"
         landscape54.releaseTime = "2020-05-25 00:03:04"
         landscape54.originalUrl = "https://www.bilibili.com/video/BV1Wz4y1d7AT"
@@ -1475,7 +1475,7 @@ object MultiVideoData {
         landscape55.fileName = "landscape_55"
         landscape55.code = 1996
         landscape55.duration = 133
-        landscape55.isStar = true
+        landscape55.star = true
         landscape55.title = "梅开春烂漫~ | 探寻87版《红楼梦》取景地~"
         landscape55.releaseTime = "2022-02-12 22:55:09"
         landscape55.originalUrl = "https://www.bilibili.com/video/BV1ti4y1f7Ur"
@@ -1490,7 +1490,7 @@ object MultiVideoData {
         landscape56.fileName = "landscape_56"
         landscape56.code = 1997
         landscape56.duration = 73
-        landscape56.isStar = true
+        landscape56.star = true
         landscape56.title = "恰是江南落雪时"
         landscape56.releaseTime = "2022-02-07 22:32:57"
         landscape56.originalUrl = "https://www.bilibili.com/video/BV1WF411J79r"
@@ -1930,7 +1930,7 @@ object MultiVideoData {
         penguin1.code = 1047
         penguin1.duration = 156
         penguin1.period = PeriodType.GROUP.ordinal
-        penguin1.isStar = true
+        penguin1.star = true
         penguin1.title = "“没头脑和不高兴”"
         penguin1.releaseTime = "2022-01-15 11:07:47"
         penguin1.originalUrl = "https://www.bilibili.com/video/BV1tb4y1J7wu"
@@ -1947,7 +1947,7 @@ object MultiVideoData {
         penguin2.code = 1048
         penguin2.duration = 154
         penguin2.period = PeriodType.GROUP.ordinal
-        penguin2.isStar = true
+        penguin2.star = true
         penguin2.title = "超清企鹅爸爸夹着企鹅宝宝艰难前行。还有别的企鹅崽崽看中他这个自行车，企图钻进去"
         penguin2.releaseTime = "2022-01-22 12:25:38"
         penguin2.originalUrl = "https://www.bilibili.com/video/BV1gT4y127Cm"
@@ -1964,7 +1964,7 @@ object MultiVideoData {
         penguin3.code = 1049
         penguin3.duration = 95
         penguin3.period = PeriodType.GROUP.ordinal
-        penguin3.isStar = true
+        penguin3.star = true
         penguin3.title = "帝企鹅幼崽与爸爸走散，独自在寒风中瑟瑟发抖，最后一幕太治愈了！|《企鹅家族》"
         penguin3.releaseTime = "2021-07-20 19:21:08"
         penguin3.originalUrl = "https://www.bilibili.com/video/BV1ZM4y1K7Kx"
@@ -1981,7 +1981,7 @@ object MultiVideoData {
         penguin4.code = 1050
         penguin4.duration = 128
         penguin4.period = PeriodType.GROUP.ordinal
-        penguin4.isStar = true
+        penguin4.star = true
         penguin4.title = "【BBC纪录片】摄影组为救出被困企鹅，放弃原则出手干涉"
         penguin4.releaseTime = "2018-11-22 18:16:12"
         penguin4.originalUrl = "https://www.bilibili.com/video/BV1ct411y7Em"
@@ -1998,7 +1998,7 @@ object MultiVideoData {
         penguin5.code = 1051
         penguin5.duration = 371
         penguin5.period = PeriodType.GROUP.ordinal
-        penguin5.isStar = true
+        penguin5.star = true
         penguin5.title = "机器卧底混入企鹅群，记录了小企鹅的逆袭之路，超萌的纪录片。"
         penguin5.releaseTime = "2022-01-13 13:46:45"
         penguin5.originalUrl = "https://www.bilibili.com/video/BV1Tu411m71i"
@@ -2015,7 +2015,7 @@ object MultiVideoData {
         penguin6.code = 1052
         penguin6.duration = 47
         penguin6.period = PeriodType.GROUP.ordinal
-        penguin6.isStar = true
+        penguin6.star = true
         penguin6.title = "【企鹅宝宝】妈妈我饿了……"
         penguin6.releaseTime = "2019-10-17 21:01:17"
         penguin6.originalUrl = "https://www.bilibili.com/video/BV1gE411y7zA"
@@ -2032,7 +2032,7 @@ object MultiVideoData {
         penguin7.code = 1053
         penguin7.duration = 27
         penguin7.period = PeriodType.GROUP.ordinal
-        penguin7.isStar = true
+        penguin7.star = true
         penguin7.title = "胎毛还没褪的企鹅崽崽跟爸爸出去浪。。"
         penguin7.releaseTime = "2021-02-27 20:17:16"
         penguin7.originalUrl = "https://www.bilibili.com/video/BV1y54y1h7A5"
@@ -2049,7 +2049,7 @@ object MultiVideoData {
         penguin8.code = 1054
         penguin8.duration = 445
         penguin8.period = PeriodType.GROUP.ordinal
-        penguin8.isStar = true
+        penguin8.star = true
         penguin8.title =
             "企鹅崽崽们每天在大本营做什么:登高，边跑边扑棱翅膀，吃雪，挠痒痒，踩着鹅爸前行，爬雪山，乱认亲，吃饭，打呵欠，撒娇，发呆，站着睡觉，闻闻身上臭不臭，全程高萌"
         penguin8.releaseTime = "2022-01-26 22:32:22"
@@ -2067,7 +2067,7 @@ object MultiVideoData {
         penguin9.code = 1055
         penguin9.duration = 136
         penguin9.period = PeriodType.GROUP.ordinal
-        penguin9.isStar = true
+        penguin9.star = true
         penguin9.title = "超可爱，帝企鹅宝宝跟着妈妈出去散步"
         penguin9.releaseTime = "2022-01-25 20:39:30"
         penguin9.originalUrl = "https://www.bilibili.com/video/BV1im4y1S7xN"
@@ -2084,7 +2084,7 @@ object MultiVideoData {
         penguin10.code = 1056
         penguin10.duration = 107
         penguin10.period = PeriodType.GROUP.ordinal
-        penguin10.isStar = true
+        penguin10.star = true
         penguin10.title = "【孤独的企鹅】《在世界尽头相遇》 中的企鹅自杀片段，一只企鹅离开大部队，义无反顾地向群山走去，漫漫长路，等待着它的只有死亡……"
         penguin10.releaseTime = "2018-11-10 16:44:18"
         penguin10.originalUrl = "https://www.bilibili.com/video/BV1vt411m7b1"
@@ -2101,7 +2101,7 @@ object MultiVideoData {
         penguin11.code = 1057
         penguin11.duration = 151
         penguin11.period = PeriodType.GROUP.ordinal
-        penguin11.isStar = true
+        penguin11.star = true
         penguin11.title = "[英字]鹅砸!!阿德利叔叔来救你们了!"
         penguin11.releaseTime = "2019-08-22 20:59:14"
         penguin11.originalUrl = "https://www.bilibili.com/video/BV1Z441197ha"
@@ -2118,7 +2118,7 @@ object MultiVideoData {
         penguin12.code = 1058
         penguin12.duration = 119
         penguin12.period = PeriodType.GROUP.ordinal
-        penguin12.isStar = true
+        penguin12.star = true
         penguin12.title = "【BBC】企鹅宝宝对阵巨鹱鸟"
         penguin12.releaseTime = "2020-07-23 16:25:45"
         penguin12.originalUrl = "https://www.bilibili.com/video/BV1Sf4y1R7p9"
@@ -2135,7 +2135,7 @@ object MultiVideoData {
         penguin13.code = 1059
         penguin13.duration = 140
         penguin13.period = PeriodType.GROUP.ordinal
-        penguin13.isStar = true
+        penguin13.star = true
         penguin13.title = "帝企鹅的崽崽最可爱了！！"
         penguin13.releaseTime = "2021-03-04 02:02:26"
         penguin13.originalUrl = "https://www.bilibili.com/video/BV1Kz4y117su"
@@ -2152,7 +2152,7 @@ object MultiVideoData {
         penguin14.code = 1060
         penguin14.duration = 125
         penguin14.period = PeriodType.GROUP.ordinal
-        penguin14.isStar = true
+        penguin14.star = true
         penguin14.title = "企鹅真的不是什么好鹅！别被它的外表骗了."
         penguin14.releaseTime = "2019-09-24 18:02:10"
         penguin14.originalUrl = "https://www.bilibili.com/video/BV1FJ411u7do"
@@ -2169,7 +2169,7 @@ object MultiVideoData {
         penguin15.code = 1061
         penguin15.duration = 125
         penguin15.period = PeriodType.GROUP.ordinal
-        penguin15.isStar = true
+        penguin15.star = true
         penguin15.title = "大型企鹅翻车现场...鹅咂: 我太难了"
         penguin15.releaseTime = "2019-10-20 13:59:53"
         penguin15.originalUrl = "https://www.bilibili.com/video/BV1GE41167JH"
@@ -2186,7 +2186,7 @@ object MultiVideoData {
         penguin16.code = 1062
         penguin16.duration = 29
         penguin16.period = PeriodType.GROUP.ordinal
-        penguin16.isStar = true
+        penguin16.star = true
         penguin16.title = "超治愈！被这只毛茸茸的小企鹅萌到了！太可爱了吧！！！"
         penguin16.releaseTime = "2018-11-21 16:03:54"
         penguin16.originalUrl = "https://www.bilibili.com/video/BV1qt411C7ZU"
@@ -2218,7 +2218,7 @@ object MultiVideoData {
         penguin18.code = 430
         penguin18.duration = 80
         penguin18.period = PeriodType.BABY.ordinal
-        penguin18.isStar = true
+        penguin18.star = true
         penguin18.title = "【企鹅】泥嚎！谁说这是滕讯实习生？他们就是坠可爱的崽！！！"
         penguin18.releaseTime = "2022-01-25 18:37:35"
         penguin18.originalUrl = "https://www.bilibili.com/video/BV13Y41187Xa"
@@ -2238,7 +2238,7 @@ object MultiVideoData {
         bear1.code = 1077
         bear1.duration = 261
         bear1.period = PeriodType.GROUP.ordinal
-        bear1.isStar = false
+        bear1.star = false
         bear1.title = "北极熊妈携幼崽艰难度日，漫长的无冰夏季让生存挑战愈发严峻！"
         bear1.releaseTime = "2022-01-27 17:10:08"
         bear1.originalUrl = "https://www.bilibili.com/video/BV1Sr4y1e7J6"
@@ -2255,7 +2255,7 @@ object MultiVideoData {
         bear2.code = 1078
         bear2.duration = 98
         bear2.period = PeriodType.GROUP.ordinal
-        bear2.isStar = false
+        bear2.star = false
         bear2.title = "【白熊】小北极熊：我不想起床呀"
         bear2.releaseTime = "2021-11-09 00:25:01"
         bear2.originalUrl = "https://www.bilibili.com/video/BV1xv411M7YK"
@@ -2272,7 +2272,7 @@ object MultiVideoData {
         bear3.code = 1079
         bear3.duration = 75
         bear3.period = PeriodType.GROUP.ordinal
-        bear3.isStar = false
+        bear3.star = false
         bear3.title = "40℃的高温天气下，北极熊的命都是冰块给的！"
         bear3.releaseTime = "2017-07-25 16:47:14"
         bear3.originalUrl = "https://www.bilibili.com/video/BV1Lx411q7PS"
@@ -2289,7 +2289,7 @@ object MultiVideoData {
         bear4.code = 1080
         bear4.duration = 57
         bear4.period = PeriodType.GROUP.ordinal
-        bear4.isStar = false
+        bear4.star = false
         bear4.title = "饲养员给北极熊准备了一桶冰 给熊高兴坏了"
         bear4.releaseTime = "2019-01-24 12:32:20"
         bear4.originalUrl = "https://www.bilibili.com/video/BV1Et411b73k"
@@ -2306,7 +2306,7 @@ object MultiVideoData {
         bear5.code = 1081
         bear5.duration = 121
         bear5.period = PeriodType.GROUP.ordinal
-        bear5.isStar = false
+        bear5.star = false
         bear5.title = "【北极熊】麻麻在挖洞 我在旁边乖乖的"
         bear5.releaseTime = "2020-09-27 19:30:49"
         bear5.originalUrl = "https://www.bilibili.com/video/BV1Vk4y117Te"
@@ -2323,7 +2323,7 @@ object MultiVideoData {
         bear6.code = 1082
         bear6.duration = 162
         bear6.period = PeriodType.GROUP.ordinal
-        bear6.isStar = false
+        bear6.star = false
         bear6.title = "北极熊牌靠枕"
         bear6.releaseTime = "2021-08-16 17:24:54"
         bear6.originalUrl = "https://www.bilibili.com/video/BV1N3411677y"
@@ -2340,7 +2340,7 @@ object MultiVideoData {
         bear7.code = 1083
         bear7.duration = 68
         bear7.period = PeriodType.GROUP.ordinal
-        bear7.isStar = false
+        bear7.star = false
         bear7.title = "小北极熊纳努和她的弟弟"
         bear7.releaseTime = "2021-10-06 11:43:55"
         bear7.originalUrl = "https://www.bilibili.com/video/BV1tP4y187kt"
@@ -2357,7 +2357,7 @@ object MultiVideoData {
         bear8.code = 1084
         bear8.duration = 106
         bear8.period = PeriodType.GROUP.ordinal
-        bear8.isStar = false
+        bear8.star = false
         bear8.title = "两岁的小北极熊纳努终于被妈妈赶走了"
         bear8.releaseTime = "2021-11-09 15:52:50"
         bear8.originalUrl = "https://www.bilibili.com/video/BV15q4y1k75D"
@@ -2374,7 +2374,7 @@ object MultiVideoData {
         bear9.code = 1085
         bear9.duration = 107
         bear9.period = PeriodType.GROUP.ordinal
-        bear9.isStar = false
+        bear9.star = false
         bear9.title = "小海豹宝宝被北极熊一口叼走，小海豹妈妈只能眼睁睁的看着"
         bear9.releaseTime = "2020-03-07 18:58:50"
         bear9.originalUrl = "https://www.bilibili.com/video/BV15E411p7kC"
@@ -2391,7 +2391,7 @@ object MultiVideoData {
         bear10.code = 1086
         bear10.duration = 239
         bear10.period = PeriodType.GROUP.ordinal
-        bear10.isStar = false
+        bear10.star = false
         bear10.title = "熊妈妈亲自带宝宝打野   熊宝宝吃了100条鱼"
         bear10.releaseTime = "2021-01-02 01:51:09"
         bear10.originalUrl = "https://www.bilibili.com/video/BV16y4y1U7CS"
@@ -2408,7 +2408,7 @@ object MultiVideoData {
         bear11.code = 1087
         bear11.duration = 157
         bear11.period = PeriodType.GROUP.ordinal
-        bear11.isStar = false
+        bear11.star = false
         bear11.title = "北极熊妈妈带着两崽子找到一头死去的大鲸鱼，放开吃"
         bear11.releaseTime = "2020-04-26 11:21:51"
         bear11.originalUrl = "https://www.bilibili.com/video/BV1q5411x7Hd"
@@ -2425,7 +2425,7 @@ object MultiVideoData {
         bear12.code = 1088
         bear12.duration = 111
         bear12.period = PeriodType.GROUP.ordinal
-        bear12.isStar = false
+        bear12.star = false
         bear12.title = "冬眠结束~三只北极熊宝宝第一次爬出雪洞看世界！！！"
         bear12.releaseTime = "2020-03-20 18:02:48"
         bear12.originalUrl = "https://www.bilibili.com/video/BV1AE411N7be"
@@ -2442,7 +2442,7 @@ object MultiVideoData {
         bear13.code = 1089
         bear13.duration = 299
         bear13.period = PeriodType.GROUP.ordinal
-        bear13.isStar = false
+        bear13.star = false
         bear13.title = "【精彩片段】北极熊猎杀白鲸，鲸肉大餐！"
         bear13.releaseTime = "2020-08-15 22:24:52"
         bear13.originalUrl = "https://www.bilibili.com/video/BV1x54y1i7sZ"
@@ -2459,7 +2459,7 @@ object MultiVideoData {
         bear14.code = 1090
         bear14.duration = 312
         bear14.period = PeriodType.GROUP.ordinal
-        bear14.isStar = false
+        bear14.star = false
         bear14.title = "北极熊开阔水面爆头秒杀白鲸"
         bear14.releaseTime = "2022-01-18 22:18:36"
         bear14.originalUrl = "https://www.bilibili.com/video/BV1mR4y1M7si"
@@ -2476,7 +2476,7 @@ object MultiVideoData {
         bear15.code = 1091
         bear15.duration = 310
         bear15.period = PeriodType.GROUP.ordinal
-        bear15.isStar = false
+        bear15.star = false
         bear15.title = "北极熊活吃鞍背海豹"
         bear15.releaseTime = "2019-11-16 19:00:10"
         bear15.originalUrl = "https://www.bilibili.com/video/BV1CE411e7CB"
@@ -2493,7 +2493,7 @@ object MultiVideoData {
         bear16.code = 1092
         bear16.duration = 59
         bear16.period = PeriodType.GROUP.ordinal
-        bear16.isStar = false
+        bear16.star = false
         bear16.title = "小灰熊和小北极熊一起玩耍"
         bear16.releaseTime = "2021-09-29 02:13:51"
         bear16.originalUrl = "https://www.bilibili.com/video/BV1Sr4y1173H"
@@ -2510,7 +2510,7 @@ object MultiVideoData {
         bear17.code = 1093
         bear17.duration = 66
         bear17.period = PeriodType.GROUP.ordinal
-        bear17.isStar = false
+        bear17.star = false
         bear17.title = "#北极熊# 啊啊啊可爱坏了！北极熊宝宝被突然钻出来的海豹吓到"
         bear17.releaseTime = "2019-10-12 18:56:28"
         bear17.originalUrl = "https://www.bilibili.com/video/BV14E411Z7nx"
@@ -2527,7 +2527,7 @@ object MultiVideoData {
         bear18.code = 1094
         bear18.duration = 415
         bear18.period = PeriodType.GROUP.ordinal
-        bear18.isStar = false
+        bear18.star = false
         bear18.title = "[奥狄斯X亚历山大]北极熊篇-《你打算萌死我吗》-莫如归原著"
         bear18.releaseTime = "2021-01-25 02:41:10"
         bear18.originalUrl = "https://www.bilibili.com/video/BV1Ro4y1o7md"
@@ -2544,7 +2544,7 @@ object MultiVideoData {
         bear19.code = 1095
         bear19.duration = 306
         bear19.period = PeriodType.GROUP.ordinal
-        bear19.isStar = false
+        bear19.star = false
         bear19.title = "你听过小北极熊的叫声吗？"
         bear19.releaseTime = "2019-12-05 16:09:53"
         bear19.originalUrl = "https://www.bilibili.com/video/BV1PJ411i7yk"
@@ -2561,7 +2561,7 @@ object MultiVideoData {
         bear20.code = 1096
         bear20.duration = 114
         bear20.period = PeriodType.GROUP.ordinal
-        bear20.isStar = false
+        bear20.star = false
         bear20.title = "北极熊：北极熊宝宝是黏在妈妈屁股上的小跟屁"
         bear20.releaseTime = "2021-10-18 17:09:06"
         bear20.originalUrl = "https://www.bilibili.com/video/BV1kU4y1F7Dk"
@@ -2578,7 +2578,7 @@ object MultiVideoData {
         bear21.code = 1097
         bear21.duration = 90
         bear21.period = PeriodType.GROUP.ordinal
-        bear21.isStar = false
+        bear21.star = false
         bear21.title = "男鹿水族馆 水边玩耍的北极熊"
         bear21.releaseTime = "2022-01-25 01:25:06"
         bear21.originalUrl = "https://www.bilibili.com/video/BV19Z4y1f7Kw"
@@ -2595,7 +2595,7 @@ object MultiVideoData {
         bear22.code = 1098
         bear22.duration = 184
         bear22.period = PeriodType.GROUP.ordinal
-        bear22.isStar = false
+        bear22.star = false
         bear22.title = "【北极熊】饲养员给白熊宝宝jiojio抹护肤霜"
         bear22.releaseTime = "2021-10-31 17:41:20"
         bear22.originalUrl = "https://www.bilibili.com/video/BV1Rb4y1b7sH"
@@ -2612,7 +2612,7 @@ object MultiVideoData {
         bear23.code = 1099
         bear23.duration = 152
         bear23.period = PeriodType.GROUP.ordinal
-        bear23.isStar = false
+        bear23.star = false
         bear23.title = "【白熊】小北极熊熊生第一次看到雪！"
         bear23.releaseTime = "2022-01-10 18:00:11"
         bear23.originalUrl = "https://www.bilibili.com/video/BV17u411D7Ux"
@@ -2629,7 +2629,7 @@ object MultiVideoData {
         bear24.code = 1100
         bear24.duration = 15
         bear24.period = PeriodType.GROUP.ordinal
-        bear24.isStar = false
+        bear24.star = false
         bear24.title = "【小熊】熊熊玛尼娅 摆出了有些诱惑的姿势"
         bear24.releaseTime = "2022-01-07 18:30:13"
         bear24.originalUrl = "https://www.bilibili.com/video/BV1MM4y1w79d"
@@ -2646,7 +2646,7 @@ object MultiVideoData {
         bear25.code = 1101
         bear25.duration = 104
         bear25.period = PeriodType.GROUP.ordinal
-        bear25.isStar = false
+        bear25.star = false
         bear25.title = "【白熊】没办法 孩子太可爱了 必须要抱在怀里疯狂rua"
         bear25.releaseTime = "2020-09-25 19:31:00"
         bear25.originalUrl = "https://www.bilibili.com/video/BV1wh41197Ej"
@@ -2663,7 +2663,7 @@ object MultiVideoData {
         bear26.code = 1102
         bear26.duration = 69
         bear26.period = PeriodType.GROUP.ordinal
-        bear26.isStar = false
+        bear26.star = false
         bear26.title = "小北极熊：贴紧我的麻麻～"
         bear26.releaseTime = "2021-01-08 17:57:45"
         bear26.originalUrl = "https://www.bilibili.com/video/BV1ii4y1F7Rt"
@@ -2680,7 +2680,7 @@ object MultiVideoData {
         bear27.code = 1103
         bear27.duration = 16
         bear27.period = PeriodType.GROUP.ordinal
-        bear27.isStar = false
+        bear27.star = false
         bear27.title = "海豹不小心吓到了北极熊宝宝，太可爱了"
         bear27.releaseTime = "2020-08-19 17:40:13"
         bear27.originalUrl = "https://www.bilibili.com/video/BV1Dt4y1U73T"
@@ -2697,7 +2697,7 @@ object MultiVideoData {
         bear28.code = 1104
         bear28.duration = 66
         bear28.period = PeriodType.GROUP.ordinal
-        bear28.isStar = false
+        bear28.star = false
         bear28.title = "小北极熊第一次玩冰块，场面一发不可收拾，憋住千万别笑！"
         bear28.releaseTime = "2022-01-04 19:23:25"
         bear28.originalUrl = "https://www.bilibili.com/video/BV13Z4y1S7G2"
@@ -2714,7 +2714,7 @@ object MultiVideoData {
         bear29.code = 1105
         bear29.duration = 120
         bear29.period = PeriodType.GROUP.ordinal
-        bear29.isStar = false
+        bear29.star = false
         bear29.title = "小熊：我有狗了！"
         bear29.releaseTime = "2021-12-28 11:10:04"
         bear29.originalUrl = "https://www.bilibili.com/video/BV1MR4y1s73f"
@@ -2731,7 +2731,7 @@ object MultiVideoData {
         bear30.code = 1106
         bear30.duration = 76
         bear30.period = PeriodType.GROUP.ordinal
-        bear30.isStar = false
+        bear30.star = false
         bear30.title = "出生不久的小狮子和小老虎，发出的声音很有趣"
         bear30.releaseTime = "2020-05-21 19:39:15"
         bear30.originalUrl = "https://www.bilibili.com/video/BV14t4y1C7UF"
@@ -2748,7 +2748,7 @@ object MultiVideoData {
         bear31.code = 1107
         bear31.duration = 132
         bear31.period = PeriodType.GROUP.ordinal
-        bear31.isStar = false
+        bear31.star = false
         bear31.title = "【白熊】小北极熊Nora 出生7天到83天的变化"
         bear31.releaseTime = "2020-12-26 17:00:09"
         bear31.originalUrl = "https://www.bilibili.com/video/BV1di4y1c74e"
@@ -2765,7 +2765,7 @@ object MultiVideoData {
         bear32.code = 1108
         bear32.duration = 166
         bear32.period = PeriodType.GROUP.ordinal
-        bear32.isStar = false
+        bear32.star = false
         bear32.title = "北极熊也太可爱了吧？毛茸茸的大白狗"
         bear32.releaseTime = "2021-12-13 11:18:01"
         bear32.originalUrl = "https://www.bilibili.com/video/BV1kr4y1D7iQ"
@@ -2782,7 +2782,7 @@ object MultiVideoData {
         bear33.code = 1356
         bear33.duration = 441
         bear33.period = PeriodType.GROUP.ordinal
-        bear33.isStar = true
+        bear33.star = true
         bear33.title = "【小熊】胆小的小公主普扎"
         bear33.releaseTime = "2020-12-10 17:10:08"
         bear33.originalUrl = "https://www.bilibili.com/video/BV1Xf4y1v7GW"
@@ -2798,7 +2798,7 @@ object MultiVideoData {
         bear34.code = 1357
         bear34.duration = 32
         bear34.period = PeriodType.GROUP.ordinal
-        bear34.isStar = false
+        bear34.star = false
         bear34.title = "贴好秋膘啦，准备过冬噜"
         bear34.releaseTime = "2019-10-13 21:08:45"
         bear34.originalUrl = "https://www.bilibili.com/video/BV1JE411d7VM"
@@ -2814,7 +2814,7 @@ object MultiVideoData {
         bear35.code = 1358
         bear35.duration = 72
         bear35.period = PeriodType.GROUP.ordinal
-        bear35.isStar = false
+        bear35.star = false
         bear35.title = "【熊】当肥肥姐妹花向你拱来......"
         bear35.releaseTime = "2021-11-13 18:00:10"
         bear35.originalUrl = "https://www.bilibili.com/video/BV13q4y1k7hj"
@@ -2834,7 +2834,7 @@ object MultiVideoData {
         monkey1.code = 1109
         monkey1.duration = 104
         monkey1.period = PeriodType.GROUP.ordinal
-        monkey1.isStar = true
+        monkey1.star = true
         monkey1.title = "侏儒狨猴：世界上最小的猴子，可以让你体验佛祖的感受"
         monkey1.releaseTime = "2021-11-24 18:33:10"
         monkey1.originalUrl = "https://www.bilibili.com/video/BV18r4y1Q7g2"
@@ -2851,7 +2851,7 @@ object MultiVideoData {
         monkey2.code = 1110
         monkey2.duration = 22
         monkey2.period = PeriodType.GROUP.ordinal
-        monkey2.isStar = true
+        monkey2.star = true
         monkey2.title = "【金丝猴】这 意 境 绝 了，不 愧 是 国 宝"
         monkey2.releaseTime = "2020-02-25 22:58:08"
         monkey2.originalUrl = "https://www.bilibili.com/video/BV1u7411M7u6"
@@ -2867,7 +2867,7 @@ object MultiVideoData {
         monkey3.fileName = "pet_monkey3"
         monkey3.code = 1111
         monkey3.duration = 122
-        monkey3.isStar = true
+        monkey3.star = true
         monkey3.title = "可能是全站最好看的金丝猴宝宝优雅吃苹果，猴中皇族的颜值巅峰"
         monkey3.releaseTime = "2021-02-21 11:28:27"
         monkey3.originalUrl = "https://www.bilibili.com/video/BV1Xh411r7Zk"
@@ -2882,7 +2882,7 @@ object MultiVideoData {
         monkey4.fileName = "pet_monkey4"
         monkey4.code = 1112
         monkey4.duration = 129
-        monkey4.isStar = true
+        monkey4.star = true
         monkey4.title = "川金丝猴：集灵秀、高贵和仙气于一身"
         monkey4.releaseTime = "2020-08-18 23:41:22"
         monkey4.originalUrl = "https://www.bilibili.com/video/BV1Ei4y1M71d"
@@ -2897,7 +2897,7 @@ object MultiVideoData {
         monkey5.fileName = "pet_monkey5"
         monkey5.code = 1113
         monkey5.duration = 51
-        monkey5.isStar = true
+        monkey5.star = true
         monkey5.title = "猴中贵族，国宝美猴王- 金丝猴"
         monkey5.releaseTime = "2020-10-16 12:08:44"
         monkey5.originalUrl = "https://www.bilibili.com/video/BV1ei4y1j7xt"
@@ -2912,7 +2912,7 @@ object MultiVideoData {
         monkey6.fileName = "pet_monkey6"
         monkey6.code = 1388
         monkey6.duration = 28
-        monkey6.isStar = true
+        monkey6.star = true
         monkey6.title = "传说中孙悟空的原型长这样"
         monkey6.releaseTime = "2022-01-25 11:00:02"
         monkey6.originalUrl = "https://www.bilibili.com/video/BV1MY41187wv"
@@ -2927,7 +2927,7 @@ object MultiVideoData {
         monkey7.fileName = "pet_monkey7"
         monkey7.code = 1389
         monkey7.duration = 219
-        monkey7.isStar = true
+        monkey7.star = true
         monkey7.title = "金丝猴一家的年夜饭"
         monkey7.releaseTime = "2022-01-31 17:18:19"
         monkey7.originalUrl = "https://www.bilibili.com/video/BV1WS4y1y7eA"
@@ -2942,7 +2942,7 @@ object MultiVideoData {
         monkey8.fileName = "pet_monkey8"
         monkey8.code = 1390
         monkey8.duration = 21
-        monkey8.isStar = true
+        monkey8.star = true
         monkey8.title = "今天大雪偶遇金丝猴国道上寻找食物"
         monkey8.releaseTime = "2021-12-25 18:39:23"
         monkey8.originalUrl = "https://www.bilibili.com/video/BV1ZF411q7Fu"
@@ -2961,7 +2961,7 @@ object MultiVideoData {
         redPanda1.fileName = "red_panda1"
         redPanda1.code = 1173
         redPanda1.duration = 64
-        redPanda1.isStar = true
+        redPanda1.star = true
         redPanda1.title = "这是小熊猫爸爸一个悲伤的故事——"
         redPanda1.releaseTime = "2022-01-12 10:13:39"
         redPanda1.originalUrl = "https://www.bilibili.com/video/BV11Y41187hY"
@@ -2976,7 +2976,7 @@ object MultiVideoData {
         redPanda2.fileName = "red_panda2"
         redPanda2.code = 1174
         redPanda2.duration = 37
-        redPanda2.isStar = true
+        redPanda2.star = true
         redPanda2.title = "【小熊猫奶油】叼着竹叶的奶油也是很社会了～(￣▽￣～)~"
         redPanda2.releaseTime = "2022-01-15 20:55:22"
         redPanda2.originalUrl = "https://www.bilibili.com/video/BV1v3411a7DG"
@@ -2991,7 +2991,7 @@ object MultiVideoData {
         redPanda3.fileName = "red_panda3"
         redPanda3.code = 1175
         redPanda3.duration = 41
-        redPanda3.isStar = true
+        redPanda3.star = true
         redPanda3.title = "请勿在两脚兽看不见的地方干架蟹蟹"
         redPanda3.releaseTime = "2022-01-20 23:00:18"
         redPanda3.originalUrl = "https://www.bilibili.com/video/BV1E3411Y7PY"
@@ -3006,7 +3006,7 @@ object MultiVideoData {
         redPanda4.fileName = "red_panda4"
         redPanda4.code = 1176
         redPanda4.duration = 43
-        redPanda4.isStar = true
+        redPanda4.star = true
         redPanda4.title = "【小胖】又厚又大的大脚板！"
         redPanda4.releaseTime = "2021-11-06 19:09:46"
         redPanda4.originalUrl = "https://www.bilibili.com/video/BV1Nr4y1y7Fv"
@@ -3021,7 +3021,7 @@ object MultiVideoData {
         redPanda5.fileName = "red_panda5"
         redPanda5.code = 1177
         redPanda5.duration = 31
-        redPanda5.isStar = true
+        redPanda5.star = true
         redPanda5.title = "【小熊猫】南瓜午后"
         redPanda5.releaseTime = "2022-01-14 00:24:59"
         redPanda5.originalUrl = "https://www.bilibili.com/video/BV1Aq4y117qy"
@@ -3036,7 +3036,7 @@ object MultiVideoData {
         redPanda6.fileName = "red_panda6"
         redPanda6.code = 1178
         redPanda6.duration = 92
-        redPanda6.isStar = true
+        redPanda6.star = true
         redPanda6.title = "前腿淹没在草丛中的嘟嘟【小熊猫】爱眯眼的吃货：我就静静看着你"
         redPanda6.releaseTime = "2022-01-21 21:14:51"
         redPanda6.originalUrl = "https://www.bilibili.com/video/BV1jY411b7da"
@@ -3051,7 +3051,7 @@ object MultiVideoData {
         redPanda7.fileName = "red_panda7"
         redPanda7.code = 1179
         redPanda7.duration = 85
-        redPanda7.isStar = true
+        redPanda7.star = true
         redPanda7.title = "钏路市动物园 跑跑跳跳的双胞胎小熊猫宝宝"
         redPanda7.releaseTime = "2022-01-12 01:20:12"
         redPanda7.originalUrl = "https://www.bilibili.com/video/BV1cR4y1g7SG"
@@ -3066,7 +3066,7 @@ object MultiVideoData {
         redPanda8.fileName = "red_panda8"
         redPanda8.code = 1180
         redPanda8.duration = 82
-        redPanda8.isStar = true
+        redPanda8.star = true
         redPanda8.title = "【小熊猫】除了可爱我都不知道能说什么了"
         redPanda8.releaseTime = "2022-01-26 13:17:53"
         redPanda8.originalUrl = "https://www.bilibili.com/video/BV1QF411p7tY"
@@ -3081,7 +3081,7 @@ object MultiVideoData {
         redPanda9.fileName = "red_panda9"
         redPanda9.code = 1181
         redPanda9.duration = 128
-        redPanda9.isStar = true
+        redPanda9.star = true
         redPanda9.title = "雪山飞能"
         redPanda9.releaseTime = "2021-05-22 14:42:20"
         redPanda9.originalUrl = "https://www.bilibili.com/video/BV19h411v7zo"
@@ -3096,7 +3096,7 @@ object MultiVideoData {
         redPanda10.fileName = "red_panda10"
         redPanda10.code = 1182
         redPanda10.duration = 39
-        redPanda10.isStar = true
+        redPanda10.star = true
         redPanda10.title = "【小熊猫】我堂堂“灰大王”，一能吃一大盘，不过分吧！"
         redPanda10.releaseTime = "2022-01-13 13:18:40"
         redPanda10.originalUrl = "https://www.bilibili.com/video/BV1jb4y1J7T4"
@@ -3111,7 +3111,7 @@ object MultiVideoData {
         redPanda11.fileName = "red_panda11"
         redPanda11.code = 1183
         redPanda11.duration = 24
-        redPanda11.isStar = true
+        redPanda11.star = true
         redPanda11.title = "【小熊猫】优雅永不过时！"
         redPanda11.releaseTime = "2022-01-06 18:20:57"
         redPanda11.originalUrl = "https://www.bilibili.com/video/BV12L411V7z8"
@@ -3126,7 +3126,7 @@ object MultiVideoData {
         redPanda12.fileName = "red_panda12"
         redPanda12.code = 1184
         redPanda12.duration = 343
-        redPanda12.isStar = true
+        redPanda12.star = true
         redPanda12.title = "糖霜小熊猫【cattail Sapporo】"
         redPanda12.releaseTime = "2021-12-20 21:48:37"
         redPanda12.originalUrl = "https://www.bilibili.com/video/BV19g411w71C"
@@ -3141,7 +3141,7 @@ object MultiVideoData {
         redPanda13.fileName = "red_panda13"
         redPanda13.code = 1185
         redPanda13.duration = 24
-        redPanda13.isStar = true
+        redPanda13.star = true
         redPanda13.title = "[小熊猫]唉嘿嘿，一起来玩雪呀（看我期盼的小眼神）"
         redPanda13.releaseTime = "2021-08-02 11:53:34"
         redPanda13.originalUrl = "https://www.bilibili.com/video/BV14y4y157ae"
@@ -3156,7 +3156,7 @@ object MultiVideoData {
         redPanda14.fileName = "red_panda14"
         redPanda14.code = 1186
         redPanda14.duration = 135
-        redPanda14.isStar = true
+        redPanda14.star = true
         redPanda14.title = "当小熊猫笑起来，还有什么值得我们烦躁的呢"
         redPanda14.releaseTime = "2022-01-25 10:49:27"
         redPanda14.originalUrl = "https://www.bilibili.com/video/BV1bu411174s"
@@ -3171,7 +3171,7 @@ object MultiVideoData {
         redPanda15.fileName = "red_panda15"
         redPanda15.code = 1187
         redPanda15.duration = 58
-        redPanda15.isStar = true
+        redPanda15.star = true
         redPanda15.title = "【油管搬运】猛男必看！柏林动物园的小能苗"
         redPanda15.releaseTime = "2020-08-24 17:03:41"
         redPanda15.originalUrl = "https://www.bilibili.com/video/BV1aC4y1t7q3"
@@ -3186,7 +3186,7 @@ object MultiVideoData {
         redPanda16.fileName = "red_panda16"
         redPanda16.code = 1188
         redPanda16.duration = 51
-        redPanda16.isStar = true
+        redPanda16.star = true
         redPanda16.title = "[小熊猫]就想静静的趴着看你"
         redPanda16.releaseTime = "2021-09-14 17:40:41"
         redPanda16.originalUrl = "https://www.bilibili.com/video/BV19h411H7Gq"
@@ -3201,7 +3201,7 @@ object MultiVideoData {
         redPanda17.fileName = "red_panda17"
         redPanda17.code = 1189
         redPanda17.duration = 125
-        redPanda17.isStar = true
+        redPanda17.star = true
         redPanda17.title = "阿伟快来受死，感受下两只奶能的双重暴击"
         redPanda17.releaseTime = "2021-05-07 01:52:44"
         redPanda17.originalUrl = "https://www.bilibili.com/video/BV1gB4y1w7Fc"
@@ -3216,7 +3216,7 @@ object MultiVideoData {
         redPanda18.fileName = "red_panda18"
         redPanda18.code = 1190
         redPanda18.duration = 61
-        redPanda18.isStar = true
+        redPanda18.star = true
         redPanda18.title = "小熊猫妈妈和刚出生的小宝贝 第二辑"
         redPanda18.releaseTime = "2020-07-13 10:00:45"
         redPanda18.originalUrl = "https://www.bilibili.com/video/BV1Ti4y1V7K8"
@@ -3231,7 +3231,7 @@ object MultiVideoData {
         redPanda19.fileName = "red_panda19"
         redPanda19.code = 1191
         redPanda19.duration = 110
-        redPanda19.isStar = true
+        redPanda19.star = true
         redPanda19.title = "【小小能】黑胖头！又奶又凶，超大只，巨可爱"
         redPanda19.releaseTime = "2021-12-12 23:44:11"
         redPanda19.originalUrl = "https://www.bilibili.com/video/BV1Ji4y1d7uB"
@@ -3246,7 +3246,7 @@ object MultiVideoData {
         redPanda20.fileName = "red_panda20"
         redPanda20.code = 1192
         redPanda20.duration = 108
-        redPanda20.isStar = true
+        redPanda20.star = true
         redPanda20.title = "【小小能】轮胎秋千再现江湖之 三能同乘"
         redPanda20.releaseTime = "2021-06-20 01:25:39"
         redPanda20.originalUrl = "https://www.bilibili.com/video/BV1Xg411g7fm"
@@ -3261,7 +3261,7 @@ object MultiVideoData {
         redPanda21.fileName = "red_panda21"
         redPanda21.code = 1193
         redPanda21.duration = 64
-        redPanda21.isStar = true
+        redPanda21.star = true
         redPanda21.title = "【初雾】小甜甜有多可爱？趴个棍儿也能把人萌哭"
         redPanda21.releaseTime = "2021-12-16 21:34:01"
         redPanda21.originalUrl = "https://www.bilibili.com/video/BV1W44y1J74C"
@@ -3276,7 +3276,7 @@ object MultiVideoData {
         redPanda22.fileName = "red_panda22"
         redPanda22.code = 1194
         redPanda22.duration = 42
-        redPanda22.isStar = true
+        redPanda22.star = true
         redPanda22.title = "【小熊猫】初雾，只要我去的够勤快，你就当从没离开过"
         redPanda22.releaseTime = "2021-12-29 19:00:00"
         redPanda22.originalUrl = "https://www.bilibili.com/video/BV1cL411L7o1"
@@ -3291,7 +3291,7 @@ object MultiVideoData {
         redPanda23.fileName = "red_panda23"
         redPanda23.code = 1195
         redPanda23.duration = 1148
-        redPanda23.isStar = true
+        redPanda23.star = true
         redPanda23.title = "【小熊猫】金牛湖的那些能"
         redPanda23.releaseTime = "2022-01-11 00:02:00"
         redPanda23.originalUrl = "https://www.bilibili.com/video/BV1BY41187x9"
@@ -3306,7 +3306,7 @@ object MultiVideoData {
         redPanda24.fileName = "red_panda24"
         redPanda24.code = 1196
         redPanda24.duration = 25
-        redPanda24.isStar = true
+        redPanda24.star = true
         redPanda24.title = "可爱捏"
         redPanda24.releaseTime = "2021-10-10 17:16:17"
         redPanda24.originalUrl = "https://www.bilibili.com/video/BV1Kf4y1g7qg"
@@ -3321,7 +3321,7 @@ object MultiVideoData {
         redPanda25.fileName = "red_panda25"
         redPanda25.code = 1197
         redPanda25.duration = 12
-        redPanda25.isStar = true
+        redPanda25.star = true
         redPanda25.title = "修能能，你的小脑袋瓜在想啥呢"
         redPanda25.releaseTime = "2021-10-19 15:57:22"
         redPanda25.originalUrl = "https://www.bilibili.com/video/BV1kF411Y7S5"
@@ -3336,7 +3336,7 @@ object MultiVideoData {
         redPanda26.fileName = "red_panda26"
         redPanda26.code = 1198
         redPanda26.duration = 30
-        redPanda26.isStar = true
+        redPanda26.star = true
         redPanda26.title = "是小熊猫呀！"
         redPanda26.releaseTime = "2021-08-17 13:41:15"
         redPanda26.originalUrl = "https://www.bilibili.com/video/BV1sq4y1M7rR"
@@ -3351,7 +3351,7 @@ object MultiVideoData {
         redPanda27.fileName = "red_panda27"
         redPanda27.code = 1199
         redPanda27.duration = 141
-        redPanda27.isStar = true
+        redPanda27.star = true
         redPanda27.title = "【小熊猫】灰总如厕&标记领地"
         redPanda27.releaseTime = "2022-01-23 21:53:12"
         redPanda27.originalUrl = "https://www.bilibili.com/video/BV1qS4y1L7dT"
@@ -3366,7 +3366,7 @@ object MultiVideoData {
         redPanda28.fileName = "red_panda28"
         redPanda28.code = 1200
         redPanda28.duration = 487
-        redPanda28.isStar = true
+        redPanda28.star = true
         redPanda28.title = "【小熊猫】谁说要看灰灰吃竹叶呢？（去拍的时候灰灰它们已经吃的差不多了，所以看起来不是那么尽兴，哈哈哈哈哈）"
         redPanda28.releaseTime = "2021-12-28 18:28:22"
         redPanda28.originalUrl = "https://www.bilibili.com/video/BV11P4y1J7Yt"
@@ -3381,7 +3381,7 @@ object MultiVideoData {
         redPanda29.fileName = "red_panda29"
         redPanda29.code = 1201
         redPanda29.duration = 93
-        redPanda29.isStar = true
+        redPanda29.star = true
         redPanda29.title = "开小灶的男朋友(好帅，好帅)"
         redPanda29.releaseTime = "2021-12-28 23:19:06"
         redPanda29.originalUrl = "https://www.bilibili.com/video/BV1SF411B7Ys"
@@ -3396,7 +3396,7 @@ object MultiVideoData {
         redPanda30.fileName = "red_panda30"
         redPanda30.code = 1202
         redPanda30.duration = 187
-        redPanda30.isStar = true
+        redPanda30.star = true
         redPanda30.title = "好想揪一下它的小舌头！"
         redPanda30.releaseTime = "2021-07-04 10:53:59"
         redPanda30.originalUrl = "https://www.bilibili.com/video/BV1v64y1Q7fH"
@@ -3411,7 +3411,7 @@ object MultiVideoData {
         redPanda31.fileName = "red_panda31"
         redPanda31.code = 1203
         redPanda31.duration = 111
-        redPanda31.isStar = true
+        redPanda31.star = true
         redPanda31.title = "别再问我为什么叫小能了，看封面"
         redPanda31.releaseTime = "2021-06-22 22:53:51"
         redPanda31.originalUrl = "https://www.bilibili.com/video/BV1uw411o7Py"
@@ -3426,7 +3426,7 @@ object MultiVideoData {
         redPanda32.fileName = "red_panda32"
         redPanda32.code = 1204
         redPanda32.duration = 148
-        redPanda32.isStar = true
+        redPanda32.star = true
         redPanda32.title = "【添添、小灰灰】小灰灰想找添添玩，添添只想困觉(இдஇ; )（前几天的库存）"
         redPanda32.releaseTime = "2021-10-19 13:45:23"
         redPanda32.originalUrl = "https://www.bilibili.com/video/BV1Tb4y1h71w"
@@ -3441,7 +3441,7 @@ object MultiVideoData {
         redPanda33.fileName = "red_panda33"
         redPanda33.code = 1205
         redPanda33.duration = 106
-        redPanda33.isStar = true
+        redPanda33.star = true
         redPanda33.title = "你敢打我阿姨!你打我啊!别拍我头，会变笨的"
         redPanda33.releaseTime = "2022-01-10 22:48:29"
         redPanda33.originalUrl = "https://www.bilibili.com/video/BV17L4y1b7E1"
@@ -3456,7 +3456,7 @@ object MultiVideoData {
         redPanda34.fileName = "red_panda34"
         redPanda34.code = 1206
         redPanda34.duration = 178
-        redPanda34.isStar = true
+        redPanda34.star = true
         redPanda34.title = "[小熊猫大佬]你别这样看着我，我会忍不住心动的"
         redPanda34.releaseTime = "2022-01-06 19:01:35"
         redPanda34.originalUrl = "https://www.bilibili.com/video/BV1iu411U7w1"
@@ -3472,7 +3472,7 @@ object MultiVideoData {
         redPanda35.code = 1382
         redPanda35.duration = 29
         redPanda35.period = PeriodType.GROUP.ordinal
-        redPanda35.isStar = true
+        redPanda35.star = true
         redPanda35.title = "【小灰灰】灰灰：我被“不明物”撞了一下腰！"
         redPanda35.releaseTime = "2021-10-09 20:06:36"
         redPanda35.originalUrl = "https://www.bilibili.com/video/BV1Lr4y127FU"
@@ -3488,7 +3488,7 @@ object MultiVideoData {
         redPanda36.code = 1383
         redPanda36.duration = 57
         redPanda36.period = PeriodType.GROUP.ordinal
-        redPanda36.isStar = true
+        redPanda36.star = true
         redPanda36.title = "灰灰来啦！"
         redPanda36.releaseTime = "2021-09-19 11:47:15"
         redPanda36.originalUrl = "https://www.bilibili.com/video/BV1W341127wx"

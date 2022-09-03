@@ -188,7 +188,7 @@ public class LaterAdapter(
                 }
                 data.booleanFlag = !data.booleanFlag
             } else {
-                startVideoPlayActivity(context, data.code, false)
+                startVideoPlayActivity(context, data.code)
             }
         }
 

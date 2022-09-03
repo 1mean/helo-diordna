@@ -14,7 +14,7 @@ object CommentData {
         comment.fromUserCode = 523707706
         comment.commitTime = 1653849393000
         comment.likeNum = (0..100).random()
-        comment.isUpLike = true
+        comment.upLike = true
         comment.commentId = 1
         list.add(comment)
 
@@ -25,7 +25,7 @@ object CommentData {
         comment1.fromUserCode = 348483302
         comment1.commitTime = 1653869393000
         comment1.likeNum = (0..100).random()
-        comment1.isUpLike = true
+        comment1.upLike = true
         comment1.commentId = 2
         list.add(comment1)
 
@@ -36,7 +36,7 @@ object CommentData {
         comment2.fromUserCode = 28374744
         comment2.commitTime = 1653969393000
         comment2.likeNum = (0..100).random()
-        comment2.isUpLike = true
+        comment2.upLike = true
         comment2.commentId = 3
         list.add(comment2)
 
@@ -47,7 +47,7 @@ object CommentData {
         comment3.fromUserCode = 41665075
         comment3.commitTime = 1653979393000
         comment3.likeNum = (0..100).random()
-        comment3.isUpLike = false
+        comment3.upLike = false
         comment3.commentId = 4
         list.add(comment3)
 
@@ -58,7 +58,7 @@ object CommentData {
         comment4.fromUserCode = 1813574272
         comment4.commitTime = 1653989393000
         comment4.likeNum = (0..100).random()
-        comment4.isUpLike = false
+        comment4.upLike = false
         comment4.commentId = 5
         list.add(comment4)
 
@@ -69,7 +69,7 @@ object CommentData {
         comment5.fromUserCode = 360321868
         comment5.commitTime = 1653989395000
         comment5.likeNum = (0..100).random()
-        comment5.isUpLike = false
+        comment5.upLike = false
         comment5.commentId = 6
         list.add(comment5)
 
@@ -80,7 +80,7 @@ object CommentData {
         comment6.fromUserCode = 1151868166
         comment6.commitTime = 1653989397000
         comment6.likeNum = (0..100).random()
-        comment6.isUpLike = false
+        comment6.upLike = false
         comment6.commentId = 7
         list.add(comment6)
 
@@ -91,7 +91,7 @@ object CommentData {
         comment7.fromUserCode = 34677299
         comment7.commitTime = 1653989417000
         comment7.likeNum = (0..100).random()
-        comment7.isUpLike = true
+        comment7.upLike = true
         comment7.commentId = 8
         list.add(comment7)
 
@@ -102,7 +102,7 @@ object CommentData {
         comment8.fromUserCode = 335419800
         comment8.commitTime = 1653989427000
         comment8.likeNum = (0..100).random()
-        comment8.isUpLike = false
+        comment8.upLike = false
         comment8.commentId = 9
         list.add(comment8)
 
@@ -113,7 +113,7 @@ object CommentData {
         comment9.fromUserCode = 7782934
         comment9.commitTime = 1653989467000
         comment9.likeNum = (0..100).random()
-        comment9.isUpLike = false
+        comment9.upLike = false
         comment9.commentId = 10
         list.add(comment9)
 
@@ -124,7 +124,7 @@ object CommentData {
         comment10.fromUserCode = 478823961
         comment10.commitTime = 1653989567000
         comment10.likeNum = (0..100).random()
-        comment10.isUpLike = false
+        comment10.upLike = false
         comment10.commentId = 11
         list.add(comment10)
 
@@ -135,7 +135,7 @@ object CommentData {
         comment11.fromUserCode = 18329821
         comment11.commitTime = 1653989667000
         comment11.likeNum = (0..100).random()
-        comment11.isUpLike = false
+        comment11.upLike = false
         comment11.commentId = 12
         list.add(comment11)
 
@@ -146,7 +146,7 @@ object CommentData {
         comment12.fromUserCode = 39546503
         comment12.commitTime = 1653989677000
         comment12.likeNum = (0..100).random()
-        comment12.isUpLike = false
+        comment12.upLike = false
         comment12.commentId = 13
         list.add(comment12)
 
@@ -157,7 +157,7 @@ object CommentData {
         comment13.fromUserCode = 1998535
         comment13.commitTime = 1653989687000
         comment13.likeNum = (0..100).random()
-        comment13.isUpLike = false
+        comment13.upLike = false
         comment13.commentId = 14
         list.add(comment13)
 
@@ -168,7 +168,7 @@ object CommentData {
         comment14.fromUserCode = 66688464
         comment14.commitTime = 1653989697000
         comment14.likeNum = (0..100).random()
-        comment14.isUpLike = false
+        comment14.upLike = false
         comment14.commentId = 15
         list.add(comment14)
 
@@ -179,7 +179,7 @@ object CommentData {
         comment15.fromUserCode = 40656188
         comment15.commitTime = 1653989717000
         comment15.likeNum = (0..100).random()
-        comment15.isUpLike = false
+        comment15.upLike = false
         comment15.commentId = 16
         list.add(comment15)
 
@@ -190,7 +190,7 @@ object CommentData {
         comment16.fromUserCode = 92694869
         comment16.commitTime = 1653989727000
         comment16.likeNum = (0..100).random()
-        comment16.isUpLike = true
+        comment16.upLike = true
         comment16.commentId = 17
         list.add(comment16)
 
@@ -201,7 +201,7 @@ object CommentData {
         comment17.fromUserCode = 36814636
         comment17.commitTime = 1653989747000
         comment17.likeNum = (0..100).random()
-        comment17.isUpLike = false
+        comment17.upLike = false
         comment17.commentId = 18
         list.add(comment17)
 
@@ -212,7 +212,7 @@ object CommentData {
         comment18.fromUserCode = 98093909
         comment18.commitTime = 1653989767000
         comment18.likeNum = (0..100).random()
-        comment18.isUpLike = false
+        comment18.upLike = false
         comment18.commentId = 19
         list.add(comment18)
 
@@ -223,7 +223,7 @@ object CommentData {
         comment19.fromUserCode = 20429499
         comment19.commitTime = 1653989787000
         comment19.likeNum = (0..100).random()
-        comment19.isUpLike = false
+        comment19.upLike = false
         comment19.commentId = 20
         list.add(comment19)
 
@@ -234,7 +234,7 @@ object CommentData {
         comment20.fromUserCode = 293243325
         comment20.commitTime = 1653989887000
         comment20.likeNum = (0..100).random()
-        comment20.isUpLike = false
+        comment20.upLike = false
         comment20.commentId = 21
         list.add(comment20)
 
@@ -245,7 +245,7 @@ object CommentData {
         comment21.fromUserCode = 2087432052
         comment21.commitTime = 1653990000000
         comment21.likeNum = (0..100).random()
-        comment21.isUpLike = false
+        comment21.upLike = false
         comment21.commentId = 22
         list.add(comment21)
 
@@ -256,7 +256,7 @@ object CommentData {
         comment22.fromUserCode = 396343652
         comment22.commitTime = 1653990002000
         comment22.likeNum = (0..100).random()
-        comment22.isUpLike = true
+        comment22.upLike = true
         comment22.commentId = 23
         list.add(comment22)
 
@@ -267,7 +267,7 @@ object CommentData {
         comment23.fromUserCode = 384395600
         comment23.commitTime = 1653990012000
         comment23.likeNum = (0..100).random()
-        comment23.isUpLike = false
+        comment23.upLike = false
         comment23.commentId = 24
         list.add(comment23)
 
@@ -278,7 +278,7 @@ object CommentData {
         comment24.fromUserCode = 30738231
         comment24.commitTime = 1653990032000
         comment24.likeNum = (0..100).random()
-        comment24.isUpLike = false
+        comment24.upLike = false
         comment24.commentId = 25
         list.add(comment24)
 
@@ -289,7 +289,7 @@ object CommentData {
         comment25.fromUserCode = 404523870
         comment25.commitTime = 1653849394000
         comment25.likeNum = (0..100).random()
-        comment25.isUpLike = false
+        comment25.upLike = false
         comment25.commentId = 26
         comment25.topCommentId = 1
         list.add(comment25)
@@ -304,7 +304,7 @@ object CommentData {
         comment26.toUserName = "南柯十一梦"
         comment26.commitTime = 1653849396000
         comment26.likeNum = (0..100).random()
-        comment26.isUpLike = false
+        comment26.upLike = false
         comment26.commentId = 27
         comment26.topCommentId = 1
         list.add(comment26)
@@ -320,7 +320,7 @@ object CommentData {
         comment27.toUserName = "南柯十一梦"
         comment27.commitTime = 1653849496000
         comment27.likeNum = (0..100).random()
-        comment27.isUpLike = false
+        comment27.upLike = false
         comment27.commentId = 28
         comment27.topCommentId = 1
         list.add(comment27)
@@ -335,7 +335,7 @@ object CommentData {
         comment28.toUserName = "南柯十一梦"
         comment28.commitTime = 1653849596000
         comment28.likeNum = (0..100).random()
-        comment28.isUpLike = false
+        comment28.upLike = false
         comment28.commentId = 29
         comment28.topCommentId = 1
         list.add(comment28)
@@ -348,7 +348,7 @@ object CommentData {
         comment29.fromUserCode = 44341427
         comment29.commitTime = 1653849696000
         comment29.likeNum = (0..100).random()
-        comment29.isUpLike = false
+        comment29.upLike = false
         comment29.commentId = 30
         comment29.topCommentId = 1
         list.add(comment29)
@@ -363,7 +363,7 @@ object CommentData {
         comment30.toUserName = "我跟白敬亭私奔了"
         comment30.commitTime = 1653849896000
         comment30.likeNum = (0..100).random()
-        comment30.isUpLike = false
+        comment30.upLike = false
         comment30.commentId = 31
         comment30.topCommentId = 1
         list.add(comment30)
@@ -375,7 +375,7 @@ object CommentData {
         comment31.fromUserCode = 200634377
         comment31.commitTime = 1653859896000
         comment31.likeNum = (0..100).random()
-        comment31.isUpLike = false
+        comment31.upLike = false
         comment31.commentId = 32
         comment31.topCommentId = 1
         list.add(comment31)

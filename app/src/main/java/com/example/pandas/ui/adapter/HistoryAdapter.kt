@@ -207,7 +207,7 @@ public class HistoryAdapter(
                     }
                     data.selected = !data.selected
                 } else {
-                    startVideoPlayActivity(context, it.code, false)
+                    startVideoPlayActivity(context, it.code)
                 }
             }
         }

@@ -21,7 +21,7 @@ data class User(
     @ColumnInfo
     var level: Int = 0,
     @ColumnInfo
-    var isVip: Int = 0,//1为会员
+    var vip: Int = 0,//1为会员
     @ColumnInfo
     var headUrl: String? = null,//头像
     @ColumnInfo

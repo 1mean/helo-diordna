@@ -127,27 +127,6 @@ interface PetVideoDao {
     @Query("select * from pet_video")
     fun getAll(): MutableList<PetVideo>
 
-    @Query("select * from music")
-    fun getAllMusic(): MutableList<MusicVo>
-
-    @Query("select * from pet_video where title like :name")
-    suspend fun queryByName(name: String): List<PetVideo>
-
-    @Query("select * from pet_video where title in (:names)")
-    suspend fun queryByNames(vararg names: String): List<PetVideo>
-
-    @Query("select * from pet_video where code=(:code)")
-    fun queryByCode(code: Int): PetVideo
-
-    @Query("select * from pet_video where id=(:id)")
-    fun queryById(id: Int): PetVideo
-
-    @Query("select count(*) from pet_video")
-    fun getAllSize(): Int
-
-    @Query("select * from video_data")
-    fun queryVideoData(): MutableList<VideoData>
-
     @Query("select * from video_data where videoCode=(:code)")
     suspend fun queryVideoDataByCode(code: Int): VideoData?
 
@@ -179,7 +158,7 @@ interface PetVideoDao {
     @Query("select * from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryVideoByPage(type: Int, startIndex: Int, count: Int): MutableList<PetVideo>
 
-    @Query("select * from pet_video where  type=0 and videoType=0 and isStar=1 limit (:startIndex),(:count)")
+    @Query("select * from pet_video where  type=0 and videoType=0 and star=1 limit (:startIndex),(:count)")
     suspend fun queryLovedPanda(startIndex: Int, count: Int): MutableList<PetVideo>
 
     @Query("select * from pet_video where type=(:type) and videoType=0 order by releaseTime desc limit (:startIndex),(:count)")
@@ -191,19 +170,19 @@ interface PetVideoDao {
     @Query("select * from pet_video where videoType = (:type) limit 0,4")
     suspend fun queryRecoBanner(type: Int): MutableList<PetVideo>
 
-    @Query("select * from pet_video where isStar=1 and videoType=0 order by releaseTime desc limit (:startIndex),(:count)")
+    @Query("select * from pet_video where star=1 and videoType=0 order by releaseTime desc limit (:startIndex),(:count)")
     suspend fun queryStarByPage(startIndex: Int, count: Int): MutableList<PetVideo>
 
     @Query("select * from pet_video where videoType = (:videoType)")
     suspend fun queryVideoType(videoType: Int): MutableList<PetVideo>
 
-    @Query("select * from pet_video where videoType=0 and isStar=1 order by releaseTime desc limit (:startIndex),(:count)")
+    @Query("select * from pet_video where videoType=0 and star=1 order by releaseTime desc limit (:startIndex),(:count)")
     suspend fun queryHotVideo(startIndex: Int, count: Int): MutableList<PetVideo>
 
     @Query("select * from music where type=(:type) limit (:startIndex),(:count)")
     suspend fun queryMusicByPage(type: Int, startIndex: Int, count: Int): MutableList<MusicVo>
 
-    @Query("select code,title,cover,authorId,duration,videoType from pet_video where isStar=1 limit 0,(:counts)")
+    @Query("select code,title,cover,authorId,duration,videoType from pet_video where star=1 limit 0,(:counts)")
     suspend fun queryByCounts(counts: Int): MutableList<PetViewData>
 
     @Query("select code,title,cover,authorId,duration,videoType,releaseTime from pet_video where authorId=(:code) order by releaseTime desc limit (:startIndex),(:counts)")
@@ -284,7 +263,7 @@ interface PetVideoDao {
         counts: Int
     ): MutableList<PetVideo>
 
-    @Query("select * from pet_video where type=0 and videoType=0 and isStar=1 and title like (:words) limit (:startIndex),(:counts)")
+    @Query("select * from pet_video where type=0 and videoType=0 and star=1 and title like (:words) limit (:startIndex),(:counts)")
     suspend fun queryLovedByKey(
         words: String,
         startIndex: Int,
@@ -302,10 +281,10 @@ interface PetVideoDao {
     @Query("select * from history order by lastTime desc limit (:startIndex),(:count)")
     suspend fun queryHistoryByPage(startIndex: Int, count: Int): MutableList<History>
 
-    @Query("select * from video_data where isLaterPlay=1 limit (:startIndex),(:count)")
+    @Query("select * from video_data where laterPlay=1 limit (:startIndex),(:count)")
     suspend fun queryLaterByPage(startIndex: Int, count: Int): MutableList<VideoData>
 
-    @Query("select * from video_data where isLaterPlay=1")
+    @Query("select * from video_data where laterPlay=1")
     suspend fun queryAllLaters(): MutableList<VideoData>
 
     @Query("select code,title,cover,authorId,duration from pet_video where code=(:code)")

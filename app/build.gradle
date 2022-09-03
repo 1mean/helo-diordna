@@ -99,7 +99,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
 
     //Room数据库
-    def room_version = "2.3.0"
+    def room_version = "2.4.3"
     implementation("androidx.room:room-runtime:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
     // 为 Room 添加 RxJava3 支持

@@ -12,7 +12,7 @@ object PetBirdData {
         bird1.fileName = "bird1"
         bird1.code = 877
         bird1.duration = 113
-        bird1.isStar = true
+        bird1.star = true
         bird1.title = "鹦鹉妈妈给树洞中的两只小鹦鹉喂食"
         bird1.releaseTime = "2022-02-04 22:54:11"
         bird1.originalUrl = "https://www.bilibili.com/video/BV1ga411y7uR"
@@ -28,7 +28,7 @@ object PetBirdData {
         bird2.fileName = "bird2"
         bird2.code = 878
         bird2.duration = 133
-        bird2.isStar = true
+        bird2.star = true
         bird2.title = "新年最喜欢的8种鸟叫声：八哥说恭喜发财，金鸡报喜，喜鹊报喜"
         bird2.releaseTime = "2022-02-02 20:42:37"
         bird2.originalUrl = "https://www.bilibili.com/video/BV1m44y1p7Tt"
@@ -44,7 +44,7 @@ object PetBirdData {
         bird3.fileName = "bird3"
         bird3.code = 879
         bird3.duration = 13
-        bird3.isStar = true
+        bird3.star = true
         bird3.title = "太原白鹭4K让你看个清楚够"
         bird3.releaseTime = "2022-01-29 23:19:19"
         bird3.originalUrl = "https://www.bilibili.com/video/BV1kS4y1L7Fo"
@@ -60,7 +60,7 @@ object PetBirdData {
         bird4.fileName = "bird4"
         bird4.code = 880
         bird4.duration = 55
-        bird4.isStar = true
+        bird4.star = true
         bird4.title = "优雅的鹳大爷"
         bird4.releaseTime = "2022-01-25 00:14:22"
         bird4.originalUrl = "https://www.bilibili.com/video/BV1dL4y1s7KY"
@@ -76,7 +76,7 @@ object PetBirdData {
         bird5.fileName = "bird5"
         bird5.code = 881
         bird5.duration = 155
-        bird5.isStar = true
+        bird5.star = true
         bird5.title = "窗前有一副画：很美，很生动。"
         bird5.releaseTime = "2022-01-13 06:00:25"
         bird5.originalUrl = "https://www.bilibili.com/video/BV1wL411576w"
@@ -92,7 +92,7 @@ object PetBirdData {
         bird6.fileName = "bird6"
         bird6.code = 882
         bird6.duration = 363
-        bird6.isStar = true
+        bird6.star = true
         bird6.title = "最美鸟类排行榜：羽毛色彩绚丽，美妙绝伦！"
         bird6.releaseTime = "2022-01-29 11:57:05"
         bird6.originalUrl = "https://www.bilibili.com/video/BV1H44y1s7yv"
@@ -108,7 +108,7 @@ object PetBirdData {
         bird7.fileName = "bird7"
         bird7.code = 883
         bird7.duration = 90
-        bird7.isStar = true
+        bird7.star = true
         bird7.title = "这只熊猫喜欢和孔雀一起玩耍, 它们之间太逗了!_高清"
         bird7.releaseTime = "2017-07-02 17:12:06"
         bird7.originalUrl = "https://www.bilibili.com/video/BV1qx411B7Ai"
@@ -124,7 +124,7 @@ object PetBirdData {
         bird8.fileName = "bird8"
         bird8.code = 884
         bird8.duration = 108
-        bird8.isStar = true
+        bird8.star = true
         bird8.title = "【孔雀】开屏什么的你见多了，孔雀飞你见过吗？"
         bird8.releaseTime = "2017-07-07 21:00:49"
         bird8.originalUrl = "https://www.bilibili.com/video/BV1Yx411z7rU"
@@ -140,7 +140,7 @@ object PetBirdData {
         bird9.fileName = "bird9"
         bird9.code = 885
         bird9.duration = 167
-        bird9.isStar = true
+        bird9.star = true
         bird9.title = "罕见的一幕：雌绿孔雀开屏"
         bird9.releaseTime = "2021-02-02 12:20:59"
         bird9.originalUrl = "https://www.bilibili.com/video/BV1Rt4y1q75g"
@@ -156,7 +156,7 @@ object PetBirdData {
         bird10.fileName = "bird10"
         bird10.code = 886
         bird10.duration = 272
-        bird10.isStar = true
+        bird10.star = true
         bird10.title = "神似凤凰的绿孔雀"
         bird10.releaseTime = "2020-08-16 03:09:10"
         bird10.originalUrl = "https://www.bilibili.com/video/BV1YT4y1L74u"
@@ -172,7 +172,7 @@ object PetBirdData {
         bird11.fileName = "bird11"
         bird11.code = 887
         bird11.duration = 286
-        bird11.isStar = true
+        bird11.star = true
         bird11.title = "【绿孔雀|混剪】孔雀辞-在中国仅剩300只的绿孔雀"
         bird11.releaseTime = "2020-02-22 07:37:13"
         bird11.originalUrl = "https://www.bilibili.com/video/BV1z7411F7KU"
@@ -188,7 +188,7 @@ object PetBirdData {
         bird12.fileName = "bird12"
         bird12.code = 888
         bird12.duration = 19
-        bird12.isStar = true
+        bird12.star = true
         bird12.title = "孔雀飞起来真的好美"
         bird12.releaseTime = "2020-02-15 23:33:51"
         bird12.originalUrl = "https://www.bilibili.com/video/BV1S7411J7mE"
@@ -204,7 +204,7 @@ object PetBirdData {
         bird13.fileName = "bird13"
         bird13.code = 889
         bird13.duration = 15
-        bird13.isStar = true
+        bird13.star = true
         bird13.title = "孔雀飞起来就变成凤凰了。"
         bird13.releaseTime = "2019-10-16 21:51:55"
         bird13.originalUrl = "https://www.bilibili.com/video/BV1kE411C7Hy"
@@ -220,7 +220,7 @@ object PetBirdData {
         bird14.fileName = "bird14"
         bird14.code = 890
         bird14.duration = 146
-        bird14.isStar = true
+        bird14.star = true
         bird14.title = "黑天鹅一家出游赏花，难得一见天鹅戏桃花"
         bird14.releaseTime = "2020-04-14 17:45:43"
         bird14.originalUrl = "https://www.bilibili.com/video/BV1d54y197Fa"
@@ -236,7 +236,7 @@ object PetBirdData {
         bird15.fileName = "bird15"
         bird15.code = 891
         bird15.duration = 148
-        bird15.isStar = true
+        bird15.star = true
         bird15.title = "黑天鹅家族再添丁，这次只孵出一只小宝宝，黑天鹅爸妈疼爱有加！"
         bird15.releaseTime = "2020-06-22 13:51:07"
         bird15.originalUrl = "https://www.bilibili.com/video/BV1FD4y1Q7cN"
@@ -252,7 +252,7 @@ object PetBirdData {
         bird16.fileName = "bird16"
         bird16.code = 892
         bird16.duration = 171
-        bird16.isStar = true
+        bird16.star = true
         bird16.title = "出生第三天，小天鹅趴在妈妈背上出游觅食"
         bird16.releaseTime = "2020-04-25 19:53:58"
         bird16.originalUrl = "https://www.bilibili.com/video/BV1xC4y1W7YA"
@@ -268,7 +268,7 @@ object PetBirdData {
         bird17.fileName = "bird17"
         bird17.code = 893
         bird17.duration = 60
-        bird17.isStar = true
+        bird17.star = true
         bird17.title = "圆明园公园，网红黑天鹅夫妇携6只小宝宝冰上行，萌萌哒"
         bird17.releaseTime = "2020-01-12 22:14:53"
         bird17.originalUrl = "https://www.bilibili.com/video/BV1HJ411n7cC"
@@ -284,7 +284,7 @@ object PetBirdData {
         bird18.fileName = "bird18"
         bird18.code = 894
         bird18.duration = 48
-        bird18.isStar = true
+        bird18.star = true
         bird18.title = "【观鸟记录】大天鹅的脖子到底有多灵活"
         bird18.releaseTime = "2022-01-17 16:28:46"
         bird18.originalUrl = "https://www.bilibili.com/video/BV1PF411i7kX"
@@ -300,7 +300,7 @@ object PetBirdData {
         bird19.fileName = "bird19"
         bird19.code = 895
         bird19.duration = 121
-        bird19.isStar = true
+        bird19.star = true
         bird19.title = "白天鹅：优雅，永不过时"
         bird19.releaseTime = "2022-01-26 11:10:11"
         bird19.originalUrl = "https://www.bilibili.com/video/BV1ka411m7Yv"
@@ -316,7 +316,7 @@ object PetBirdData {
         bird20.fileName = "bird20"
         bird20.code = 896
         bird20.duration = 74
-        bird20.isStar = true
+        bird20.star = true
         bird20.title = "黄臀鹎在细雨中整理羽毛"
         bird20.releaseTime = "2021-07-16 09:00:05"
         bird20.originalUrl = "https://www.bilibili.com/video/BV1EK4y1u7Af"
@@ -332,7 +332,7 @@ object PetBirdData {
         bird21.fileName = "bird21"
         bird21.code = 897
         bird21.duration = 82
-        bird21.isStar = true
+        bird21.star = true
         bird21.title = "超迷你小老虎来了！红头长尾山雀集体出动"
         bird21.releaseTime = "2022-01-14 09:00:02"
         bird21.originalUrl = "https://www.bilibili.com/video/BV1bS4y1f7c6"
@@ -348,7 +348,7 @@ object PetBirdData {
         bird22.fileName = "bird22"
         bird22.code = 898
         bird22.duration = 313
-        bird22.isStar = true
+        bird22.star = true
         bird22.title = "[冠蓝鸦] 蓝色的鸦鸦"
         bird22.releaseTime = "2022-01-04 19:00:00"
         bird22.originalUrl = "https://www.bilibili.com/video/BV18L41157rS"
@@ -364,7 +364,7 @@ object PetBirdData {
         bird23.fileName = "bird23"
         bird23.code = 899
         bird23.duration = 150
-        bird23.isStar = true
+        bird23.star = true
         bird23.title = "原来绿鹦嘴鹎长这样"
         bird23.releaseTime = "2018-12-07 20:39:15"
         bird23.originalUrl = "https://www.bilibili.com/video/BV1rt411S7iW"
@@ -380,7 +380,7 @@ object PetBirdData {
         bird24.fileName = "bird24"
         bird24.code = 900
         bird24.duration = 120
-        bird24.isStar = true
+        bird24.star = true
         bird24.title = "文须雀"
         bird24.releaseTime = "2018-10-15 14:31:26"
         bird24.originalUrl = "https://www.bilibili.com/video/BV14t411Z7dP"
@@ -396,7 +396,7 @@ object PetBirdData {
         bird25.fileName = "bird25"
         bird25.code = 901
         bird25.duration = 147
-        bird25.isStar = true
+        bird25.star = true
         bird25.title = "疣鼻天鹅每年春秋季，都要在繁殖地和越冬地之间，来回迁徙上千米"
         bird25.releaseTime = "2019-01-16 14:03:07"
         bird25.originalUrl = "https://www.bilibili.com/video/BV17t411p7ot"
@@ -412,7 +412,7 @@ object PetBirdData {
         bird26.fileName = "bird26"
         bird26.code = 902
         bird26.duration = 83
-        bird26.isStar = true
+        bird26.star = true
         bird26.title = "天鹅见得多了，但黑色的天鹅还真是第一次见，不要见笑哈！"
         bird26.releaseTime = "2019-01-18 18:49:52"
         bird26.originalUrl = "https://www.bilibili.com/video/BV1ut411a7ce"
@@ -428,7 +428,7 @@ object PetBirdData {
         bird27.fileName = "bird27"
         bird27.code = 903
         bird27.duration = 155
-        bird27.isStar = true
+        bird27.star = true
         bird27.title = "超美腻的蓝绿鹊在广西安家啦，还带了一窝小可爱"
         bird27.releaseTime = "2020-07-06 21:50:47"
         bird27.originalUrl = "https://www.bilibili.com/video/BV1Gz411v7LD"
@@ -444,7 +444,7 @@ object PetBirdData {
         bird28.fileName = "bird28"
         bird28.code = 904
         bird28.duration = 93
-        bird28.isStar = true
+        bird28.star = true
         bird28.title = "实拍傍晚野公鸡带在找吃的，羽毛色彩斑斓，美极了！"
         bird28.releaseTime = "2019-03-29 20:36:45"
         bird28.originalUrl = "https://www.bilibili.com/video/BV1Rb411x7zd"
@@ -460,7 +460,7 @@ object PetBirdData {
         bird29.fileName = "bird29"
         bird29.code = 905
         bird29.duration = 26
-        bird29.isStar = true
+        bird29.star = true
         bird29.title = "蓝喉歌鸲优美的鸣声"
         bird29.releaseTime = "2019-04-04 18:04:27"
         bird29.originalUrl = "https://www.bilibili.com/video/BV1Nb411g7EQ"
@@ -476,7 +476,7 @@ object PetBirdData {
         bird30.fileName = "bird30"
         bird30.code = 906
         bird30.duration = 11
-        bird30.isStar = true
+        bird30.star = true
         bird30.title = "盘尾树鹊太贵族了"
         bird30.releaseTime = "2019-04-22 19:25:17"
         bird30.originalUrl = "https://www.bilibili.com/video/BV1mb41137QJ"
@@ -492,7 +492,7 @@ object PetBirdData {
         bird31.fileName = "bird31"
         bird31.code = 907
         bird31.duration = 22
-        bird31.isStar = true
+        bird31.star = true
         bird31.title = "叉尾太阳鸟在枝头吸吮冬红花蜜"
         bird31.releaseTime = "2021-02-10 18:35:04"
         bird31.originalUrl = "https://www.bilibili.com/video/BV1aK4y1p7ft"
@@ -508,7 +508,7 @@ object PetBirdData {
         bird32.fileName = "bird32"
         bird32.code = 908
         bird32.duration = 76
-        bird32.isStar = true
+        bird32.star = true
         bird32.title = "一只雄性“叉尾的太阳鸟”在飞行中吮吸花蜜（慢动作）"
         bird32.releaseTime = "2019-05-13 16:47:07"
         bird32.originalUrl = "https://www.bilibili.com/video/BV1a4411a7vX"
@@ -524,7 +524,7 @@ object PetBirdData {
         bird33.fileName = "bird33"
         bird33.code = 909
         bird33.duration = 46
-        bird33.isStar = true
+        bird33.star = true
         bird33.title = "印支绿鹊把色彩发挥到了极致，颜羽集于一身"
         bird33.releaseTime = "2019-05-15 21:54:54"
         bird33.originalUrl = "https://www.bilibili.com/video/BV1H4411J7fF"
@@ -540,7 +540,7 @@ object PetBirdData {
         bird34.fileName = "bird34"
         bird34.code = 910
         bird34.duration = 78
-        bird34.isStar = true
+        bird34.star = true
         bird34.title = "难得一见的白鹇，看起来颇有仙鸟的气质"
         bird34.releaseTime = "2019-05-15 23:36:25"
         bird34.originalUrl = "https://www.bilibili.com/video/BV1s4411J78S"
@@ -556,7 +556,7 @@ object PetBirdData {
         bird35.fileName = "bird35"
         bird35.code = 911
         bird35.duration = 58
-        bird35.isStar = true
+        bird35.star = true
         bird35.title = "云雀高歌天籁之音，听后耳朵怀孕了"
         bird35.releaseTime = "2019-05-20 08:56:19"
         bird35.originalUrl = "https://www.bilibili.com/video/BV1p4411j7Eq"
@@ -572,7 +572,7 @@ object PetBirdData {
         bird36.fileName = "bird36"
         bird36.code = 912
         bird36.duration = 53
-        bird36.isStar = true
+        bird36.star = true
         bird36.title = "胡言乱语的剑嘴鹛，不时地发出三音一度"
         bird36.releaseTime = "2019-05-21 18:32:39"
         bird36.originalUrl = "https://www.bilibili.com/video/BV1R4411j7gA"
@@ -588,7 +588,7 @@ object PetBirdData {
         bird37.fileName = "bird37"
         bird37.code = 913
         bird37.duration = 68
-        bird37.isStar = true
+        bird37.star = true
         bird37.title = "黑颈长尾雉，鸡 你太美了"
         bird37.releaseTime = "2019-05-22 21:52:04"
         bird37.originalUrl = "https://www.bilibili.com/video/BV12441157Zp"
@@ -604,7 +604,7 @@ object PetBirdData {
         bird38.fileName = "bird38"
         bird38.code = 914
         bird38.duration = 120
-        bird38.isStar = true
+        bird38.star = true
         bird38.title = "红扑扑的脸颊，一定做羞羞的事了"
         bird38.releaseTime = "2019-06-03 12:11:33"
         bird38.originalUrl = "https://www.bilibili.com/video/BV1X4411n7dN"
@@ -620,7 +620,7 @@ object PetBirdData {
         bird39.fileName = "bird39"
         bird39.code = 915
         bird39.duration = 167
-        bird39.isStar = true
+        bird39.star = true
         bird39.title = "常常听其声不见其影的赤尾噪鹛，拥有一身华丽的羽毛"
         bird39.releaseTime = "2019-07-30 17:15:45"
         bird39.originalUrl = "https://www.bilibili.com/video/BV13t411c7Rj"
@@ -636,7 +636,7 @@ object PetBirdData {
         bird40.fileName = "bird40"
         bird40.code = 916
         bird40.duration = 167
-        bird40.isStar = true
+        bird40.star = true
         bird40.title = "灰雁家的一天，毛茸茸的小灰雁觅食"
         bird40.releaseTime = "2019-08-13 12:02:09"
         bird40.originalUrl = "https://www.bilibili.com/video/BV144411S7xx"
@@ -652,7 +652,7 @@ object PetBirdData {
         bird41.fileName = "bird41"
         bird41.code = 917
         bird41.duration = 178
-        bird41.isStar = true
+        bird41.star = true
         bird41.title = "一级保护动物，孔雀的迷你版本"
         bird41.releaseTime = "2019-08-24 17:50:48"
         bird41.originalUrl = "https://www.bilibili.com/video/BV184411r7SE"
@@ -668,7 +668,7 @@ object PetBirdData {
         bird42.fileName = "bird42"
         bird42.code = 918
         bird42.duration = 120
-        bird42.isStar = true
+        bird42.star = true
         bird42.title = "凤头雀嘴鹎的发型碉堡了"
         bird42.releaseTime = "2019-09-02 17:45:04"
         bird42.originalUrl = "https://www.bilibili.com/video/BV1Y441117xq"
@@ -684,7 +684,7 @@ object PetBirdData {
         bird43.fileName = "bird43"
         bird43.code = 919
         bird43.duration = 320
-        bird43.isStar = true
+        bird43.star = true
         bird43.title = "白冠噪鹛的叫声，像山歌一样欢快！"
         bird43.releaseTime = "2019-09-13 17:35:45"
         bird43.originalUrl = "https://www.bilibili.com/video/BV1rJ411K7bv"
@@ -700,7 +700,7 @@ object PetBirdData {
         bird44.fileName = "bird44"
         bird44.code = 920
         bird44.duration = 156
-        bird44.isStar = true
+        bird44.star = true
         bird44.title = "探纪自然：苍鹰把鸽子踩在脚下，一口一口的拔毛！"
         bird44.releaseTime = "2019-10-01 09:30:34"
         bird44.originalUrl = "https://www.bilibili.com/video/BV18E411X76o"
@@ -716,7 +716,7 @@ object PetBirdData {
         bird45.fileName = "bird45"
         bird45.code = 921
         bird45.duration = 160
-        bird45.isStar = true
+        bird45.star = true
         bird45.title = "（安静系列）丛林知更鸟"
         bird45.releaseTime = "2019-10-16 18:04:47"
         bird45.originalUrl = "https://www.bilibili.com/video/BV1WE411C7Qu"
@@ -732,7 +732,7 @@ object PetBirdData {
         bird46.fileName = "bird46"
         bird46.code = 922
         bird46.duration = 138
-        bird46.isStar = true
+        bird46.star = true
         bird46.title = "好看的皮囊你玩不起，有思想的灵魂不理你，不如来看赤尾噪鹛"
         bird46.releaseTime = "2019-11-29 10:23:58"
         bird46.originalUrl = "https://www.bilibili.com/video/BV1RJ411D7fH"
@@ -748,7 +748,7 @@ object PetBirdData {
         bird47.fileName = "bird47"
         bird47.code = 923
         bird47.duration = 100
-        bird47.isStar = true
+        bird47.star = true
         bird47.title = "留 八 字 胡 须 的 鸟"
         bird47.releaseTime = "2019-12-04 13:30:07"
         bird47.originalUrl = "https://www.bilibili.com/video/BV1FJ411B7Lp"
@@ -764,7 +764,7 @@ object PetBirdData {
         bird48.fileName = "bird48"
         bird48.code = 924
         bird48.duration = 66
-        bird48.isStar = true
+        bird48.star = true
         bird48.title = "一种喜欢倒立觅食的鸟（栗臀䴓）"
         bird48.releaseTime = "2019-12-07 21:45:06"
         bird48.originalUrl = "https://www.bilibili.com/video/BV1XJ411e7Nk"
@@ -780,7 +780,7 @@ object PetBirdData {
         bird49.fileName = "bird49"
         bird49.code = 925
         bird49.duration = 108
-        bird49.isStar = true
+        bird49.star = true
         bird49.title = "中国特有鸟：褐 马 鸡"
         bird49.releaseTime = "2019-12-17 11:23:30"
         bird49.originalUrl = "https://www.bilibili.com/video/BV1zJ41167k1"
@@ -796,7 +796,7 @@ object PetBirdData {
         bird50.fileName = "bird50"
         bird50.code = 926
         bird50.duration = 78
-        bird50.isStar = true
+        bird50.star = true
         bird50.title = "奶凶小猫头鹰表情包大放送【Toto观鸟·斑头鸺鹠】"
         bird50.releaseTime = "2021-11-20 18:49:13"
         bird50.originalUrl = "https://www.bilibili.com/video/BV1iP4y1G7Dk"
@@ -812,7 +812,7 @@ object PetBirdData {
         bird51.fileName = "bird51"
         bird51.code = 927
         bird51.duration = 145
-        bird51.isStar = true
+        bird51.star = true
         bird51.title = "国画上走下来的鸟类，尾巴近2米长"
         bird51.releaseTime = "2020-01-03 12:09:05"
         bird51.originalUrl = "https://www.bilibili.com/video/BV1iJ411j7Bo"
@@ -828,7 +828,7 @@ object PetBirdData {
         bird52.fileName = "bird52"
         bird52.code = 928
         bird52.duration = 138
-        bird52.isStar = true
+        bird52.star = true
         bird52.title = "动物也很忙，胖胖的野生勺鸡觅食"
         bird52.releaseTime = "2020-01-05 10:53:42"
         bird52.originalUrl = "https://www.bilibili.com/video/BV1MJ411L7DD"
@@ -844,7 +844,7 @@ object PetBirdData {
         bird53.fileName = "bird53"
         bird53.code = 929
         bird53.duration = 163
-        bird53.isStar = true
+        bird53.star = true
         bird53.title = "鸟类排行第一美！中国特有鸟类-红腹锦鸡"
         bird53.releaseTime = "2020-01-17 17:18:16"
         bird53.originalUrl = "https://www.bilibili.com/video/BV1vJ411E7jd"
@@ -860,7 +860,7 @@ object PetBirdData {
         bird54.fileName = "bird54"
         bird54.code = 930
         bird54.duration = 178
-        bird54.isStar = true
+        bird54.star = true
         bird54.title = "凤凰的原型鸟，太美了！美得像一幅画"
         bird54.releaseTime = "2020-01-18 11:57:32"
         bird54.originalUrl = "https://www.bilibili.com/video/BV167411i7CM"
@@ -876,7 +876,7 @@ object PetBirdData {
         bird55.fileName = "bird55"
         bird55.code = 931
         bird55.duration = 122
-        bird55.isStar = true
+        bird55.star = true
         bird55.title = "【探纪自然】普通朱雀不仅长得好看，鸣声更是清脆悦耳！"
         bird55.releaseTime = "2020-04-05 15:29:35"
         bird55.originalUrl = "https://www.bilibili.com/video/BV1454y1d7Qa"
@@ -892,7 +892,7 @@ object PetBirdData {
         bird56.fileName = "bird56"
         bird56.code = 932
         bird56.duration = 98
-        bird56.isStar = true
+        bird56.star = true
         bird56.title = "黄色的球球鸟：我只是毛茸茸，不是胖嘟嘟"
         bird56.releaseTime = "2020-04-15 11:19:44"
         bird56.originalUrl = "https://www.bilibili.com/video/BV1ZQ4y1K7ki"
@@ -908,7 +908,7 @@ object PetBirdData {
         bird57.fileName = "bird57"
         bird57.code = 933
         bird57.duration = 167
-        bird57.isStar = true
+        bird57.star = true
         bird57.title = "前方高能！！！ 这是真的，一只鸟的叫声，专治 耳 鸣 耳 聋"
         bird57.releaseTime = "2020-04-29 13:16:48"
         bird57.originalUrl = "https://www.bilibili.com/video/BV16A41147nm"
@@ -924,7 +924,7 @@ object PetBirdData {
         bird58.fileName = "bird58"
         bird58.code = 934
         bird58.duration = 153
-        bird58.isStar = true
+        bird58.star = true
         bird58.title = "为什么一只鸟，成天叫着：不哭 不哭 ！"
         bird58.releaseTime = "2020-05-09 10:23:23"
         bird58.originalUrl = "https://www.bilibili.com/video/BV1De411p7Ry"
@@ -940,7 +940,7 @@ object PetBirdData {
         bird59.fileName = "bird59"
         bird59.code = 935
         bird59.duration = 306
-        bird59.isStar = true
+        bird59.star = true
         bird59.title = "全网最火的叫声，耳朵又一次怀孕了"
         bird59.releaseTime = "2020-05-15 20:36:06"
         bird59.originalUrl = "https://www.bilibili.com/video/BV1iZ4y1s7Lt"
@@ -956,7 +956,7 @@ object PetBirdData {
         bird60.fileName = "bird60"
         bird60.code = 936
         bird60.duration = 178
-        bird60.isStar = true
+        bird60.star = true
         bird60.title = "原来传说中的夜莺，叫声这么好听，百听不厌啊！"
         bird60.releaseTime = "2020-06-09 12:26:25"
         bird60.originalUrl = "https://www.bilibili.com/video/BV1K54y1Q7FH"
@@ -972,7 +972,7 @@ object PetBirdData {
         bird61.fileName = "bird61"
         bird61.code = 937
         bird61.duration = 156
-        bird61.isStar = true
+        bird61.star = true
         bird61.title = "古诗里的黄鹂鸟，很多人知道它的名字，却没见过长啥样！"
         bird61.releaseTime = "2020-06-18 07:32:28"
         bird61.originalUrl = "https://www.bilibili.com/video/BV16K411p7Ch"
@@ -988,7 +988,7 @@ object PetBirdData {
         bird62.fileName = "bird62"
         bird62.code = 938
         bird62.duration = 189
-        bird62.isStar = true
+        bird62.star = true
         bird62.title = "10种让人想家的鸟叫声，响亮动听，满满的童年回忆！"
         bird62.releaseTime = "2021-11-18 22:40:03"
         bird62.originalUrl = "https://www.bilibili.com/video/BV1pQ4y1v7rp"
@@ -1004,7 +1004,7 @@ object PetBirdData {
         bird63.fileName = "bird63"
         bird63.code = 939
         bird63.duration = 64
-        bird63.isStar = true
+        bird63.star = true
         bird63.title = "拍到了难得一见的四声杜鹃叫声，它究竟说了什么？"
         bird63.releaseTime = "2020-06-22 17:09:19"
         bird63.originalUrl = "https://www.bilibili.com/video/BV1qT4y1J7bo"
@@ -1020,7 +1020,7 @@ object PetBirdData {
         bird64.fileName = "bird64"
         bird64.code = 940
         bird64.duration = 62
-        bird64.isStar = true
+        bird64.star = true
         bird64.title = "你 喂 过 野 生 鸟 吗 ？"
         bird64.releaseTime = "2020-06-30 11:50:55"
         bird64.originalUrl = "https://www.bilibili.com/video/BV1xA411i7V1"
@@ -1036,7 +1036,7 @@ object PetBirdData {
         bird65.fileName = "bird65"
         bird65.code = 941
         bird65.duration = 115
-        bird65.isStar = true
+        bird65.star = true
         bird65.title = "【探纪自然】活泼可爱的小方尾鹟，叽叽喳喳叫不停"
         bird65.releaseTime = "2020-07-09 11:02:59"
         bird65.originalUrl = "https://www.bilibili.com/video/BV1oi4y1g7Bw"
@@ -1052,7 +1052,7 @@ object PetBirdData {
         bird66.fileName = "bird66"
         bird66.code = 942
         bird66.duration = 7
-        bird66.isStar = true
+        bird66.star = true
         bird66.title = "太阳鸟配灯笼花的悬停哟"
         bird66.releaseTime = "2019-02-14 05:12:05"
         bird66.originalUrl = "https://www.bilibili.com/video/BV1Hb411U774"
@@ -1068,7 +1068,7 @@ object PetBirdData {
         bird67.fileName = "bird67"
         bird67.code = 943
         bird67.duration = 93
-        bird67.isStar = true
+        bird67.star = true
         bird67.title = "古诗词中难住今人的“绿毛夭凤”，原来就是：绿喉太阳鸟"
         bird67.releaseTime = "2020-07-11 11:20:14"
         bird67.originalUrl = "https://www.bilibili.com/video/BV1qD4y1S7Uv"
@@ -1084,7 +1084,7 @@ object PetBirdData {
         bird68.fileName = "bird68"
         bird68.code = 944
         bird68.duration = 94
-        bird68.isStar = true
+        bird68.star = true
         bird68.title = "该死！斑鸠打着呼噜在求爱，让我给打搅了"
         bird68.releaseTime = "2020-10-21 13:02:44"
         bird68.originalUrl = "https://www.bilibili.com/video/BV1Rf4y1B7eF"
@@ -1100,7 +1100,7 @@ object PetBirdData {
         bird69.fileName = "bird69"
         bird69.code = 945
         bird69.duration = 93
-        bird69.isStar = true
+        bird69.star = true
         bird69.title = "来听听长脚秧鸡的漏电叫声，绝对是独一无二的电音，强烈建议收藏！"
         bird69.releaseTime = "2020-10-24 10:05:32"
         bird69.originalUrl = "https://www.bilibili.com/video/BV1GD4y1974k"
@@ -1116,7 +1116,7 @@ object PetBirdData {
         bird70.fileName = "bird70"
         bird70.code = 946
         bird70.duration = 142
-        bird70.isStar = true
+        bird70.star = true
         bird70.title = "一只胖乎乎的知更鸟，在蓝天下放声高歌"
         bird70.releaseTime = "2020-10-28 19:01:10"
         bird70.originalUrl = "https://www.bilibili.com/video/BV1Ha411A7UH"
@@ -1132,7 +1132,7 @@ object PetBirdData {
         bird71.fileName = "bird71"
         bird71.code = 947
         bird71.duration = 203
-        bird71.isStar = true
+        bird71.star = true
         bird71.title = "听说是世界上被捕猎最多的鸟，是真的吗？"
         bird71.releaseTime = "2020-12-22 10:54:09"
         bird71.originalUrl = "https://www.bilibili.com/video/BV1mh411Z7aH"
@@ -1148,7 +1148,7 @@ object PetBirdData {
         bird72.fileName = "bird72"
         bird72.code = 948
         bird72.duration = 124
-        bird72.isStar = true
+        bird72.star = true
         bird72.title = "这婉转悠扬的叫声，真的是太好听啦！"
         bird72.releaseTime = "2020-12-24 12:48:04"
         bird72.originalUrl = "https://www.bilibili.com/video/BV1Zt4y1k7Ph"
@@ -1164,7 +1164,7 @@ object PetBirdData {
         bird73.fileName = "bird73"
         bird73.code = 949
         bird73.duration = 261
-        bird73.isStar = true
+        bird73.star = true
         bird73.title = "叫声好特别的柳莺鸟，3分钟悦耳鸣声，值得收藏！"
         bird73.releaseTime = "2020-12-31 11:28:40"
         bird73.originalUrl = "https://www.bilibili.com/video/BV1hV411b7gc"
@@ -1180,7 +1180,7 @@ object PetBirdData {
         bird74.fileName = "bird74"
         bird74.code = 950
         bird74.duration = 68
-        bird74.isStar = true
+        bird74.star = true
         bird74.title = "顶级掠食者，一鹗抓双鱼"
         bird74.releaseTime = "2021-01-19 19:50:16"
         bird74.originalUrl = "https://www.bilibili.com/video/BV15T4y1K7VV"
@@ -1196,7 +1196,7 @@ object PetBirdData {
         bird75.fileName = "bird75"
         bird75.code = 951
         bird75.duration = 145
-        bird75.isStar = true
+        bird75.star = true
         bird75.title = "鱼鹰为什么能捕到鱼？鱼：我这辈子没有飞过这么高！"
         bird75.releaseTime = "2021-10-09 07:04:50"
         bird75.originalUrl = "https://www.bilibili.com/video/BV1tT4y1f7Wp"
@@ -1212,7 +1212,7 @@ object PetBirdData {
         bird76.fileName = "bird76"
         bird76.code = 952
         bird76.duration = 133
-        bird76.isStar = true
+        bird76.star = true
         bird76.title = "【雉科】高颜值，鸡 你太美！"
         bird76.releaseTime = "2019-08-30 23:50:45"
         bird76.originalUrl = "https://www.bilibili.com/video/BV1Y441127Rj"
@@ -1228,7 +1228,7 @@ object PetBirdData {
         bird77.fileName = "bird77"
         bird77.code = 953
         bird77.duration = 180
-        bird77.isStar = true
+        bird77.star = true
         bird77.title = "全世界最漂亮的鸡，主要分布在中国"
         bird77.releaseTime = "2019-05-31 14:40:05"
         bird77.originalUrl = "https://www.bilibili.com/video/BV1S4411H7kp"
@@ -1244,7 +1244,7 @@ object PetBirdData {
         bird78.fileName = "bird78"
         bird78.code = 954
         bird78.duration = 80
-        bird78.isStar = true
+        bird78.star = true
         bird78.title = "高清近拍国家二类保护动物———普通鵟，真是振奋人心！"
         bird78.releaseTime = "2021-02-10 09:08:16"
         bird78.originalUrl = "https://www.bilibili.com/video/BV1Py4y1Y7eX"
@@ -1260,7 +1260,7 @@ object PetBirdData {
         bird79.fileName = "bird79"
         bird79.code = 955
         bird79.duration = 248
-        bird79.isStar = true
+        bird79.star = true
         bird79.title = "屠夫伯劳鸟，喜欢把猎物刺死在树枝上，撕碎而食！"
         bird79.releaseTime = "2019-09-26 18:48:30"
         bird79.originalUrl = "https://www.bilibili.com/video/BV1nJ411T7Rm"
@@ -1276,7 +1276,7 @@ object PetBirdData {
         bird80.fileName = "bird80"
         bird80.code = 956
         bird80.duration = 145
-        bird80.isStar = true
+        bird80.star = true
         bird80.title = "[红背伯劳]鸟类中的墨镜哥"
         bird80.releaseTime = "2021-11-06 11:00:16"
         bird80.originalUrl = "https://www.bilibili.com/video/BV1p44y1e7Zg"
@@ -1292,7 +1292,7 @@ object PetBirdData {
         bird81.fileName = "bird81"
         bird81.code = 957
         bird81.duration = 231
-        bird81.isStar = true
+        bird81.star = true
         bird81.title = "鸟中屠夫：伯劳鸟把大山雀挂在树上，大口吃肉"
         bird81.releaseTime = "2021-02-13 12:46:04"
         bird81.originalUrl = "https://www.bilibili.com/video/BV1TU4y1W7ya"
@@ -1308,7 +1308,7 @@ object PetBirdData {
         bird82.fileName = "bird82"
         bird82.code = 958
         bird82.duration = 130
-        bird82.isStar = true
+        bird82.star = true
         bird82.title = "伯劳鸟：有天使的外表，魔鬼的嘴"
         bird82.releaseTime = "2021-02-23 14:17:06"
         bird82.originalUrl = "https://www.bilibili.com/video/BV1eA411M7tQ"
@@ -1324,7 +1324,7 @@ object PetBirdData {
         bird83.fileName = "bird83"
         bird83.code = 959
         bird83.duration = 154
-        bird83.isStar = true
+        bird83.star = true
         bird83.title = "竹鸡大声叫：美国坏，美国坏！"
         bird83.releaseTime = "2021-03-29 11:00:07"
         bird83.originalUrl = "https://www.bilibili.com/video/BV1jv41187Xg"
@@ -1340,7 +1340,7 @@ object PetBirdData {
         bird84.fileName = "bird84"
         bird84.code = 960
         bird84.duration = 123
-        bird84.isStar = true
+        bird84.star = true
         bird84.title = "普通杜鹃在清明时节，高声鸣叫，提醒人们：播谷 播谷！"
         bird84.releaseTime = "2021-04-05 10:47:09"
         bird84.originalUrl = "https://www.bilibili.com/video/BV1jh411D7oq"
@@ -1356,7 +1356,7 @@ object PetBirdData {
         bird85.fileName = "bird85"
         bird85.code = 961
         bird85.duration = 109
-        bird85.isStar = true
+        bird85.star = true
         bird85.title = "全网最好听的叫声，听完耳朵怀孕啦！"
         bird85.releaseTime = "2021-05-11 14:21:50"
         bird85.originalUrl = "https://www.bilibili.com/video/BV1Vh411v7LF"
@@ -1372,7 +1372,7 @@ object PetBirdData {
         bird86.fileName = "bird86"
         bird86.code = 962
         bird86.duration = 73
-        bird86.isStar = true
+        bird86.star = true
         bird86.title = "布谷鸟叫晚了"
         bird86.releaseTime = "2021-05-14 19:37:27"
         bird86.originalUrl = "https://www.bilibili.com/video/BV1Vh411v7BL"
@@ -1388,7 +1388,7 @@ object PetBirdData {
         bird87.fileName = "bird87"
         bird87.code = 963
         bird87.duration = 205
-        bird87.isStar = true
+        bird87.star = true
         bird87.title = "稀有鸟类黑琴鸡的叫声，你听过吗？"
         bird87.releaseTime = "2021-05-16 08:26:30"
         bird87.originalUrl = "https://www.bilibili.com/video/BV1Jv411572p"
@@ -1404,7 +1404,7 @@ object PetBirdData {
         bird88.fileName = "bird88"
         bird88.code = 964
         bird88.duration = 74
-        bird88.isStar = true
+        bird88.star = true
         bird88.title = "高清实拍蓝额红尾鸲，叫声酷像铃铛"
         bird88.releaseTime = "2021-05-22 12:05:03"
         bird88.originalUrl = "https://www.bilibili.com/video/BV1164y1d7U9"
@@ -1420,7 +1420,7 @@ object PetBirdData {
         bird89.fileName = "bird89"
         bird89.code = 965
         bird89.duration = 178
-        bird89.isStar = true
+        bird89.star = true
         bird89.title = "全网最火的叫声，舌端万变百鸟啼"
         bird89.releaseTime = "2021-06-13 10:57:40"
         bird89.originalUrl = "https://www.bilibili.com/video/BV1eQ4y197ht"
@@ -1436,7 +1436,7 @@ object PetBirdData {
         bird90.fileName = "bird90"
         bird90.code = 966
         bird90.duration = 316
-        bird90.isStar = true
+        bird90.star = true
         bird90.title = "夜莺诗一般的叫声，真是好听又放松！"
         bird90.releaseTime = "2021-06-14 11:05:38"
         bird90.originalUrl = "https://www.bilibili.com/video/BV11w411Z7nD"
@@ -1452,7 +1452,7 @@ object PetBirdData {
         bird91.fileName = "bird91"
         bird91.code = 967
         bird91.duration = 334
-        bird91.isStar = true
+        bird91.star = true
         bird91.title = "翠鸟捕鱼：快、准、狠，吃鱼一口一条！"
         bird91.releaseTime = "2021-01-27 10:47:11"
         bird91.originalUrl = "https://www.bilibili.com/video/BV1Zf4y1k78Z"
@@ -1468,7 +1468,7 @@ object PetBirdData {
         bird92.fileName = "bird92"
         bird92.code = 968
         bird92.duration = 20
-        bird92.isStar = true
+        bird92.star = true
         bird92.title = "喜马拉雅雪鸡叫声"
         bird92.releaseTime = "2021-06-23 13:31:21"
         bird92.originalUrl = "https://www.bilibili.com/video/BV1ZU4y1G746"
@@ -1484,7 +1484,7 @@ object PetBirdData {
         bird93.fileName = "bird93"
         bird93.code = 969
         bird93.duration = 240
-        bird93.isStar = true
+        bird93.star = true
         bird93.title = "大苇莺在芦苇丛中，大声欢唱，声音很有特色!"
         bird93.releaseTime = "2021-06-27 10:06:42"
         bird93.originalUrl = "https://www.bilibili.com/video/BV15g41137iJ"
@@ -1500,7 +1500,7 @@ object PetBirdData {
         bird94.fileName = "bird94"
         bird94.code = 970
         bird94.duration = 180
-        bird94.isStar = true
+        bird94.star = true
         bird94.title = "这就是你经常见的大山雀，鸣声尖锐多变，好听又放松！"
         bird94.releaseTime = "2021-01-29 11:10:57"
         bird94.originalUrl = "https://www.bilibili.com/video/BV1Nf4y1C7Ww"
@@ -1516,7 +1516,7 @@ object PetBirdData {
         bird95.fileName = "bird95"
         bird95.code = 971
         bird95.duration = 312
-        bird95.isStar = true
+        bird95.star = true
         bird95.title = "一只鸟婉转悠扬的叫声，这也太好听了吧！"
         bird95.releaseTime = "2021-07-15 19:05:33"
         bird95.originalUrl = "https://www.bilibili.com/video/BV1Mq4y1W7Nu"
@@ -1532,7 +1532,7 @@ object PetBirdData {
         bird96.fileName = "bird96"
         bird96.code = 972
         bird96.duration = 156
-        bird96.isStar = true
+        bird96.star = true
         bird96.title = "夜莺鸟婉转悠扬的鸣声真好听，建议偷偷收藏！"
         bird96.releaseTime = "2021-07-25 10:23:23"
         bird96.originalUrl = "https://www.bilibili.com/video/BV1Mg41177w7"
@@ -1548,7 +1548,7 @@ object PetBirdData {
         bird97.fileName = "bird97"
         bird97.code = 973
         bird97.duration = 201
-        bird97.isStar = true
+        bird97.star = true
         bird97.title = "金头扇尾莺的叫声太有趣啦！"
         bird97.releaseTime = "2021-09-29 11:30:09"
         bird97.originalUrl = "https://www.bilibili.com/video/BV183411y734"
@@ -1564,7 +1564,7 @@ object PetBirdData {
         bird98.fileName = "bird98"
         bird98.code = 974
         bird98.duration = 304
-        bird98.isStar = true
+        bird98.star = true
         bird98.title = "【雉亚科】鸡你太美！野鸡里的的颜值担当，20种野鸡颜值大赏！"
         bird98.releaseTime = "2020-10-28 10:17:22"
         bird98.originalUrl = "https://www.bilibili.com/video/BV1Zt4y1Y79T"
@@ -1580,7 +1580,7 @@ object PetBirdData {
         bird99.fileName = "bird99"
         bird99.code = 975
         bird99.duration = 84
-        bird99.isStar = true
+        bird99.star = true
         bird99.title = "娃 娃 鸡"
         bird99.releaseTime = "2021-11-22 12:38:09"
         bird99.originalUrl = "https://www.bilibili.com/video/BV1GU4y1u7vx"
@@ -1596,7 +1596,7 @@ object PetBirdData {
         bird100.fileName = "bird100"
         bird100.code = 976
         bird100.duration = 381
-        bird100.isStar = true
+        bird100.star = true
         bird100.title = "夜莺婉转悠扬的歌声，真是太好听了，先收藏起来！"
         bird100.releaseTime = "2021-11-24 12:23:18"
         bird100.originalUrl = "https://www.bilibili.com/video/BV1HL4y1p7a1"
@@ -1612,7 +1612,7 @@ object PetBirdData {
         bird101.fileName = "bird101"
         bird101.code = 977
         bird101.duration = 96
-        bird101.isStar = true
+        bird101.star = true
         bird101.title = "雄翠鸟送鱼给雌翠鸟"
         bird101.releaseTime = "2021-04-16 12:11:47"
         bird101.originalUrl = "https://www.bilibili.com/video/BV1Mf4y1s7HA"
@@ -1628,7 +1628,7 @@ object PetBirdData {
         bird102.fileName = "bird102"
         bird102.code = 978
         bird102.duration = 219
-        bird102.isStar = true
+        bird102.star = true
         bird102.title = "翠鸟捕鱼一条又一条，吃鱼时更讲究：将鱼摔晕后，吃鱼先吃头！"
         bird102.releaseTime = "2021-11-28 15:16:44"
         bird102.originalUrl = "https://www.bilibili.com/video/BV1y34y197yP"
@@ -1644,7 +1644,7 @@ object PetBirdData {
         bird103.fileName = "bird103"
         bird103.code = 979
         bird103.duration = 359
-        bird103.isStar = true
+        bird103.star = true
         bird103.title = "原来漂亮的鸡在中国，都是神仙颜值！"
         bird103.releaseTime = "2019-08-27 16:28:57"
         bird103.originalUrl = "https://www.bilibili.com/video/BV1r4411B72M"
@@ -1660,7 +1660,7 @@ object PetBirdData {
         bird104.fileName = "bird104"
         bird104.code = 980
         bird104.duration = 202
-        bird104.isStar = true
+        bird104.star = true
         bird104.title = "成群出没的仙鸟，白鹇鸟美丽又高贵，人见人爱！"
         bird104.releaseTime = "2021-12-05 12:53:58"
         bird104.originalUrl = "https://www.bilibili.com/video/BV1qY411p7qd"
@@ -1676,7 +1676,7 @@ object PetBirdData {
         bird105.fileName = "bird105"
         bird105.code = 981
         bird105.duration = 170
-        bird105.isStar = true
+        bird105.star = true
         bird105.title = "这就是传说中的凤凰吗？原来大自然真有啊，也太漂亮了吧！"
         bird105.releaseTime = "2021-12-08 12:51:43"
         bird105.originalUrl = "https://www.bilibili.com/video/BV1fL41177A1"
@@ -1692,7 +1692,7 @@ object PetBirdData {
         bird106.fileName = "bird106"
         bird106.code = 982
         bird106.duration = 35
-        bird106.isStar = true
+        bird106.star = true
         bird106.title = "狼吞虎咽的红耳鹎"
         bird106.releaseTime = "2021-09-30 19:35:03"
         bird106.originalUrl = "https://www.bilibili.com/video/BV1Hu411f7XP"
@@ -1708,7 +1708,7 @@ object PetBirdData {
         bird107.fileName = "bird107"
         bird107.code = 983
         bird107.duration = 254
-        bird107.isStar = true
+        bird107.star = true
         bird107.title = "一 串 长尾山雀"
         bird107.releaseTime = "2021-09-18 10:35:05"
         bird107.originalUrl = "https://www.bilibili.com/video/BV16g411c7P1"
@@ -1724,7 +1724,7 @@ object PetBirdData {
         bird108.fileName = "bird108"
         bird108.code = 984
         bird108.duration = 114
-        bird108.isStar = true
+        bird108.star = true
         bird108.title = "自古黑白出萌物，又出史上最萌鸟类"
         bird108.releaseTime = "2020-03-18 00:19:33"
         bird108.originalUrl = "https://www.bilibili.com/video/BV1k7411Z7tA"
@@ -1740,7 +1740,7 @@ object PetBirdData {
         bird109.fileName = "bird109"
         bird109.code = 985
         bird109.duration = 50
-        bird109.isStar = true
+        bird109.star = true
         bird109.title = "鸟界大熊猫，萌面杀手白腿小隼"
         bird109.releaseTime = "2019-05-20 16:29:35"
         bird109.originalUrl = "https://www.bilibili.com/video/BV1a4411j7FE"
@@ -1756,7 +1756,7 @@ object PetBirdData {
         bird110.fileName = "bird110"
         bird110.code = 986
         bird110.duration = 139
-        bird110.isStar = true
+        bird110.star = true
         bird110.title = "这就是会飞的“熊猫”，号称世上最小萌禽，数量极少！"
         bird110.releaseTime = "2021-12-21 17:18:19"
         bird110.originalUrl = "https://www.bilibili.com/video/BV1MF41167KJ"
@@ -1772,7 +1772,7 @@ object PetBirdData {
         bird111.fileName = "bird111"
         bird111.code = 987
         bird111.duration = 360
-        bird111.isStar = true
+        bird111.star = true
         bird111.title = "一只胖乎乎的红腹灰雀，在秋高气爽的天气里 吃 野 果 子"
         bird111.releaseTime = "2020-10-17 12:00:27"
         bird111.originalUrl = "https://www.bilibili.com/video/BV1Mv411k7ae"
@@ -1788,7 +1788,7 @@ object PetBirdData {
         bird112.fileName = "bird112"
         bird112.code = 988
         bird112.duration = 163
-        bird112.isStar = true
+        bird112.star = true
         bird112.title = "[红腹灰雀]雪中一抹红团子"
         bird112.releaseTime = "2021-10-18 19:00:01"
         bird112.originalUrl = "https://www.bilibili.com/video/BV12L411s7an"
@@ -1804,7 +1804,7 @@ object PetBirdData {
         bird113.fileName = "bird113"
         bird113.code = 989
         bird113.duration = 173
-        bird113.isStar = true
+        bird113.star = true
         bird113.title = "【虹雉属】坠入凡间的彩虹"
         bird113.releaseTime = "2021-03-13 15:31:22"
         bird113.originalUrl = "https://www.bilibili.com/video/BV1W5411K78u"
@@ -1820,7 +1820,7 @@ object PetBirdData {
         bird114.fileName = "bird114"
         bird114.code = 990
         bird114.duration = 127
-        bird114.isStar = true
+        bird114.star = true
         bird114.title = "【观鸟记录】新年的羽毛朋友们"
         bird114.releaseTime = "2022-01-01 17:37:59"
         bird114.originalUrl = "https://www.bilibili.com/video/BV1Qm4y1Q7qY"
@@ -1836,7 +1836,7 @@ object PetBirdData {
         bird115.fileName = "bird115"
         bird115.code = 991
         bird115.duration = 15
-        bird115.isStar = true
+        bird115.star = true
         bird115.title = "【领岩鹨】在山顶邂逅的不怕人走地鸟"
         bird115.releaseTime = "2021-12-19 23:42:31"
         bird115.originalUrl = "https://www.bilibili.com/video/BV13i4y1o7wh"
@@ -1852,7 +1852,7 @@ object PetBirdData {
         bird116.fileName = "bird116"
         bird116.code = 992
         bird116.duration = 151
-        bird116.isStar = true
+        bird116.star = true
         bird116.title = "麻雀：我有快到模糊的跑步技巧"
         bird116.releaseTime = "2022-01-06 15:19:23"
         bird116.originalUrl = "https://www.bilibili.com/video/BV1Vr4y1U7kb"
@@ -1868,7 +1868,7 @@ object PetBirdData {
         bird117.fileName = "bird117"
         bird117.code = 993
         bird117.duration = 134
-        bird117.isStar = true
+        bird117.star = true
         bird117.title = "【鹤之舞】终于知道丹顶鹤为什么叫仙鹤了"
         bird117.releaseTime = "2021-11-19 19:25:07"
         bird117.originalUrl = "https://www.bilibili.com/video/BV1134y1d7K9"
@@ -1884,7 +1884,7 @@ object PetBirdData {
         bird118.fileName = "bird118"
         bird118.code = 994
         bird118.duration = 171
-        bird118.isStar = true
+        bird118.star = true
         bird118.title = "【白孔雀】天仙下凡～美得很～"
         bird118.releaseTime = "2018-12-11 18:18:16"
         bird118.originalUrl = "https://www.bilibili.com/video/BV1rt411q748"
@@ -1900,7 +1900,7 @@ object PetBirdData {
         bird119.fileName = "bird119"
         bird119.code = 995
         bird119.duration = 23
-        bird119.isStar = true
+        bird119.star = true
         bird119.title = "天 鹅 之 美"
         bird119.releaseTime = "2022-01-25 13:06:31"
         bird119.originalUrl = "https://www.bilibili.com/video/BV1xb4y1n7yL"
@@ -1916,7 +1916,7 @@ object PetBirdData {
         bird120.fileName = "bird120"
         bird120.code = 996
         bird120.duration = 98
-        bird120.isStar = true
+        bird120.star = true
         bird120.title = "疯狂拔草（有点过年的气氛了）"
         bird120.releaseTime = "2022-01-22 21:17:37"
         bird120.originalUrl = "https://www.bilibili.com/video/BV1rL4y1479B"
@@ -1932,7 +1932,7 @@ object PetBirdData {
         bird121.fileName = "bird121"
         bird121.code = 997
         bird121.duration = 79
-        bird121.isStar = true
+        bird121.star = true
         bird121.title = "一群排队洗澡的绣眼鸟，像极了抹茶团子，太可爱了啊"
         bird121.releaseTime = "2021-08-28 16:48:55"
         bird121.originalUrl = "https://www.bilibili.com/video/BV1eQ4y117kw"
@@ -1948,7 +1948,7 @@ object PetBirdData {
         bird122.fileName = "bird122"
         bird122.code = 998
         bird122.duration = 91
-        bird122.isStar = true
+        bird122.star = true
         bird122.title = "文须雀：我不是肥嘟嘟，是毛茸茸！"
         bird122.releaseTime = "2020-02-22 12:15:25"
         bird122.originalUrl = "https://www.bilibili.com/video/BV1o7411A7ZQ"
@@ -1964,7 +1964,7 @@ object PetBirdData {
         bird123.fileName = "bird123"
         bird123.code = 999
         bird123.duration = 130
-        bird123.isStar = true
+        bird123.star = true
         bird123.title = "让俺康康是谁还没来看我"
         bird123.releaseTime = "2021-09-18 17:51:18"
         bird123.originalUrl = "https://www.bilibili.com/video/BV1E341127yP"
@@ -1980,7 +1980,7 @@ object PetBirdData {
         bird124.fileName = "bird124"
         bird124.code = 1000
         bird124.duration = 152
-        bird124.isStar = true
+        bird124.star = true
         bird124.title = "木棉花和鸟儿的好天气"
         bird124.releaseTime = "2021-03-07 16:07:25"
         bird124.originalUrl = "https://www.bilibili.com/video/BV1iz4y117F3"
@@ -1996,7 +1996,7 @@ object PetBirdData {
         bird125.fileName = "bird125"
         bird125.code = 1001
         bird125.duration = 91
-        bird125.isStar = true
+        bird125.star = true
         bird125.title = "“鸟界顶流”齐出镜！美貌“小凤凰”、优雅大天鹅、高贵黑颈鹤，谁是你最爱？【资讯】【英字】"
         bird125.releaseTime = "2021-01-31 16:51:10"
         bird125.originalUrl = "https://www.bilibili.com/video/BV1qU4y1s7a9"
@@ -2012,7 +2012,7 @@ object PetBirdData {
         bird126.fileName = "bird126"
         bird126.code = 1002
         bird126.duration = 26
-        bird126.isStar = true
+        bird126.star = true
         bird126.title = "甘肃省省鸟：红腹锦鸡"
         bird126.releaseTime = "2020-10-06 15:30:07"
         bird126.originalUrl = "https://www.bilibili.com/video/BV1J54y1y7ke"
@@ -2028,7 +2028,7 @@ object PetBirdData {
         bird127.fileName = "bird127"
         bird127.code = 1003
         bird127.duration = 29
-        bird127.isStar = true
+        bird127.star = true
         bird127.title = "风雪中的白腹锦鸡"
         bird127.releaseTime = "2021-01-05 13:48:31"
         bird127.originalUrl = "https://www.bilibili.com/video/BV1Vo4y1f7Tb"
@@ -2044,7 +2044,7 @@ object PetBirdData {
         bird128.fileName = "bird128"
         bird128.code = 1004
         bird128.duration = 64
-        bird128.isStar = true
+        bird128.star = true
         bird128.title = "红腹锦鸡雪地飞舞，太美了！美得像一幅工笔画"
         bird128.releaseTime = "2019-12-05 15:50:55"
         bird128.originalUrl = "https://www.bilibili.com/video/BV1PJ411i7B6"
@@ -2060,7 +2060,7 @@ object PetBirdData {
         bird129.fileName = "bird129"
         bird129.code = 1005
         bird129.duration = 16
-        bird129.isStar = true
+        bird129.star = true
         bird129.title = "此鸟一出，万事太平"
         bird129.releaseTime = "2020-02-05 13:26:11"
         bird129.originalUrl = "https://www.bilibili.com/video/BV1T7411H7Hs"
@@ -2076,7 +2076,7 @@ object PetBirdData {
         bird130.fileName = "bird130"
         bird130.code = 1006
         bird130.duration = 112
-        bird130.isStar = true
+        bird130.star = true
         bird130.title = "幽居山谷，必是美物|野性中国在行动：绿孔雀4K生活，美到不可方物"
         bird130.releaseTime = "2020-02-24 14:27:44"
         bird130.originalUrl = "https://www.bilibili.com/video/BV1G7411F7C3"
@@ -2092,7 +2092,7 @@ object PetBirdData {
         bird131.fileName = "bird131"
         bird131.code = 1007
         bird131.duration = 24
-        bird131.isStar = true
+        bird131.star = true
         bird131.title = "中国本土绿孔雀的仙美之姿"
         bird131.releaseTime = "2020-11-12 21:21:52"
         bird131.originalUrl = "https://www.bilibili.com/video/BV1d5411V73E"
@@ -2108,7 +2108,7 @@ object PetBirdData {
         bird132.fileName = "bird132"
         bird132.code = 1008
         bird132.duration = 153
-        bird132.isStar = true
+        bird132.star = true
         bird132.title = "【鹤类混剪】云中之君，仙人之姿！"
         bird132.releaseTime = "2021-07-16 14:31:02"
         bird132.originalUrl = "https://www.bilibili.com/video/BV1ff4y1L7As"
@@ -2124,7 +2124,7 @@ object PetBirdData {
         bird133.fileName = "bird133"
         bird133.code = 1009
         bird133.duration = 46
-        bird133.isStar = true
+        bird133.star = true
         bird133.title = "解压"
         bird133.releaseTime = "2022-01-01 02:14:47"
         bird133.originalUrl = "https://www.bilibili.com/video/BV1jY411a7Xe"
@@ -2140,7 +2140,7 @@ object PetBirdData {
         bird134.fileName = "bird134"
         bird134.code = 1010
         bird134.duration = 26
-        bird134.isStar = true
+        bird134.star = true
         bird134.title = "鸭妈：好有压力鸭"
         bird134.releaseTime = "2019-11-27 03:52:54"
         bird134.originalUrl = "https://www.bilibili.com/video/BV1tJ411X7sN"
@@ -2156,7 +2156,7 @@ object PetBirdData {
         bird135.fileName = "bird135"
         bird135.code = 1011
         bird135.duration = 244
-        bird135.isStar = true
+        bird135.star = true
         bird135.title = "“这就是我这么喜欢鸟类的原因”"
         bird135.releaseTime = "2022-01-24 18:46:53"
         bird135.originalUrl = "https://www.bilibili.com/video/BV1rF411p7Ai"
@@ -2172,7 +2172,7 @@ object PetBirdData {
         bird136.fileName = "bird136"
         bird136.code = 1012
         bird136.duration = 247
-        bird136.isStar = true
+        bird136.star = true
         bird136.title = "[红腹灰雀] 圣诞快乐~"
         bird136.releaseTime = "2021-12-27 19:00:12"
         bird136.originalUrl = "https://www.bilibili.com/video/BV1yR4y1W7F5"
@@ -2188,7 +2188,7 @@ object PetBirdData {
         bird137.fileName = "bird137"
         bird137.code = 1013
         bird137.duration = 206
-        bird137.isStar = true
+        bird137.star = true
         bird137.title = "这么可爱的肥啾咱们国家能见到吗？"
         bird137.releaseTime = "2020-03-11 12:36:11"
         bird137.originalUrl = "https://www.bilibili.com/video/BV1GE411K7Gz"
@@ -2204,7 +2204,7 @@ object PetBirdData {
         bird138.fileName = "bird138"
         bird138.code = 1014
         bird138.duration = 88
-        bird138.isStar = true
+        bird138.star = true
         bird138.title = "最萌人心的鸟类：灰 蓝 山 雀"
         bird138.releaseTime = "2020-04-03 12:44:12"
         bird138.originalUrl = "https://www.bilibili.com/video/BV1p741197wp"
@@ -2220,7 +2220,7 @@ object PetBirdData {
         bird139.fileName = "bird139"
         bird139.code = 1015
         bird139.duration = 118
-        bird139.isStar = true
+        bird139.star = true
         bird139.title = "[灰蓝山雀]冬天的雪团子"
         bird139.releaseTime = "2022-01-15 19:00:15"
         bird139.originalUrl = "https://www.bilibili.com/video/BV1d3411e7bM"
@@ -2236,7 +2236,7 @@ object PetBirdData {
         bird140.fileName = "bird140"
         bird140.code = 1016
         bird140.duration = 159
-        bird140.isStar = true
+        bird140.star = true
         bird140.title = "今天让你们见识一下鸟类的真正天籁之音，听完先收藏起来"
         bird140.releaseTime = "2019-03-26 17:32:26"
         bird140.originalUrl = "https://www.bilibili.com/video/BV1Vb411t7Sy"
@@ -2252,7 +2252,7 @@ object PetBirdData {
         bird141.fileName = "bird141"
         bird141.code = 1017
         bird141.duration = 468
-        bird141.isStar = true
+        bird141.star = true
         bird141.title = "【红腹灰雀】一群吃货小胖子"
         bird141.releaseTime = "2022-01-01 13:58:04"
         bird141.originalUrl = "https://www.bilibili.com/video/BV1c44y1E7FY"
@@ -2268,7 +2268,7 @@ object PetBirdData {
         bird142.fileName = "bird142"
         bird142.code = 1018
         bird142.duration = 116
-        bird142.isStar = true
+        bird142.star = true
         bird142.title = "小肥啾北长尾山雀，小丸子来啦！"
         bird142.releaseTime = "2022-01-05 12:05:21"
         bird142.originalUrl = "https://www.bilibili.com/video/BV1db4y1e7kE"
@@ -2284,7 +2284,7 @@ object PetBirdData {
         bird143.fileName = "bird143"
         bird143.code = 1019
         bird143.duration = 57
-        bird143.isStar = true
+        bird143.star = true
         bird143.title = "麻薯团子小肥啾，奶凶奶凶惹人爱"
         bird143.releaseTime = "2021-02-10 16:32:24"
         bird143.originalUrl = "https://www.bilibili.com/video/BV1nv4y1Z7N3"
@@ -2300,7 +2300,7 @@ object PetBirdData {
         bird144.fileName = "bird144"
         bird144.code = 1020
         bird144.duration = 83
-        bird144.isStar = true
+        bird144.star = true
         bird144.title = "摇头晃脑杀"
         bird144.releaseTime = "2020-10-15 23:49:26"
         bird144.originalUrl = "https://www.bilibili.com/video/BV1gy4y1r7ih"
@@ -2317,7 +2317,7 @@ object PetBirdData {
         bird145.code = 427
         bird145.duration = 210
         bird145.period = PeriodType.SINGLE.ordinal
-        bird145.isStar = true
+        bird145.star = true
         bird145.title = "【鹤科混剪】鹤之舞 或许这就是神仙之姿吧 （野生鸟片系列）"
         bird145.releaseTime = "2020-03-23 18:23:38"
         bird145.originalUrl = "https://www.bilibili.com/video/BV1WE411F7p9"

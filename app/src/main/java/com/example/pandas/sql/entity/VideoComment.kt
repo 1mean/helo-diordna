@@ -43,15 +43,15 @@ data class VideoComment(
     @ColumnInfo
     var likeNum: Int = 0,
     @ColumnInfo
-    var isUpLike: Boolean = false,//up是否点赞了
+    var upLike: Boolean = false,//up是否点赞了
     @ColumnInfo
-    var isTop: Boolean = false,//消息是否被up主置顶了
+    var top: Boolean = false,//消息是否被up主置顶了
 
     //界面标识，是否喜欢
     @Ignore
-    var isLike: Boolean = false,
+    var like: Boolean = false,
     @Ignore
-    var isUnLike: Boolean = false,
+    var unLike: Boolean = false,
     @Ignore
     var user: User? = null,
     @Ignore

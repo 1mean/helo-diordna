@@ -64,7 +64,7 @@ public class CollectAdapter(
 
         name.text = data.groupName
 
-        if (data.isOpen) {
+        if (data.open) {
             openView.text = "收藏夹 - 公开"
         } else {
             openView.text = "收藏夹 - 私密"

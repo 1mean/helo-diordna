@@ -56,7 +56,7 @@ public class VideoListAdapter(private val list: MutableList<VideoAndUser>) :
         }
 
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(holder.itemView.context, video.code, false)
+            startVideoPlayActivity(holder.itemView.context, video.code)
         }
     }
 

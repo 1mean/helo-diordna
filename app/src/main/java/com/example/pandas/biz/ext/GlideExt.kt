@@ -58,6 +58,15 @@ fun loadCenterRoundedCornerImage(context: Context, radius: Int, url: String?, vi
     }
 }
 
+fun loadCenterImage(context: Context, url: String?, view: ImageView) {
+    val options =
+        RequestOptions.bitmapTransform(MultiTransformation(CenterCrop()))
+    if (url == null) {
+        Glide.with(context).load(R.mipmap.img_null_01).apply(options).into(view)
+    } else {
+        Glide.with(context).load(url).apply(options).into(view)
+    }
+}
 
 /**
  * 加载圆形图片

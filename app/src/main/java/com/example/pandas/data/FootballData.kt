@@ -14,7 +14,7 @@ object FootballData {
         football1.fileName = "football_1"
         football1.code = 1998
         football1.duration = 693
-        football1.isStar = true
+        football1.star = true
         football1.title = "快乐足球四天王，究竟谁才是最强？"
         football1.releaseTime = "2020-09-04 20:56:29"
         football1.originalUrl = "https://www.bilibili.com/video/BV14A411n7LR"
@@ -29,7 +29,7 @@ object FootballData {
         football2.fileName = "football_2"
         football2.code = 1999
         football2.duration = 246
-        football2.isStar = true
+        football2.star = true
         football2.title = "“欧洲黑店”是什么梗？靠卖球员，5年挣出1支阿森纳，不比修球场划算？"
         football2.releaseTime = "2022-01-13 20:34:11"
         football2.originalUrl = "https://www.bilibili.com/video/BV1kq4y1A7b8"
@@ -44,7 +44,7 @@ object FootballData {
         football3.fileName = "football_3"
         football3.code = 2000
         football3.duration = 234
-        football3.isStar = true
+        football3.star = true
         football3.title = "“荷兰三棍客”是什么梗？每天生活小目标：吃饭睡觉，打亨特拉尔"
         football3.releaseTime = "2022-01-16 20:28:12"
         football3.originalUrl = "https://www.bilibili.com/video/BV1kr4y1Y7QE"
@@ -59,7 +59,7 @@ object FootballData {
         football4.fileName = "football_4"
         football4.code = 2001
         football4.duration = 186
-        football4.isStar = true
+        football4.star = true
         football4.title = "“金色侦察机”是什么梗？速度快，跑位妖，覆盖广，就是没有攻击能力"
         football4.releaseTime = "2021-12-16 19:15:23"
         football4.originalUrl = "https://www.bilibili.com/video/BV1sa411k7Ci"
@@ -74,7 +74,7 @@ object FootballData {
         football5.fileName = "football_5"
         football5.code = 2002
         football5.duration = 191
-        football5.isStar = true
+        football5.star = true
         football5.title = "“双逆足球员”是什么梗？快如马，奈何傻，逆足前锋莫拉塔"
         football5.releaseTime = "2021-11-27 19:06:42"
         football5.originalUrl = "https://www.bilibili.com/video/BV15Y411s7G9"
@@ -89,7 +89,7 @@ object FootballData {
         football6.fileName = "football_6"
         football6.code = 2003
         football6.duration = 443
-        football6.isStar = true
+        football6.star = true
         football6.title = "【回顾】足坛最快的男人！9分钟5球安联球场上演“莱万时刻”！"
         football6.releaseTime = "2021-12-11 15:27:13"
         football6.originalUrl = "https://www.bilibili.com/video/BV1P3411t7Gu"
@@ -104,7 +104,7 @@ object FootballData {
         football7.fileName = "football_7"
         football7.code = 2004
         football7.duration = 426
-        football7.isStar = true
+        football7.star = true
         football7.title = "【回顾】让二追三！C罗帽子戏法系列之逆转狼堡！15/16赛季欧冠皇马3-0沃尔夫斯堡"
         football7.releaseTime = "2021-12-24 21:30:25"
         football7.originalUrl = "https://www.bilibili.com/video/BV1pF411B7wE"
@@ -119,7 +119,7 @@ object FootballData {
         football8.fileName = "football_8"
         football8.code = 2005
         football8.duration = 479
-        football8.isStar = true
+        football8.star = true
         football8.title = "【回顾】还记得那年飞翔的荷兰人吗？14年世界杯荷兰三棍客齐发威 荷兰5-1大胜西班牙"
         football8.releaseTime = "2022-02-15 21:58:24"
         football8.originalUrl = "https://www.bilibili.com/video/BV1QL4y137Gx"
@@ -134,7 +134,7 @@ object FootballData {
         football9.fileName = "football_9"
         football9.code = 2006
         football9.duration = 522
-        football9.isStar = true
+        football9.star = true
         football9.title = "【回顾】16黄4红！世界杯史上最混乱的一夜究竟发生了什么？06年世界杯1/8决赛葡萄牙1-0荷兰"
         football9.releaseTime = "2021-10-01 21:35:46"
         football9.originalUrl = "https://www.bilibili.com/video/BV16f4y1F7Gp"
@@ -149,7 +149,7 @@ object FootballData {
         football10.fileName = "football_10"
         football10.code = 2007
         football10.duration = 987
-        football10.isStar = true
+        football10.star = true
         football10.title = "天下足球——十大杀手之十大兵器。。。"
         football10.releaseTime = "2022-01-10 21:31:14"
         football10.originalUrl = "https://www.bilibili.com/video/BV1s44y157zk"
@@ -164,7 +164,7 @@ object FootballData {
         football11.fileName = "football_11"
         football11.code = 2008
         football11.duration = 58
-        football11.isStar = true
+        football11.star = true
         football11.title = "卡卡凌空斩攻破尤文球门，力与美的完美结合！"
         football11.releaseTime = "2022-02-24 13:00:05"
         football11.originalUrl = "https://www.bilibili.com/video/BV1tm4y1R7jq"
@@ -179,7 +179,7 @@ object FootballData {
         football12.fileName = "football_12"
         football12.code = 2009
         football12.duration = 1796
-        football12.isStar = true
+        football12.star = true
         football12.title = "【天下足球】十大经典球星绰号"
         football12.releaseTime = "2020-12-05 20:32:27"
         football12.originalUrl = "https://www.bilibili.com/video/BV1ep4y1z7kH"
@@ -194,7 +194,7 @@ object FootballData {
         football13.fileName = "football_13"
         football13.code = 2010
         football13.duration = 711
-        football13.isStar = true
+        football13.star = true
         football13.title = "《天下足球·隐退》传奇功成，不舍离别  央视最好文案"
         football13.releaseTime = "2019-05-28 02:09:47"
         football13.originalUrl = "https://www.bilibili.com/video/BV1K4411W7Nt"
@@ -209,7 +209,7 @@ object FootballData {
         football14.fileName = "football_14"
         football14.code = 2011
         football14.duration = 1603
-        football14.isStar = true
+        football14.star = true
         football14.title = "天下足球 男人四十致敬76黄金一代"
         football14.releaseTime = "2020-12-22 16:54:32"
         football14.originalUrl = "https://www.bilibili.com/video/BV1JK411G7HB"
@@ -224,7 +224,7 @@ object FootballData {
         football15.fileName = "football_15"
         football15.code = 2012
         football15.duration = 1371
-        football15.isStar = true
+        football15.star = true
         football15.title = "【天下足球】C罗：红色记忆"
         football15.releaseTime = "2021-06-28 22:54:51"
         football15.originalUrl = "https://www.bilibili.com/video/BV1vB4y1K7mh"
@@ -239,7 +239,7 @@ object FootballData {
         football16.fileName = "football_16"
         football16.code = 2013
         football16.duration = 903
-        football16.isStar = true
+        football16.star = true
         football16.title = "二十年二十人（因扎吉、曼奇尼）"
         football16.releaseTime = "2018-07-09 11:08:56"
         football16.originalUrl = "https://www.bilibili.com/video/BV1cs411W7ke"
@@ -254,7 +254,7 @@ object FootballData {
         football17.fileName = "football_17"
         football17.code = 2014
         football17.duration = 820
-        football17.isStar = true
+        football17.star = true
         football17.title = "罗纳尔多、舍甫琴科（二十年二十人）"
         football17.releaseTime = "2018-06-29 18:51:38"
         football17.originalUrl = "https://www.bilibili.com/video/BV13s411576a"
@@ -269,7 +269,7 @@ object FootballData {
         football18.fileName = "football_18"
         football18.code = 2015
         football18.duration = 25
-        football18.isStar = true
+        football18.star = true
         football18.title = "“英超史上最珍贵的合影”"
         football18.releaseTime = "2021-11-05 21:28:02"
         football18.originalUrl = "https://www.bilibili.com/video/BV1fu411o7Tp"
@@ -284,7 +284,7 @@ object FootballData {
         football19.fileName = "football_19"
         football19.code = 2016
         football19.duration = 26
-        football19.isStar = true
+        football19.star = true
         football19.title = "温格被罚上曼联看台的那一刻"
         football19.releaseTime = "2021-07-01 21:00:05"
         football19.originalUrl = "https://www.bilibili.com/video/BV1dL411p7rD"
@@ -299,7 +299,7 @@ object FootballData {
         football20.fileName = "football_20"
         football20.code = 2017
         football20.duration = 771
-        football20.isStar = true
+        football20.star = true
         football20.title = "马尔蒂尼、内德维德（二十年二十人）"
         football20.releaseTime = "2018-06-29 20:18:45"
         football20.originalUrl = "https://www.bilibili.com/video/BV1Gs411573F"
@@ -314,7 +314,7 @@ object FootballData {
         football21.fileName = "football_21"
         football21.code = 2018
         football21.duration = 713
-        football21.isStar = true
+        football21.star = true
         football21.title = "2004年捷克3-2荷兰，疯狂进攻创造经典，连追3球逆转荷兰"
         football21.releaseTime = "2022-02-19 00:55:18"
         football21.originalUrl = "https://www.bilibili.com/video/BV1aR4y1V7Ni"
@@ -329,7 +329,7 @@ object FootballData {
         football22.fileName = "football_22"
         football22.code = 2019
         football22.duration = 3750
-        football22.isStar = true
+        football22.star = true
         football22.title = "天下足球: 魔兽德罗巴退役纪念特辑"
         football22.releaseTime = "2018-11-27 16:17:12"
         football22.originalUrl = "https://www.bilibili.com/video/BV19t41197LY"
@@ -344,7 +344,7 @@ object FootballData {
         football23.fileName = "football_23"
         football23.code = 2020
         football23.duration = 138
-        football23.isStar = true
+        football23.star = true
         football23.title = "暴力美学！只有德罗巴才能打进的球"
         football23.releaseTime = "2022-02-18 19:09:16"
         football23.originalUrl = "https://www.bilibili.com/video/BV1BP4y1F7Zg"
@@ -359,7 +359,7 @@ object FootballData {
         football24.fileName = "football_24"
         football24.code = 2021
         football24.duration = 238
-        football24.isStar = true
+        football24.star = true
         football24.title = "当年老男孩们球场再次相聚，诠释足球真正魅力，岁月如歌青春不再"
         football24.releaseTime = "2021-03-03 18:34:22"
         football24.originalUrl = "https://www.bilibili.com/video/BV1YV411v71b"
@@ -374,7 +374,7 @@ object FootballData {
         football25.fileName = "football_25"
         football25.code = 2022
         football25.duration = 1809
-        football25.isStar = true
+        football25.star = true
         football25.title = "[天下足球]绝对巨星：优雅杀手—卡卡"
         football25.releaseTime = "2016-04-14 19:35:37"
         football25.originalUrl = "https://www.bilibili.com/video/BV1ms411z769"
@@ -389,7 +389,7 @@ object FootballData {
         football26.fileName = "football_26"
         football26.code = 2023
         football26.duration = 971
-        football26.isStar = true
+        football26.star = true
         football26.title = "卡卡中文纪录片《上帝之子》Ⅱ，梦碎南非，追风少年再也追不上曾经的自己！"
         football26.releaseTime = "2020-10-10 20:04:48"
         football26.originalUrl = "https://www.bilibili.com/video/BV1oA41177NV"
@@ -404,7 +404,7 @@ object FootballData {
         football27.fileName = "football_27"
         football27.code = 2024
         football27.duration = 1065
-        football27.isStar = true
+        football27.star = true
         football27.title = "卡卡中文纪录片《上帝之子》Ⅰ，从大伤瘫痪到登顶欧洲，连上帝都被他感动"
         football27.releaseTime = "2020-09-25 20:42:17"
         football27.originalUrl = "https://www.bilibili.com/video/BV1dK4y1a7Vr"
@@ -419,7 +419,7 @@ object FootballData {
         football28.fileName = "football_28"
         football28.code = 2025
         football28.duration = 903
-        football28.isStar = true
+        football28.star = true
         football28.title = "【天下足球】二十年二十人（因扎吉、曼奇尼）"
         football28.releaseTime = "2018-09-23 22:49:11"
         football28.originalUrl = "https://www.bilibili.com/video/BV1YW411z7BX"
@@ -434,7 +434,7 @@ object FootballData {
         football29.fileName = "football_29"
         football29.code = 2026
         football29.duration = 793
-        football29.isStar = true
+        football29.star = true
         football29.title = "二十年二十人（维阿、齐达内）"
         football29.releaseTime = "2018-07-09 11:03:39"
         football29.originalUrl = "https://www.bilibili.com/video/BV1cs411W7YX"
@@ -449,7 +449,7 @@ object FootballData {
         football30.fileName = "football_30"
         football30.code = 2027
         football30.duration = 774
-        football30.isStar = true
+        football30.star = true
         football30.title = "德国三驾马车、维耶里（二十年二十人）"
         football30.releaseTime = "2018-06-29 16:46:59"
         football30.originalUrl = "https://www.bilibili.com/video/BV1Es41157ed"
@@ -464,7 +464,7 @@ object FootballData {
         football31.fileName = "football_31"
         football31.code = 2028
         football31.duration = 904
-        football31.isStar = true
+        football31.star = true
         football31.title = "巴蒂、西格诺里（二十年二十人）"
         football31.releaseTime = "2018-06-29 16:56:38"
         football31.originalUrl = "https://www.bilibili.com/video/BV1Es41157kA"
@@ -479,7 +479,7 @@ object FootballData {
         football32.fileName = "football_32"
         football32.code = 2029
         football32.duration = 705
-        football32.isStar = true
+        football32.star = true
         football32.title = "二十年二十人（马拉多纳、维亚利）"
         football32.releaseTime = "2018-06-29 19:10:18"
         football32.originalUrl = "https://www.bilibili.com/video/BV13s41157tA"
@@ -494,7 +494,7 @@ object FootballData {
         football33.fileName = "football_33"
         football33.code = 2030
         football33.duration = 1205
-        football33.isStar = true
+        football33.star = true
         football33.title = "二十年二十人（皮耶罗、托蒂）"
         football33.releaseTime = "2018-07-09 10:09:36"
         football33.originalUrl = "https://www.bilibili.com/video/BV1ws411W7zk"
@@ -509,7 +509,7 @@ object FootballData {
         football34.fileName = "football_34"
         football34.code = 2031
         football34.duration = 1114
-        football34.isStar = true
+        football34.star = true
         football34.title = "二十年二十人（萨内蒂、布冯）"
         football34.releaseTime = "2018-07-09 10:48:21"
         football34.originalUrl = "https://www.bilibili.com/video/BV1cs411W79R"
@@ -524,7 +524,7 @@ object FootballData {
         football35.fileName = "football_35"
         football35.code = 2032
         football35.duration = 820
-        football35.isStar = true
+        football35.star = true
         football35.title = "【天下足球】二十年二十人（罗纳尔多、舍甫琴科）"
         football35.releaseTime = "2018-09-16 19:32:45"
         football35.originalUrl = "https://www.bilibili.com/video/BV1hW411k7LL"
@@ -539,7 +539,7 @@ object FootballData {
         football36.fileName = "football_36"
         football36.code = 2033
         football36.duration = 863
-        football36.isStar = true
+        football36.star = true
         football36.title = "巴乔、荷兰3剑客（二十年二十人）"
         football36.releaseTime = "2018-06-29 18:36:39"
         football36.originalUrl = "https://www.bilibili.com/video/BV13s41157e3"
@@ -554,7 +554,7 @@ object FootballData {
         football37.fileName = "football_37"
         football37.code = 2034
         football37.duration = 479
-        football37.isStar = true
+        football37.star = true
         football37.title = "【罗纳尔多45大过门将集锦】能把过门将做成集锦足坛只此一人！"
         football37.releaseTime = "2021-08-13 02:45:53"
         football37.originalUrl = "https://www.bilibili.com/video/BV1qA411w7fs"
@@ -569,7 +569,7 @@ object FootballData {
         football38.fileName = "football_38"
         football38.code = 2035
         football38.duration = 677
-        football38.isStar = true
+        football38.star = true
         football38.title = "【阿森纳】别找了！这就是行云流水的美丽足球"
         football38.releaseTime = "2021-07-04 20:20:40"
         football38.originalUrl = "https://www.bilibili.com/video/BV1rh411h7fU"
@@ -584,7 +584,7 @@ object FootballData {
         football39.fileName = "football_39"
         football39.code = 2036
         football39.duration = 324
-        football39.isStar = true
+        football39.star = true
         football39.title = "「纯解说1080p60」史上只有阿森纳才能进的10个球"
         football39.releaseTime = "2019-10-02 18:30:55"
         football39.originalUrl = "https://www.bilibili.com/video/BV15E411Q7y7"
@@ -599,7 +599,7 @@ object FootballData {
         football40.fileName = "football_40"
         football40.code = 2037
         football40.duration = 3367
-        football40.isStar = true
+        football40.star = true
         football40.title = "[天下足球]特别企划：温格——枪手风云-CCTV-5"
         football40.releaseTime = "2018-05-16 15:39:59"
         football40.originalUrl = "https://www.bilibili.com/video/BV1yp411Z7ph"
@@ -614,7 +614,7 @@ object FootballData {
         football41.fileName = "football_41"
         football41.code = 2038
         football41.duration = 1988
-        football41.isStar = true
+        football41.star = true
         football41.title = "【绝对巨星：内斯塔】你是罗马城走出的俊美少年，如水般沉静的优雅卫士"
         football41.releaseTime = "2021-03-20 01:20:59"
         football41.originalUrl = "https://www.bilibili.com/video/BV1AX4y1G7EF"
@@ -629,7 +629,7 @@ object FootballData {
         football42.fileName = "football_42"
         football42.code = 2039
         football42.duration = 1229
-        football42.isStar = true
+        football42.star = true
         football42.title = "[天下足球]退役纪念特辑——切赫：坚不可摧 720P高清"
         football42.releaseTime = "2021-01-31 14:59:43"
         football42.originalUrl = "https://www.bilibili.com/video/BV1jK4y1p7cp"
@@ -644,7 +644,7 @@ object FootballData {
         football43.fileName = "football_43"
         football43.code = 2040
         football43.duration = 1770
-        football43.isStar = true
+        football43.star = true
         football43.title = "9月8日 天下足球（再见，K神！再见，队长！）"
         football43.releaseTime = "2014-09-09 10:02:44"
         football43.originalUrl = "https://www.bilibili.com/video/BV1bx411K7bd"
@@ -659,7 +659,7 @@ object FootballData {
         football44.fileName = "football_44"
         football44.code = 2041
         football44.duration = 145
-        football44.isStar = true
+        football44.star = true
         football44.title = "不同年代阿森纳的地位"
         football44.releaseTime = "2021-09-10 19:50:11"
         football44.originalUrl = "https://www.bilibili.com/video/BV1JA411F7HV"
@@ -674,7 +674,7 @@ object FootballData {
         football45.fileName = "football_45"
         football45.code = 2042
         football45.duration = 332
-        football45.isStar = true
+        football45.star = true
         football45.title = "阿森纳是什么梗？天下段子共一石，阿森纳独占八斗"
         football45.releaseTime = "2021-10-11 20:56:15"
         football45.originalUrl = "https://www.bilibili.com/video/BV1wf4y1g7hv"
@@ -689,7 +689,7 @@ object FootballData {
         football46.fileName = "football_46"
         football46.code = 2043
         football46.duration = 2611
-        football46.isStar = true
+        football46.star = true
         football46.title = "世界杯往事之罗纳尔多：你是唯一"
         football46.releaseTime = "2018-03-31 23:44:52"
         football46.originalUrl = "https://www.bilibili.com/video/BV1vW411u7iS"
@@ -704,7 +704,7 @@ object FootballData {
         football47.fileName = "football_47"
         football47.code = 2044
         football47.duration = 1072
-        football47.isStar = true
+        football47.star = true
         football47.title = "催泪  足球20年 天下之大 足球一家"
         football47.releaseTime = "2020-11-17 11:27:42"
         football47.originalUrl = "https://www.bilibili.com/video/BV1Va4y1x7Mm"
@@ -719,7 +719,7 @@ object FootballData {
         football48.fileName = "football_48"
         football48.code = 2045
         football48.duration = 795
-        football48.isStar = true
+        football48.star = true
         football48.title = "20181224《天下足球》· 2018足球回忆：泪水无情，泪水有情"
         football48.releaseTime = "2018-12-25 15:39:47"
         football48.originalUrl = "https://www.bilibili.com/video/BV1Pt411C7MW"
@@ -734,7 +734,7 @@ object FootballData {
         football49.fileName = "football_49"
         football49.code = 2046
         football49.duration = 602
-        football49.isStar = true
+        football49.star = true
         football49.title = "【传奇谢幕】离开时你已是传奇，希望归来时你仍是少年"
         football49.releaseTime = "2017-09-21 11:03:45"
         football49.originalUrl = "https://www.bilibili.com/video/BV1tx411x7RQ"
@@ -749,7 +749,7 @@ object FootballData {
         football50.fileName = "football_50"
         football50.code = 2047
         football50.duration = 629
-        football50.isStar = true
+        football50.star = true
         football50.title = "《天下足球》走出半生，归来仍是少年"
         football50.releaseTime = "2019-05-30 04:59:42"
         football50.originalUrl = "https://www.bilibili.com/video/BV1W4411H7UE"
@@ -764,7 +764,7 @@ object FootballData {
         football51.fileName = "football_51"
         football51.code = 2048
         football51.duration = 724
-        football51.isStar = true
+        football51.star = true
         football51.title = "【天下足球/专题】重回故地,情缘难尽：世界足坛回家故事"
         football51.releaseTime = "2016-11-23 00:46:35"
         football51.originalUrl = "https://www.bilibili.com/video/BV1Ds411W7Ue"
@@ -779,7 +779,7 @@ object FootballData {
         football52.fileName = "football_52"
         football52.code = 2049
         football52.duration = 1207
-        football52.isStar = true
+        football52.star = true
         football52.title = "[天下足球] 属于亨利的海布里的国王时代（完整版）"
         football52.releaseTime = "2017-02-15 20:12:58"
         football52.originalUrl = "https://www.bilibili.com/video/BV1zx41127Xz"
@@ -794,7 +794,7 @@ object FootballData {
         football53.fileName = "football_53"
         football53.code = 2050
         football53.duration = 1497
-        football53.isStar = true
+        football53.star = true
         football53.title = "“天下足球”好听到爆的神级BGM，不愧是高品质的“音乐栏目”！"
         football53.releaseTime = "2021-07-07 20:49:52"
         football53.originalUrl = "https://www.bilibili.com/video/BV1qU4y137N9"
@@ -809,7 +809,7 @@ object FootballData {
         football54.fileName = "football_54"
         football54.code = 2051
         football54.duration = 205
-        football54.isStar = true
+        football54.star = true
         football54.title = "央视的解说个个都是诗人，一张口就是满分作文！"
         football54.releaseTime = "2021-08-07 13:00:56"
         football54.originalUrl = "https://www.bilibili.com/video/BV18P4y1x79D"

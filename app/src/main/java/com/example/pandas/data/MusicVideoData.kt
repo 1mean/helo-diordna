@@ -11,7 +11,7 @@ object MusicVideoData {
         music7.fileName = "music7"
         music7.code = 1131
         music7.duration = 228
-        music7.isStar = true
+        music7.star = true
         music7.title = "【4K修复】王心凌《DADADA》 do do do lu lu lu Da da da「2006 No.1 庆功演唱会」"
         music7.releaseTime = "2021-03-21 00:11:43"
         music7.originalUrl = "https://www.bilibili.com/video/BV1zA411N7ct"
@@ -27,7 +27,7 @@ object MusicVideoData {
         music18.fileName = "music18"
         music18.code = 1132
         music18.duration = 267
-        music18.isStar = true
+        music18.star = true
         music18.title = "人道渺渺，仙道莽莽，鬼道乐兮"
         music18.releaseTime = "2019-07-03 02:54:15"
         music18.originalUrl = "https://www.bilibili.com/video/BV1Nx411975J"
@@ -43,7 +43,7 @@ object MusicVideoData {
         music41.fileName = "music41"
         music41.code = 1133
         music41.duration = 287
-        music41.isStar = true
+        music41.star = true
         music41.title = "【4K60FPS】成龙、金喜善《美丽的神话》王炸神曲！真的很感人！"
         music41.releaseTime = "2021-08-08 20:11:27"
         music41.originalUrl = "https://www.bilibili.com/video/BV1ty4y1L78S"
@@ -59,7 +59,7 @@ object MusicVideoData {
         music42.fileName = "music42"
         music42.code = 1134
         music42.duration = 274
-        music42.isStar = true
+        music42.star = true
         music42.title = "【4K60FPS】席琳·迪翁《我心永恒》奥斯卡金曲！《泰坦尼克号》主题曲！"
         music42.releaseTime = "2021-08-11 20:08:00"
         music42.originalUrl = "https://www.bilibili.com/video/BV1P341167qB"
@@ -75,7 +75,7 @@ object MusicVideoData {
         music5.fileName = "music5"
         music5.code = 1135
         music5.duration = 508
-        music5.isStar = true
+        music5.star = true
         music5.title = "【1080p重置】王心凌《花的嫁纱》爱，在孤独中绝望，在绝望中坚强「2004 爱在星光演唱会」"
         music5.releaseTime = "2021-03-19 21:46:21"
         music5.originalUrl = "https://www.bilibili.com/video/BV1SV411Y7aB"
@@ -91,7 +91,7 @@ object MusicVideoData {
         music6.fileName = "music6"
         music6.code = 1136
         music6.duration = 227
-        music6.isStar = true
+        music6.star = true
         music6.title = "【绝版】超级爱！王心凌《第一次爱的人》现场LIVE"
         music6.releaseTime = "2020-03-08 18:00:11"
         music6.originalUrl = "https://www.bilibili.com/video/BV1SE411p7du"
@@ -107,7 +107,7 @@ object MusicVideoData {
         music1.fileName = "music1"
         music1.code = 1137
         music1.duration = 155
-        music1.isStar = true
+        music1.star = true
         music1.title = "《喀秋莎》，本人超喜欢的一个版本"
         music1.releaseTime = "2020-09-16 17:58:45"
         music1.originalUrl = "https://www.bilibili.com/video/BV1PV411m73F"
@@ -123,7 +123,7 @@ object MusicVideoData {
         music8.fileName = "music8"
         music8.code = 1138
         music8.duration = 210
-        music8.isStar = true
+        music8.star = true
         music8.title = "【4K修复】王心凌《Honey》猛男必看，甜蜜情歌「2006No.1 庆功演唱会」"
         music8.releaseTime = "2021-03-22 17:32:08"
         music8.originalUrl = "https://www.bilibili.com/video/BV1Cp4y1h7H4"
@@ -139,7 +139,7 @@ object MusicVideoData {
         music9.fileName = "music9"
         music9.code = 1139
         music9.duration = 603
-        music9.isStar = true
+        music9.star = true
         music9.title = "【4K修复】王心凌《当你》当你的眼睛眯着笑「2006No.1 庆功演唱会」"
         music9.releaseTime = "2021-03-22 17:28:21"
         music9.originalUrl = "https://www.bilibili.com/video/BV16b4y19728"
@@ -155,7 +155,7 @@ object MusicVideoData {
         music10.fileName = "music10"
         music10.code = 1140
         music10.duration = 446
-        music10.isStar = true
+        music10.star = true
         music10.title = "【4K60FPS】王心凌《第一次爱的人》 一点点慢慢的死掉「2004梦幻游园地演唱会」"
         music10.releaseTime = "2021-03-19 11:56:21"
         music10.originalUrl = "https://www.bilibili.com/video/BV1LV411e74T"
@@ -171,7 +171,7 @@ object MusicVideoData {
         music11.fileName = "music11"
         music11.code = 1141
         music11.duration = 495
-        music11.isStar = true
+        music11.star = true
         music11.title = "【4K修复】王心凌《睫毛弯弯》眼睛眨啊眨「2006No.1 庆功演唱会」"
         music11.releaseTime = "2021-03-18 21:55:49"
         music11.originalUrl = "https://www.bilibili.com/video/BV1Dy4y187X6"
@@ -187,7 +187,7 @@ object MusicVideoData {
         music12.fileName = "music12"
         music12.code = 1142
         music12.duration = 235
-        music12.isStar = true
+        music12.star = true
         music12.title = "【4K修复】王心凌《梦的光点》神兵小将！我追着梦的光点「2006No.1 庆功演唱会」"
         music12.releaseTime = "2021-03-22 17:28:43"
         music12.originalUrl = "https://www.bilibili.com/video/BV1J64y1D7Qs"
@@ -203,7 +203,7 @@ object MusicVideoData {
         music13.fileName = "music13"
         music13.code = 1143
         music13.duration = 172
-        music13.isStar = true
+        music13.star = true
         music13.title = "有酒乐逍遥，无酒我亦颠—— 记酒剑仙谢君豪（仙剑经典BGM）"
         music13.releaseTime = "2016-05-04 01:00:57"
         music13.originalUrl = "https://www.bilibili.com/video/BV1Rs411q7bA"
@@ -219,7 +219,7 @@ object MusicVideoData {
         music14.fileName = "music14"
         music14.code = 1144
         music14.duration = 227
-        music14.isStar = true
+        music14.star = true
         music14.title = "“天上剑仙三百万，遇我也需尽低眉”"
         music14.releaseTime = "2020-01-27 16:52:05"
         music14.originalUrl = "https://www.bilibili.com/video/BV1q741167W5"
@@ -235,7 +235,7 @@ object MusicVideoData {
         music15.fileName = "music15"
         music15.code = 1145
         music15.duration = 315
-        music15.isStar = true
+        music15.star = true
         music15.title = "逍遥叹"
         music15.releaseTime = "2019-03-23 21:52:14"
         music15.originalUrl = "https://www.bilibili.com/video/BV1zb411779E"
@@ -251,7 +251,7 @@ object MusicVideoData {
         music16.fileName = "music16"
         music16.code = 1146
         music16.duration = 201
-        music16.isStar = true
+        music16.star = true
         music16.title = "【刘亦菲】仙剑奇侠传一（莫失莫忘）"
         music16.releaseTime = "2017-03-17 23:05:08"
         music16.originalUrl = "https://www.bilibili.com/video/BV1qx411r7tN"
@@ -267,7 +267,7 @@ object MusicVideoData {
         music17.fileName = "music17"
         music17.code = 1147
         music17.duration = 231
-        music17.isStar = true
+        music17.star = true
         music17.title = "【桃花岛】仙剑奇侠传一首死亡bgm，神曲不解释"
         music17.releaseTime = "2017-04-27 15:55:05"
         music17.originalUrl = "https://www.bilibili.com/video/BV1ox411U7Lx"
@@ -283,7 +283,7 @@ object MusicVideoData {
         music2.fileName = "music2"
         music2.code = 1148
         music2.duration = 221
-        music2.isStar = true
+        music2.star = true
         music2.title = "《珍珠港》电影原声主题曲———「tennessee」"
         music2.releaseTime = "2018-11-04 07:19:56"
         music2.originalUrl = "https://www.bilibili.com/video/BV1ab411w7tm"
@@ -299,7 +299,7 @@ object MusicVideoData {
         music19.fileName = "music19"
         music19.code = 1149
         music19.duration = 293
-        music19.isStar = true
+        music19.star = true
         music19.title = "【仙剑一】十五年后，再听灵儿叫一声逍遥哥哥"
         music19.releaseTime = "2020-03-20 18:50:52"
         music19.originalUrl = "https://www.bilibili.com/video/BV1m7411R7cr"
@@ -315,7 +315,7 @@ object MusicVideoData {
         music20.fileName = "music20"
         music20.code = 1150
         music20.duration = 576
-        music20.isStar = true
+        music20.star = true
         music20.title = "【4K60FPS】《仙剑奇侠传三》王炸神曲合集！每一首都是回忆！"
         music20.releaseTime = "2021-10-02 19:05:34"
         music20.originalUrl = "https://www.bilibili.com/video/BV13L411s79L"
@@ -331,7 +331,7 @@ object MusicVideoData {
         music21.fileName = "music21"
         music21.code = 1151
         music21.duration = 248
-        music21.isStar = true
+        music21.star = true
         music21.title = "金莎 - 星月神话 官方版"
         music21.releaseTime = "2017-05-11 20:46:45"
         music21.originalUrl = "https://www.bilibili.com/video/BV1dx411m7s9"
@@ -347,7 +347,7 @@ object MusicVideoData {
         music22.fileName = "music22"
         music22.code = 1152
         music22.duration = 284
-        music22.isStar = true
+        music22.star = true
         music22.title = "胡杨林-香水有毒"
         music22.releaseTime = "2017-08-29 02:23:35"
         music22.originalUrl = "https://www.bilibili.com/video/BV1dx41147tr"
@@ -363,7 +363,7 @@ object MusicVideoData {
         music23.fileName = "music23"
         music23.code = 1153
         music23.duration = 216
-        music23.isStar = true
+        music23.star = true
         music23.title = "【4K60FPS】杨千嬅《可惜我是水瓶座》史上最甜版本！这女人太美了"
         music23.releaseTime = "2020-09-17 22:12:29"
         music23.originalUrl = "https://www.bilibili.com/video/BV1Rv41117JG"
@@ -379,7 +379,7 @@ object MusicVideoData {
         music24.fileName = "music24"
         music24.code = 1154
         music24.duration = 232
-        music24.isStar = true
+        music24.star = true
         music24.title = "【4K60FPS】陈奕迅《K歌之王》神级现场！忘词和杨千嬅都来了"
         music24.releaseTime = "2020-11-14 19:44:43"
         music24.originalUrl = "https://www.bilibili.com/video/BV1yp4y167a5"
@@ -395,7 +395,7 @@ object MusicVideoData {
         music25.fileName = "music25"
         music25.code = 1155
         music25.duration = 298
-        music25.isStar = true
+        music25.star = true
         music25.title = "阿刁-张韶涵  你是自由的鸟"
         music25.releaseTime = "2019-09-23 09:48:29"
         music25.originalUrl = "https://www.bilibili.com/video/BV16J411g7Y2"
@@ -411,7 +411,7 @@ object MusicVideoData {
         music26.fileName = "music26"
         music26.code = 1156
         music26.duration = 225
-        music26.isStar = true
+        music26.star = true
         music26.title = "【影视金曲分享-《大男人》】腾格尔唱出了所有男人的不容易"
         music26.releaseTime = "2021-09-01 17:29:41"
         music26.originalUrl = "https://www.bilibili.com/video/BV1cA411w79Y"
@@ -427,7 +427,7 @@ object MusicVideoData {
         music27.fileName = "music27"
         music27.code = 1157
         music27.duration = 251
-        music27.isStar = true
+        music27.star = true
         music27.title = "【4K60FPS】梅艳芳《夕阳之歌 》告别现场！这是一个传奇！"
         music27.releaseTime = "2021-11-21 20:28:13"
         music27.originalUrl = "https://www.bilibili.com/video/BV1j34y1o7SK"
@@ -443,7 +443,7 @@ object MusicVideoData {
         music28.fileName = "music28"
         music28.code = 1158
         music28.duration = 180
-        music28.isStar = true
+        music28.star = true
         music28.title = "【4K60FPS】韩磊《向天再借五百年》经典神曲！《康熙王朝》主题曲！"
         music28.releaseTime = "2021-08-02 20:20:06"
         music28.originalUrl = "https://www.bilibili.com/video/BV13q4y197t7"
@@ -459,7 +459,7 @@ object MusicVideoData {
         music29.fileName = "music29"
         music29.code = 1159
         music29.duration = 317
-        music29.isStar = true
+        music29.star = true
         music29.title = "【4K60FPS】上杉升、织田哲郎《直到世界的尽头》核爆现场！《灌篮高手》片尾曲！"
         music29.releaseTime = "2021-04-06 21:35:13"
         music29.originalUrl = "https://www.bilibili.com/video/BV19V411n7L3"
@@ -475,7 +475,7 @@ object MusicVideoData {
         music30.fileName = "music30"
         music30.code = 1160
         music30.duration = 257
-        music30.isStar = true
+        music30.star = true
         music30.title = "凤凰传奇这首《奢香夫人》又火了，柔情又不失豪迈，太好听了"
         music30.releaseTime = "2021-02-28 19:30:15"
         music30.originalUrl = "https://www.bilibili.com/video/BV1eb4y1X7fK"
@@ -491,7 +491,7 @@ object MusicVideoData {
         music31.fileName = "music31"
         music31.code = 1161
         music31.duration = 245
-        music31.isStar = true
+        music31.star = true
         music31.title = "凤凰传奇翻唱《海底》"
         music31.releaseTime = "2021-04-25 00:57:08"
         music31.originalUrl = "https://www.bilibili.com/video/BV1qp4y1t7DJ"
@@ -507,7 +507,7 @@ object MusicVideoData {
         music32.fileName = "music32"
         music32.code = 1162
         music32.duration = 262
-        music32.isStar = true
+        music32.star = true
         music32.title = "【邓紫棋x张靓颖】惊艳演绎《雨蝶》，开口跪！"
         music32.releaseTime = "2018-12-14 20:44:15"
         music32.originalUrl = "https://www.bilibili.com/video/BV1Vt411i7kb"
@@ -523,7 +523,7 @@ object MusicVideoData {
         music33.fileName = "music33"
         music33.code = 1163
         music33.duration = 209
-        music33.isStar = true
+        music33.star = true
         music33.title = "【VITAS】Vitas维塔斯封神高音《奉献》高清HD. 我母亲的歌演唱会. 2003/11/01."
         music33.releaseTime = "2020-03-14 23:10:08"
         music33.originalUrl = "https://www.bilibili.com/video/BV14E411V7TD"
@@ -539,7 +539,7 @@ object MusicVideoData {
         music34.fileName = "music34"
         music34.code = 1164
         music34.duration = 518
-        music34.isStar = true
+        music34.star = true
         music34.title = "【龚琳娜】小河淌水 - 超清 - 无台标无观众背景杂音"
         music34.releaseTime = "2016-09-17 01:32:25"
         music34.originalUrl = "https://www.bilibili.com/video/BV1Ns411t7UW"
@@ -555,7 +555,7 @@ object MusicVideoData {
         music35.fileName = "music35"
         music35.code = 1165
         music35.duration = 301
-        music35.isStar = true
+        music35.star = true
         music35.title = "全网最清晰迈克尔杰克逊Michael Jackson1995年MTV现场Dangerous经典机械舞危险舞蹈高清修复版太空步侧滑步mj珍贵视频"
         music35.releaseTime = "2020-01-31 22:48:37"
         music35.originalUrl = "https://www.bilibili.com/video/BV1Z7411B7uD"
@@ -571,7 +571,7 @@ object MusicVideoData {
         music36.fileName = "music36"
         music36.code = 1166
         music36.duration = 278
-        music36.isStar = true
+        music36.star = true
         music36.title = "【4K60FPS】和田光司《Butter-Fly》核爆现场！永远的无限大！"
         music36.releaseTime = "2021-04-02 21:15:09"
         music36.originalUrl = "https://www.bilibili.com/video/BV1ey4y1t7cy"
@@ -587,7 +587,7 @@ object MusicVideoData {
         music37.fileName = "music37"
         music37.code = 1167
         music37.duration = 338
-        music37.isStar = true
+        music37.star = true
         music37.title = "WANDS-《直到世界尽头》最经典的现场版"
         music37.releaseTime = "2019-01-10 01:22:15"
         music37.originalUrl = "https://www.bilibili.com/video/BV1ct411x7ED"
@@ -603,7 +603,7 @@ object MusicVideoData {
         music38.fileName = "music38"
         music38.code = 1168
         music38.duration = 321
-        music38.isStar = true
+        music38.star = true
         music38.title = "【4K顶级画质】灌篮高手片尾曲《直到世界的尽头》现场，依旧那么好听！！！"
         music38.releaseTime = "2022-01-11 20:52:10"
         music38.originalUrl = "https://www.bilibili.com/video/BV11F411v7p6"
@@ -619,7 +619,7 @@ object MusicVideoData {
         music39.fileName = "music39"
         music39.code = 1169
         music39.duration = 210
-        music39.isStar = true
+        music39.star = true
         music39.title = "相信自己----零点乐队"
         music39.releaseTime = "2018-01-16 12:26:14"
         music39.originalUrl = "https://www.bilibili.com/video/BV1GW411v7wE"
@@ -635,7 +635,7 @@ object MusicVideoData {
         music40.fileName = "music40"
         music40.code = 1170
         music40.duration = 262
-        music40.isStar = true
+        music40.star = true
         music40.title = "爱我就跟我走－王鹤铮"
         music40.releaseTime = "2019-12-15 07:00:50"
         music40.originalUrl = "https://www.bilibili.com/video/BV1aJ411C7Pn"
@@ -651,7 +651,7 @@ object MusicVideoData {
         music3.fileName = "music3"
         music3.code = 1171
         music3.duration = 235
-        music3.isStar = true
+        music3.star = true
         music3.title = "曾风靡全球的一首《Cry On My Shoulder》，经典的旋律，百听不厌"
         music3.releaseTime = "2021-03-26 17:26:56"
         music3.originalUrl = "https://www.bilibili.com/video/BV1jv41187YV"
@@ -667,7 +667,7 @@ object MusicVideoData {
         music4.fileName = "music4"
         music4.code = 1172
         music4.duration = 200
-        music4.isStar = true
+        music4.star = true
         music4.title = "曾经学生时代听过的英文歌曲之一《Gotta Have You》"
         music4.releaseTime = "2022-01-23 13:34:33"
         music4.originalUrl = "https://www.bilibili.com/video/BV115411f7DM"
@@ -683,7 +683,7 @@ object MusicVideoData {
         music43.fileName = "music43"
         music43.code = 1359
         music43.duration = 408
-        music43.isStar = true
+        music43.star = true
         music43.title = "央视版【意难忘】片头片尾曲"
         music43.releaseTime = "2019-01-05 22:27:51"
         music43.originalUrl = "https://www.bilibili.com/video/BV1Xt411x7of"
@@ -698,7 +698,7 @@ object MusicVideoData {
         music44.fileName = "music44"
         music44.code = 1360
         music44.duration = 373
-        music44.isStar = true
+        music44.star = true
         music44.title = "【国产/电视剧主题曲】水浒后传-片头曲《卧虎藏龙》及片尾曲《背叛情歌》"
         music44.releaseTime = "2017-09-05 02:25:17"
         music44.originalUrl = "https://www.bilibili.com/video/BV1Yx411x7QU"
@@ -713,7 +713,7 @@ object MusicVideoData {
         music45.fileName = "music45"
         music45.code = 1361
         music45.duration = 262
-        music45.isStar = true
+        music45.star = true
         music45.title = "《天下有情人》粤语版，带你回味95年《神雕侠侣》，古天乐后再无杨过"
         music45.releaseTime = "2019-11-30 18:24:17"
         music45.originalUrl = "https://www.bilibili.com/video/BV1UJ411Q7sa"
@@ -728,7 +728,7 @@ object MusicVideoData {
         music46.fileName = "music46"
         music46.code = 1362
         music46.duration = 277
-        music46.isStar = true
+        music46.star = true
         music46.title = "《东游记》主题曲《逍遥游》，经典好听，秒杀太多电视剧主题曲了"
         music46.releaseTime = "2021-06-14 21:05:42"
         music46.originalUrl = "https://www.bilibili.com/video/BV1UK4y137R4"
@@ -743,7 +743,7 @@ object MusicVideoData {
         music47.fileName = "music47"
         music47.code = 1973
         music47.duration = 242
-        music47.isStar = false
+        music47.star = false
         music47.title = "【林志炫】凤凰花开的路口，现场演唱版720P。"
         music47.releaseTime = "2016-03-01 20:05:11"
         music47.originalUrl = "https://www.bilibili.com/video/BV1us411Q7Nz"
@@ -758,7 +758,7 @@ object MusicVideoData {
         music48.fileName = "music48"
         music48.code = 1974
         music48.duration = 222
-        music48.isStar = false
+        music48.star = false
         music48.title = "【4K修复.Live】郑中基《可惜我是水瓶座》完美现场！长岛冰茶的味道"
         music48.releaseTime = "2021-04-17 20:49:12"
         music48.originalUrl = "https://www.bilibili.com/video/BV1MQ4y1Z7SB"
@@ -773,7 +773,7 @@ object MusicVideoData {
         music49.fileName = "music49"
         music49.code = 1975
         music49.duration = 209
-        music49.isStar = false
+        music49.star = false
         music49.title = "【4K修复】阿杜《他一定很爱你》我应该在车底「醇情歌演唱会」"
         music49.releaseTime = "2021-03-28 12:11:33"
         music49.originalUrl = "https://www.bilibili.com/video/BV1bi4y1P7Xi"
@@ -788,7 +788,7 @@ object MusicVideoData {
         music50.fileName = "music50"
         music50.code = 1976
         music50.duration = 146
-        music50.isStar = false
+        music50.star = false
         music50.title = "北京冬奥会，再见！"
         music50.releaseTime = "2022-02-20 23:07:01"
         music50.originalUrl = "https://www.bilibili.com/video/BV1kT4y1D7Z8"
@@ -803,7 +803,7 @@ object MusicVideoData {
         music51.fileName = "music51"
         music51.code = 1977
         music51.duration = 233
-        music51.isStar = false
+        music51.star = false
         music51.title = "当下最火的俄语歌《Колыбельная》，战争是残酷的，和平来之不易！"
         music51.releaseTime = "2020-11-23 20:12:28"
         music51.originalUrl = "https://www.bilibili.com/video/BV1ap4y1r7L8"

@@ -59,23 +59,23 @@ public class CutePetChildAdapter(
             data.videoData = videoData
         } else {
             counts.text = videoData.likes.toString()
-            if (videoData.isLike) {
+            if (videoData.like) {
                 likeView.setImageResource(R.mipmap.img_pet_liked)
             } else {
                 likeView.setImageResource(R.mipmap.img_pet_like)
             }
         }
         likeLayout.setOnClickListener {
-            if (videoData.isLike) {
+            if (videoData.like) {
                 likeView.setImageResource(R.mipmap.img_pet_like)
-                videoData.isLike = false
+                videoData.like = false
                 val count = videoData.likes - 1
                 counts.text = count.toString()
                 videoData.likes = count
                 listener.likeClick(videoData)
             } else {
                 likeView.setImageResource(R.mipmap.img_pet_liked)
-                videoData.isLike = true
+                videoData.like = true
                 val count = videoData.likes + 1
                 counts.text = count.toString()
                 videoData.likes = count
@@ -94,7 +94,7 @@ public class CutePetChildAdapter(
         title.text = petVideo.title
 
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, data.code,false)
+            startVideoPlayActivity(context, data.code)
         }
     }
 

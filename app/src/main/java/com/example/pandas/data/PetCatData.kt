@@ -16,7 +16,7 @@ object PetCatData {
         cat1.fileName = "cat_1"
         cat1.code = 1682
         cat1.duration = 121
-        cat1.isStar = true
+        cat1.star = true
         cat1.title = "奶猫第一次见到爸爸：让你闻"
         cat1.releaseTime = "2021-06-12 14:00:13"
         cat1.originalUrl = "https://www.bilibili.com/video/BV1G5411u7JX"
@@ -30,7 +30,7 @@ object PetCatData {
         cat2.fileName = "cat_2"
         cat2.code = 1683
         cat2.duration = 238
-        cat2.isStar = true
+        cat2.star = true
         cat2.title = "猫爷爷带娃，隔辈就是亲！"
         cat2.releaseTime = "2021-07-05 17:36:47"
         cat2.originalUrl = "https://www.bilibili.com/video/BV1X64y197zk"
@@ -44,7 +44,7 @@ object PetCatData {
         cat3.fileName = "cat_3"
         cat3.code = 1684
         cat3.duration = 132
-        cat3.isStar = true
+        cat3.star = true
         cat3.title = "吸 猫 大 师"
         cat3.releaseTime = "2022-03-09 17:46:15"
         cat3.originalUrl = "https://www.bilibili.com/video/BV1gT4y1D7ju"
@@ -58,7 +58,7 @@ object PetCatData {
         cat4.fileName = "cat_4"
         cat4.code = 1685
         cat4.duration = 278
-        cat4.isStar = true
+        cat4.star = true
         cat4.title = "奶猫：来自我姐沉重的爱"
         cat4.releaseTime = "2022-03-08 17:16:34"
         cat4.originalUrl = "https://www.bilibili.com/video/BV1E44y1M7rY"
@@ -72,7 +72,7 @@ object PetCatData {
         cat5.fileName = "cat_5"
         cat5.code = 1686
         cat5.duration = 192
-        cat5.isStar = true
+        cat5.star = true
         cat5.title = "打妈妈！这奶猫谁想要啊？"
         cat5.releaseTime = "2020-08-29 12:00:43"
         cat5.originalUrl = "https://www.bilibili.com/video/BV1xD4y1m73A"
@@ -86,7 +86,7 @@ object PetCatData {
         cat6.fileName = "cat_6"
         cat6.code = 1687
         cat6.duration = 131
-        cat6.isStar = true
+        cat6.star = true
         cat6.title = "Coco化身猫保姆：这届孩子太难带"
         cat6.releaseTime = "2020-09-19 16:47:18"
         cat6.originalUrl = "https://www.bilibili.com/video/BV1da4y1j7bk"
@@ -100,7 +100,7 @@ object PetCatData {
         cat7.fileName = "cat_7"
         cat7.code = 1688
         cat7.duration = 51
-        cat7.isStar = true
+        cat7.star = true
         cat7.title = "银渐层Coco：妈，他真是我爸？"
         cat7.releaseTime = "2020-07-09 18:07:13"
         cat7.originalUrl = "https://www.bilibili.com/video/BV1fv411B7ug"
@@ -114,7 +114,7 @@ object PetCatData {
         cat8.fileName = "cat_8"
         cat8.code = 1689
         cat8.duration = 118
-        cat8.isStar = true
+        cat8.star = true
         cat8.title = "Coco：早知这么怂，何必当初呢？"
         cat8.releaseTime = "2020-09-05 17:05:52"
         cat8.originalUrl = "https://www.bilibili.com/video/BV1iK4y1e7TU"
@@ -128,7 +128,7 @@ object PetCatData {
         cat9.fileName = "cat_9"
         cat9.code = 1690
         cat9.duration = 97
-        cat9.isStar = true
+        cat9.star = true
         cat9.title = "有的猫不止脸好看，jiojio更好看"
         cat9.releaseTime = "2021-02-16 19:05:10"
         cat9.originalUrl = "https://www.bilibili.com/video/BV1Lb4y1R74E"
@@ -142,7 +142,7 @@ object PetCatData {
         cat10.fileName = "cat_10"
         cat10.code = 1691
         cat10.duration = 71
-        cat10.isStar = true
+        cat10.star = true
         cat10.title = "只有把小奶猫搂在怀里，猫妈才能放心睡觉"
         cat10.releaseTime = "2020-06-10 16:48:01"
         cat10.originalUrl = "https://www.bilibili.com/video/BV1wk4y1z7ZT"
@@ -157,7 +157,7 @@ object PetCatData {
         cat11.fileName = "cat_11"
         cat11.code = 1692
         cat11.duration = 63
-        cat11.isStar = true
+        cat11.star = true
         cat11.title = "这就是独苗奶猫的优势，猫妈整天搂着"
         cat11.releaseTime = "2020-06-02 18:39:26"
         cat11.originalUrl = "https://www.bilibili.com/video/BV1uk4y1z71N"
@@ -172,7 +172,7 @@ object PetCatData {
         cat12.fileName = "cat_12"
         cat12.code = 1693
         cat12.duration = 95
-        cat12.isStar = true
+        cat12.star = true
         cat12.title = "奶猫：走开，别碰我！"
         cat12.releaseTime = "2021-01-22 18:15:00"
         cat12.originalUrl = "https://www.bilibili.com/video/BV1or4y1N7qL"
@@ -187,7 +187,7 @@ object PetCatData {
         cat13.fileName = "cat_13"
         cat13.code = 1694
         cat13.duration = 89
-        cat13.isStar = true
+        cat13.star = true
         cat13.title = "猫爸第一次见到女儿：不对，毛色怎么深了？"
         cat13.releaseTime = "2021-04-21 18:30:05"
         cat13.originalUrl = "https://www.bilibili.com/video/BV18Q4y1Z7Jt"
@@ -202,7 +202,7 @@ object PetCatData {
         cat14.fileName = "cat_14"
         cat14.code = 1695
         cat14.duration = 126
-        cat14.isStar = true
+        cat14.star = true
         cat14.title = "父 慈 子 孝 ！"
         cat14.releaseTime = "2020-11-19 17:07:49"
         cat14.originalUrl = "https://www.bilibili.com/video/BV1rV411a7Hg"
@@ -217,7 +217,7 @@ object PetCatData {
         cat15.fileName = "cat_15"
         cat15.code = 1696
         cat15.duration = 136
-        cat15.isStar = true
+        cat15.star = true
         cat15.title = "奶猫第一次见到爸爸：你别过来啦"
         cat15.releaseTime = "2020-12-25 16:44:35"
         cat15.originalUrl = "https://www.bilibili.com/video/BV1Ff4y1v7V4"
@@ -232,7 +232,7 @@ object PetCatData {
         cat16.fileName = "cat_16"
         cat16.code = 1697
         cat16.duration = 158
-        cat16.isStar = true
+        cat16.star = true
         cat16.title = "奶猫：能不能离我远点"
         cat16.releaseTime = "2021-05-03 12:15:08"
         cat16.originalUrl = "https://www.bilibili.com/video/BV11v411L7gH"
@@ -247,7 +247,7 @@ object PetCatData {
         cat17.fileName = "cat_17"
         cat17.code = 1698
         cat17.duration = 107
-        cat17.isStar = true
+        cat17.star = true
         cat17.title = "刚睁开眼的奶猫会如何拒绝主人？"
         cat17.releaseTime = "2021-05-25 17:53:08"
         cat17.originalUrl = "https://www.bilibili.com/video/BV1d54y1V7Sp"
@@ -262,7 +262,7 @@ object PetCatData {
         cat18.fileName = "cat_18"
         cat18.code = 1699
         cat18.duration = 75
-        cat18.isStar = true
+        cat18.star = true
         cat18.title = "猫在屋檐下，不得不梳头"
         cat18.releaseTime = "2021-02-12 11:20:06"
         cat18.originalUrl = "https://www.bilibili.com/video/BV1WU4y1x7KS"
@@ -277,7 +277,7 @@ object PetCatData {
         cat19.fileName = "cat_19"
         cat19.code = 1700
         cat19.duration = 84
-        cat19.isStar = true
+        cat19.star = true
         cat19.title = "你们知道吗？刚出生的小猫咪不会拉粑粑，粑粑都是猫妈妈吃的，可是家里还有一个三个月的小公猫过来抢屎吃 是什么操作"
         cat19.releaseTime = "2020-03-14 22:03:10"
         cat19.originalUrl = "https://www.bilibili.com/video/BV1fE411G7es"
@@ -292,7 +292,7 @@ object PetCatData {
         cat20.fileName = "cat_20"
         cat20.code = 1701
         cat20.duration = 131
-        cat20.isStar = true
+        cat20.star = true
         cat20.title = "姐妹们，年度无语事件来了，所以小猫咪是想当妈？还是想当女儿"
         cat20.releaseTime = "2021-05-24 21:23:39"
         cat20.originalUrl = "https://www.bilibili.com/video/BV1Bg4113713"
@@ -307,7 +307,7 @@ object PetCatData {
         cat21.fileName = "cat_21"
         cat21.code = 1702
         cat21.duration = 79
-        cat21.isStar = true
+        cat21.star = true
         cat21.title = "试图用手手萌死对方，奶猫打仗太狠了！"
         cat21.releaseTime = "2020-08-08 12:00:53"
         cat21.originalUrl = "https://www.bilibili.com/video/BV11h411d7Km"
@@ -322,7 +322,7 @@ object PetCatData {
         cat22.fileName = "cat_22"
         cat22.code = 1703
         cat22.duration = 56
-        cat22.isStar = true
+        cat22.star = true
         cat22.title = "进击的小奶猫！！！可爱到爆炸！！！"
         cat22.releaseTime = "2019-08-03 18:00:01"
         cat22.originalUrl = "https://www.bilibili.com/video/BV1bt411u7tU"
@@ -337,7 +337,7 @@ object PetCatData {
         cat23.fileName = "cat_23"
         cat23.code = 1704
         cat23.duration = 72
-        cat23.isStar = true
+        cat23.star = true
         cat23.title = "奶量十足，猛男必看"
         cat23.releaseTime = "2021-01-29 13:00:00"
         cat23.originalUrl = "https://www.bilibili.com/video/BV12z4y1m7J1"
@@ -352,7 +352,7 @@ object PetCatData {
         cat24.fileName = "cat_24"
         cat24.code = 1705
         cat24.duration = 104
-        cat24.isStar = true
+        cat24.star = true
         cat24.title = "奶量爆棚！"
         cat24.releaseTime = "2021-01-17 10:04:40"
         cat24.originalUrl = "https://www.bilibili.com/video/BV1UU4y1x7qD"
@@ -367,7 +367,7 @@ object PetCatData {
         cat25.fileName = "cat_25"
         cat25.code = 1706
         cat25.duration = 168
-        cat25.isStar = true
+        cat25.star = true
         cat25.title = "小奶猫非正常走姿大赏"
         cat25.releaseTime = "2021-12-13 16:14:57"
         cat25.originalUrl = "https://www.bilibili.com/video/BV1iU4y1K7C7"
@@ -382,7 +382,7 @@ object PetCatData {
         cat26.fileName = "cat_26"
         cat26.code = 1707
         cat26.duration = 71
-        cat26.isStar = true
+        cat26.star = true
         cat26.title = "小猫Coco和她的四个弟弟，妈妈都看不下去了"
         cat26.releaseTime = "2020-07-21 17:23:45"
         cat26.originalUrl = "https://www.bilibili.com/video/BV1ZD4y1m73C"
@@ -397,7 +397,7 @@ object PetCatData {
         cat27.fileName = "cat_27"
         cat27.code = 1708
         cat27.duration = 186
-        cat27.isStar = true
+        cat27.star = true
         cat27.title = "奶猫打架太狠了，猫妈来劝都没用"
         cat27.releaseTime = "2020-10-30 16:53:24"
         cat27.originalUrl = "https://www.bilibili.com/video/BV13y4y1r7Rn"
@@ -412,7 +412,7 @@ object PetCatData {
         cat28.fileName = "cat_28"
         cat28.code = 1709
         cat28.duration = 143
-        cat28.isStar = true
+        cat28.star = true
         cat28.title = "奶猫打架输了，委屈巴巴"
         cat28.releaseTime = "2021-01-21 18:04:14"
         cat28.originalUrl = "https://www.bilibili.com/video/BV1A54y1x7Pe"
@@ -427,7 +427,7 @@ object PetCatData {
         cat29.fileName = "cat_29"
         cat29.code = 1710
         cat29.duration = 211
-        cat29.isStar = true
+        cat29.star = true
         cat29.title = "奶猫版猫爪在上！这是原则"
         cat29.releaseTime = "2021-02-17 11:20:20"
         cat29.originalUrl = "https://www.bilibili.com/video/BV1XK4y1Q7jj"
@@ -442,7 +442,7 @@ object PetCatData {
         cat30.fileName = "cat_30"
         cat30.code = 1711
         cat30.duration = 41
-        cat30.isStar = true
+        cat30.star = true
         cat30.title = "三只小猫搂着搂着睡着了"
         cat30.releaseTime = "2021-02-15 14:15:15"
         cat30.originalUrl = "https://www.bilibili.com/video/BV19i4y1K7vU"
@@ -457,7 +457,7 @@ object PetCatData {
         cat31.fileName = "cat_31"
         cat31.code = 1712
         cat31.duration = 174
-        cat31.isStar = true
+        cat31.star = true
         cat31.title = "猫咪幼崽可以有多萌？"
         cat31.releaseTime = "2021-07-13 13:49:45"
         cat31.originalUrl = "https://www.bilibili.com/video/BV1Uo4y1X7Wg"
@@ -472,7 +472,7 @@ object PetCatData {
         cat32.fileName = "cat_32"
         cat32.code = 1713
         cat32.duration = 151
-        cat32.isStar = true
+        cat32.star = true
         cat32.title = "小奶猫嘬奶瓶的声音也太好听了"
         cat32.releaseTime = "2021-05-15 16:27:41"
         cat32.originalUrl = "https://www.bilibili.com/video/BV1SA411G7vt"
@@ -487,7 +487,7 @@ object PetCatData {
         cat33.fileName = "cat_33"
         cat33.code = 1714
         cat33.duration = 233
-        cat33.isStar = true
+        cat33.star = true
         cat33.title = "猫猫虫营业就犯困，像极了上课的你"
         cat33.releaseTime = "2021-07-21 18:49:21"
         cat33.originalUrl = "https://www.bilibili.com/video/BV1dh411B78b"
@@ -502,7 +502,7 @@ object PetCatData {
         cat34.fileName = "cat_34"
         cat34.code = 1715
         cat34.duration = 121
-        cat34.isStar = true
+        cat34.star = true
         cat34.title = "山海经曰：有萌兽。腿短，形似猫，有兔耳，身如白雪。"
         cat34.releaseTime = "2021-08-25 00:05:32"
         cat34.originalUrl = "https://www.bilibili.com/video/BV1WQ4y1176K"
@@ -517,7 +517,7 @@ object PetCatData {
         cat35.fileName = "cat_35"
         cat35.code = 1716
         cat35.duration = 210
-        cat35.isStar = true
+        cat35.star = true
         cat35.title = "像这样的小奶猫，我能吸十个！"
         cat35.releaseTime = "2021-07-12 18:00:06"
         cat35.originalUrl = "https://www.bilibili.com/video/BV1sv411n72o"
@@ -532,7 +532,7 @@ object PetCatData {
         cat36.fileName = "cat_36"
         cat36.code = 1717
         cat36.duration = 157
-        cat36.isStar = true
+        cat36.star = true
         cat36.title = "我只是一条猫猫虫，木有脖子也木有jio~"
         cat36.releaseTime = "2021-07-19 17:55:52"
         cat36.originalUrl = "https://www.bilibili.com/video/BV1dh411B7kb"
@@ -547,7 +547,7 @@ object PetCatData {
         cat37.fileName = "cat_37"
         cat37.code = 1718
         cat37.duration = 155
-        cat37.isStar = true
+        cat37.star = true
         cat37.title = "一窝英短猫100天的变化史"
         cat37.releaseTime = "2021-12-15 17:28:43"
         cat37.originalUrl = "https://www.bilibili.com/video/BV1FR4y1x7pq"
@@ -562,7 +562,7 @@ object PetCatData {
         cat38.fileName = "cat_38"
         cat38.code = 1719
         cat38.duration = 173
-        cat38.isStar = true
+        cat38.star = true
         cat38.title = "小奶猫第一次学走路，我人没了！【奶猫第16天】"
         cat38.releaseTime = "2022-03-05 11:00:07"
         cat38.originalUrl = "https://www.bilibili.com/video/BV1Da411h7j7"
@@ -577,7 +577,7 @@ object PetCatData {
         cat39.fileName = "cat_39"
         cat39.code = 1720
         cat39.duration = 73
-        cat39.isStar = true
+        cat39.star = true
         cat39.title = "见证小猫仔的成长！"
         cat39.releaseTime = "2022-03-06 03:00:34"
         cat39.originalUrl = "https://www.bilibili.com/video/BV19i4y1k7UJ"
@@ -592,7 +592,7 @@ object PetCatData {
         cat40.fileName = "cat_40"
         cat40.code = 1721
         cat40.duration = 151
-        cat40.isStar = true
+        cat40.star = true
         cat40.title = "只能说是痴汉行为，抓手上开干！奶奶的小奶猫就是极致的香！！"
         cat40.releaseTime = "2022-03-07 19:01:55"
         cat40.originalUrl = "https://www.bilibili.com/video/BV1MT4y1D7jd"
@@ -607,7 +607,7 @@ object PetCatData {
         cat41.fileName = "cat_41"
         cat41.code = 1722
         cat41.duration = 80
-        cat41.isStar = true
+        cat41.star = true
         cat41.title = "被狠狠虐住了"
         cat41.releaseTime = "2022-02-09 18:52:16"
         cat41.originalUrl = "https://www.bilibili.com/video/BV1bP4y1P7u9"
@@ -622,7 +622,7 @@ object PetCatData {
         cat42.fileName = "cat_42"
         cat42.code = 1723
         cat42.duration = 297
-        cat42.isStar = true
+        cat42.star = true
         cat42.title = "姥姥带娃日记"
         cat42.releaseTime = "2022-02-16 14:47:41"
         cat42.originalUrl = "https://www.bilibili.com/video/BV1ym4y1d7CS"
@@ -637,7 +637,7 @@ object PetCatData {
         cat43.fileName = "cat_43"
         cat43.code = 1724
         cat43.duration = 175
-        cat43.isStar = true
+        cat43.star = true
         cat43.title = "这样的小猫咪，你一口气能吸几个？"
         cat43.releaseTime = "2021-08-16 19:37:43"
         cat43.originalUrl = "https://www.bilibili.com/video/BV1sb4y1S79h"
@@ -652,7 +652,7 @@ object PetCatData {
         cat44.fileName = "cat_44"
         cat44.code = 1725
         cat44.duration = 31
-        cat44.isStar = true
+        cat44.star = true
         cat44.title = "猫咪夫妻之间的加密通话"
         cat44.releaseTime = "2021-09-02 15:28:23"
         cat44.originalUrl = "https://www.bilibili.com/video/BV1Hf4y1A7e9"
@@ -667,7 +667,7 @@ object PetCatData {
         cat45.fileName = "cat_45"
         cat45.code = 1726
         cat45.duration = 145
-        cat45.isStar = true
+        cat45.star = true
         cat45.title = "一 球 不 容 二 猫 ！"
         cat45.releaseTime = "2021-08-27 16:33:18"
         cat45.originalUrl = "https://www.bilibili.com/video/BV1Ug411G7J3"
@@ -682,7 +682,7 @@ object PetCatData {
         cat46.fileName = "cat_46"
         cat46.code = 1727
         cat46.duration = 153
-        cat46.isStar = true
+        cat46.star = true
         cat46.title = "猫爸：再抢我就打你"
         cat46.releaseTime = "2021-09-03 18:31:51"
         cat46.originalUrl = "https://www.bilibili.com/video/BV14M4y1G7ug"
@@ -697,7 +697,7 @@ object PetCatData {
         cat47.fileName = "cat_47"
         cat47.code = 1728
         cat47.duration = 37
-        cat47.isStar = true
+        cat47.star = true
         cat47.title = "这该死的甜美，谁能受得了"
         cat47.releaseTime = "2021-09-06 18:31:28"
         cat47.originalUrl = "https://www.bilibili.com/video/BV1v44y187Yu"
@@ -712,7 +712,7 @@ object PetCatData {
         cat48.fileName = "cat_48"
         cat48.code = 1729
         cat48.duration = 175
-        cat48.isStar = true
+        cat48.star = true
         cat48.title = "一 模 一 样 ！"
         cat48.releaseTime = "2021-09-20 12:15:01"
         cat48.originalUrl = "https://www.bilibili.com/video/BV11L411x7dp"
@@ -727,7 +727,7 @@ object PetCatData {
         cat49.fileName = "cat_49"
         cat49.code = 1730
         cat49.duration = 211
-        cat49.isStar = true
+        cat49.star = true
         cat49.title = "奶猫哼哼唧唧找妈妈，超可爱"
         cat49.releaseTime = "2021-10-01 11:30:09"
         cat49.originalUrl = "https://www.bilibili.com/video/BV1E44y1t77m"
@@ -742,7 +742,7 @@ object PetCatData {
         cat50.fileName = "cat_50"
         cat50.code = 1731
         cat50.duration = 174
-        cat50.isStar = true
+        cat50.star = true
         cat50.title = "来自猫妈劈头盖脸的爱"
         cat50.releaseTime = "2021-10-04 11:30:10"
         cat50.originalUrl = "https://www.bilibili.com/video/BV16q4y1o712"
@@ -757,7 +757,7 @@ object PetCatData {
         cat51.fileName = "cat_51"
         cat51.code = 1732
         cat51.duration = 67
-        cat51.isStar = true
+        cat51.star = true
         cat51.title = "一根逗猫棒能叫来多少只猫"
         cat51.releaseTime = "2021-10-27 18:17:04"
         cat51.originalUrl = "https://www.bilibili.com/video/BV1PR4y1n7rB"
@@ -772,7 +772,7 @@ object PetCatData {
         cat52.fileName = "cat_52"
         cat52.code = 1733
         cat52.duration = 226
-        cat52.isStar = true
+        cat52.star = true
         cat52.title = "奶猫：你再不起来我就扁了"
         cat52.releaseTime = "2022-01-12 11:27:35"
         cat52.originalUrl = "https://www.bilibili.com/video/BV1XS4y1T79b"
@@ -787,7 +787,7 @@ object PetCatData {
         cat53.fileName = "cat_53"
         cat53.code = 1734
         cat53.duration = 255
-        cat53.isStar = true
+        cat53.star = true
         cat53.title = "小奶猫委屈哭了"
         cat53.releaseTime = "2022-01-13 16:54:19"
         cat53.originalUrl = "https://www.bilibili.com/video/BV1tq4y1A7Tr"
@@ -802,7 +802,7 @@ object PetCatData {
         cat54.fileName = "cat_54"
         cat54.code = 1735
         cat54.duration = 187
-        cat54.isStar = true
+        cat54.star = true
         cat54.title = "小奶猫给小鸡当妈妈，搂着搂着睡着了"
         cat54.releaseTime = "2020-08-01 11:48:27"
         cat54.originalUrl = "https://www.bilibili.com/video/BV1zp4y1q7m6"
@@ -817,7 +817,7 @@ object PetCatData {
         cat55.fileName = "cat_55"
         cat55.code = 1736
         cat55.duration = 221
-        cat55.isStar = true
+        cat55.star = true
         cat55.title = "小奶猫第一次见到这么小的兔子，吓哭了！"
         cat55.releaseTime = "2020-08-19 12:00:16"
         cat55.originalUrl = "https://www.bilibili.com/video/BV1nz4y1f7i2"
@@ -832,7 +832,7 @@ object PetCatData {
         cat56.fileName = "cat_56"
         cat56.code = 1737
         cat56.duration = 231
-        cat56.isStar = true
+        cat56.star = true
         cat56.title = "奶猫第一次见到兔子：兄弟你耳朵怎么了？"
         cat56.releaseTime = "2020-08-10 17:35:36"
         cat56.originalUrl = "https://www.bilibili.com/video/BV1qT4y157Dc"
@@ -847,7 +847,7 @@ object PetCatData {
         cat57.fileName = "cat_57"
         cat57.code = 1738
         cat57.duration = 77
-        cat57.isStar = true
+        cat57.star = true
         cat57.title = "“兔狲小的时候真的好萌，好想抱起来一顿rua”"
         cat57.releaseTime = "2022-03-05 17:37:32"
         cat57.originalUrl = "https://www.bilibili.com/video/BV1ab4y1W7h6"
@@ -862,7 +862,7 @@ object PetCatData {
         cat58.fileName = "cat_58"
         cat58.code = 1739
         cat58.duration = 185
-        cat58.isStar = true
+        cat58.star = true
         cat58.title = "奶猫：妈，它咬我！"
         cat58.releaseTime = "2021-06-16 16:32:40"
         cat58.originalUrl = "https://www.bilibili.com/video/BV1Uo4y1y7PF"
@@ -877,7 +877,7 @@ object PetCatData {
         cat59.fileName = "cat_59"
         cat59.code = 1740
         cat59.duration = 106
-        cat59.isStar = true
+        cat59.star = true
         cat59.title = "啥是奶猫啊？让我尝尝"
         cat59.releaseTime = "2021-01-20 12:00:01"
         cat59.originalUrl = "https://www.bilibili.com/video/BV1kz4y167hd"
@@ -892,7 +892,7 @@ object PetCatData {
         cat60.fileName = "cat_60"
         cat60.code = 1741
         cat60.duration = 104
-        cat60.isStar = true
+        cat60.star = true
         cat60.title = "没 猫 咪 比 我 更 懂 摇 尾 巴 ！"
         cat60.releaseTime = "2020-08-04 11:36:42"
         cat60.originalUrl = "https://www.bilibili.com/video/BV1bA411Y7ED"
@@ -907,7 +907,7 @@ object PetCatData {
         cat61.fileName = "cat_61"
         cat61.code = 1742
         cat61.duration = 112
-        cat61.isStar = true
+        cat61.star = true
         cat61.title = "小奶猫会像小狗一样摇尾巴"
         cat61.releaseTime = "2021-02-15 19:05:13"
         cat61.originalUrl = "https://www.bilibili.com/video/BV19p4y1p7ZL"
@@ -922,7 +922,7 @@ object PetCatData {
         cat62.fileName = "cat_62"
         cat62.code = 1743
         cat62.duration = 223
-        cat62.isStar = true
+        cat62.star = true
         cat62.title = "奶猫第一次开荤，场面失控了"
         cat62.releaseTime = "2020-08-12 12:00:36"
         cat62.originalUrl = "https://www.bilibili.com/video/BV1aZ4y1M7BL"
@@ -937,7 +937,7 @@ object PetCatData {
         cat63.fileName = "cat_63"
         cat63.code = 1744
         cat63.duration = 211
-        cat63.isStar = true
+        cat63.star = true
         cat63.title = "猫妈：萌吧？我生的！"
         cat63.releaseTime = "2020-08-23 12:00:49"
         cat63.originalUrl = "https://www.bilibili.com/video/BV1gt4y1Q7mb"
@@ -952,7 +952,7 @@ object PetCatData {
         cat64.fileName = "cat_64"
         cat64.code = 1745
         cat64.duration = 111
-        cat64.isStar = true
+        cat64.star = true
         cat64.title = "当着猫妈的面，抱起小奶猫会发生什么"
         cat64.releaseTime = "2022-02-06 14:00:04"
         cat64.originalUrl = "https://www.bilibili.com/video/BV1W3411h7G8"
@@ -967,7 +967,7 @@ object PetCatData {
         cat65.fileName = "cat_65"
         cat65.code = 1746
         cat65.duration = 39
-        cat65.isStar = true
+        cat65.star = true
         cat65.title = "原来猫咪也喜欢吸猫"
         cat65.releaseTime = "2022-02-24 20:58:00"
         cat65.originalUrl = "https://www.bilibili.com/video/BV1f3411L7ty"
@@ -982,7 +982,7 @@ object PetCatData {
         cat66.fileName = "cat_66"
         cat66.code = 1747
         cat66.duration = 122
-        cat66.isStar = true
+        cat66.star = true
         cat66.title = "请大家不要嘲笑没见过世面的小猫咪"
         cat66.releaseTime = "2022-03-03 20:00:06"
         cat66.originalUrl = "https://www.bilibili.com/video/BV1v44y1T7ym"
@@ -997,7 +997,7 @@ object PetCatData {
         cat67.fileName = "cat_67"
         cat67.code = 1748
         cat67.duration = 80
-        cat67.isStar = true
+        cat67.star = true
         cat67.title = "只能宠着咯，谁让她是我妹呢"
         cat67.releaseTime = "2022-02-16 11:00:17"
         cat67.originalUrl = "https://www.bilibili.com/video/BV1Bm4y1d75A"
@@ -1012,7 +1012,7 @@ object PetCatData {
         cat68.fileName = "cat_68"
         cat68.code = 1749
         cat68.duration = 224
-        cat68.isStar = true
+        cat68.star = true
         cat68.title = "小喵喵生气气22.02.22"
         cat68.releaseTime = "2022-02-23 01:02:29"
         cat68.originalUrl = "https://www.bilibili.com/video/BV1hS4y1k79V"
@@ -1027,7 +1027,7 @@ object PetCatData {
         cat69.fileName = "cat_69"
         cat69.code = 1750
         cat69.duration = 78
-        cat69.isStar = true
+        cat69.star = true
         cat69.title = "猫妈妈辛苦了，一下子生了8只小奶猫，开始撸猫行动！"
         cat69.releaseTime = "2022-01-28 13:15:34"
         cat69.originalUrl = "https://www.bilibili.com/video/BV1sq4y1F7Cz"
@@ -1042,7 +1042,7 @@ object PetCatData {
         cat70.fileName = "cat_70"
         cat70.code = 1751
         cat70.duration = 156
-        cat70.isStar = true
+        cat70.star = true
         cat70.title = "奶猫：再来我真的不客气了"
         cat70.releaseTime = "2022-02-02 14:00:00"
         cat70.originalUrl = "https://www.bilibili.com/video/BV1qu41117Kv"
@@ -1057,7 +1057,7 @@ object PetCatData {
         cat71.fileName = "cat_71"
         cat71.code = 1752
         cat71.duration = 157
-        cat71.isStar = true
+        cat71.star = true
         cat71.title = "奶猫第一次见到爸爸：你闻，我是亲生的！"
         cat71.releaseTime = "2021-02-02 16:19:33"
         cat71.originalUrl = "https://www.bilibili.com/video/BV1HN411o7q7"
@@ -1072,7 +1072,7 @@ object PetCatData {
         cat72.fileName = "cat_72"
         cat72.code = 1753
         cat72.duration = 119
-        cat72.isStar = true
+        cat72.star = true
         cat72.title = "奶猫：快 给 我"
         cat72.releaseTime = "2022-02-16 18:10:42"
         cat72.originalUrl = "https://www.bilibili.com/video/BV1e5411o7Gn"
@@ -1087,7 +1087,7 @@ object PetCatData {
         cat73.fileName = "cat_73"
         cat73.code = 1754
         cat73.duration = 143
-        cat73.isStar = true
+        cat73.star = true
         cat73.title = "猫爸：爱就是想动手的时候忍住了..."
         cat73.releaseTime = "2022-02-18 17:47:56"
         cat73.originalUrl = "https://www.bilibili.com/video/BV1j44y1n7Rh"
@@ -1102,7 +1102,7 @@ object PetCatData {
         cat74.fileName = "cat_74"
         cat74.code = 1755
         cat74.duration = 99
-        cat74.isStar = true
+        cat74.star = true
         cat74.title = "小奶猫找不到妈妈，急哭了"
         cat74.releaseTime = "2021-01-16 20:18:16"
         cat74.originalUrl = "https://www.bilibili.com/video/BV1L5411H7DV"
@@ -1117,7 +1117,7 @@ object PetCatData {
         cat75.fileName = "cat_75"
         cat75.code = 1756
         cat75.duration = 111
-        cat75.isStar = true
+        cat75.star = true
         cat75.title = "小小奶猫把奶猫当成了妈妈"
         cat75.releaseTime = "2021-05-27 18:56:07"
         cat75.originalUrl = "https://www.bilibili.com/video/BV1VK4y1V7qJ"
@@ -1132,7 +1132,7 @@ object PetCatData {
         cat76.fileName = "cat_76"
         cat76.code = 1757
         cat76.duration = 146
-        cat76.isStar = true
+        cat76.star = true
         cat76.title = "当没满月的小奶猫跟我玩《石头剪刀布》"
         cat76.releaseTime = "2022-02-01 14:00:08"
         cat76.originalUrl = "https://www.bilibili.com/video/BV1yF411n7N7"
@@ -1147,7 +1147,7 @@ object PetCatData {
         cat77.fileName = "cat_77"
         cat77.code = 1758
         cat77.duration = 120
-        cat77.isStar = true
+        cat77.star = true
         cat77.title = "这只奶猫好像知道自己很可爱"
         cat77.releaseTime = "2022-02-09 17:24:05"
         cat77.originalUrl = "https://www.bilibili.com/video/BV1ER4y177EY"
@@ -1162,7 +1162,7 @@ object PetCatData {
         cat78.fileName = "cat_78"
         cat78.code = 1759
         cat78.duration = 138
-        cat78.isStar = true
+        cat78.star = true
         cat78.title = "亲子鉴定！小奶猫第一次见到爸爸"
         cat78.releaseTime = "2022-02-07 16:22:26"
         cat78.originalUrl = "https://www.bilibili.com/video/BV1z44y1W7Vn"
@@ -1177,7 +1177,7 @@ object PetCatData {
         cat79.fileName = "cat_79"
         cat79.code = 1760
         cat79.duration = 113
-        cat79.isStar = true
+        cat79.star = true
         cat79.title = "小奶猫委屈哭了"
         cat79.releaseTime = "2021-04-02 12:12:18"
         cat79.originalUrl = "https://www.bilibili.com/video/BV1nX4y1g77v"
@@ -1192,7 +1192,7 @@ object PetCatData {
         cat80.fileName = "cat_80"
         cat80.code = 1761
         cat80.duration = 10
-        cat80.isStar = true
+        cat80.star = true
         cat80.title = "小奶猫抢奶抢不过别人，还哭了"
         cat80.releaseTime = "2021-01-21 16:14:06"
         cat80.originalUrl = "https://www.bilibili.com/video/BV12U4y1474z"
@@ -1207,7 +1207,7 @@ object PetCatData {
         cat81.fileName = "cat_81"
         cat81.code = 1762
         cat81.duration = 198
-        cat81.isStar = true
+        cat81.star = true
         cat81.title = "猫爸发现孩子和自己颜色不同时"
         cat81.releaseTime = "2020-01-17 18:04:32"
         cat81.originalUrl = "https://www.bilibili.com/video/BV1vJ411E7XP"
@@ -1222,7 +1222,7 @@ object PetCatData {
         cat82.fileName = "cat_82"
         cat82.code = 1763
         cat82.duration = 179
-        cat82.isStar = true
+        cat82.star = true
         cat82.title = "果然隔辈亲！小奶猫第一次见到爷爷"
         cat82.releaseTime = "2021-06-26 11:12:16"
         cat82.originalUrl = "https://www.bilibili.com/video/BV1oh41187gD"
@@ -1237,7 +1237,7 @@ object PetCatData {
         cat83.fileName = "cat_83"
         cat83.code = 1764
         cat83.duration = 119
-        cat83.isStar = true
+        cat83.star = true
         cat83.title = "一模一样！奶猫：你就是我爸？"
         cat83.releaseTime = "2022-02-15 15:55:40"
         cat83.originalUrl = "https://www.bilibili.com/video/BV1Lu411R7mq"
@@ -1252,7 +1252,7 @@ object PetCatData {
         cat84.fileName = "cat_84"
         cat84.code = 1765
         cat84.duration = 165
-        cat84.isStar = true
+        cat84.star = true
         cat84.title = "快看哪家动物园的兔狲跑出来了，趁他不注意拿麻袋套走。"
         cat84.releaseTime = "2021-12-17 15:25:37"
         cat84.originalUrl = "https://www.bilibili.com/video/BV1zS4y1Q732"
@@ -1267,7 +1267,7 @@ object PetCatData {
         cat85.fileName = "cat_85"
         cat85.code = 1766
         cat85.duration = 66
-        cat85.isStar = true
+        cat85.star = true
         cat85.title = "实话实说，我看上这条小尾巴了"
         cat85.releaseTime = "2021-12-15 19:38:46"
         cat85.originalUrl = "https://www.bilibili.com/video/BV1wS4y1Q7jr"
@@ -1282,7 +1282,7 @@ object PetCatData {
         cat86.fileName = "cat_86"
         cat86.code = 1767
         cat86.duration = 171
-        cat86.isStar = true
+        cat86.star = true
         cat86.title = "我就摸一下！当小鸡掉进了奶猫群"
         cat86.releaseTime = "2020-07-31 11:21:19"
         cat86.originalUrl = "https://www.bilibili.com/video/BV1Ca4y1E7sN"
@@ -1297,7 +1297,7 @@ object PetCatData {
         cat87.fileName = "cat_87"
         cat87.code = 1768
         cat87.duration = 76
-        cat87.isStar = true
+        cat87.star = true
         cat87.title = "这是一个奶气十足的视频请尽情食用"
         cat87.releaseTime = "2022-02-10 19:30:32"
         cat87.originalUrl = "https://www.bilibili.com/video/BV1sS4y1C7a4"

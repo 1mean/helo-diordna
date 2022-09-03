@@ -127,7 +127,7 @@ public class CommentListAdapter(
             }
             loadHeadCircleImage(context, user.headUrl!!, header)
             setLevelImageResourse(user.level, level)
-            if (user.isVip == 1) {
+            if (user.vip == 1) {
                 name.setTextColor(ContextCompat.getColor(context, R.color.color_name_vip))
                 setTextType(true, name)
             } else {
@@ -163,21 +163,21 @@ public class CommentListAdapter(
                 likes.visibility = View.GONE
             }
 
-            if (videoComment.isLike) {
+            if (videoComment.like) {
                 likeImg.setImageResource(R.mipmap.img_comment_liked)
                 unLikeImg.setImageResource(R.mipmap.img_comment_dislike)
             } else {
                 likeImg.setImageResource(R.mipmap.img_comment_like)
             }
 
-            if (videoComment.isUnLike) {
+            if (videoComment.unLike) {
                 likeImg.setImageResource(R.mipmap.img_comment_like)
                 unLikeImg.setImageResource(R.mipmap.img_comment_disliked)
             } else {
                 unLikeImg.setImageResource(R.mipmap.img_comment_dislike)
             }
 
-            if (videoComment.isUpLike) {
+            if (videoComment.upLike) {
                 upLikeView.visibility = View.VISIBLE
             } else {
                 upLikeView.visibility = View.GONE
@@ -186,7 +186,7 @@ public class CommentListAdapter(
 
         private fun onClick(videoComment: VideoComment, user: User, position: Int) {
             likeLayout.setOnClickListener {
-                if (videoComment.isLike) {
+                if (videoComment.like) {
                     likeImg.setImageResource(R.mipmap.img_comment_like)
                     val num = videoComment.likeNum - 1
                     if (num == 0) {
@@ -201,13 +201,13 @@ public class CommentListAdapter(
                     val num = videoComment.likeNum + 1
                     likes.text = num.toString()
                     likeImg.setImageResource(R.mipmap.img_comment_liked)
-                    if (videoComment.isUnLike) {
+                    if (videoComment.unLike) {
                         unLikeImg.setImageResource(R.mipmap.img_comment_dislike)
-                        videoComment.isUnLike = false
+                        videoComment.unLike = false
                     }
                     videoComment.likeNum = num
                 }
-                videoComment.isLike = !videoComment.isLike
+                videoComment.like = !videoComment.like
             }
 
             name.setOnClickListener {

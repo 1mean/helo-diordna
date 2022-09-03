@@ -286,13 +286,13 @@ class PetManager {
             if (isAll) {
                 val laters = petDao.queryAllLaters()
                 laters.forEach {
-                    it.isLaterPlay = false
+                    it.laterPlay = false
                     petDao.updateVideoData(it)
                 }
             } else {
                 list.forEach {
                     it.videoData?.let { data ->
-                        data.isLaterPlay = false
+                        data.laterPlay = false
                         petDao.updateVideoData(data)
                     }
                 }
@@ -308,12 +308,12 @@ class PetManager {
             if (videoData == null) {
                 val vd = VideoData(
                     videoCode = videoCode,
-                    isLaterPlay = true,
+                    laterPlay = true,
                     laterTime = System.currentTimeMillis()
                 )
                 petDao.insertVideoData(vd)
             } else {
-                videoData.isLaterPlay = true
+                videoData.laterPlay = true
                 videoData.laterTime = System.currentTimeMillis()
                 petDao.updateVideoData(videoData)
             }
@@ -333,7 +333,7 @@ class PetManager {
             val group = Group(
                 groupName = groupName,
                 groupDesc = groupDesc,
-                isOpen = isOpen,
+                open = isOpen,
                 groupCode = currentGroupCode,
                 createTime = System.currentTimeMillis(),
                 updateTime = System.currentTimeMillis(),
@@ -598,7 +598,7 @@ class PetManager {
         withContext(Dispatchers.Default) {
             val data = petDao.queryVideoDataByCode(videoCode)
             data?.let {
-                it.isLike = isLike
+                it.like = isLike
                 if (isLike) {
                     it.likes += 1
                 } else {
@@ -608,7 +608,7 @@ class PetManager {
             }
             if (data == null) {
                 val videoData =
-                    VideoData(videoCode = videoCode, isLike = isLike, plays = 1)
+                    VideoData(videoCode = videoCode, like = isLike, plays = 1)
                 if (isLike) {
                     videoData.likes = 1
                 }
@@ -622,7 +622,7 @@ class PetManager {
         withContext(Dispatchers.Default) {
             val data = petDao.queryVideoDataByCode(videoCode)
             data?.let {
-                it.isCollect = isCollect
+                it.collect = isCollect
                 if (isCollect) {
                     it.collectTime = System.currentTimeMillis()
                 } else {
@@ -638,7 +638,7 @@ class PetManager {
         withContext(Dispatchers.Default) {
             val data = petDao.queryVideoDataByCode(videoCode)
             data?.let {
-                it.isLove = isLove
+                it.love = isLove
                 petDao.updateVideoData(it)
             }
         }

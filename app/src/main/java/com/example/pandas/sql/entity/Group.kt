@@ -10,6 +10,8 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "group_info")
 data class Group(
 
+    //切记不能用类似 isXxx 的字段，会造成无法自动生成字段的set方法
+
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,//id
     @ColumnInfo
@@ -29,7 +31,7 @@ data class Group(
     @ColumnInfo
     var groupDesc: String? = null,//群组描述
     @ColumnInfo
-    var isOpen: Boolean = false,//群组内容是否公开展示
+    var open: Boolean = false,//群组内容是否公开展示
     @ColumnInfo
     var type: Int = 0,//群组类型，目前99为默认群组
 

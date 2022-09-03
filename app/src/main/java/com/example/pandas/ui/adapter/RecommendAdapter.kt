@@ -1,6 +1,9 @@
 package com.example.pandas.ui.adapter
 
 import android.annotation.SuppressLint
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +15,10 @@ import com.bumptech.glide.Glide
 import com.example.pandas.R
 import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.bean.pet.VideoType
+import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.databinding.CardItemLayoutBinding
-import com.example.pandas.databinding.DialogHomeItemBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.databinding.ItemRecommendVideoBinding
 import com.example.pandas.sql.entity.PetVideo
@@ -25,7 +28,6 @@ import com.example.pandas.utils.NumUtils
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.TimeUtils
 import com.example.pandas.utils.VibrateUtils
-import com.google.android.material.bottomsheet.BottomSheetDialog
 
 /**
  * @description: 首页-推荐
@@ -35,16 +37,34 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
  */
 public class RecommendAdapter(
     private val lifecycle: Lifecycle,
-    private var data: RecommendData<PetVideo>,
+    private var data: RecommendData<PetVideo> = RecommendData(),
     private val listener: RecoViewListener
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private var isOpenVoice = false
     private val TYPE_BANNER = 1//轮播图
     private val TYPE_ITEM = 2//普通视频，一行2列
     private val TYPE_VIDEO = 3//横屏视频，一行一列
     private var isBannerFresh = true //是否刷新banner
 
+    private val mHandler = Handler(Looper.getMainLooper())
+
+    fun updateVoice(isOpen: Boolean){
+        this.isOpenVoice = isOpen
+    }
+
+    //会导致item里播放器的playview视图的绑定关系解除，需要重启绑定
+    fun updateVideoItem(isHide: Boolean, position: Int) {
+
+        Log.e("RecommendAdapter", "updateVideoItem")
+        if (position < 0) return
+        val petVideo = data.itemList[position - 1]
+        petVideo.booleanFlag = isHide
+        mHandler.post {//滑动时不允许刷新界面 <Cannot call this method while RecyclerView is computing a layout or scrolling>
+            notifyItemChanged(position)
+        }
+    }
 
     fun getItemData(position: Int): PetVideo = data.itemList[position - 1]
 
@@ -85,10 +105,12 @@ public class RecommendAdapter(
 
     override fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {
         super.onViewDetachedFromWindow(holder)
-        if (holder is VideoHolder) {
-//            val position = (holder as VideoHolder).layoutPosition
-            listener.itemDetachedFromWindow()
-        }
+
+//        if (holder is VideoHolder) {
+//            val position = holder.itemView.tag as Int
+//            //updateVideoItem(true, position)
+//            listener.itemDetachedFromWindow(position)
+//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -123,9 +145,10 @@ public class RecommendAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.itemView.tag = position
 
+        Log.e("1mean", "position: $position")
         when (getItemViewType(position)) {
-
             TYPE_ITEM -> {
                 (holder as CardHolder).handle(position)
             }
@@ -276,14 +299,12 @@ public class RecommendAdapter(
         val duration = binding.txtHomeVideoDuration
         val voice = binding.playerReco.findViewById<AppCompatImageButton>(R.id.exo_voice)
 
-        fun updateItemView(position: Int, isHide: Boolean) {
-            val petVideo = data.itemList[position - 1]
-            petVideo.booleanFlag = isHide
-            if (isHide) {
+        fun updateItemView(hidePlayer: Boolean) {
+            if (hidePlayer) {
+                shelter.visibility = View.VISIBLE
+            } else {
                 shelter.visibility = View.GONE
                 playerView.showController()
-            } else {
-                shelter.visibility = View.VISIBLE
             }
         }
 
@@ -296,14 +317,14 @@ public class RecommendAdapter(
             } else {
                 shelter.visibility = View.VISIBLE
             }
+
             //把http图片换成https就能加载出来
             // l = petVideo.cover.replace("http", "https")
-            Glide.with(itemView.context).load(petVideo.cover)
-                .into(cover)
+            loadCenterImage(itemView.context, petVideo.cover, cover)
             title.text = petVideo.title
             duration.text = TimeUtils.getDuration(petVideo.duration.toLong())
 
-            if (PlayerManager.instance.isHomePageVoiceOpen) {
+            if (isOpenVoice) {
                 voice.setImageResource(R.mipmap.img_voice_open)
             } else {
                 voice.setImageResource(R.mipmap.img_voice_close)
@@ -323,12 +344,13 @@ public class RecommendAdapter(
             }
 
             voice.setOnClickListener {
-                if (PlayerManager.instance.isHomePageVoiceOpen) {
+                if (isOpenVoice) {
                     voice.setImageResource(R.mipmap.img_voice_close)
                 } else {
                     voice.setImageResource(R.mipmap.img_voice_open)
                 }
-                listener.updatePlayerVoice()
+                listener.updatePlayerVoice(!isOpenVoice)
+                isOpenVoice = !isOpenVoice
             }
         }
 
@@ -351,9 +373,7 @@ public class RecommendAdapter(
 
         fun onClick(position: Int, type: Int, videoCode: Int)
 
-        fun itemDetachedFromWindow()
-
-        fun updatePlayerVoice()
+        fun updatePlayerVoice(isOpen: Boolean)
 
         fun addLaterPLay(videoCode: Int)
     }

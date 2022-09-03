@@ -43,14 +43,14 @@ data class PetVideo(
     @ColumnInfo
     var period: Int = 0,//对应PetType
     @ColumnInfo
-    var isStar: Boolean = false,//视频分类（普通+精彩），不归属到counts表
+    var star: Boolean = false,//视频分类（普通+精彩），不归属到counts表
     @ColumnInfo
-    var isHot: Boolean = false,//热门视频
+    var hot: Boolean = false,//热门视频
     //视频展示类型 0为普通视频，1为轮播图视频，2为横屏视频  3为cutepet页面轮播图
     @ColumnInfo
     var videoType: Int = 0,
     @ColumnInfo
-    var isVertical: Boolean = false, //是否是竖屏视屏
+    var vertical: Boolean = false, //是否是竖屏视屏
 
     @Ignore
     var user: User? = null,
@@ -60,4 +60,6 @@ data class PetVideo(
 
     @Ignore
     var booleanFlag: Boolean = false,//布尔型标记位，用于帮助解决数据状态的标识
+    @Ignore
+    var stateFlag: Int = 0,//Int类型标记，基本用于状态类的Int值
 )

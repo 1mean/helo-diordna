@@ -57,7 +57,7 @@ public class FollowFragmentAdapter(
         }
         desc.text = data.signature
 
-        if (data.isVip == 1) {
+        if (data.vip == 1) {
             name.setTextColor(ContextCompat.getColor(context, R.color.color_tab_text_selected))
         } else {
             name.setTextColor(ContextCompat.getColor(context, R.color.grey900))

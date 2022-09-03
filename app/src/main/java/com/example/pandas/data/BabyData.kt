@@ -16,7 +16,7 @@ object BabyData {
         baby1.fileName = "baby_1"
         baby1.code = 1882
         baby1.duration = 60
-        baby1.isStar = false
+        baby1.star = false
         baby1.title = "怎么不能呢 男童打疫苗与医生神对话"
         baby1.releaseTime = "2021-10-21 12:24:37"
         baby1.originalUrl = "https://www.bilibili.com/video/BV1tb4y1h7PB"
@@ -31,7 +31,7 @@ object BabyData {
         baby2.fileName = "baby_2"
         baby2.code = 1883
         baby2.duration = 17
-        baby2.isStar = false
+        baby2.star = false
         baby2.title = "付出了真情却收获了伤害"
         baby2.releaseTime = "2021-11-20 11:00:09"
         baby2.originalUrl = "https://www.bilibili.com/video/BV1uP4y1L7Vn"
@@ -46,7 +46,7 @@ object BabyData {
         baby3.fileName = "baby_3"
         baby3.code = 1884
         baby3.duration = 31
-        baby3.isStar = true
+        baby3.star = true
         baby3.title = "萌娃为了吃奶狂飙演技“卖惨”，一个动作让网友直呼：嘴巴太有戏"
         baby3.releaseTime = "2022-03-08 11:46:44"
         baby3.originalUrl = "https://www.bilibili.com/video/BV1RL411N7zY"
@@ -61,7 +61,7 @@ object BabyData {
         baby4.fileName = "baby_4"
         baby4.code = 1885
         baby4.duration = 148
-        baby4.isStar = false
+        baby4.star = false
         baby4.title = "有趣的婴儿和兄弟姐妹"
         baby4.releaseTime = "2022-03-09 11:36:10"
         baby4.originalUrl = "https://www.bilibili.com/video/BV1JS4y1S7Wa"
@@ -76,7 +76,7 @@ object BabyData {
         baby5.fileName = "baby_5"
         baby5.code = 1886
         baby5.duration = 65
-        baby5.isStar = false
+        baby5.star = false
         baby5.title = "国外父亲费尽心机教萌娃喊爸爸，下秒人生第一句却乐翻妈咪"
         baby5.releaseTime = "2022-03-07 20:08:20"
         baby5.originalUrl = "https://www.bilibili.com/video/BV13S4y137J9"
@@ -91,7 +91,7 @@ object BabyData {
         baby6.fileName = "baby_6"
         baby6.code = 1887
         baby6.duration = 393
-        baby6.isStar = false
+        baby6.star = false
         baby6.title = "双胞胎婴儿为一切而战#2"
         baby6.releaseTime = "2022-02-18 13:45:02"
         baby6.originalUrl = "https://www.bilibili.com/video/BV1wr4y1r7Lq"
@@ -106,7 +106,7 @@ object BabyData {
         baby7.fileName = "baby_7"
         baby7.code = 1888
         baby7.duration = 170
-        baby7.isStar = false
+        baby7.star = false
         baby7.title = "猫咪一来就很黏女儿......"
         baby7.releaseTime = "2022-02-26 21:15:24"
         baby7.originalUrl = "https://www.bilibili.com/video/BV1dR4y1V7nH"
@@ -121,7 +121,7 @@ object BabyData {
         baby8.fileName = "baby_8"
         baby8.code = 1889
         baby8.duration = 166
-        baby8.isStar = false
+        baby8.star = false
         baby8.title = "她做了我一直很想做的事情！"
         baby8.releaseTime = "2019-12-03 23:28:10"
         baby8.originalUrl = "https://www.bilibili.com/video/BV19J411q7Bv"
@@ -136,7 +136,7 @@ object BabyData {
         baby9.fileName = "baby_9"
         baby9.code = 1890
         baby9.duration = 133
-        baby9.isStar = false
+        baby9.star = false
         baby9.title = "人类幼崽迷惑行为2"
         baby9.releaseTime = "2021-07-09 18:20:14"
         baby9.originalUrl = "https://www.bilibili.com/video/BV1qB4y1T7nZ"
@@ -151,7 +151,7 @@ object BabyData {
         baby10.fileName = "baby_10"
         baby10.code = 1891
         baby10.duration = 51
-        baby10.isStar = false
+        baby10.star = false
         baby10.title = "一时之间不知道哪一针更痛"
         baby10.releaseTime = "2021-08-05 17:00:12"
         baby10.originalUrl = "https://www.bilibili.com/video/BV1bq4y1p7Zh"
@@ -166,7 +166,7 @@ object BabyData {
         baby11.fileName = "baby_11"
         baby11.code = 1892
         baby11.duration = 163
-        baby11.isStar = false
+        baby11.star = false
         baby11.title = "“打针！是人类幼崽躲不过的劫”"
         baby11.releaseTime = "2021-10-21 19:31:52"
         baby11.originalUrl = "https://www.bilibili.com/video/BV1jh411n7Kr"
@@ -181,7 +181,7 @@ object BabyData {
         baby12.fileName = "baby_12"
         baby12.code = 1893
         baby12.duration = 211
-        baby12.isStar = false
+        baby12.star = false
         baby12.title = "“这不叫打针，叫注入可爱”"
         baby12.releaseTime = "2021-11-09 19:15:01"
         baby12.originalUrl = "https://www.bilibili.com/video/BV1Cb4y187cd"
@@ -196,7 +196,7 @@ object BabyData {
         baby13.fileName = "baby_13"
         baby13.code = 1894
         baby13.duration = 129
-        baby13.isStar = false
+        baby13.star = false
         baby13.title = "没有感情，全是技巧"
         baby13.releaseTime = "2022-02-14 19:15:10"
         baby13.originalUrl = "https://www.bilibili.com/video/BV1E34y1C7Ny"
@@ -211,7 +211,7 @@ object BabyData {
         baby14.fileName = "baby_14"
         baby14.code = 1895
         baby14.duration = 165
-        baby14.isStar = false
+        baby14.star = false
         baby14.title = "当你以为娃睡着了，可以悄咪咪玩手机的时候……"
         baby14.releaseTime = "2022-02-26 19:15:08"
         baby14.originalUrl = "https://www.bilibili.com/video/BV11S4y1F7m6"
@@ -226,7 +226,7 @@ object BabyData {
         baby15.fileName = "baby_15"
         baby15.code = 1896
         baby15.duration = 149
-        baby15.isStar = false
+        baby15.star = false
         baby15.title = "谁会拒绝一个会给你看花生的小可爱啊"
         baby15.releaseTime = "2022-02-22 18:43:39"
         baby15.originalUrl = "https://www.bilibili.com/video/BV1hL4y1G74X"
@@ -241,7 +241,7 @@ object BabyData {
         baby16.fileName = "baby_16"
         baby16.code = 1897
         baby16.duration = 61
-        baby16.isStar = true
+        baby16.star = true
         baby16.title = "【米莉】:我的宝宝和哈士奇从小就是最好的朋友，这个我能看一整天~"
         baby16.releaseTime = "2019-11-21 21:00:04"
         baby16.originalUrl = "https://www.bilibili.com/video/BV1pJ41127Hw"
@@ -256,7 +256,7 @@ object BabyData {
         baby17.fileName = "baby_17"
         baby17.code = 1898
         baby17.duration = 76
-        baby17.isStar = false
+        baby17.star = false
         baby17.title = "最重要开心就好，忘记烦恼！"
         baby17.releaseTime = "2021-05-04 16:47:33"
         baby17.originalUrl = "https://www.bilibili.com/video/BV1dy4y1s7q5"
@@ -271,7 +271,7 @@ object BabyData {
         baby18.fileName = "baby_18"
         baby18.code = 1899
         baby18.duration = 130
-        baby18.isStar = false
+        baby18.star = false
         baby18.title = "乖乖洗头的小朋友也太可爱了！Awsl～"
         baby18.releaseTime = "2021-04-13 17:37:49"
         baby18.originalUrl = "https://www.bilibili.com/video/BV1n5411c7Au"
@@ -286,7 +286,7 @@ object BabyData {
         baby19.fileName = "baby_19"
         baby19.code = 1900
         baby19.duration = 74
-        baby19.isStar = false
+        baby19.star = false
         baby19.title = "胖乎乎的萌宝宝做facial是什么感觉，好像很享受呢"
         baby19.releaseTime = "2018-07-10 23:25:48"
         baby19.originalUrl = "https://www.bilibili.com/video/BV11s411p77Y"
@@ -301,7 +301,7 @@ object BabyData {
         baby20.fileName = "baby_20"
         baby20.code = 1901
         baby20.duration = 46
-        baby20.isStar = false
+        baby20.star = false
         baby20.title = "宝爸给宝宝按摩 萌化了"
         baby20.releaseTime = "2019-12-27 13:50:59"
         baby20.originalUrl = "https://www.bilibili.com/video/BV1zJ411Y7Wv"
@@ -316,7 +316,7 @@ object BabyData {
         baby21.fileName = "baby_21"
         baby21.code = 1902
         baby21.duration = 333
-        baby21.isStar = false
+        baby21.star = false
         baby21.title = "有趣的婴儿和动物"
         baby21.releaseTime = "2022-03-07 03:51:28"
         baby21.originalUrl = "https://www.bilibili.com/video/BV1zb4y1W7Ad"
@@ -331,7 +331,7 @@ object BabyData {
         baby22.fileName = "baby_22"
         baby22.code = 1903
         baby22.duration = 20
-        baby22.isStar = false
+        baby22.star = false
         baby22.title = "小宝宝在睡梦中叫“妈妈”，听到这个小奶音心都化了~"
         baby22.releaseTime = "2021-07-01 00:32:01"
         baby22.originalUrl = "https://www.bilibili.com/video/BV1wV411W7xH"
@@ -346,7 +346,7 @@ object BabyData {
         baby23.fileName = "baby_23"
         baby23.code = 1904
         baby23.duration = 67
-        baby23.isStar = false
+        baby23.star = false
         baby23.title = "当爸爸带孩子的时候"
         baby23.releaseTime = "2019-05-06 00:24:00"
         baby23.originalUrl = "https://www.bilibili.com/video/BV1U4411i7NB"
@@ -361,7 +361,7 @@ object BabyData {
         baby24.fileName = "baby_24"
         baby24.code = 1905
         baby24.duration = 54
-        baby24.isStar = false
+        baby24.star = false
         baby24.title = "请接受一岁三个月人类幼崽的中英文表白"
         baby24.releaseTime = "2021-10-12 11:02:40"
         baby24.originalUrl = "https://www.bilibili.com/video/BV1AR4y1J7PR"
@@ -376,7 +376,7 @@ object BabyData {
         baby25.fileName = "baby_25"
         baby25.code = 1906
         baby25.duration = 9
-        baby25.isStar = true
+        baby25.star = true
         baby25.title = "原来俄罗斯的弹舌从小就会"
         baby25.releaseTime = "2020-02-11 20:59:53"
         baby25.originalUrl = "https://www.bilibili.com/video/BV1X741157we"
@@ -391,7 +391,7 @@ object BabyData {
         baby26.fileName = "baby_26"
         baby26.code = 1907
         baby26.duration = 54
-        baby26.isStar = false
+        baby26.star = false
         baby26.title = "小女孩用婴语和爸妈吵架_(1)"
         baby26.releaseTime = "2020-04-28 15:50:04"
         baby26.originalUrl = "https://www.bilibili.com/video/BV14K411578r"
@@ -406,7 +406,7 @@ object BabyData {
         baby27.fileName = "baby_27"
         baby27.code = 1908
         baby27.duration = 112
-        baby27.isStar = false
+        baby27.star = false
         baby27.title = "德国小女孩生爸爸的气 吵架气势汹汹 【中德字幕】"
         baby27.releaseTime = "2022-02-12 12:39:19"
         baby27.originalUrl = "https://www.bilibili.com/video/BV17T4y1X79w"
@@ -421,7 +421,7 @@ object BabyData {
         baby28.fileName = "baby_28"
         baby28.code = 1909
         baby28.duration = 59
-        baby28.isStar = false
+        baby28.star = false
         baby28.title = "国外老爸是怎样让自己女儿尴尬的，哈哈哈"
         baby28.releaseTime = "2021-03-19 18:46:17"
         baby28.originalUrl = "https://www.bilibili.com/video/BV1tv411a7go"
@@ -436,7 +436,7 @@ object BabyData {
         baby29.fileName = "baby_29"
         baby29.code = 1910
         baby29.duration = 82
-        baby29.isStar = false
+        baby29.star = false
         baby29.title = "“人类幼崽的可爱是会传染的”"
         baby29.releaseTime = "2022-01-19 21:42:18"
         baby29.originalUrl = "https://www.bilibili.com/video/BV1fR4y1M7gH"
@@ -451,7 +451,7 @@ object BabyData {
         baby30.fileName = "baby_30"
         baby30.code = 1911
         baby30.duration = 138
-        baby30.isStar = false
+        baby30.star = false
         baby30.title = "“又有什么比人类幼崽更可爱的呢”"
         baby30.releaseTime = "2022-02-03 22:47:36"
         baby30.originalUrl = "https://www.bilibili.com/video/BV1zF411J7xB"
@@ -466,7 +466,7 @@ object BabyData {
         baby31.fileName = "baby_31"
         baby31.code = 1912
         baby31.duration = 150
-        baby31.isStar = false
+        baby31.star = false
         baby31.title = "“人类幼崽可爱指南”"
         baby31.releaseTime = "2022-02-06 22:08:00"
         baby31.originalUrl = "https://www.bilibili.com/video/BV1Si4y1Z7nG"
@@ -481,7 +481,7 @@ object BabyData {
         baby32.fileName = "baby_32"
         baby32.code = 1913
         baby32.duration = 154
-        baby32.isStar = false
+        baby32.star = false
         baby32.title = "奶爸一坐下宝宝就哭，要怎么解决这个难题呢？"
         baby32.releaseTime = "2021-01-17 13:31:11"
         baby32.originalUrl = "https://www.bilibili.com/video/BV1rA411H7zi"
@@ -496,7 +496,7 @@ object BabyData {
         baby33.fileName = "baby_33"
         baby33.code = 1914
         baby33.duration = 22
-        baby33.isStar = false
+        baby33.star = false
         baby33.title = "一岁宝宝听到叔叔BBOX后的反应~~超萌"
         baby33.releaseTime = "2014-07-24 17:50:45"
         baby33.originalUrl = "https://www.bilibili.com/video/BV1hx411N7ri"
@@ -511,7 +511,7 @@ object BabyData {
         baby34.fileName = "baby_34"
         baby34.code = 1915
         baby34.duration = 27
-        baby34.isStar = false
+        baby34.star = false
         baby34.title = "外國小男孩體檢 每天两遍身心舒适"
         baby34.releaseTime = "2020-04-10 20:38:40"
         baby34.originalUrl = "https://www.bilibili.com/video/BV1H5411t7KE"

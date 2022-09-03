@@ -64,7 +64,7 @@ public class UserInfoActivity : BaseActivity<UserInfoViewModel, ActivityUserBind
     override fun createObserver() {
 
         mViewModel.userInfo.observe(this) {
-            if (it.isVip == 1) {
+            if (it.vip == 1) {
                 //binding.txtUserName.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
                 binding.txtUserName.setTextColor(
                     ContextCompat.getColor(

@@ -59,7 +59,7 @@ public class HotFragmentAdapter(list: MutableList<PetVideo>) : BaseCommonAdapter
             time.text = StringBuilder("- ").append(subTime).toString()
         }
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, data.code,false)
+            startVideoPlayActivity(context, data.code)
         }
     }
 

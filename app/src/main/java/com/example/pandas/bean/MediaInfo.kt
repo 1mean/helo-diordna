@@ -1,5 +1,7 @@
 package com.example.pandas.bean
 
+import com.google.android.exoplayer2.MediaItem
+
 /**
  * 需要存储的资源信息
  * - videoCode：视频Id

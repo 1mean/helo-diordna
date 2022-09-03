@@ -79,7 +79,7 @@ public class SearchResultAdapter(
             time.text = StringBuilder("- ").append(subTime).toString()
         }
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, video.code, false)
+            startVideoPlayActivity(context, video.code)
         }
     }
 

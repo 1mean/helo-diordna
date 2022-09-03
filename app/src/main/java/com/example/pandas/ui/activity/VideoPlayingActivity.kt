@@ -1,6 +1,7 @@
 package com.example.pandas.ui.activity
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Rect
 import android.os.*
 import android.util.Log
@@ -10,7 +11,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.FrameLayout
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -21,10 +21,10 @@ import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
-import com.example.pandas.biz.ext.launchVideoPlayActivity
+import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.biz.interaction.CommentsListener
 import com.example.pandas.biz.interaction.PlayerDoubleTapListener
-import com.example.pandas.biz.manager.PlayerManager
+import com.example.pandas.biz.manager.VideoPlayManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.ActivityVideoBinding
 import com.example.pandas.ui.ext.closeFullScreen
@@ -35,7 +35,6 @@ import com.example.pandas.ui.fragment.CommentListFragment
 import com.example.pandas.ui.view.VideoTabView
 import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
-import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.DefaultTimeBar
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.ui.TimeBar
@@ -60,20 +59,15 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     private val MAX_UPDATE_INTERVAL_MS = 1000L
 
     private var isFirstVisible: Boolean = true
-    private var isPlayIng: Boolean = false
     private var isControllerShow = false
     private var isOnScroll = false
     private var exoProgress: DefaultTimeBar? = null
 
     var cnAdapter: CommonNavigatorAdapter? = null
+    private var isPlayIng: Boolean = false
+    private var currentPosition: Long = -1
 
-
-    private val requestLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                //mPlayer?.play()
-            }
-        }
+    val videoManager: VideoPlayManager by lazy { VideoPlayManager(this) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -81,6 +75,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
         code = intent.getIntExtra("code", -1)
         isPlayIng = intent.getBooleanExtra("isPlaying", false)
+        currentPosition = intent.getLongExtra("position", -1)
 
         initViewPager()
 
@@ -120,20 +115,20 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
             override fun onDown() {
                 super.onDown()
-                finalPosition = PlayerManager.instance.currentPosition().toFloat()
+                finalPosition = videoManager.getCurrentPos().toFloat()
             }
 
             override fun onUp() {
                 super.onUp()
                 if (isOnScroll) {
-                    PlayerManager.instance.seekTo(finalPosition.toLong())
+                    videoManager.seekTo(finalPosition.toLong())
                     isOnScroll = false
                 }
             }
 
             override fun onDoubleTapProgressUp(posX: Float, posY: Float) {
                 super.onDoubleTapProgressUp(posX, posY)
-                PlayerManager.instance.doubleTap()
+                videoManager.doubleTap()
             }
 
             @RequiresApi(Build.VERSION_CODES.O)
@@ -141,7 +136,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                 super.onScroll(distanceX, distanceY)
 
                 isOnScroll = true
-                val duration = PlayerManager.instance.duration()
+                val duration = videoManager.getDuration()
                 val updateDur = duration * abs(distanceX / screenWidth)
                 binding.playView.showController()
                 if (distanceX > 0) {//左滑
@@ -167,7 +162,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             }
 
             override fun onScrubStop(timeBar: TimeBar, position: Long, canceled: Boolean) {
-                PlayerManager.instance.seekTo(position)
+                videoManager.seekTo(position)
                 isOnScroll = false
                 Log.e("VideoPlayingActivity_1", "onScrubStop position: $position")
             }
@@ -177,23 +172,24 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     override fun onStart() {
         super.onStart()
+        Log.e("adasdas", "onstart")
         if (Util.SDK_INT > 23) {
-            PlayerManager.instance.initPlayer(this)
+            videoManager.initPlayer()
         }
     }
 
     override fun onResume() {
         super.onResume()
 
+        Log.e("adasdas", "onresume L $isFirstVisible")
         if (isFirstVisible) {
-
             if (isPlayIng) {
-                PlayerManager.instance.switchViewAndGoOn(binding.playView)
+                videoManager.play(binding.playView, MediaInfo(code, "", currentPosition))
             }
-            if (code != -1) {
-                mViewModel.getVideoInfoAndRelations(code)
-            }
+            mViewModel.getVideoInfoAndRelations(code)
             isFirstVisible = false
+        } else {
+            videoManager.play(binding.playView, MediaInfo(code))
         }
         updateTimeTask.sendEmptyMessage(0)
     }
@@ -214,25 +210,20 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
             if (!isPlayIng) {
                 val file = getLocalFilePath(this, it.fileName!!)
-                Log.e("1mean", "file: $file")
                 if (file.exists()) {
-                    //initPlayer(file)
                     val currentPos: Long = if (it.videoData == null) {
                         0L
                     } else {
                         it.videoData!!.playPosition
                     }
                     val mediaInfo = MediaInfo(it.code, file.absolutePath, currentPos)
-                    PlayerManager.instance.setRepeatMode(Player.REPEAT_MODE_ONE)
-                        .addPlayerView(binding.playView)
-                        .startPlay(true, -1, mediaInfo)
+                    videoManager.play(binding.playView, mediaInfo)
                 }
             }
         }
 
         mViewModel.isVideoItemClicked.observe(this) { code ->
-            PlayerManager.instance.stopPlayer()
-            launchVideoPlayActivity(this, code, false, requestLauncher)
+            startVideoPlayActivity(this, code)
         }
     }
 
@@ -274,18 +265,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                 showTimeBar(binding.exoTime)
             }
             sendEmptyMessageDelayed(0, MAX_UPDATE_INTERVAL_MS)
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        //释放资源
-        if (Util.SDK_INT > 23) {
-            //暂停需要时间来处理，自己调用暂停
-            PlayerManager.instance.stopPlayer()
-
-            //在activity关闭时，必须释放掉绑定的视图，否则造成内存泄漏
-            binding.playView.player = null
         }
     }
 
@@ -369,30 +348,30 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
         updateTimeTask.removeMessages(0)
         //保存历史记录
-        mViewModel.saveHistory(code, PlayerManager.instance.currentPosition())
+        mViewModel.saveHistory(code, videoManager.getCurrentPos())
 
-
-//        //暂停需要时间来处理，自己调用暂停
-//        PlayerManager.instance.stopPlayer()
-//
-//        //在activity关闭时，必须释放掉绑定的视图，否则造成内存泄漏
-//        binding.playView.player = null
-
-
+        val intent = Intent().putExtra("videoPosition", videoManager.getCurrentPos())
+        Log.e("1mean","currentPos: ${videoManager.getCurrentPos()}")
+        setResult(RESULT_OK, intent)
         finish()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        //释放资源
+        if (Util.SDK_INT > 23) {
+            videoManager.releasePlayer()
+            updateTimeTask.removeMessages(0)
+        }
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
 
         when (keyCode) {
-            KeyEvent.KEYCODE_VOLUME_UP -> {
-                PlayerManager.instance.observeSystemVoice()
-            }
-            KeyEvent.KEYCODE_VOLUME_DOWN -> {
-                PlayerManager.instance.observeSystemVoice()
+            KeyEvent.KEYCODE_VOLUME_UP or KeyEvent.KEYCODE_VOLUME_DOWN -> {
+                videoManager.updateVolume()
             }
         }
         return super.onKeyDown(keyCode, event)
     }
-
 }

@@ -319,16 +319,14 @@ class HomePageViewModel : BaseViewModel() {
         }
     }
 
-    fun addOrUpdateVideoData(videoCode: String?, playPos: Long) {
+    fun addOrUpdateVideoData(videoCode: Int, playPos: Long) {
 
-        videoCode?.let {
-            viewModelScope.launch {
-                PetManagerCoroutine.addOrUpdateVideoData(it.toInt(), playPos)
-            }
+        viewModelScope.launch {
+            PetManagerCoroutine.addOrUpdateVideoData(videoCode, playPos)
         }
     }
 
-    fun addLaterPlayer(videoCode:Int){
+    fun addLaterPlayer(videoCode: Int) {
         viewModelScope.launch {
             PetManagerCoroutine.addLater(videoCode)
         }

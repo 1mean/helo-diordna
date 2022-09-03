@@ -18,9 +18,6 @@ import kotlinx.coroutines.flow.onEach
  */
 public class TextActivity : AppCompatActivity() {
 
-    @FlowPreview
-    @InternalCoroutinesApi
-    @ObsoleteCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
