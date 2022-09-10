@@ -41,8 +41,10 @@ public class RecoPlayManager(
         }
     }
 
+    private var startTime:Long = 0
     fun play(playerView: StyledPlayerView, mediaInfo: MediaInfo, position: Int) {
 
+        startTime = System.currentTimeMillis()
         mPlayer.repeatMode = Player.REPEAT_MODE_ONE
         if (isOpenVoice) {
             mPlayer.volume = mPlayer.deviceVolume.toFloat() / 16
@@ -129,6 +131,7 @@ public class RecoPlayManager(
             super.onIsPlayingChanged(isPlaying)
             Log.e("RecoPlayManager", "isPlaying: $isPlaying")
             playerListener.updatePlayerView(!isPlaying, playPos)
+            Log.e("1mean", "$isPlaying cost time1: " + (System.currentTimeMillis() - startTime))
         }
 
         //player开始/停止加载资源文件,每隔7秒就会回调两次，先true后false，可能是先加载缓冲，加载完了请求网络

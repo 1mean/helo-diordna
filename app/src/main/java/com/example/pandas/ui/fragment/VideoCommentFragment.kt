@@ -33,6 +33,8 @@ import com.lxj.xpopup.impl.LoadingPopupView
 public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentCommentBinding>(),
     CommentAdapter.OnCommentClickListener {
 
+    private var code = -1
+
     private var loadingPopup: LoadingPopupView? = null
 
     private var replyInfo: ReplyInfo? = null
@@ -56,13 +58,14 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        code = mActivity.intent.getIntExtra("code", -1)
         binding.rvComment.init(
             null,
             mAdapter,
             LinearLayoutManager(context),
             object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
-                    mViewModel.getComments(false)
+                    mViewModel.getComments(code, false)
                 }
             })
 
@@ -70,7 +73,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
             setRefreshColor()
             setOnRefreshListener {
                 binding.rvComment.isRefreshing(true)
-                mViewModel.getComments(true)
+                mViewModel.getComments(code, true)
             }
         }
 
@@ -151,7 +154,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
     override fun firstOnResume() {
 
         binding.refreshComment.isRefreshing = true
-        mViewModel.getComments(true)
+        mViewModel.getComments(code, true)
     }
 
     override fun orderClcik(orderMode: Int) {
@@ -184,7 +187,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
                 } else {
                     loadingPopup!!.show()
                 }
-                mViewModel.saveComment(replyInfo, content)
+                mViewModel.saveComment(code, replyInfo, content)
             }
         }
     }

@@ -13,7 +13,9 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.commit
 import com.example.helo_base.magic.commonnavigator.CommonNavigator
 import com.example.helo_base.magic.commonnavigator.abs.CommonNavigatorAdapter
@@ -23,7 +25,9 @@ import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
 import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.biz.interaction.CommentsListener
+import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.interaction.PlayerDoubleTapListener
+import com.example.pandas.biz.interaction.VideoMoreSelectListener
 import com.example.pandas.biz.manager.VideoPlayManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.ActivityVideoBinding
@@ -33,12 +37,15 @@ import com.example.pandas.ui.ext.initViewPager
 import com.example.pandas.ui.ext.showTimeBar
 import com.example.pandas.ui.fragment.CommentListFragment
 import com.example.pandas.ui.view.VideoTabView
+import com.example.pandas.ui.view.dialog.VideoMoreBottomSheetDialog
 import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.exoplayer2.ui.DefaultTimeBar
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.ui.TimeBar
 import com.google.android.exoplayer2.util.Util
+import com.lxj.xpopup.XPopup
+import java.util.*
 import kotlin.math.abs
 
 
@@ -49,7 +56,7 @@ import kotlin.math.abs
  * @version: v1.0
  */
 public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBinding>(),
-    CommentsListener {
+    CommentsListener, ExoPlayerListener, VideoMoreSelectListener {
 
     val tabNames = arrayListOf("简介", "评论")
 
@@ -66,8 +73,11 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     var cnAdapter: CommonNavigatorAdapter? = null
     private var isPlayIng: Boolean = false
     private var currentPosition: Long = -1
+    private var fullPos: AppCompatTextView? = null
 
-    val videoManager: VideoPlayManager by lazy { VideoPlayManager(this) }
+    private val moreDialog by lazy { VideoMoreBottomSheetDialog(this, this) }
+
+    val videoManager: VideoPlayManager by lazy { VideoPlayManager(this, this) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -82,30 +92,84 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         val left = binding.playView.findViewById<ConstraintLayout>(R.id.clayout_video_close)
         //val full = binding.playView.findViewById<ConstraintLayout>(R.id.clayout_video_full)
         val controllerView = binding.playView.findViewById<FrameLayout>(R.id.flayout_controller)
+        val horView = binding.playView.findViewById<ConstraintLayout>(R.id.clayout_video_horizontal)
+        val more = binding.playView.findViewById<ConstraintLayout>(R.id.clayout_video_top_more)
+        val fullView = binding.playView.findViewById<ConstraintLayout>(R.id.clayout_video_vertical)
+        val title = binding.playView.findViewById<AppCompatTextView>(R.id.txt_full_title)
+        val exit = binding.playView.findViewById<AppCompatImageButton>(R.id.img_full_leave)
+        val stop = binding.playView.findViewById<AppCompatImageButton>(R.id.ib_full_stop)
+        fullPos = binding.playView.findViewById<AppCompatTextView>(R.id.txt_full_position)
+        val fullDur = binding.playView.findViewById<AppCompatTextView>(R.id.txt_full_duration)
+        val fullTime = binding.playView.findViewById<DefaultTimeBar>(R.id.exo_progress)
 
         exoProgress = binding.playView.findViewById(R.id.exo_play_progress)
         val fullScreenButton =
             binding.playView.findViewById<AppCompatImageButton>(R.id.btn_fullscreen)
+
         left.setOnClickListener {
-            //保存历史记录
-//            mPlayer?.let { play ->
-//                val currentPosition = play.currentPosition
-//                mViewModel.saveHistory(code, currentPosition)
-//            }
-//            mPlayer?.release()
-//            mPlayer = null
             finish()
         }
 
+        exit.setOnClickListener {
+            isFullScreen = false
+            closeFullScreen()
+            fullView.visibility = View.GONE
+            horView.visibility = View.VISIBLE
+        }
+
+        stop.setOnClickListener {
+            if (videoManager.isPlaying()) {
+                videoManager.onPause()
+                stop.setImageResource(R.mipmap.img_video_full_play)
+            } else {
+                videoManager.continuePlay()
+                stop.setImageResource(R.mipmap.img_video_full_pause)
+            }
+        }
+
+        more.setOnClickListener {
+            moreDialog.onShow()
+        }
+
+        fullTime.addListener(object : TimeBar.OnScrubListener {
+            override fun onScrubStart(timeBar: TimeBar, position: Long) {
+            }
+
+            override fun onScrubMove(timeBar: TimeBar, position: Long) {
+            }
+
+            override fun onScrubStop(timeBar: TimeBar, position: Long, canceled: Boolean) {
+                val formatBuilder = StringBuilder()
+                val formatter = Formatter(formatBuilder, Locale.getDefault())
+                fullPos?.text =
+                    Util.getStringForTime(formatBuilder, formatter, position)
+            }
+        })
 
         fullScreenButton.setOnClickListener {
-            isFullScreen = if (isFullScreen) {//全屏
-                closeFullScreen()
-                false
-            } else {
-                fullScreen()
-                true
+            isFullScreen = true
+            fullScreen()
+            fullView.visibility = View.VISIBLE
+            horView.visibility = View.GONE
+
+            val formatBuilder = StringBuilder()
+            val formatter = Formatter(formatBuilder, Locale.getDefault())
+            fullPos?.text =
+                Util.getStringForTime(formatBuilder, formatter, videoManager.getCurrentPos())
+            fullDur.text =
+                Util.getStringForTime(formatBuilder, formatter, videoManager.getDuration())
+            mViewModel.videoData.value?.let {
+                title.text = it.title
             }
+            if (videoManager.isPlaying()) {
+                stop.setImageResource(R.mipmap.img_video_full_pause)
+            } else {
+                stop.setImageResource(R.mipmap.img_video_full_play)
+            }
+        }
+
+        binding.playView.setFullscreenButtonClickListener {
+
         }
 
         val screenWidth = ScreenUtil.getScreenWidth(this)
@@ -115,12 +179,14 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
             override fun onDown() {
                 super.onDown()
-                finalPosition = videoManager.getCurrentPos().toFloat()
+                if (!isFullScreen) {
+                    finalPosition = videoManager.getCurrentPos().toFloat()
+                }
             }
 
             override fun onUp() {
                 super.onUp()
-                if (isOnScroll) {
+                if (isOnScroll && !isFullScreen) {
                     videoManager.seekTo(finalPosition.toLong())
                     isOnScroll = false
                 }
@@ -128,23 +194,27 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
             override fun onDoubleTapProgressUp(posX: Float, posY: Float) {
                 super.onDoubleTapProgressUp(posX, posY)
-                videoManager.doubleTap()
+                if (!isFullScreen) {
+                    videoManager.doubleTap()
+                }
             }
 
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onScroll(distanceX: Float, distanceY: Float) {
                 super.onScroll(distanceX, distanceY)
 
-                isOnScroll = true
-                val duration = videoManager.getDuration()
-                val updateDur = duration * abs(distanceX / screenWidth)
-                binding.playView.showController()
-                if (distanceX > 0) {//左滑
-                    finalPosition -= updateDur
-                } else {//右滑
-                    finalPosition += updateDur
+                if (!isFullScreen) {
+                    isOnScroll = true
+                    val duration = videoManager.getDuration()
+                    val updateDur = duration * abs(distanceX / screenWidth)
+                    binding.playView.showController()
+                    if (distanceX > 0) {//左滑
+                        finalPosition -= updateDur
+                    } else {//右滑
+                        finalPosition += updateDur
+                    }
+                    exoProgress?.setPosition(finalPosition.toLong())
                 }
-                exoProgress?.setPosition(finalPosition.toLong())
             }
         })
 
@@ -172,31 +242,40 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     override fun onStart() {
         super.onStart()
-        Log.e("adasdas", "onstart")
         if (Util.SDK_INT > 23) {
             videoManager.initPlayer()
         }
     }
 
+    private var startTime: Long = 0
     override fun onResume() {
         super.onResume()
 
-        Log.e("adasdas", "onresume L $isFirstVisible")
         if (isFirstVisible) {
             if (isPlayIng) {
                 videoManager.play(binding.playView, MediaInfo(code, "", currentPosition))
             }
-            mViewModel.getVideoInfoAndRelations(code)
+            mViewModel.getVideoData(code)
             isFirstVisible = false
         } else {
-            videoManager.play(binding.playView, MediaInfo(code))
+            videoManager.play(binding.playView, MediaInfo(code, "", currentPosition))
         }
+        startTime = System.currentTimeMillis()
         updateTimeTask.sendEmptyMessage(0)
     }
 
     override fun createObserver() {
 
-        mViewModel.videoInfo.observe(this) {
+        mViewModel.videoData.observe(this) {
+
+            if (!isPlayIng) {
+                val file = getLocalFilePath(this, it.fileName!!)
+                if (file.exists()) {
+                    val mediaInfo =
+                        MediaInfo(it.code, file.absolutePath, it.videoData!!.playPosition)
+                    videoManager.play(binding.playView, mediaInfo)
+                }
+            }
 
             val videoData = it.videoData
             val count = videoData?.comments ?: 0
@@ -207,23 +286,22 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                     (view as VideoTabView).updateTitle(count)
                 }
             }
-
-            if (!isPlayIng) {
-                val file = getLocalFilePath(this, it.fileName!!)
-                if (file.exists()) {
-                    val currentPos: Long = if (it.videoData == null) {
-                        0L
-                    } else {
-                        it.videoData!!.playPosition
-                    }
-                    val mediaInfo = MediaInfo(it.code, file.absolutePath, currentPos)
-                    videoManager.play(binding.playView, mediaInfo)
-                }
-            }
         }
 
         mViewModel.isVideoItemClicked.observe(this) { code ->
             startVideoPlayActivity(this, code)
+        }
+    }
+
+    override fun isPlayingChanged(isPlaying: Boolean) {
+        Log.e("VideoPlayingActivity", "isPlaying: $isPlaying")
+        if (isPlaying && !isControllerShow) {//解决视频开始播放时,进度条显示错误，task会有1秒才会显示正确值
+            binding.exoTime.run {
+                visibility = View.VISIBLE
+                setDuration(videoManager.getDuration())
+                setBufferedPosition(videoManager.bufferedPos())
+                setPosition(videoManager.getCurrentPos())
+            }
         }
     }
 
@@ -242,27 +320,41 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
      * isVisibility: 控制器是否会显示/全屏，显示/全屏状态下隐藏时间进度条
      */
     private fun updateTimeBar(isVisibility: Int) {
-        if (isVisibility == View.GONE && !isFullScreen) {//点击隐藏ControllerView
-            showTimeBar(binding.exoTime)
-            isControllerShow = false
-        } else {
-            showTimeBar(exoProgress)
-            isControllerShow = true
-            binding.exoTime.visibility = View.GONE
+        Log.e("1mean", "isFullScreen: $isFullScreen")
+        if (!isFullScreen) {
+            if (isVisibility == View.GONE) {//点击隐藏ControllerView
+                showTimeBar(binding.exoTime)
+                isControllerShow = false
+            } else {
+                showTimeBar(exoProgress)
+                isControllerShow = true
+                binding.exoTime.visibility = View.GONE
+            }
         }
     }
 
     private val updateTimeTask = object : Handler(Looper.getMainLooper()) {
         override fun handleMessage(msg: Message) {
 
-            Log.e("VideoPlayingActivity", "updateTimeTask")
-            if (isControllerShow) {
-                Log.e("VideoPlayingActivity", "showTimeBar: $isOnScroll")
-                if (!isOnScroll) {//不要使用return中断循环
-                    showTimeBar(exoProgress)
+            if (videoManager.isPlaying() && !isOnScroll) {//不要使用return中断循环
+                Log.e("VideoPlayingActivity", "updateTimeTask $isControllerShow $isOnScroll")
+                if (isFullScreen && fullPos!!.isVisible) {
+                    val formatBuilder = StringBuilder()
+                    val formatter = Formatter(formatBuilder, Locale.getDefault())
+                    fullPos?.text =
+                        Util.getStringForTime(
+                            formatBuilder,
+                            formatter,
+                            videoManager.getCurrentPos()
+                        )
+                } else {
+                    if (isControllerShow) {
+                        Log.e("VideoPlayingActivity", "showTimeBar: $isOnScroll")
+                        showTimeBar(exoProgress)
+                    } else {
+                        showTimeBar(binding.exoTime)
+                    }
                 }
-            } else {
-                showTimeBar(binding.exoTime)
             }
             sendEmptyMessageDelayed(0, MAX_UPDATE_INTERVAL_MS)
         }
@@ -351,7 +443,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         mViewModel.saveHistory(code, videoManager.getCurrentPos())
 
         val intent = Intent().putExtra("videoPosition", videoManager.getCurrentPos())
-        Log.e("1mean","currentPos: ${videoManager.getCurrentPos()}")
+        Log.e("1mean", "currentPos: ${videoManager.getCurrentPos()}")
         setResult(RESULT_OK, intent)
         finish()
     }
@@ -360,9 +452,11 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         super.onStop()
         //释放资源
         if (Util.SDK_INT > 23) {
-            videoManager.releasePlayer()
+            this.currentPosition = videoManager.getCurrentPos()
             updateTimeTask.removeMessages(0)
+            videoManager.releasePlayer()
         }
+        Log.e("adasdas", "onStop()")
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -373,5 +467,33 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             }
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    override fun addPlayLater() {
+        super.addPlayLater()
+
+    }
+
+    private var checkPos = 3
+    override fun setPlaySpeed() {
+        super.setPlaySpeed()
+
+        XPopup.Builder(this)
+            .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
+            .asBottomList(
+                "设置播放速度",
+                arrayOf("2.0", "1.5", "1.25", "1.0", "0.75", "0.5"),
+                null,
+                checkPos,
+                false,
+                { position, text ->
+                    checkPos = position
+                    videoManager.setPlaySpeed(text.toFloat())
+                },
+                R.layout.dialog_video_speed,
+                R.layout.dialog_video_speed_item
+            )
+            .show()
+        moreDialog.dismiss()
     }
 }

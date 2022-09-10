@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,7 +74,7 @@ public abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragm
         } catch (e: NoSuchMethodException) {
         } catch (e: IllegalAccessException) {
         } catch (e: InvocationTargetException) {
-            throw e.targetException
+            e.printStackTrace()
         }
         return binding.root
     }

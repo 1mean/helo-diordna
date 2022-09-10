@@ -33,6 +33,12 @@ fun VideoPlayingActivity.fullScreen() {
 }
 
 fun VideoPlayingActivity.closeFullScreen(){
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        //Tell the window that we want to handle/fit any system windows
+        WindowCompat.setDecorFitsSystemWindows(window, true)
+        val controller = window.insetsController
+        controller?.show(WindowInsets.Type.statusBars())
+    }
     requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     val params = binding.playView.layoutParams
     params.width = ViewGroup.LayoutParams.MATCH_PARENT

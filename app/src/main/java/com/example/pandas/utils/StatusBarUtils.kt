@@ -103,6 +103,21 @@ object StatusBarUtils {
         }
     }
 
+    fun setStatusBarTextColor(activity: Activity, isTextDark: Boolean) {
+        //4.4以上才可以改文字图标颜色
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            //6.0以上，调用系统方法
+            val window = activity.window
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            if (isTextDark) {
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            } else {
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            }
+        }
+    }
+
     /**
      * 符合我当前系统的设置状态栏的方式，一步到位
      *      - Android6.0（API 23）以上，系统方法

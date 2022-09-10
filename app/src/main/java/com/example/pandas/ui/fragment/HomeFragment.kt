@@ -78,7 +78,7 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
             mActivity.startActivity(Intent(mActivity, MessageActivity::class.java))
         }
 
-        binding.rlayoutHomeMusic.setOnClickListener {
+        binding.ibMusic.setOnClickListener {
 
         }
         binding.bar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->

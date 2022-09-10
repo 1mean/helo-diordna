@@ -365,27 +365,15 @@ class PetManager {
     suspend fun getVideoInfo(code: Int, counts: Int): VideoInfo {
 
         return withContext(Dispatchers.Default) {
-            val video = petDao.queryVideoByCode(code)
-            val user = petDao.queryUserByCode(video.authorId)
+            val startTime = System.currentTimeMillis()
+            val videoUser = petDao.queryVideoUserByCode(code)
+            val user = videoUser.user
+            val video = videoUser.video
+
             user.videoCounts = petDao.queryUserVideoCounts(video.authorId)
             video.user = user
 
-            val videoData = petDao.queryVideoDataByCode(code)
-            Log.e("1mean", "videoData: $videoData")
-            val comments = petDao.queryCommentCounts(code)
-            if (videoData == null) {
-                if (comments > 0) {
-                    val vd = VideoData(videoCode = code, comments = comments)
-                    petDao.insertVideoData(vd)
-                    video.videoData = vd
-                }
-            } else {
-                if (videoData.comments != comments) {
-                    videoData.comments = comments
-                    petDao.updateVideoData(videoData)
-                }
-                video.videoData = videoData
-            }
+            video.videoData = petDao.queryVideoDataByCode(code)
             val list = petDao.queryRecommendVideos(video.type, video.authorId, code, counts)
             if (list.isNotEmpty()) {
                 list.forEach {
@@ -405,7 +393,28 @@ class PetManager {
                 list.addAll(list1)
             }
             Log.e("1mean", "videoData1: ${video.videoData}")
+
+            Log.e("1mean", "get video info cost time: " + (System.currentTimeMillis() - startTime))
             VideoInfo(video, list)
+        }
+    }
+
+    /**
+     * 视频播放界面，播放源需要的视频进度数据
+     */
+    suspend fun getVideoInfoData(code: Int): PetVideo {
+
+        return withContext(Dispatchers.Default) {
+            val video = petDao.queryVideoByCode(code)
+            val videoData = petDao.queryVideoDataByCode(code)
+            if (videoData == null) {
+                video.videoData = VideoData(videoCode = code)
+                video
+            } else {
+                videoData.comments = petDao.queryCommentCounts(code)
+                video.videoData = videoData
+                video
+            }
         }
     }
 
@@ -583,7 +592,6 @@ class PetManager {
 
         withContext(Dispatchers.Default) {
             val data = petDao.queryVideoDataByCode(videoData.videoCode)
-            Log.e("videoData", "data: $data, videoData:$videoData")
             if (data == null) {
                 petDao.insertVideoData(videoData)
             } else {

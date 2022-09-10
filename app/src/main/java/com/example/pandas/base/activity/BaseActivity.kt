@@ -1,6 +1,7 @@
 package com.example.pandas.base.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -62,7 +63,7 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
         } catch (e: NoSuchMethodException) {
         } catch (e: IllegalAccessException) {
         } catch (e: InvocationTargetException) {
-            throw e.targetException
+            e.printStackTrace()
         }
         return binding.root
     }

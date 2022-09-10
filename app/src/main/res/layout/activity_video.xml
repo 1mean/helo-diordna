@@ -24,6 +24,8 @@
         <!--use_controller：是否可以显示播放控件-->
         <!--animation_enabled：控件显示和消失的动画-->
 
+        <!--buffer的样式在布局R.layout.exo_styled_player_view里-->
+
         <!--解决BUG-->
         <!--app:auto_show="false"：解决双击播放或暂停时，controllerView会突然从隐藏到显示 -->
         <!--controllerView隐藏时第一次双击，大概率会触发StyledPlayerView的performClick方法里会执行显示，false判断可中断其显示 -->
@@ -31,7 +33,7 @@
                 android:id="@+id/playView"
                 android:layout_width="match_parent"
                 android:layout_height="202dp"
-                app:show_buffering="when_playing"
+                app:show_buffering="never"
                 app:hide_on_touch="true"
                 android:background="@color/black"
                 app:surface_type="surface_view"

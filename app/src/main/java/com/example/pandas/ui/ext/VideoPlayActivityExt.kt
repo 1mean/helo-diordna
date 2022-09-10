@@ -21,7 +21,6 @@ import com.example.pandas.R
 import com.example.pandas.bean.VideoInfo
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.startUserInfoActivity
-import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
@@ -104,9 +103,14 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
 
     videoData?.let {
         if (it.like) {
-            binding.imgLike.setImageResource(R.mipmap.img_like_pressed)
+            binding.imgLike.setImageResource(R.mipmap.img_video_liked)
         } else {
-            binding.imgLike.setImageResource(R.mipmap.img_like_unpress)
+            binding.imgLike.setImageResource(R.mipmap.img_video_like)
+        }
+        if (it.hate) {
+            binding.imgDislike.setImageResource(R.mipmap.img_video_disliked)
+        } else {
+            binding.imgDislike.setImageResource(R.mipmap.img_video_dislike)
         }
         if (it.likes > 0) {
             binding.txtVideoLike.text = it.likes.toString()
@@ -120,60 +124,11 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
         }
 
         if (it.collect) {
+            binding.txtVideoCollect.text = "1"
             binding.imgCollect.setImageResource(R.mipmap.img_collect_pressed)
         } else {
+            binding.txtVideoCollect.text = "收藏"
             binding.imgCollect.setImageResource(R.mipmap.img_collect_unpress)
-        }
-    }
-
-    binding.itemLike.setOnClickListener {
-        if (videoData != null && videoData.like) {
-            binding.imgLike.setImageResource(R.mipmap.img_like_unpress)
-            showToast("取消点赞")
-            videoData.let {
-                it.likes -= 1
-                if (it.likes == 0) {
-                    binding.txtVideoLike.text = "点赞"
-                } else {
-                    binding.txtVideoLike.text = it.likes.toString()
-                }
-                mViewModel.updateLike(it.videoCode, false)
-            }
-        } else {
-            setAnimation(binding.imgLike)
-            binding.imgLike.setImageResource(R.mipmap.img_like_pressed)
-            if (videoData == null) {
-                binding.txtVideoLike.text = "1"
-            } else {
-                binding.txtVideoLike.text = (videoData.likes + 1).toString()
-            }
-            mViewModel.updateLike(video.code, true)
-            showToast("点赞收到！")
-        }
-    }
-
-    binding.itemLove.setOnClickListener {
-        if (videoData != null && videoData.love) {
-            binding.imgLove.setImageResource(R.mipmap.img_love_unpress)
-            mViewModel.updateLove(video.code, false)
-        } else {
-            binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
-            mViewModel.updateLove(video.code, true)
-            setAnimation(binding.imgLove)
-        }
-    }
-
-    binding.itemCollect.setOnClickListener {
-        Log.e("1mean", "videoData : $videoData")
-        if (videoData != null && videoData.collect) {
-            binding.imgCollect.setImageResource(R.mipmap.img_collect_unpress)
-            mViewModel.updataCollect(video.code, false)
-            mViewModel.deleteCollection(video.code, "默认收藏夹")
-        } else {
-            binding.imgCollect.setImageResource(R.mipmap.img_collect_pressed)
-            mViewModel.updataCollect(video.code, true)
-            mViewModel.addCollection(video.code, "默认收藏夹")
-            setAnimation(binding.imgCollect)
         }
     }
 }

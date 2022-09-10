@@ -25,7 +25,8 @@ import java.util.*
  */
 public class VideoViewModel : BaseViewModel() {
 
-    val videoInfo: MutableLiveData<PetVideo> by lazy { MutableLiveData() }
+
+    val videoData: MutableLiveData<PetVideo> by lazy { MutableLiveData() }
     val videos: MutableLiveData<VideoInfo> by lazy { MutableLiveData() }
     val isVideoItemClicked: MutableLiveData<Int> by lazy { MutableLiveData() }
     val createComment: MutableLiveData<CommentAndUser> by lazy { MutableLiveData() }
@@ -42,15 +43,18 @@ public class VideoViewModel : BaseViewModel() {
             runCatching {
                 PetManagerCoroutine.getVideoInfo(code, 40)
             }.onSuccess {
-
-                videoInfo.value = it.videoInfo
                 videos.value = it
-
             }.onFailure {
                 it.message?.loge()
                 it.printStackTrace()
                 error(ExceptionHandle.handleException(it))
             }
+        }
+    }
+
+    fun getVideoData(code: Int) {
+        viewModelScope.launch {
+            videoData.value = PetManagerCoroutine.getVideoInfoData(code)
         }
     }
 
@@ -77,14 +81,14 @@ public class VideoViewModel : BaseViewModel() {
 
     var hasCommentsMore = false
     var startCommentsIndex = 0
-    fun getComments(isRefresh: Boolean) {
+    fun getComments(code: Int, isRefresh: Boolean) {
 
         if (isRefresh) {
             startCommentsIndex = 0
         }
         request({
             PetManagerCoroutine.getVideoCommentByPage(
-                videoInfo.value!!.code,
+                code,
                 startCommentsIndex,
                 21
             )
@@ -118,14 +122,14 @@ public class VideoViewModel : BaseViewModel() {
 
     var hasMore = false
     var startIndex = 0
-    fun getCommentReply(isRefresh: Boolean, commentId: Int) {
+    fun getCommentReply(isRefresh: Boolean, code: Int, commentId: Int) {
 
         if (isRefresh) {
             startIndex = 0
         }
         request({
             PetManagerCoroutine.getCommentReplyByPage(
-                videoInfo.value!!.code,
+                code,
                 commentId,
                 startIndex,
                 21
@@ -162,12 +166,10 @@ public class VideoViewModel : BaseViewModel() {
     /**
      * 生成一条弹幕
      */
-    fun saveComment(replyInfo: ReplyInfo?, content: String) {
+    fun saveComment(code: Int, replyInfo: ReplyInfo?, content: String) {
 
         viewModelScope.launch {
-            videoInfo.value?.let {
-                createComment.value = PetManagerCoroutine.saveComment(replyInfo, content, it.code)
-            }
+            createComment.value = PetManagerCoroutine.saveComment(replyInfo, content, code)
         }
     }
 
@@ -180,24 +182,6 @@ public class VideoViewModel : BaseViewModel() {
     fun addOrUpdateVideoData(videoData: VideoData) {
         viewModelScope.launch {
             PetManagerCoroutine.addOrUpdateVideoData(videoData)
-        }
-    }
-
-    fun updateLike(videoCode: Int, islike: Boolean) {
-        viewModelScope.launch {
-            PetManagerCoroutine.addOrUpdateVideoData(videoCode, islike)
-        }
-    }
-
-    fun updataCollect(videoCode: Int, isCollect: Boolean) {
-        viewModelScope.launch {
-            PetManagerCoroutine.updateIsCollect(videoCode, isCollect)
-        }
-    }
-
-    fun updateLove(videoCode: Int, isLove: Boolean) {
-        viewModelScope.launch {
-            PetManagerCoroutine.updateLove(videoCode, isLove)
         }
     }
 

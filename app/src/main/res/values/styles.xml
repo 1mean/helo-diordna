@@ -328,4 +328,58 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingStart">15dp</item>
     </style>
+
+    <!-- VideoInfosFragment ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <style name="style_video_llayout_item">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/ripple_video_item_like</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="style_video_image_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">4dp</item>
+    </style>
+
+    <style name="style_video_textview_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/color_video_comment_txt</item>
+    </style>
+
+    <!-- VideoPlayActivity ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <style name="style_video_more_item">
+        <item name="android:layout_width">66dp</item>
+        <item name="android:layout_height">66dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">@drawable/ripple_share_item</item>
+    </style>
+
+    <style name="style_video_more_item_image">
+        <item name="android:layout_width">44dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:scaleType">center</item>
+    </style>
+
+    <style name="style_video_more_item_image2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">9dp</item>
+    </style>
+
+    <style name="style_video_more_item_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/color_card_name</item>
+    </style>
 </resources>

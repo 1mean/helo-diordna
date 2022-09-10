@@ -9,46 +9,89 @@
 
     <!--id名必须和exoplayer源码控件名一致-->
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_video_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clayout_top_left"
+                android:id="@+id/clayout_video_top"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="65dp"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:background="@drawable/shape_video_controller_bg">
+                android:background="@drawable/shape_video_controller_top">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/clayout_video_close"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="12dp"
-                    app:layout_constraintTop_toTopOf="@id/clayout_top_left"
-                    app:layout_constraintLeft_toLeftOf="@id/clayout_top_left">
+                    android:id="@+id/clayout_top_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:layout_constraintTop_toTopOf="@id/clayout_video_top">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="@id/clayout_video_close"
-                        app:layout_constraintTop_toTopOf="@id/clayout_video_close"
-                        app:layout_constraintBottom_toBottomOf="@id/clayout_video_close"
-                        app:layout_constraintRight_toRightOf="@id/clayout_video_close"
-                        android:src="@mipmap/img_video_left" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clayout_video_close"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selector_bg_video_more"
+                        app:layout_constraintTop_toTopOf="@id/clayout_top_left"
+                        app:layout_constraintLeft_toLeftOf="@id/clayout_top_left">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_video_close"
+                            app:layout_constraintTop_toTopOf="@id/clayout_video_close"
+                            app:layout_constraintBottom_toBottomOf="@id/clayout_video_close"
+                            app:layout_constraintRight_toRightOf="@id/clayout_video_close"
+                            android:src="@mipmap/img_video_left1" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clayout_video_float_window"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selector_bg_video_more"
+                        app:layout_constraintRight_toLeftOf="@id/clayout_video_top_more"
+                        app:layout_constraintTop_toTopOf="@id/clayout_top_left"
+                        app:layout_constraintRight_toRightOf="@id/clayout_top_left">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_video_float_window"
+                            app:layout_constraintTop_toTopOf="@id/clayout_video_float_window"
+                            app:layout_constraintBottom_toBottomOf="@id/clayout_video_float_window"
+                            app:layout_constraintRight_toRightOf="@id/clayout_video_float_window"
+                            android:src="@mipmap/img_video_float_window1" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clayout_video_top_more"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selector_bg_video_more"
+                        app:layout_constraintTop_toTopOf="@id/clayout_top_left"
+                        app:layout_constraintRight_toRightOf="@id/clayout_top_left">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_video_top_more"
+                            app:layout_constraintTop_toTopOf="@id/clayout_video_top_more"
+                            app:layout_constraintBottom_toBottomOf="@id/clayout_video_top_more"
+                            app:layout_constraintRight_toRightOf="@id/clayout_video_top_more"
+                            android:src="@mipmap/img_video_top_more" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/view_bottom"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@drawable/shape_video_controller_bg2">
+                android:background="@drawable/shape_video_controller_bottom">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="0dp"
@@ -59,11 +102,15 @@
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
+                <!--播放和暂停的图片分别在以下xml文件中，会被框架读取到-->
+                <!-- 播放 exo_styled_controls_play.xml-->
+                <!-- 暂停 exo_styled_controls_pause.xml-->
+                <!-- 控件64px-->
                 <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/exo_play_pause"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
+                        android:layout_marginStart="14dp"
                         android:layout_gravity="center_vertical"
                         android:background="@null" />
 
@@ -84,13 +131,14 @@
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="10sp"
+                        android:layout_marginStart="5dp"
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
                         tools:ignore="SmallSp" />
 
                 <com.google.android.exoplayer2.ui.DefaultTimeBar
                         android:id="@+id/exo_play_progress"
-                        android:layout_width="215dp"
+                        android:layout_width="187dp"
                         android:layout_height="match_parent"
                         app:bar_height="2dp"
                         android:layout_marginStart="3dp"
@@ -113,13 +161,143 @@
                         tools:ignore="SmallSp" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btn_vertical"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="3dp"
+                        android:src="@mipmap/img_video_vertical"
+                        android:background="@null" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/btn_fullscreen"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="3dp"
-                        android:src="@mipmap/img_video_fulling"
+                        android:src="@mipmap/img_video_fulling1"
                         android:background="@null" />
             </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_video_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_video_vertical_top"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                app:layout_constraintTop_toTopOf="@id/clayout_video_vertical"
+                android:background="@drawable/shape_video_controller_top">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/img_full_leave"
+                    android:layout_width="54dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="@id/clayout_video_vertical_top"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_video_vertical_top"
+                    android:background="@null"
+                    android:layout_marginStart="16dp"
+                    android:src="@mipmap/img_video_vertical_left" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_full_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:maxEms="20"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    app:layout_constraintLeft_toRightOf="@id/img_full_leave"
+                    app:layout_constraintTop_toTopOf="@id/img_full_leave"
+                    app:layout_constraintBottom_toBottomOf="@id/img_full_leave" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_video_vertical_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_video_vertical"
+                android:background="@drawable/shape_video_controller_bottom">
+
+            <com.google.android.exoplayer2.ui.DefaultTimeBar
+                    android:id="@+id/exo_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="18dp"
+                    app:bar_height="2dp"
+                    android:layout_marginStart="82dp"
+                    android:layout_marginEnd="66dp"
+                    android:layout_marginBottom="48dp"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_video_vertical_bottom"
+                    app:scrubber_color="@color/color_tab_indicator"
+                    app:scrubber_drawable="@mipmap/img_scrubber"
+                    app:unplayed_color="@color/color_video_timebar_unplayed"
+                    app:played_color="@color/color_tab_indicator"
+                    app:buffered_color="@color/color_video_timebar_buffered" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_full_position"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    app:layout_constraintTop_toTopOf="@id/exo_progress"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_video_vertical_bottom"
+                    android:layout_marginStart="32dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/white"
+                    android:text="00:00" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_full_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    app:layout_constraintTop_toTopOf="@id/exo_progress"
+                    app:layout_constraintRight_toRightOf="@id/clayout_video_vertical_bottom"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/white"
+                    android:text="00:00" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ib_full_stop"
+                    android:layout_width="54dp"
+                    android:layout_height="48dp"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_video_vertical_bottom"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_video_vertical_bottom"
+                    android:background="@null"
+                    android:layout_marginStart="16dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="62dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="5dp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_video_vertical_bottom"
+                    app:layout_constraintRight_toRightOf="@id/clayout_video_vertical_bottom"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="1080P" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="50dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="78dp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_video_vertical_bottom"
+                    app:layout_constraintRight_toRightOf="@id/clayout_video_vertical_bottom"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="1倍速" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

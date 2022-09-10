@@ -45,6 +45,7 @@
     <string name="str_collect">收藏</string>
     <string name="str_love">喜欢</string>
     <string name="str_like">点赞</string>
+    <string name="str_dislike">不喜欢</string>
     <string name="str_setting">设置</string>
 
     <!--search-->

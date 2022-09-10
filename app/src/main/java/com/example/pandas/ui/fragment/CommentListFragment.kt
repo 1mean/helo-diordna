@@ -38,6 +38,7 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
     private var replyInfo: ReplyInfo? = null
     private var isKeyBoardShow = false
 
+    private var code = -1
     private val mAdapter: CommentListAdapter by lazy { CommentListAdapter(mutableListOf(), this) }
 
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
@@ -55,6 +56,7 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        code = mActivity.intent.getIntExtra("code", -1)
         commentId = requireArguments().getInt("commentId")
         val paddingBottom = mActivity.resources.getDimension(R.dimen.common_lh_10_dimens).toInt()
         binding.recyclerLayout.init(
@@ -64,7 +66,7 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
             object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
                     commentId?.let {
-                        mViewModel.getCommentReply(false, it)
+                        mViewModel.getCommentReply(false, code, it)
                     }
                 }
             })
@@ -73,7 +75,7 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
                 commentId?.let {
-                    mViewModel.getCommentReply(true, it)
+                    mViewModel.getCommentReply(true, code, it)
                 }
             }
         }
@@ -154,7 +156,7 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
 
     override fun firstOnResume() {
         commentId?.let {
-            mViewModel.getCommentReply(true, it)
+            mViewModel.getCommentReply(true, code, it)
         }
     }
 
