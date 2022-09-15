@@ -86,7 +86,8 @@ class KeyboardManager(private val activity: Activity) {
         if (km == null) {
             km = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         }
-        km?.showSoftInput(view, 0)
+//        km?.showSoftInput(view, 0)
+        km?.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
     }
 
     /**
@@ -96,7 +97,8 @@ class KeyboardManager(private val activity: Activity) {
         if (km == null) {
             km = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         }
-        km?.hideSoftInputFromWindow(view.windowToken, 0)
+//        km?.hideSoftInputFromWindow(view.windowToken, 0)
+        km?.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
     /**
@@ -107,7 +109,11 @@ class KeyboardManager(private val activity: Activity) {
             km = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         }
         if (km!!.isAcceptingText) {
-            km!!.hideSoftInputFromWindow(activity.currentFocus?.windowToken, 0)
+//            km!!.hideSoftInputFromWindow(activity.currentFocus?.windowToken, 0)
+            km!!.hideSoftInputFromWindow(
+                activity.currentFocus?.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
         }
     }
 
@@ -134,6 +140,15 @@ class KeyboardManager(private val activity: Activity) {
     fun onDestroy() {
         activity.window.decorView.viewTreeObserver.removeOnGlobalLayoutListener(listener)
         km = null
+    }
+
+    private fun isSoftShowing(activity: Activity): Boolean {
+        //获取当前屏幕内容的高度
+        val screenHeight = activity.window.decorView.height
+        //获取View可见区域的bottom
+        val rect = Rect()
+        activity.window.decorView.getWindowVisibleDisplayFrame(rect)
+        return screenHeight - rect.bottom != 0
     }
 
 }

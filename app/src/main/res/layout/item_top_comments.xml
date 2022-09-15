@@ -26,9 +26,8 @@
         <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/img_comment_setting"
-                android:layout_gravity="center_vertical"
-                />
+                android:src="@mipmap/img_video_time_order"
+                android:layout_gravity="center_vertical" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_comment_setting"

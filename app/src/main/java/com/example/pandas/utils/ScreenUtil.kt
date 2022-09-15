@@ -22,9 +22,8 @@ import androidx.core.view.WindowCompat
  */
 object ScreenUtil {
 
-
     fun dip2px(dpValue: Float): Int {
-        return (dpValue * Resources.getSystem().displayMetrics.density).toInt()
+        return (dpValue * Resources.getSystem().displayMetrics.density + 0.5f).toInt()
     }
 
     fun px2dp(context: Context, pxValue: Float): Int {

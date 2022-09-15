@@ -25,6 +25,8 @@ import java.util.*
  */
 public class VideoViewModel : BaseViewModel() {
 
+    var hasCommentsMore = false
+    var startCommentsIndex = 0
 
     val videoData: MutableLiveData<PetVideo> by lazy { MutableLiveData() }
     val videos: MutableLiveData<VideoInfo> by lazy { MutableLiveData() }
@@ -79,15 +81,22 @@ public class VideoViewModel : BaseViewModel() {
         }
     }
 
-    var hasCommentsMore = false
-    var startCommentsIndex = 0
-    fun getComments(code: Int, isRefresh: Boolean) {
+    /**
+     * 按顺序获取弹幕数据
+     *  - isOrderByTime：true,按时间获取数据
+     *  - isOrderByTime：false,按热度获取数据
+     *
+     * @date: 9/15/22 7:00 下午
+     * @version: v1.0
+     */
+    fun getCommentsByOrder(code: Int, isRefresh: Boolean, isOrderByTime: Boolean) {
 
         if (isRefresh) {
             startCommentsIndex = 0
         }
         request({
             PetManagerCoroutine.getVideoCommentByPage(
+                isOrderByTime,
                 code,
                 startCommentsIndex,
                 21
@@ -196,6 +205,12 @@ public class VideoViewModel : BaseViewModel() {
 
         viewModelScope.launch {
             PetManagerCoroutine.deleteCollection(groupName, videoCode)
+        }
+    }
+
+    fun addLaterPlayer(videoCode: Int) {
+        viewModelScope.launch {
+            PetManagerCoroutine.addLater(videoCode)
         }
     }
 }

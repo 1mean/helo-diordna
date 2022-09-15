@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,7 +36,7 @@
                 app:layout_constraintTop_toTopOf="@id/clayout_comment_top"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_comment_top"
                 app:layout_constraintRight_toRightOf="@id/clayout_comment_top"
-                android:src="@mipmap/img_item_delete" />
+                android:src="@mipmap/img_video_list_delete" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -47,8 +48,7 @@
         <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
                 android:id="@+id/recycler_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/color_bg_comment_like" />
+                android:layout_height="match_parent" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

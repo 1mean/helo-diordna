@@ -281,7 +281,7 @@ interface PetVideoDao {
     @Query("select * from history order by lastTime desc limit (:startIndex),(:count)")
     suspend fun queryHistoryByPage(startIndex: Int, count: Int): MutableList<History>
 
-    @Query("select * from video_data where laterPlay=1 limit (:startIndex),(:count)")
+    @Query("select * from video_data where laterPlay=1 order by laterTime desc limit (:startIndex),(:count)")
     suspend fun queryLaterByPage(startIndex: Int, count: Int): MutableList<VideoData>
 
     @Query("select * from video_data where laterPlay=1")
@@ -315,8 +315,17 @@ interface PetVideoDao {
     ): MutableList<PetVideo>
 
     @Transaction
-    @Query("select * from comment where videoCode=(:videoCode) and type=(:type) order by commitTime asc limit (:startIndex),(:page)")
-    suspend fun queryVideoCommentByPage(
+    @Query("select * from comment where videoCode=(:videoCode) and type=(:type) order by commitTime desc limit (:startIndex),(:page)")
+    suspend fun queryPageCommentsByType(
+        videoCode: Int,
+        startIndex: Int,
+        page: Int,
+        type: Int
+    ): MutableList<CommentAndUser>
+
+    @Transaction
+    @Query("select * from comment where videoCode=(:videoCode) and type=(:type) order by likeNum desc limit (:startIndex),(:page)")
+    suspend fun queryCommentsByHot(
         videoCode: Int,
         startIndex: Int,
         page: Int,
@@ -338,7 +347,7 @@ interface PetVideoDao {
     ): CommentAndUser
 
     @Transaction
-    @Query("select * from comment where videoCode=(:videoCode) and topCommentId=(:commentId) order by commitTime asc limit (:startIndex),(:page)")
+    @Query("select * from comment where videoCode=(:videoCode) and topCommentId=(:commentId) order by commitTime desc limit (:startIndex),(:page)")
     suspend fun queryReplyByPage(
         videoCode: Int,
         commentId: Int,

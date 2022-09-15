@@ -3,20 +3,20 @@ package com.example.pandas.ui.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.text.method.LinkMovementMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
-import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.bean.ReplyInfo
 import com.example.pandas.biz.ext.loadHeadCircleImage
 import com.example.pandas.biz.ext.startUserInfoActivity
 import com.example.pandas.biz.interaction.SpanClickListener
 import com.example.pandas.databinding.ItemAdapterCommentTitleBinding
 import com.example.pandas.databinding.ItemCommentsBinding
+import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.ext.setLevelImageResourse
@@ -98,11 +98,10 @@ public class CommentListAdapter(
         private val likeLayout = binding.llayoutCommentItemLike
         private val likes = binding.txtCommentItemLikes
         private val likeImg = binding.imgCommentItemLike
-        private val unLikeImg = binding.imgCommentUnlike
         val more = binding.clayoutCommentItemMore
-        private val unLikeView = binding.clayoutCommentItemDislike
-        private val shareView = binding.clayoutCommentItemShare
-        private val commentSendView = binding.clayoutCommentItemComment
+        private val unLikeView = binding.ibCommentItemUnlike
+        private val shareView = binding.ibCommentItemShare
+        private val commentSendView = binding.ibCommentItemComment
         val date = binding.txtCommentItemDate
         private val upLikeView = binding.clayoutCommentUplike
 
@@ -111,6 +110,7 @@ public class CommentListAdapter(
         private val layoutAll = binding.clayoutMessageAll
         private val replyView = binding.llayoutCommentMore
         private val commentCounts = binding.txtItemCommentCounts
+
         private val clickableColor =
             ContextCompat.getColor(context, R.color.color_comment_reply_user)
 
@@ -141,7 +141,6 @@ public class CommentListAdapter(
                 val builder = SpannableStringUtils.replyOneBuilder(clickableColor, comment, object :
                     SpanClickListener<Int> {
                     override fun spanClick(t: Int) {
-                        Log.e("CommentListAdapter", "点击了回复的用户")
                         startUserInfoActivity(context, t)
                     }
                 })
@@ -165,16 +164,16 @@ public class CommentListAdapter(
 
             if (videoComment.like) {
                 likeImg.setImageResource(R.mipmap.img_comment_liked)
-                unLikeImg.setImageResource(R.mipmap.img_comment_dislike)
+                unLikeView.setImageResource(R.mipmap.img_comment_dislike)
             } else {
                 likeImg.setImageResource(R.mipmap.img_comment_like)
             }
 
             if (videoComment.unLike) {
                 likeImg.setImageResource(R.mipmap.img_comment_like)
-                unLikeImg.setImageResource(R.mipmap.img_comment_disliked)
+                unLikeView.setImageResource(R.mipmap.img_comment_disliked)
             } else {
-                unLikeImg.setImageResource(R.mipmap.img_comment_dislike)
+                unLikeView.setImageResource(R.mipmap.img_comment_dislike)
             }
 
             if (videoComment.upLike) {
@@ -202,12 +201,37 @@ public class CommentListAdapter(
                     likes.text = num.toString()
                     likeImg.setImageResource(R.mipmap.img_comment_liked)
                     if (videoComment.unLike) {
-                        unLikeImg.setImageResource(R.mipmap.img_comment_dislike)
+                        unLikeView.setImageResource(R.mipmap.img_comment_dislike)
                         videoComment.unLike = false
                     }
                     videoComment.likeNum = num
                 }
                 videoComment.like = !videoComment.like
+            }
+
+            unLikeView.setOnClickListener {
+                if (videoComment.unLike) {
+                    unLikeView.setImageResource(R.mipmap.img_comment_dislike)
+                } else {
+                    unLikeView.setImageResource(R.mipmap.img_comment_disliked)
+                    if (videoComment.like) {
+                        likeImg.setImageResource(R.mipmap.img_comment_like)
+                        val num = videoComment.likeNum - 1
+                        if (num == 0) {
+                            likes.visibility = View.GONE
+                        } else {
+                            likes.visibility = View.VISIBLE
+                            likes.text = num.toString()
+                        }
+                        videoComment.likeNum = num
+                        videoComment.like = false
+                    }
+                }
+                videoComment.unLike = !videoComment.unLike
+            }
+
+            shareView.setOnClickListener {
+                Toast.makeText(context, "分享", Toast.LENGTH_SHORT).show()
             }
 
             name.setOnClickListener {
@@ -216,30 +240,45 @@ public class CommentListAdapter(
             header.setOnClickListener {
                 startUserInfoActivity(context, videoComment.fromUserCode)
             }
-            itemView.setOnClickListener {
-                Log.e("CommentListAdapter", "点击了item")
-                reply(videoComment, user, position)
-            }
-
             content.setOnClickListener {
-                Log.e("CommentListAdapter", "点击了评论")
-                reply(videoComment, user, position)
-            }
-        }
-
-        private fun reply(comment: VideoComment, user: User, position: Int) {
-
-            val type = if (position == 0) 2 else 3
-
-            listener.reply(
-                ReplyInfo(
-                    comment.commentId,
-                    comment.videoCode,
-                    type,
-                    user.userName!!,
-                    user.userCode
+                val type = if (position == 0) {
+                    2
+                } else {
+                    3
+                }
+                listener.reply(
+                    ReplyInfo(
+                        list[0].comment.commentId,
+                        videoComment.videoCode,
+                        type,
+                        user.userName!!,
+                        user.userCode
+                    )
                 )
-            )
+            }
+
+            commentSendView.setOnClickListener {
+
+                val type = if (position == 0) {
+                    2
+                } else {
+                    3
+                }
+                listener.reply(
+                    ReplyInfo(
+                        list[0].comment.commentId,
+                        videoComment.videoCode,
+                        type,
+                        user.userName!!,
+                        user.userCode
+                    )
+                )
+            }
+
+            more.setOnClickListener {
+                Toast.makeText(context, "更多", Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 

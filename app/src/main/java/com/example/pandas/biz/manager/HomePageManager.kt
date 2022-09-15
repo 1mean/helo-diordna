@@ -766,6 +766,7 @@ class PetManager {
 
     /****视频弹幕界面*************************************************************************/
     suspend fun getVideoCommentByPage(
+        isOrderByTime: Boolean,
         videoCode: Int,
         startIndex: Int,
         counts: Int
@@ -774,7 +775,12 @@ class PetManager {
         return withContext(Dispatchers.IO) {
 
             //先获取一级弹幕
-            val list = petDao.queryVideoCommentByPage(videoCode, startIndex, counts, 1)
+            val list = if (isOrderByTime) {//获取时间顺序的数据
+                petDao.queryPageCommentsByType(videoCode, startIndex, counts, 1)
+            } else {
+                petDao.queryCommentsByHot(videoCode, startIndex, counts, 1)
+            }
+
             if (list.isNotEmpty()) {
                 list.forEach {
                     val childList =
@@ -821,9 +827,10 @@ class PetManager {
         content: String,
         videoCode: Int
     ): CommentAndUser {
-        return withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.Default) {
             val comment = VideoComment()
             //当没有评论时，获取到的id是null，以String类型返回
+            //不使用id是因为可能每一次调整数据库，该数据的id会不同，不能保证唯一性
             var maxCommentId = petDao.queryMaxCommentId(videoCode)
             if (maxCommentId.isNullOrEmpty()) {
                 maxCommentId = "0"
@@ -832,7 +839,7 @@ class PetManager {
             if (replyInfo == null) {
                 comment.type = 1
             } else {
-                comment.type = 2
+                comment.type = replyInfo.type
                 comment.fromUserName = AppInfos.AUTHOR_NAME
                 comment.toUserName = replyInfo.replyUserName
                 comment.toUserCode = replyInfo.replyUserCode
@@ -843,7 +850,7 @@ class PetManager {
             comment.commitTime = System.currentTimeMillis()
             comment.content = content
             comment.videoCode = videoCode
-            //petDao.insertComment(comment)
+            petDao.insertComment(comment)
             delay(300)
             CommentAndUser(comment, user)
         }
@@ -853,7 +860,7 @@ class PetManager {
         replyInfo: ReplyInfo,
         content: String
     ): CommentAndUser {
-        return withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.Default) {
             val comment = VideoComment()
             //当没有评论时，获取到的id是null，以String类型返回
             var maxCommentId = petDao.queryMaxCommentId(replyInfo.videoCode)
@@ -871,7 +878,7 @@ class PetManager {
             comment.commitTime = System.currentTimeMillis()
             comment.content = content
             comment.videoCode = replyInfo.videoCode
-            //petDao.insertComment(comment)
+            petDao.insertComment(comment)
             delay(300)
             CommentAndUser(comment, user)
         }

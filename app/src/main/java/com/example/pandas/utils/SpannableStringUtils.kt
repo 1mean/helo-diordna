@@ -36,7 +36,7 @@ object SpannableStringUtils {
             override fun updateDrawState(ds: TextPaint) {
                 super.updateDrawState(ds)
                 ds.color = color//设置颜色
-                ds.isUnderlineText = false;//去掉下划线
+                ds.isUnderlineText = false//去掉下划线
             }
         }
         spanString.run {
@@ -87,7 +87,7 @@ object SpannableStringUtils {
                 override fun updateDrawState(ds: TextPaint) {
                     super.updateDrawState(ds)
                     ds.color = color//设置颜色
-                    ds.isUnderlineText = false;//去掉下划线
+                    ds.isUnderlineText = false//去掉下划线
                 }
             }
             spanString.run {
@@ -109,7 +109,7 @@ object SpannableStringUtils {
                 override fun updateDrawState(ds: TextPaint) {
                     super.updateDrawState(ds)
                     ds.color = color//设置颜色
-                    ds.isUnderlineText = false;//去掉下划线
+                    ds.isUnderlineText = false//去掉下划线
                 }
             }
             val clickSpan2 = object : ClickableSpan() {
@@ -120,7 +120,7 @@ object SpannableStringUtils {
                 override fun updateDrawState(ds: TextPaint) {
                     super.updateDrawState(ds)
                     ds.color = color//设置颜色
-                    ds.isUnderlineText = false;//去掉下划线
+                    ds.isUnderlineText = false//去掉下划线
                 }
             }
             spanString.run {
@@ -157,7 +157,7 @@ object SpannableStringUtils {
             override fun updateDrawState(ds: TextPaint) {
                 super.updateDrawState(ds)
                 ds.color = color//设置颜色
-                ds.isUnderlineText = false;//去掉下划线
+                ds.isUnderlineText = false//去掉下划线
             }
         }
         spanString.run {

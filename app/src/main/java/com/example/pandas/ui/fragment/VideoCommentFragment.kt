@@ -65,7 +65,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
             LinearLayoutManager(context),
             object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
-                    mViewModel.getComments(code, false)
+                    mViewModel.getCommentsByOrder(code, false, mAdapter.getOrder())
                 }
             })
 
@@ -73,7 +73,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
             setRefreshColor()
             setOnRefreshListener {
                 binding.rvComment.isRefreshing(true)
-                mViewModel.getComments(code, true)
+                mViewModel.getCommentsByOrder(code, true, mAdapter.getOrder())
             }
         }
 
@@ -107,11 +107,13 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
 
             override fun keyBoardHide(height: Int) {
                 replyInfo = null
+                val content = binding.editVideo.text
+                if (content.isNullOrEmpty()) {
+                    binding.editVideo.hint = "发一条友善的评论"
+                }
                 binding.imgCommentSmile.visibility = View.VISIBLE
                 binding.txtCommentSend.visibility = View.GONE
                 binding.editVideo.clearFocus()
-                binding.editVideo.setText("")
-                binding.editVideo.hint = "发一条友善的评论"
             }
         })
 
@@ -141,12 +143,13 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
 
         mViewModel.createComment.observe(viewLifecycleOwner) {
 
-            Log.e("1mean", "it: $it")
             if (it.comment.type == 1) {
                 binding.rvComment.scrollToPosition(0)
             }
             loadingPopup!!.dismiss()
             mAdapter.addComment(it)
+            binding.editVideo.setText("")
+            binding.editVideo.hint = "发一条友善的评论"
             km.hideKeyBoard(mActivity, binding.editVideo)
         }
     }
@@ -154,11 +157,17 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
     override fun firstOnResume() {
 
         binding.refreshComment.isRefreshing = true
-        mViewModel.getComments(code, true)
+        mViewModel.getCommentsByOrder(code, true, false)
     }
 
-    override fun orderClcik(orderMode: Int) {
-
+    /**
+     * isOrderByTime
+     *  - true: 当前按照时间排序，切换到按热度排序
+     *  - false: 当前按照热度排序，切换到按时间排序
+     */
+    override fun orderClcik(isOrderByTime: Boolean) {
+        binding.refreshComment.isRefreshing = true
+        mViewModel.getCommentsByOrder(code, true, !isOrderByTime)
     }
 
     override fun addItemReply(replyInfo: ReplyInfo) {

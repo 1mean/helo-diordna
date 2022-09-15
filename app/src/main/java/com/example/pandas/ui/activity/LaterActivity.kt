@@ -1,7 +1,6 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
@@ -12,8 +11,6 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityLaterBinding
 import com.example.pandas.ui.adapter.LaterAdapter
-import com.example.pandas.ui.adapter.decoration.LandScapeItemDecoration
-import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.initNoFooter
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils

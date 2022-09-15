@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.text.SpannableStringBuilder
 import android.text.method.LinkMovementMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +11,13 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
-import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.bean.ReplyInfo
 import com.example.pandas.biz.ext.loadHeadCircleImage
 import com.example.pandas.biz.ext.startUserInfoActivity
 import com.example.pandas.biz.interaction.SpanClickListener
 import com.example.pandas.databinding.ItemCommentsBinding
 import com.example.pandas.databinding.ItemTopCommentsBinding
+import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.ext.setLevelImageResourse
@@ -40,12 +39,14 @@ public class CommentAdapter(
 
     private val TYPE_TOP = 1
     private val TYPE_ITEM = 2
-    private var orderMode = 0//默认按点赞数热度排列
+    private var isOrderByTime = false//默认'按热度'排序
     private var replyPosition = -1
 
     override fun getItemViewType(position: Int): Int = if (position == 0) TYPE_TOP else TYPE_ITEM
 
     override fun getItemCount(): Int = if (list.isEmpty()) 0 else list.size + 1
+
+    fun getOrder():Boolean = isOrderByTime
 
     @SuppressLint("NotifyDataSetChanged")
     fun update(isRefresh: Boolean, data: MutableList<CommentAndUser>) {
@@ -80,18 +81,14 @@ public class CommentAdapter(
         private val settingText = binding.txtCommentSetting
 
         fun handle() {
-            settingLayout.setOnClickListener {
-                listener.orderClcik(orderMode)
-            }
-        }
-
-        fun updateName() {
-            if (orderMode == 0) {
-                settingText.text = itemView.context.getString(R.string.str_by_hot)
-                orderMode = 1
-            } else {
+            if (isOrderByTime) {
                 settingText.text = itemView.context.getString(R.string.str_by_time)
-                orderMode = 0
+            } else {
+                settingText.text = itemView.context.getString(R.string.str_by_hot)
+            }
+            settingLayout.setOnClickListener {
+                listener.orderClcik(isOrderByTime)
+                isOrderByTime = !isOrderByTime
             }
         }
     }
@@ -107,11 +104,10 @@ public class CommentAdapter(
         private val likeLayout = binding.llayoutCommentItemLike
         private val likes = binding.txtCommentItemLikes
         private val likeImg = binding.imgCommentItemLike
-        private val unLikeImg = binding.imgCommentUnlike
         val more = binding.clayoutCommentItemMore
-        private val unLikeView = binding.clayoutCommentItemDislike
-        private val shareView = binding.clayoutCommentItemShare
-        private val commentSendView = binding.clayoutCommentItemComment
+        private val unLikeView = binding.ibCommentItemUnlike
+        private val shareView = binding.ibCommentItemShare
+        private val commentSendView = binding.ibCommentItemComment
         val date = binding.txtCommentItemDate
         private val upLikeView = binding.clayoutCommentUplike
 
@@ -120,6 +116,7 @@ public class CommentAdapter(
         private val layoutAll = binding.clayoutMessageAll
         private val replyView = binding.llayoutCommentMore
         private val commentCounts = binding.txtItemCommentCounts
+
         private val clickableColor =
             ContextCompat.getColor(context, R.color.color_comment_reply_user)
 
@@ -128,8 +125,10 @@ public class CommentAdapter(
             val comment = list[position - 1].comment
             val replys = comment.replyComments
             val user = list[position - 1].user
+
             loadHeadCircleImage(context, user.headUrl!!, header)
             setLevelImageResourse(user.level, level)
+
             if (user.vip == 1) {
                 name.setTextColor(ContextCompat.getColor(context, R.color.color_name_vip))
                 setTextType(true, name)
@@ -207,16 +206,16 @@ public class CommentAdapter(
 
             if (videoComment.like) {
                 likeImg.setImageResource(R.mipmap.img_comment_liked)
-                unLikeImg.setImageResource(R.mipmap.img_comment_dislike)
+                unLikeView.setImageResource(R.mipmap.img_comment_dislike)
             } else {
                 likeImg.setImageResource(R.mipmap.img_comment_like)
             }
 
             if (videoComment.unLike) {
                 likeImg.setImageResource(R.mipmap.img_comment_like)
-                unLikeImg.setImageResource(R.mipmap.img_comment_disliked)
+                unLikeView.setImageResource(R.mipmap.img_comment_disliked)
             } else {
-                unLikeImg.setImageResource(R.mipmap.img_comment_dislike)
+                unLikeView.setImageResource(R.mipmap.img_comment_dislike)
             }
 
             if (videoComment.upLike) {
@@ -244,7 +243,7 @@ public class CommentAdapter(
                     likes.text = num.toString()
                     likeImg.setImageResource(R.mipmap.img_comment_liked)
                     if (videoComment.unLike) {
-                        unLikeImg.setImageResource(R.mipmap.img_comment_dislike)
+                        unLikeView.setImageResource(R.mipmap.img_comment_dislike)
                         videoComment.unLike = false
                     }
                     videoComment.likeNum = num
@@ -266,14 +265,54 @@ public class CommentAdapter(
                 )
             }
 
+            more.setOnClickListener {
+                Toast.makeText(context, "更多", Toast.LENGTH_SHORT).show()
+            }
+
+            content.setOnClickListener {
+                replyPosition = position
+                listener.addItemReply(
+                    ReplyInfo(
+                        videoComment.commentId,
+                        videoComment.videoCode,
+                        2,
+                        user.userName!!,
+                        user.userCode
+                    )
+                )
+            }
+
             comment1.setOnClickListener {
-                Log.e("1mean", "点击了")
+                replyPosition = position
+                val comment1_user = videoComment.replyComments[0].user
+                listener.addItemReply(
+                    ReplyInfo(
+                        videoComment.commentId,
+                        videoComment.videoCode,
+                        3,
+                        comment1_user.userName!!,
+                        comment1_user.userCode
+                    )
+                )
+            }
+            comment2.setOnClickListener {
+                replyPosition = position
+                val comment2_user = videoComment.replyComments[1].user
+                listener.addItemReply(
+                    ReplyInfo(
+                        videoComment.commentId,
+                        videoComment.videoCode,
+                        3,
+                        comment2_user.userName!!,
+                        comment2_user.userCode
+                    )
+                )
             }
             unLikeView.setOnClickListener {
                 if (videoComment.unLike) {
-                    unLikeImg.setImageResource(R.mipmap.img_comment_dislike)
+                    unLikeView.setImageResource(R.mipmap.img_comment_dislike)
                 } else {
-                    unLikeImg.setImageResource(R.mipmap.img_comment_disliked)
+                    unLikeView.setImageResource(R.mipmap.img_comment_disliked)
                     if (videoComment.like) {
                         likeImg.setImageResource(R.mipmap.img_comment_like)
                         val num = videoComment.likeNum - 1
@@ -291,7 +330,7 @@ public class CommentAdapter(
             }
 
             shareView.setOnClickListener {
-                Toast.makeText(context, "待开发", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "分享", Toast.LENGTH_SHORT).show()
             }
 
             layoutAll.setOnClickListener {
@@ -302,7 +341,7 @@ public class CommentAdapter(
 
     interface OnCommentClickListener {
 
-        fun orderClcik(orderMode: Int)
+        fun orderClcik(isOrderByTime: Boolean)
 
         fun addItemReply(replyInfo: ReplyInfo)
 

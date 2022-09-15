@@ -1,5 +1,6 @@
 package com.example.pandas.ui.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
@@ -31,10 +32,7 @@ import com.example.pandas.biz.interaction.VideoMoreSelectListener
 import com.example.pandas.biz.manager.VideoPlayManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.ActivityVideoBinding
-import com.example.pandas.ui.ext.closeFullScreen
-import com.example.pandas.ui.ext.fullScreen
-import com.example.pandas.ui.ext.initViewPager
-import com.example.pandas.ui.ext.showTimeBar
+import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.fragment.CommentListFragment
 import com.example.pandas.ui.view.VideoTabView
 import com.example.pandas.ui.view.dialog.VideoMoreBottomSheetDialog
@@ -360,21 +358,21 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         }
     }
 
+    /**
+     * 实现功能：
+     *  - 点击软键盘外部区域，关闭软键盘
+     *  - 当软键盘弹出时，点击软键盘外部时，不允许外部控件接收到点击事件
+     */
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
 
-        if (ev.action == MotionEvent.ACTION_UP) {
-            val view = currentFocus //界面里只给editext设置focus，其他地方点击为null
-            //Log.e("VideoPlayingActivity2", "focusView: $view")
-            if (view != null) {
-                val consumed = super.dispatchTouchEvent(ev)
-                val viewTmp = currentFocus
-                val viewNew = viewTmp ?: view
-                if (viewNew == view) {
-                    val parentView = view.parent as ConstraintLayout
-                    if (parentView != null) {
+        when (ev.action) {
+            MotionEvent.ACTION_DOWN -> {
+                val view = currentFocus //界面里只给editext设置focus，其他地方点击为null
+                view?.let {
+                    if (it is EditText) {
+                        val parentView = it.parent as ConstraintLayout
                         val rect = Rect()
                         val coordinates = IntArray(2)
-//                    view.getLocationOnScreen(coordinates)
                         parentView.getLocationOnScreen(coordinates)
                         rect.set(
                             0,
@@ -384,17 +382,14 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                         )
                         val x = ev.x.toInt()
                         val y = ev.y.toInt()
-                        if (rect.contains(x, y)) {
-                            return consumed
+                        if (!rect.contains(x, y)) {
+                            val im =
+                                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                            im.hideSoftInputFromWindow(it.windowToken, 0)
+                            return true
                         }
                     }
-                } else if (viewNew is EditText) {
-                    return consumed
                 }
-                val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                im.hideSoftInputFromWindow(viewNew.windowToken, 0)
-                viewNew.clearFocus()
-                return consumed
             }
         }
         return super.dispatchTouchEvent(ev)
@@ -419,6 +414,10 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                         R.anim.animate_fragment_in,
                         R.anim.animate_fragment_out
                     ).remove(it).commit()
+
+                    val fragments = supportFragmentManager.fragments
+                    Log.e("1mean","fragments: $fragments")
+
                     return@forEach
                 }
             }
@@ -442,9 +441,11 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         //保存历史记录
         mViewModel.saveHistory(code, videoManager.getCurrentPos())
 
-        val intent = Intent().putExtra("videoPosition", videoManager.getCurrentPos())
-        Log.e("1mean", "currentPos: ${videoManager.getCurrentPos()}")
-        setResult(RESULT_OK, intent)
+        if (isPlayIng) {
+            val intent = Intent().putExtra("videoPosition", videoManager.getCurrentPos())
+            Log.e("1mean", "currentPos: ${videoManager.getCurrentPos()}")
+            setResult(RESULT_OK, intent)
+        }
         finish()
     }
 
@@ -471,7 +472,9 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     override fun addPlayLater() {
         super.addPlayLater()
-
+        mViewModel.addLaterPlayer(code)
+        toast(this, "添加成功")
+        moreDialog.dismiss()
     }
 
     private var checkPos = 3
@@ -481,7 +484,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         XPopup.Builder(this)
             .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
             .asBottomList(
-                "设置播放速度",
+                "",
                 arrayOf("2.0", "1.5", "1.25", "1.0", "0.75", "0.5"),
                 null,
                 checkPos,

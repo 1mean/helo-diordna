@@ -7,7 +7,6 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.bean.ReplyInfo
@@ -16,7 +15,6 @@ import com.example.pandas.biz.manager.KeyboardManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.FragmentCommentListBinding
 import com.example.pandas.ui.adapter.CommentListAdapter
-import com.example.pandas.ui.adapter.decoration.CommentItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
@@ -58,12 +56,9 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
 
         code = mActivity.intent.getIntExtra("code", -1)
         commentId = requireArguments().getInt("commentId")
-        val paddingBottom = mActivity.resources.getDimension(R.dimen.common_lh_10_dimens).toInt()
         binding.recyclerLayout.init(
-            CommentItemDecoration(paddingBottom),
-            mAdapter,
-            LinearLayoutManager(context),
-            object : SwipRecyclerView.ILoadMoreListener {
+            adapter = mAdapter,
+            listener = object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
                     commentId?.let {
                         mViewModel.getCommentReply(false, code, it)
@@ -107,19 +102,19 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
         km.setOnSoftKeyBoardChangeListener(object :
             KeyboardManager.OnSoftKeyBoardChangeListener {
             override fun keyBoardShow(height: Int) {
-                isKeyBoardShow = true
                 binding.imgCommentSmile.visibility = View.GONE
                 binding.txtCommentSend.visibility = View.VISIBLE
             }
 
             override fun keyBoardHide(height: Int) {
                 replyInfo = null
-                isKeyBoardShow = false
+                val content = binding.editVideo.text
+                if (content.isNullOrEmpty()) {
+                    binding.editVideo.hint = "发一条友善的评论"
+                }
                 binding.imgCommentSmile.visibility = View.VISIBLE
                 binding.txtCommentSend.visibility = View.GONE
                 binding.editVideo.clearFocus()
-                binding.editVideo.setText("")
-                binding.editVideo.hint = "发一条友善的评论"
             }
         })
 
@@ -149,6 +144,8 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
             binding.recyclerLayout.scrollToPosition(2)
             loadingPopup?.dismiss()
             mAdapter.addComment(it)
+            binding.editVideo.setText("")
+            binding.editVideo.hint = "发一条友善的评论"
             km.hideKeyBoard(mActivity, binding.editVideo)
 
         }
@@ -193,6 +190,23 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
         }
     }
 
+    override fun reply(reply: ReplyInfo) {
+
+        this.replyInfo = reply
+        binding.editVideo.isFocusable = true
+        binding.editVideo.isFocusableInTouchMode = true
+        binding.editVideo.requestFocus()
+        binding.editVideo.hint = "回复 @${reply.replyUserName} :"
+        km.showKeyBoard(mActivity, binding.editVideo)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        km.onDestroy()
+        loadingPopup = null
+        isKeyBoardShow = false
+    }
+
     companion object {
 
         fun newInstance(commentId: Int): CommentListFragment {
@@ -203,23 +217,5 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
             fragment.arguments = args
             return fragment
         }
-    }
-
-    override fun reply(reply: ReplyInfo) {
-        this.replyInfo = reply
-        binding.editVideo.isFocusable = true
-        binding.editVideo.isFocusableInTouchMode = true
-        binding.editVideo.requestFocus()
-        binding.editVideo.hint = "回复 @${reply.replyUserName} :"
-        if (!isKeyBoardShow) {//可以加edit已经获取了焦点
-            km.showKeyBoard(mActivity, binding.editVideo)
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        km.onDestroy()
-        loadingPopup = null
-        isKeyBoardShow = false
     }
 }

@@ -162,6 +162,10 @@ fun toastTopShow(activity: Activity, content: String) {
     toast.show()
 }
 
+fun toast(context: Context, value: String) {
+    Toast.makeText(context, value, Toast.LENGTH_SHORT).show()
+}
+
 /**
  * 图片像素为65px
  */
