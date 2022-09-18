@@ -59,6 +59,16 @@ object TimeUtils {
         return formatter.format(Date(currentTime))
     }
 
+    @SuppressLint("SimpleDateFormat")
+    fun formatTime(time: String): Long {
+        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val date = formatter.parse(time)
+        date?.let {
+            return it.time
+        }
+        return 0
+    }
+
     private fun isCurrentYear(time: Long): Boolean {
 
         val calendar = Calendar.getInstance()
@@ -76,7 +86,7 @@ object TimeUtils {
             return getYearTime(startTime)
         } else {
             var timeLong = System.currentTimeMillis() - startTime
-            Log.e("asdasdasdasdasdas","timeLong: $timeLong")
+            Log.e("asdasdasdasdasdas", "timeLong: $timeLong")
             if (timeLong < 60 * 1000) {
                 return "刚刚"
             } else if (timeLong < 60 * 60 * 1000) {

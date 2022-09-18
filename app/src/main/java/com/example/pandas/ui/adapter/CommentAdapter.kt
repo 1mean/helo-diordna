@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.bean.ReplyInfo
 import com.example.pandas.biz.ext.loadHeadCircleImage
-import com.example.pandas.biz.ext.startUserInfoActivity
 import com.example.pandas.biz.interaction.SpanClickListener
 import com.example.pandas.databinding.ItemCommentsBinding
 import com.example.pandas.databinding.ItemTopCommentsBinding
@@ -22,6 +21,7 @@ import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.ext.setLevelImageResourse
 import com.example.pandas.ui.ext.setTextType
+import com.example.pandas.ui.ext.startUserInfoActivity
 import com.example.pandas.utils.SpannableStringUtils
 import com.example.pandas.utils.TimeUtils
 
@@ -190,7 +190,7 @@ public class CommentAdapter(
                 user,
                 object : SpanClickListener<Int> {
                     override fun spanClick(t: Int) {
-                        startUserInfoActivity(context, t)
+                        startUserInfoActivity(context, user)
                     }
                 })
         }
@@ -335,6 +335,14 @@ public class CommentAdapter(
 
             layoutAll.setOnClickListener {
                 listener.showAllComment(videoComment.commentId)
+            }
+
+            name.setOnClickListener {
+                startUserInfoActivity(context, user)
+            }
+
+            header.setOnClickListener {
+                startUserInfoActivity(context, user)
             }
         }
     }

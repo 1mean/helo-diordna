@@ -16,7 +16,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:scaleType="fitXY"
             android:layout_marginStart="12dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -35,7 +34,7 @@
             android:paddingEnd="4dp"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
-            android:background="@drawable/shape_hot_duration"
+            android:background="@drawable/shape_dark_duration"
             tools:ignore="SmallSp" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -73,13 +72,12 @@
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_user_video_playcounts"
             android:layout_width="wrap_content"
-            android:layout_height="16dp"
+            android:layout_height="15dp"
             app:layout_constraintLeft_toRightOf="@id/image_user_video_play_counts"
             app:layout_constraintBottom_toBottomOf="@id/image_user_video_play_counts"
             android:layout_marginStart="3dp"
             android:textColor="@color/color_txt_video_time"
             android:gravity="center"
-            android:text="23观看"
             android:includeFontPadding="false"
             android:textSize="11sp" />
 
@@ -87,9 +85,9 @@
             android:id="@+id/image_user_video_play_comment"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
-            app:layout_constraintLeft_toRightOf="@id/txt_user_video_playcounts"
+            app:layout_constraintLeft_toLeftOf="@id/txt_user_list_name"
             app:layout_constraintBottom_toBottomOf="@id/txt_user_video_playcounts"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="77dp"
             android:src="@mipmap/img_video_comment" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -101,7 +99,7 @@
             android:layout_marginStart="3dp"
             android:textColor="@color/color_txt_video_time"
             android:gravity="center"
-            android:text=" -- "
+            android:text=" - "
             android:includeFontPadding="false"
             android:textSize="11sp" />
 

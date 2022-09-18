@@ -33,7 +33,7 @@ public class CheckView : View {
         _path = Path()
         paint = Paint(Paint.ANTI_ALIAS_FLAG)
         paint?.run {
-            strokeWidth = ScreenUtil.dip2px(2f).toFloat()
+            strokeWidth = ScreenUtil.dip2px(2f)
             style = Paint.Style.STROKE
             color = ContextCompat.getColor(context, R.color.color_txt_item_name)
         }

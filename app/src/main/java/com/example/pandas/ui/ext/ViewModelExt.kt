@@ -75,14 +75,3 @@ fun launchVideoPlayActivity(
     }
     launcher.launch(intent)
 }
-
-
-/**
- * 后续数据修改成id
- */
-fun startUserInfoActivity(context: Context, userCode: Int) {
-    val intent = Intent(context, UserInfoActivity::class.java).apply {
-        putExtra("userCode", userCode)
-    }
-    context.startActivity(intent)
-}

@@ -242,18 +242,21 @@ class PetManager {
         code: Int,
         startIndex: Int,
         counts: Int
-    ): MutableList<PetViewData> {
+    ): MutableList<VideoAndData> {
 
-        return withContext(Dispatchers.IO) {
-
-            delay(500)
-            petDao.queryVideosByCode(code, startIndex, counts)
+        Log.e("getUserVideos", "code: $code")
+        return withContext(Dispatchers.Default) {
+            val list = petDao.queryUserVideos(code)
+            val user = petDao.queryUserByCode(code)
+            Log.e("getUserVideos", "list: $list")
+            Log.e("getUserVideos", "user: $user")
+            petDao.quertUserVideos(code, startIndex, counts)
         }
     }
 
     suspend fun getAllPetCoverUrl(): MutableList<CoverDownLoad> {
 
-        return withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.Default) {
             petDao.queryAllPetCovers()
         }
     }

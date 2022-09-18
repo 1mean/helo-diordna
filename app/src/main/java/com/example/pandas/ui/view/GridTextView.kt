@@ -40,12 +40,12 @@ public class GridTextView : ViewGroup {
         attrs,
         defStyleAttr
     ) {
-        defaultHeight = ScreenUtil.dip2px(30f)
-        padding = ScreenUtil.dip2px(11f)
-        margin = ScreenUtil.dip2px(5f)
+        defaultHeight = ScreenUtil.dip2px(30f).toInt()
+        padding = ScreenUtil.dip2px(11f).toInt()
+        margin = ScreenUtil.dip2px(5f).toInt()
         drawable = ContextCompat.getDrawable(context, R.drawable.shape_search_history)
         txtColor = ContextCompat.getColor(context, R.color.color_video_item_title)
-        fullScreenWidth = ScreenUtil.getScreenWidth(context) - ScreenUtil.dip2px(14f)
+        fullScreenWidth = ScreenUtil.getScreenWidth(context) - ScreenUtil.dip2px(14f).toInt()
     }
 
     private var listener: ItemClickListener<String>? = null

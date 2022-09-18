@@ -4,6 +4,7 @@
     <!-- dimens.xml命名规范：模块_具体作用名 -->
 
     <!-- 普通文字 @auther dongyiming -->
+    <dimen name="common_sz_5_dimens">5sp</dimen>
     <dimen name="common_sz_9_dimens">9sp</dimen>
     <dimen name="common_sz_10_dimens">10sp</dimen>
     <dimen name="common_sz_11_dimens">11sp</dimen>

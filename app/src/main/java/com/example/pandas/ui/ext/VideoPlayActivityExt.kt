@@ -4,7 +4,6 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Typeface
-import android.util.Log
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
@@ -20,7 +19,6 @@ import com.example.helo_base.magic.commonnavigator.indicators.LinePagerIndicator
 import com.example.pandas.R
 import com.example.pandas.bean.VideoInfo
 import com.example.pandas.biz.ext.loadCircleImage
-import com.example.pandas.biz.ext.startUserInfoActivity
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
@@ -154,7 +152,7 @@ fun VideoInfosFragment.initUser(user: User) {
         StringBuilder(user.videoCounts.toString()).append("视频").toString()
 
     binding.imgVideoInfoHead.setOnClickListener {
-        startUserInfoActivity(mActivity, user.userCode)
+        startUserInfoActivity(mActivity, user)
     }
 }
 

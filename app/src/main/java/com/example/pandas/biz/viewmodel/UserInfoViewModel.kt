@@ -8,7 +8,7 @@ import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.ExceptionHandle
 import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.sql.entity.User
+import com.example.pandas.sql.entity.VideoAndData
 import kotlinx.coroutines.launch
 
 /**
@@ -21,22 +21,10 @@ public class UserInfoViewModel : BaseViewModel() {
 
     var startIndex = 0//分页起始
     var hasMore = true//是否有更多
-    var authorId: Int = 0
 
-    val userVideos: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
-    val userInfo: MutableLiveData<User> by lazy { MutableLiveData() }
-
-    fun getUserInfo(code: Int) {
-        viewModelScope.launch {
-            userInfo.value = PetManagerCoroutine.getUser(code)
-        }
-    }
+    val userVideos: MutableLiveData<UIDataWrapper<VideoAndData>> by lazy { MutableLiveData() }
 
     fun getUserVideos(code: Int, isRefresh: Boolean) {
-
-        if (authorId == 0) {
-            authorId = code
-        }
 
         if (isRefresh) {
             startIndex = 0
@@ -44,7 +32,7 @@ public class UserInfoViewModel : BaseViewModel() {
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getUserVideos(authorId, startIndex, 11)
+                PetManagerCoroutine.getUserVideos(code, startIndex, 11)
             }.onSuccess {
 
                 hasMore = if (it.size > 10) {
@@ -54,7 +42,7 @@ public class UserInfoViewModel : BaseViewModel() {
                     false
                 }
 
-                val dataList = UIDataWrapper<PetViewData>(
+                val dataList = UIDataWrapper<VideoAndData>(
                     isSuccess = true,
                     isRefresh = isRefresh,
                     isEmpty = it.isEmpty(),
@@ -69,7 +57,7 @@ public class UserInfoViewModel : BaseViewModel() {
                 it.message?.loge()
                 it.printStackTrace()
                 val exception = ExceptionHandle.handleException(it)
-                val dataList = UIDataWrapper<PetViewData>(
+                val dataList = UIDataWrapper<VideoAndData>(
                     isSuccess = false,
                     errMessage = exception.errorMsg,
                     isRefresh = isRefresh,

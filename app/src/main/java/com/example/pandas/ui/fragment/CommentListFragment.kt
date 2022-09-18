@@ -39,8 +39,6 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
     private var code = -1
     private val mAdapter: CommentListAdapter by lazy { CommentListAdapter(mutableListOf(), this) }
 
-    override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
-
     private val km: KeyboardManager by lazy { KeyboardManager(mActivity) }
 
     override fun onAttach(context: Context) {

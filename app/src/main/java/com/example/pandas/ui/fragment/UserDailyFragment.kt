@@ -19,6 +19,7 @@ public class UserDailyFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefre
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.swipLayout.isEnabled = false
+        binding.swipLayout.setBackgroundResource(R.color.color_viewpager_bg)
 //        binding.layoutEmpty.llayoutEmpty.setBackgroundResource(R.color.white)
         binding.layoutEmpty.llayoutEmpty.visibility = View.VISIBLE
     }

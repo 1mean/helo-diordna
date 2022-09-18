@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.bean.ReplyInfo
 import com.example.pandas.biz.ext.loadHeadCircleImage
-import com.example.pandas.biz.ext.startUserInfoActivity
 import com.example.pandas.biz.interaction.SpanClickListener
 import com.example.pandas.databinding.ItemAdapterCommentTitleBinding
 import com.example.pandas.databinding.ItemCommentsBinding
@@ -21,6 +20,7 @@ import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.ext.setLevelImageResourse
 import com.example.pandas.ui.ext.setTextType
+import com.example.pandas.ui.ext.startUserInfoActivity
 import com.example.pandas.utils.SpannableStringUtils
 import com.example.pandas.utils.TimeUtils
 
@@ -141,7 +141,7 @@ public class CommentListAdapter(
                 val builder = SpannableStringUtils.replyOneBuilder(clickableColor, comment, object :
                     SpanClickListener<Int> {
                     override fun spanClick(t: Int) {
-                        startUserInfoActivity(context, t)
+                        startUserInfoActivity(context, user)
                     }
                 })
                 content.text = builder
@@ -235,10 +235,10 @@ public class CommentListAdapter(
             }
 
             name.setOnClickListener {
-                startUserInfoActivity(context, videoComment.fromUserCode)
+                startUserInfoActivity(context, user)
             }
             header.setOnClickListener {
-                startUserInfoActivity(context, videoComment.fromUserCode)
+                startUserInfoActivity(context, user)
             }
             content.setOnClickListener {
                 val type = if (position == 0) {

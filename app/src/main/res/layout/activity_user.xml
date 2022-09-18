@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/bar_user"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             app:elevation="0dp">
 
         <!--app:titleEnabled="false" 解决Toolbar中文字无法居中问题，左侧会为折叠预留的空间，导致文字右移-->
         <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_user"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:titleEnabled="false"
-                app:contentScrim="@color/white">
+                app:titleEnabled="false">
 
             <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
@@ -201,12 +203,26 @@
                         android:textColor="@color/color_eye_txt_time" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!--Toolbar左侧控件一直有空白，无法放置在最左侧，设置四个contentInset值解决-->
             <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_marginTop="32.66dp"
-                    app:navigationIcon="@mipmap/img_video_left"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetStart="0dp"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetRight="0dp"
                     app:layout_collapseMode="pin">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/ib_user_video"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/shape_bg_user_video"
+                        android:src="@mipmap/img_user_back"
+                        android:layout_gravity="center_vertical|left"
+                        android:layout_marginStart="10dp"
+                        tools:ignore="RtlHardcoded" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_user_bar_name"
@@ -217,37 +233,32 @@
                         android:visibility="gone"
                         android:textColor="@color/color_video_item_title" />
 
+                <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/ib_user_more"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/shape_bg_user_video"
+                        android:src="@mipmap/img_user_more"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center_vertical|right"
+                        tools:ignore="RtlHardcoded" />
+
             </androidx.appcompat.widget.Toolbar>
 
             <View
                     android:layout_width="match_parent"
-                    android:layout_height="0.8dp"
+                    android:layout_height="0.33dp"
                     android:layout_gravity="bottom"
+                    android:layout_marginStart="12dp"
                     android:background="@color/color_bg_hot_divider" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.tabs.TabLayout
+    <com.example.helo_base.magic.MagicIndicator
             android:id="@+id/tb_user"
             android:layout_width="match_parent"
             android:layout_height="41dp"
-            app:tabMaxWidth="0dp"
-            app:tabBackground="@color/white"
-            app:tabRippleColor="@android:color/transparent"
-            app:tabTextColor="@color/color_home_tab_text"
-            app:tabIndicatorColor="@color/color_tab_indicator"
-            app:tabSelectedTextColor="@color/color_tab_text_selected"
-            app:tabTextAppearance="@style/UserInfoTabStyle"
-            app:tabIndicator="@drawable/layer_user_tab_indicator"
-            android:paddingBottom="5dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-
-    <!--    <androidx.core.widget.NestedScrollView-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:layout_marginTop="41dp"-->
-    <!--            app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
 
     <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_user"

@@ -2,13 +2,14 @@ package com.example.pandas.ui.fragment
 
 import UserVideosAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.UserInfoViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
+import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
@@ -21,17 +22,22 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  */
 public class UserVideosFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefreshBinding>() {
 
+    private var user: User? = null
+
     private val mAdapter: UserVideosAdapter by lazy { UserVideosAdapter(mutableListOf()) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        user = mActivity.intent.getParcelableExtra("user")
         binding.recyclerLayout.init(
             null,
             mAdapter,
             LinearLayoutManager(context),
             object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
-                    mViewModel.getUserVideos(mViewModel.authorId, false)
+                    user?.let {
+                        mViewModel.getUserVideos(it.userCode, false)
+                    }
                 }
             })
 
@@ -41,16 +47,20 @@ public class UserVideosFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefr
             isRefreshing = true
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
-                mViewModel.getUserVideos(mViewModel.authorId, true)
+                user?.let {
+                    mViewModel.getUserVideos(it.userCode, true)
+                }
             }
         }
-
     }
 
     override fun createObserver() {
 
         mViewModel.userVideos.observe(viewLifecycleOwner) {
-
+            Log.e("listData1","size: ${it.listData.size}")
+            it.listData.forEach {
+                Log.e("listData1", "listData1: ${it.videoData}")
+            }
             if (it.isSuccess) {
                 binding.recyclerLayout.visibility = View.VISIBLE
                 when {
@@ -70,9 +80,9 @@ public class UserVideosFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefr
     }
 
     override fun firstOnResume() {
-    }
 
-    override fun getCurrentLifeOwner(): ViewModelStoreOwner {
-        return mActivity
+        user?.let {
+            mViewModel.getUserVideos(it.userCode, true)
+        }
     }
 }

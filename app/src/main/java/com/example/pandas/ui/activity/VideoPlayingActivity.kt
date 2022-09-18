@@ -58,7 +58,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     val tabNames = arrayListOf("简介", "评论")
 
-    private var vedioUrl: String? = null
     private var code: Int = -1
     private var isFullScreen: Boolean = false
     private val MAX_UPDATE_INTERVAL_MS = 1000L
@@ -248,7 +247,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     private var startTime: Long = 0
     override fun onResume() {
         super.onResume()
-
         if (isFirstVisible) {
             if (isPlayIng) {
                 videoManager.play(binding.playView, MediaInfo(code, "", currentPosition))
@@ -260,6 +258,17 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         }
         startTime = System.currentTimeMillis()
         updateTimeTask.sendEmptyMessage(0)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        //释放资源
+        if (Util.SDK_INT > 23) {
+            this.currentPosition = videoManager.getCurrentPos()
+            updateTimeTask.removeMessages(0)
+            videoManager.releasePlayer()
+        }
+        Log.e("adasdas", "onStop()")
     }
 
     override fun createObserver() {
@@ -396,45 +405,29 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     }
 
     override fun showCommentsFragment(commentId: Int) {
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            setCustomAnimations(
+        val fragments = supportFragmentManager.fragments
+        Log.e("1mean", "fragments: $fragments")
+        addFragment(
+            "comment_list", R.id.llayout_video_info, CommentListFragment.newInstance(commentId),
+            intArrayOf(
+                R.anim.animate_fragment_in,
+                R.anim.animate_fragment_out,
                 R.anim.animate_fragment_in,
                 R.anim.animate_fragment_out
             )
-            add(R.id.llayout_video_info, CommentListFragment.newInstance(commentId))
-        }
+        )
     }
 
     override fun closeCommentFragment() {
-        if (supportFragmentManager.fragments.isNotEmpty()) {
-            supportFragmentManager.fragments.forEach {
-                if (it is CommentListFragment) {
-                    supportFragmentManager.beginTransaction().setCustomAnimations(
-                        R.anim.animate_fragment_in,
-                        R.anim.animate_fragment_out
-                    ).remove(it).commit()
-
-                    val fragments = supportFragmentManager.fragments
-                    Log.e("1mean","fragments: $fragments")
-
-                    return@forEach
-                }
-            }
-        }
+        popBack("comment_list")
     }
 
     override fun onkeyBack() {
-        if (supportFragmentManager.fragments.isNotEmpty()) {
-            supportFragmentManager.fragments.forEach {
-                if (it is CommentListFragment) {
-                    supportFragmentManager.beginTransaction().setCustomAnimations(
-                        R.anim.animate_fragment_in,
-                        R.anim.animate_fragment_out
-                    ).remove(it).commit()
-                    return
-                }
-            }
+
+        val fragment = supportFragmentManager.findFragmentByTag("comment_list")
+        if (fragment != null) {
+            supportFragmentManager.popBackStack()
+            return
         }
 
         updateTimeTask.removeMessages(0)
@@ -447,17 +440,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             setResult(RESULT_OK, intent)
         }
         finish()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        //释放资源
-        if (Util.SDK_INT > 23) {
-            this.currentPosition = videoManager.getCurrentPos()
-            updateTimeTask.removeMessages(0)
-            videoManager.releasePlayer()
-        }
-        Log.e("adasdas", "onStop()")
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
