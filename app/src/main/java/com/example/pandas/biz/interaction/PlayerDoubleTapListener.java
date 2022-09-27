@@ -26,4 +26,12 @@ public interface PlayerDoubleTapListener {
     default void onSingleTapUp() {
     }
 
+    default void onDoubleTap(){
+
+    }
+
+    default void onSingleTapConfirmed(){
+
+    }
+
 }

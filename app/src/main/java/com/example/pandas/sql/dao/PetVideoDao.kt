@@ -217,6 +217,13 @@ interface PetVideoDao {
     ): MutableList<VideoAndUser>
 
     @Transaction
+    @Query("select * from pet_video where vertical=1 limit (:startIndex),(:count)")
+    suspend fun queryVerticalVideos(
+        startIndex: Int,
+        count: Int
+    ): MutableList<VideoAndUser>
+
+    @Transaction
     @Query("select * from pet_video where period=(:period) and type=0 and videoType=0 limit (:startIndex),(:counts)")
     suspend fun queryByPeried(
         period: Int,

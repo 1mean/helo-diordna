@@ -33,6 +33,7 @@ panda.authorId=319747807
         panda2.title = "第一次上树摔下来的花花又被奶爸一顿狂宠。【大熊猫和花】"
         panda2.tags = "萌宠,动物圈,大熊猫,熊猫宝宝,和花,熊猫基地,奶爸"
         panda2.authorId = 514531996
+        panda2.vertical = true
         panda2.cover =
             "https://i2.hdslb.com/bfs/archive/a1bc7070d4ca09cce27e10281260cf6fe1ac2cfe.jpg"
         list.add(panda2)
@@ -48,6 +49,7 @@ panda.authorId=319747807
         panda3.title = "和花在线求抱抱，谁不想拥有呢"
         panda3.tags = "萌宠,动物圈,大熊猫,熊猫宝宝,和花,熊猫基地,奶爸"
         panda3.authorId = 1025949925
+        panda3.vertical = true
         panda3.cover =
             "https://i1.hdslb.com/bfs/archive/0522bcacb51e908a72000134ec3a98ca810cfac7.jpg"
         list.add(panda3)
@@ -63,6 +65,7 @@ panda.authorId=319747807
         panda4.title = "大熊猫和花：哼！我是别人家的小宝贝了！"
         panda4.tags = "萌宠,动物圈,大熊猫,熊猫宝宝,和花,熊猫基地"
         panda4.authorId = 1170961381
+        panda4.vertical = true
         panda4.star = true
         panda4.cover =
             "https://i1.hdslb.com/bfs/archive/5609a81a05f3cf902442754cd1e90830af9cb3c9.jpg"
@@ -95,6 +98,7 @@ panda.authorId=319747807
         panda6.title = "和花，新的一天，新的可爱"
         panda6.tags = "萌宠,动物圈,大熊猫,滚滚,熊猫宝宝,和花,熊猫基地"
         panda6.authorId = 1998535
+        panda6.vertical = true
         panda6.star = true
         panda6.cover =
             "https://i0.hdslb.com/bfs/archive/8201696bd505a92f542b1259855919845b75ffcd.jpg"
@@ -235,6 +239,7 @@ panda.authorId=319747807
         panda15.title = "我有了一个大胆的想法，大熊猫和花"
         panda15.tags = "大熊猫和花,大熊猫,国宝,可爱,熊猫宝宝,打卡挑战,动物圈"
         panda15.authorId = 484657707
+        panda15.vertical = true
         panda15.cover =
             "https://i1.hdslb.com/bfs/archive/f8b5ba0f2bc870bb2dd333bd71a47707b4c4c401.jpg"
         list.add(panda15)
@@ -392,6 +397,7 @@ panda.authorId=319747807
         panda25.originalUrl = "https://www.bilibili.com/video/BV1r54y1L7mr?share_source=copy_web"
         panda25.tags = "大熊猫,国宝,动物圈,熊猫,熊猫宝宝"
         panda25.authorId = 1025949925
+        panda25.vertical = true
         panda25.cover =
             "https://i0.hdslb.com/bfs/archive/ce98b180efe750726e4c69125cadcfdd19105600.jpg"
         list.add(panda25)
@@ -518,6 +524,7 @@ panda.authorId=319747807
         panda33.originalUrl = "https://www.bilibili.com/video/BV14K4y1g71o?share_source=copy_web"
         panda33.tags = "大熊猫,萌宠,搞笑,萌萌哒,生活,可爱,日常,动物圈"
         panda33.authorId = 1170961381
+        panda33.vertical = true
         panda33.star = true
         panda33.cover =
             "https://i0.hdslb.com/bfs/archive/a71090881640e6fc1ec18f06235ab7b6a9b19a92.jpg"
@@ -614,6 +621,7 @@ panda.authorId=319747807
         panda39.originalUrl = "https://www.bilibili.com/video/BV1mt4y1z7VQ?share_source=copy_web"
         panda39.tags = "大熊猫,萌宠,搞笑,萌萌哒,可爱,和花,动物圈"
         panda39.authorId = 1998535
+        panda39.vertical = true
         panda39.star = true
         panda39.cover =
             "https://i0.hdslb.com/bfs/archive/339f9de993a579260e5fd5c53e27b539df40e56d.jpg"
@@ -941,6 +949,7 @@ panda.authorId=319747807
         panda60.originalUrl = "https://www.bilibili.com/video/BV1Uf4y1s7b9?share_source=copy_web"
         panda60.tags = "大熊猫,萌宠,搞笑,萌萌哒,可爱,和花,动物圈"
         panda60.authorId = 514531996
+        panda60.vertical = true
         panda60.cover =
             "https://i1.hdslb.com/bfs/archive/bff19d813dae370ed93c8d0622a6e967f08e88c8.jpg"
         list.add(panda60)
@@ -956,6 +965,7 @@ panda.authorId=319747807
         panda61.originalUrl = "https://www.bilibili.com/video/BV1c54y1W7jX?share_source=copy_web"
         panda61.tags = "大熊猫,萌宠,搞笑,萌萌哒,可爱,和花,动物圈"
         panda61.authorId = 514531996
+        panda61.vertical = true
         panda61.cover =
             "https://i1.hdslb.com/bfs/archive/cb1b805c931c61bfe8cef3dbd9a8a0bc1d20d730.jpg"
         list.add(panda61)
@@ -1065,6 +1075,7 @@ panda.authorId=319747807
         panda68.originalUrl = "https://www.bilibili.com/video/BV1a64y1b7dz?share_source=copy_web"
         panda68.tags = "大熊猫,萌宠,搞笑,萌萌哒,可爱,和花,动物圈"
         panda68.authorId = 19715714
+        panda68.vertical = true
         panda68.cover =
             "https://i0.hdslb.com/bfs/archive/9e3c77f4e35a39cac561e3592268a1a358f93f9a.jpg"
         list.add(panda68)
@@ -1740,6 +1751,7 @@ panda.authorId=319747807
         panda111.originalUrl = "https://www.bilibili.com/video/BV1E44y177TS?share_source=copy_web"
         panda111.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda111.authorId = 381601429
+        panda111.vertical = true
         panda111.cover =
             "https://i1.hdslb.com/bfs/archive/a021af98c6737bc51c4abbebf78ef8dd412693d8.jpg"
         list.add(panda111)
@@ -3254,6 +3266,7 @@ panda.authorId=319747807
         panda206.originalUrl = "https://www.bilibili.com/video/BV1Kq4y157H1"
         panda206.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda206.authorId = 384298638
+        panda206.vertical = true
         panda206.cover =
             "https://i2.hdslb.com/bfs/archive/d8b49976e6b6b78f0acb6bee2764fb7ec22c4806.jpg"
         list.add(panda206)
@@ -3851,6 +3864,7 @@ panda.authorId=319747807
         panda242.originalUrl = "https://www.bilibili.com/video/BV1EK4y1j7uY"
         panda242.tags = "熊猫,宝宝,萌宠"
         panda242.authorId = 484657707
+        panda242.vertical = true
         panda242.cover =
             "https://i1.hdslb.com/bfs/archive/d0ffcf872d007d2eae42a20a82be95d20fc6dce6.jpg"
         panda242.videoType = 0
@@ -4004,6 +4018,7 @@ panda.authorId=319747807
         panda251.originalUrl = "https://www.bilibili.com/video/BV1n7411c7Pi"
         panda251.tags = "熊猫,宝宝,萌宠"
         panda251.authorId = 235697614
+        panda251.vertical = true
         panda251.cover =
             "https://i0.hdslb.com/bfs/archive/587b7a76ac68645c56735324f8f3ac7a57fe0ea6.jpg"
         panda251.videoType = 0
@@ -4106,6 +4121,7 @@ panda.authorId=319747807
         panda257.originalUrl = "https://www.bilibili.com/video/BV1gK411P7P3"
         panda257.tags = "熊猫,宝宝,萌宠"
         panda257.authorId = 687773163
+        panda257.vertical = true
         panda257.cover =
             "https://i0.hdslb.com/bfs/archive/07768b2649ca14101de53e57437f279292056f0c.jpg"
         panda257.videoType = 0
@@ -4327,6 +4343,7 @@ panda.authorId=319747807
         panda270.originalUrl = "https://www.bilibili.com/video/BV1qR4y1g74V"
         panda270.tags = "熊猫,宝宝,萌宠"
         panda270.authorId = 2037312510
+        panda270.vertical = true
         panda270.cover =
             "https://i1.hdslb.com/bfs/archive/67cbb9901366c22d5e16aeac7a16735afcf17ba8.jpg"
         panda270.videoType = 0
@@ -4616,6 +4633,7 @@ panda.authorId=319747807
         panda287.originalUrl = "https://www.bilibili.com/video/BV1WZ4y1w7gD"
         panda287.tags = "熊猫,宝宝,萌宠"
         panda287.authorId = 32436782
+        panda287.vertical = true
         panda287.cover =
             "https://i0.hdslb.com/bfs/archive/a6ebd4fbcfe922d66296e7bb74192cc821d28dc2.jpg"
         panda287.videoType = 0
@@ -4769,6 +4787,7 @@ panda.authorId=319747807
         panda296.originalUrl = "https://www.bilibili.com/video/BV1aZ4y1c7ML"
         panda296.tags = "熊猫,宝宝,萌宠"
         panda296.authorId = 514531996
+        panda296.vertical = true
         panda296.cover =
             "https://i1.hdslb.com/bfs/archive/a764051e44b7addbdf2a0f7613e3e37c3bf6beff.jpg"
         panda296.videoType = 0
@@ -5905,6 +5924,7 @@ panda.authorId=319747807
         panda363.originalUrl = "https://www.bilibili.com/video/BV1fF411J7PG"
         panda363.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
         panda363.authorId = 2037312510
+        panda363.vertical = true
         panda363.cover =
             "https://i0.hdslb.com/bfs/archive/5fcc6fb6f17d59721d6423fad16f34a6b52c3374.jpg"
         list.add(panda363)
@@ -6017,6 +6037,7 @@ panda.authorId=319747807
         panda370.originalUrl = "https://www.bilibili.com/video/BV1k3411E7sz"
         panda370.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
         panda370.authorId = 1998535
+        panda370.vertical = true
         panda370.cover =
             "https://i0.hdslb.com/bfs/archive/2989fee2a8e34523073214d73fb00088079bec9c.jpg"
         list.add(panda370)
@@ -6081,6 +6102,7 @@ panda.authorId=319747807
         panda374.originalUrl = "https://www.bilibili.com/video/BV1744y1L7WN"
         panda374.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
         panda374.authorId = 512725923
+        panda374.vertical = true
         panda374.cover =
             "https://i2.hdslb.com/bfs/archive/dc9be1c99d8ed0fc3926331f758ff74e8a08d24d.jpg"
         list.add(panda374)
@@ -6209,6 +6231,7 @@ panda.authorId=319747807
         panda382.originalUrl = "https://www.bilibili.com/video/BV1rS4y1k7W8"
         panda382.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
         panda382.authorId = 512725923
+        panda382.vertical = true
         panda382.cover =
             "https://i2.hdslb.com/bfs/archive/37c2d7e614e4d94bd30b466dc7314fd488999a7a.jpg"
         list.add(panda382)

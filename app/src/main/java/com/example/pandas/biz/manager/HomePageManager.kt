@@ -68,6 +68,24 @@ class PetManager {
         }
     }
 
+    suspend fun getVerticalVideos(
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetVideo> {
+
+        return withContext(Dispatchers.Default) {
+            val petVideos = mutableListOf<PetVideo>()
+            val list = petDao.queryVerticalVideos(startIndex, counts)
+            list.forEach {
+                val video = it.video
+                video.videoData = petDao.queryVideoDataByCode(video.code)
+                video.user = it.user
+                petVideos.add(video)
+            }
+            petVideos
+        }
+    }
+
     suspend fun getMusicCounts(): Int {
 
         return withContext(Dispatchers.IO) {

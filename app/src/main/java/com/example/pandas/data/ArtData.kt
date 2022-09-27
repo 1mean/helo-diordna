@@ -49,6 +49,7 @@ object ArtData {
         art3.originalUrl = "https://www.bilibili.com/video/BV18r4y1D7k2"
         art3.tags = "艺术,MV"
         art3.authorId = 36814636
+        art3.vertical = true
         art3.cover = "https://i1.hdslb.com/bfs/archive/0121ff379cb408a3617a0137d12278151530f02b.jpg"
         list.add(art3)
 

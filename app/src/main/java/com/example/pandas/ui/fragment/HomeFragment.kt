@@ -13,6 +13,7 @@ import com.example.pandas.biz.viewmodel.MainViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
 import com.example.pandas.ui.activity.MessageActivity
 import com.example.pandas.ui.activity.SearchActivity
+import com.example.pandas.ui.activity.VerticalVideoActivity2
 import com.example.pandas.ui.adapter.HomePagerAdapter
 import com.example.pandas.ui.view.TabEntity
 import com.example.pandas.utils.SPUtils
@@ -72,7 +73,7 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
         }
 
         binding.imgHead.setOnClickListener {
-            mViewModel.updateHeadState()
+            mActivity.startActivity(Intent(mActivity, VerticalVideoActivity2::class.java))
         }
         binding.ibMessage.setOnClickListener {
             mActivity.startActivity(Intent(mActivity, MessageActivity::class.java))

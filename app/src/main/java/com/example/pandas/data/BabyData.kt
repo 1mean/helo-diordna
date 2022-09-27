@@ -22,6 +22,7 @@ object BabyData {
         baby1.originalUrl = "https://www.bilibili.com/video/BV1tb4y1h7PB"
         baby1.tags = "人类宝宝"
         baby1.authorId = 2106730041
+        baby1.vertical = true
         baby1.cover =
             "https://i0.hdslb.com/bfs/archive/e4951e74e209fc52bf84964ccf3e0d0b69565a38.jpg"
         list.add(baby1)
@@ -37,6 +38,7 @@ object BabyData {
         baby2.originalUrl = "https://www.bilibili.com/video/BV1uP4y1L7Vn"
         baby2.tags = "人类宝宝"
         baby2.authorId = 3107068
+        baby2.vertical = true
         baby2.cover =
             "https://i1.hdslb.com/bfs/archive/a0e8bf700deed595d381db6ab2b6d54b0471d41c.jpg"
         list.add(baby2)
@@ -142,6 +144,7 @@ object BabyData {
         baby9.originalUrl = "https://www.bilibili.com/video/BV1qB4y1T7nZ"
         baby9.tags = "人类宝宝"
         baby9.authorId = 668149765
+        baby9.vertical = true
         baby9.cover =
             "https://i2.hdslb.com/bfs/archive/449223597111bd91f0a16ffdc98a168abebc83d5.jpg"
         list.add(baby9)
@@ -157,6 +160,7 @@ object BabyData {
         baby10.originalUrl = "https://www.bilibili.com/video/BV1bq4y1p7Zh"
         baby10.tags = "人类宝宝"
         baby10.authorId = 3107068
+        baby10.vertical = true
         baby10.cover =
             "https://i1.hdslb.com/bfs/archive/eec0568e43c6b0f6b9df30b281ce06f555734446.jpg"
         list.add(baby10)
@@ -172,6 +176,7 @@ object BabyData {
         baby11.originalUrl = "https://www.bilibili.com/video/BV1jh411n7Kr"
         baby11.tags = "人类宝宝"
         baby11.authorId = 30738231
+        baby11.vertical = true
         baby11.cover =
             "https://i0.hdslb.com/bfs/archive/5bcb3cf7aec0e580053ccccd58636742e7e90ac1.jpg"
         list.add(baby11)
@@ -187,6 +192,7 @@ object BabyData {
         baby12.originalUrl = "https://www.bilibili.com/video/BV1Cb4y187cd"
         baby12.tags = "人类宝宝"
         baby12.authorId = 668149765
+        baby12.vertical = true
         baby12.cover =
             "https://i0.hdslb.com/bfs/archive/dcf0f47d02004753c537c4df70132ac8ae3cdd02.jpg"
         list.add(baby12)
@@ -202,6 +208,7 @@ object BabyData {
         baby13.originalUrl = "https://www.bilibili.com/video/BV1E34y1C7Ny"
         baby13.tags = "人类宝宝"
         baby13.authorId = 668149765
+        baby13.vertical = true
         baby13.cover =
             "https://i0.hdslb.com/bfs/archive/7227144b16a78b670737083bb53595c012bad41a.jpg"
         list.add(baby13)
@@ -217,6 +224,7 @@ object BabyData {
         baby14.originalUrl = "https://www.bilibili.com/video/BV11S4y1F7m6"
         baby14.tags = "人类宝宝"
         baby14.authorId = 668149765
+        baby14.vertical = true
         baby14.cover =
             "https://i1.hdslb.com/bfs/archive/41dc763ce36d5ef87d38c665889d04470a064638.jpg"
         list.add(baby14)
@@ -232,6 +240,7 @@ object BabyData {
         baby15.originalUrl = "https://www.bilibili.com/video/BV1hL4y1G74X"
         baby15.tags = "人类宝宝"
         baby15.authorId = 668149765
+        baby15.vertical = true
         baby15.cover =
             "https://i2.hdslb.com/bfs/archive/dad679558ad695a822893bead27153682d1550ab.jpg"
         list.add(baby15)
@@ -247,6 +256,7 @@ object BabyData {
         baby16.originalUrl = "https://www.bilibili.com/video/BV1pJ41127Hw"
         baby16.tags = "人类宝宝"
         baby16.authorId = 43296249
+        baby16.vertical = true
         baby16.cover =
             "https://i2.hdslb.com/bfs/archive/e01f536906869405d6116d1e062e079055bc5a2c.jpg"
         list.add(baby16)
@@ -262,6 +272,7 @@ object BabyData {
         baby17.originalUrl = "https://www.bilibili.com/video/BV1dy4y1s7q5"
         baby17.tags = "人类宝宝"
         baby17.authorId = 30738231
+        baby17.vertical = true
         baby17.cover =
             "https://i1.hdslb.com/bfs/archive/a552a0279401566c884b251d32ea21aae8315797.jpg"
         list.add(baby17)
@@ -277,6 +288,7 @@ object BabyData {
         baby18.originalUrl = "https://www.bilibili.com/video/BV1n5411c7Au"
         baby18.tags = "人类宝宝"
         baby18.authorId = 30738231
+        baby18.vertical = true
         baby18.cover =
             "https://i2.hdslb.com/bfs/archive/0324634a78fd9a3cc0b9544ef47cd72a798c625b.jpg"
         list.add(baby18)
@@ -307,6 +319,7 @@ object BabyData {
         baby20.originalUrl = "https://www.bilibili.com/video/BV1zJ411Y7Wv"
         baby20.tags = "人类宝宝"
         baby20.authorId = 404842697
+        baby20.vertical = true
         baby20.cover =
             "https://i0.hdslb.com/bfs/archive/fc74642fca01b256c0590258809bb7c7e7f53638.jpg"
         list.add(baby20)
@@ -337,6 +350,7 @@ object BabyData {
         baby22.originalUrl = "https://www.bilibili.com/video/BV1wV411W7xH"
         baby22.tags = "人类宝宝"
         baby22.authorId = 412719797
+        baby22.vertical = true
         baby22.cover =
             "https://i1.hdslb.com/bfs/archive/7fcb1e5bd9e645dbff796989cb7c515d33d2842d.jpg"
         list.add(baby22)
@@ -367,6 +381,7 @@ object BabyData {
         baby24.originalUrl = "https://www.bilibili.com/video/BV1AR4y1J7PR"
         baby24.tags = "人类宝宝"
         baby24.authorId = 57289248
+        baby24.vertical = true
         baby24.cover =
             "https://i1.hdslb.com/bfs/archive/85e03f24410110453e66d38c3c65cb5a3b00e759.jpg"
         list.add(baby24)
@@ -382,6 +397,7 @@ object BabyData {
         baby25.originalUrl = "https://www.bilibili.com/video/BV1X741157we"
         baby25.tags = "人类宝宝"
         baby25.authorId = 28128780
+        baby25.vertical = true
         baby25.cover =
             "https://i1.hdslb.com/bfs/archive/3ff9843ac7c088c541d56b7f1fb642486651b7da.jpg"
         list.add(baby25)
@@ -412,6 +428,7 @@ object BabyData {
         baby27.originalUrl = "https://www.bilibili.com/video/BV17T4y1X79w"
         baby27.tags = "人类宝宝"
         baby27.authorId = 17597722
+        baby27.vertical = true
         baby27.cover =
             "https://i0.hdslb.com/bfs/archive/3d148e76b6df630d932c681c50b0eb2438ba62c4.jpg"
         list.add(baby27)
@@ -427,6 +444,7 @@ object BabyData {
         baby28.originalUrl = "https://www.bilibili.com/video/BV1tv411a7go"
         baby28.tags = "人类宝宝"
         baby28.authorId = 382189062
+        baby28.vertical = true
         baby28.cover =
             "https://i1.hdslb.com/bfs/archive/cf21853e98dfcd06ba90ec37b7ef3b39a734095c.jpg"
         list.add(baby28)
@@ -442,6 +460,7 @@ object BabyData {
         baby29.originalUrl = "https://www.bilibili.com/video/BV1fR4y1M7gH"
         baby29.tags = "人类宝宝"
         baby29.authorId = 30738231
+        baby29.vertical = true
         baby29.cover =
             "https://i1.hdslb.com/bfs/archive/1ff39e97b4b1874751adabf779b84f161be79a55.jpg"
         list.add(baby29)
@@ -457,6 +476,7 @@ object BabyData {
         baby30.originalUrl = "https://www.bilibili.com/video/BV1zF411J7xB"
         baby30.tags = "人类宝宝"
         baby30.authorId = 30738231
+        baby30.vertical = true
         baby30.cover =
             "https://i2.hdslb.com/bfs/archive/28beae44044f843dc5b3ac86bf672cb2d1b3fef4.jpg"
         list.add(baby30)
@@ -472,6 +492,7 @@ object BabyData {
         baby31.originalUrl = "https://www.bilibili.com/video/BV1Si4y1Z7nG"
         baby31.tags = "人类宝宝"
         baby31.authorId = 30738231
+        baby31.vertical = true
         baby31.cover =
             "https://i1.hdslb.com/bfs/archive/1e75db27be67008b08a7f0fea3f7e2fdacb5f3c4.jpg"
         list.add(baby31)
@@ -487,6 +508,7 @@ object BabyData {
         baby32.originalUrl = "https://www.bilibili.com/video/BV1rA411H7zi"
         baby32.tags = "人类宝宝"
         baby32.authorId = 412719797
+        baby32.vertical = true
         baby32.cover =
             "https://i1.hdslb.com/bfs/archive/408e451b135db0fe5bd744a4be4a50c9746cb2d2.jpg"
         list.add(baby32)

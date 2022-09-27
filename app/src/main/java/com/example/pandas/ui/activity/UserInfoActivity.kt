@@ -125,7 +125,6 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                         binding.txtUserBarName.text = it.userName
                     }
                 }
-
                 binding.ibUserVideo.setImageResource(R.mipmap.img_user_back2)
                 binding.ibUserMore.setImageResource(R.mipmap.img_user_more2)
                 binding.ibUserVideo.background = null

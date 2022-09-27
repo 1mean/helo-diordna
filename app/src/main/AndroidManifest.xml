@@ -60,6 +60,7 @@
         <activity android:name=".ui.activity.BehaviorActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.VerticalVideoActivity" />
+        <activity android:name=".ui.activity.VerticalVideoActivity2" />
         <activity android:name=".ui.activity.MoreDataListActivity" />
         <activity android:name=".ui.activity.AudioPlayActivity" />
         <activity android:name=".ui.activity.LocalCacheActivity" />

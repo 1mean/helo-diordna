@@ -148,5 +148,6 @@
     <string name="str_view_setting">界面设置</string>
     <string name="str_network">网络</string>
     <string name="str_storage">缓存设置</string>
+    <string name="str_dm_close">已关闭弹幕</string>
 
 </resources>

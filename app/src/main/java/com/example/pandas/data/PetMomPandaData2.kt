@@ -408,6 +408,7 @@ object PetMomPandaData2 {
         panda329.originalUrl = "https://www.bilibili.com/video/BV1kS4y167xn"
         panda329.tags = "熊猫,宝宝,熊猫妈妈,萌宠"
         panda329.authorId = 1025949925
+        panda329.vertical = true
         panda329.cover =
             "https://i2.hdslb.com/bfs/archive/efa303103e26f5450ead8067d756b304bbb2c187.jpg"
         list.add(panda329)
@@ -968,6 +969,7 @@ object PetMomPandaData2 {
         panda364.originalUrl = "https://www.bilibili.com/video/BV1FZ4y1C77G"
         panda364.tags = "熊猫,宝宝,熊猫妈妈,萌宠"
         panda364.authorId = 66688464
+        panda364.vertical = true
         panda364.cover =
             "https://i0.hdslb.com/bfs/archive/0b5ee833ffac04cb811ae75557fd00547ead9d99.jpg"
         list.add(panda364)

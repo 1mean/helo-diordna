@@ -90,12 +90,16 @@
     <color name="color_bg_video_item_divider">#E2E6E5</color>
     <color name="color_video_tab_selected">#FF5A9A</color>
     <color name="color_name_vip">#FF569A</color>
+    <color name="color_name_vip_vertical">#E6FF569A</color>
     <color name="color_comment_name">#757575</color>
     <color name="color_bg_comment_like">#F4F4F4</color>
     <color name="color_edit_cursor_comment">#FF4D9B</color>
     <color name="color_comment_reply_user">#008BC9</color>
     <color name="color_text_comment_title">#909AA0</color>
     <color name="color_bg_video_more_pressed">#33ffffff</color>
+    <color name="color_vertical_played">#99ffffff</color>
+    <color name="color_vertical_buffer">#33ffffff</color>
+    <color name="color_vertical_unplay">#33ffffff</color>
 
     <!--home fragment-->
     <color name="color_search_text">#ACB4BB</color>
@@ -210,5 +214,6 @@
     <color name="color_bg_list_activity">#F1F7F6</color>
     <color name="color_bg_cm_drivider">#e4e6e5</color>
     <color name="color_bg_dialog">#F6F7F9</color>
+    <color name="color_vertical_white">#E6ffffff</color>
 
 </resources>

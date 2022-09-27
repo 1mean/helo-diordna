@@ -79,6 +79,7 @@ object PetSinglePandaData {
         panda4.originalUrl = "https://www.bilibili.com/video/BV1Ns411G7Vz"
         panda4.tags = "大熊猫,萌宠,动物圈"
         panda4.authorId = 5349202
+        panda4.vertical = true
         panda4.cover =
             "https://i0.hdslb.com/bfs/archive/cfefaab68da3af08585ae6f535767de1946aac49.jpg"
         list.add(panda4)
@@ -143,6 +144,7 @@ object PetSinglePandaData {
         panda8.originalUrl = "https://www.bilibili.com/video/BV1Y34y1d7hi"
         panda8.tags = "大熊猫,萌宠,动物圈"
         panda8.authorId = 1435076062
+        panda8.vertical = true
         panda8.cover =
             "https://i0.hdslb.com/bfs/archive/8d0518846bcb85161c2f3b366b768c2a640cfbde.jpg"
         list.add(panda8)
@@ -175,6 +177,7 @@ object PetSinglePandaData {
         panda10.originalUrl = "https://www.bilibili.com/video/BV1NL411n7D7"
         panda10.tags = "大熊猫,萌宠,动物圈"
         panda10.authorId = 1435076062
+        panda10.vertical = true
         panda10.cover =
             "https://i2.hdslb.com/bfs/archive/13c32c7d6bac87bf4aa0936f9694cfcb64180757.jpg"
         list.add(panda10)
@@ -287,6 +290,7 @@ object PetSinglePandaData {
         panda17.originalUrl = "https://www.bilibili.com/video/BV1hi4y197GF"
         panda17.tags = "大熊猫,萌宠,动物圈"
         panda17.authorId = 4082865
+        panda17.vertical = true
         panda17.cover =
             "https://i1.hdslb.com/bfs/archive/21f0afac0711612f0512ef45aead8de4f0ca5f2e.jpg"
         list.add(panda17)
@@ -303,6 +307,7 @@ object PetSinglePandaData {
         panda18.originalUrl = "https://www.bilibili.com/video/BV1zv411M7yE"
         panda18.tags = "大熊猫,萌宠,动物圈"
         panda18.authorId = 31122700
+        panda18.vertical = true
         panda18.cover =
             "https://i2.hdslb.com/bfs/archive/0e1986f8fdd431e15a756fd394764e8c01dbbb0f.jpg"
         list.add(panda18)
@@ -559,6 +564,7 @@ object PetSinglePandaData {
         panda34.originalUrl = "https://www.bilibili.com/video/BV1xB4y1c7NM"
         panda34.tags = "大熊猫,萌宠,动物圈"
         panda34.authorId = 484657707
+        panda34.vertical = true
         panda34.cover =
             "https://i2.hdslb.com/bfs/archive/ca4fae1be4eaa2d51cfcbac03dfda715d148c6f6.jpg"
         list.add(panda34)
@@ -655,6 +661,7 @@ object PetSinglePandaData {
         panda40.originalUrl = "https://www.bilibili.com/video/BV1AT4y1m7Qu"
         panda40.tags = "大熊猫,萌宠,动物圈"
         panda40.authorId = 34677299
+        panda40.vertical = true
         panda40.cover =
             "https://i2.hdslb.com/bfs/archive/b50dd830cc6db66bada6f9e4c7a7ba5f3f0d82b8.jpg"
         list.add(panda40)
@@ -671,6 +678,7 @@ object PetSinglePandaData {
         panda41.originalUrl = "https://www.bilibili.com/video/BV1Li4y1C7Gr"
         panda41.tags = "大熊猫,萌宠,动物圈"
         panda41.authorId = 3232184
+        panda41.vertical = true
         panda41.cover =
             "https://i2.hdslb.com/bfs/archive/dffaabbd2e19c0c15ca4db8a774adf988bb99e18.jpg"
         list.add(panda41)
@@ -687,6 +695,7 @@ object PetSinglePandaData {
         panda42.originalUrl = "https://www.bilibili.com/video/BV1L64y1R7iZ"
         panda42.tags = "大熊猫,萌宠,动物圈"
         panda42.authorId = 231314384
+        panda42.vertical = true
         panda42.cover =
             "https://i2.hdslb.com/bfs/archive/557bf43402213b8fa95f3fb8c511cdc86f6f7b93.jpg"
         list.add(panda42)
@@ -703,6 +712,7 @@ object PetSinglePandaData {
         panda43.originalUrl = "https://www.bilibili.com/video/BV1HR4y157iK"
         panda43.tags = "大熊猫,萌宠,动物圈"
         panda43.authorId = 175546072
+        panda43.vertical = true
         panda43.cover =
             "https://i0.hdslb.com/bfs/archive/cb3aa10fd7a4e19bf8529d678c6096d291145b79.jpg"
         list.add(panda43)
@@ -719,6 +729,7 @@ object PetSinglePandaData {
         panda44.originalUrl = "https://www.bilibili.com/video/BV12T4y1S7vG"
         panda44.tags = "大熊猫,萌宠,动物圈"
         panda44.authorId = 1435076062
+        panda44.vertical = true
         panda44.cover =
             "https://i2.hdslb.com/bfs/archive/1e14dc15cd1933b2a8896feb6259fde10ca56f5d.jpg"
         list.add(panda44)
@@ -799,6 +810,7 @@ object PetSinglePandaData {
         panda49.originalUrl = "https://www.bilibili.com/video/BV1X4411j7EL"
         panda49.tags = "大熊猫,萌宠,动物圈"
         panda49.authorId = 374231948
+        panda49.vertical = true
         panda49.cover =
             "https://i0.hdslb.com/bfs/archive/f459a8ea0e5eaa3efba2e27f638f1e51f44b0d72.jpg"
         list.add(panda49)
@@ -815,6 +827,7 @@ object PetSinglePandaData {
         panda50.originalUrl = "https://www.bilibili.com/video/BV1qK4y1k723"
         panda50.tags = "大熊猫,萌宠,动物圈"
         panda50.authorId = 374231948
+        panda50.vertical = true
         panda50.cover =
             "https://i2.hdslb.com/bfs/archive/b24d88738aa32168dd2df004f12ba81f542e62a2.jpg"
         list.add(panda50)
@@ -831,6 +844,7 @@ object PetSinglePandaData {
         panda51.originalUrl = "https://www.bilibili.com/video/BV1u4411874M"
         panda51.tags = "大熊猫,萌宠,动物圈"
         panda51.authorId = 374231948
+        panda51.vertical = true
         panda51.cover =
             "https://i0.hdslb.com/bfs/archive/e759239db24649c4ab9b9c9fa349647638d8cba2.jpg"
         list.add(panda51)
@@ -895,6 +909,7 @@ object PetSinglePandaData {
         panda55.originalUrl = "https://www.bilibili.com/video/BV1Ng41157J2"
         panda55.tags = "大熊猫,萌宠,动物圈"
         panda55.authorId = 231314384
+        panda55.vertical = true
         panda55.cover =
             "https://i2.hdslb.com/bfs/archive/580c5e6db7561ab64f307bac1609e84e8a29f443.jpg"
         list.add(panda55)
@@ -911,6 +926,7 @@ object PetSinglePandaData {
         panda56.originalUrl = "https://www.bilibili.com/video/BV1z34y1d7Ac"
         panda56.tags = "大熊猫,萌宠,动物圈"
         panda56.authorId = 551467383
+        panda56.vertical = true
         panda56.cover =
             "https://i1.hdslb.com/bfs/archive/5a690b5ef8596648717896f15186e20ec07f9353.jpg"
         list.add(panda56)
@@ -927,6 +943,7 @@ object PetSinglePandaData {
         panda57.originalUrl = "https://www.bilibili.com/video/BV1sq4y1h7eD"
         panda57.tags = "大熊猫,萌宠,动物圈"
         panda57.authorId = 551467383
+        panda57.vertical = true
         panda57.cover =
             "https://i2.hdslb.com/bfs/archive/892210930af75f3fd8d2649713fa1493f38ad2ec.png"
         list.add(panda57)
@@ -1039,6 +1056,7 @@ object PetSinglePandaData {
         panda64.originalUrl = "https://www.bilibili.com/video/BV1Wy4y1i7ME"
         panda64.tags = "大熊猫,萌宠,动物圈"
         panda64.authorId = 4120384
+        panda64.vertical = true
         panda64.cover =
             "https://i0.hdslb.com/bfs/archive/ba04819ff3cc3c23de66b9321be459894c60504c.jpg"
         list.add(panda64)
@@ -1071,6 +1089,7 @@ object PetSinglePandaData {
         panda66.originalUrl = "https://www.bilibili.com/video/BV1tE411y7Kf"
         panda66.tags = "大熊猫,萌宠,动物圈"
         panda66.authorId = 4120384
+        panda66.vertical = true
         panda66.cover =
             "https://i0.hdslb.com/bfs/archive/90b61123d59c58a2d2ef60e54b9dacd335f651f3.jpg"
         list.add(panda66)

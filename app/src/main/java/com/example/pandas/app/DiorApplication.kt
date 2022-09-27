@@ -34,9 +34,6 @@ class DiorApplication : Application() {
         Thread {
             val petDao = AppDataBase.getInstance().petVideoDao()
 
-//            val list = petDao.queryVideoData()
-//            petDao.deleteAllVideoData(list)
-
             /* add data */
             val list = AppData.getPetVideoData()
             val list1 = AppData.getMusicData()

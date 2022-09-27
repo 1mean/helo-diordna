@@ -194,6 +194,7 @@ object PetBirdData {
         bird12.originalUrl = "https://www.bilibili.com/video/BV1S7411J7mE"
         bird12.tags = "鸟,萌宠"
         bird12.authorId = 28388380
+        bird12.vertical = true
         bird12.cover =
             "https://i0.hdslb.com/bfs/archive/234fef461b4218efaa5f989c11b9dd8007882ec5.jpg"
         bird12.videoType = 0
@@ -482,6 +483,7 @@ object PetBirdData {
         bird30.originalUrl = "https://www.bilibili.com/video/BV1mb41137QJ"
         bird30.tags = "鸟,萌宠"
         bird30.authorId = 282239993
+        bird30.vertical = true
         bird30.cover =
             "https://i1.hdslb.com/bfs/archive/5925184303525b3eee219e82697cf5b99a331704.jpg"
         bird30.videoType = 0
@@ -1394,6 +1396,7 @@ object PetBirdData {
         bird87.originalUrl = "https://www.bilibili.com/video/BV1Jv411572p"
         bird87.tags = "鸟,萌宠"
         bird87.authorId = 282239993
+        bird87.vertical = true
         bird87.cover =
             "https://i0.hdslb.com/bfs/archive/25a1c441dbc5e1b2a772dc3ab9e9910669e80d4a.jpg"
         bird87.videoType = 0
@@ -1906,6 +1909,7 @@ object PetBirdData {
         bird119.originalUrl = "https://www.bilibili.com/video/BV1xb4y1n7yL"
         bird119.tags = "鸟,萌宠"
         bird119.authorId = 282239993
+        bird119.vertical = true
         bird119.cover =
             "https://i2.hdslb.com/bfs/archive/644fa1751b798c8fc517c337b156be1ca96d3ab5.jpg"
         bird119.videoType = 0

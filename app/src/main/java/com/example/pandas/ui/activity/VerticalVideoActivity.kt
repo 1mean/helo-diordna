@@ -2,8 +2,6 @@ package com.example.pandas.ui.activity
 
 import android.os.Bundle
 import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
 import com.example.pandas.R
@@ -21,7 +19,7 @@ import com.google.android.exoplayer2.util.Util
 
 
 /**
- * @description: TODO
+ * @description: 横屏视频
  * @author: dongyiming
  * @date: 2/23/22 10:20 下午
  * @version: v1.0
@@ -44,16 +42,6 @@ public class VerticalVideoActivity :
         StatusBarUtils.setStatusBarMode(this, false, R.color.black)
 
         video = intent.getParcelableExtra("currentVideo")
-
-        binding.rvPlay.apply {
-            layoutManager = LinearLayoutManager(
-                this@VerticalVideoActivity,
-                RecyclerView.VERTICAL, false
-            )
-            adapter = mAdapter
-            addOnScrollListener(recyclerViewScrollListener)
-        }
-        PagerSnapHelper().attachToRecyclerView(binding.rvPlay)
 
     }
 

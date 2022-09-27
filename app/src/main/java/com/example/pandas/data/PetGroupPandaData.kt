@@ -772,6 +772,7 @@ object PetGroupPandaData {
         panda46.originalUrl = "https://www.bilibili.com/video/BV1x3411h729"
         panda46.tags = "月亮四熊,和花，和叶，润玥，艾玖"
         panda46.authorId = 1025949925
+        panda46.vertical = true
         panda46.cover =
             "https://i2.hdslb.com/bfs/archive/252939cd88d14d90a75187527b8cd458bb2df5b2.jpg"
         panda46.videoType = 0
@@ -891,6 +892,7 @@ object PetGroupPandaData {
         panda53.originalUrl = "https://www.bilibili.com/video/BV1b3411h7BG"
         panda53.tags = "月亮四熊,和花，和叶，润玥，艾玖"
         panda53.authorId = 5182932
+        panda53.vertical = true
         panda53.cover =
             "https://i2.hdslb.com/bfs/archive/1cdf4803c32be0345d6f458e603f73f335aa9bea.jpg"
         panda53.videoType = 0
@@ -1027,6 +1029,7 @@ object PetGroupPandaData {
         panda61.originalUrl = "https://www.bilibili.com/video/BV1bk4y1m77F"
         panda61.tags = "月亮四熊,和花，和叶，润玥，艾玖"
         panda61.authorId = 357432921
+        panda61.vertical = true
         panda61.cover =
             "https://i1.hdslb.com/bfs/archive/7486701f6b472a90e95c1508bfad0b06a0002edd.jpg"
         panda61.videoType = 0
@@ -1742,6 +1745,7 @@ object PetGroupPandaData {
         panda103.originalUrl = "https://www.bilibili.com/video/BV1134y1z7Wa"
         panda103.tags = "月亮四熊,和花，和叶，润玥，艾玖"
         panda103.authorId = 1025949925
+        panda103.vertical = true
         panda103.cover =
             "https://i1.hdslb.com/bfs/archive/243bf3f1fc854f1506ebcbd18d87e383c580caf5.jpg"
         panda103.videoType = 0
@@ -2099,6 +2103,7 @@ object PetGroupPandaData {
         panda124.originalUrl = "https://www.bilibili.com/video/BV1er4y1S7Lz"
         panda124.tags = "月亮四熊,和花，和叶，润玥，艾玖"
         panda124.authorId = 1025949925
+        panda124.vertical = true
         panda124.cover =
             "https://i2.hdslb.com/bfs/archive/198633b9a8e0a3cf6f22dd92d9e24db2bb55d7d9.jpg"
         panda124.videoType = 0
@@ -2201,6 +2206,7 @@ object PetGroupPandaData {
         panda130.originalUrl = "https://www.bilibili.com/video/BV1b64y1i7No"
         panda130.tags = "月亮四熊,和花，和叶，润玥，艾玖"
         panda130.authorId = 484657707
+        panda130.vertical = true
         panda130.cover =
             "https://i0.hdslb.com/bfs/archive/57e960a8a970e07ec8a72c3c4ba128784617a7d1.jpg"
         panda130.videoType = 0
@@ -2218,6 +2224,7 @@ object PetGroupPandaData {
         panda131.originalUrl = "https://www.bilibili.com/video/BV1Dv411n7Cn"
         panda131.tags = "月亮四熊,和花，和叶，润玥，艾玖"
         panda131.authorId = 2037312510
+        panda131.vertical = true
         panda131.cover =
             "https://i2.hdslb.com/bfs/archive/f80b81ae69d845714a97f9cb7b691e30f25838fc.jpg"
         panda131.videoType = 0
@@ -2235,6 +2242,7 @@ object PetGroupPandaData {
         panda132.originalUrl = "https://www.bilibili.com/video/BV1i54y1G7PM"
         panda132.tags = "月亮四熊,和花，和叶，润玥，艾玖"
         panda132.authorId = 2037312510
+        panda132.vertical = true
         panda132.cover =
             "https://i2.hdslb.com/bfs/archive/78da9ba8d453bf1e5728ac7f4ba467d53345f748.jpg"
         panda132.videoType = 0
@@ -2252,6 +2260,7 @@ object PetGroupPandaData {
         panda133.originalUrl = "https://www.bilibili.com/video/BV1Uq4y1f7g4"
         panda133.tags = "月亮四熊,和花，和叶，润玥，艾玖"
         panda133.authorId = 484657707
+        panda133.vertical = true
         panda133.cover =
             "https://i1.hdslb.com/bfs/archive/fba8e7e84ee8b05ca2dbfa48a17ef4233397f263.jpg"
         panda133.videoType = 0
@@ -2377,6 +2386,7 @@ object PetGroupPandaData {
         panda141.originalUrl = "https://www.bilibili.com/video/BV1eu41127ed"
         panda141.tags = "月亮四熊,和花，和叶，润玥，艾玖"
         panda141.authorId = 1025949925
+        panda141.vertical = true
         panda141.cover =
             "https://i1.hdslb.com/bfs/archive/c594bb7f2343d6d4b70ea99e56599c610030224c.jpg"
         panda141.videoType = 0
@@ -2598,6 +2608,7 @@ object PetGroupPandaData {
         panda154.originalUrl = "https://www.bilibili.com/video/BV1sr4y1v7Bx"
         panda154.tags = "月亮四熊,和花，和叶，润玥，艾玖"
         panda154.authorId = 1025949925
+        panda154.vertical = true
         panda154.cover =
             "https://i1.hdslb.com/bfs/archive/6ae83b6472bf85dc4ecdcacdf3da92a24e468080.jpg"
         panda154.videoType = 0
@@ -2666,6 +2677,7 @@ object PetGroupPandaData {
         panda158.originalUrl = "https://www.bilibili.com/video/BV1gP4y1J7gu"
         panda158.tags = "月亮四熊,和花，和叶，润玥，艾玖"
         panda158.authorId = 1247719104
+        panda158.vertical = true
         panda158.cover =
             "https://i0.hdslb.com/bfs/archive/91614214884a1791eb4a8a5edfdff958a8dbc959.jpg"
         panda158.videoType = 0
@@ -2734,6 +2746,7 @@ object PetGroupPandaData {
         panda162.originalUrl = "https://www.bilibili.com/video/BV1pb4y1q7Kh"
         panda162.tags = "月亮四熊,和花，和叶，润玥，艾玖"
         panda162.authorId = 526448310
+        panda162.vertical = true
         panda162.cover =
             "https://i2.hdslb.com/bfs/archive/eecee607a67d46d8f0ccb20fd0bb3b74c56ad5b8.jpg"
         panda162.videoType = 0
@@ -2972,6 +2985,7 @@ object PetGroupPandaData {
         panda176.originalUrl = "https://www.bilibili.com/video/BV1Ba41117Je"
         panda176.tags = "大熊猫,萌宠,动物圈"
         panda176.authorId = 1025949925
+        panda176.vertical = true
         panda176.cover =
             "https://i2.hdslb.com/bfs/archive/8c146e8f8861e00504f23c9ec3b643f7107e504b.jpg"
         panda176.videoType = 0
@@ -2989,6 +3003,7 @@ object PetGroupPandaData {
         panda177.originalUrl = "https://www.bilibili.com/video/BV1ET4y1C7LL"
         panda177.tags = "大熊猫,萌宠,动物圈"
         panda177.authorId = 29548123
+        panda177.vertical = true
         panda177.cover =
             "https://i2.hdslb.com/bfs/archive/f29256b51157a1dba0f38953b462ae2ff013efdb.jpg"
         panda177.videoType = 0
@@ -3885,6 +3900,7 @@ object PetGroupPandaData {
         panda232.originalUrl = "https://www.bilibili.com/video/BV1ZR4y1u7qd"
         panda232.tags = "大熊猫,萌宠,动物圈"
         panda232.authorId = 1025949925
+        panda232.vertical = true
         panda232.cover =
             "https://i1.hdslb.com/bfs/archive/b62231161e1b6afd3960e4e4fbfa82cc5e30ada0.jpg"
         list.add(panda232)
@@ -3981,6 +3997,7 @@ object PetGroupPandaData {
         panda238.originalUrl = "https://www.bilibili.com/video/BV1nY411L7Q5"
         panda238.tags = "大熊猫,萌宠,动物圈"
         panda238.authorId = 1025949925
+        panda238.vertical = true
         panda238.cover =
             "https://i1.hdslb.com/bfs/archive/0af07d3a072f1538751c16426ab9696a14dcf567.jpg"
         list.add(panda238)

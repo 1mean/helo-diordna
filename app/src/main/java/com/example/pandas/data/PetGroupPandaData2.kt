@@ -104,6 +104,7 @@ object PetGroupPandaData2 {
         panda246.originalUrl = "https://www.bilibili.com/video/BV1Mq4y1i7df"
         panda246.tags = "大熊猫,萌宠,动物圈"
         panda246.authorId = 1025949925
+        panda246.vertical = true
         panda246.cover =
             "https://i0.hdslb.com/bfs/archive/95e95ef9283c55476a66e189971a3fcbd76431db.jpg"
         list.add(panda246)
@@ -312,6 +313,7 @@ object PetGroupPandaData2 {
         panda259.originalUrl = "https://www.bilibili.com/video/BV17T4y1S77r"
         panda259.tags = "大熊猫,萌宠,动物圈"
         panda259.authorId = 1025949925
+        panda259.vertical = true
         panda259.cover =
             "https://i0.hdslb.com/bfs/archive/b540c377731ae238929de03251ef3e7d149662df.jpg"
         list.add(panda259)
@@ -760,6 +762,7 @@ object PetGroupPandaData2 {
         panda287.originalUrl = "https://www.bilibili.com/video/BV14m4y1R7tn"
         panda287.tags = "大熊猫,萌宠,动物圈"
         panda287.authorId = 1025949925
+        panda287.vertical = true
         panda287.cover =
             "https://i2.hdslb.com/bfs/archive/4aff09151e73180e9b51c99025c48cd3c4215300.jpg"
         list.add(panda287)
@@ -904,6 +907,7 @@ object PetGroupPandaData2 {
         panda296.originalUrl = "https://www.bilibili.com/video/BV1fR4y1L781"
         panda296.tags = "大熊猫,萌宠,动物圈"
         panda296.authorId = 1025949925
+        panda296.vertical = true
         panda296.cover =
             "https://i1.hdslb.com/bfs/archive/61b8bf13e4cb6cc59031992cceb13c185a08efb6.jpg"
         list.add(panda296)
@@ -1000,6 +1004,7 @@ object PetGroupPandaData2 {
         panda302.originalUrl = "https://www.bilibili.com/video/BV1CS4y1r7bW"
         panda302.tags = "大熊猫,萌宠,动物圈"
         panda302.authorId = 446814205
+        panda302.vertical = true
         panda302.cover =
             "https://i1.hdslb.com/bfs/archive/e8c0b99ff8198f805ac7d223e3c875e9cb9c1ecd.png"
         list.add(panda302)
@@ -1064,6 +1069,7 @@ object PetGroupPandaData2 {
         panda306.originalUrl = "https://www.bilibili.com/video/BV1v341177th"
         panda306.tags = "大熊猫,萌宠,动物圈"
         panda306.authorId = 34677299
+        panda306.vertical = true
         panda306.cover =
             "https://i2.hdslb.com/bfs/archive/42da0f68aa219383a47f7cdcedc79d802f8a4409.jpg"
         list.add(panda306)
@@ -1096,6 +1102,7 @@ object PetGroupPandaData2 {
         panda308.originalUrl = "https://www.bilibili.com/video/BV1ki4y117He"
         panda308.tags = "大熊猫,萌宠,动物圈"
         panda308.authorId = 414747350
+        panda308.vertical = true
         panda308.cover =
             "https://i1.hdslb.com/bfs/archive/e562c6855ccf4aaefa4a0dc4dc9c4aac30bbfa5f.jpg"
         list.add(panda308)
@@ -1672,6 +1679,7 @@ object PetGroupPandaData2 {
         panda344.originalUrl = "https://www.bilibili.com/video/BV1Dt41157fJ"
         panda344.tags = "大熊猫,萌宠,动物圈"
         panda344.authorId = 357432921
+        panda344.vertical = true
         panda344.cover =
             "https://i2.hdslb.com/bfs/archive/e211cf4ffabe7bca14e5219778f1b7a19dac3d42.jpg"
         list.add(panda344)
@@ -1816,6 +1824,7 @@ object PetGroupPandaData2 {
         panda353.originalUrl = "https://www.bilibili.com/video/BV1ZR4y1G7rZ"
         panda353.tags = "大熊猫,萌宠,动物圈"
         panda353.authorId = 1025949925
+        panda353.vertical = true
         panda353.cover =
             "https://i0.hdslb.com/bfs/archive/740f66fa06b0be3a89cdeefd23199d52c7c937ed.jpg"
         list.add(panda353)
@@ -1929,6 +1938,7 @@ object PetGroupPandaData2 {
         panda360.originalUrl = "https://www.bilibili.com/video/BV1S34y1C7HF"
         panda360.tags = "大熊猫,萌宠,动物圈"
         panda360.authorId = 7782934
+        panda360.vertical = true
         panda360.cover =
             "https://i0.hdslb.com/bfs/archive/e5549a2eb6e03d7d146895918b04b73a25ccb10b.jpg"
         list.add(panda360)
@@ -1945,6 +1955,7 @@ object PetGroupPandaData2 {
         panda361.originalUrl = "https://www.bilibili.com/video/BV1W34y187r1"
         panda361.tags = "大熊猫,萌宠,动物圈"
         panda361.authorId = 335419800
+        panda361.vertical = true
         panda361.cover =
             "https://i0.hdslb.com/bfs/archive/2010141051654bd4ead50d68f19c3a199095290c.jpg"
         list.add(panda361)

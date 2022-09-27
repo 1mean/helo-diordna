@@ -358,6 +358,7 @@ object PetCatData {
         cat24.originalUrl = "https://www.bilibili.com/video/BV1UU4y1x7qD"
         cat24.tags = "猫,萌宠,动物圈"
         cat24.authorId = 176605331
+        cat24.vertical = true
         cat24.cover =
             "https://i2.hdslb.com/bfs/archive/4bdbb5312e7a6dc94fa15391631abcdfcb989bca.jpg"
         list.add(cat24)

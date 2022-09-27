@@ -72,6 +72,7 @@ object PetBabyPandaData2 {
         panda386.originalUrl = "https://www.bilibili.com/video/BV1pF411t74Q"
         panda386.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
         panda386.authorId = 2037312510
+        panda386.vertical = true
         panda386.cover =
             "https://i1.hdslb.com/bfs/archive/cb64b1294ace922b9627a1dd7685895f0bd2435a.jpg"
         list.add(panda386)
@@ -472,6 +473,7 @@ object PetBabyPandaData2 {
         panda411.originalUrl = "https://www.bilibili.com/video/BV1XP4y1F7br"
         panda411.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
         panda411.authorId = 2037312510
+        panda411.vertical = true
         panda411.cover =
             "https://i0.hdslb.com/bfs/archive/fb77e6707a0a51e06d08d8ca853d14d8a349c044.jpg"
         list.add(panda411)
@@ -1064,6 +1066,7 @@ object PetBabyPandaData2 {
         panda448.originalUrl = "https://www.bilibili.com/video/BV1V4411H7VZ"
         panda448.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
         panda448.authorId = 34677299
+        panda448.vertical = true
         panda448.cover =
             "https://i2.hdslb.com/bfs/archive/3b918a3c1ac2ac717d6c41ef63e3f89cea091534.jpg"
         list.add(panda448)
@@ -1800,6 +1803,7 @@ object PetBabyPandaData2 {
         panda494.originalUrl = "https://www.bilibili.com/video/BV14u411X74H"
         panda494.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
         panda494.authorId = 1942411621
+        panda494.vertical = true
         panda494.cover =
             "https://i1.hdslb.com/bfs/archive/3afbd837040487c1575dae573faa09368bbc54c7.jpg"
         list.add(panda494)
@@ -1832,6 +1836,7 @@ object PetBabyPandaData2 {
         panda496.originalUrl = "https://www.bilibili.com/video/BV1aY411G7NC"
         panda496.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
         panda496.authorId = 484657707
+        panda496.vertical = true
         panda496.cover =
             "https://i0.hdslb.com/bfs/archive/6e6546140455b370050b996bacbe1c2a908c258a.jpg"
         list.add(panda496)
@@ -1896,6 +1901,7 @@ object PetBabyPandaData2 {
         panda500.originalUrl = "https://www.bilibili.com/video/BV14E411T7hu"
         panda500.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
         panda500.authorId = 39546503
+        panda500.vertical = true
         panda500.cover =
             "https://i2.hdslb.com/bfs/archive/e887e660af04e4b6a9dfd9fa13259f0b42e23174.jpg"
         list.add(panda500)
