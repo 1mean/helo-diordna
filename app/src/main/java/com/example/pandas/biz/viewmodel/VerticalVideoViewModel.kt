@@ -68,9 +68,19 @@ public class VerticalVideoViewModel : BaseViewModel() {
         }
     }
 
-    fun addOrUpdateVideoData(videoData: VideoData){
+    fun addOrUpdateVideoData(videoData: VideoData) {
         viewModelScope.launch {
             PetManagerCoroutine.addOrUpdateVideoData(videoData)
+        }
+    }
+
+    fun updateCollect(isAdd: Boolean, videoCode: Int) {
+        viewModelScope.launch {
+            if (isAdd) {
+                PetManagerCoroutine.addCollection("默认收藏夹", videoCode)
+            } else {
+                PetManagerCoroutine.deleteCollection("默认收藏夹", videoCode)
+            }
         }
     }
 }

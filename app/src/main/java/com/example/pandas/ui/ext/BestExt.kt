@@ -1,7 +1,11 @@
 package com.example.pandas.ui.ext;
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
+import android.view.View
+import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.pandas.sql.entity.User
@@ -82,3 +86,45 @@ fun startUserInfoActivity(context: Context, user: User) {
 
 
 //-------------------<Activity相关 结束>-------------------------------------------------------------
+
+//-------------------<动画相关 开始>-----------------------------------------------------------------
+fun addItemAnimation(view: View) {
+    val translationX =
+        ObjectAnimator.ofFloat(
+            view,
+            "translationX",
+            0f,
+            view.width * 0.1f,
+            0f
+        )
+    val translationY =
+        ObjectAnimator.ofFloat(
+            view,
+            "translationY",
+            0f,
+            -view.height * 0.3f,
+            0f,
+            -view.height * 0.2f,
+            0f
+        )
+    //旋转
+    val transRotation = ObjectAnimator.ofFloat(view, "rotation", 0f, -5f, 0f)
+    val animationSet = AnimatorSet()
+    animationSet.duration = 600
+    animationSet.interpolator = DecelerateInterpolator()
+    animationSet.play(translationX).with(translationY).with(transRotation)
+    animationSet.start()
+}
+
+fun addItemAnimation2(view: View) {
+    val transScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.3f, 1f)
+    val transScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.3f, 1f)
+    val animationSet = AnimatorSet()
+    animationSet.duration = 600
+    animationSet.interpolator = DecelerateInterpolator()
+    animationSet.play(transScaleX).with(transScaleY)
+    animationSet.start()
+}
+
+
+//-------------------<动画相关 结束>-----------------------------------------------------------------

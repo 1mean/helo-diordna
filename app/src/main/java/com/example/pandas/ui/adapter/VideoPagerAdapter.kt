@@ -1,6 +1,7 @@
 package com.example.pandas.ui.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +10,14 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.interaction.PlayerDoubleTapListener
 import com.example.pandas.databinding.AdapterVideoVerticalBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
+import com.example.pandas.ui.ext.addItemAnimation
+import com.example.pandas.ui.ext.addItemAnimation2
+import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.google.android.exoplayer2.ui.DefaultTimeBar
 import com.google.android.exoplayer2.ui.TimeBar
 
@@ -150,6 +155,12 @@ public class VideoPagerAdapter(
                     likes.text = it.likes.toString()
                 }
 
+                if (it.collect) {
+                    collectImg.setImageResource(R.mipmap.img_vertical_collected)
+                } else {
+                    collectImg.setImageResource(R.mipmap.img_vertical_collect)
+                }
+
                 if (it.comments == 0) {
                     comments.text = "评论"
                 } else {
@@ -159,7 +170,7 @@ public class VideoPagerAdapter(
                 if (it.collects == 0) {
                     collects.text = "收藏"
                 } else {
-                    collects.text = it.comments.toString()
+                    collects.text = it.collects.toString()
                 }
 
                 if (it.shares == 0) {
@@ -170,35 +181,59 @@ public class VideoPagerAdapter(
             }
 
             likeItem.setOnClickListener {
+                handleItemLike(position)
+            }
 
+            collectItem.setOnClickListener {
                 val data = list[position]
                 if (data.videoData == null) {
-                    likeImg.setImageResource(R.mipmap.img_vertical_liked)
-                    likes.text = "1"
-                    val vd = VideoData(videoCode = data.code, like = true, likes = 1)
+                    addItemAnimation2(collectImg)
+                    collectImg.setImageResource(R.mipmap.img_vertical_collected)
+                    collects.text = "1"
+                    val vd = VideoData(
+                        videoCode = data.code,
+                        collect = true,
+                        collects = 1,
+                        collectTime = System.currentTimeMillis()
+                    )
                     data.videoData = vd
                     listener.updataVideoData(vd)
+                    listener.collect(true, data.code)
                 } else {
-                    data.videoData?.let {
-                        val likeCount:Int
-                        if (it.like) {
-                            likeImg.setImageResource(R.mipmap.img_vertical_like)
-                            likeCount = it.likes - 1
-                            if (likeCount > 0) {
-                                likes.text = likeCount.toString()
+                    data.videoData?.let { vd ->
+                        if (vd.collect) {
+                            collectImg.setImageResource(R.mipmap.img_vertical_collect)
+                            var collectCount = vd.collects - 1
+                            if (collectCount > 0) {
+                                collects.text = collectCount.toString()
                             } else {
-                                likes.text = "点赞"
+                                collects.text = "收藏"
+                                collectCount = 0
                             }
+                            vd.collects = collectCount
+                            listener.collect(false, data.code)
                         } else {
-                            likeImg.setImageResource(R.mipmap.img_vertical_liked)
-                            likeCount = it.likes + 1
-                            likes.text = likeCount.toString()
+                            addItemAnimation2(collectImg)
+                            collectImg.setImageResource(R.mipmap.img_vertical_collected)
+                            val collectCount = vd.collects + 1
+                            collects.text = collectCount.toString()
+                            vd.collectTime = System.currentTimeMillis()
+                            vd.collects = collectCount
+                            listener.collect(true, data.code)
                         }
-                        it.like = !it.like
-                        it.likes = likeCount
+                        vd.collect = !vd.collect
+                        listener.updataVideoData(vd)
                     }
-                    listener.updataVideoData(data.videoData!!)
                 }
+            }
+
+            shareItem.setOnClickListener {
+
+                val dialog = ShareBottomSheetDialog(context, object : ItemClickListener<String> {
+                    override fun onItemClick(t: String) {
+                    }
+                })
+                dialog.addData().onShow()
             }
 
             title.text = list[position].title
@@ -228,6 +263,12 @@ public class VideoPagerAdapter(
 
                 override fun onDoubleTap() {
                     listener.onDoubleTap()
+                    list[position].videoData?.let {
+                        if (it.like) {
+                            return
+                        }
+                    }
+                    handleItemLike(position)
                 }
             })
 
@@ -255,6 +296,41 @@ public class VideoPagerAdapter(
                 }
             })
         }
+
+        fun handleItemLike(position: Int) {
+            val data = list[position]
+            if (data.videoData == null) {
+                addItemAnimation(likeImg)
+                likeImg.setImageResource(R.mipmap.img_vertical_liked)
+                likes.text = "1"
+                val vd = VideoData(videoCode = data.code, like = true, likes = 1)
+                data.videoData = vd
+                listener.updataVideoData(vd)
+            } else {
+                data.videoData?.let {
+                    var likeCount: Int
+                    if (!it.like) {
+                        addItemAnimation(likeImg)
+                        likeImg.setImageResource(R.mipmap.img_vertical_liked)
+                        likeCount = it.likes + 1
+                        likes.text = likeCount.toString()
+                        it.likes = likeCount
+                    } else {
+                        likeImg.setImageResource(R.mipmap.img_vertical_like)
+                        likeCount = it.likes - 1
+                        if (likeCount > 0) {
+                            likes.text = likeCount.toString()
+                        } else {
+                            likeCount = 0
+                            likes.text = "点赞"
+                        }
+                    }
+                    it.likes = likeCount
+                    it.like = !it.like
+                    listener.updataVideoData(data.videoData!!)
+                }
+            }
+        }
     }
 
     interface VerticalVideoListener {
@@ -264,5 +340,7 @@ public class VideoPagerAdapter(
         fun onSingleTap()
 
         fun updataVideoData(videoData: VideoData)
+
+        fun collect(isAdd: Boolean, videoCode: Int)
     }
 }
