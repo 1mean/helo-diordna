@@ -15,6 +15,7 @@
             app:keep_content_on_player_reset="true"
             app:hide_on_touch="false"
             app:show_timeout="0"
+            app:resize_mode="zoom"
             app:show_buffering="never"
 
             app:controller_layout_id="@layout/controller_vertical_player" />

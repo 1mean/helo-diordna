@@ -4,12 +4,14 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.activity.UserInfoActivity
+import kotlin.math.abs
 
 
 /**************************************************************************************************
@@ -126,5 +128,20 @@ fun addItemAnimation2(view: View) {
     animationSet.start()
 }
 
+fun addRefreshAnimation(view: View, offSet: Float) {
+
+    val y_trans = view.translationY
+    val translationY = if (y_trans == 0f) {
+        ObjectAnimator.ofFloat(view, "translationY", y_trans, -offSet)
+    } else {
+        ObjectAnimator.ofFloat(view, "translationY", y_trans, -offSet- abs(y_trans))
+    }
+    Log.e("dispatchTouchEvent", "totalOffset: $offSet, y_trans: $y_trans")
+    val transAlpha = ObjectAnimator.ofFloat(view, "alpha", 0f, 1f)
+    val animationSet = AnimatorSet()
+    animationSet.duration = 500
+    animationSet.play(translationY).with(transAlpha)
+    animationSet.start()
+}
 
 //-------------------<动画相关 结束>-----------------------------------------------------------------
