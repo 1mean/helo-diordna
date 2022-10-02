@@ -1,11 +1,16 @@
 package com.example.pandas.ui.activity
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.VelocityTracker
+import android.view.View
 import android.view.ViewConfiguration
+import android.view.animation.DecelerateInterpolator
+import android.view.animation.LinearInterpolator
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
@@ -80,19 +85,35 @@ public class VerticalVideoActivity2 :
         mViewModel.verticalVideos.observe(this) {
 
             if (it.isSuccess) {
-                mAdapter.refreshAdapter(it.listData)
-            }
+                when {
+                    it.isRefresh -> {
+                        Log.e("1mean", "refresh: ${it.listData}")
+                        mAdapter.refreshAdapter(it.listData)
+                    }
+                    it.hasMore -> {
 
+                    }
+                }
+            }
             if (it.isRefresh) {
-                binding.vp2VideoVertical.post {
-                    val list = it.listData
-                    if (list.isNotEmpty()) {
-                        val recyclerView = binding.vp2VideoVertical.getChildAt(0) as RecyclerView
-                        recyclerView.getChildAt(0)?.let { view ->
-                            val playerView =
-                                view.findViewById<StyledPlayerView>(R.id.player_vertical)
-                            playerView?.let {
-                                manager.play(it, list)
+
+                if (isRefreshing) {
+                    manager.refreshPlayer(it.listData)
+                    isRefreshing = false
+                    binding.clayoutVerticalRefresh.visibility = View.GONE
+                } else {
+
+                    binding.vp2VideoVertical.post {
+                        val list = it.listData
+                        if (list.isNotEmpty()) {
+                            val recyclerView =
+                                binding.vp2VideoVertical.getChildAt(0) as RecyclerView
+                            recyclerView.getChildAt(0)?.let { view ->
+                                val playerView =
+                                    view.findViewById<StyledPlayerView>(R.id.player_vertical)
+                                playerView?.let {
+                                    manager.play(it, list)
+                                }
                             }
                         }
                     }
@@ -121,7 +142,6 @@ public class VerticalVideoActivity2 :
     private var isMoving = false //只是下拉刷新操作
     private var quickFlag = false //是否是快速滑动
     private var isRefreshing = false
-
 
     /**
      * <处理下拉刷新时，top header的变化>
@@ -163,14 +183,16 @@ public class VerticalVideoActivity2 :
                 val distanceX: Float = endX - startX
                 val distanceY: Float = endY - startY
 
-                if (distanceY > distanceX && distanceY > 0) {//下拉操作
-                    if (y_velocity > 10000) {
+                if (distanceY > distanceX && distanceY > 0 && !isRefreshing) {//下拉操作
+                    if (y_velocity > 10000) {//快速滑动，普遍都是13000
                         Log.e("dispatchTouchEvent", "y_velocity: $y_velocity")
                         if (!quickFlag) {
                             totalOffset = 100
                             binding.clayoutVerticalTop.offsetTopAndBottom(totalOffset)
                             quickFlag = true
-                            VibrateUtils.vibrate(this,50)
+                            VibrateUtils.vibrate(this, 50)
+                            binding.ibnVerticalTopClose.alpha = 0f
+                            binding.ibnVerticalTopMore.alpha = 0f
                         }
                     } else {
                         Log.e("dispatchTouchEvent", "y speed: ${mVelocityTracker?.yVelocity}")
@@ -181,19 +203,19 @@ public class VerticalVideoActivity2 :
                                 if (totalOffset <= 40) {
                                     val topAlpha = (40 - totalOffset).toFloat() / 40
                                     Log.e("1mean", "topAlpha: $topAlpha")
-                                    binding.ibnVerticalTopClose.alpha = topAlpha
+                                    binding.ibnVerticalTopClose.alpha = topAlpha //可能不为0f
                                     binding.ibnVerticalTopMore.alpha = topAlpha
                                 } else {
+                                    binding.ibnVerticalTopClose.alpha = 0f
+                                    binding.ibnVerticalTopMore.alpha = 0f
                                     val topAlpha = (totalOffset - 40).toFloat() / 60
                                     binding.txtVerticalTopTitle.alpha = topAlpha
                                 }
                                 totalOffset += offset
                                 if (totalOffset >= 100) {
-                                    VibrateUtils.vibrate(this,50)
+                                    VibrateUtils.vibrate(this, 50)
                                 }
                                 binding.clayoutVerticalTop.offsetTopAndBottom(offset)
-                            }
-                            if (distanceY == 400f) {//开始刷新
                             }
                         }
                     }
@@ -201,17 +223,39 @@ public class VerticalVideoActivity2 :
                 }
             }
             MotionEvent.ACTION_UP -> {
-                if (isMoving) {
+                if (isMoving && !isRefreshing) {
                     mVelocityTracker?.addMovement(event)//速度追踪
 
-                    //binding.txtVerticalTopTitle.alpha = 0f
-                    //binding.clayoutVerticalTop.offsetTopAndBottom(-totalOffset)
+                    binding.txtVerticalTopTitle.alpha = 0f
+                    val transAlpha =
+                        ObjectAnimator.ofFloat(binding.txtVerticalTopTitle, "alpha", 1f, 0f)
+                    transAlpha.run {
+                        duration = 350
+                        interpolator = LinearInterpolator()
+                        start()
+                    }
+                    addRefreshAnimation(binding.clayoutVerticalTop, totalOffset.toFloat(), object :
+                        Animator.AnimatorListener {
+                        override fun onAnimationStart(animation: Animator?) {
+                        }
 
-                    addRefreshAnimation(binding.clayoutVerticalTop,totalOffset.toFloat())
+                        override fun onAnimationEnd(animation: Animator?) {
+                            binding.ibnVerticalTopClose.alpha = 1f
+                            binding.ibnVerticalTopMore.alpha = 1f
+                            if (totalOffset >= 100) {
+                                isRefreshing = true
+                                binding.clayoutVerticalRefresh.visibility = View.VISIBLE
+                                mViewModel.getVerticalVideos(true)
+                            }
+                        }
 
+                        override fun onAnimationCancel(animation: Animator?) {
+                        }
 
+                        override fun onAnimationRepeat(animation: Animator?) {
+                        }
 
-                    totalOffset = 0
+                    })
                     quickFlag = false
                 }
             }

@@ -36,6 +36,24 @@ public class VerticalPlayManager(
         }
     }
 
+    fun refreshPlayer(list: MutableList<PetVideo>) {
+        mPlayer.clearMediaItems()
+        if (list.isNotEmpty()) {
+            val mediaItems = mutableListOf<MediaItem>()
+            list.forEach {
+                val file = getLocalFilePath(context, it.fileName!!)
+                val mediaItem =
+                    MediaItem.Builder().setUri(Uri.fromFile(file))
+                        .setMediaId(it.code.toString()).build()
+                mediaItems.add(mediaItem)
+            }
+            mPlayer.addMediaItems(mediaItems)
+            mPlayer.seekTo(0, 0)
+            mPlayer.playWhenReady = true
+            mPlayer.prepare()
+        }
+    }
+
     fun play(playerView: StyledPlayerView, list: MutableList<PetVideo>) {
 
         val startTime = System.currentTimeMillis()

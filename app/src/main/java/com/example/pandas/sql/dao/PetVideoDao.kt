@@ -216,6 +216,9 @@ interface PetVideoDao {
         count: Int
     ): MutableList<VideoAndUser>
 
+    @Query("select count(*) from pet_video where vertical=1")
+    suspend fun queryVerticalCounts(): Int
+
     @Transaction
     @Query("select * from pet_video where vertical=1 limit (:startIndex),(:count)")
     suspend fun queryVerticalVideos(

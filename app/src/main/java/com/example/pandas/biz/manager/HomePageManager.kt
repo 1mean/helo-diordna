@@ -75,6 +75,8 @@ class PetManager {
 
         return withContext(Dispatchers.Default) {
             val petVideos = mutableListOf<PetVideo>()
+            val count = petDao.queryVerticalCounts()
+            Log.e("1mean","count: $count")
             val list = petDao.queryVerticalVideos(startIndex, counts)
             list.forEach {
                 val video = it.video

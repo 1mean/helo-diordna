@@ -37,7 +37,7 @@ public class VideoPagerAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun refreshAdapter(data: MutableList<PetVideo>) {
-        if (data.isNotEmpty() && data != list) {
+        if (data.isNotEmpty()) {
             list.clear()
             list.addAll(data)
             notifyDataSetChanged()

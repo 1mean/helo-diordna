@@ -27,7 +27,7 @@ public class VerticalVideoViewModel : BaseViewModel() {
     fun getVerticalVideos(isRefresh: Boolean) {
 
         if (isRefresh) {
-            startIndex = 0
+            startIndex = (0..20).random()
         }
         viewModelScope.launch {
 
