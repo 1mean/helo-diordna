@@ -9,8 +9,8 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.viewmodel.MoreDataViewModel
 import com.example.pandas.databinding.ActivityMoreBinding
-import com.example.pandas.ui.fragment.MusicListFragment
-import com.example.pandas.ui.fragment.VideoListFragment
+import com.example.pandas.ui.fragment.main.home.music.MusicListFragment
+import com.example.pandas.ui.fragment.video.VideoListFragment
 import com.example.pandas.utils.StatusBarUtils
 
 /**

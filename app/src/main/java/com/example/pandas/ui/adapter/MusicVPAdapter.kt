@@ -5,8 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.pandas.bean.pet.VideoType
-import com.example.pandas.ui.fragment.MusicChildFragment
-import com.example.pandas.ui.fragment.PetChildFragment
+import com.example.pandas.ui.fragment.main.home.music.MusicChildFragment
 
 /**
  * @description: RoomContentAdapter

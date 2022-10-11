@@ -1,6 +1,5 @@
 package com.example.pandas.ui.activity
 
-import ListAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -9,6 +8,7 @@ import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.LocalCacheViewModel
 import com.example.pandas.databinding.ActivityListBinding
+import com.example.pandas.ui.adapter.ListAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration2
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor

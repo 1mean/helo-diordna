@@ -3,7 +3,6 @@ package com.example.pandas.sql.dao
 import androidx.room.*
 import com.example.pandas.bean.CoverDownLoad
 import com.example.pandas.bean.SearchInfo
-import com.example.pandas.bean.VideoInfo
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.sql.entity.*
 
@@ -100,6 +99,9 @@ interface PetVideoDao {
 
     @Update(onConflict = OnConflictStrategy.ABORT) //发生冲突解决办法：终止操作，抛出异常
     fun updateGroupInfo(group: Group)
+
+    @Update(onConflict = OnConflictStrategy.ABORT) //发生冲突解决办法：终止操作，抛出异常
+    suspend fun updateUser(user: User)
 
     @Update(onConflict = OnConflictStrategy.ABORT) //发生冲突解决办法：终止操作，抛出异常
     fun updateGroupItem(groupItem: GroupVideoItem)
@@ -428,4 +430,17 @@ interface PetVideoDao {
     @Transaction
     @Query("select * from group_item where groupCode=(:groupCode) order by id desc limit 1")
     suspend fun queryGroupItemsAndVideo(groupCode: Int): GroupItemAndVideo
+
+    @Query("select * from user where attention=1 limit 0,30")
+    suspend fun queryLiveAttentionUsers(): MutableList<User>
+
+    @Query("select userCode from user where attention=1 limit 0,30")
+    suspend fun queryLiveAttentionUserCodes(): MutableList<Int>
+
+    @Query("select * from pet_video where authorId in (:userCodes) order by releaseTime desc limit (:startIndex),(:count)")
+    suspend fun queryLiveVideos(
+        userCodes: MutableList<Int>,
+        startIndex: Int,
+        count: Int
+    ): MutableList<PetVideo>
 }

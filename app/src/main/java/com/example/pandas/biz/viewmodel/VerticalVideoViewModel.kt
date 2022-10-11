@@ -83,4 +83,10 @@ public class VerticalVideoViewModel : BaseViewModel() {
             }
         }
     }
+
+    fun updateAttention(userCode: Int) {
+        viewModelScope.launch {
+            PetManagerCoroutine.updateAttention(userCode)
+        }
+    }
 }

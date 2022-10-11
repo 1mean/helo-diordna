@@ -1,10 +1,10 @@
 package com.example.pandas.ui.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
@@ -14,9 +14,11 @@ import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.interaction.PlayerDoubleTapListener
 import com.example.pandas.databinding.AdapterVideoVerticalBinding
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.ext.addItemAnimation
 import com.example.pandas.ui.ext.addItemAnimation2
+import com.example.pandas.ui.view.dialog.AttentionBottomSheetDialog
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.google.android.exoplayer2.ui.DefaultTimeBar
 import com.google.android.exoplayer2.ui.TimeBar
@@ -34,6 +36,7 @@ public class VideoPagerAdapter(
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var recyclerView: RecyclerView? = null
+    var hideView: Boolean = false
 
     @SuppressLint("NotifyDataSetChanged")
     fun refreshAdapter(data: MutableList<PetVideo>) {
@@ -83,6 +86,8 @@ public class VideoPagerAdapter(
         val attention = binding.txtVerticalAttention
         val title = binding.txtVerticalTitle
         val input = binding.editVertical
+        val rightView = binding.layoutVerticalRight
+        val bottomView = binding.clayoutVerticalVideoInfo
         val likeItem = binding.llayoutVerticalLike
         val likeImg = binding.ibnVerticalLike
         val likes = binding.txtVerticalLike
@@ -96,6 +101,8 @@ public class VideoPagerAdapter(
         val shareImg = binding.ibnVerticalShare
         val shares = binding.txtVerticalShare
         val play = binding.imgVerticalPlay
+        val clear = binding.ibnVerticalEmpty
+        val reduce = binding.ibnVerticalReduce
         val playerView = binding.playerVertical
         val timebar = playerView.findViewById<DefaultTimeBar>(R.id.exo_progress)
 
@@ -108,11 +115,15 @@ public class VideoPagerAdapter(
                     R.color.color_vertical_played
                 )
             )
+            rightView.visibility = View.VISIBLE
+            bottomView.visibility = View.VISIBLE
         }
 
         fun handle(position: Int) {
             val user = list[position].user
             val videoData = list[position].videoData
+
+            hideView = false
 
             user?.let {
                 if (it.vip == 1) {
@@ -132,6 +143,17 @@ public class VideoPagerAdapter(
                 }
                 name.text = it.userName
                 loadCircleImage(context, it.headUrl!!, header)
+
+                if (it.attention) {
+                    attention.text = context.resources.getString(R.string.str_followed)
+                    attention.background = null
+                } else {
+                    attention.text = context.resources.getString(R.string.txt_follow)
+                    attention.background = ContextCompat.getDrawable(
+                        context,
+                        R.drawable.shape_vertical_video_attention
+                    )
+                }
             }
 
             if (videoData == null) {
@@ -140,6 +162,24 @@ public class VideoPagerAdapter(
                 collects.text = "收藏"
                 shares.text = "分享"
             }
+
+            input.setOnClickListener {
+                Toast.makeText(context, "未开放", Toast.LENGTH_SHORT).show()
+            }
+
+            clear.setOnClickListener {
+
+                if (hideView) {
+                    rightView.visibility = View.VISIBLE
+                    bottomView.visibility = View.VISIBLE
+                } else {
+                    rightView.visibility = View.GONE
+                    bottomView.visibility = View.GONE
+
+                }
+                hideView = !hideView
+            }
+
 
             videoData?.let {
 
@@ -236,6 +276,59 @@ public class VideoPagerAdapter(
                 dialog.addData().onShow()
             }
 
+            attention.setOnClickListener {
+                attention.text = "已关注"
+                attention.background = null
+
+                list[position].user?.let {
+
+                    if (!it.attention) {
+                        attention.text = context.resources.getString(R.string.str_followed)
+                        attention.background = null
+                        listener.updateUserAttention(it.userCode)
+                    } else {
+
+                        val attentionDialog =
+                            AttentionBottomSheetDialog(context, object : ItemClickListener<Int> {
+                                override fun onItemClick(t: Int) {
+                                    when (t) {
+                                        0 -> {//加入特别关注
+                                            Toast.makeText(context, "加入特别关注", Toast.LENGTH_SHORT)
+                                                .show()
+                                        }
+                                        1 -> {//设置分组
+                                            Toast.makeText(context, "加入默认分组", Toast.LENGTH_SHORT)
+                                                .show()
+                                        }
+                                        2 -> {//取消关注
+                                            attention.text =
+                                                context.resources.getString(R.string.txt_follow)
+                                            attention.background = ContextCompat.getDrawable(
+                                                context,
+                                                R.drawable.shape_vertical_video_attention
+                                            )
+                                            listener.updateUserAttention(it.userCode)
+                                        }
+                                    }
+                                }
+                            })
+                        attentionDialog.show()
+                    }
+                    it.attention = !it.attention
+                }
+            }
+
+            header.setOnClickListener {
+                user?.let {
+                    listener.startUserActivity(it)
+                }
+            }
+            name.setOnClickListener {
+                user?.let {
+                    listener.startUserActivity(it)
+                }
+            }
+
             title.text = list[position].title
 
             playerView.controller(object : PlayerDoubleTapListener {
@@ -270,6 +363,8 @@ public class VideoPagerAdapter(
                     }
                     handleItemLike(position)
                 }
+
+
             })
 
             timebar.addListener(object : TimeBar.OnScrubListener {
@@ -342,5 +437,9 @@ public class VideoPagerAdapter(
         fun updataVideoData(videoData: VideoData)
 
         fun collect(isAdd: Boolean, videoCode: Int)
+
+        fun updateUserAttention(userCode: Int)
+
+        fun startUserActivity(user: User)
     }
 }

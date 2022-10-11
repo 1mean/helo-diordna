@@ -194,12 +194,15 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_user_desc"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="@id/llayout_name"
                         app:layout_constraintTop_toBottomOf="@id/llayout_name"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
                         android:layout_marginTop="9dp"
                         android:textSize="12sp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
                         android:textColor="@color/color_eye_txt_time" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.pandas.ui.fragment.VideoCommentFragment
-import com.example.pandas.ui.fragment.VideoInfosFragment
+import com.example.pandas.ui.fragment.video.VideoCommentFragment
+import com.example.pandas.ui.fragment.video.VideoInfosFragment
 
 /**
  * @description: VideoFragmentAdapter

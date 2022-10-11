@@ -30,5 +30,6 @@ data class UIDataWrapper<T>(
     //喜欢页数据
     val loveData: PageCommonData = PageCommonData(),
     //山水数据
-    val landscapeData: LandscapeData = LandscapeData()
+    val landscapeData: LandscapeData = LandscapeData(),
+    val liveVides: LiveVideoData = LiveVideoData(),
 )

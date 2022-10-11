@@ -39,6 +39,24 @@ open class BaseViewModel : ViewModel() {
         }
     }
 
+    fun <T> requests(
+        block: suspend () -> T,
+        success: (T) -> Unit,
+        error: (AppException) -> Unit = {}
+    ): Job {
+        return viewModelScope.launch {
+            runCatching {
+                block()
+            }.onSuccess {
+                success(it)
+            }.onFailure {
+                it.message?.loge()
+                it.printStackTrace()
+                error(ExceptionHandle.handleException(it))
+            }
+        }
+    }
+
     fun isAttention(context: Context, id: Int): Boolean {
 
         val list = SPUtils.getList<String>(context, AppInfos.ATTENTION_KEY)

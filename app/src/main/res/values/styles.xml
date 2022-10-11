@@ -223,7 +223,7 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:textSize">13sp</item>
-        <item name="android:textColor">@color/color_eye_txt_share</item>
+        <item name="android:textColor">@color/color_live_comments</item>
     </style>
 
     <style name="style_eye_item_bottom_img">

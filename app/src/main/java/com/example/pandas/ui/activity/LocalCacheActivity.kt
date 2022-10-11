@@ -7,7 +7,7 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.LocalCacheViewModel
 import com.example.pandas.databinding.ActivityCacheBinding
 import com.example.pandas.ui.fragment.CacheItemFragment
-import com.example.pandas.ui.fragment.CacheListFragment
+import com.example.pandas.ui.fragment.main.mine.CacheListFragment
 import com.example.pandas.utils.StatusBarUtils
 
 /**

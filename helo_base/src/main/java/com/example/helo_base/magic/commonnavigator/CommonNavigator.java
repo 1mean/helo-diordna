@@ -10,6 +10,8 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.widget.AppCompatTextView;
+
 import com.example.helo_base.R;
 import com.example.helo_base.magic.IPagerNavigator;
 import com.example.helo_base.magic.NavigatorHelper;

@@ -8,5 +8,5 @@
     <fragment
             android:id="@+id/mainFragment"
             android:label="MainFragment"
-            android:name="com.example.pandas.ui.fragment.MainFragment" />
+            android:name="com.example.pandas.ui.fragment.main.MainFragment" />
 </navigation>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tl="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="32.66dp"
+            android:background="@color/color_white_lucency" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_other_top"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+
+        <com.flyco.tablayout.CommonTabLayout
+                android:id="@+id/tab_living"
+                android:layout_width="158dp"
+                android:layout_height="match_parent"
+
+                tl:tl_iconVisible="false"
+                tl:tl_textSelectColor="@color/color_live_tab_select"
+                tl:tl_textUnselectColor="@color/color_text_eye_unselect"
+                tl:tl_indicator_color="@color/color_live_tab_select"
+                tl:tl_textBold="SELECT"
+                tl:layout_constraintLeft_toLeftOf="@id/clayout_other_top"
+                tl:layout_constraintRight_toRightOf="@id/clayout_other_top"
+                tl:tl_indicator_width="35dp"
+                tl:tl_indicator_height="3dp"
+                tl:tl_indicator_margin_bottom="10dp"
+                android:paddingBottom="3dp"
+                tl:tl_textsize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ibn_publish"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                tl:layout_constraintTop_toTopOf="@id/clayout_other_top"
+                tl:layout_constraintBottom_toBottomOf="@id/clayout_other_top"
+                tl:layout_constraintRight_toRightOf="@id/clayout_other_top"
+                android:background="@null"
+                android:src="@mipmap/img_live_publish" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_bg_divider" />
+
+    <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp2_living"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -76,7 +76,7 @@ class PetManager {
         return withContext(Dispatchers.Default) {
             val petVideos = mutableListOf<PetVideo>()
             val count = petDao.queryVerticalCounts()
-            Log.e("1mean","count: $count")
+            Log.e("1mean", "count: $count")
             val list = petDao.queryVerticalVideos(startIndex, counts)
             list.forEach {
                 val video = it.video
@@ -229,10 +229,10 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
 
-            delay(500)
             val itemList = petDao.queryVideoByType(VideoType.LANDSCAPE.ordinal, startIndex, counts)
             itemList.forEach {
                 it.user = petDao.queryUserByCode(it.authorId)
+                it.videoData = petDao.queryVideoDataByCode(it.code)
             }
             var bannerList = mutableListOf<PetViewData>()
             if (startIndex == 0) {
@@ -676,6 +676,14 @@ class PetManager {
         }
     }
 
+    suspend fun updateAttention(userCode: Int) {
+
+        withContext(Dispatchers.Default) {
+            val user = petDao.queryUserByCode(userCode)
+            user.attention = !user.attention
+            petDao.updateUser(user)
+        }
+    }
 
     suspend fun addCollection(groupName: String, videoCode: Int) {
 
@@ -895,6 +903,31 @@ class PetManager {
             petDao.insertComment(comment)
             delay(300)
             CommentAndUser(comment, user)
+        }
+    }
+
+    suspend fun getLiveVides(isRefresh: Boolean,startIndex: Int, counts: Int): LiveVideoData {
+
+        return withContext(Dispatchers.Default) {
+
+            val startTime = System.currentTimeMillis()
+            val data = LiveVideoData()
+            if (isRefresh) {
+                val users = petDao.queryLiveAttentionUsers()
+                data.visitors = users
+            }
+            val userCodes = petDao.queryLiveAttentionUserCodes()
+            val videos = petDao.queryLiveVideos(userCodes, startIndex, counts)
+            videos.forEach {
+                it.user = petDao.queryUserByCode(it.authorId)
+                it.videoData = petDao.queryVideoDataByCode(it.code)
+            }
+            data.lives = videos
+            Log.e(
+                "1mean",
+                "videos: ${videos.size}, cost=" + (System.currentTimeMillis() - startTime)
+            )
+            data
         }
     }
 

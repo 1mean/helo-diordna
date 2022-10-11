@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/layout/adapter_video_vertical.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/card_item_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_attention_cancel.xml" value="0.25427350427350426" />
+        <entry key="app/src/main/res/layout/dialog_delete.xml" value="0.262037037037037" />
         <entry key="app/src/main/res/layout/footer_recyclerview.xml" value="0.2423076923076923" />
         <entry key="app/src/main/res/layout/fragment_comment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_comment_list.xml" value="0.1" />

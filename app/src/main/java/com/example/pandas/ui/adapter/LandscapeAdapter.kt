@@ -11,8 +11,10 @@ import com.example.pandas.R
 import com.example.pandas.bean.LandscapeData
 import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.ext.startVideoPlayActivity
+import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.AdapterLandscapeItemBinding
 import com.example.pandas.databinding.LayoutBannerLandscapeBinding
+import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.ui.view.viewpager.Indicator
 import com.example.pandas.utils.TimeUtils
 
@@ -114,9 +116,9 @@ public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data
                 val adapter = LandViewPagerAdapter(list)
 
                 this.banner.setLifecycleRegistry(lifecycle).setAdapter(adapter)
-                    .setPagePadding(20, 40, 15)
-                    //.setIndicator(indicator!!, true)
-                    //.setAutoPlayed(true)
+                    //.setPagePadding(20, 40, 10)
+                    .setIndicator(indicator!!, true)
+                    .setAutoPlayed(true)
             }
         }
     }
@@ -135,6 +137,21 @@ public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data
         fun handle(position: Int) {
 
             val video = data.itemList[position - 1]
+            val videoData = video.videoData
+
+            videoData?.let {
+                counts.text = it.plays.toString()
+                if (it.comments == 0) {
+                    comments.text = " - "
+                } else {
+                    comments.text = it.comments.toString()
+                }
+            }
+
+            if (videoData == null) {
+                counts.text = "0"
+                comments.text = " - "
+            }
 
             loadRoundedCornerImage(itemView.context, 10, video.cover, cover)
             duration.text = TimeUtils.getDuration(video.duration.toLong())
@@ -142,12 +159,13 @@ public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data
             video.user?.let {
                 name.text = it.userName
             }
-            val count = (1..1000).random()
-            Log.e("1mean", "$count")
-            counts.text = StringBuilder(count.toString()).append("观看").toString()
-            comments.text = (1..100).random().toString()
             layoutMore.setOnClickListener {
-
+                val dialog =
+                    ShareBottomSheetDialog(itemView.context, object : ItemClickListener<String> {
+                        override fun onItemClick(t: String) {
+                        }
+                    })
+                dialog.addData().onShow()
             }
             itemView.setOnClickListener {
                 startVideoPlayActivity(itemView.context, video.code)

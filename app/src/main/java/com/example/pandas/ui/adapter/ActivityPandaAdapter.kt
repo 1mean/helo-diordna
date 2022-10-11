@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.pandas.sql.entity.PeriodType
-import com.example.pandas.ui.fragment.PandaChildFragment
+import com.example.pandas.ui.fragment.main.home.panda.PandaChildFragment
 
 /**
  * @description: ActivityPandaAdapter

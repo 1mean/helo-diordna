@@ -54,6 +54,34 @@ public class VerticalPlayManager(
         }
     }
 
+    fun addMediaItems(list: MutableList<PetVideo>){
+        if (list.isNotEmpty()) {
+            val mediaItems = mutableListOf<MediaItem>()
+            list.forEach {
+                val file = getLocalFilePath(context, it.fileName!!)
+                val mediaItem =
+                    MediaItem.Builder().setUri(Uri.fromFile(file))
+                        .setMediaId(it.code.toString()).build()
+                mediaItems.add(mediaItem)
+            }
+            mPlayer.addMediaItems(mediaItems)
+        }
+    }
+
+    fun initPlayer(list: MutableList<PetVideo>){
+
+        mPlayer.repeatMode = Player.REPEAT_MODE_ONE
+        val mediaItems = mutableListOf<MediaItem>()
+        list.forEach {
+            val file = getLocalFilePath(context, it.fileName!!)
+            val mediaItem =
+                MediaItem.Builder().setUri(Uri.fromFile(file))
+                    .setMediaId(it.code.toString()).build()
+            mediaItems.add(mediaItem)
+        }
+        mPlayer.addMediaItems(mediaItems)
+    }
+
     fun play(playerView: StyledPlayerView, list: MutableList<PetVideo>) {
 
         val startTime = System.currentTimeMillis()
@@ -131,6 +159,7 @@ public class VerticalPlayManager(
     fun continuePlayer() {
         mPlayer.playWhenReady = true
     }
+
 
     fun release() {
         mPlayer.removeListener(mListener)

@@ -94,9 +94,9 @@
             android:id="@+id/image_video_play_comment"
             android:layout_width="wrap_content"
             android:layout_height="16dp"
-            app:layout_constraintLeft_toRightOf="@id/txt_video_play_counts"
+            app:layout_constraintLeft_toLeftOf="@id/txt_landscape_name"
             app:layout_constraintBottom_toBottomOf="@id/txt_video_play_counts"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="90dp"
             android:src="@mipmap/img_video_comment" />
 
     <androidx.appcompat.widget.AppCompatTextView

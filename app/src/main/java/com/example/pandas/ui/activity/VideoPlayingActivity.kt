@@ -1,6 +1,5 @@
 package com.example.pandas.ui.activity
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
@@ -17,7 +16,6 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
-import androidx.fragment.app.commit
 import com.example.helo_base.magic.commonnavigator.CommonNavigator
 import com.example.helo_base.magic.commonnavigator.abs.CommonNavigatorAdapter
 import com.example.pandas.R
@@ -33,7 +31,7 @@ import com.example.pandas.biz.manager.VideoPlayManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.ActivityVideoBinding
 import com.example.pandas.ui.ext.*
-import com.example.pandas.ui.fragment.CommentListFragment
+import com.example.pandas.ui.fragment.video.CommentListFragment
 import com.example.pandas.ui.view.VideoTabView
 import com.example.pandas.ui.view.dialog.VideoMoreBottomSheetDialog
 import com.example.pandas.utils.ScreenUtil

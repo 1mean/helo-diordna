@@ -1,12 +1,15 @@
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.biz.ext.loadRoundedCornerImage
+import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.ext.startVideoPlayActivity
+import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.utils.NumUtils
 import com.example.pandas.utils.TimeUtils
 
@@ -33,9 +36,10 @@ public class HotFragmentAdapter(list: MutableList<PetVideo>) : BaseCommonAdapter
         val author = holder.getWidget<AppCompatTextView>(R.id.txt_hot_author)
         val playCounts = holder.getWidget<AppCompatTextView>(R.id.txt_hot_video_counts)
         val time = holder.getWidget<AppCompatTextView>(R.id.txt_hot_time)
+        val more = holder.getWidget<ConstraintLayout>(R.id.item_hot_more)
 
         data.cover?.let {
-            loadRoundedCornerImage(context, 10, it, cover)
+            loadCenterRoundedCornerImage(context, 10, it, cover)
         }
         duration.text = TimeUtils.getDuration(data.duration.toLong())
         title.text = data.title
@@ -60,6 +64,15 @@ public class HotFragmentAdapter(list: MutableList<PetVideo>) : BaseCommonAdapter
         }
         holder.itemView.setOnClickListener {
             startVideoPlayActivity(context, data.code)
+        }
+
+        more.setOnClickListener {
+            val dialog =
+                ShareBottomSheetDialog(context, object : ItemClickListener<String> {
+                    override fun onItemClick(t: String) {
+                    }
+                })
+            dialog.addData().onShow()
         }
     }
 

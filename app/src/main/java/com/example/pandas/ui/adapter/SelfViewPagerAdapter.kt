@@ -3,8 +3,8 @@ package com.example.pandas.ui.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.pandas.ui.fragment.SelfChildCacheFragment
-import com.example.pandas.ui.fragment.SelfChildSettingFragment
+import com.example.pandas.ui.fragment.main.mine.SelfChildCacheFragment
+import com.example.pandas.ui.fragment.main.mine.SelfChildSettingFragment
 
 /**
  * @description: SelfViewPagerAdapter

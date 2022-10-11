@@ -3,7 +3,7 @@ package com.example.pandas.ui.ext;
 import android.view.View
 import com.example.pandas.R
 import com.example.pandas.ui.activity.SearchActivity
-import com.example.pandas.ui.fragment.SearchListFragment
+import com.example.pandas.ui.fragment.search.SearchListFragment
 
 /**
  * popBackStackImmediate为同步，popBackStack为异步

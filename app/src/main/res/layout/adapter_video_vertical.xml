@@ -17,7 +17,6 @@
             app:show_timeout="0"
             app:resize_mode="zoom"
             app:show_buffering="never"
-
             app:controller_layout_id="@layout/controller_vertical_player" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -69,7 +68,9 @@
                         android:id="@+id/img_vertical_head"
                         android:layout_width="39dp"
                         android:layout_height="39dp"
-                        android:layout_gravity="center_vertical" />
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/shape_bg_vertical_header"
+                        android:padding="1dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_vertical_name"
@@ -132,7 +133,7 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edit_vertical"
-                    android:layout_width="200dp"
+                    android:layout_width="230dp"
                     android:layout_height="30dp"
                     app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom"
@@ -142,23 +143,54 @@
                     android:textSize="13sp"
                     android:paddingStart="15dp"
                     android:textColorHint="#50ffffff"
+                    android:focusable="false"
+                    android:clickable="false"
                     android:background="@drawable/shape_vertical_edit"
                     tools:ignore="RtlSymmetry" />
 
+            <View
+                    android:layout_width="1dp"
+                    android:layout_height="16dp"
+                    app:layout_constraintTop_toTopOf="@id/edit_vertical"
+                    android:layout_marginTop="7dp"
+                    app:layout_constraintRight_toRightOf="@id/edit_vertical"
+                    android:layout_marginEnd="46dp"
+                    android:background="#50ffffff" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    app:layout_constraintRight_toRightOf="@id/edit_vertical"
+                    app:layout_constraintTop_toTopOf="@id/edit_vertical"
+                    android:src="@mipmap/img_vertical_danmu"
+                    android:layout_marginEnd="12dp"
+                    android:background="@null" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ibn_vertical_reduce"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/img_vertical_reduce"
+                    app:layout_constraintTop_toTopOf="@id/edit_vertical"
+                    app:layout_constraintLeft_toRightOf="@id/edit_vertical"
+                    android:layout_marginStart="15dp"
+                    android:background="@null" />
+
             <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/ibn_vertical_empty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="10dp"
                     app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom"
                     app:layout_constraintRight_toRightOf="@id/clayout_vertical_bottom"
-                    android:src="@mipmap/img_vertical_empty"
+                    android:src="@mipmap/img_vertical_clear"
                     android:background="@null" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layout_vertical_right"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"

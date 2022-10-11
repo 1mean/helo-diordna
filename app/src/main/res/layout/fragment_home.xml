@@ -110,7 +110,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.flyco.tablayout.CommonTabLayout
+        <!--<com.flyco.tablayout.CommonTabLayout
                 android:id="@+id/tab"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
@@ -122,6 +122,12 @@
                 tl:tl_indicator_width="34dp"
                 tl:tl_indicator_height="3dp"
                 tl:tl_textsize="15dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+
+        <com.example.helo_base.magic.MagicIndicator
+                android:id="@+id/tab"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <View

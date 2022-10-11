@@ -37,7 +37,11 @@ data class User(
     @ColumnInfo
     var coin: Int = 0,//硬币
     @ColumnInfo
+    var attention: Boolean = false,//是否被关注
+
+    @ColumnInfo
     var reservedInt: Int = 0,//预留int字段
     @ColumnInfo
     var reservedString: String? = null//预留string字段
+
 ) : Parcelable

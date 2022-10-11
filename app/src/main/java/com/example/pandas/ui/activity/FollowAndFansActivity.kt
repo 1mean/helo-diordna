@@ -1,15 +1,14 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivityFollowBinding
-import com.example.pandas.ui.fragment.FansFragment
-import com.example.pandas.ui.fragment.FollowFragment
+import com.example.pandas.ui.fragment.main.mine.FansFragment
+import com.example.pandas.ui.fragment.main.mine.FollowFragment
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.tabs.TabLayoutMediator
 

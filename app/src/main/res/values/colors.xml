@@ -61,6 +61,7 @@
     <color name="color_eye_rv_bg">#EFF3F3</color>
     <color name="color_eye_bg_top_divider">#F7F7F7</color>
     <color name="color_eye_txt_share">#61666D</color>
+    <color name="color_live_comments">#61666A</color>
 
     <!--music-->
     <color name="color_bg_music_fragment">#f5f8fa</color>
@@ -203,7 +204,8 @@
     <color name="color_bg_setting_button_checked">#00A8FF</color>
     <color name="color_bg_setting_button_unchecked">#DBDBDB</color>
 
-
+    <!--live-->
+    <color name="color_live_tab_select">#FF679A</color>
 
     <!--other-->
     <color name="color_progress_loadmore">#FF5B9A</color>
@@ -215,5 +217,6 @@
     <color name="color_bg_cm_drivider">#e4e6e5</color>
     <color name="color_bg_dialog">#F6F7F9</color>
     <color name="color_vertical_white">#E6ffffff</color>
+    <color name="color_txt_visitor">#4A4C54</color>
 
 </resources>

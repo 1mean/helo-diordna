@@ -24,7 +24,7 @@ import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.activity.VideoPlayingActivity
 import com.example.pandas.ui.adapter.VideoFragmentAdapter
-import com.example.pandas.ui.fragment.VideoInfosFragment
+import com.example.pandas.ui.fragment.video.VideoInfosFragment
 import com.example.pandas.ui.view.VideoTabView
 import com.google.android.exoplayer2.ui.DefaultTimeBar
 

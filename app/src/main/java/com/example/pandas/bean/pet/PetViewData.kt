@@ -2,6 +2,7 @@ package com.example.pandas.bean.pet
 
 import androidx.room.Ignore
 import com.example.pandas.sql.entity.User
+import com.example.pandas.sql.entity.VideoData
 
 data class PetViewData(
 
@@ -15,5 +16,7 @@ data class PetViewData(
     var releaseTime: String? = "",//需要时设置，petDao里可以不用设置，编译不会报错
     var fileName: String? = "",
     @Ignore
-    var user: User? = null
+    var user: User? = null,
+    @Ignore
+    var videoData: VideoData? = null
 )

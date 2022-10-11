@@ -9,9 +9,7 @@ import android.view.MotionEvent
 import android.view.VelocityTracker
 import android.view.View
 import android.view.ViewConfiguration
-import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
@@ -19,12 +17,13 @@ import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.manager.VerticalPlayManager
 import com.example.pandas.biz.viewmodel.VerticalVideoViewModel
 import com.example.pandas.databinding.ActivityVerticalVideoplayBinding
+import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoPagerAdapter
 import com.example.pandas.ui.ext.addRefreshAnimation
+import com.example.pandas.ui.ext.startUserInfoActivity
 import com.example.pandas.utils.StatusBarUtils
 import com.example.pandas.utils.VibrateUtils
-import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.util.Util
 
 
@@ -42,15 +41,18 @@ public class VerticalVideoActivity2 :
     var mMinimumVelocity: Int = 0
     var mMaximumVelocity: Int = 0
     var mTouchSlop: Int = 0
+    private var hasMore = false
     var mVelocityTracker: VelocityTracker? = null //速度跟踪器
     private val mAdapter: VideoPagerAdapter by lazy { VideoPagerAdapter(listener = this) }
-    private val manager: VerticalPlayManager by lazy { VerticalPlayManager(this, this) }
+
+    private var manager: VerticalPlayManager? = null
 
     @SuppressLint("Recycle")
     override fun initView(savedInstanceState: Bundle?) {
 
         StatusBarUtils.setStatusBarMode(this, false, R.color.black)
 
+        manager = VerticalPlayManager(this, this)
 
         mVelocityTracker = VelocityTracker.obtain()
         val viewConfig = ViewConfiguration.get(this)
@@ -67,7 +69,7 @@ public class VerticalVideoActivity2 :
 
         binding.ibnVerticalTopClose.setOnClickListener {
             mVelocityTracker?.recycle()
-            manager.release()
+            manager?.release()
             finish()
         }
 
@@ -84,40 +86,25 @@ public class VerticalVideoActivity2 :
 
         mViewModel.verticalVideos.observe(this) {
 
+            Log.e("1mean", "createObserver")
             if (it.isSuccess) {
                 when {
                     it.isRefresh -> {
-                        Log.e("1mean", "refresh: ${it.listData}")
                         mAdapter.refreshAdapter(it.listData)
-                    }
-                    it.hasMore -> {
-
-                    }
-                }
-            }
-            if (it.isRefresh) {
-
-                if (isRefreshing) {
-                    manager.refreshPlayer(it.listData)
-                    isRefreshing = false
-                    binding.clayoutVerticalRefresh.visibility = View.GONE
-                } else {
-
-                    binding.vp2VideoVertical.post {
-                        val list = it.listData
-                        if (list.isNotEmpty()) {
-                            val recyclerView =
-                                binding.vp2VideoVertical.getChildAt(0) as RecyclerView
-                            recyclerView.getChildAt(0)?.let { view ->
-                                val playerView =
-                                    view.findViewById<StyledPlayerView>(R.id.player_vertical)
-                                playerView?.let {
-                                    manager.play(it, list)
-                                }
-                            }
+                        if (isRefreshing) {
+                            manager?.refreshPlayer(it.listData)
+                            isRefreshing = false
+                            binding.clayoutVerticalRefresh.visibility = View.GONE
+                        } else {
+                            manager?.initPlayer(it.listData)
                         }
                     }
+                    it.hasMore -> {
+                        mAdapter.loadMore(it.listData)
+                        manager?.addMediaItems(it.listData)
+                    }
                 }
+                hasMore = it.hasMore
             }
         }
     }
@@ -125,12 +112,17 @@ public class VerticalVideoActivity2 :
     override fun onStart() {
         super.onStart()
         if (Util.SDK_INT > 23) {
-            manager.initPlayer()
+            manager?.initPlayer()
         }
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun againOnResume() {
+        super.againOnResume()
+        manager?.continuePlayer()
+    }
+
+    override fun firstOnResume() {
+        super.firstOnResume()
         mViewModel.getVerticalVideos(true)
     }
 
@@ -284,14 +276,24 @@ public class VerticalVideoActivity2 :
         //界面初始化，第一次注册时也会被调用，所以要注意为null的判断
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
+            Log.e("1mean", "onPageSelected")
+
+
             binding.vp2VideoVertical.post {
+
+                val count = mAdapter.itemCount
+                if (position == (count - 1) && hasMore) {
+                    Log.e("1mean", "position:$position, count:$count 准备加载更多")
+                    mViewModel.getVerticalVideos(false)
+                }
+
                 mAdapter.recyclerView?.let {
                     val viewHolder =
                         it.findViewHolderForAdapterPosition(position) as? VideoPagerAdapter.MyViewHolder
                     viewHolder?.let { vh ->
                         vh.init()
                         Log.e("asdasdadasd", "position: $position, playerView: ${vh.playerView}")
-                        manager.seekTo(position, vh.playerView)
+                        manager?.seekTo(position, vh.playerView)
                     }
                 }
             }
@@ -303,10 +305,10 @@ public class VerticalVideoActivity2 :
     }
 
     override fun onSingleTap() {
-        if (manager.isPlaying()) {
-            manager.pause()
+        if (manager!!.isPlaying()) {
+            manager?.pause()
         } else {
-            manager.continuePlayer()
+            manager?.continuePlayer()
         }
     }
 
@@ -319,9 +321,28 @@ public class VerticalVideoActivity2 :
         mViewModel.updateCollect(isAdd, videoCode)
     }
 
+    override fun updateUserAttention(userCode: Int) {
+        mViewModel.updateAttention(userCode)
+    }
+
+    override fun startUserActivity(user: User) {
+
+        if (manager!!.isPlaying()) {
+            manager?.pause()
+        } else {
+            mAdapter.recyclerView?.let {
+                val viewHolder =
+                    it.findViewHolderForAdapterPosition(binding.vp2VideoVertical.currentItem) as? VideoPagerAdapter.MyViewHolder
+                viewHolder?.init()
+            }
+        }
+        startUserInfoActivity(this, user)
+    }
+
     override fun onkeyBack() {
         mVelocityTracker?.recycle()
-        manager.release()
+        manager?.release()
+        manager = null
         super.onkeyBack()
     }
 }
