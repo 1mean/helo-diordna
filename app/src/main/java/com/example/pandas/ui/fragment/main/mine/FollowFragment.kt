@@ -48,7 +48,7 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
             setBackgroundResource(R.color.white)
             setRefreshColor()
             setOnRefreshListener {
-                mViewModel.getAllFollowUser(mActivity)
+                mViewModel.getAllFollowUser()
             }
         }
 
@@ -80,7 +80,7 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
 
     override fun firstOnResume() {
         binding.swipLayout.isRefreshing = true
-        mViewModel.getAllFollowUser(mActivity)
+        mViewModel.getAllFollowUser()
     }
 
     override fun followViewClick(position: Int, userCode: Int) {

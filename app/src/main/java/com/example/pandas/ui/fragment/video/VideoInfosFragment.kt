@@ -112,9 +112,8 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
 
                 userCode = author.userCode
 
-                isAttention = mViewModel.isAttention(mActivity, author.userCode)
-
-                if (isAttention) {//已关注
+                if (author.attention) {//已关注
+                    isAttention = true
                     binding.llayoutInfoAttention.visibility = View.GONE
                     binding.llayoutInfoAttentioned.visibility = View.VISIBLE
                     binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_unattention)
@@ -124,13 +123,14 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     if (isAttention) {
                         bottomSheetDialog.onShow()
                     } else {
-                        isAttention = true
-                        mViewModel.follow(mActivity, author.userCode)
+                        mViewModel.updateAttention(userCode)
                         binding.llayoutInfoAttention.visibility = View.GONE
                         binding.llayoutInfoAttentioned.visibility = View.VISIBLE
                         binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_unattention)
                         Toast.makeText(mActivity, "已关注", Toast.LENGTH_SHORT).show()
                     }
+                    author.attention = !author.attention
+                    isAttention = !isAttention
                 }
             }
 
@@ -150,7 +150,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     Toast.makeText(mActivity, "加入默认分组", Toast.LENGTH_SHORT).show()
                 }
                 2 -> {//取消关注
-                    mViewModel.deleteAttention(mActivity, userCode)
+                    mViewModel.updateAttention(userCode)
                     binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_attention)
                     binding.llayoutInfoAttention.visibility = View.VISIBLE
                     binding.llayoutInfoAttentioned.visibility = View.GONE

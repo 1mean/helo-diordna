@@ -30,8 +30,8 @@ public class SelfViewModel : BaseViewModel() {
 
     val userInfo: MutableLiveData<User> by lazy { MutableLiveData() }
 
-    private val _follows: MutableLiveData<MutableList<String>> by lazy { MutableLiveData() }
-    val follows: LiveData<MutableList<String>> = _follows
+    private val _follows: MutableLiveData<Int> by lazy { MutableLiveData() }
+    val follows: LiveData<Int> = _follows
 
 
     val followUser: MutableLiveData<MutableList<User>> by lazy { MutableLiveData() }
@@ -45,16 +45,14 @@ public class SelfViewModel : BaseViewModel() {
 
     fun getCurrentFollows(context: Context) {
         viewModelScope.launch {
-            _follows.value = withContext(Dispatchers.IO) {
-                SPUtils.getList(context, AppInfos.ATTENTION_KEY)
-            }
+            _follows.value = PetManagerCoroutine.getAllFollowCounts()
         }
     }
 
-    fun getAllFollowUser(context: Context) {
+    fun getAllFollowUser() {
 
         viewModelScope.launch {
-            followUser.value = PetManagerCoroutine.getAllFollowUsers(context)
+            followUser.value = PetManagerCoroutine.getAllFollowUsers()
         }
     }
 

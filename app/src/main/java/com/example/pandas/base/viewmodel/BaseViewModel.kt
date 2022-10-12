@@ -7,6 +7,8 @@ import com.example.pandas.app.AppInfos
 import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.AppException
 import com.example.pandas.biz.http.exception.ExceptionHandle
+import com.example.pandas.biz.manager.PetManagerCoroutine
+import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.utils.SPUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -83,19 +85,15 @@ open class BaseViewModel : ViewModel() {
         }
     }
 
-    fun addAttention(context: Context, userCode: Int) {
-
-        viewModelScope.launch(Dispatchers.Default) {
-            SPUtils.saveList(context, AppInfos.ATTENTION_KEY, userCode.toString())
-        }
-    }
-
-    fun deleteAttention(context: Context, userCode: Int) {
+    fun updateAttention(userCode: Int) {
         viewModelScope.launch {
-            withContext(Dispatchers.Default) {
-                SPUtils.removeFromList(context, AppInfos.ATTENTION_KEY, userCode.toString())
-            }
+            PetManagerCoroutine.updateAttention(userCode)
         }
     }
 
+    fun addOrUpdateVideoData(videoData: VideoData) {
+        viewModelScope.launch {
+            PetManagerCoroutine.addOrUpdateVideoData(videoData)
+        }
+    }
 }

@@ -188,12 +188,6 @@ public class VideoViewModel : BaseViewModel() {
         }
     }
 
-    fun addOrUpdateVideoData(videoData: VideoData) {
-        viewModelScope.launch {
-            PetManagerCoroutine.addOrUpdateVideoData(videoData)
-        }
-    }
-
     fun addCollection(videoCode: Int, groupName: String) {
 
         viewModelScope.launch {

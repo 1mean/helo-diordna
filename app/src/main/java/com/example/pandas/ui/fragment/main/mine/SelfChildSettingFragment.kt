@@ -73,7 +73,7 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
     override fun createObserver() {
 
         mViewModel.follows.observe(viewLifecycleOwner) {
-            binding.txtMineFollow.text = it.size.toString()
+            binding.txtMineFollow.text = it.toString()
         }
     }
 

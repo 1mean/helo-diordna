@@ -218,5 +218,8 @@
     <color name="color_bg_dialog">#F6F7F9</color>
     <color name="color_vertical_white">#E6ffffff</color>
     <color name="color_txt_visitor">#4A4C54</color>
+    <color name="color_live_tag_text">#008FD3</color>
+    <color name="color_live_vip">#FF4E9B</color>
+    <color name="color_live_name">#161A1A</color>
 
 </resources>

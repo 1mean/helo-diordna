@@ -8,6 +8,7 @@ import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.LiveViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
+import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.LiveVideoAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.ext.init
@@ -20,9 +21,10 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @date: 10/10/22 5:05 下午
  * @version: v1.0
  */
-public class LiveVideoFragment : BaseLazyFragment<LiveViewModel, LayoutSwipRefreshBinding>() {
+public class LiveVideoFragment : BaseLazyFragment<LiveViewModel, LayoutSwipRefreshBinding>(),
+    LiveVideoAdapter.LiveVideoListener {
 
-    private val mAdapter: LiveVideoAdapter by lazy { LiveVideoAdapter() }
+    private val mAdapter: LiveVideoAdapter by lazy { LiveVideoAdapter(listener = this) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -73,6 +75,10 @@ public class LiveVideoFragment : BaseLazyFragment<LiveViewModel, LayoutSwipRefre
 
     override fun firstOnResume() {
         mViewModel.getLiveVideo(true)
+    }
+
+    override fun updateVideoData(videoData: VideoData) {
+        mViewModel.addOrUpdateVideoData(videoData)
     }
 
 }

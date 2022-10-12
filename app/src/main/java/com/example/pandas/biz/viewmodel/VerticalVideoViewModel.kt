@@ -68,12 +68,6 @@ public class VerticalVideoViewModel : BaseViewModel() {
         }
     }
 
-    fun addOrUpdateVideoData(videoData: VideoData) {
-        viewModelScope.launch {
-            PetManagerCoroutine.addOrUpdateVideoData(videoData)
-        }
-    }
-
     fun updateCollect(isAdd: Boolean, videoCode: Int) {
         viewModelScope.launch {
             if (isAdd) {
@@ -81,12 +75,6 @@ public class VerticalVideoViewModel : BaseViewModel() {
             } else {
                 PetManagerCoroutine.deleteCollection("默认收藏夹", videoCode)
             }
-        }
-    }
-
-    fun updateAttention(userCode: Int) {
-        viewModelScope.launch {
-            PetManagerCoroutine.updateAttention(userCode)
         }
     }
 }

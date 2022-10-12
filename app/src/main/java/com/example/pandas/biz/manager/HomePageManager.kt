@@ -767,22 +767,16 @@ class PetManager {
         }
     }
 
-    suspend fun getAllFollowUsers(context: Context): MutableList<User> {
+    suspend fun getAllFollowUsers(): MutableList<User> {
 
-        return withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.Default) {
+            petDao.queryAllAttentionUsers()
+        }
+    }
 
-            delay(300)
-            val list = SPUtils.getList<String>(context, AppInfos.ATTENTION_KEY)
-            Log.e("111111mean", "list:$list")
-            val users = mutableListOf<User>()
-            if (list.isNotEmpty()) {
-                list.forEach {
-                    Log.e("111111mean", "it:$it")
-                    val user = petDao.queryUserByCode(it.toInt())
-                    users.add(user)
-                }
-            }
-            users
+    suspend fun getAllFollowCounts(): Int {
+        return withContext(Dispatchers.Default) {
+            petDao.queryAllAttentionCounts()
         }
     }
 
@@ -906,7 +900,7 @@ class PetManager {
         }
     }
 
-    suspend fun getLiveVides(isRefresh: Boolean,startIndex: Int, counts: Int): LiveVideoData {
+    suspend fun getLiveVides(isRefresh: Boolean, startIndex: Int, counts: Int): LiveVideoData {
 
         return withContext(Dispatchers.Default) {
 
@@ -914,6 +908,7 @@ class PetManager {
             val data = LiveVideoData()
             if (isRefresh) {
                 val users = petDao.queryLiveAttentionUsers()
+                Log.e("1mean", "users: $users")
                 data.visitors = users
             }
             val userCodes = petDao.queryLiveAttentionUserCodes()

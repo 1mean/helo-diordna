@@ -17,7 +17,7 @@
                 android:layout_height="40dp"
                 app:layout_constraintTop_toTopOf="@id/clayout_live_top"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_live_top"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginStart="12dp" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -26,11 +26,11 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@id/img_user"
                 app:layout_constraintTop_toTopOf="@id/clayout_live_top"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="14dp"
-                android:textSize="14sp"
+                android:layout_marginTop="13dp"
+                android:layout_marginStart="12dp"
+                android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="@color/color_video_item_title" />
+                android:textColor="@color/color_live_name" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_live_time"
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="@id/txt_user"
                 app:layout_constraintTop_toBottomOf="@id/txt_user"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="2dp"
                 android:textSize="12sp"
                 android:includeFontPadding="false"
                 android:textColor="@color/color_eye_txt_time" />
@@ -99,26 +99,20 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clayout_live_item"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#11000000">
+                    android:layout_height="56dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/shape_video_live_bottom">
 
-                <!--<androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/img_live_item_play"
-                        app:layout_constraintTop_toTopOf="@id/clayout_live_item"
-                        app:layout_constraintBottom_toBottomOf="@id/clayout_live_item"
-                        app:layout_constraintLeft_toLeftOf="@id/clayout_live_item"
-                        app:layout_constraintRight_toRightOf="@id/clayout_live_item" />-->
                 <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/img_live_item_play"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/img_eye_pre_play"
+                        android:src="@mipmap/img_live_play"
                         app:layout_constraintBottom_toBottomOf="@id/clayout_live_item"
                         app:layout_constraintRight_toRightOf="@id/clayout_live_item"
                         android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="6dp" />
+                        android:alpha="0.7"
+                        android:layout_marginBottom="8dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_live_item_duration"
@@ -151,6 +145,27 @@
                 android:gravity="bottom"
                 android:layout_gravity="bottom"
                 android:textColor="@color/color_video_item_title" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llayout_live_tag"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_marginStart="12dp"
+            android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:background="@drawable/shape_live_tag_text"
+                android:text="竖屏播放"
+                android:textColor="@color/color_live_tag_text"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:layout_gravity="bottom" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat

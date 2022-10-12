@@ -166,8 +166,7 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                 loadImage(this, it, binding.imgUserHeader)
             }
 
-            var isAttention = mViewModel.isAttention(this, it.userCode)
-            if (isAttention) {
+            if (it.attention) {
                 binding.clayoutUserFollow.setBackgroundResource(R.drawable.shape_user_unattention)
                 binding.clayoutUserAttention.visibility = View.GONE
                 binding.clayoutUserUnattention.visibility = View.VISIBLE
@@ -175,13 +174,13 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
 
             binding.clayoutUserFollow.setOnClickListener { _ ->
 
-                if (!isAttention) {
-                    mViewModel.addAttention(this, it.userCode)
+                if (!it.attention) {
+                    mViewModel.updateAttention(it.userCode)
                     binding.clayoutUserFollow.setBackgroundResource(R.drawable.shape_user_unattention)
                     binding.clayoutUserAttention.visibility = View.GONE
                     binding.clayoutUserUnattention.visibility = View.VISIBLE
                     Toast.makeText(this, "已关注", Toast.LENGTH_SHORT).show()
-                    isAttention = true
+                    it.attention = true
                 } else {
                     bottomSheetDialog = BottomSheetDialog(this)
                     val dBinding = DialogAttentionCancelBinding.inflate(LayoutInflater.from(this))
@@ -195,12 +194,12 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                         bottomSheetDialog.dismiss()
                     }
                     dBinding.rlayoutCancel.setOnClickListener { _ ->
-                        mViewModel.deleteAttention(this, it.userCode)
+                        mViewModel.updateAttention(it.userCode)
                         binding.clayoutUserFollow.setBackgroundResource(R.drawable.shape_user_attention)
                         binding.clayoutUserAttention.visibility = View.VISIBLE
                         binding.clayoutUserUnattention.visibility = View.GONE
                         Toast.makeText(this, "已取消关注", Toast.LENGTH_SHORT).show()
-                        isAttention = false
+                        it.attention = false
                         bottomSheetDialog.dismiss()
                     }
                     dBinding.txtCancel.setOnClickListener {

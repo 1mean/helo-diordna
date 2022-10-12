@@ -50,7 +50,7 @@ public class RecommendAdapter(
 
     private val mHandler = Handler(Looper.getMainLooper())
 
-    fun updateVoice(isOpen: Boolean){
+    fun updateVoice(isOpen: Boolean) {
         this.isOpenVoice = isOpen
     }
 
@@ -195,23 +195,7 @@ public class RecommendAdapter(
             this.duration.text = duration
             petVideo.user?.let {
                 name.text = it.userName
-            }
-
-            val counts = (1..num).random()
-            val commentCounts = (1..commentNum).random()
-            videoCounts.text = NumUtils.getShortNum(counts)
-            comments.text = commentCounts.toString()
-
-            val type = petVideo.type
-            if (type == VideoType.HONGLOU.ordinal) {
-                follow.visibility = View.VISIBLE
-                up.visibility = View.GONE
-                follow.setTextColor(ContextCompat.getColor(context, R.color.color_bg_reco_type))
-                follow.setBackgroundResource(R.drawable.shape_bg_reco_type)
-                follow.text = context.resources.getString(R.string.str_hl)
-            } else {
-                val isAttention = SPUtils.isAttention(context, petVideo.authorId)
-                if (isAttention) {
+                if (it.attention) {
                     follow.visibility = View.VISIBLE
                     up.visibility = View.GONE
                     follow.setTextColor(
@@ -226,6 +210,20 @@ public class RecommendAdapter(
                     follow.visibility = View.GONE
                     up.visibility = View.VISIBLE
                 }
+            }
+
+            val counts = (1..num).random()
+            val commentCounts = (1..commentNum).random()
+            videoCounts.text = NumUtils.getShortNum(counts)
+            comments.text = commentCounts.toString()
+
+            val type = petVideo.type
+            if (type == VideoType.HONGLOU.ordinal) {
+                follow.visibility = View.VISIBLE
+                up.visibility = View.GONE
+                follow.setTextColor(ContextCompat.getColor(context, R.color.color_bg_reco_type))
+                follow.setBackgroundResource(R.drawable.shape_bg_reco_type)
+                follow.text = context.resources.getString(R.string.str_hl)
             }
             itemView.setOnLongClickListener {
                 showDialog(petVideo.code)

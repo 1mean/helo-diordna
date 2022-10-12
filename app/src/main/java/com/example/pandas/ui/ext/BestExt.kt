@@ -146,4 +146,14 @@ fun addRefreshAnimation(view: View, offSet: Float, listener: Animator.AnimatorLi
     animationSet.addListener(listener)
 }
 
+fun likeAnimation(view: View){
+    val transScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.3f, 1f)
+    val transScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.3f, 1f)
+    val animationSet = AnimatorSet()
+    animationSet.duration = 600
+    animationSet.interpolator = DecelerateInterpolator()
+    animationSet.play(transScaleX).with(transScaleY)
+    animationSet.start()
+}
+
 //-------------------<动画相关 结束>-----------------------------------------------------------------

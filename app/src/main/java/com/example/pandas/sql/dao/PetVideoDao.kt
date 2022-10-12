@@ -434,6 +434,12 @@ interface PetVideoDao {
     @Query("select * from user where attention=1 limit 0,30")
     suspend fun queryLiveAttentionUsers(): MutableList<User>
 
+    @Query("select * from user where attention=1")
+    suspend fun queryAllAttentionUsers(): MutableList<User>
+
+    @Query("select count(*) from user where attention=1")
+    suspend fun queryAllAttentionCounts(): Int
+
     @Query("select userCode from user where attention=1 limit 0,30")
     suspend fun queryLiveAttentionUserCodes(): MutableList<Int>
 

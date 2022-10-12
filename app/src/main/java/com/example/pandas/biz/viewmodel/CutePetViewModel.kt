@@ -84,10 +84,4 @@ public class CutePetViewModel : BaseViewModel() {
                 pageDataWrapper.value = dataList
             })
     }
-
-    fun addOrUpdateVideoData(videoData: VideoData) {
-        viewModelScope.launch {
-            PetManagerCoroutine.addOrUpdateVideoData(videoData)
-        }
-    }
 }
