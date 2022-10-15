@@ -6,6 +6,7 @@ import android.content.res.Resources
 import android.graphics.Rect
 import android.os.Build
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
@@ -104,9 +105,21 @@ object ScreenUtil {
     fun isOverHalfViewVisiable(itemView: View): Boolean {
 
         val rect = Rect()
-        itemView.getLocalVisibleRect(rect)
+        itemView.getGlobalVisibleRect(rect)
         val visibleHeight = rect.height()//可见的高度
         val totalHeight = itemView.layoutParams.height//总高度
+        Log.e("LiveVIdeosss","visibleHeight: $visibleHeight, totalHeight:$totalHeight")
         return visibleHeight >= (totalHeight / 2)
+    }
+
+    /**
+     * 当前view是否至少一半在可视屏幕
+     */
+    fun getLocationHeight(itemView: View): Int {
+
+        val ints = IntArray(2)
+        itemView.getLocationInWindow(ints)
+        val height = ints[1]
+        return height
     }
 }

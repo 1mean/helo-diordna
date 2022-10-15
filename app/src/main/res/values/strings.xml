@@ -143,12 +143,13 @@
     <string name="str_open">公开</string>
     <string name="str_cover">封面</string>
     <string name="str_close_function">功能暂时关闭</string>
-    <string name="str_please_waiting">请稍候...</string>
+    <string name="str_please_waiting">请稍候…</string>
     <string name="str_delete_group">删除收藏夹</string>
     <string name="str_view_setting">界面设置</string>
     <string name="str_network">网络</string>
     <string name="str_storage">缓存设置</string>
     <string name="str_dm_close">已关闭弹幕</string>
     <string name="str_find_more">查看更多</string>
+    <string name="str_transmit">转发</string>
 
 </resources>

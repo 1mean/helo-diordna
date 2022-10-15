@@ -1,3 +1,4 @@
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -38,6 +39,7 @@ public class HotFragmentAdapter(list: MutableList<PetVideo>) : BaseCommonAdapter
         val time = holder.getWidget<AppCompatTextView>(R.id.txt_hot_time)
         val more = holder.getWidget<ConstraintLayout>(R.id.item_hot_more)
 
+        Log.e("asdasdadasdas","position: $position, time:$time")
         data.cover?.let {
             loadCenterRoundedCornerImage(context, 10, it, cover)
         }

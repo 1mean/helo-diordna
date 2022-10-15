@@ -81,7 +81,7 @@
             <com.google.android.exoplayer2.ui.StyledPlayerView
                     android:id="@+id/player_live"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="189dp"
                     app:show_buffering="never"
                     app:show_timeout="0"
                     app:hide_on_touch="false"
@@ -90,47 +90,52 @@
                     app:shutter_background_color="@color/color_white_lucency"
                     app:controller_layout_id="@layout/item_reco_player" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_video"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY" />
-
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/clayout_live_item"
+                    android:id="@+id/clayout_live_shelter"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_gravity="bottom"
-                    android:background="@drawable/shape_video_live_bottom">
+                    android:layout_height="match_parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/img_live_item_play"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/img_live_play"
-                        app:layout_constraintBottom_toBottomOf="@id/clayout_live_item"
-                        app:layout_constraintRight_toRightOf="@id/clayout_live_item"
-                        android:layout_marginEnd="10dp"
-                        android:alpha="0.7"
-                        android:layout_marginBottom="8dp" />
+                        android:id="@+id/img_video"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txt_live_item_duration"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="@id/clayout_live_item"
-                        app:layout_constraintBottom_toBottomOf="@id/clayout_live_item"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginBottom="9dp"
-                        android:textColor="@color/white"
-                        android:textSize="11sp"
-                        android:paddingLeft="4dp"
-                        android:paddingRight="4dp"
-                        android:paddingTop="3dp"
-                        android:paddingBottom="3dp"
-                        android:background="@drawable/shape_eye_item_duration"
-                        android:gravity="center"
-                        android:includeFontPadding="false" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clayout_live_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        app:layout_constraintBottom_toBottomOf="@id/clayout_live_shelter"
+                        android:background="@drawable/shape_video_live_bottom">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/img_live_play"
+                            app:layout_constraintBottom_toBottomOf="@id/clayout_live_item"
+                            app:layout_constraintRight_toRightOf="@id/clayout_live_item"
+                            android:layout_marginEnd="10dp"
+                            android:alpha="0.7"
+                            android:layout_marginBottom="8dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_live_item_duration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_live_item"
+                            app:layout_constraintBottom_toBottomOf="@id/clayout_live_item"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginBottom="9dp"
+                            android:textColor="@color/white"
+                            android:textSize="11sp"
+                            android:paddingLeft="4dp"
+                            android:paddingRight="4dp"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp"
+                            android:background="@drawable/shape_eye_item_duration"
+                            android:gravity="center"
+                            android:includeFontPadding="false" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -184,7 +189,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                     style="@style/style_eye_item_bottom_text"
-                    android:text="@string/str_share" />
+                    android:text="@string/str_transmit" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat

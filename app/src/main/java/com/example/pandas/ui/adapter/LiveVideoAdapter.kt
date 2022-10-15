@@ -15,6 +15,7 @@ import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.Item1AdapterLiveVideoBinding
 import com.example.pandas.databinding.Item3AdapterLiveVideoBinding
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.decoration.LiveVisitorItemDecoration
 import com.example.pandas.ui.ext.setAnimation
@@ -48,6 +49,8 @@ public class LiveVideoAdapter(
             notifyItemRangeInserted(startIndex, liveData.lives.size)
         }
     }
+
+    fun getItemData(position: Int): PetVideo = data.lives[position - 2]
 
     override fun getItemViewType(position: Int): Int = when (position) {
         0 -> 1
@@ -146,11 +149,19 @@ public class LiveVideoAdapter(
         val likeImg = binding.imgLiveItemLike
         val likeTxt = binding.txtLiveItemLike
         val comments = binding.txtLiveItemComments
-        val playImg = binding.imgLiveItemPlay
-        val playshelter = binding.clayoutLiveItem
+        val playshelter = binding.clayoutLiveShelter
         val player = binding.playerLive
         var tagView = binding.llayoutLiveTag
         var dialog: ShareBottomSheetDialog? = null
+
+        fun updateItemView(hidePlayer: Boolean) {
+            if (hidePlayer) {
+                playshelter.visibility = View.VISIBLE
+            } else {
+                playshelter.visibility = View.GONE
+                player.showController()
+            }
+        }
 
         fun handle(position: Int) {
 
