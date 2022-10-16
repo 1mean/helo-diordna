@@ -100,7 +100,7 @@ object ScreenUtil {
     }
 
     /**
-     * 当前view是否至少一半在可视屏幕
+     * 当前view是否至少一半在可视屏幕  快速滑动还是会出现已经隐藏了但是heigh仍然符合条件的bug
      */
     fun isOverHalfViewVisiable(itemView: View): Boolean {
 
@@ -113,7 +113,7 @@ object ScreenUtil {
     }
 
     /**
-     * 当前view是否至少一半在可视屏幕
+     * 当前view的距离屏幕顶部的距离
      */
     fun getLocationHeight(itemView: View): Int {
 

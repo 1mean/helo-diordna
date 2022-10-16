@@ -2,6 +2,7 @@ package com.example.pandas.biz.manager
 
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.bean.MediaItemWrapper
 import com.example.pandas.biz.ext.getLocalFilePath
@@ -80,10 +81,12 @@ public class LivePlayManager(
                 }
             } else {
                 if (PlayerConfig.instance.hasMediaItem(videoCode)) {
+                    Log.e("LiveVIdeosss","6666")
                     val mediaItemWrapper = PlayerConfig.instance.getMediaItem(videoCode)
                     mediaItemWrapper!!.mediaItem?.let {
                         mPlayer.addMediaItem(it)
                         val index = mediaIndexs.add(mediaInfo)
+                        Log.e("LiveVIdeosss","playPosition: ${mediaItemWrapper.playPosition}")
                         mPlayer.seekTo(index, mediaItemWrapper.playPosition)
                     }
                 } else {
@@ -106,11 +109,11 @@ public class LivePlayManager(
     }
 
     /**
-     * 暂停视频，同时存储最新进度
+     * 仅仅暂停视频，同时存储最新进度
      */
-    fun stop() {
+    fun pause() {
         if (mPlayer.isPlaying) {
-            mPlayer.stop()
+            mPlayer.pause()
             mPlayer.currentMediaItem?.let {
                 val videoCode = it.mediaId.toInt()
                 PlayerConfig.instance.updatePosition(videoCode, mPlayer.currentPosition)
@@ -118,6 +121,45 @@ public class LivePlayManager(
             }
         }
     }
+
+    /**
+     * 停止播放，闲置播放器，释放播放所需要的加载的media和sources
+     *
+     * 再次调用prepare()时，player对象能继续被使用
+     */
+    fun stopPlayer() {
+        if (mPlayer.isPlaying) {
+            mPlayer.stop()
+            playPos = -1
+            mPlayer.currentMediaItem?.let {
+                val videoCode = it.mediaId.toInt()
+                PlayerConfig.instance.updatePosition(videoCode, mPlayer.currentPosition)
+                mediaIndexs.updatePlayingPosition(videoCode.toInt(), mPlayer.currentPosition)
+            }
+        }
+    }
+
+    /**
+     * 彻底释放播放器，存储不释放
+     */
+    fun releasePlayer() {
+        _mPlayer?.let { _ ->
+            mPlayer.currentMediaItem?.let {
+                val videoCode = it.mediaId.toInt()
+                PlayerConfig.instance.updatePosition(videoCode, mPlayer.currentPosition)
+                mediaIndexs.updatePlayingPosition(videoCode.toInt(), mPlayer.currentPosition)
+            }
+            oldPlayerView?.player = null
+            mPlayer.removeListener(mListener)
+            mPlayer.clearMediaItems()
+            mPlayer.release()
+            mediaIndexs.clear()
+            _mPlayer = null
+            oldPlayerView = null
+            playPos = -1
+        }
+    }
+
 
     /**
      * 设置倍速和音量

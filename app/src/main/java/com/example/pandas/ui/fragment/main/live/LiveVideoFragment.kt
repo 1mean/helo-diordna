@@ -1,6 +1,8 @@
 package com.example.pandas.ui.fragment.main.live
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.LinearLayoutCompat
@@ -8,7 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
-import com.example.pandas.base.fragment.BaseLazyFragment
+import com.example.pandas.base.fragment.BaseCMFragment
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
 import com.example.pandas.biz.interaction.ExoPlayerListener
@@ -22,6 +24,7 @@ import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.ScreenUtil
+import com.google.android.exoplayer2.Player.REPEAT_MODE_ONE
 import com.google.android.exoplayer2.ui.StyledPlayerView
 
 /**
@@ -30,12 +33,14 @@ import com.google.android.exoplayer2.ui.StyledPlayerView
  * @date: 10/10/22 5:05 下午
  * @version: v1.0
  */
-public class LiveVideoFragment : BaseLazyFragment<LiveViewModel, LayoutSwipRefreshBinding>(),
+public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefreshBinding>(),
     LiveVideoAdapter.LiveVideoListener, ExoPlayerListener {
 
     private val mAdapter: LiveVideoAdapter by lazy { LiveVideoAdapter(listener = this) }
 
     private var playerManager: LivePlayManager? = null
+
+    private val mHandler = Handler(Looper.getMainLooper())
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -90,6 +95,9 @@ public class LiveVideoFragment : BaseLazyFragment<LiveViewModel, LayoutSwipRefre
                 binding.recyclerLayout.visibility = View.VISIBLE
                 when {
                     it.isRefresh -> {
+                        if (playerManager!!.isPlaying()) {
+                            playerManager!!.stopPlayer()
+                        }
                         Log.e("1mean", "videoCOutns: ${it.liveVides.lives.size}")
                         mAdapter.refresh(it.liveVides)
                         binding.recyclerLayout.isRefreshing(false)
@@ -111,11 +119,39 @@ public class LiveVideoFragment : BaseLazyFragment<LiveViewModel, LayoutSwipRefre
 
     override fun onStart() {
         super.onStart()
+        Log.e("LiveVIdeosss", "onStart()")
         playerManager?.initPlayer(mActivity)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (playerManager!!.isPlaying()) {
+            val position = playerManager!!.getCurPosition()
+            val holder = binding.recyclerLayout.findViewHolderForLayoutPosition(position)
+            if (holder is LiveVideoAdapter.LiveViewHolder) {
+                (holder as LiveVideoAdapter.LiveViewHolder).updateItemView(true)
+            }
+        }
+//        mHandler.post {
+//            if (playerManager!!.isPlaying()) {
+//                val position = playerManager!!.getCurPosition()
+//                val holder = binding.recyclerLayout.findViewHolderForLayoutPosition(position)
+//                if (holder is LiveVideoAdapter.LiveViewHolder) {
+//                    (holder as LiveVideoAdapter.LiveViewHolder).updateItemView(true)
+//                }
+//            }
+//        }
+        playerManager?.releasePlayer()
     }
 
     override fun firstOnResume() {
         mViewModel.getLiveVideo(true)
+    }
+
+    override fun againOnResume() {
+        Log.e("LiveVIdeosss", "againOnResume()")
+        playerManager?.initPlayer(mActivity)
+        startPlay()
     }
 
     override fun updateVideoData(videoData: VideoData) {
@@ -129,8 +165,8 @@ public class LiveVideoFragment : BaseLazyFragment<LiveViewModel, LayoutSwipRefre
 
             override fun onChildViewDetachedFromWindow(view: View) {
                 val position = binding.recyclerLayout.getChildAdapterPosition(view)
-                if (position == playerManager!!.getCurPosition()) {
-                    playerManager?.stop()
+                if (position == playerManager!!.getCurPosition() && playerManager!!.isPlaying()) {
+                    playerManager?.pause()
                     val holder = binding.recyclerLayout.findViewHolderForLayoutPosition(position)
                     if (holder is LiveVideoAdapter.LiveViewHolder) {
                         (holder as LiveVideoAdapter.LiveViewHolder).updateItemView(true)
@@ -183,11 +219,7 @@ public class LiveVideoFragment : BaseLazyFragment<LiveViewModel, LayoutSwipRefre
 
                 val height = ScreenUtil.getLocationHeight(playerView)
                 Log.e("LiveVIdeosss", "index:$index, ---------------------height:$height")
-                val isOverHalfViewVisiable = ScreenUtil.isOverHalfViewVisiable(playerView)
-                Log.e(
-                    "LiveVIdeosss",
-                    "playPos:$playPos, isOverHalfViewVisiable:$isOverHalfViewVisiable, firstPos: $firstPos, playerView:$playerView"
-                )
+                //val isOverHalfViewVisiable = ScreenUtil.isOverHalfViewVisiable(playerView)
                 if (playerView is StyledPlayerView) {
                     if (height > -18.5) {
                         if (index == playPos) {
@@ -195,7 +227,7 @@ public class LiveVideoFragment : BaseLazyFragment<LiveViewModel, LayoutSwipRefre
                             return
                         } else {
                             if (playerManager!!.isPlaying()) {
-                                playerManager?.stop()
+                                playerManager?.pause()
                                 val holder =
                                     binding.recyclerLayout.findViewHolderForLayoutPosition(playPos)
                                 if (holder is LiveVideoAdapter.LiveViewHolder) {
@@ -213,13 +245,14 @@ public class LiveVideoFragment : BaseLazyFragment<LiveViewModel, LayoutSwipRefre
                                 val playInfo =
                                     MediaInfo(petVideo.code, file.absolutePath, 0)
                                 playerManager!!.addPlayerView(playerView)
+                                    .setRepeatMode(REPEAT_MODE_ONE)
                                     .startPlay(true, playInfo, index)
                             }
                             return
                         }
                     } else {
                         if (index == playPos) {
-                            playerManager?.stop()
+                            playerManager?.pause()
                             val holder =
                                 binding.recyclerLayout.findViewHolderForLayoutPosition(index)
                             if (holder is LiveVideoAdapter.LiveViewHolder) {

@@ -44,7 +44,7 @@
                 android:src="@mipmap/img_visitor_more" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.example.pandas.ui.view.recyclerview.MyHorizontalRecyclerView
             android:id="@+id/rv_live_visitor"
             android:layout_width="match_parent"
             android:layout_height="114dp"
