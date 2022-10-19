@@ -6,8 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.pandas.biz.ext.startVideoPlayActivity
-import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.data.network.getGridItems
 import com.example.pandas.databinding.AdapterPandansTopBinding
 import com.example.pandas.databinding.AdapterPandasItemBinding
@@ -15,6 +13,7 @@ import com.example.pandas.databinding.ItemTitleAdapterPandaBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.ext.getHomePandaDesc
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.dialog.MoreBottomSheetDialog
 import com.example.pandas.utils.TimeUtils
 import com.lxj.xpopup.XPopup
@@ -132,7 +131,7 @@ public class PandasAdapter(private val list: MutableList<PetVideo>) :
             title.text = petVideo.title
 
             itemView.setOnClickListener {
-                startVideoPlayActivity(itemView.context, petVideo.code)
+                startVideoPlayingActivity(itemView.context, petVideo)
             }
             deleteView.setOnClickListener {
 

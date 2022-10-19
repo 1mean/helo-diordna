@@ -3,9 +3,9 @@ package com.example.pandas.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.databinding.ViewpagerRecommendBinding
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 
 /**
@@ -14,7 +14,7 @@ import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
  * @date: 1/23/22 12:35 下午
  * @version: v1.0
  */
-public class LandViewPagerAdapter(private val list: MutableList<PetViewData>) :
+public class LandViewPagerAdapter(private val list: MutableList<PetVideo>) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEmptyViewHolder {
@@ -40,7 +40,9 @@ public class LandViewPagerAdapter(private val list: MutableList<PetViewData>) :
 
         fun handle(position: Int) {
             val data = list[position]
-            loadImage(itemView.context, data.cover, cover)
+            data.cover?.let {
+                loadImage(itemView.context, it, cover)
+            }
             title.text = data.title
         }
     }

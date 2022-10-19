@@ -21,7 +21,7 @@
             android:id="@+id/tv_cancel"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:text="@string/str_cannel"
+            android:text="@string/str_cancel"
             android:textSize="15sp"
             android:gravity="center"
             android:textColor="#484D51" />

@@ -155,7 +155,7 @@ public class LivePlayManager(
             mPlayer.release()
             mediaIndexs.clear()
             _mPlayer = null
-            oldPlayerView = null
+            oldPlayerView = null//切记
             playPos = -1
         }
     }

@@ -6,8 +6,8 @@ import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadImage
-import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.sql.entity.VideoAndUser
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -49,7 +49,7 @@ public class ListAdapter(val list: MutableList<VideoAndUser>) :
         }
 
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, video.code)
+            startVideoPlayingActivity(context, video)
         }
 
     }

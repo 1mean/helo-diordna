@@ -40,5 +40,5 @@
             android:background="@null"
             android:textColor="#FF5E9A"
             android:textSize="14sp"
-            android:text="@string/str_cannel" />
+            android:text="@string/str_cancel" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,8 +10,8 @@ import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.HistoryItem
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
-import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.sql.entity.History
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -148,8 +148,8 @@ public class HistoryAdapter(
         val select = holder.getWidget<AppCompatImageView>(R.id.ibn_history_item_select)
 
         val history = data.history
-        val videoData = data.video
-        val user = data.user
+        val video = data.video
+        val user = data.video?.user
 
         user?.let {
             name.text = it.userName
@@ -167,7 +167,7 @@ public class HistoryAdapter(
             select.setImageResource(R.mipmap.img_history_unselect)
         }
 
-        videoData?.let {
+        video?.let {
             loadCenterRoundedCornerImage(context, 15, it.cover, cover)
             title.text = it.title
 
@@ -207,7 +207,7 @@ public class HistoryAdapter(
                     }
                     data.selected = !data.selected
                 } else {
-                    startVideoPlayActivity(context, it.code)
+                    startVideoPlayingActivity(context, it)
                 }
             }
         }

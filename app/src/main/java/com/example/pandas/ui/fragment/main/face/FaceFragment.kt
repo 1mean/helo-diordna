@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import com.chaquo.python.Python
-import com.chaquo.python.android.AndroidPlatform
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.loadImage
@@ -72,15 +70,15 @@ public class FaceFragment : BaseFragment<BaseViewModel, FragmentFaceBinding>() {
 
         binding.btnFaceGetinfo.setOnClickListener {
 
-            if (!Python.isStarted()) {
-                Python.start(AndroidPlatform(mActivity))
-            }
-            val py = Python.getInstance()
-            val module = py.getModule("test1")
-            val list = module.callAttr("parse")
-            Log.e("1mean", "python解析： $list")
-            val url = list.toString().replace("http", "https")
-            loadImage(mActivity,url,binding.imgFaceVideoCover)
+//            if (!Python.isStarted()) {
+//                Python.start(AndroidPlatform(mActivity))
+//            }
+//            val py = Python.getInstance()
+//            val module = py.getModule("test1")
+//            val list = module.callAttr("parse")
+//            Log.e("1mean", "python解析： $list")
+//            val url = list.toString().replace("http", "https")
+//            loadImage(mActivity,url,binding.imgFaceVideoCover)
         }
     }
 

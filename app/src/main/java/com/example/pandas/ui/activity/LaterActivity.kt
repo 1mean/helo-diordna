@@ -52,7 +52,7 @@ public class LaterActivity : BaseActivity<HistoryViewModeL, ActivityLaterBinding
             if (manager == "管理") {
                 mAdapter.manager(false)
                 binding.clayoutLaterBottom.visibility = View.VISIBLE
-                binding.txtLaterManager.text = resources.getString(R.string.str_cannel)
+                binding.txtLaterManager.text = resources.getString(R.string.str_cancel)
             } else {
                 selectAll = false
                 mAdapter.manager(true)
@@ -140,7 +140,7 @@ public class LaterActivity : BaseActivity<HistoryViewModeL, ActivityLaterBinding
     override fun onLongClick() {
 
         binding.clayoutLaterBottom.visibility = View.VISIBLE
-        binding.txtLaterManager.text = resources.getString(R.string.str_cannel)
+        binding.txtLaterManager.text = resources.getString(R.string.str_cancel)
     }
 
     override fun cancelAllSelected() {

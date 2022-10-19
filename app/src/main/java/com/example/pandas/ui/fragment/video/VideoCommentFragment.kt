@@ -15,6 +15,7 @@ import com.example.pandas.biz.interaction.CommentsListener
 import com.example.pandas.biz.manager.KeyboardManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.FragmentCommentBinding
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.CommentAdapter
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
@@ -57,7 +58,10 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        code = mActivity.intent.getIntExtra("code", -1)
+        val video = mActivity.intent.getParcelableExtra<PetVideo>("petVideo")
+        video?.let {
+            code = it.code
+        }
         binding.rvComment.init(
             null,
             mAdapter,

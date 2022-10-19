@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.util.Log
 import com.example.pandas.bean.MediaInfo
+import com.example.pandas.bean.MediaItemWrapper
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -41,7 +42,7 @@ public class RecoPlayManager(
         }
     }
 
-    private var startTime:Long = 0
+    private var startTime: Long = 0
     fun play(playerView: StyledPlayerView, mediaInfo: MediaInfo, position: Int) {
 
         startTime = System.currentTimeMillis()
@@ -54,27 +55,37 @@ public class RecoPlayManager(
         StyledPlayerView.switchTargetView(mPlayer, oldPlayerView, playerView)
         oldPlayerView = playerView
 
-        val mediaItems = PlayerManager.instance.mediaItems
+        val videoCode = mediaInfo.videoCode
+        val playPos = mediaInfo.playPos
+
         if (mediaIndexs.exist(mediaInfo.videoCode)) {
-            Log.e("asdsadsad", "exist video")
+            Log.e("recoooooooo","444")
             mediaIndexs.get(mediaInfo.videoCode)?.let {
-                mPlayer.seekTo(mediaIndexs.indexOf(mediaInfo.videoCode), it.playPos)
+                mPlayer.seekTo(mediaIndexs.indexOf(videoCode), it.playPos)
             }
         } else {
-            if (mediaItems.containsKey(mediaInfo.videoCode)) {
-                mediaItems[mediaInfo.videoCode]?.let {
+            if (PlayerConfig.instance.hasMediaItem(videoCode)) {
+                Log.e("recoooooooo","555")
+                val mediaItemWrapper = PlayerConfig.instance.getMediaItem(videoCode)
+                mediaItemWrapper!!.mediaItem?.let {
                     mPlayer.addMediaItem(it)
+                    val index = mediaIndexs.add(mediaInfo)
+                    Log.e("recoooooooo", "playPosition: ${mediaItemWrapper.playPosition}")
+                    mPlayer.seekTo(index, mediaItemWrapper.playPosition)
                 }
             } else {
+                Log.e("recoooooooo","666")
                 val mediaItem =
                     MediaItem.Builder().setUri(Uri.fromFile(File(mediaInfo.playUrl)))
                         .setMediaId(mediaInfo.videoCode.toString()).build()
-                PlayerManager.instance.mediaItems[mediaInfo.videoCode] = mediaItem
+                val index = mediaIndexs.add(mediaInfo)
+                PlayerConfig.instance.addMediaItem(
+                    videoCode,
+                    MediaItemWrapper(playPos, mediaItem)
+                )
                 mPlayer.addMediaItem(mediaItem)
+                mPlayer.seekTo(index, playPos)
             }
-            val index = mediaIndexs.add(mediaInfo)
-            Log.e("1mean", "mediaIndexs: $mediaIndexs, index= $index")
-            mPlayer.seekTo(index, mediaInfo.playPos)
         }
         this.playPos = position
         mPlayer.playWhenReady = true
@@ -186,6 +197,7 @@ public class RecoPlayManager(
         if (mPlayer.isPlaying) {
             val videoCode = mPlayer.currentMediaItem?.mediaId
             requireNotNull(videoCode)
+            PlayerConfig.instance.updatePosition(videoCode.toInt(), mPlayer.currentPosition)
             mediaIndexs.updatePlayingPosition(videoCode.toInt(), mPlayer.currentPosition)
             playPos = -1
             mPlayer.pause()
@@ -194,6 +206,8 @@ public class RecoPlayManager(
 
     fun releasePlayer() {
         mPlayer.currentMediaItem?.mediaId?.let {
+            val videoCode = it.toInt()
+            PlayerConfig.instance.updatePosition(videoCode, mPlayer.currentPosition)
             mediaIndexs.updatePlayingPosition(it.toInt(), mPlayer.currentPosition)
         }
         mPlayer.removeListener(mListener)

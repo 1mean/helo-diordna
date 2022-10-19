@@ -44,7 +44,7 @@
             android:id="@+id/btn_share_close"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:text="@string/str_cannel"
+            android:text="@string/str_cancel"
             android:textSize="15sp"
             android:gravity="center"
             android:textColor="#444E55" />

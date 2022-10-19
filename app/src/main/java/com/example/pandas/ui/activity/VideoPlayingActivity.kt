@@ -1,7 +1,6 @@
 package com.example.pandas.ui.activity
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Rect
 import android.os.*
 import android.util.Log
@@ -22,7 +21,6 @@ import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
-import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.biz.interaction.CommentsListener
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.interaction.PlayerDoubleTapListener
@@ -30,6 +28,7 @@ import com.example.pandas.biz.interaction.VideoMoreSelectListener
 import com.example.pandas.biz.manager.VideoPlayManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.ActivityVideoBinding
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.fragment.video.CommentListFragment
 import com.example.pandas.ui.view.VideoTabView
@@ -56,7 +55,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     val tabNames = arrayListOf("简介", "评论")
 
-    private var code: Int = -1
     private var isFullScreen: Boolean = false
     private val MAX_UPDATE_INTERVAL_MS = 1000L
 
@@ -66,9 +64,8 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     private var exoProgress: DefaultTimeBar? = null
 
     var cnAdapter: CommonNavigatorAdapter? = null
-    private var isPlayIng: Boolean = false
-    private var currentPosition: Long = -1
     private var fullPos: AppCompatTextView? = null
+    private var video: PetVideo? = null
 
     private val moreDialog by lazy { VideoMoreBottomSheetDialog(this, this) }
 
@@ -78,9 +75,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
         StatusBarUtils.setStatusBarMode(this, false, R.color.black)
 
-        code = intent.getIntExtra("code", -1)
-        isPlayIng = intent.getBooleanExtra("isPlaying", false)
-        currentPosition = intent.getLongExtra("position", -1)
+        video = intent.getParcelableExtra("petVideo")
 
         initViewPager()
 
@@ -246,13 +241,20 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     override fun onResume() {
         super.onResume()
         if (isFirstVisible) {
-            if (isPlayIng) {
-                videoManager.play(binding.playView, MediaInfo(code, "", currentPosition))
+            video?.let {
+                mViewModel.getVideoData(it.code)
             }
-            mViewModel.getVideoData(code)
             isFirstVisible = false
-        } else {
-            videoManager.play(binding.playView, MediaInfo(code, "", currentPosition))
+        }
+        video?.let {
+            it.videoData?.let { data ->
+                val file = getLocalFilePath(this, it.fileName!!)
+                if (file.exists()) {
+                    val mediaInfo =
+                        MediaInfo(it.code, file.absolutePath, data.playPosition)
+                    videoManager.play(binding.playView, mediaInfo)
+                }
+            }
         }
         startTime = System.currentTimeMillis()
         updateTimeTask.sendEmptyMessage(0)
@@ -262,7 +264,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         super.onStop()
         //释放资源
         if (Util.SDK_INT > 23) {
-            this.currentPosition = videoManager.getCurrentPos()
             updateTimeTask.removeMessages(0)
             videoManager.releasePlayer()
         }
@@ -273,15 +274,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
         mViewModel.videoData.observe(this) {
 
-            if (!isPlayIng) {
-                val file = getLocalFilePath(this, it.fileName!!)
-                if (file.exists()) {
-                    val mediaInfo =
-                        MediaInfo(it.code, file.absolutePath, it.videoData!!.playPosition)
-                    videoManager.play(binding.playView, mediaInfo)
-                }
-            }
-
             val videoData = it.videoData
             val count = videoData?.comments ?: 0
             val childView = binding.tabView.getChildAt(0)
@@ -291,10 +283,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                     (view as VideoTabView).updateTitle(count)
                 }
             }
-        }
-
-        mViewModel.isVideoItemClicked.observe(this) { code ->
-            startVideoPlayActivity(this, code)
         }
     }
 
@@ -427,16 +415,12 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             supportFragmentManager.popBackStack()
             return
         }
-
         updateTimeTask.removeMessages(0)
         //保存历史记录
-        mViewModel.saveHistory(code, videoManager.getCurrentPos())
-
-        if (isPlayIng) {
-            val intent = Intent().putExtra("videoPosition", videoManager.getCurrentPos())
-            Log.e("1mean", "currentPos: ${videoManager.getCurrentPos()}")
-            setResult(RESULT_OK, intent)
+        video?.let {
+            mViewModel.saveHistory(it.code, videoManager.getCurrentPos())
         }
+        videoManager.releasePlayer()
         finish()
     }
 
@@ -452,7 +436,9 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     override fun addPlayLater() {
         super.addPlayLater()
-        mViewModel.addLaterPlayer(code)
+        video?.let {
+            mViewModel.addLaterPlayer(it.code)
+        }
         toast(this, "添加成功")
         moreDialog.dismiss()
     }

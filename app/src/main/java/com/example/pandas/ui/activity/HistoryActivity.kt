@@ -12,7 +12,6 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityHistoryBinding
 import com.example.pandas.ui.adapter.HistoryAdapter
-import com.example.pandas.ui.adapter.decoration.LandScapeItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
@@ -37,7 +36,7 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
         val padding = resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
 
         binding.rvHistory.init(
-            LandScapeItemDecoration(padding),
+            null,
             mAdapter,
             listener = object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
@@ -50,7 +49,7 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
             if (manager == "管理") {
                 mAdapter.manager(false)
                 binding.clayoutHistoryBottom.visibility = View.VISIBLE
-                binding.txtHistoryManager.text = resources.getString(R.string.str_cannel)
+                binding.txtHistoryManager.text = resources.getString(R.string.str_cancel)
             } else {
                 selectAll = false
                 mAdapter.manager(true)
@@ -153,7 +152,7 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
     override fun onLongClick() {
 
         binding.clayoutHistoryBottom.visibility = View.VISIBLE
-        binding.txtHistoryManager.text = resources.getString(R.string.str_cannel)
+        binding.txtHistoryManager.text = resources.getString(R.string.str_cancel)
     }
 
     override fun cancelAllSelected() {

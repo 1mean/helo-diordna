@@ -8,10 +8,15 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.view.animation.DecelerateInterpolator
+import android.view.animation.OvershootInterpolator
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.pandas.biz.interaction.AnimationListener
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.activity.UserInfoActivity
+import com.example.pandas.ui.activity.VideoPlayingActivity
 import kotlin.math.abs
 
 
@@ -87,6 +92,22 @@ fun startUserInfoActivity(context: Context, user: User) {
     context.startActivity(intent)
 }
 
+fun startVideoPlayingActivity(context: Context, video: PetVideo) {
+    val intent = Intent(context, VideoPlayingActivity::class.java).apply {
+        putExtra("petVideo", video)
+    }
+    context.startActivity(intent)
+}
+
+fun launcherActivity(
+    launcher: ActivityResultLauncher<Intent>,
+    context: Context,
+    cls: Class<*>
+) {
+    val intent = Intent(context, cls)
+    launcher.launch(intent)
+}
+
 
 //-------------------<Activity相关 结束>-------------------------------------------------------------
 
@@ -146,14 +167,31 @@ fun addRefreshAnimation(view: View, offSet: Float, listener: Animator.AnimatorLi
     animationSet.addListener(listener)
 }
 
-fun likeAnimation(view: View){
-    val transScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.3f, 1f)
-    val transScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.3f, 1f)
-    val animationSet = AnimatorSet()
-    animationSet.duration = 600
-    animationSet.interpolator = DecelerateInterpolator()
-    animationSet.play(transScaleX).with(transScaleY)
-    animationSet.start()
+fun setLikeAnimation(view: View, listener: AnimationListener) {
+
+    val starScaleYAnimator = ObjectAnimator.ofFloat(view, "scaleY", 0.2f, 1f)
+    starScaleYAnimator.interpolator = OvershootInterpolator(4f)
+
+    val starScaleXAnimator = ObjectAnimator.ofFloat(view, "scaleX", 0.2f, 1f)
+    starScaleXAnimator.interpolator = OvershootInterpolator(4f)
+    val set = AnimatorSet()
+    set.play(starScaleXAnimator).with(starScaleYAnimator)
+    set.duration = 400
+    set.addListener(object : Animator.AnimatorListener {
+        override fun onAnimationStart(animation: Animator?) {
+        }
+
+        override fun onAnimationEnd(animation: Animator?) {
+            listener.onAnimationEnd(animation)
+        }
+
+        override fun onAnimationCancel(animation: Animator?) {
+        }
+
+        override fun onAnimationRepeat(animation: Animator?) {
+        }
+    })
+    set.start()
 }
 
 //-------------------<动画相关 结束>-----------------------------------------------------------------

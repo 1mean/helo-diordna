@@ -1,5 +1,6 @@
 package com.example.pandas.bean
-import com.example.pandas.bean.pet.PetViewData
+
+import com.example.pandas.sql.entity.PetVideo
 
 /**
  * @description: landscape page
@@ -8,6 +9,6 @@ import com.example.pandas.bean.pet.PetViewData
  * @version: v1.0
  */
 public data class LandscapeData(
-    val bannerList: MutableList<PetViewData> = mutableListOf(),
-    val itemList: MutableList<PetViewData> = mutableListOf()
+    val bannerList: MutableList<PetVideo> = mutableListOf(),
+    val itemList: MutableList<PetVideo> = mutableListOf()
 )

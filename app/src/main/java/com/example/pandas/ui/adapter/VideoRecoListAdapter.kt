@@ -8,8 +8,8 @@ import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.interaction.ItemClickListener
-import com.example.pandas.biz.interaction.OnVideoItemClickLIstener
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.dialog.MoreBottomSheetDialog
 import com.example.pandas.utils.TimeUtils
 
@@ -20,8 +20,7 @@ import com.example.pandas.utils.TimeUtils
  * @version: v1.0
  */
 public class VideoRecoListAdapter(
-    list: MutableList<PetVideo> = mutableListOf(),
-    private val listener: OnVideoItemClickLIstener
+    list: MutableList<PetVideo> = mutableListOf()
 ) :
     BaseCommonAdapter<PetVideo>(list) {
 
@@ -49,7 +48,7 @@ public class VideoRecoListAdapter(
             name.text = it.userName
         }
         holder.itemView.setOnClickListener {
-            listener.onClick(position, data.code)
+            startVideoPlayingActivity(context, data)
         }
 
         loadMoreLayout.setOnClickListener {

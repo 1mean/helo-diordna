@@ -1,6 +1,8 @@
 package com.example.pandas.ui.adapter
 
+import android.animation.Animator
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +14,16 @@ import com.example.pandas.R
 import com.example.pandas.bean.LiveVideoData
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadImage
+import com.example.pandas.biz.interaction.AnimationListener
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.Item1AdapterLiveVideoBinding
 import com.example.pandas.databinding.Item3AdapterLiveVideoBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.decoration.LiveVisitorItemDecoration
-import com.example.pandas.ui.ext.setAnimation
+import com.example.pandas.ui.ext.setLikeAnimation
+import com.example.pandas.ui.ext.startUserInfoActivity
+import com.example.pandas.ui.view.dialog.LiveBottomSheetDialog
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.utils.TimeUtils
 
@@ -43,7 +48,6 @@ public class LiveVideoAdapter(
     fun loadMore(liveData: LiveVideoData) {
 
         if (liveData.lives.isNotEmpty()) {
-
             val startIndex = data.lives.size + 2
             data.lives.addAll(liveData.lives)
             notifyItemRangeInserted(startIndex, liveData.lives.size)
@@ -152,6 +156,7 @@ public class LiveVideoAdapter(
         val playshelter = binding.clayoutLiveShelter
         val player = binding.playerLive
         var tagView = binding.llayoutLiveTag
+        var moreView = binding.clayoutLiveMore
         var dialog: ShareBottomSheetDialog? = null
 
         fun updateItemView(hidePlayer: Boolean) {
@@ -211,7 +216,7 @@ public class LiveVideoAdapter(
             }
 
             if (videoData.comments == 0) {
-                likeTxt.text = "评论"
+                comments.text = "评论"
             } else {
                 comments.text = videoData.comments.toString()
             }
@@ -245,23 +250,64 @@ public class LiveVideoAdapter(
                 if (videoData.like) {
                     likeImg.setImageResource(R.mipmap.img_eye_item_like)
                     videoData.likes -= 1
+                    if (videoData.likes > 0) {
+                        likeTxt.text = videoData.likes.toString()
+                    } else {
+                        likeTxt.text = "点赞"
+                    }
+                    videoData.like = !videoData.like
+                    listener.updateVideoData(videoData)
                 } else {
-                    setAnimation(likeImg)
+                    setLikeAnimation(likeImg, object : AnimationListener {
+                        override fun onAnimationEnd(animation: Animator?) {
+                            videoData.likes += 1
+                            if (videoData.likes > 0) {
+                                likeTxt.text = videoData.likes.toString()
+                            } else {
+                                likeTxt.text = "点赞"
+                            }
+                            videoData.like = !videoData.like
+                            listener.updateVideoData(videoData)
+                        }
+                    })
                     likeImg.setImageResource(R.mipmap.img_eye_item_liked)
-                    videoData.likes += 1
                 }
-                if (videoData.likes > 0) {
-                    likeTxt.text = videoData.likes.toString()
-                } else {
-                    likeTxt.text = "点赞"
+            }
+
+            userName.setOnClickListener {
+                user?.let {
+                    startUserInfoActivity(context, it)
                 }
-                videoData.like = !videoData.like
-                listener.updateVideoData(videoData)
+            }
+
+            userIcon.setOnClickListener {
+                user?.let {
+                    startUserInfoActivity(context, it)
+                }
+            }
+
+            commentView.setOnClickListener {
+                listener.startVideoPLayActivity(video)
+            }
+
+            player.setOnClickListener {
+                listener.startVideoPLayActivity(video)
+            }
+
+            moreView.setOnClickListener {
+
+                val dialog = LiveBottomSheetDialog(context,object :ItemClickListener<Int>{
+                    override fun onItemClick(t: Int) {
+                    }
+                })
+                dialog.onShow()
             }
         }
     }
 
     interface LiveVideoListener {
         fun updateVideoData(videoData: VideoData)
+
+        fun startVideoPLayActivity(video: PetVideo)
     }
 }

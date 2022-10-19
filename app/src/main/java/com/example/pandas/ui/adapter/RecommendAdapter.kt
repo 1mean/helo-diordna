@@ -238,7 +238,7 @@ public class RecommendAdapter(
             title.text = petVideo.title
 
             itemView.setOnClickListener {
-                listener.onClick(position, 2, petVideo.code)
+                listener.onClick(petVideo)
             }
         }
 
@@ -329,12 +329,12 @@ public class RecommendAdapter(
             }
             itemView.setOnClickListener {
                 shelter.postDelayed({ shelter.visibility = View.VISIBLE }, 150)
-                listener.onClick(position, 3, petVideo.code)
+                listener.onClick(petVideo)
             }
 
             playView.setOnClickListener {
                 shelter.postDelayed({ shelter.visibility = View.VISIBLE }, 150)
-                listener.onClick(position, 3, petVideo.code)
+                listener.onClick(petVideo)
             }
 
             moreView.setOnClickListener {
@@ -369,7 +369,7 @@ public class RecommendAdapter(
 
     public interface RecoViewListener {
 
-        fun onClick(position: Int, type: Int, videoCode: Int)
+        fun onClick(video:PetVideo)
 
         fun updatePlayerVoice(isOpen: Boolean)
 

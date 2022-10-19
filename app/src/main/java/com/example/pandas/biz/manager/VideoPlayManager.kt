@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.util.Log
 import com.example.pandas.bean.MediaInfo
+import com.example.pandas.bean.MediaItemWrapper
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -47,19 +48,25 @@ public class VideoPlayManager(
         mPlayer.repeatMode = Player.REPEAT_MODE_ONE
         StyledPlayerView.switchTargetView(mPlayer, null, playerView)
 
-        val mediaItems = PlayerManager.instance.mediaItems
-        if (mediaItems.containsKey(mediaInfo.videoCode)) {
-            mediaItems[mediaInfo.videoCode]?.let {
+        val videoCode = mediaInfo.videoCode
+        val playPos = mediaInfo.playPos
+        if (PlayerConfig.instance.hasMediaItem(videoCode)) {
+            val mediaItemWrapper = PlayerConfig.instance.getMediaItem(videoCode)
+            mediaItemWrapper!!.mediaItem?.let {
                 mPlayer.addMediaItem(it)
-                mPlayer.seekTo(mediaInfo.playPos)
+                Log.e("LiveVIdeosss", "playPosition: ${mediaItemWrapper.playPosition}")
+                mPlayer.seekTo(mediaItemWrapper.playPosition)
             }
         } else {
             val mediaItem =
                 MediaItem.Builder().setUri(Uri.fromFile(File(mediaInfo.playUrl)))
-                    .setMediaId(mediaInfo.videoCode.toString()).build()
-            PlayerManager.instance.mediaItems[mediaInfo.videoCode] = mediaItem
+                    .setMediaId(videoCode.toString()).build()
+            PlayerConfig.instance.addMediaItem(
+                videoCode,
+                MediaItemWrapper(playPos, mediaItem)
+            )
             mPlayer.addMediaItem(mediaItem)
-            mPlayer.seekTo(mediaInfo.playPos)
+            mPlayer.seekTo(playPos)
         }
         mPlayer.playWhenReady = true
         mPlayer.prepare()
@@ -153,9 +160,16 @@ public class VideoPlayManager(
     }
 
     fun releasePlayer() {
-        mPlayer.removeListener(mListener)
-        mPlayer.release()
-        _mPlayer = null
+        _mPlayer?.let {
+            mPlayer.currentMediaItem?.let {
+                val videoCode = it.mediaId.toInt()
+                Log.e("recoooooooo","lastPos: ${mPlayer.currentPosition}")
+                PlayerConfig.instance.updatePosition(videoCode, mPlayer.currentPosition)
+            }
+            mPlayer.removeListener(mListener)
+            mPlayer.release()
+            _mPlayer = null
+        }
     }
 
     fun isPlaying(): Boolean = mPlayer.isPlaying

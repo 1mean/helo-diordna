@@ -58,7 +58,7 @@
                 app:layout_constraintTop_toTopOf="@id/clayout_search_title"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_search_title"
                 app:layout_constraintRight_toRightOf="@id/clayout_search_title"
-                android:text="@string/str_cannel"
+                android:text="@string/str_cancel"
                 android:textColor="@color/color_text_search_cancel"
                 android:textSize="16sp"
                 android:gravity="center"

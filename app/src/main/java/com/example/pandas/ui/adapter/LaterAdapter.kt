@@ -1,7 +1,6 @@
 package com.example.pandas.ui.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -10,8 +9,8 @@ import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
-import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -188,7 +187,7 @@ public class LaterAdapter(
                 }
                 data.booleanFlag = !data.booleanFlag
             } else {
-                startVideoPlayActivity(context, data.code)
+                startVideoPlayingActivity(context, data)
             }
         }
 

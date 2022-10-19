@@ -14,9 +14,9 @@ buildscript {
 }
 
 //python环境相关
-plugins {
-    id 'com.chaquo.python' version '12.0.0' apply false
-}
+//plugins {
+//    id 'com.chaquo.python' version '12.0.0' apply false
+//}
 
 allprojects {
     repositories {

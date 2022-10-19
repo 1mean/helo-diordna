@@ -1,12 +1,13 @@
 package com.example.pandas.ui.adapter
+
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadRoundedCornerImage
-import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.sql.entity.VideoAndUser
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 
 /**
  * @description: MusicTopAdapter
@@ -34,7 +35,7 @@ public class MusicTopAdapter(list: MutableList<VideoAndUser>) :
         title.text = video.title
 
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, video.code)
+            startVideoPlayingActivity(context, video)
         }
     }
 }

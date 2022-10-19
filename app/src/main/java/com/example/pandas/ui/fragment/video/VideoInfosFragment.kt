@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.interaction.ItemClickListener
-import com.example.pandas.biz.interaction.OnVideoItemClickLIstener
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.FragmentInformationBinding
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoRecoListAdapter
 import com.example.pandas.ui.ext.initLikeContainer
@@ -30,9 +30,9 @@ import com.umeng.socialize.bean.SHARE_MEDIA
  * @version: v1.0
  */
 public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformationBinding>(),
-    OnVideoItemClickLIstener, View.OnClickListener {
+    View.OnClickListener {
 
-    private val mAdapter: VideoRecoListAdapter by lazy { VideoRecoListAdapter(listener = this) }
+    private val mAdapter: VideoRecoListAdapter by lazy { VideoRecoListAdapter() }
 
     private lateinit var videoData: VideoData
     private var userCode: Int = -1
@@ -52,7 +52,6 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.rvVideoRecommend.run {
-
             layoutManager = LinearLayoutManager(mActivity)
             adapter = mAdapter
         }
@@ -163,17 +162,15 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
 
     override fun firstOnResume() {
 
-        val code = mActivity.intent.getIntExtra("code", -1)
-        mViewModel.getVideoInfoAndRelations(code)
+        val video = mActivity.intent.getParcelableExtra<PetVideo>("petVideo")
+        video?.let {
+            mViewModel.getVideoInfoAndRelations(it.code)
+        }
     }
 
 
     override fun getCurrentLifeOwner(): ViewModelStoreOwner {
         return mActivity
-    }
-
-    override fun onClick(position: Int, code: Int) {
-        mViewModel.setVideoItemClick(code)
     }
 
     override fun onClick(v: View?) {

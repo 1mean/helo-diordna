@@ -8,7 +8,7 @@ import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loadRoundedCornerImage
-import com.example.pandas.biz.ext.startVideoPlayActivity
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -42,7 +42,7 @@ public class CacheItemAdapter(private val list: MutableList<PetViewData>) :
 
         more.setOnClickListener { }
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, data.code)
+            //startVideoPlayingActivity(context, data)
         }
     }
 

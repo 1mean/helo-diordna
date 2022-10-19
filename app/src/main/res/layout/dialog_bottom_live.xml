@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llayout_live_bottom_later"
+            style="@style/style_live_dialog_item">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                style="@style/style_live_dialog_item_img"
+                android:src="@mipmap/img_live_bottom_later" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/style_live_dialog_item_title"
+                android:text="@string/str_mine_later" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View style="@style/style_live_dialog_divider" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llayout_live_bottom_share"
+            style="@style/style_live_dialog_item">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                style="@style/style_live_dialog_item_img"
+                android:src="@mipmap/img_live_bottom_share" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/style_live_dialog_item_title"
+                android:text="@string/str_share" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View style="@style/style_live_dialog_divider" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llayout_live_bottom_attention"
+            style="@style/style_live_dialog_item">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                style="@style/style_live_dialog_item_img"
+                android:src="@mipmap/img_live_bottom_attention" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/style_live_dialog_item_title"
+                android:text="@string/str_attention_cancel" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/color_eye_rv_bg" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:text="@string/str_cancel"
+            android:gravity="center" />
+</androidx.appcompat.widget.LinearLayoutCompat>

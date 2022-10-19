@@ -2,6 +2,7 @@ package com.example.pandas.bean
 
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.sql.entity.History
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
 
 /**
@@ -9,8 +10,6 @@ import com.example.pandas.sql.entity.User
  */
 data class HistoryItem(
     val history: History? = null,
-    val video: PetViewData? = null,
-    val user: User? = null,
+    val video: PetVideo? = null,
     var selected: Boolean = false
-
 )

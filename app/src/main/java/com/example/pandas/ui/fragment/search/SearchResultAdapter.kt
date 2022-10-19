@@ -8,8 +8,8 @@ import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
-import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.sql.entity.VideoAndUser
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.utils.NumUtils
 import com.example.pandas.utils.StringColorUtil
 import com.example.pandas.utils.TimeUtils
@@ -78,7 +78,7 @@ public class SearchResultAdapter(
             time.text = StringBuilder("- ").append(subTime).toString()
         }
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, video.code)
+            startVideoPlayingActivity(context, video)
         }
     }
 

@@ -42,7 +42,7 @@
             android:id="@+id/txt_cancel"
             android:layout_width="match_parent"
             android:layout_height="62dp"
-            android:text="@string/str_cannel"
+            android:text="@string/str_cancel"
             android:textSize="15sp"
             android:textColor="@color/color_user_dialog_txt_cancel"
             android:gravity="center"

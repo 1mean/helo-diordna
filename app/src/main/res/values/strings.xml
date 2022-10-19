@@ -49,7 +49,7 @@
     <string name="str_setting">设置</string>
 
     <!--search-->
-    <string name="str_cannel">取消</string>
+    <string name="str_cancel">取消</string>
     <string name="str_hot_search">热搜</string>
     <string name="str_history_search">搜索历史</string>
     <string name="str_hot">热</string>

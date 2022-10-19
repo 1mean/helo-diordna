@@ -1,9 +1,11 @@
 package com.example.pandas.sql.entity
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 /**
  * video的基本信息
@@ -11,6 +13,7 @@ import androidx.room.PrimaryKey
  * @date: 11/6/21 9:28 下午
  * @version: v1.0
  */
+@Parcelize
 @Entity(tableName = "pet_video")
 data class PetVideo(
 
@@ -62,4 +65,4 @@ data class PetVideo(
     var booleanFlag: Boolean = false,//布尔型标记位，用于帮助解决数据状态的标识
     @Ignore
     var stateFlag: Int = 0,//Int类型标记，基本用于状态类的Int值
-)
+) : Parcelable

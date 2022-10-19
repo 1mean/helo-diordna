@@ -382,4 +382,34 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:textColor">@color/color_card_name</item>
     </style>
+
+    <!-- LiveBottomSheetDialog ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <style name="style_live_dialog_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="style_live_dialog_item_img">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="style_live_dialog_item_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/color_video_name_txt</item>
+        <item name="android:layout_marginStart">17dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="style_live_dialog_divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.66dp</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:background">@color/color_home_divider</item>
+    </style>
 </resources>

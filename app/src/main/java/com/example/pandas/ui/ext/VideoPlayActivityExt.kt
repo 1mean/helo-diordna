@@ -1,5 +1,6 @@
 package com.example.pandas.ui.ext;
 
+import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
@@ -19,6 +20,7 @@ import com.example.helo_base.magic.commonnavigator.indicators.LinePagerIndicator
 import com.example.pandas.R
 import com.example.pandas.bean.VideoInfo
 import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.interaction.AnimationListener
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData

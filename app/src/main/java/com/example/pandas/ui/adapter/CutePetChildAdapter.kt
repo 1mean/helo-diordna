@@ -1,6 +1,5 @@
 package com.example.pandas.ui.adapter
 
-import android.util.Log
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -9,9 +8,9 @@ import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadImage
-import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -94,7 +93,7 @@ public class CutePetChildAdapter(
         title.text = petVideo.title
 
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, data.code)
+            startVideoPlayingActivity(context, data)
         }
     }
 

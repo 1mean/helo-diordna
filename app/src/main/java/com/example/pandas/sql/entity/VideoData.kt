@@ -1,9 +1,10 @@
 package com.example.pandas.sql.entity
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 /**
  * @description: 视频数据
@@ -11,6 +12,7 @@ import androidx.room.PrimaryKey
  * @date: 5/6/22 9:15 下午
  * @version: v1.0
  */
+@Parcelize
 @Entity(tableName = "video_data")
 public data class VideoData(
 
@@ -52,9 +54,9 @@ public data class VideoData(
     var reservedString: String = "",//预留string字段
 
     @ColumnInfo
-    var laterTime:Long = 0,//稍后再看添加的时间
+    var laterTime: Long = 0,//稍后再看添加的时间
     @ColumnInfo
-    var collectTime:Long = 0,//收藏的时间
+    var collectTime: Long = 0,//收藏的时间
     @ColumnInfo
-    var shareTime:Long = 0,//分享的时间
-)
+    var shareTime: Long = 0,//分享的时间
+) : Parcelable

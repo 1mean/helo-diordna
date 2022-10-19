@@ -3,7 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
-    id 'com.chaquo.python'
+    //id 'com.chaquo.python'
 }
 
 android {
@@ -22,15 +22,15 @@ android {
             // 指定abi，如需在模拟器调试，增加"x86"，否则指定"armeabi-v7a"即可
             abiFilters "armeabi-v7a", "x86"
         }
-        python {
-            pip {
-                install 'requests==2.24.0'
-                install 'numpy'
-                install 'datetime'
-                install 'matplotlib'
-                install 'lxml'
-            }
-        }
+//        python {
+//            pip {
+//                install 'requests==2.24.0'
+//                install 'numpy'
+//                install 'datetime'
+//                install 'matplotlib'
+//                install 'lxml'
+//            }
+//        }
     }
     buildTypes {
         release {

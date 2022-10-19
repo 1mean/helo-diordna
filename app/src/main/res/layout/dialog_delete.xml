@@ -42,7 +42,7 @@
             android:id="@+id/btn_delete_close"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="@string/str_cannel"
+            android:text="@string/str_cancel"
             android:textSize="15sp"
             android:gravity="center"
             android:textColor="#444E55" />

@@ -12,7 +12,6 @@ import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.sql.entity.History
 import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.VideoData
 import com.google.android.exoplayer2.util.Util
 import kotlinx.coroutines.launch
 import java.util.*
@@ -30,7 +29,6 @@ public class VideoViewModel : BaseViewModel() {
 
     val videoData: MutableLiveData<PetVideo> by lazy { MutableLiveData() }
     val videos: MutableLiveData<VideoInfo> by lazy { MutableLiveData() }
-    val isVideoItemClicked: MutableLiveData<Int> by lazy { MutableLiveData() }
     val createComment: MutableLiveData<CommentAndUser> by lazy { MutableLiveData() }
     val createReply: MutableLiveData<CommentAndUser> by lazy { MutableLiveData() }
     val comments: MutableLiveData<UIDataWrapper<CommentAndUser>> by lazy { MutableLiveData() }
@@ -59,11 +57,6 @@ public class VideoViewModel : BaseViewModel() {
             videoData.value = PetManagerCoroutine.getVideoInfoData(code)
         }
     }
-
-    fun setVideoItemClick(code: Int) {
-        isVideoItemClicked.value = code
-    }
-
 
     fun saveHistory(code: Int, currentPosition: Long) {
         viewModelScope.launch {

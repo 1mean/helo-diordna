@@ -1,8 +1,6 @@
 package com.example.pandas.ui.fragment.main.live
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.LinearLayoutCompat
@@ -17,11 +15,13 @@ import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.manager.LivePlayManager
 import com.example.pandas.biz.viewmodel.LiveViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.LiveVideoAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.ScreenUtil
 import com.google.android.exoplayer2.Player.REPEAT_MODE_ONE
@@ -39,8 +39,6 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
     private val mAdapter: LiveVideoAdapter by lazy { LiveVideoAdapter(listener = this) }
 
     private var playerManager: LivePlayManager? = null
-
-    private val mHandler = Handler(Looper.getMainLooper())
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -91,7 +89,6 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
         mViewModel.liveVideos.observe(viewLifecycleOwner) {
 
             if (it.isSuccess) {
-
                 binding.recyclerLayout.visibility = View.VISIBLE
                 when {
                     it.isRefresh -> {
@@ -107,7 +104,7 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
                         }
                     }
                     else -> {
-                        //mAdapter.updata(false, it.landscapeData)
+                        mAdapter.loadMore(it.liveVides)
                     }
                 }
                 binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
@@ -120,6 +117,7 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
     override fun onStart() {
         super.onStart()
         Log.e("LiveVIdeosss", "onStart()")
+        Log.e("1mean1", "onStart()")
         playerManager?.initPlayer(mActivity)
     }
 
@@ -132,15 +130,6 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
                 (holder as LiveVideoAdapter.LiveViewHolder).updateItemView(true)
             }
         }
-//        mHandler.post {
-//            if (playerManager!!.isPlaying()) {
-//                val position = playerManager!!.getCurPosition()
-//                val holder = binding.recyclerLayout.findViewHolderForLayoutPosition(position)
-//                if (holder is LiveVideoAdapter.LiveViewHolder) {
-//                    (holder as LiveVideoAdapter.LiveViewHolder).updateItemView(true)
-//                }
-//            }
-//        }
         playerManager?.releasePlayer()
     }
 
@@ -149,13 +138,16 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
     }
 
     override fun againOnResume() {
-        Log.e("LiveVIdeosss", "againOnResume()")
         playerManager?.initPlayer(mActivity)
         startPlay()
     }
 
     override fun updateVideoData(videoData: VideoData) {
         mViewModel.addOrUpdateVideoData(videoData)
+    }
+
+    override fun startVideoPLayActivity(video: PetVideo) {
+        startVideoPlayingActivity(mActivity, video)
     }
 
     private val childAttachStateChangeListener =

@@ -1,7 +1,6 @@
 package com.example.pandas.ui.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -10,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.bean.LandscapeData
 import com.example.pandas.biz.ext.loadRoundedCornerImage
-import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.AdapterLandscapeItemBinding
 import com.example.pandas.databinding.LayoutBannerLandscapeBinding
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.ui.view.viewpager.Indicator
 import com.example.pandas.utils.TimeUtils
@@ -153,7 +152,9 @@ public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data
                 comments.text = " - "
             }
 
-            loadRoundedCornerImage(itemView.context, 10, video.cover, cover)
+            video.cover?.let {
+                loadRoundedCornerImage(itemView.context, 10, it, cover)
+            }
             duration.text = TimeUtils.getDuration(video.duration.toLong())
             title.text = video.title
             video.user?.let {
@@ -168,7 +169,7 @@ public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data
                 dialog.addData().onShow()
             }
             itemView.setOnClickListener {
-                startVideoPlayActivity(itemView.context, video.code)
+                startVideoPlayingActivity(itemView.context, video)
             }
         }
     }

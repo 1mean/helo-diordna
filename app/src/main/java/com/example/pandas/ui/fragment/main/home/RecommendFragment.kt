@@ -14,15 +14,16 @@ import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseCMFragment
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
-import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.manager.RecoPlayManager
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.RecommendAdapter
 import com.example.pandas.ui.adapter.decoration.RecommendDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.ScreenUtil
 import com.google.android.exoplayer2.ui.StyledPlayerView
@@ -40,8 +41,6 @@ import com.google.android.exoplayer2.util.Util
 public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRefreshBinding>(),
     RecommendAdapter.RecoViewListener, ExoPlayerListener {
 
-    private var isBackToFragment = false
-    private var isScrolling = false
     private var startActivity = false
     private val mAdapter: RecommendAdapter by lazy { RecommendAdapter(lifecycle, listener = this) }
     private val recoManager: RecoPlayManager by lazy { RecoPlayManager(mActivity, this) }
@@ -50,12 +49,11 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
     private val requestLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == AppCompatActivity.RESULT_OK) {
-                isBackToFragment = true
                 val backPosition = result.data?.getLongExtra("videoPosition", -1L)
                 backPosition?.let {
                     Log.e("1mean", "currentPos: $it")
                     if (it != -1L) {
-                        startPlay(true, it)
+                        startPlay()
                     }
                 }
             }
@@ -76,11 +74,9 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     when (newState) {
                         RecyclerView.SCROLL_STATE_IDLE -> {
-                            isScrolling = false
-                            startPlay(false, 0L)
+                            startPlay()
                         }
                         RecyclerView.SCROLL_STATE_DRAGGING -> {
-                            isScrolling = true
                         }
                     }
                 }
@@ -117,11 +113,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
 
     override fun againOnResume() {
         Log.e("RecommendFragment", "againOnResume")
-        if (!isBackToFragment) {
-            startPlay(false, 0L)
-        } else {
-            isBackToFragment = false
-        }
+        startPlay()
     }
 
     /**
@@ -163,18 +155,8 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
         }
     }
 
-    override fun onClick(position: Int, type: Int, videoCode: Int) {
-        if (type == 3) {
-            startVideoPlayActivity(
-                requestLauncher,
-                mActivity,
-                videoCode,
-                true,
-                recoManager.getCurPosition()
-            )
-        } else {
-            startVideoPlayActivity(requestLauncher, mActivity, videoCode)
-        }
+    override fun onClick(video: PetVideo) {
+        startVideoPlayingActivity(mActivity, video)
         startActivity = true
     }
 
@@ -232,7 +214,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
      *    1- RecyclerView.childCount：当前屏幕可见view的数目，LayoutManager.childCount
      *    2- RecyclerView.getChildAt(i): i为当前view在当前可见的几个view里的位置，而不是adapter容器里的position
      */
-    private fun startPlay(isBack: Boolean, newPos: Long) {//是否是恢复
+    private fun startPlay() {//是否是恢复
         val mRecyclerView = binding.recyclerLayout
         val manager = mRecyclerView.layoutManager as LinearLayoutManager
         val firstPos = manager.findFirstVisibleItemPosition()
@@ -246,10 +228,12 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                 val isOverHalf = ScreenUtil.isOverHalfViewVisiable(childView)
                 if (isOverHalf) {
                     if (!recoManager.isPlaying()) {
+                        Log.e("recoooooooo","111")
                         recoManager.resumePlay()
                     }
                 } else {
                     if (recoManager.isPlaying()) {
+                        Log.e("recoooooooo","222")
                         recoManager.pausePlayer()
                         updatePlayerView(true, playPos)
                     }
@@ -265,14 +249,10 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                     if (childView is StyledPlayerView) {
                         val isOverHalf = ScreenUtil.isOverHalfViewVisiable(childView)
                         if (isOverHalf) {
-                            val currentPos = if (isBack) {
-                                newPos
-                            } else {
-                                0
-                            }
                             val file = getLocalFilePath(mActivity, petVideo.fileName!!)
+                            Log.e("recoooooooo","333")
                             val playInfo =
-                                MediaInfo(petVideo.code, file.absolutePath, currentPos)
+                                MediaInfo(petVideo.code, file.absolutePath, 0)
                             recoManager.play(childView, playInfo, position)
                         }
                     }

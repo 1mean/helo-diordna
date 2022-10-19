@@ -7,9 +7,9 @@ import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
-import com.example.pandas.biz.ext.startVideoPlayActivity
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.utils.NumUtils
 import com.example.pandas.utils.TimeUtils
@@ -39,7 +39,7 @@ public class HotFragmentAdapter(list: MutableList<PetVideo>) : BaseCommonAdapter
         val time = holder.getWidget<AppCompatTextView>(R.id.txt_hot_time)
         val more = holder.getWidget<ConstraintLayout>(R.id.item_hot_more)
 
-        Log.e("asdasdadasdas","position: $position, time:$time")
+        Log.e("asdasdadasdas", "position: $position, time:$time")
         data.cover?.let {
             loadCenterRoundedCornerImage(context, 10, it, cover)
         }
@@ -65,7 +65,7 @@ public class HotFragmentAdapter(list: MutableList<PetVideo>) : BaseCommonAdapter
             time.text = StringBuilder("- ").append(subTime).toString()
         }
         holder.itemView.setOnClickListener {
-            startVideoPlayActivity(context, data.code)
+            startVideoPlayingActivity(context, data)
         }
 
         more.setOnClickListener {
