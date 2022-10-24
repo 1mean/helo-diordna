@@ -2,13 +2,14 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/color_bg_delete_dialog"
         android:orientation="vertical">
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/llayout_live_bottom_later"
             style="@style/style_live_dialog_item">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageButton
                 style="@style/style_live_dialog_item_img"
                 android:src="@mipmap/img_live_bottom_later" />
 
@@ -23,7 +24,7 @@
             android:id="@+id/llayout_live_bottom_share"
             style="@style/style_live_dialog_item">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageButton
                 style="@style/style_live_dialog_item_img"
                 android:src="@mipmap/img_live_bottom_share" />
 
@@ -38,7 +39,7 @@
             android:id="@+id/llayout_live_bottom_attention"
             style="@style/style_live_dialog_item">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageButton
                 style="@style/style_live_dialog_item_img"
                 android:src="@mipmap/img_live_bottom_attention" />
 
@@ -50,9 +51,10 @@
     <View
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:background="@color/color_eye_rv_bg" />
+            android:background="@color/color_viewpager_bg" />
 
     <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_live_bottom_cancel"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:textSize="15sp"

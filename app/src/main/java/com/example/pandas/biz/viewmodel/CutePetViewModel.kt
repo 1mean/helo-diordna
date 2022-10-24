@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
  */
 public class CutePetViewModel : BaseViewModel() {
 
-    val bannerWrapper: MutableLiveData<UIDataWrapper<PetViewData>> by lazy { MutableLiveData() }
+    val bannerWrapper: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
     val pageDataWrapper: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
 
     //分页起始位置
@@ -28,7 +28,7 @@ public class CutePetViewModel : BaseViewModel() {
 
         request({ PetManagerCoroutine.getCutePetBannerData() },
             {
-                val dataList = UIDataWrapper<PetViewData>(
+                val dataList = UIDataWrapper<PetVideo>(
                     isSuccess = true,
                     isRefresh = isRefresh,
                     isEmpty = it.isEmpty(),
@@ -37,11 +37,11 @@ public class CutePetViewModel : BaseViewModel() {
                 bannerWrapper.value = dataList
             },
             {
-                val dataList = UIDataWrapper<PetViewData>(
+                val dataList = UIDataWrapper<PetVideo>(
                     isSuccess = false,
                     isRefresh = isRefresh,
                     errMessage = it.errorMsg,
-                    listData = mutableListOf<PetViewData>()
+                    listData = mutableListOf<PetVideo>()
                 )
                 bannerWrapper.value = dataList
             })

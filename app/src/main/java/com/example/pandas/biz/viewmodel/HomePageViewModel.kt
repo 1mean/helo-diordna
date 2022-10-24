@@ -318,17 +318,4 @@ class HomePageViewModel : BaseViewModel() {
             }
         }
     }
-
-    fun addOrUpdateVideoData(videoCode: Int, playPos: Long) {
-
-        viewModelScope.launch {
-            PetManagerCoroutine.addOrUpdateVideoData(videoCode, playPos)
-        }
-    }
-
-    fun addLaterPlayer(videoCode: Int) {
-        viewModelScope.launch {
-            PetManagerCoroutine.addLater(videoCode)
-        }
-    }
 }

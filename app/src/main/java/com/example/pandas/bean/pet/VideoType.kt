@@ -29,4 +29,6 @@ enum class VideoType {
     BABY,//小宝宝
     ART,//艺术
     FOOTBALL,//足球
+    RABBIT,//兔兔
+    HAMSTER,//仓鼠
 }

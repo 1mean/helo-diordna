@@ -73,10 +73,9 @@ public class SearchResultAdapter(
 
         author.text = user.userName
 
-        video.releaseTime?.let {
-            val subTime = it.substring(5, 10)
-            time.text = StringBuilder("- ").append(subTime).toString()
-        }
+        val parseTime = TimeUtils.getMdTime(video.releaseTime)
+        time.text = StringBuilder("- ").append(parseTime).toString()
+
         holder.itemView.setOnClickListener {
             startVideoPlayingActivity(context, video)
         }

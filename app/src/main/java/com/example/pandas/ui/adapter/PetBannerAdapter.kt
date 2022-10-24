@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.databinding.LayoutImageBinding
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 
 /**
@@ -15,13 +16,13 @@ import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
  * @date: 2021/12/6 2:23 下午
  * @version: v1.0
  */
-public class PetBannerAdapter(private var data: MutableList<PetViewData>) :
+public class PetBannerAdapter(private var data: MutableList<PetVideo>) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
     override fun getItemCount(): Int = data.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun refreshData(list: MutableList<PetViewData>) {
+    fun refreshData(list: MutableList<PetVideo>) {
 
         if (list.isNotEmpty() && list != data) {
             data.clear()

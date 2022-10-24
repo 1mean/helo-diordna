@@ -64,7 +64,7 @@ object TimeUtils {
         val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val date = formatter.parse(time)
         date?.let {
-            return it.time
+            return it.time / 1000
         }
         return 0
     }

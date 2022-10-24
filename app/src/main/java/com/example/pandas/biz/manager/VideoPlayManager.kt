@@ -48,6 +48,7 @@ public class VideoPlayManager(
         mPlayer.repeatMode = Player.REPEAT_MODE_ONE
         StyledPlayerView.switchTargetView(mPlayer, null, playerView)
 
+        Log.e("1mean","fileName1: ${mediaInfo.playUrl}")
         val videoCode = mediaInfo.videoCode
         val playPos = mediaInfo.playPos
         if (PlayerConfig.instance.hasMediaItem(videoCode)) {

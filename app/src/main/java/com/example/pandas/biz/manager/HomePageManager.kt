@@ -154,10 +154,9 @@ class PetManager {
      * @date: 1/26/22 5:27 下午
      * @version: v1.0
      */
-    suspend fun getCutePetBannerData(): MutableList<PetViewData> {
+    suspend fun getCutePetBannerData(): MutableList<PetVideo> {
 
         return withContext(Dispatchers.IO) {
-            delay(500)
             petDao.queryByVideoType(3)
         }
     }

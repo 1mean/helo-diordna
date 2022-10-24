@@ -1,8 +1,12 @@
 package com.example.pandas.app
 
 import android.app.Application
+import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.data.sql.AppData
+import com.example.pandas.data.sql.DataCopy
 import com.example.pandas.sql.database.AppDataBase
+import com.example.pandas.sql.entity.PeriodType
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.um.UmInitConfig
 import com.umeng.commonsdk.UMConfigure
 

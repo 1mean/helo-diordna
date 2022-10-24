@@ -60,10 +60,9 @@ public class HotFragmentAdapter(list: MutableList<PetVideo>) : BaseCommonAdapter
             author.text = it.userName
         }
 
-        data.releaseTime?.let {
-            val subTime = it.substring(5, 10)
-            time.text = StringBuilder("- ").append(subTime).toString()
-        }
+        val parseTime = TimeUtils.getMdTime(data.releaseTime)
+        time.text = StringBuilder("- ").append(parseTime).toString()
+        
         holder.itemView.setOnClickListener {
             startVideoPlayingActivity(context, data)
         }

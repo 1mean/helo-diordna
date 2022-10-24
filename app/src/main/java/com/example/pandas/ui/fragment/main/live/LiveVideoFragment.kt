@@ -150,6 +150,10 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
         startVideoPlayingActivity(mActivity, video)
     }
 
+    override fun addLater(videoCode: Int) {
+        mViewModel.addLaterPlayer(videoCode)
+    }
+
     private val childAttachStateChangeListener =
         object : RecyclerView.OnChildAttachStateChangeListener {
             override fun onChildViewAttachedToWindow(view: View) {

@@ -96,4 +96,10 @@ open class BaseViewModel : ViewModel() {
             PetManagerCoroutine.addOrUpdateVideoData(videoData)
         }
     }
+
+    fun addLaterPlayer(videoCode: Int) {
+        viewModelScope.launch {
+            PetManagerCoroutine.addLater(videoCode)
+        }
+    }
 }

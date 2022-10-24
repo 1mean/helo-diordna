@@ -34,7 +34,7 @@ data class PetVideo(
     @ColumnInfo
     var tags: String? = null,//标签，用于分类
     @ColumnInfo
-    var releaseTime: String? = null,//视频的发布时间
+    var releaseTime: Long = 0,//视频的发布时间
     @ColumnInfo
     var duration: Int = 0,//视频时长
     @ColumnInfo

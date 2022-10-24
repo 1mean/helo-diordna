@@ -2,10 +2,12 @@ package com.example.pandas.ui.adapter
 
 import android.animation.Animator
 import android.annotation.SuppressLint
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +40,8 @@ public class LiveVideoAdapter(
     private val listener: LiveVideoListener
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private val mHandler: Handler = Handler(Looper.getMainLooper())
 
     @SuppressLint("NotifyDataSetChanged")
     fun refresh(liveData: LiveVideoData) {
@@ -223,11 +227,10 @@ public class LiveVideoAdapter(
 
             descripetion.text = video.title
             duration.text = TimeUtils.getMMDuration(video.duration.toLong())
-            video.releaseTime?.let {
-                val fTime = TimeUtils.formatTime(it)
-                val r_time = TimeUtils.parseTime(fTime)
-                time.text = StringBuilder(r_time).append(" · 投稿了视频").toString()
-            }
+
+
+            val r_time = TimeUtils.parseTime(video.releaseTime)
+            time.text = StringBuilder(r_time).append(" · 投稿了视频").toString()
 
             video.cover?.let {
                 loadImage(context, it, cover)
@@ -295,9 +298,30 @@ public class LiveVideoAdapter(
             }
 
             moreView.setOnClickListener {
-
-                val dialog = LiveBottomSheetDialog(context,object :ItemClickListener<Int>{
+                val dialog = LiveBottomSheetDialog(context, object : ItemClickListener<Int> {
                     override fun onItemClick(t: Int) {
+                        when (t) {
+                            1 -> {
+                                listener.addLater(video.code)
+                                mHandler.post {
+                                    Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                            2 -> {
+                                if (dialog == null) {
+                                    dialog =
+                                        ShareBottomSheetDialog(context, object : ItemClickListener<String> {
+                                            override fun onItemClick(t: String) {
+                                            }
+                                        })
+                                    dialog!!.addData()
+                                }
+                                dialog!!.onShow()
+                            }
+                            3 -> {
+
+                            }
+                        }
                     }
                 })
                 dialog.onShow()
@@ -309,5 +333,9 @@ public class LiveVideoAdapter(
         fun updateVideoData(videoData: VideoData)
 
         fun startVideoPLayActivity(video: PetVideo)
+
+        fun addLater(videoCode: Int)
+
+
     }
 }

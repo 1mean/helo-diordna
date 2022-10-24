@@ -247,8 +247,18 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             isFirstVisible = false
         }
         video?.let {
+
+            val file = getLocalFilePath(this, it.fileName!!)
+            Log.e("1mean","fileName: ${file.absolutePath}")
+            if (file.exists()) {
+                val mediaInfo =
+                    MediaInfo(it.code, file.absolutePath, 0)
+                videoManager.play(binding.playView, mediaInfo)
+            }
+
             it.videoData?.let { data ->
                 val file = getLocalFilePath(this, it.fileName!!)
+                Log.e("1mean","fileName: ${file.absolutePath}")
                 if (file.exists()) {
                     val mediaInfo =
                         MediaInfo(it.code, file.absolutePath, data.playPosition)

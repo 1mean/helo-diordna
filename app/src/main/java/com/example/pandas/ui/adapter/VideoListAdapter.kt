@@ -48,10 +48,8 @@ public class VideoListAdapter(private val list: MutableList<VideoAndUser>) :
         val rCountsString = NumUtils.getShortNum(rCounts)
         counts.text = rCountsString
 
-        video.releaseTime?.let {
-            val subTime = it.substring(5, 10)
-            time.text = StringBuilder("- ").append(subTime).toString()
-        }
+        val parseTime = TimeUtils.getMdTime(video.releaseTime)
+        time.text = StringBuilder("- ").append(parseTime).toString()
 
         holder.itemView.setOnClickListener {
             startVideoPlayingActivity(holder.itemView.context, video)

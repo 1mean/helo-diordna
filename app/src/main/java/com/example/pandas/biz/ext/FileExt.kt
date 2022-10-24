@@ -88,6 +88,12 @@ fun getLocalFilePath(context: Context, fileName: String): File {
             finalPath = appendVideoFile("panda", "single", fileName)
         fileName.startsWith("video_banner") ->
             finalPath = appendVideoFile("panda", "all", fileName)
+        fileName.startsWith("rabbit") ->
+            finalPath = appendVideoFile("animal", "rabbit", fileName)
+        fileName.startsWith("hamster") ->
+            finalPath = appendVideoFile("animal", "hamster", fileName)
+        fileName.startsWith("tiger") ->
+            finalPath = appendVideoFile("animal", "tiger", fileName)
     }
     return File(localFile, finalPath)
 }
@@ -105,7 +111,8 @@ private fun appendVideoFile(vararg fileNames: String): String {
     fileNames.forEachIndexed { index, name ->
         builder.append(name)
         if (index == fileNames.size - 1) {
-            builder.append(".mp4")
+//            builder.append(".mp4")
+            builder.append(".flv")
         } else {
             builder.append(File.separator)
         }

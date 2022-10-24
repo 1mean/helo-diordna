@@ -4,16 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.pandas.R
-import com.example.pandas.bean.ShareItem
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.DialogBottomLiveBinding
-import com.example.pandas.databinding.DialogDeleteBinding
-import com.example.pandas.databinding.DialogShareBinding
-import com.example.pandas.ui.adapter.ShareDialogAdapter
-import com.example.pandas.ui.adapter.decoration.ShareItemDecoration
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 /**
@@ -43,6 +35,21 @@ public class LiveBottomSheetDialog(
 
     private fun initWidget() {
 
+        binding.txtLiveBottomCancel.setOnClickListener {
+            dismiss()
+        }
+        binding.llayoutLiveBottomLater.setOnClickListener {
+            listener.onItemClick(1)
+            dismiss()
+        }
+        binding.llayoutLiveBottomShare.setOnClickListener {
+            listener.onItemClick(2)
+            dismiss()
+        }
+        binding.llayoutLiveBottomAttention.setOnClickListener {
+            listener.onItemClick(3)
+            dismiss()
+        }
     }
 
     fun onShow() {

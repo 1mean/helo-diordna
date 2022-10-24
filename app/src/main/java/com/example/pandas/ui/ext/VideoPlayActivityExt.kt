@@ -1,6 +1,5 @@
 package com.example.pandas.ui.ext;
 
-import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
@@ -20,7 +19,6 @@ import com.example.helo_base.magic.commonnavigator.indicators.LinePagerIndicator
 import com.example.pandas.R
 import com.example.pandas.bean.VideoInfo
 import com.example.pandas.biz.ext.loadCircleImage
-import com.example.pandas.biz.interaction.AnimationListener
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
@@ -28,6 +26,7 @@ import com.example.pandas.ui.activity.VideoPlayingActivity
 import com.example.pandas.ui.adapter.VideoFragmentAdapter
 import com.example.pandas.ui.fragment.video.VideoInfosFragment
 import com.example.pandas.ui.view.VideoTabView
+import com.example.pandas.utils.TimeUtils
 import com.google.android.exoplayer2.ui.DefaultTimeBar
 
 
@@ -164,7 +163,8 @@ fun VideoInfosFragment.initVideo(video: PetVideo) {
         binding.txtVideoInfoTitle.text = title
     }
 
-    binding.txtInfoTime.text = video.releaseTime
+    binding.txtInfoTime.text = TimeUtils.getStringDate(video.releaseTime)
+
     binding.txtVideoInfoFans.text = "1粉丝"
     binding.txtInfoComment.text = " -"
 

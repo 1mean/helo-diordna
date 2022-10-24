@@ -194,10 +194,4 @@ public class VideoViewModel : BaseViewModel() {
             PetManagerCoroutine.deleteCollection(groupName, videoCode)
         }
     }
-
-    fun addLaterPlayer(videoCode: Int) {
-        viewModelScope.launch {
-            PetManagerCoroutine.addLater(videoCode)
-        }
-    }
 }
