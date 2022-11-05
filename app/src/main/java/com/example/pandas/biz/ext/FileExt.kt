@@ -95,7 +95,13 @@ fun getLocalFilePath(context: Context, fileName: String): File {
         fileName.startsWith("tiger") ->
             finalPath = appendVideoFile("animal", "tiger", fileName)
     }
-    return File(localFile, finalPath)
+    val file = File(localFile, finalPath)
+    if (file.exists()) {
+        return file
+    } else {
+        finalPath = finalPath.replace("mp4", "flv")
+        return File(localFile, finalPath)
+    }
 }
 
 /**
@@ -111,8 +117,7 @@ private fun appendVideoFile(vararg fileNames: String): String {
     fileNames.forEachIndexed { index, name ->
         builder.append(name)
         if (index == fileNames.size - 1) {
-//            builder.append(".mp4")
-            builder.append(".flv")
+            builder.append(".mp4")
         } else {
             builder.append(File.separator)
         }

@@ -1,14 +1,12 @@
 package com.example.pandas.ui.fragment.main.face
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
-import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.biz.ext.loadImage
-import com.example.pandas.biz.manager.KeyboardManager
+import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.databinding.FragmentFaceBinding
+import com.example.pandas.ui.activity.FaceActivity
+import com.example.pandas.ui.activity.FaceLoginActivity
+import com.example.pandas.ui.ext.startAnyActivity
 
 /**
  * @description: 人脸识别界面
@@ -18,74 +16,22 @@ import com.example.pandas.databinding.FragmentFaceBinding
  */
 public class FaceFragment : BaseFragment<BaseViewModel, FragmentFaceBinding>() {
 
-    private var isShow: Boolean = false
-    private val km: KeyboardManager by lazy { KeyboardManager(mActivity) }
-
     override fun initView(savedInstanceState: Bundle?) {
 
-
-        binding.editFace.run {
-            requestFocus()
-            addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                }
-
-                override fun afterTextChanged(s: Editable?) {
-                }
-            })
-            setOnClickListener {
-                binding.editFace.isFocusable = true
-            }
-
+        binding.btnFaceDetection.setOnClickListener {
+            startAnyActivity(mActivity, FaceActivity::class.java)
         }
-
-        km.setOnSoftKeyBoardChangeListener(object : KeyboardManager.OnSoftKeyBoardChangeListener {
-            override fun keyBoardShow(height: Int) {
-                isShow = true
-            }
-
-            override fun keyBoardHide(height: Int) {
-                isShow = false
-            }
-        })
-
-        binding.btnFaceDelete.setOnClickListener {
-            val content = binding.editFace.text.toString().trim()
-            if (content.isNotEmpty()) {
-                binding.editFace.setText("")
-                binding.editFace.clearFocus()
-            }
-            if (isShow) {
-                km.hideKeyBoard(mActivity,binding.editFace)
-            }
-        }
-
-        binding.btnFaceGetinfo.setOnClickListener {
-
-//            if (!Python.isStarted()) {
-//                Python.start(AndroidPlatform(mActivity))
-//            }
-//            val py = Python.getInstance()
-//            val module = py.getModule("test1")
-//            val list = module.callAttr("parse")
-//            Log.e("1mean", "python解析： $list")
-//            val url = list.toString().replace("http", "https")
-//            loadImage(mActivity,url,binding.imgFaceVideoCover)
+        binding.btnFaceLogin.setOnClickListener {
+            startAnyActivity(mActivity, FaceLoginActivity::class.java)
         }
     }
 
     override fun createObserver() {
+
+
     }
 
     override fun firstOnResume() {
-    }
 
+    }
 }

@@ -75,48 +75,58 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <!--app:tabRippleColor 设置点击后的背景涟漪颜色为透明-->
-        <com.google.android.material.tabs.TabLayout
+        <!--<com.google.android.material.tabs.TabLayout
                 android:id="@+id/tlayout_pet"
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
-                app:tabMaxWidth="0dp"
+                android:layout_height="40dp"
                 app:tabMode="scrollable"
-                app:tabTextColor="@color/color_room_tabitem"
-                app:tabIndicator="@drawable/layer_tab_indicator"
+                app:tabTextColor="@color/color_txt_tab"
                 app:tabRippleColor="@android:color/transparent"
-                android:paddingBottom="5dp"
                 android:background="@color/color_bg_cute_pet"
-                app:tabSelectedTextColor="@color/color_tab_text_selected"
-                app:tabIndicatorColor="@color/color_tab_indicator"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                app:tabSelectedTextColor="@color/color_talk_name"
+                app:tabIndicatorHeight="0dp"
+                app:tabMinWidth="58dp"
+                app:tabMaxWidth="74dp"
+                app:tabTextAppearance="@style/PetTabLayoutTextStyle"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
 
-            <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
+        <com.flyco.tablayout.SlidingTabLayout2
+                android:id="@+id/tlayout_pet"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:tl_indicator_height="0dp"
+                app:tabMinWidth="58dp"
+                app:tabMaxWidth="74dp"
+                app:tl_textSelectColor="@color/color_talk_name"
+                app:tl_tab_padding="15dp"
+                app:tl_textBold="SELECT"
+                app:tl_textsize="@dimen/common_sz_13_dimens"
+                app:tl_selectTextSize="@dimen/common_sz_14_dimens"
+                app:tl_textUnselectColor="@color/color_txt_tab"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                />
 
-            <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
 
-            <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-
-            <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-
-            <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-
-        </com.google.android.material.tabs.TabLayout>
+        <!--        <com.google.android.material.tabs.TabLayout-->
+        <!--                android:id="@+id/tlayout_pet"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="44dp"-->
+        <!--                app:tabMaxWidth="0dp"-->
+        <!--                app:tabMode="scrollable"-->
+        <!--                app:tabTextColor="@color/color_room_tabitem"-->
+        <!--                app:tabIndicator="@drawable/layer_tab_indicator"-->
+        <!--                app:tabRippleColor="@android:color/transparent"-->
+        <!--                android:paddingBottom="5dp"-->
+        <!--                android:background="@color/color_bg_cute_pet"-->
+        <!--                app:tabSelectedTextColor="@color/color_tab_text_selected"-->
+        <!--                app:tabIndicatorColor="@color/color_tab_indicator"-->
+        <!--                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>-->
 
         <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_pet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="40dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </com.example.pandas.ui.view.MySwipeRefreshLayout>

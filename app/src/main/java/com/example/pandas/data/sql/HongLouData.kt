@@ -399,8 +399,6 @@ object HongLouData {
         honglou24.vertical = false
         list.add(honglou24)
         
-        
-
         return list
     }
 }

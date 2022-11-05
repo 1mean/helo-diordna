@@ -10,6 +10,7 @@ import com.example.pandas.databinding.LayoutLoadingRefreshBinding
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.CutePetChildAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
+import com.example.pandas.ui.adapter.decoration.PetChildItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
@@ -33,7 +34,8 @@ public class PetChildFragment() :
         type = requireArguments().getInt("type")
 
         binding.recyclerLayout.init(
-            CommonItemDecoration(false, 2, padding, padding),
+//            CommonItemDecoration(false, 2, padding, padding),
+            PetChildItemDecoration(padding),
             mAdapter,
             GridLayoutManager(mActivity, 2),
             object : SwipRecyclerView.ILoadMoreListener {

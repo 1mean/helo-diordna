@@ -596,7 +596,7 @@ object BabyData {
         baby35.code = 3711
         baby35.duration = 18
         baby35.star = false
-        baby35.vertical = false
+        baby35.vertical = true
         baby35.title = "我找到了 伐木累～～"
         baby35.releaseTime = 1662984032
         baby35.originalUrl = "https://www.bilibili.com/video/BV1hW4y1B7Ni"
@@ -740,7 +740,7 @@ object BabyData {
         baby44.code = 3720
         baby44.duration = 75
         baby44.star = false
-        baby44.vertical = false
+        baby44.vertical = true
         baby44.title = "给个台阶就下了"
         baby44.releaseTime = 1647835206
         baby44.originalUrl = "https://www.bilibili.com/video/BV1vS4y1U7HH"

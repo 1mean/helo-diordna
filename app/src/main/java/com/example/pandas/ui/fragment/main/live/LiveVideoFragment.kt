@@ -1,6 +1,8 @@
 package com.example.pandas.ui.fragment.main.live
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.LinearLayoutCompat
@@ -36,9 +38,13 @@ import com.google.android.exoplayer2.ui.StyledPlayerView
 public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefreshBinding>(),
     LiveVideoAdapter.LiveVideoListener, ExoPlayerListener {
 
+    private val delayTime = 500L
+
     private val mAdapter: LiveVideoAdapter by lazy { LiveVideoAdapter(listener = this) }
 
     private var playerManager: LivePlayManager? = null
+
+    private val mHandler = Handler(Looper.getMainLooper())
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -59,7 +65,7 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     when (newState) {
                         RecyclerView.SCROLL_STATE_IDLE -> {
-                            startPlay()
+                            mHandler.postDelayed({ startPlay() }, delayTime)
                             //isScrolling = false
                             //startPlay(false, 0L)
                         }
@@ -99,9 +105,7 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
                         mAdapter.refresh(it.liveVides)
                         binding.recyclerLayout.isRefreshing(false)
 
-                        binding.recyclerLayout.post {
-                            startPlay()
-                        }
+                        binding.recyclerLayout.postDelayed({ startPlay() }, delayTime)
                     }
                     else -> {
                         mAdapter.loadMore(it.liveVides)
@@ -139,7 +143,8 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
 
     override fun againOnResume() {
         playerManager?.initPlayer(mActivity)
-        startPlay()
+
+        mHandler.postDelayed({ startPlay() }, delayTime)
     }
 
     override fun updateVideoData(videoData: VideoData) {
@@ -193,6 +198,8 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
         val firstPos = manager.findFirstVisibleItemPosition()
         val lastPos = manager.findLastVisibleItemPosition()
 
+        if (firstPos < 0 || lastPos < 0) return
+        Log.e("LiveVIdeosss", "$firstPos,$lastPos")
         for (index in firstPos..lastPos) {
 
             Log.e("LiveVIdeosss", " -------------开始循环")

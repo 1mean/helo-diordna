@@ -385,6 +385,7 @@ object BeautyData {
         beauty23.code = 3648
         beauty23.duration = 11
         beauty23.star = true
+        beauty23.vertical = true
         beauty23.title = "做自己的太阳，不用凭借谁的光"
         beauty23.releaseTime = 1662614518
         beauty23.originalUrl = "https://www.bilibili.com/video/BV1dG4y1B7kV"
@@ -430,7 +431,7 @@ object BeautyData {
         beauty26.code = 3703
         beauty26.duration = 18
         beauty26.star = true
-        beauty26.vertical = false
+        beauty26.vertical = true
         beauty26.title = "神女在渡她的信徒"
         beauty26.releaseTime = 1660633069
         beauty26.originalUrl = "https://www.bilibili.com/video/BV1Pt4y1379B"
@@ -542,7 +543,7 @@ object BeautyData {
         beauty33.code = 3710
         beauty33.duration = 86
         beauty33.star = true
-        beauty33.vertical = false
+        beauty33.vertical = true
         beauty33.title = "《丹青》如同相思说～"
         beauty33.releaseTime = 1647265981
         beauty33.originalUrl = "https://www.bilibili.com/video/BV1ML411P7TV"

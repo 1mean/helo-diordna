@@ -45,12 +45,26 @@ object AppData {
             Log.e("1mean", "list15: ${list15.size}")
             val list16 = FootballData.getAll()
             Log.e("1mean", "list16: ${list16.size}")
+            val list17 = PetGroupPandaData3.getAll()
+            Log.e("1mean", "list17: ${list17.size}")
+            val list18 = PetGroupPandaData4.getAll()
+            Log.e("1mean", "list18: ${list18.size}")
+            val list19 = PetHamsterData.getAll()
+            Log.e("1mean", "list19: ${list19.size}")
+            val list20 = PetMomPandaData3.getAll()
+            Log.e("1mean", "size20: ${list20.size}")
+            val list21 = PetRabbitData.getAll()
+            Log.e("1mean", "size21: ${list21.size}")
+            val list22 = PetTigerData.getAll()
+            Log.e("1mean", "size22: ${list22.size}")
 
 
             Log.e(
                 "1mean",
                 "sum: " + (list1.size + list2.size + list3.size + list4.size + list5.size
-                        + list6.size + list7.size + list8.size + list9.size + list10.size + list11.size + list12.size + list13.size + list14.size + list15.size + list16.size
+                        + list6.size + list7.size + list8.size + list9.size + list10.size + list11.size
+                        + list12.size + list13.size + list14.size + list15.size + list16.size + list17.size
+                        + list18.size + list19.size + list20.size + list21.size + list22.size
                         )
             )
             addAll(list1)
@@ -69,19 +83,27 @@ object AppData {
             addAll(list14)
             addAll(list15)
             addAll(list16)
+            addAll(list17)
+            addAll(list18)
+            addAll(list19)
+            addAll(list20)
+            addAll(list21)
+            addAll(list22)
         }
     }
 
     fun getMusicData(): MutableList<MusicVo> {
-
         return MusicData.getMusic()
     }
 
     fun getUser(): MutableList<User> {
-        return UserData.getAll()
+        val list1 = UserData.getAll()
+        val list2 = UserData2.getAll()
+        list1.addAll(list2)
+        return list1
     }
 
-    fun getComment():MutableList<VideoComment>{
+    fun getComment(): MutableList<VideoComment> {
         return CommentData.getList()
     }
 }

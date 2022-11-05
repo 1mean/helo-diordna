@@ -2,6 +2,7 @@ package com.example.pandas.ui.activity
 
 import android.Manifest
 import android.content.Context
+import android.content.IntentFilter
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.KeyEvent
@@ -13,19 +14,24 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation.findNavController
 import com.example.pandas.R
-import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.base.activity.BaseActivity
+import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.databinding.ActivityMainBinding
+import com.example.pandas.ui.broadcast.TimingBroadCast
 import com.example.pandas.utils.StatusBarUtils
 
 class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
 
+    private val ALARM_EVENT = "com.example.pandas.ui.broadcast.TimingBroadCast"
     private var exitTime = 0L
+
+    private var broadCast: TimingBroadCast? = null
 
     private val permissions = arrayOf(
         Manifest.permission.READ_EXTERNAL_STORAGE,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.CAMERA
     )
 
     override fun onSupportNavigateUp(): Boolean {
@@ -75,6 +81,11 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
 //                }
 //            }
 //        })
+
+        val intentFilter = IntentFilter()
+        intentFilter.addAction(ALARM_EVENT)
+        broadCast = TimingBroadCast()
+        registerReceiver(broadCast, intentFilter)
     }
 
     override fun createObserver() {
@@ -121,14 +132,19 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
 
-        when(keyCode){
-            KeyEvent.KEYCODE_VOLUME_UP->{
+        when (keyCode) {
+            KeyEvent.KEYCODE_VOLUME_UP -> {
                 PlayerManager.instance.observeHomeSystemVoice()
             }
-            KeyEvent.KEYCODE_VOLUME_DOWN->{
+            KeyEvent.KEYCODE_VOLUME_DOWN -> {
                 PlayerManager.instance.observeHomeSystemVoice()
             }
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(broadCast)
     }
 }

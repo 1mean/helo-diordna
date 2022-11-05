@@ -1,7 +1,6 @@
 package com.example.pandas.utils
 
 import android.annotation.SuppressLint
-import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -80,13 +79,13 @@ object TimeUtils {
         return year1 == year2
     }
 
-    fun parseTime(startTime: Long): String {
+    fun parseTime(time: Long): String {
 
+        val startTime = time * 1000
         if (!isCurrentYear(startTime)) {//不是今年
             return getYearTime(startTime)
         } else {
             var timeLong = System.currentTimeMillis() - startTime
-            Log.e("asdasdasdasdasdas", "timeLong: $timeLong")
             if (timeLong < 60 * 1000) {
                 return "刚刚"
             } else if (timeLong < 60 * 60 * 1000) {

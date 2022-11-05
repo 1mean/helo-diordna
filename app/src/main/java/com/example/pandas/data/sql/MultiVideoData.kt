@@ -14,13 +14,13 @@ object MultiVideoData {
     private val list = mutableListOf<PetVideo>()
     fun getAll(): MutableList<PetVideo> {
         getRecoBanner() //4
-        getFoxData() //30
-        getLandScapeData() //49
-        getPandaKnowledge() //26
-        getPenguinData() //17
-        getbearData() // 35
-        getMonkey() //8
-        getRedPanda() //36
+        getFoxData() //31
+        getLandScapeData() //56
+        getPandaKnowledge() //39
+        getPenguinData() //18
+        getbearData() // 42
+        getMonkey() //32
+        getRedPanda() //87
         return list
     }
 
@@ -2090,7 +2090,7 @@ object MultiVideoData {
         panda32.duration = 87
         panda32.period = PeriodType.KNOWLEDGE.ordinal
         panda32.star = false
-        panda32.vertical = false
+        panda32.vertical = true
         panda32.title = "大熊猫怎么认？21级的熊猫宝宝了解一下"
         panda32.releaseTime = 1647746070
         panda32.originalUrl = "https://www.bilibili.com/video/BV1KR4y1c75u"
@@ -2107,7 +2107,7 @@ object MultiVideoData {
         panda33.duration = 112
         panda33.period = PeriodType.KNOWLEDGE.ordinal
         panda33.star = false
-        panda33.vertical = false
+        panda33.vertical = true
         panda33.title = "大熊猫怎么认？（入门篇）"
         panda33.releaseTime = 1646883318
         panda33.originalUrl = "https://www.bilibili.com/video/BV1UL4y1u7LR"
@@ -2158,7 +2158,7 @@ object MultiVideoData {
         panda36.duration = 109
         panda36.period = PeriodType.KNOWLEDGE.ordinal
         panda36.star = false
-        panda36.vertical = false
+        panda36.vertical = true
         panda36.title = "中西熊猫行为训练师，小熊们的欢乐课堂"
         panda36.releaseTime = 1660360199
         panda36.originalUrl = "https://www.bilibili.com/video/BV1EW4y1Y7Uj"
@@ -2209,7 +2209,7 @@ object MultiVideoData {
         panda39.duration = 57
         panda39.period = PeriodType.KNOWLEDGE.ordinal
         panda39.star = false
-        panda39.vertical = false
+        panda39.vertical = true
         panda39.title = "熊猫幼年园五小只怎么认？"
         panda39.releaseTime = 1647574242
         panda39.originalUrl = "https://www.bilibili.com/video/BV1hq4y1e7hS"
@@ -3697,7 +3697,6 @@ object MultiVideoData {
         monkey32.cover =
             "https://i2.hdslb.com/bfs/archive/22f15321e9b23e50c34ce52b9e9ac8b754f32db5.jpg"
         list.add(monkey32)
-
 
 
         return list

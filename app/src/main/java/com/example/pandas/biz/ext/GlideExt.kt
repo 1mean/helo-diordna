@@ -58,6 +58,9 @@ fun loadCenterRoundedCornerImage(context: Context, radius: Int, url: String?, vi
     }
 }
 
+/**
+ * 常规居中
+ */
 fun loadCenterImage(context: Context, url: String?, view: ImageView) {
     val options =
         RequestOptions.bitmapTransform(MultiTransformation(CenterCrop()))
@@ -66,6 +69,15 @@ fun loadCenterImage(context: Context, url: String?, view: ImageView) {
     } else {
         Glide.with(context).load(url).apply(options).into(view)
     }
+}
+
+/**
+ * 圆形居中的bitmap
+ */
+fun loadCircleBitmap(context: Context, bitmap: Bitmap, view: ImageView) {
+    val options =
+        RequestOptions.bitmapTransform(MultiTransformation(CenterCrop(),CircleCrop()))
+    Glide.with(context).load(bitmap).apply(options).into(view)
 }
 
 /**

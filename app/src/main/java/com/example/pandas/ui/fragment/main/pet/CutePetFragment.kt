@@ -1,8 +1,18 @@
 package com.example.pandas.ui.fragment.main.pet
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 import androidx.core.content.ContextCompat
+import com.example.helo_base.magic.ViewPagerHelper
+import com.example.helo_base.magic.commonnavigator.CommonNavigator
+import com.example.helo_base.magic.commonnavigator.abs.CommonNavigatorAdapter
+import com.example.helo_base.magic.commonnavigator.abs.IPagerIndicator
+import com.example.helo_base.magic.commonnavigator.abs.IPagerTitleView
+import com.example.helo_base.magic.commonnavigator.indicators.LinePagerIndicator
+import com.example.helo_base.magic.commonnavigator.titles.ColorFlipPagerTitleView
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.CutePetViewModel
@@ -11,6 +21,7 @@ import com.example.pandas.ui.adapter.PetBannerAdapter
 import com.example.pandas.ui.adapter.RoomContentAdapter
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.viewpager.Indicator
+import com.example.pandas.utils.ScreenUtil
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -35,7 +46,10 @@ public class CutePetFragment : BaseLazyFragment<CutePetViewModel, FragmentRoomBi
             resources.getString(R.string.string_room_tab_item3),
             resources.getString(R.string.string_room_tab_item4),
             resources.getString(R.string.string_room_tab_item5),
-            resources.getString(R.string.string_room_tab_item6)
+            resources.getString(R.string.string_room_tab_item6),
+            resources.getString(R.string.string_room_tab_item7),
+            resources.getString(R.string.string_room_tab_item8),
+            resources.getString(R.string.string_room_tab_item9),
         )
     }
 
@@ -71,14 +85,16 @@ public class CutePetFragment : BaseLazyFragment<CutePetViewModel, FragmentRoomBi
             isSaveEnabled = false
         }
 
-        binding.tlayoutPet.addOnTabSelectedListener(listener)
+        //binding.tlayoutPet.addOnTabSelectedListener(listener)
 
         //tabLayout和androidx的联动工具类,绑定前viewpager2必须先设定adapter
-        TabLayoutMediator(
-            binding.tlayoutPet, binding.vpPet, true
-        ) { tab, position ->
-            tab.text = tabNames[position]
-        }.attach()
+//        TabLayoutMediator(
+//            binding.tlayoutPet, binding.vpPet, true
+//        ) { tab, position ->
+//            tab.text = tabNames[position]
+//        }.attach()
+
+        binding.tlayoutPet.setViewPager(binding.vpPet, tabNames)
     }
 
     override fun createObserver() {

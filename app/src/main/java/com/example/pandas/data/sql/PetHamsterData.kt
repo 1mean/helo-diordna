@@ -34,7 +34,7 @@ object PetHamsterData {
         hamster2.code = 3623
         hamster2.duration = 15
         hamster2.star = true
-        hamster2.vertical = false
+        hamster2.vertical = true
         hamster2.title = "李元芳！！ 这颜值像不像化了妆！  我们是花枝鼠小朋友！"
         hamster2.releaseTime = 1652451860
         hamster2.originalUrl = "https://www.bilibili.com/video/BV1YY4y1z7KQ"
@@ -50,7 +50,7 @@ object PetHamsterData {
         hamster3.code = 3624
         hamster3.duration = 31
         hamster3.star = true
-        hamster3.vertical = false
+        hamster3.vertical = true
         hamster3.title = "爱你～～"
         hamster3.releaseTime = 1656472741
         hamster3.originalUrl = "https://www.bilibili.com/video/BV1eW4y1z7UC"
@@ -82,7 +82,7 @@ object PetHamsterData {
         hamster5.code = 3626
         hamster5.duration = 120
         hamster5.star = true
-        hamster5.vertical = false
+        hamster5.vertical = true
         hamster5.title = "成功，源自不断的训练！！！"
         hamster5.releaseTime = 1661727600
         hamster5.originalUrl = "https://www.bilibili.com/video/BV1ZP4y1Z76W"
@@ -242,7 +242,7 @@ object PetHamsterData {
         hamster15.code = 3636
         hamster15.duration = 97
         hamster15.star = true
-        hamster15.vertical = false
+        hamster15.vertical = true
         hamster15.title = "鼠鼠们有大西瓜吃喽！嘿嘿吃瓜皮"
         hamster15.releaseTime = 1660621243
         hamster15.originalUrl = "https://www.bilibili.com/video/BV1yV4y1s7zd"
@@ -258,7 +258,7 @@ object PetHamsterData {
         hamster16.code = 3637
         hamster16.duration = 88
         hamster16.star = true
-        hamster16.vertical = false
+        hamster16.vertical = true
         hamster16.title = "小饼干成功生下小宝宝！呦吼数数这是多少只啊！"
         hamster16.releaseTime = 1661165701
         hamster16.originalUrl = "https://www.bilibili.com/video/BV1BY4y1F7aj"
@@ -290,7 +290,7 @@ object PetHamsterData {
         hamster18.code = 3639
         hamster18.duration = 103
         hamster18.star = true
-        hamster18.vertical = false
+        hamster18.vertical = true
         hamster18.title = "家里来了一个小客人"
         hamster18.releaseTime = 1659603166
         hamster18.originalUrl = "https://www.bilibili.com/video/BV1Dt4y137NL"
@@ -306,7 +306,7 @@ object PetHamsterData {
         hamster19.code = 3640
         hamster19.duration = 81
         hamster19.star = true
-        hamster19.vertical = false
+        hamster19.vertical = true
         hamster19.title = "新成员到家啦！给它们起个一对的名字呗～"
         hamster19.releaseTime = 1659329780
         hamster19.originalUrl = "https://www.bilibili.com/video/BV1PB4y1r7En"
@@ -354,7 +354,7 @@ object PetHamsterData {
         hamster22.code = 3643
         hamster22.duration = 60
         hamster22.star = true
-        hamster22.vertical = false
+        hamster22.vertical = true
         hamster22.title = "【蛋包饭】莫挨老子！小仓鼠怒吼（？）最后惨遭绑架双jio离地"
         hamster22.releaseTime = 1563023158
         hamster22.originalUrl = "https://www.bilibili.com/video/BV18x41197mt"

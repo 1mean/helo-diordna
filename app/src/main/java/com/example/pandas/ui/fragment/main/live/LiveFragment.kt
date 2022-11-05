@@ -22,20 +22,20 @@ import java.util.ArrayList
  */
 public class LiveFragment : BaseLazyFragment<LiveViewModel, FragmentLivingBinding>() {
 
-    private val tabTitles = arrayListOf("综合")
+    private val tabTitles = arrayListOf("综合","视频")
 
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.vp2Living.run {
             //Bug:这里如果使用FragmentStateAdapter(mActivity)，app在首页时就会触发其onResume()
             adapter = object : FragmentStateAdapter(childFragmentManager, lifecycle) {
-                override fun getItemCount(): Int = 1
+                override fun getItemCount(): Int = 2
 
                 override fun createFragment(position: Int): Fragment {
                     if (position == 0) {
                         return LiveVideoFragment()
                     } else {
-                        return LiveVideoFragment()
+                        return EyepetozerFragment()
                     }
                 }
             }
@@ -57,7 +57,7 @@ public class LiveFragment : BaseLazyFragment<LiveViewModel, FragmentLivingBindin
             currentTab = 0
             setOnTabSelectListener(object : OnTabSelectListener {
                 override fun onTabSelect(position: Int) {
-                    //binding.vp2Eye.setCurrentItem(position, false)
+                    binding.vp2Living.setCurrentItem(position, false)
                 }
 
                 override fun onTabReselect(position: Int) {

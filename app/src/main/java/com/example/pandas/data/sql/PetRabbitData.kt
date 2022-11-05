@@ -18,7 +18,7 @@ object PetRabbitData {
         rabbit1.code = 3592
         rabbit1.duration = 11
         rabbit1.star = true
-        rabbit1.vertical = false
+        rabbit1.vertical = true
         rabbit1.title = "放我下来，我要生气了"
         rabbit1.releaseTime = 1624951194
         rabbit1.originalUrl = "https://www.bilibili.com/video/BV1E64y1Q7vK"

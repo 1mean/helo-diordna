@@ -1,6 +1,5 @@
 package com.example.pandas.biz.manager
 
-import android.content.Context
 import android.util.Log
 import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.*
@@ -11,7 +10,6 @@ import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.dao.PetVideoDao
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.sql.entity.*
-import com.example.pandas.utils.SPUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -616,7 +614,7 @@ class PetManager {
      */
     suspend fun addOrUpdateVideoData(videoData: VideoData) {
 
-        Log.e("1mean","videoData: $videoData")
+        Log.e("1mean", "videoData: $videoData")
         withContext(Dispatchers.Default) {
             val data = petDao.queryVideoDataByCode(videoData.videoCode)
             if (data == null) {
@@ -871,6 +869,11 @@ class PetManager {
             comment.content = content
             comment.videoCode = videoCode
             petDao.insertComment(comment)
+            val videodata = petDao.queryVideoDataByCode(videoCode)
+            videodata?.let {
+                it.comments += 1
+                petDao.updateVideoData(it)
+            }
             delay(300)
             CommentAndUser(comment, user)
         }
@@ -921,10 +924,15 @@ class PetManager {
                 it.user = petDao.queryUserByCode(it.authorId)
                 it.videoData = petDao.queryVideoDataByCode(it.code)
             }
+            val videoDatas = petDao.queryMaxPlayedVideos()
+            videoDatas.forEach {
+                it.user = petDao.queryUserByCode(it.authorId)
+                data.follows.add(it)
+            }
             data.lives = videos
             Log.e(
                 "1mean",
-                "videos: ${videos.size}, cost=" + (System.currentTimeMillis() - startTime)
+                "follows: ${data.follows}, cost=" + (System.currentTimeMillis() - startTime)
             )
             data
         }

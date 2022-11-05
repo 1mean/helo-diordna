@@ -133,7 +133,7 @@ object PetMomPandaData {
         panda8.code = 186
         panda8.duration = 60
         panda8.star = true
-        panda8.title = "失效视频"
+        panda8.title = "和叶和艾莉玩，回家慢半拍，紧赶慢赶门还是关了"
         panda8.releaseTime = 1633152827
         panda8.period = PeriodType.MOM.ordinal
         panda8.originalUrl = "https://www.bilibili.com/video/BV1GL411s74Q/"

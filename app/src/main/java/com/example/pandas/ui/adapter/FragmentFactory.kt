@@ -5,6 +5,7 @@ import com.example.pandas.ui.fragment.main.live.LiveFragment
 import com.example.pandas.ui.fragment.main.pet.CutePetFragment
 import com.example.pandas.ui.fragment.main.home.HomeFragment
 import com.example.pandas.ui.fragment.main.eyepetozer.OtherFragment
+import com.example.pandas.ui.fragment.main.face.FaceFragment
 import com.example.pandas.ui.fragment.main.mine.SelfFragment
 
 /**
@@ -33,8 +34,8 @@ public class FragmentFactory {
                 when (page) {
                     PAGE_ONE -> mFragment = HomeFragment()
                     PAGE_TWO -> mFragment = LiveFragment()
-                    PAGE_THREE -> mFragment = OtherFragment()
-//                    PAGE_FOUR -> mFragment = FaceFragment()
+//                    PAGE_THREE -> mFragment = OtherFragment()
+                    PAGE_THREE -> mFragment = FaceFragment()
                     PAGE_FOUR -> mFragment = CutePetFragment()
                     PAGE_FIVE -> mFragment = SelfFragment()
                 }

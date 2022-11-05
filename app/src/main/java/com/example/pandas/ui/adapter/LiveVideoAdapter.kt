@@ -19,6 +19,7 @@ import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.interaction.AnimationListener
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.Item1AdapterLiveVideoBinding
+import com.example.pandas.databinding.Item2AdapterLiveVideoBinding
 import com.example.pandas.databinding.Item3AdapterLiveVideoBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
@@ -78,12 +79,12 @@ public class LiveVideoAdapter(
                 return VisitorViewHolder(binding)
             }
             2 -> {
-                val binding = Item1AdapterLiveVideoBinding.inflate(
+                val binding = Item2AdapterLiveVideoBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
-                return VisitorViewHolder(binding)
+                return HistoryViewHolder(binding)
             }
             else -> {
                 val binding = Item3AdapterLiveVideoBinding.inflate(
@@ -102,7 +103,7 @@ public class LiveVideoAdapter(
                 (holder as VisitorViewHolder).handle()
             }
             2 -> {
-                (holder as VisitorViewHolder).handle()
+                (holder as HistoryViewHolder).handle()
             }
             else -> {
                 (holder as LiveViewHolder).handle(position)
@@ -132,6 +133,30 @@ public class LiveVideoAdapter(
 
             if (mAdapter == null) {
                 mAdapter = LiveVisitorAdapter(data.visitors)
+                recyclerView.run {
+                    layoutManager = LinearLayoutManager(itemView.context, HORIZONTAL, false)
+                    adapter = mAdapter
+                    addItemDecoration(LiveVisitorItemDecoration(paddingSide, paddingMide))
+                }
+            }
+        }
+    }
+
+    inner class HistoryViewHolder(binding: Item2AdapterLiveVideoBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        val recyclerView = binding.rvLiveHistory
+        var mAdapter: LiveHistoryAdapter? = null
+
+        fun handle() {
+
+            val paddingSide =
+                itemView.context.resources.getDimension(R.dimen.common_lh_12_dimens).toInt()
+            val paddingMide =
+                itemView.context.resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
+
+            if (mAdapter == null) {
+                mAdapter = LiveHistoryAdapter(data.follows)
                 recyclerView.run {
                     layoutManager = LinearLayoutManager(itemView.context, HORIZONTAL, false)
                     adapter = mAdapter

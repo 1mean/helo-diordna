@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
+import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.sql.entity.PetVideo
@@ -45,7 +46,7 @@ public class CutePetChildAdapter(
 
         //把http图片换成https就能加载出来
         petVideo.cover?.let {
-            loadImage(context, it, cover)
+            loadCenterImage(context, it, cover)
         }
 
         var videoData = data.videoData

@@ -7,6 +7,7 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
 
+
 /**
  * @description: 基于分区存储的文件处理
  * @author: dongyiming
@@ -101,4 +102,39 @@ object FileUtils {
         }
     }
 
+    /**
+     * 判断文件是否存在，不存在则判断是否创建成功
+     *
+     * @param file 文件
+     * @return `true`: 存在或创建成功<br></br>`false`: 不存在或创建失败
+     */
+    fun createOrExistsFile(file: File?): Boolean {
+        if (file == null) return false
+        // 如果存在，是文件则返回true，是目录则返回false
+        if (file.exists()) return file.isFile
+        return if (!createOrExistsDir(file.parentFile)) false else try {
+            file.createNewFile()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            false
+        }
+    }
+
+    /**
+     * 判断目录是否存在，不存在则判断是否创建成功
+     *
+     * @param file 文件
+     * @return `true`: 存在或创建成功<br></br>`false`: 不存在或创建失败
+     */
+    fun createOrExistsDir(file: File?): Boolean {
+        // 如果存在，是目录则返回true，是文件则返回false，不存在则返回是否创建成功
+        return file != null && if (file.exists()) file.isDirectory else file.mkdirs()
+    }
+
+    fun deleteFile(filePath: String) {
+        val file = File(filePath)
+        if (file.exists()) {
+            file.delete()
+        }
+    }
 }

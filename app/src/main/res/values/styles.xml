@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -11,6 +11,8 @@
         <!--<item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>-->
 
+        <!--给项目里的所有BottomSheetDialog设置圆角，如果不用全部圆角可屏蔽，然后在构造方法里自行设置style-->
+        <!--<item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>-->
     </style>
 
     <!-- common gravity   -->
@@ -41,6 +43,10 @@
     <!--self-tablayout-->
     <style name="SelfTabLayoutTextStyle">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="PetTabLayoutTextStyle">
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="VideoTabLayoutTextStyle">
@@ -102,15 +108,6 @@
         <attr name="card2Width" format="dimension" />
         <attr name="card3Width" format="dimension" />
     </declare-styleable>
-
-    <!--必须如此才能配合实现dialog有圆角-->
-    <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
-    </style>
-
-    <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@android:color/transparent</item>
-    </style>
 
     <!-- HomeFragment ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <style name="style_fragment_main_bottom_text">
@@ -413,4 +410,20 @@
         <item name="android:layout_marginStart">20dp</item>
         <item name="android:background">@color/color_follow_bg</item>
     </style>
+
+    <!-- 实现BottomSheetDialog圆角效果 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <style name="CustomBottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
+    </style>
+
+    <!--必须如此才能配合实现dialog有圆角-->
+    <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
+    </style>
+
+    <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 </resources>

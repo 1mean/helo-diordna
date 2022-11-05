@@ -1,11 +1,6 @@
 package com.example.pandas.biz.ext
 
-import android.content.Context
-import android.content.Intent
-import androidx.activity.result.ActivityResultLauncher
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.pandas.ui.activity.UserInfoActivity
-import com.example.pandas.ui.activity.VideoPlayingActivity
 
 /**
  * SwipeRefreshLayout初始化设置

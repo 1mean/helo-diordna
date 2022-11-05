@@ -42,6 +42,9 @@ public class RoomContentAdapter(
             4 -> type = VideoType.PENGUIN.ordinal
             5 -> type = VideoType.GOLDEN_MONKEY.ordinal
             6 -> type = VideoType.BEAR.ordinal
+            7 -> type = VideoType.TIGER.ordinal
+            8 -> type = VideoType.HAMSTER.ordinal
+            9 -> type = VideoType.RABBIT.ordinal
         }
         return type
     }

@@ -1,4 +1,4 @@
-package com.example.pandas.ui.ext;
+package com.example.pandas.ui.ext
 
 import android.animation.Animator
 import android.animation.AnimatorSet
@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -85,6 +86,11 @@ fun AppCompatActivity.popBack(tag: String) {
 //-------------------<Fragment相关 结束>-------------------------------------------------------------
 
 //-------------------<Activity相关 开始>-------------------------------------------------------------
+
+fun startAnyActivity(context: Context, cls: Class<*>) {
+    context.startActivity(Intent(context, cls))
+}
+
 fun startUserInfoActivity(context: Context, user: User) {
     val intent = Intent(context, UserInfoActivity::class.java).apply {
         putExtra("user", user)
@@ -195,3 +201,8 @@ fun setLikeAnimation(view: View, listener: AnimationListener) {
 }
 
 //-------------------<动画相关 结束>-----------------------------------------------------------------
+//-------------------<辅助功能 开始>-----------------------------------------------------------------
+fun shortToast(context: Context, message: String) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+}
+//-------------------<辅助功能 结束>-----------------------------------------------------------------

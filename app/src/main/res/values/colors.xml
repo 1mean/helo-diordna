@@ -221,5 +221,6 @@
     <color name="color_live_tag_text">#008FD3</color>
     <color name="color_live_vip">#FF4E9B</color>
     <color name="color_live_name">#161A1A</color>
+    <color name="color_text_item_timing">#F2F4F9</color>
 
 </resources>

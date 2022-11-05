@@ -18,6 +18,9 @@
     <string name="string_room_tab_item4">企鹅</string>
     <string name="string_room_tab_item5">金丝猴</string>
     <string name="string_room_tab_item6">北极熊</string>
+    <string name="string_room_tab_item7">老虎</string>
+    <string name="string_room_tab_item8">仓鼠</string>
+    <string name="string_room_tab_item9">兔兔</string>
 
     <!-- behavior -->
     <string name="behavior_textview">com.example.pandas.ui.view.MyBehavior</string>
@@ -151,5 +154,6 @@
     <string name="str_dm_close">已关闭弹幕</string>
     <string name="str_find_more">查看更多</string>
     <string name="str_transmit">转发</string>
+    <string name="str_face_add">人脸注册</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.example.pandas.base.activity
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.example.pandas.base.viewmodel.BaseViewModel
+import com.example.pandas.utils.ScreenUtil
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.ParameterizedType
 
@@ -29,7 +31,6 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(initViewBinding())
         initViewModel()
 

@@ -6,10 +6,12 @@ import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.app.AppInfos
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentChildSettingBinding
 import com.example.pandas.ui.activity.*
 import com.example.pandas.ui.ext.startToActivity
+import com.example.pandas.ui.view.dialog.TimingBottomSheetDialog
 
 /**
  * @description: 我的-设置
@@ -37,7 +39,13 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
             showToast("个人积分")
         }
         binding.clayoutSettingTiming.setOnClickListener {
-            showToast("定时关闭")
+
+            val dialog = TimingBottomSheetDialog(mActivity,object: ItemClickListener<Int>{
+                override fun onItemClick(t: Int) {
+
+                }
+            })
+            dialog.onShow()
         }
         binding.clayoutSelf.setOnClickListener {
             mActivity.startActivity(Intent(mActivity, SelfInfoActivity::class.java))

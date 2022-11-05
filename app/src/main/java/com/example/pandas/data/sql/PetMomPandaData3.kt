@@ -116,6 +116,7 @@ object PetMomPandaData3 {
         panda430.duration = 8
         panda430.period = PeriodType.MOM.ordinal
         panda430.star = false
+        panda430.vertical = true
         panda430.title = "【熊猫】从熊妈脸上看到了不可置信的表情"
         panda430.releaseTime = 1665912600
         panda430.originalUrl = "https://www.bilibili.com/video/BV1m14y177zp"
@@ -532,6 +533,7 @@ object PetMomPandaData3 {
         panda456.duration = 40
         panda456.period = PeriodType.MOM.ordinal
         panda456.star = false
+        panda456.vertical = true
         panda456.title = "炸毛小公举可爱多。【大熊猫福多多】"
         panda456.releaseTime = 1656165779
         panda456.originalUrl = "https://www.bilibili.com/video/BV1Xv4y1M7Lh"
@@ -676,6 +678,7 @@ object PetMomPandaData3 {
         panda465.duration = 76
         panda465.period = PeriodType.MOM.ordinal
         panda465.star = false
+        panda465.vertical = true
         panda465.title = "花花：我这腿，怎么能不算……长呢？"
         panda465.releaseTime = 1663072408
         panda465.originalUrl = "https://www.bilibili.com/video/BV1DY4y1K7e6"
@@ -740,6 +743,7 @@ object PetMomPandaData3 {
         panda469.duration = 133
         panda469.period = PeriodType.MOM.ordinal
         panda469.star = false
+        panda469.vertical = true
         panda469.title = "哪只小熊最乖"
         panda469.releaseTime = 1663039137
         panda469.originalUrl = "https://www.bilibili.com/video/BV15P411G7mc"
@@ -836,6 +840,7 @@ object PetMomPandaData3 {
         panda475.duration = 83
         panda475.period = PeriodType.MOM.ordinal
         panda475.star = false
+        panda475.vertical = true
         panda475.title = "宝宝椅失踪之谜"
         panda475.releaseTime = 1662522892
         panda475.originalUrl = "https://www.bilibili.com/video/BV1XW4y1q7VJ"
@@ -1060,6 +1065,7 @@ object PetMomPandaData3 {
         panda489.duration = 74
         panda489.period = PeriodType.MOM.ordinal
         panda489.star = false
+        panda489.vertical = true
         panda489.title = "220825 华妮爱宝想多抱抱女儿，不懂事的孩子挣脱妈妈的怀抱"
         panda489.releaseTime = 1661526110
         panda489.originalUrl = "https://www.bilibili.com/video/BV1ZP4y1Z7hu"
@@ -1412,6 +1418,7 @@ object PetMomPandaData3 {
         panda511.duration = 53
         panda511.period = PeriodType.MOM.ordinal
         panda511.star = false
+        panda511.vertical = true
         panda511.title = "华妮爱宝好爱福宝"
         panda511.releaseTime = 1660750858
         panda511.originalUrl = "https://www.bilibili.com/video/BV1fB4y1676t"
@@ -1588,6 +1595,7 @@ object PetMomPandaData3 {
         panda522.duration = 12
         panda522.period = PeriodType.MOM.ordinal
         panda522.star = false
+        panda522.vertical = true
         panda522.title = "多多的干妈雅莉好爱多多，睡觉都抱在一起，还帮多多舔毛"
         panda522.releaseTime = 1648871069
         panda522.originalUrl = "https://www.bilibili.com/video/BV1E44y1P7Aa"
@@ -1716,6 +1724,7 @@ object PetMomPandaData3 {
         panda530.duration = 26
         panda530.period = PeriodType.MOM.ordinal
         panda530.star = false
+        panda530.vertical = true
         panda530.title = "【成长吧大熊猫】爬到妈妈的背上，好软好有安全感～～呜呜呜，当头一棒！"
         panda530.releaseTime = 1659009600
         panda530.originalUrl = "https://www.bilibili.com/video/BV11S4y147VF"
@@ -1764,6 +1773,7 @@ object PetMomPandaData3 {
         panda533.duration = 90
         panda533.period = PeriodType.MOM.ordinal
         panda533.star = false
+        panda533.vertical = true
         panda533.title = "【大熊猫宝兰】没有“母子互殴”，我们就是安静的大美女"
         panda533.releaseTime = 1659782045
         panda533.originalUrl = "https://www.bilibili.com/video/BV1GS4y1473y"
@@ -2116,6 +2126,7 @@ object PetMomPandaData3 {
         panda555.duration = 28
         panda555.period = PeriodType.MOM.ordinal
         panda555.star = false
+        panda555.vertical = true
         panda555.title = "【大熊猫昭美】炯炯有神的眼睛"
         panda555.releaseTime = 1600149757
         panda555.originalUrl = "https://www.bilibili.com/video/BV1cA411J7sR"
@@ -2388,6 +2399,7 @@ object PetMomPandaData3 {
         panda572.duration = 14
         panda572.period = PeriodType.MOM.ordinal
         panda572.star = false
+        panda572.vertical = true
         panda572.title = "洗澡也就算了，还要求洗匀净？"
         panda572.releaseTime = 1658150547
         panda572.originalUrl = "https://www.bilibili.com/video/BV1MN4y1M7PL"
@@ -2484,6 +2496,7 @@ object PetMomPandaData3 {
         panda578.duration = 194
         panda578.period = PeriodType.MOM.ordinal
         panda578.star = false
+        panda578.vertical = true
         panda578.title = "福多多1岁生日"
         panda578.releaseTime = 1658061840
         panda578.originalUrl = "https://www.bilibili.com/video/BV1ya411S7r5"
@@ -3412,6 +3425,7 @@ object PetMomPandaData3 {
         panda636.duration = 170
         panda636.period = PeriodType.MOM.ordinal
         panda636.star = false
+        panda636.vertical = true
         panda636.title = "宝新1岁生日啦，第一次给大熊猫唱生日歌"
         panda636.releaseTime = 1656070888
         panda636.originalUrl = "https://www.bilibili.com/video/BV1Nr4y1g7DL"
@@ -3508,6 +3522,7 @@ object PetMomPandaData3 {
         panda642.duration = 74
         panda642.period = PeriodType.MOM.ordinal
         panda642.star = false
+        panda642.vertical = true
         panda642.title = "雅颂宝宝喜欢抱大腿"
         panda642.releaseTime = 1655089731
         panda642.originalUrl = "https://www.bilibili.com/video/BV1gZ4y1q7Ad"
@@ -3876,6 +3891,7 @@ object PetMomPandaData3 {
         panda665.duration = 120
         panda665.period = PeriodType.MOM.ordinal
         panda665.star = false
+        panda665.vertical = true
         panda665.title = "【大熊猫萌宝】小美兰~小美兰~小美兰~"
         panda665.releaseTime = 1568639638
         panda665.originalUrl = "https://www.bilibili.com/video/BV1oJ411c7RD"
@@ -4748,6 +4764,108 @@ object PetMomPandaData3 {
         panda719.cover =
             "https://i1.hdslb.com/bfs/archive/2884944dd50c5ad94f5a7d67fb3dfc49dd519be0.jpg"
         list.add(panda719)
+
+        val panda720 = PetVideo()
+        panda720.type = VideoType.PANDA.ordinal
+        panda720.fileName = "panda_mom_panda720"
+        panda720.code = 3779
+        panda720.duration = 62
+        panda720.period = PeriodType.MOM.ordinal
+        panda720.star = false
+        panda720.vertical = false
+        panda720.title = "大熊猫昭美：我就喜欢这种白净的，互动性又强的小熊"
+        panda720.releaseTime = 1655301600
+        panda720.originalUrl = "https://www.bilibili.com/video/BV1tY4y1G7Re"
+        panda720.tags = "熊猫,宝宝,熊猫妈妈,萌宠"
+        panda720.authorId = 98871951
+        panda720.cover =
+            "https://i1.hdslb.com/bfs/archive/785bf79d0ae69bd36557b1c1bf100fd7848a53e7.jpg"
+        list.add(panda720)
+
+        val panda721 = PetVideo()
+        panda721.type = VideoType.PANDA.ordinal
+        panda721.fileName = "panda_mom_panda721"
+        panda721.code = 3780
+        panda721.duration = 84
+        panda721.period = PeriodType.MOM.ordinal
+        panda721.star = false
+        panda721.vertical = false
+        panda721.title = "[大熊猫福多多]可爱多是爬树小能手"
+        panda721.releaseTime = 1646659335
+        panda721.originalUrl = "https://www.bilibili.com/video/BV1Eq4y1i726"
+        panda721.tags = "熊猫,宝宝,熊猫妈妈,萌宠"
+        panda721.authorId = 2130341205
+        panda721.cover =
+            "https://i1.hdslb.com/bfs/archive/ff78374466cf340b5ddf9b31b4ad4843513433bf.jpg"
+        list.add(panda721)
+
+        val panda722 = PetVideo()
+        panda722.type = VideoType.PANDA.ordinal
+        panda722.fileName = "panda_mom_panda722"
+        panda722.code = 3781
+        panda722.duration = 69
+        panda722.period = PeriodType.MOM.ordinal
+        panda722.star = false
+        panda722.vertical = false
+        panda722.title = "【熊猫宝宝雅颂福多多】颂多多的欢乐合集(一)"
+        panda722.releaseTime = 1646719577
+        panda722.originalUrl = "https://www.bilibili.com/video/BV1Vi4y117Li"
+        panda722.tags = "熊猫,宝宝,熊猫妈妈,萌宠"
+        panda722.authorId = 2137796700
+        panda722.cover =
+            "https://i2.hdslb.com/bfs/archive/99e10afa4c476ba4340f59a629d9a6c1bc9c4bd4.jpg"
+        list.add(panda722)
+
+        val panda723 = PetVideo()
+        panda723.type = VideoType.PANDA.ordinal
+        panda723.fileName = "panda_mom_panda723"
+        panda723.code = 3782
+        panda723.duration = 247
+        panda723.period = PeriodType.MOM.ordinal
+        panda723.star = false
+        panda723.vertical = false
+        panda723.title = "【莽星星莽辰辰】今天收猫，一根笋就能骗走！"
+        panda723.releaseTime = 1666433469
+        panda723.originalUrl = "https://www.bilibili.com/video/BV19K411S7c6"
+        panda723.tags = "熊猫,宝宝,熊猫妈妈,萌宠"
+        panda723.authorId = 180602305
+        panda723.cover =
+            "https://i2.hdslb.com/bfs/archive/38f8ee8de3b29c22de0b5d77a2568b29f0ac4a64.jpg"
+        list.add(panda723)
+
+        val panda724 = PetVideo()
+        panda724.type = VideoType.PANDA.ordinal
+        panda724.fileName = "panda_mom_panda724"
+        panda724.code = 3783
+        panda724.duration = 99
+        panda724.period = PeriodType.MOM.ordinal
+        panda724.star = false
+        panda724.vertical = false
+        panda724.title = "【奇珍奇宝】奇珍：竟敢让我喝你的洗脚水！啊打！（视频结尾：？？？）"
+        panda724.releaseTime = 1666431966
+        panda724.originalUrl = "https://www.bilibili.com/video/BV1gd4y1y7L2"
+        panda724.tags = "熊猫,宝宝,熊猫妈妈,萌宠"
+        panda724.authorId = 180602305
+        panda724.cover =
+            "https://i2.hdslb.com/bfs/archive/549b2c102591f635daebbae4e3576e4d4808d2af.jpg"
+        list.add(panda724)
+
+        val panda725 = PetVideo()
+        panda725.type = VideoType.PANDA.ordinal
+        panda725.fileName = "panda_mom_panda725"
+        panda725.code = 3784
+        panda725.duration = 113
+        panda725.period = PeriodType.MOM.ordinal
+        panda725.star = false
+        panda725.vertical = false
+        panda725.title = "可爱“小馋猫”看妈妈吃饭"
+        panda725.releaseTime = 1666072443
+        panda725.originalUrl = "https://www.bilibili.com/video/BV1MW4y1n7e5"
+        panda725.tags = "熊猫,宝宝,熊猫妈妈,萌宠"
+        panda725.authorId = 172816308
+        panda725.cover =
+            "https://i2.hdslb.com/bfs/archive/0e19a9498f0fc68271742576c0358b95550c5682.jpg"
+        list.add(panda725)
 
 
         return list

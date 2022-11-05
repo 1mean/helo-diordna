@@ -80,6 +80,10 @@
         <activity android:name=".ui.activity.ListActivity" />
         <activity android:name=".ui.activity.CollectListActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
+        <activity android:name=".ui.activity.FaceLoginActivity" />
+        <activity
+                android:name=".ui.activity.FaceActivity"
+                android:screenOrientation="landscape" />
         <activity
                 android:name=".ui.activity.VideoPlayingActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize" />
@@ -126,6 +130,10 @@
 
         <!--service-->
         <service android:name=".ui.service.AudioPlayService" />
+        <service android:name=".ui.service.TimingService" />
+
+        <!--receiver-->
+        <receiver android:name=".ui.broadcast.TimingBroadCast" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -137,5 +145,8 @@
     <!--友盟单独需要的权限-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>

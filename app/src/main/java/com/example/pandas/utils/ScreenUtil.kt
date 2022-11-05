@@ -10,13 +10,12 @@ import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-
 import android.view.WindowManager
 import androidx.core.view.WindowCompat
 
 
 /**
- * @description: TODO
+ * @description: 手机屏幕相关的设置
  * @author: dongyiming
  * @date: 2021/12/14 10:31 下午
  * @version: v1.0
@@ -108,7 +107,7 @@ object ScreenUtil {
         itemView.getGlobalVisibleRect(rect)
         val visibleHeight = rect.height()//可见的高度
         val totalHeight = itemView.layoutParams.height//总高度
-        Log.e("LiveVIdeosss","visibleHeight: $visibleHeight, totalHeight:$totalHeight")
+        Log.e("LiveVIdeosss", "visibleHeight: $visibleHeight, totalHeight:$totalHeight")
         return visibleHeight >= (totalHeight / 2)
     }
 
@@ -122,4 +121,32 @@ object ScreenUtil {
         val height = ints[1]
         return height
     }
+
+    /**
+     * 设置全屏
+     */
+    fun setFullScreen(activity: Activity) {
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            activity.window?.insetsController?.let {
+                it.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
+                it.systemBarsBehavior = BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            }
+        } else {
+            activity.window?.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+    }
+
+
+    /**
+     * 设置屏幕常亮
+     */
+    fun setScreenOn(activity: Activity){
+        activity.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+    }
+
+
 }

@@ -40,14 +40,13 @@ class DiorApplication : Application() {
 
             /* add data */
             val list = AppData.getPetVideoData()
-            val list1 = AppData.getMusicData()
-            val list2 = AppData.getUser()
-            val list3 = AppData.getComment()
             petDao.insertAll(list)
+            val list1 = AppData.getMusicData()
             petDao.insertMusics(list1)
+            val list2 = AppData.getUser()
             petDao.insertUsers(list2)
+            val list3 = AppData.getComment()
             petDao.insertComment(list3)
-
         }.start()
     }
 }
