@@ -12,7 +12,7 @@
             android:layout_width="240dp"
             android:layout_height="match_parent" />
 
-    <com.kproduce.roundcorners.RoundRelativeLayout
+    <net.csdn.roundview.RoundRelativeLayout
             android:id="@+id/layout_music"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -54,9 +54,9 @@
                 android:layout_below="@id/txt_music_name"
                 android:layout_marginTop="6dp"
                 android:src="@mipmap/img_music_right" />
-    </com.kproduce.roundcorners.RoundRelativeLayout>
+    </net.csdn.roundview.RoundRelativeLayout>
 
-    <com.kproduce.roundcorners.RoundRelativeLayout
+    <net.csdn.roundview.RoundRelativeLayout
             android:id="@+id/layout_card3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -101,7 +101,7 @@
                 android:layout_below="@id/txt_honglou_name"
                 android:layout_marginTop="6dp"
                 android:src="@mipmap/img_music_right" />
-    </com.kproduce.roundcorners.RoundRelativeLayout>
+    </net.csdn.roundview.RoundRelativeLayout>
 
 
 </androidx.cardview.widget.CardView>

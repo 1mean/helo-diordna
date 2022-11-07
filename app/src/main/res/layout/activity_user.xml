@@ -35,7 +35,7 @@
                     android:layout_marginTop="134dp"
                     android:background="@color/color_white_lucency">
 
-                <com.kproduce.roundcorners.CircleImageView
+                <net.csdn.roundview.CircleImageView
                         android:id="@+id/img_user_header"
                         android:layout_width="81dp"
                         android:layout_height="81dp"

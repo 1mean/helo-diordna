@@ -155,5 +155,9 @@
     <string name="str_find_more">查看更多</string>
     <string name="str_transmit">转发</string>
     <string name="str_face_add">人脸注册</string>
+    <string name="str_name_input">请输入姓名</string>
+    <string name="str_phone_input">请输入手机号</string>
+    <string name="str_username">姓名</string>
+    <string name="str_phone_no">手机号</string>
 
 </resources>

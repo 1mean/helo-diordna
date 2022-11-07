@@ -253,7 +253,6 @@ public class FaceActivity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
             }
             //mNativeDetector.setMinFaceSize(mAbsoluteFaceSize)
         }
-        Log.e("1mean","size: ${mAbsoluteFaceSize.toDouble()}")
         val faces = MatOfRect()
         frontFaceClassifier?.detectMultiScale(
             mGray,

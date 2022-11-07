@@ -1,16 +1,13 @@
 package com.example.pandas.ui.activity
 
 import android.content.Intent
+import android.content.Intent.ACTION_OPEN_DOCUMENT
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.os.*
 import android.provider.MediaStore
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.FileProvider
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
@@ -46,7 +43,7 @@ import kotlin.math.roundToInt
  */
 public class FaceLoginActivity : BaseActivity<BaseViewModel, ActivityFaceLoginBinding>() {
 
-    private var tempFilePath: String = ""
+    private var tempFileName: String = ""
     private var frontFaceClassifier: CascadeClassifier? = null //正脸检分类器
     private var initSuccess = false
 
@@ -55,11 +52,24 @@ public class FaceLoginActivity : BaseActivity<BaseViewModel, ActivityFaceLoginBi
 
     private val mHandler = Handler(Looper.getMainLooper())
 
-    private val requestLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    private val albumLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
 
-            if (result.resultCode == RESULT_OK) {
+            if (it.resultCode == RESULT_OK) {
+                it.data?.let { intent ->
+                    intent.data?.let { uri ->
 
+                        val path = FileUtils.getRealPathFromUri(this,uri)
+                        Log.e("1mean","path: $path")
+                    }
+                }
+            }
+        }
+
+    private val takePictureLauncher =
+        //TakePicturePreview()返回bitmap预览图，是缩略图，比较模糊
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { result ->
+            if (result) {
                 if (loadingPopup == null) {
                     loadingPopup =
                         XPopup.Builder(this@FaceLoginActivity).dismissOnBackPressed(true)
@@ -80,35 +90,29 @@ public class FaceLoginActivity : BaseActivity<BaseViewModel, ActivityFaceLoginBi
 
         binding.btnFaceLoginCapture.setOnClickListener {
 
-            if (initSuccess) {
+            if (!initSuccess) {
                 shortToast(this, "初始化失败，无法操作！！")
+                return@setOnClickListener
             }
-            val localFile = FileUtils.getExternalFileDirectory(this, "")//File目录
-            val facePath =
-                StringBuilder(localFile!!.absolutePath).append(File.separator).append("face")
-                    .toString()
-            val faceFile = File(facePath)
-            if (!faceFile.exists()) {
-                faceFile.mkdirs()
+            val faceDir = FileUtils.getExternalFilePath(this, "face")
+            if (faceDir.isEmpty()) {
+                return@setOnClickListener
             }
-            val facePic = File(facePath, System.currentTimeMillis().toString() + ".jpg")
-            tempFilePath = facePic.absolutePath
-            Log.d("1mean", "tempFilePath: $tempFilePath")
-            val uri: Uri = FileProvider.getUriForFile(
+            val facePic = File(faceDir, System.currentTimeMillis().toString() + ".jpg")
+            tempFileName = facePic.absolutePath
+            val uri = FileProvider.getUriForFile(
                 this,
                 "$packageName.fileprovider",
                 facePic
             )
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+            takePictureLauncher.launch(uri)
+        }
 
-            val activityOptionsCompat: ActivityOptionsCompat =
-                ActivityOptionsCompat.makeCustomAnimation(
-                    this,
-                    R.anim.animate_fragment_in,
-                    R.anim.animate_fragment_out
-                )
-            requestLauncher.launch(intent, activityOptionsCompat)
+        binding.btnFaceLoginLocal.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            //参数一:对应的数据的URI 参数二:使用该函数表示要查找文件的MIME类型
+            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+            albumLauncher.launch(intent)
         }
         //这两还少不了
         initLoadOpenCV()
@@ -167,12 +171,12 @@ public class FaceLoginActivity : BaseActivity<BaseViewModel, ActivityFaceLoginBi
         Thread {
             val options = BitmapFactory.Options()
             options.inJustDecodeBounds = true
-            BitmapFactory.decodeFile(tempFilePath, options)
+            BitmapFactory.decodeFile(tempFileName, options)
             options.inSampleSize = calculateSampleSize(options, 400, 400)
             options.inJustDecodeBounds = false
-            val bitmap = BitmapFactory.decodeFile(tempFilePath, options)
+            val bitmap = BitmapFactory.decodeFile(tempFileName, options)
 
-            BitmapUtils.saveBitmap(bitmap, tempFilePath)
+            BitmapUtils.saveBitmap(bitmap, tempFileName)
 
             val matSrc = Mat()
             val matDst = Mat() //目标图，用于画框框
@@ -189,6 +193,7 @@ public class FaceLoginActivity : BaseActivity<BaseViewModel, ActivityFaceLoginBi
                 //mNativeDetector.setMinFaceSize(mAbsoluteFaceSize)
             }
 
+            // Imgproc.compareHist()
             val faces = MatOfRect()
             frontFaceClassifier!!.detectMultiScale(
                 matGray,
@@ -201,39 +206,60 @@ public class FaceLoginActivity : BaseActivity<BaseViewModel, ActivityFaceLoginBi
             )
             val faceList = faces.toList()
             if (faceList.size > 0) {
+
+                val rect = faceList[0]
+                Log.e("1mean", "face rect: $rect")
+
                 matSrc.copyTo(matDst)
-                faceList.forEach {
-                    //tl:左上角坐标，br右下角坐标
-                    Imgproc.rectangle(
-                        matDst,
-                        it.tl(),
-                        it.br(),
-                        Scalar(255.0, 0.0, 0.0, 255.0),
-                        4,
-                        8,
-                        0
-                    )
-                }
+                //tl:左上角坐标，br右下角坐标
+
+                Imgproc.rectangle(
+                    matDst,
+                    rect.tl(),
+                    rect.br(),
+                    Scalar(255.0, 0.0, 0.0, 255.0),
+                    4,
+                    8,
+                    0
+                )
 
                 val dstBitmap =
                     Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
                 Utils.matToBitmap(matDst, dstBitmap)
 
-                bitmap.recycle()
                 val localFile = FileUtils.getExternalFileDirectory(this, "")//File目录
                 val facePath =
                     StringBuilder(localFile!!.absolutePath).append(File.separator).append("face")
                         .toString()
                 val path = File(facePath, System.currentTimeMillis().toString() + ".jpg")
-                BitmapUtils.saveBitmap(dstBitmap, path.absolutePath)
+
+
+                val cropBitmap =
+                    cropBitmap(dstBitmap, intArrayOf(rect.x, rect.y, rect.width, rect.height))
+
+                Log.e("1mean", "${rect.width}")
+                val newBitmap =
+                    Bitmap.createBitmap(dstBitmap, rect.x, rect.y, rect.width, rect.height)
+
+                val newMat = Mat()
+                Utils.bitmapToMat(newBitmap, newMat)
+                Log.e("1mean", "newMat: $newMat")
+
+
+                //比对两个人脸 两个mat必须有相同的size，不然报错 616x820 302x302
+                Log.e("1mean", "size1:${matDst.size()}, size2:${newMat.size()}")
+                //val similar = Imgproc.compareHist(matDst, newMat, Imgproc.HISTCMP_CHISQR)
+                //Log.e("1mean", "相似度： $similar")
+
+//                BitmapUtils.saveBitmap(dstBitmap, path.absolutePath)
+                BitmapUtils.saveBitmap(newBitmap!!, path.absolutePath)
 
                 mHandler.post {
                     loadingPopup?.dismiss()
                     loadCircleBitmap(this, dstBitmap, binding.imgFaceLogin)
-                    dstBitmap.recycle()
                 }
             } else {//未检测到人脸，删除本地图片，并提示
-                FileUtils.deleteFile(tempFilePath)
+                FileUtils.deleteFile(tempFileName)
                 loadingPopup?.dismiss()
                 Looper.prepare()
                 shortToast(this, "未检测到人脸，请重新拍摄")
@@ -261,5 +287,30 @@ public class FaceLoginActivity : BaseActivity<BaseViewModel, ActivityFaceLoginBi
             inSampleSize *= 2
         }
         return inSampleSize
+    }
+
+    private fun cropBitmap(bitmap: Bitmap, rect: IntArray): Bitmap? {
+        val iw = bitmap.width
+        val ih = bitmap.height
+        var width_add = rect[2]
+        while ((rect[0]
+                    - width_add < 0) || rect[1] - width_add < 0 || rect[0] + rect[2] + width_add > iw || rect[1] + rect[3] + width_add > ih
+        ) {
+            width_add--
+            if (width_add == 0) break
+        }
+        val rect_int = intArrayOf(
+            (rect[0] - width_add),
+            (rect[1] - width_add),
+            (rect[2] + 2 * width_add),
+            (rect[3] + 2 * width_add)
+        )
+        return Bitmap.createBitmap(
+            bitmap,
+            rect_int[0],
+            rect_int[1],
+            rect_int[2],
+            rect_int[3]
+        )
     }
 }
