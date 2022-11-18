@@ -189,13 +189,6 @@ object FileUtils {
 
     /**
      * 适配api19及以上,根据uri获取图片的绝对路径
-     *
-     * @param context 上下文对象
-     * @param uri     图片的Uri
-     * @return 如果Uri对应的图片存在, 那么返回该图片的绝对路径, 否则返回null
-     */
-    /**
-     * 适配api19及以上,根据uri获取图片的绝对路径
      * @param context 上下文对象
      * @param uri     图片的Uri
      * @return 如果Uri对应的图片存在, 那么返回该图片的绝对路径, 否则返回null

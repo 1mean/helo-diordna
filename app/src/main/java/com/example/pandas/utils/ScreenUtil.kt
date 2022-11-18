@@ -133,7 +133,7 @@ object ScreenUtil {
                 it.systemBarsBehavior = BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
             }
         } else {
-            activity.window?.setFlags(
+            activity.window?.setFlags(//全屏，隐藏所有装饰物(如状态栏)
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
@@ -147,6 +147,5 @@ object ScreenUtil {
     fun setScreenOn(activity: Activity){
         activity.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
-
 
 }

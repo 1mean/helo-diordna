@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.databinding.FragmentFaceBinding
-import com.example.pandas.ui.activity.FaceActivity
+import com.example.pandas.ui.activity.Face2Activity
 import com.example.pandas.ui.activity.FaceLoginActivity
 import com.example.pandas.ui.ext.startAnyActivity
 
@@ -19,10 +19,14 @@ public class FaceFragment : BaseFragment<BaseViewModel, FragmentFaceBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.btnFaceDetection.setOnClickListener {
-            startAnyActivity(mActivity, FaceActivity::class.java)
+            it.postDelayed({
+                startAnyActivity(mActivity, Face2Activity::class.java)
+            }, 300)
         }
         binding.btnFaceLogin.setOnClickListener {
-            startAnyActivity(mActivity, FaceLoginActivity::class.java)
+            it.postDelayed({
+                startAnyActivity(mActivity, FaceLoginActivity::class.java)
+            }, 300)
         }
     }
 

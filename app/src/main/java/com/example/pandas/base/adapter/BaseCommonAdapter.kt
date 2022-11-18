@@ -27,6 +27,11 @@ public abstract class BaseCommonAdapter<T>(private val data: MutableList<T>) :
         }
     }
 
+    fun insertFirst(t: T) {
+        data.add(0, t)
+        notifyDataSetChanged()
+    }
+
     /**
      * 添加更多数据
      */

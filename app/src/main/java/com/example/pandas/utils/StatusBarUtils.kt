@@ -22,7 +22,20 @@ import java.util.regex.Pattern
 
 
 /**
- * @description: TODO
+ * **Android沉浸式状态栏总结**
+ *   - Android4.4(API_19) -- Android5.0(API_21)
+ *      - 通过FLAG_TRANSLUCENT_STATUS设置状态栏为透明并且为全屏模式
+ *      - 然后通过添加一个与StatusBar一样大小的View，将View的background设置为我们想要的颜色，从而来实现沉浸式
+ *      - 如果是图片侵入，只需要设置 FLAG_TRANSLUCENT_STATUS 就行，不用自定义占位view
+ *   - Android5.0(API_21) -- 之后版本
+ *      - 在Android 5.0的时候，加入了一个重要的属性和方法android:statusBarColor(对应方法为 setStatusBarColor)，
+ *      - 同时，需要配合一些flag一起使用才会生效 FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
+ *      - 从Android5.0开始，系统才真正的支持沉浸式。window绘制系统bar的背景，并填充相应区域
+ *      - 如果是图片浸入，只需设置windowTranslucentStatus,将statusBarColor设置为透明即可(代码或styles.xml)
+ *   - Android6.0(API_23) -- 之后版本【状态栏字体颜色和主题色/图片冲突，导致状态栏内容看不清】
+ *      - 从Android6.0（API 23）开始，我们可以改状态栏的绘制模式，可以显示白色或浅黑色的内容和图标
+ *      - Android6.0新添加了一个属性 SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+ * @description: as
  * @author: dongyiming
  * @date: 2021/12/13 10:52 下午
  * @version: v1.0
@@ -35,6 +48,88 @@ object StatusBarUtils {
 
     val MIN_API = 19
 
+
+    /**
+     * 设置沉浸式状态栏 仅仅是修改状态栏的颜色
+     * 1，大于等于API_19
+     * 后续需要在标题栏上方添加一个view，背景颜色相同，起到占位作用，让我们的标题栏往下移到正常位置
+     * 2，大于等于API_21
+     * 也可以直接在Theme中使用，在values-v21文件夹下添加如下主题styles.xml
+     * - <style name="MDTheme" parent="Theme.Design.Light.NoActionBar">
+     * -    <item name="android:windowTranslucentStatus">false</item>
+     * -    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+     * -    <item name="android:statusBarColor">@android:color/holo_red_light</item>
+     * - </style>
+     * 3，大于等于API_23
+     * 也可以直接在Theme中使用，在values-v23文件夹下添加如下主题styles.xml
+     * - <style name="MDTheme" parent="Theme.Design.Light.NoActionBar">
+     * -    <item name="android:windowTranslucentStatus">false</item>
+     * -    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+     * -    <item name="android:statusBarColor">@android:color/holo_red_light</item>
+     * -    <!-- Android 6.0以上 状态栏字色和图标为浅黑色-->
+     * -    <item name="android:windowLightStatusBar">true</item>
+     * - </style>
+     */
+    fun setStatusTranslucent(activity: Activity) {
+
+        val window = activity.window
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//大于等于API_23
+            Log.e("1mean", "1111")
+            //SystemUiVisibility被遗弃，使用WindowInsetsController代替
+            window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+//            window.statusBarColor = color
+//            val controller = ViewCompat.getWindowInsetsController(window.decorView)
+//            controller?.let {
+//                it.show(statusBars())
+//                window.statusBarColor = Color.TRANSPARENT
+//            }
+
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//大于等于API_21
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            //注意要清除 FLAG_TRANSLUCENT_STATUS flag
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            //同时可以设置透明度
+            window.statusBarColor = activity.resources.getColor(android.R.color.holo_red_light)
+            //activity.window.statusBarColor = calculateStatusColor(color, statusBarAlpha)
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//大于等于API_19
+            //1，也可以在theme中设置属性 android:windowTranslucentStatus
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            //2，后续需要在标题栏上方添加一个view，背景颜色相同，起到占位作用，让我们的标题栏往下移到正常位置
+            /*val decorView = activity.window.decorView as ViewGroup
+            val count = decorView.childCount
+            if (count > 0 && decorView.getChildAt(count - 1) is StatusBarView) {
+                decorView.getChildAt(count - 1)
+                    .setBackgroundColor(calculateStatusColor(color, statusBarAlpha))
+            } else {
+                val statusView: StatusBarView = createStatusBarView(activity, color, statusBarAlpha)
+                decorView.addView(statusView)
+            }
+            val rootView =
+                (activity.findViewById(R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
+            rootView.fitsSystemWindows = true
+            rootView.clipToPadding = true
+            setRootView(activity)*/
+        }
+    }
+
+//    fun hideSystemUI(activity: Activity) {
+//        val window = activity.window
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
+//        WindowInsetsControllerCompat(window, window.decorView).run {
+//            hide(WindowInsetsCompat.Type.systemBars())
+//            systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+//        }
+//    }
+//
+//    fun showSystemUI(activity: Activity) {
+//        val window = activity.window
+//        WindowCompat.setDecorFitsSystemWindows(window, true)
+//        WindowInsetsControllerCompat(
+//            window,
+//            window.decorView
+//        ).show(WindowInsetsCompat.Type.systemBars())
+//    }
 
     /**
      * 设置状态栏为透明
@@ -65,7 +160,6 @@ object StatusBarUtils {
      */
     fun setStatusBarColor(activity: Activity, colorId: Int) {
 
-        //Android6.0（API 23）以上，系统方法
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val window = activity.window
             window.statusBarColor = ContextCompat.getColor(activity, colorId)
@@ -482,4 +576,6 @@ object StatusBarUtils {
         }
         window.decorView.systemUiVisibility = systemUiVisibility
     }
+
+    //---------------------------------
 }

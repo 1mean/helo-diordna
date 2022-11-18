@@ -51,40 +51,42 @@
             android:layout_height="0.66dp"
             android:background="#E2E6E5" />
 
-    <net.csdn.roundview.CircleImageView
-            android:id="@+id/img_face_login"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@mipmap/img_face_add"
-            android:layout_marginTop="50dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_face_login"
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
 
-    <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_face_login_capture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:textColor="@color/black"
-            android:visibility="gone"
-            android:text="拍摄" />
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_face_login"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@mipmap/dongyiming"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/white"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_face_login"
+                app:layout_constraintRight_toRightOf="@id/clayout_face_login"
+                app:layout_constraintTop_toTopOf="@id/clayout_face_login"
+                android:layout_marginTop="50dp" />
 
-    <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_face_login_local"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:textColor="@color/black"
-            android:visibility="gone"
-            android:text="从相册选择" />
-
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btn_face_login_upload"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                app:layout_constraintRight_toRightOf="@id/clayout_face_login"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_face_login"
+                android:layout_marginBottom="25dp"
+                android:layout_marginEnd="25dp"
+                android:textColor="@color/color_talk_name"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:background="@drawable/shape_face_add"
+                android:text="上传人脸" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_face_Login_name"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="14dp"
             android:background="@color/color_creator_item_bg">
 
         <androidx.appcompat.widget.AppCompatTextView

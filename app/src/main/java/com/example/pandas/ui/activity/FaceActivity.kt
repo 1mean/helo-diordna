@@ -1,27 +1,31 @@
 package com.example.pandas.ui.activity
 
+import android.content.res.Configuration
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageButton
 import com.example.pandas.R
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.databinding.ActivityFaceBinding
 import com.example.pandas.ui.ext.shortToast
-import com.example.pandas.utils.ScreenUtil
+import com.example.pandas.ui.view.CustomJavaCameraView
 import com.example.pandas.utils.StatusBarUtils
 import org.opencv.android.BaseLoaderCallback
 import org.opencv.android.CameraBridgeViewBase
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2
 import org.opencv.android.LoaderCallbackInterface
 import org.opencv.android.OpenCVLoader
-import org.opencv.core.*
-import org.opencv.imgproc.Imgproc.LINE_AA
-import org.opencv.imgproc.Imgproc.rectangle
+import org.opencv.core.Mat
+import org.opencv.core.Rect
+import org.opencv.core.Scalar
+import org.opencv.core.Size
 import org.opencv.objdetect.CascadeClassifier
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import kotlin.math.roundToInt
+
 
 /**
  * @description: face camera
@@ -29,7 +33,7 @@ import kotlin.math.roundToInt
  * @date: 11/2/22 9:20 AM
  * @version: v1.0
  */
-public class FaceActivity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
+public class FaceActivity : AppCompatActivity(),
     CvCameraViewListener2 {
 
     private var isFrontCamera: Boolean = false
@@ -50,31 +54,68 @@ public class FaceActivity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
     private var mAbsoluteFaceSize = 0
     private var facesCache: MutableList<Rect> = mutableListOf()
 
+    private var _cameraView: CustomJavaCameraView? = null
+    private val cameraView get() = _cameraView!!
+
     private val faceRectColor: Scalar by lazy { Scalar(255.0, 0.0, 0.0, 255.0) }
 
-    override fun initView(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-        initWindow()
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+        setContentView(R.layout.activity_face)
+
+        _cameraView = findViewById<CustomJavaCameraView>(R.id.cameraView)
+        val btnCameraSwitch = findViewById<AppCompatImageButton>(R.id.btn_camera_switch)
+
+        val mConfiguration = this.resources.configuration //获取设置的配置信息
+        val ori = mConfiguration.orientation //获取屏幕方向
+        if (ori == Configuration.ORIENTATION_LANDSCAPE) {
+            cameraView.isPortrait = false
+            //横屏
+        } else if (ori == Configuration.ORIENTATION_PORTRAIT) {
+            //竖屏
+            cameraView.isPortrait = true
+        }
+
+        cameraView.visibility = CameraBridgeViewBase.VISIBLE
+        cameraView.setCvCameraViewListener(this)
+
         initLoadOpenCV()
-        initClassifierFace()
+//        initClassifierFace()
         initClassifierEye()
         initFrontFace()
         initProfileFace()
-        binding.cameraView.enableView()
-        binding.cameraView.setCvCameraViewListener(this)
-        binding.btnCameraSwitch.setOnClickListener {//前后摄像头的切换
-            if (isFrontCamera) {
-                binding.cameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK)
-            } else {
-                binding.cameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT)
-            }
-            isFrontCamera = !isFrontCamera
-            //摄像头切换
-            binding.cameraView.disableView()
-            binding.cameraView.enableView()
-            Log.e("1mean", "点击了")
+
+
+        btnCameraSwitch.setOnClickListener {//前后摄像头的切换
+//            if (isFrontCamera) {
+//                cameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK)
+//            } else {
+//                cameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT)
+//            }
+//            isFrontCamera = !isFrontCamera
+//            //摄像头切换
+//            cameraView.disableView()
+//            cameraView.enableView()
+//            Log.e("1mean", "点击了")
+            cameraView.swithCamera(!cameraView.useFrontCamera)
         }
 
+        //有小屏幕的核心代码
+        cameraView.setOnFrameReadCallBack(object :
+            CustomJavaCameraView.OnFrameReadCallBack {
+            override fun OnFrameRead(bitmap: Bitmap?, mat: Mat?) {
+                runOnUiThread {
+                    //无限设置bitmap，成为一个小内屏
+                    //binding.btnCameraSwitch.setImageBitmap(bitmap)
+                }
+            }
+        })
     }
 
     /**
@@ -187,8 +228,7 @@ public class FaceActivity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
         }
     }
 
-    override fun firstOnResume() {
-        super.firstOnResume()
+    fun firstOnResume() {
         if (!OpenCVLoader.initDebug()) {
             OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback)
         } else {
@@ -196,7 +236,7 @@ public class FaceActivity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
         }
     }
 
-    override fun createObserver() {
+    fun createObserver() {
     }
 
     /**
@@ -205,11 +245,34 @@ public class FaceActivity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
      * JavaCameraView默认横屏，当改成竖屏时，预览会发生逆时针90度旋转。需要对预览帧进行实时处理才能正确显示图像
      * 处理：翻转预览帧，导致帧率降低，此处强制横屏来简化处理
      */
-    private fun initWindow() {
-        StatusBarUtils.setStatusBarMode(this, true, R.color.white)
-        ScreenUtil.setFullScreen(this)
-        ScreenUtil.setScreenOn(this)
+    fun initWindow() {
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
+//         StatusBarUtils.setStatusBarMode(this, true, R.color.white)
+//        ScreenUtil.setFullScreen(this)
+        //ScreenUtil.setScreenOn(this)
+        //cameraView.setMaxFrameSize(5000,5000)
         //requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        val mConfiguration = this.resources.configuration //获取设置的配置信息
+        val ori = mConfiguration.orientation //获取屏幕方向
+        if (ori == Configuration.ORIENTATION_LANDSCAPE) {
+            cameraView.isPortrait = false
+            //横屏
+        } else if (ori == Configuration.ORIENTATION_PORTRAIT) {
+            //竖屏
+            cameraView.isPortrait = true
+        }
+        cameraView.restartCamera()
     }
 
     /**
@@ -243,7 +306,7 @@ public class FaceActivity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
      */
     override fun onCameraFrame(inputFrame: CameraBridgeViewBase.CvCameraViewFrame): Mat {
         mRgba = inputFrame.rgba()//RGBA
-        mGray = inputFrame.gray()//返回单通道的灰度图
+        /*mGray = inputFrame.gray()//返回单通道的灰度图
         //隔3帧进行一次人脸检测
         val mRelativeFaceSize = 0.2f
         if (mAbsoluteFaceSize == 0) {
@@ -273,19 +336,31 @@ public class FaceActivity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
         //使用缓存的人脸坐标信息进行绘制 LINE_AA抗锯齿线 LINE_4和LINE_8是属于钜齿线
         for (rect in facesCache) {
             rectangle(mRgba, rect.tl(), rect.br(), faceRectColor, 3, LINE_AA)
-        }
+
+            // Write class name and confidence.
+            // Write class name and confidence.
+            Imgproc.putText(
+                mRgba, "你好", rect.tl(),
+                FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255.0, 0.0, 0.0, 255.0)
+            )
+        }*/
         return mRgba!!
     }
 
     override fun onPause() {
         super.onPause()
-        binding.cameraView.disableView()
+        cameraView.disableView()
     }
 
     private val mLoaderCallback: BaseLoaderCallback = object : BaseLoaderCallback(this) {
         override fun onManagerConnected(status: Int) {
             when (status) {
                 SUCCESS -> {
+                    shortToast(this@FaceActivity, "enableView")
+                    Log.i("Face-module", "OpenCV loaded successfully")
+                    cameraView.enableView()
+                    cameraView.enableFpsMeter()
+
                 }
                 else -> {
                     super.onManagerConnected(status)

@@ -223,4 +223,7 @@
     <color name="color_live_name">#161A1A</color>
     <color name="color_text_item_timing">#F2F4F9</color>
 
+    <!-- face -->
+    <color name="color_bg_status_bar">#70000000</color>
+
 </resources>

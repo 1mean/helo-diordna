@@ -140,13 +140,91 @@ object BitmapUtils {
         )
     }
 
-    fun saveBitmap(bm: Bitmap, filePath: String) {
+    /**
+     * 压缩并保存，替换已有文件
+     * @param:
+     * @return:
+     * @date: 11/9/22 3:05 AM
+     * @version: v1.0
+     */
+    fun saveCompressedBitmap(bm: Bitmap, format: Bitmap.CompressFormat, filePath: String) {
+
         val f = File(filePath)
         if (f.exists()) {
             f.delete()
         }
+
         try {
             val out = FileOutputStream(f)
+            bm.compress(Bitmap.CompressFormat.WEBP_LOSSY, 90, out)
+            out.flush()
+            out.close()
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+    /**
+     * Bitmap所占内存= 长*宽*一个像素点的字节数，减少3个参数任何一值都能压缩图片，故有质量压缩和宽高压缩
+     * 缩放图片到符合目标宽高范围内 宽高压缩
+     * @param:
+     * @return:
+     * @date: 11/9/22 2:44 AM
+     * @version: v1.0
+     */
+    fun compressBitmap(fileName: String, targetWidth: Int, targetHeight: Int): Bitmap? {
+
+        if (fileName.isEmpty() || !File(fileName).exists()) {
+            return null
+        }
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = true
+        BitmapFactory.decodeFile(fileName, options)
+
+        val width = options.outWidth
+        val height = options.outHeight
+        var inSampleSize = 1
+        val halfWidth = width / 2
+        val halfHeight = height / 2
+        while (halfWidth / inSampleSize >= targetWidth && halfHeight / inSampleSize >= targetHeight) {
+            inSampleSize *= 2
+        }
+
+        options.inSampleSize = inSampleSize
+        options.inJustDecodeBounds = false
+        return BitmapFactory.decodeFile(fileName, options)
+    }
+
+    /**
+     * 质量压缩
+     * 保存bitmap图片到本地，这里不需要压缩
+     */
+    fun savePngBitmap(bm: Bitmap, fileName: String) {
+
+        try {
+            val out = FileOutputStream(File(fileName))
+            //png格式是无损图，会忽略quality这个质量因素，这里不想在做压缩，如果想做不要设置成png格式
+            bm.compress(Bitmap.CompressFormat.PNG, 100, out)
+            out.flush()
+            out.close()
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+    /**
+     * 质量压缩
+     * 保存bitmap图片到本地，压缩
+     */
+    fun saveWebpBitmap(bm: Bitmap, fileName: String) {
+
+        try {
+            val out = FileOutputStream(File(fileName))
+            //png格式是无损图，会忽略quality这个质量因素，这里不想在做压缩，如果想做不要设置成png格式
             bm.compress(Bitmap.CompressFormat.WEBP_LOSSY, 90, out)
             out.flush()
             out.close()

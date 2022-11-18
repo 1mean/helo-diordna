@@ -22,7 +22,7 @@ workspace.xml
 /js/js.translator/testData/out-pir/
 .gradle/
 build/
-opencv3/
+opencv460/
 !**/src/**/build
 !**/test/**/build
 *.iml

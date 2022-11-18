@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_bg_delete_dialog"
+        android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llayout_dialog_face_camera"
+            style="@style/style_face_dialog_item">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/style_face_dialog_item_title"
+                android:text="拍照" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View style="@style/style_live_dialog_divider" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llayout_dialog_face_pic"
+            style="@style/style_face_dialog_item">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/style_face_dialog_item_title"
+                android:text="从相册选取" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/color_viewpager_bg" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_live_bottom_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:text="@string/str_cancel"
+            android:gravity="center" />
+</androidx.appcompat.widget.LinearLayoutCompat>

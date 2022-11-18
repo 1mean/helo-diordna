@@ -387,6 +387,12 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
+    <style name="style_face_dialog_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
     <style name="style_live_dialog_item_img">
         <item name="android:layout_width">22dp</item>
         <item name="android:layout_height">22dp</item>
@@ -401,6 +407,15 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/color_video_name_txt</item>
         <item name="android:layout_marginStart">17dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="style_face_dialog_item_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/color_video_name_txt</item>
+        <item name="android:layout_marginStart">20dp</item>
         <item name="android:layout_gravity">center_vertical</item>
     </style>
 
@@ -424,6 +439,11 @@
 
     <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
     </style>
 
 </resources>

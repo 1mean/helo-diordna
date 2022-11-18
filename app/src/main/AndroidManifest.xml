@@ -81,9 +81,9 @@
         <activity android:name=".ui.activity.CollectListActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
         <activity android:name=".ui.activity.FaceLoginActivity" />
-        <activity
-                android:name=".ui.activity.FaceActivity"
-                android:screenOrientation="landscape" />
+        <activity android:name=".ui.activity.TestCompatActivity" />
+        <activity android:name=".ui.activity.FaceActivity" />
+        <activity android:name=".ui.activity.Face2Activity" />
         <activity
                 android:name=".ui.activity.VideoPlayingActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize" />
