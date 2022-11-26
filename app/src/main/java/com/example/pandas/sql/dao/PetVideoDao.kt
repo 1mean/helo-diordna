@@ -272,23 +272,28 @@ interface PetVideoDao {
     @Query("select * from pet_video where authorId=(:code)")
     suspend fun queryUserVideos(code: Int): MutableList<PetVideo>
 
-    @Query("select title,code from pet_video where title like (:words) limit 0,10")
-    suspend fun queryByKeyWords(words: String): MutableList<SearchInfo>
+    @Query("select title,code from pet_video where title like (:words) limit 0,(:count)")
+    suspend fun queryByKeyWords(words: String, count: Int): MutableList<SearchInfo>
 
+    @Query("select * from pet_video where title like (:words) limit 0,(:count)")
+    suspend fun queryVideosByKeyWords(words: String, count: Int): MutableList<PetVideo>
+
+    @Transaction
     @Query("select * from pet_video where period=(:period) and type=0 and videoType=0 and title like (:words) limit (:startIndex),(:counts)")
     suspend fun queryPeriedByKey(
         words: String,
         period: Int,
         startIndex: Int,
         counts: Int
-    ): MutableList<PetVideo>
+    ): MutableList<VideoAndUser>
 
+    @Transaction
     @Query("select * from pet_video where type=0 and videoType=0 and star=1 and title like (:words) limit (:startIndex),(:counts)")
     suspend fun queryLovedByKey(
         words: String,
         startIndex: Int,
         counts: Int
-    ): MutableList<PetVideo>
+    ): MutableList<VideoAndUser>
 
     @Transaction
     @Query("select * from pet_video where title like (:words) limit (:startIndex),(:counts)")

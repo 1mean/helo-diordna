@@ -107,7 +107,7 @@ object PetGroupPandaData {
         panda6.star = false
         panda6.title = "和花被干妈和姐姐前后夹击，rua成了小熊饼干"
         panda6.releaseTime = 1640068198
-        panda6.period = PeriodType.GROUP.ordinal
+        panda6.period = PeriodType.MOM.ordinal
         panda6.originalUrl = "https://www.bilibili.com/video/BV1Q44y1E7sj"
         panda6.tags = "和花,萌宠,萌萌哒,可爱,动物圈"
         panda6.authorId = 384395600

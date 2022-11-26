@@ -1,10 +1,13 @@
 package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.sql.entity.VideoAndUser
+import kotlinx.coroutines.launch
 
 /**
  * @description: PandaViewModel
@@ -14,7 +17,8 @@ import com.example.pandas.sql.entity.PetVideo
  */
 public class PandaViewModel : BaseViewModel() {
 
-    val pandaResult: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
+    val pandaResult: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
+    val banner: MutableLiveData<MutableList<PetVideo>> by lazy { MutableLiveData() }
 
     private var startIndex = 0
     private var hasMore = false
@@ -49,10 +53,17 @@ public class PandaViewModel : BaseViewModel() {
                 isSuccess = false,
                 errMessage = it.errorMsg,
                 isRefresh = isRefresh,
-                listData = mutableListOf<PetVideo>()
+                listData = mutableListOf<VideoAndUser>()
             )
             pandaResult.value = dataList
         })
+    }
+
+    fun getBanner(keys: String) {
+
+        viewModelScope.launch {
+            banner.value = PetManagerCoroutine.getPetVideoByKeys(keys, 5)
+        }
     }
 
     fun getPandas(isRefresh: Boolean, title: String) {

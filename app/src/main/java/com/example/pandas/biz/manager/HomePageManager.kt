@@ -458,7 +458,13 @@ class PetManager {
     suspend fun search(words: String): MutableList<SearchInfo> {
 
         return withContext(Dispatchers.Default) {
-            petDao.queryByKeyWords("%$words%")
+            petDao.queryByKeyWords("%$words%", 10)
+        }
+    }
+
+    suspend fun getPetVideoByKeys(keys: String, counts: Int): MutableList<PetVideo> {
+        return withContext(Dispatchers.Default) {
+            petDao.queryVideosByKeyWords("%$keys%", counts)
         }
     }
 
@@ -467,10 +473,9 @@ class PetManager {
         period: Int,
         startIndex: Int,
         counts: Int
-    ): MutableList<PetVideo> {
+    ): MutableList<VideoAndUser> {
 
         return withContext(Dispatchers.Default) {
-            delay(300)
             if (period == PeriodType.CUTE.ordinal) {
                 petDao.queryLovedByKey("%$words%", startIndex, counts)
             } else {

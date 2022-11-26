@@ -1,6 +1,7 @@
 package com.example.pandas.base.viewmodel
 
 import android.content.Context
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.app.AppInfos
@@ -22,6 +23,14 @@ import kotlinx.coroutines.withContext
  * @version: v1.0
  */
 open class BaseViewModel : ViewModel() {
+
+    private var int_flag = 0
+    val intFlag: MutableLiveData<Int> by lazy { MutableLiveData() }
+
+    fun IntUpdate() {
+        int_flag++
+        intFlag.value = int_flag
+    }
 
     fun <T> request(
         block: suspend () -> MutableList<T>,

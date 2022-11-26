@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.getFileCover
 import com.example.pandas.app.getUiName
 import com.example.pandas.base.viewmodel.BaseViewModel
@@ -14,7 +13,6 @@ import com.example.pandas.biz.ext.getVideoLocalPath
 import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.sql.entity.User
 import com.example.pandas.utils.FileUtils
-import com.example.pandas.utils.SPUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

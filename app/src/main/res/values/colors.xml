@@ -43,7 +43,7 @@
     <color name="color_mine_txt_zone_counts">#212121</color>
     <color name="color_mine_txt_zone">#999A97</color>
     <color name="color_mine_txt_download">#454E54</color>
-    <color name="color_bg_self">#EBECF0</color>
+    <color name="color_bg_self">#F4F4F4</color>
     <color name="color_bg_self_child">#F6F7FB</color>
     <color name="color_bg_mine">#E6EBF5</color>
     <color name="color_item_bg_mine_info">#11000000</color>
@@ -222,6 +222,7 @@
     <color name="color_live_vip">#FF4E9B</color>
     <color name="color_live_name">#161A1A</color>
     <color name="color_text_item_timing">#F2F4F9</color>
+    <color name="color_bg_banner_top">#2F2F2F</color>
 
     <!-- face -->
     <color name="color_bg_status_bar">#70000000</color>

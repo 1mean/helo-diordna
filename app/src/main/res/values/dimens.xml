@@ -34,6 +34,7 @@
     <dimen name="common_lh_14_dimens">14dp</dimen>
     <dimen name="common_lh_18_dimens">18dp</dimen>
     <dimen name="common_lh_15_dimens">15dp</dimen>
+    <dimen name="common_lh_16_dimens">16dp</dimen>
     <dimen name="common_lh_20_dimens">20dp</dimen>
     <dimen name="common_lh_22_dimens">22dp</dimen>
     <dimen name="common_lh_26_dimens">26dp</dimen>
@@ -77,7 +78,7 @@
     <dimen name="item_horizontal_padding">8dp</dimen>
     <dimen name="dimen_padding_pet">6dp</dimen>
     <dimen name="dimen_padding_panda_list">14dp</dimen>
-    <dimen name="dimen_padding_panda_child">14dp</dimen>
+    <dimen name="dimen_padding_panda_child">8dp</dimen>
 
     <!-- 修改BottomNavigationView框架 布局默认的间距，满足项目需求-->
     <dimen tools:override="true" name="design_bottom_navigation_margin">11dp</dimen>

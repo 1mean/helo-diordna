@@ -48,6 +48,7 @@ class FaceManager private constructor() {
         minSize: Size,
         maxSize: Size = Size()
     ): MatOfRect {
+
         val faceRect = MatOfRect()
         frontFaceClassifier?.detectMultiScale(
             grayMat,
@@ -136,7 +137,6 @@ class FaceManager private constructor() {
 
     /**
      * 从灰度图里按照人脸坐标切割出人脸图，用于后续界面展示和人脸比对
-     *   - 手动切割，先确定切割点，这样运算快，速度快
      * @param: <grayMat>单通道灰度图
      * @return:
      * @author: dongyiming
@@ -151,6 +151,99 @@ class FaceManager private constructor() {
         val y_end = rect.y + rect.height
         //其他几种裁剪方式得到的mat转换成bitmap后存储在本地都是空照片
         return graySrcMat.submat(y_start, y_end, x_start, x_end)
+    }
+
+    /**
+     * 保存人脸图片到本地face目录
+     * @param:
+     * @return:
+     * @author: dongyiming
+     * @date: 11/20/22 5:40 PM
+     * @version: v1.0
+     */
+    fun saveFace(context: Context, dstMat: Mat) {
+        val faceDir = FileUtils.getExternalFilePath(context, "face")
+        val facePath = File(faceDir, System.currentTimeMillis().toString() + ".jpg").absolutePath
+        val resultBitmap =
+            Bitmap.createBitmap(dstMat.width(), dstMat.height(), Bitmap.Config.ARGB_8888)
+        Utils.matToBitmap(dstMat, resultBitmap)
+        BitmapUtils.savePngBitmap(resultBitmap, facePath)
+    }
+
+    private var eyes: MatOfRect? = null
+    fun selectEyesArea(
+        faceRect: Rect,
+        mRgba: Mat,
+        classifierEye: CascadeClassifier?
+    ) {
+
+        val offY = (faceRect.height * 0.15f).toInt()//人眼距离顶部
+        val offx = (faceRect.width * 0.12f).toInt()//人眼距离左侧
+        val sh = (faceRect.height * 0.35f).toInt()//人眼区域的检测高度
+        val sw = (faceRect.width * 0.3f).toInt()//单人眼的宽度
+        val gap = (faceRect.width * 0.025f).toInt()
+
+        //左眼
+        val lp_eye = Point(faceRect.tl().x + offx, faceRect.tl().y + offY)//人眼检测区域左上角
+        val lp_end = Point(lp_eye.x + sw, lp_eye.y + sh)//右下角
+        Imgproc.rectangle(mRgba, lp_eye, lp_end, Scalar(255.0, 255.0, 0.0, 255.0), 2)
+
+        //右眼
+        val right_offx = (faceRect.width * 0.08f).toInt()
+        val rp_eye = Point(
+            faceRect.tl().x + faceRect.width / 2 + right_offx,
+            faceRect.tl().y + offY
+        )//人眼检测区域左上角
+        val rp_end = Point(rp_eye.x + sw, rp_eye.y + sh)//右下角
+
+        Imgproc.rectangle(mRgba, rp_eye, rp_end, Scalar(255.0, 255.0, 0.0, 255.0), 2)
+
+        eyes = MatOfRect()
+        val left_eye_roi = Rect()
+        left_eye_roi.x = lp_eye.x.toInt()
+        left_eye_roi.y = lp_eye.y.toInt()
+        left_eye_roi.width = (lp_end.x - lp_eye.x).toInt()
+        left_eye_roi.height = (lp_end.y - lp_eye.y).toInt()
+
+        val right_eye_roi = Rect()
+        right_eye_roi.x = rp_eye.x.toInt()
+        right_eye_roi.y = rp_eye.y.toInt()
+        right_eye_roi.width = (rp_end.x - rp_eye.x).toInt()
+        right_eye_roi.height = (rp_end.y - rp_eye.y).toInt()
+
+        val leftEye = mRgba.submat(left_eye_roi)
+        val rightEye = mRgba.submat(right_eye_roi)
+
+        classifierEye?.detectMultiScale(
+            mRgba.submat(left_eye_roi),
+            eyes,
+            1.15,
+            2,
+            0,
+            Size(30.0, 30.0),
+            Size()
+        )
+        val leftEyeArray = eyes!!.toArray()
+        if (leftEyeArray.isNotEmpty()) {
+            Log.e("1mean", "检测到左眼")
+        }
+        eyes?.release()
+
+        eyes = MatOfRect()
+        classifierEye?.detectMultiScale(
+            mRgba.submat(right_eye_roi),
+            eyes,
+            1.15,
+            2,
+            0,
+            Size(30.0, 30.0),
+            Size()
+        )
+        val rightEyeArray = eyes!!.toArray()
+        if (rightEyeArray.isNotEmpty()) {
+            Log.e("1mean", "检测到右眼")
+        }
+        eyes?.release()
     }
 
     /**

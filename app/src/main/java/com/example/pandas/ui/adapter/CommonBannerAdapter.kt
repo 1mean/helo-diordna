@@ -3,12 +3,9 @@ package com.example.pandas.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
-import com.example.pandas.biz.ext.loadImage
-import com.example.pandas.databinding.ViewpagerRecommendBinding
+import com.example.pandas.databinding.ViewpagerCmBannerBinding
 import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 
 /**
  * @description: RecoViewPagerAdapter
@@ -16,12 +13,12 @@ import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
  * @date: 1/23/22 12:35 下午
  * @version: v1.0
  */
-public class RecoViewPagerAdapter(private val list: MutableList<PetVideo>) :
+public class CommonBannerAdapter(private val list: MutableList<PetVideo>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        val binding = ViewpagerRecommendBinding.inflate(
+        val binding = ViewpagerCmBannerBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -35,17 +32,16 @@ public class RecoViewPagerAdapter(private val list: MutableList<PetVideo>) :
 
     override fun getItemCount(): Int = list.size
 
-    inner class MyHolder(binding: ViewpagerRecommendBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyHolder(binding: ViewpagerCmBannerBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        val cover = binding.imgRecommendBg
-        val title = binding.txtRecommendTitle
+        val cover = binding.imgBanner
 
         fun handle(position: Int) {
             val data = list[position]
             data.cover?.let {
-                loadCenterImage(itemView.context, it, cover)
+                loadCenterRoundedCornerImage(itemView.context, 20, it, cover)
             }
-            title.text = data.title
         }
     }
 }

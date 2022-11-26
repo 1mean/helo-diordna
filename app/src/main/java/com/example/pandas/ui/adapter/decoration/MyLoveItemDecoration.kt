@@ -11,7 +11,7 @@ import com.example.pandas.R
  * @date: 1/31/22 1:27 上午
  * @version: v1.0
  */
-public class MyLoveItemDecoration(private val context: Context) : RecyclerView.ItemDecoration() {
+public class MyLoveItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
     private var padding: Int = context.resources.getDimension(R.dimen.item_home_padding).toInt()
     private var padding2: Int = context.resources.getDimension(R.dimen.common_sz_15_dimens).toInt()

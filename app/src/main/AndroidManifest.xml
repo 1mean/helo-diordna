@@ -84,6 +84,7 @@
         <activity android:name=".ui.activity.TestCompatActivity" />
         <activity android:name=".ui.activity.FaceActivity" />
         <activity android:name=".ui.activity.Face2Activity" />
+        <activity android:name=".ui.activity.CommonBannerActivity" />
         <activity
                 android:name=".ui.activity.VideoPlayingActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize" />

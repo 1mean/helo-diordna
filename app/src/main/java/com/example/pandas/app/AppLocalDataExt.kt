@@ -1,6 +1,13 @@
 package com.example.pandas.app;
 
-import com.example.pandas.utils.FileUtils
+import com.example.pandas.bean.pet.VideoType
+import com.example.pandas.data.sql.PetBabyPandaData2
+import com.example.pandas.data.sql.PetGroupPandaData
+import com.example.pandas.data.sql.PetGroupPandaData2
+import com.example.pandas.data.sql.PetMomPandaData2
+import com.example.pandas.sql.entity.PeriodType
+import com.example.pandas.sql.entity.PetVideo
+
 
 //给本地视频文件目录设定的名字和封面图
 val fileDesc = mapOf(
@@ -207,3 +214,94 @@ val descMap = mapOf(
     "tv" to "艺术的本质是一种精神",
     "football" to "艺术的本质是一种精神"
 )
+
+fun getHehuaBanner():MutableList<PetVideo>{
+
+    val list = mutableListOf<PetVideo>()
+    val panda385 = PetVideo()
+    panda385.type = VideoType.PANDA.ordinal
+    panda385.period = PeriodType.BABY.ordinal
+    panda385.fileName = "panda_baby_panda385"
+    panda385.code = 1577
+    panda385.duration = 209
+    panda385.star = true
+    panda385.title = "整理所有“大熊猫和花”的超可爱模样，收藏版"
+    panda385.releaseTime = 1646561102
+    panda385.originalUrl = "https://www.bilibili.com/video/BV1yZ4y167nq"
+    panda385.tags = "大熊猫,熊猫宝宝,萌宠,动物圈"
+    panda385.authorId = 21330840
+    panda385.cover =
+        "https://i1.hdslb.com/bfs/archive/e58750e65d6d5db007946e850b7be4c230d02270.jpg"
+    panda385.vertical = false
+    list.add(panda385)
+
+    val panda305 = PetVideo()
+    panda305.type = VideoType.PANDA.ordinal
+    panda305.fileName = "panda_mom_panda305"
+    panda305.code = 1391
+    panda305.duration = 314
+    panda305.star = true
+    panda305.title = "【大熊猫和花&和叶】花花和小叶子玩秋千"
+    panda305.releaseTime = 1642325083
+    panda305.period = PeriodType.MOM.ordinal
+    panda305.originalUrl = "https://www.bilibili.com/video/BV1tL4y147s1"
+    panda305.tags = "熊猫,宝宝,熊猫妈妈,萌宠"
+    panda305.authorId = 230382720
+    panda305.cover =
+        "https://i0.hdslb.com/bfs/archive/98bb2df99d65be6ee79161ec00c4e72c94b059c4.jpg"
+    panda305.vertical = false
+    list.add(panda305)
+
+    val panda322 = PetVideo()
+    panda322.type = VideoType.PANDA.ordinal
+    panda322.fileName = "panda_group_panda322"
+    panda322.code = 1569
+    panda322.duration = 94
+    panda322.star = true
+    panda322.title = "和花真的是最美好最可爱最萌最好看的熊猫了！【大熊猫和花】"
+    panda322.releaseTime = 1644883442
+    panda322.period = PeriodType.GROUP.ordinal
+    panda322.originalUrl = "https://www.bilibili.com/video/BV1Wb4y147om"
+    panda322.tags = "大熊猫,萌宠,动物圈"
+    panda322.authorId = 16468440
+    panda322.cover =
+        "https://i2.hdslb.com/bfs/archive/04a5af25015682855b108c819f86e33eda22c486.jpg"
+    panda322.vertical = false
+    list.add(panda322)
+
+    val panda244 = PetVideo()
+    panda244.type = VideoType.PANDA.ordinal
+    panda244.fileName = "panda_group_panda244"
+    panda244.code = 1491
+    panda244.duration = 343
+    panda244.star = true
+    panda244.title = "两个可爱调皮鬼茱萸和花花互rua【大熊猫和花&庆茱萸】"
+    panda244.releaseTime = 1637498138
+    panda244.period = PeriodType.GROUP.ordinal
+    panda244.originalUrl = "https://www.bilibili.com/video/BV1tQ4y1U7sK"
+    panda244.tags = "大熊猫,萌宠,动物圈"
+    panda244.authorId = 230382720
+    panda244.cover =
+        "https://i1.hdslb.com/bfs/archive/73269b1a0197042dcf5e23d758bfe262924d8a98.jpg"
+    panda244.vertical = false
+    list.add(panda244)
+
+    val panda188 = PetVideo()
+    panda188.type = VideoType.PANDA.ordinal
+    panda188.fileName = "panda_group_panda188"
+    panda188.code = 1127
+    panda188.duration = 11
+    panda188.star = true
+    panda188.title = "【大熊猫和花】冰墩墩本墩"
+    panda188.releaseTime = 1644155101
+    panda188.period = PeriodType.GROUP.ordinal
+    panda188.originalUrl = "https://www.bilibili.com/video/BV19R4y1j74q"
+    panda188.tags = "大熊猫,萌宠,动物圈"
+    panda188.authorId = 327377672
+    panda188.cover =
+        "https://i2.hdslb.com/bfs/archive/2f07270ffbd83be139baac23b9c5246127ffbd65.jpg"
+    panda188.vertical = false
+    list.add(panda188)
+
+    return list
+}

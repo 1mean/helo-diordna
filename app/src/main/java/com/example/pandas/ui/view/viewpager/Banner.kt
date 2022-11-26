@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.example.pandas.biz.interaction.PagerChangedListener
 import kotlin.math.abs
 
 /**
@@ -54,6 +55,7 @@ class Banner : RelativeLayout, LifecycleObserver {
 
     private var indicator: Indicator? = null
     private val autoTime: Long = 2500
+    private var isHandMove = false
 
     constructor(context: Context) : this(context, null) {
     }
@@ -304,6 +306,8 @@ class Banner : RelativeLayout, LifecycleObserver {
             if (getRealCount() > 1) {
                 tempPosition = position
             }
+            Log.e("Banner","${realPosition(position)}")
+            pageChangeListener?.onChange(realPosition(position))
         }
 
         //实现无限循环，系统默认是无法在首/尾位置左滑/右滑
@@ -435,6 +439,12 @@ class Banner : RelativeLayout, LifecycleObserver {
         mViewPager.offscreenPageLimit = 1
 
         setCurrentPage(0, false)
+        return this
+    }
+
+    private var pageChangeListener: PagerChangedListener? = null
+    fun addPageChangeListener(pageChangeListener: PagerChangedListener): Banner {
+        this.pageChangeListener = pageChangeListener
         return this
     }
 

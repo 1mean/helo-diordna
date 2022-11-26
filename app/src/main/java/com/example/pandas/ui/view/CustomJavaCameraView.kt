@@ -99,10 +99,6 @@ public class CustomJavaCameraView : JavaCamera2View {
                 Bitmap.createBitmap(srcMat.cols(), srcMat.rows(), Bitmap.Config.ARGB_8888)
         }
 
-        Log.e(
-            "12222mean",
-            "cols:${srcMat.cols()}, rows:${srcMat.rows()}, width: $width, height: $height"
-        )
         //竖屏
         //cols:1080, rows:1080, width: 1080, height: 2299
         //scaleWidth:1.0, scaleHeight:2.1287036, maxScale:2.1287036

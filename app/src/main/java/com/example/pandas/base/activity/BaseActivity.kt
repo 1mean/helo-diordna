@@ -28,6 +28,7 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        preInit()
         setContentView(initViewBinding())
         initViewModel()
         initView(savedInstanceState)
@@ -94,6 +95,8 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
     open fun firstOnResume() {}
 
     open fun againOnResume() {}
+
+    open fun preInit() {}
 
     /**
      * 创建观察者

@@ -44,6 +44,10 @@
     <style name="SelfTabLayoutTextStyle">
         <item name="android:textSize">14sp</item>
     </style>
+    <style name="BannerTabLayoutTextStyle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
 
     <style name="PetTabLayoutTextStyle">
         <item name="android:textSize">13sp</item>

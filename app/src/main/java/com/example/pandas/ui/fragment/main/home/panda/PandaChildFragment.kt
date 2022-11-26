@@ -8,7 +8,7 @@ import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.PandaViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.PandaListAdapter
-import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
+import com.example.pandas.ui.adapter.decoration.CommonBannerItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
@@ -28,12 +28,11 @@ public class PandaChildFragment : BaseFragment<PandaViewModel, LayoutSwipRefresh
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        val padding = resources.getDimension(R.dimen.dimen_padding_panda_child).toInt()
         type = requireArguments().getInt("type")
         key = requireArguments().getString("key")
 
         binding.recyclerLayout.init(
-            CommonItemDecoration(false, 2, padding, padding),
+            CommonBannerItemDecoration(mActivity),
             mAdapter,
             GridLayoutManager(mActivity, 2),
             object : SwipRecyclerView.ILoadMoreListener {
@@ -45,7 +44,7 @@ public class PandaChildFragment : BaseFragment<PandaViewModel, LayoutSwipRefresh
             })
 
         binding.swipLayout.run {
-            setBackgroundResource(R.color.color_eye_rv_bg)
+            setBackgroundResource(R.color.white)
             setRefreshColor()
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
