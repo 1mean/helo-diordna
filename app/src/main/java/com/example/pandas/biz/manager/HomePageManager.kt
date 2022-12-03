@@ -562,6 +562,24 @@ class PetManager {
         }
     }
 
+    suspend fun getLove(startIndex: Int, counts: Int): MutableList<PetVideo> {
+
+        return withContext(Dispatchers.Default) {
+
+            val laters = mutableListOf<PetVideo>()
+            val videoDatas = petDao.queryLoveByPage(startIndex, counts)
+            videoDatas.forEach {
+
+                val videoUser = petDao.queryVideoUserByCode(it.videoCode)
+                val video = videoUser.video
+                video.user = videoUser.user
+                video.videoData = it
+                laters.add(video)
+            }
+            laters
+        }
+    }
+
     suspend fun getCollects(): MutableList<Group> {
 
         return withContext(Dispatchers.Default) {

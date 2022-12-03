@@ -11,13 +11,14 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="106dp"
+            android:layout_height="138.66dp"
             android:orientation="vertical"
             android:background="@drawable/shape_vertical_video_top">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_vertical_top"
                 android:layout_width="match_parent"
+                android:layout_marginTop="32.66dp"
                 android:layout_height="44dp">
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -48,7 +49,6 @@
                     app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_top"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_vertical_top"
                     app:layout_constraintRight_toRightOf="@id/clayout_vertical_top" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -56,6 +56,7 @@
             android:id="@+id/clayout_vertical_refresh"
             android:layout_width="match_parent"
             android:layout_height="44dp"
+            android:layout_marginTop="32.66dp"
             android:visibility="gone">
 
         <androidx.core.widget.ContentLoadingProgressBar

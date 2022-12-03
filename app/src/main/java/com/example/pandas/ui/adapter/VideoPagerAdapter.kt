@@ -1,6 +1,8 @@
 package com.example.pandas.ui.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,10 +20,12 @@ import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.ext.addItemAnimation
 import com.example.pandas.ui.ext.addItemAnimation2
-import com.example.pandas.ui.view.dialog.AttentionBottomSheetDialog
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
+import com.example.pandas.ui.view.dialog.ShortInputPopuWindow
+import com.example.pandas.utils.TimeUtils
 import com.google.android.exoplayer2.ui.DefaultTimeBar
 import com.google.android.exoplayer2.ui.TimeBar
+import java.util.*
 
 /**
  * @description: VideoPagerAdapter
@@ -83,7 +87,7 @@ public class VideoPagerAdapter(
         val context = itemView.context
         val name = binding.txtVerticalName
         val header = binding.imgVerticalHead
-        val attention = binding.txtVerticalAttention
+        val time = binding.txtVerticalTime
         val title = binding.txtVerticalTitle
         val input = binding.editVertical
         val rightView = binding.layoutVerticalRight
@@ -105,6 +109,7 @@ public class VideoPagerAdapter(
         val reduce = binding.ibnVerticalReduce
         val playerView = binding.playerVertical
         val timebar = playerView.findViewById<DefaultTimeBar>(R.id.exo_progress)
+        val music = binding.txtVerticalMusic
 
         fun init() {
             play.visibility = View.GONE
@@ -120,39 +125,24 @@ public class VideoPagerAdapter(
         }
 
         fun handle(position: Int) {
-            val user = list[position].user
-            val videoData = list[position].videoData
+            val video = list[position]
+            val user = video.user
+            val videoData = video.videoData
 
             hideView = false
 
-            user?.let {
-                if (it.vip == 1) {
-                    name.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            R.color.color_name_vip_vertical
-                        )
-                    )
-                } else {
-                    name.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            R.color.color_name_vip_vertical
-                        )
-                    )
-                }
-                name.text = it.userName
-                loadCircleImage(context, it.headUrl!!, header)
+            time.text = TimeUtils.parseTime(video.releaseTime)
+            title.text = video.title
 
-                if (it.attention) {
-                    attention.text = context.resources.getString(R.string.str_followed)
-                    attention.background = null
-                } else {
-                    attention.text = context.resources.getString(R.string.txt_follow)
-                    attention.background = ContextCompat.getDrawable(
-                        context,
-                        R.drawable.shape_vertical_video_attention
-                    )
+            user?.let {
+                name.text = "@" + it.userName
+                loadCircleImage(context, it.headUrl!!, header)
+                music.text = it.userName + "的作品原声" + "       " + it.userName + "的作品原声"
+                music.run {
+                    isSingleLine = true
+                    isSelected = true
+                    isFocusable = true
+                    isFocusableInTouchMode = true
                 }
             }
 
@@ -163,8 +153,13 @@ public class VideoPagerAdapter(
                 shares.text = "分享"
             }
 
+            //input.requestFocus()
+//            input.isFocusable = true
+
+            //点击效果只有点击第二次才会触发的，第一次点击软键盘是会弹出的，如果设置focusableInTouchMode=false能保证第一次触发点击方法，但是软键盘不会自动弹出，通过代码也不会弹出
             input.setOnClickListener {
-                Toast.makeText(context, "未开放", Toast.LENGTH_SHORT).show()
+                Log.e("keyBoardManager", "点击了")
+                listener.showCommentPopuWindow(input)
             }
 
             clear.setOnClickListener {
@@ -276,48 +271,6 @@ public class VideoPagerAdapter(
                 dialog.addData().onShow()
             }
 
-            attention.setOnClickListener {
-                attention.text = "已关注"
-                attention.background = null
-
-                list[position].user?.let {
-
-                    if (!it.attention) {
-                        attention.text = context.resources.getString(R.string.str_followed)
-                        attention.background = null
-                        listener.updateUserAttention(it.userCode)
-                    } else {
-
-                        val attentionDialog =
-                            AttentionBottomSheetDialog(context, object : ItemClickListener<Int> {
-                                override fun onItemClick(t: Int) {
-                                    when (t) {
-                                        0 -> {//加入特别关注
-                                            Toast.makeText(context, "加入特别关注", Toast.LENGTH_SHORT)
-                                                .show()
-                                        }
-                                        1 -> {//设置分组
-                                            Toast.makeText(context, "加入默认分组", Toast.LENGTH_SHORT)
-                                                .show()
-                                        }
-                                        2 -> {//取消关注
-                                            attention.text =
-                                                context.resources.getString(R.string.txt_follow)
-                                            attention.background = ContextCompat.getDrawable(
-                                                context,
-                                                R.drawable.shape_vertical_video_attention
-                                            )
-                                            listener.updateUserAttention(it.userCode)
-                                        }
-                                    }
-                                }
-                            })
-                        attentionDialog.show()
-                    }
-                    it.attention = !it.attention
-                }
-            }
-
             header.setOnClickListener {
                 user?.let {
                     listener.startUserActivity(it)
@@ -328,8 +281,6 @@ public class VideoPagerAdapter(
                     listener.startUserActivity(it)
                 }
             }
-
-            title.text = list[position].title
 
             playerView.controller(object : PlayerDoubleTapListener {
 
@@ -429,6 +380,8 @@ public class VideoPagerAdapter(
     }
 
     interface VerticalVideoListener {
+
+        fun showCommentPopuWindow(view: View)
 
         fun onDoubleTap()
 

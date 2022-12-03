@@ -309,6 +309,9 @@ interface PetVideoDao {
     @Query("select * from video_data where laterPlay=1 order by laterTime desc limit (:startIndex),(:count)")
     suspend fun queryLaterByPage(startIndex: Int, count: Int): MutableList<VideoData>
 
+    @Query("select * from video_data where love=1 order by laterTime desc limit (:startIndex),(:count)")
+    suspend fun queryLoveByPage(startIndex: Int, count: Int): MutableList<VideoData>
+
     @Query("select * from video_data where laterPlay=1")
     suspend fun queryAllLaters(): MutableList<VideoData>
 

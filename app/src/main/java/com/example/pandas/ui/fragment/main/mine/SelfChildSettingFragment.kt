@@ -10,6 +10,7 @@ import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentChildSettingBinding
 import com.example.pandas.ui.activity.*
+import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.ui.ext.startToActivity
 import com.example.pandas.ui.view.dialog.TimingBottomSheetDialog
 
@@ -31,17 +32,17 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
             mViewModel.IntUpdate()
         }
         binding.clayoutHistory.setOnClickListener {
-            startActivity(Intent(activity, HistoryActivity::class.java))
+            startAnyActivity(mActivity, HistoryActivity::class.java)
         }
         binding.clayoutSetting.setOnClickListener {
-            startToActivity(mActivity,SettingActivity::class.java)
+            startToActivity(mActivity, SettingActivity::class.java)
         }
         binding.clayoutMineExp.setOnClickListener {
             showToast("个人积分")
         }
         binding.clayoutSettingTiming.setOnClickListener {
 
-            val dialog = TimingBottomSheetDialog(mActivity,object: ItemClickListener<Int>{
+            val dialog = TimingBottomSheetDialog(mActivity, object : ItemClickListener<Int> {
                 override fun onItemClick(t: Int) {
 
                 }
@@ -49,10 +50,10 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
             dialog.onShow()
         }
         binding.clayoutSelf.setOnClickListener {
-            mActivity.startActivity(Intent(mActivity, SelfInfoActivity::class.java))
+            startAnyActivity(mActivity, SelfInfoActivity::class.java)
         }
         binding.cvError.setOnClickListener {
-            mActivity.startActivity(Intent(mActivity, ErrorActivity::class.java))
+            startAnyActivity(mActivity, ErrorActivity::class.java)
         }
         binding.clayoutMineFollow.setOnClickListener {
             val intent =
@@ -65,17 +66,18 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
             mActivity.startActivity(intent)
         }
         binding.txtMineName.setOnClickListener {
-            mActivity.startActivity(Intent(mActivity, SelfInfoActivity::class.java))
+            startAnyActivity(mActivity, SelfInfoActivity::class.java)
         }
 
         binding.clayoutLater.setOnClickListener {
-            val intent = Intent(mActivity,LaterActivity::class.java)
-            startActivity(intent)
+            startAnyActivity(mActivity, LaterActivity::class.java)
         }
 
         binding.clayoutCollect.setOnClickListener {
-            val intent = Intent(mActivity,CollectActivity::class.java)
-            startActivity(intent)
+            startAnyActivity(mActivity, CollectActivity::class.java)
+        }
+        binding.clayoutSettingLove.setOnClickListener {
+            startAnyActivity(mActivity, LoveActivity::class.java)
         }
     }
 

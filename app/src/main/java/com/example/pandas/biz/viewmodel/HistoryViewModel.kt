@@ -21,6 +21,7 @@ public class HistoryViewModeL : BaseViewModel() {
 
     val historyResult: MutableLiveData<UIDataWrapper<HistoryItem>> by lazy { MutableLiveData() }
     val laterResult: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
+    val loveResult: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
     val collectResult: MutableLiveData<UIDataWrapper<Group>> by lazy { MutableLiveData() }
     val groupListResult: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
     val createResult: MutableLiveData<Boolean> by lazy { MutableLiveData() }
@@ -29,6 +30,7 @@ public class HistoryViewModeL : BaseViewModel() {
     private var startIndex = 0
     private var groupStartIndex = 0
     private var index = 0
+    private var loveIndex = 0
 
     fun getPageHistory(isRefresh: Boolean) {
 
@@ -93,6 +95,39 @@ public class HistoryViewModeL : BaseViewModel() {
                     listData = mutableListOf<PetVideo>()
                 )
                 laterResult.value = dataList
+            })
+    }
+
+    fun getPageLove(isRefresh: Boolean) {
+
+        if (isRefresh) {
+            loveIndex = 0
+        }
+
+        request({ PetManagerCoroutine.getLove(loveIndex, 21) },
+            {
+                val hasMore = it.size > 20
+                loveIndex += 20
+                if (hasMore) {
+                    it.removeLast()
+                }
+                val dataList = UIDataWrapper(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    isEmpty = it.isEmpty(),
+                    hasMore = hasMore,
+                    listData = it
+                )
+                loveResult.value = dataList
+            },
+            {
+                val dataList = UIDataWrapper(
+                    isSuccess = false,
+                    errMessage = it.errorMsg,
+                    isRefresh = isRefresh,
+                    listData = mutableListOf<PetVideo>()
+                )
+                loveResult.value = dataList
             })
     }
 

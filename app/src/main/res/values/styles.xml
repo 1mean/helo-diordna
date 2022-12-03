@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -44,6 +44,7 @@
     <style name="SelfTabLayoutTextStyle">
         <item name="android:textSize">14sp</item>
     </style>
+
     <style name="BannerTabLayoutTextStyle">
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">normal</item>
@@ -448,6 +449,39 @@
     <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
+    </style>
+
+    <!-- ShortVideoActivity ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <style name="style_vertical_video_right_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">65dp</item>
+    </style>
+
+    <style name="style_vertical_video_right_image">
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">54dp</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">false</item>
+        <item name="android:alpha">0.75</item>
+    </style>
+
+    <style name="style_vertical_video_right_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:alpha">0.75</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="style_vertical_video_animation">
+        <item name="android:windowEnterAnimation">@anim/animate_short_input_in</item>
+        <!--设置了没效果-->
+        <!--<item name="android:windowExitAnimation">@anim/animate_short_input_out</item>-->
     </style>
 
 </resources>

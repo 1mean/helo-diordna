@@ -242,22 +242,6 @@ object MultiVideoData {
         fox9.vertical = false
         list.add(fox9)
 
-        val fox10 = PetVideo()
-        fox10.type = VideoType.FOX.ordinal
-        fox10.fileName = "pet_fox10"
-        fox10.code = 442
-        fox10.duration = 37
-        fox10.star = true
-        fox10.title = "最 美 狐仙"
-        fox10.releaseTime = 1641706530
-        fox10.originalUrl = "https://www.bilibili.com/video/BV1844y157gA"
-        fox10.tags = "狐,萌宠,动物圈"
-        fox10.authorId = 282239993
-        fox10.cover =
-            "https://i0.hdslb.com/bfs/archive/213435510f2714c4e42323a2ae1111e9e7a27898.jpg"
-        fox10.vertical = true
-        list.add(fox10)
-
         val fox11 = PetVideo()
         fox11.type = VideoType.FOX.ordinal
         fox11.fileName = "pet_fox11"

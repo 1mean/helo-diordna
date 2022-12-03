@@ -26,7 +26,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  */
 public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBinding>() {
 
-    private val tabTitles = arrayListOf("视频", "熊猫宝宝", "妈妈", "幼年班")
+    private val tabTitles = arrayListOf("视频", "熊猫宝宝", "熊猫妈妈", "幼年伙伴")
 
     override fun initView(savedInstanceState: Bundle?) {
 

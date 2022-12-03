@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.core.content.ContextCompat
-import androidx.core.view.marginLeft
 import androidx.lifecycle.ViewModelStoreOwner
-import androidx.viewpager2.widget.ViewPager2
 import com.example.helo_base.magic.ViewPagerHelper
 import com.example.helo_base.magic.commonnavigator.CommonNavigator
 import com.example.helo_base.magic.commonnavigator.abs.CommonNavigatorAdapter
@@ -25,16 +23,12 @@ import com.example.pandas.biz.viewmodel.MainViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
 import com.example.pandas.ui.activity.MessageActivity
 import com.example.pandas.ui.activity.SearchActivity
-import com.example.pandas.ui.activity.VerticalVideoActivity2
+import com.example.pandas.ui.activity.ShortVideoActivity
 import com.example.pandas.ui.adapter.HomePagerAdapter
-import com.example.pandas.ui.view.TabEntity
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
-import com.flyco.tablayout.listener.CustomTabEntity
-import com.flyco.tablayout.listener.OnTabSelectListener
 import com.google.android.material.appbar.AppBarLayout
-import java.util.*
 
 
 /**
@@ -130,7 +124,7 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
         }
 
         binding.imgHead.setOnClickListener {
-            mActivity.startActivity(Intent(mActivity, VerticalVideoActivity2::class.java))
+            mActivity.startActivity(Intent(mActivity, ShortVideoActivity::class.java))
         }
         binding.ibMessage.setOnClickListener {
             mActivity.startActivity(Intent(mActivity, MessageActivity::class.java))

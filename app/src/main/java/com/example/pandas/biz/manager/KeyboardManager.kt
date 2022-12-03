@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.Rect
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
@@ -33,6 +34,7 @@ class KeyboardManager(private val activity: Activity) {
             activity.window.decorView.getWindowVisibleDisplayFrame(rect)
             //当前activity根视图的高度
             val visibleHeight = rect.height()
+
             if (rootViewVisibleHeight == 0) {
                 rootViewVisibleHeight = visibleHeight
                 return
@@ -44,7 +46,7 @@ class KeyboardManager(private val activity: Activity) {
             }
 
             //根视图显示高度变小超过200，可以看作软键盘显示了
-            if (rootViewVisibleHeight - visibleHeight > 200) {
+            if (rootViewVisibleHeight - visibleHeight > 700) {
                 if (onSoftKeyBoardChangeListener != null) {
                     onSoftKeyBoardChangeListener!!.keyBoardShow(rootViewVisibleHeight - visibleHeight)
                 }
@@ -53,7 +55,7 @@ class KeyboardManager(private val activity: Activity) {
             }
 
             //根视图显示高度变大超过200，可以看作软键盘隐藏了
-            if (visibleHeight - rootViewVisibleHeight > 200) {
+            if (visibleHeight - rootViewVisibleHeight > 700) {
                 if (onSoftKeyBoardChangeListener != null) {
                     onSoftKeyBoardChangeListener!!.keyBoardHide(visibleHeight - rootViewVisibleHeight)
                 }

@@ -8,6 +8,7 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.ErrorViewModel
 import com.example.pandas.databinding.ActivityErrorBinding
 import com.example.pandas.ui.adapter.ErrorAdapter
+import com.example.pandas.ui.fragment.main.mine.ErrorFragment
 import com.example.pandas.utils.StatusBarUtils
 
 /**
@@ -30,6 +31,11 @@ public class ErrorActivity : BaseActivity<ErrorViewModel, ActivityErrorBinding>(
             layoutManager = LinearLayoutManager(this@ErrorActivity)
             adapter = mAdapter
         }
+
+//        val transaction = supportFragmentManager.beginTransaction()
+//        val fragment = ErrorFragment()
+//        transaction.add(R.id.fragment_error, fragment).commit()
+//        transaction.show(fragment)
     }
 
     override fun onResume() {

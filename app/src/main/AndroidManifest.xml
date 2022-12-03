@@ -60,11 +60,11 @@
         <activity android:name=".ui.activity.BehaviorActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.VerticalVideoActivity" />
-        <activity android:name=".ui.activity.VerticalVideoActivity2" />
         <activity android:name=".ui.activity.MoreDataListActivity" />
         <activity android:name=".ui.activity.AudioPlayActivity" />
         <activity android:name=".ui.activity.LocalCacheActivity" />
         <activity android:name=".ui.activity.HistoryActivity" />
+        <activity android:name=".ui.activity.LoveActivity" />
         <activity android:name=".ui.activity.MessageActivity" />
         <activity android:name=".ui.activity.ErrorActivity" />
         <activity android:name=".ui.activity.PandaActivity" />
@@ -85,6 +85,7 @@
         <activity android:name=".ui.activity.FaceActivity" />
         <activity android:name=".ui.activity.Face2Activity" />
         <activity android:name=".ui.activity.CommonBannerActivity" />
+        <activity android:name=".ui.activity.ShortVideoActivity" />
         <activity
                 android:name=".ui.activity.VideoPlayingActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize" />

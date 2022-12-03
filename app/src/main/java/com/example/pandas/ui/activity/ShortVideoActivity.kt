@@ -4,16 +4,16 @@ import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
-import android.view.MotionEvent
-import android.view.VelocityTracker
-import android.view.View
-import android.view.ViewConfiguration
+import android.view.*
 import android.view.animation.LinearInterpolator
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.interaction.ExoPlayerListener
+import com.example.pandas.biz.manager.KeyboardManager
 import com.example.pandas.biz.manager.VerticalPlayManager
 import com.example.pandas.biz.viewmodel.VerticalVideoViewModel
 import com.example.pandas.databinding.ActivityVerticalVideoplayBinding
@@ -22,6 +22,7 @@ import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoPagerAdapter
 import com.example.pandas.ui.ext.addRefreshAnimation
 import com.example.pandas.ui.ext.startUserInfoActivity
+import com.example.pandas.ui.view.dialog.ShortInputPopuWindow
 import com.example.pandas.utils.StatusBarUtils
 import com.example.pandas.utils.VibrateUtils
 import com.google.android.exoplayer2.util.Util
@@ -33,9 +34,18 @@ import com.google.android.exoplayer2.util.Util
  * @date: 2/23/22 10:20 下午
  * @version: v1.0
  */
-public class VerticalVideoActivity2 :
+public class ShortVideoActivity :
     BaseActivity<VerticalVideoViewModel, ActivityVerticalVideoplayBinding>(), ExoPlayerListener,
     VideoPagerAdapter.VerticalVideoListener {
+
+    private var startX: Float = 0f
+    private var startY: Float = 0f
+    private var endX: Float = 0f
+    private var endY: Float = 0f
+    private var totalOffset = 0
+    private var isMoving = false //只是下拉刷新操作
+    private var quickFlag = false //是否是快速滑动
+    private var isRefreshing = false
 
     var mCurrentVelocity: Int = 0
     var mMinimumVelocity: Int = 0
@@ -46,13 +56,23 @@ public class VerticalVideoActivity2 :
     private val mAdapter: VideoPagerAdapter by lazy { VideoPagerAdapter(listener = this) }
 
     private var manager: VerticalPlayManager? = null
+    private var keyBoardManager: KeyboardManager? = null
+    private var inputPopWindow: ShortInputPopuWindow? = null
+
+    private val mHandler:Handler = Handler(Looper.getMainLooper())
 
     @SuppressLint("Recycle")
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.setStatusBarMode(this, false, R.color.black)
+        StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
+
+        //bug:一句代码解决了两天的bug，关闭popuwindow时，edittext仍然有焦点，会反复弹出
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 
         manager = VerticalPlayManager(this, this)
+
+        keyBoardManager = KeyboardManager(this)
+        keyBoardManager!!.setOnSoftKeyBoardChangeListener(keyBoardListener)
 
         mVelocityTracker = VelocityTracker.obtain()
         val viewConfig = ViewConfiguration.get(this)
@@ -125,15 +145,6 @@ public class VerticalVideoActivity2 :
         super.firstOnResume()
         mViewModel.getVerticalVideos(true)
     }
-
-    private var startX: Float = 0f
-    private var startY: Float = 0f
-    private var endX: Float = 0f
-    private var endY: Float = 0f
-    private var totalOffset = 0
-    private var isMoving = false //只是下拉刷新操作
-    private var quickFlag = false //是否是快速滑动
-    private var isRefreshing = false
 
     /**
      * <处理下拉刷新时，top header的变化>
@@ -257,6 +268,29 @@ public class VerticalVideoActivity2 :
             }
         }
         return super.dispatchTouchEvent(event)
+    }
+
+    //点击底部评论发送按钮
+    override fun showCommentPopuWindow(view: View) {
+        Log.e("keyBoardManager","keyBoardManager: $keyBoardManager")
+       //keyBoardManager?.showKeyBoard(this, view)
+    }
+
+    private val keyBoardListener = object : KeyboardManager.OnSoftKeyBoardChangeListener {
+        override fun keyBoardShow(height: Int) {
+
+            inputPopWindow = ShortInputPopuWindow(this@ShortVideoActivity)
+            inputPopWindow!!.setBackDark().onShow(this@ShortVideoActivity.currentFocus!!)
+
+//            mHandler.postDelayed({
+//                inputPopWindow = ShortInputPopuWindow(this@ShortVideoActivity)
+//                inputPopWindow!!.setBackDark().onShow(this@ShortVideoActivity.window.decorView)
+//            },500)
+        }
+
+        override fun keyBoardHide(height: Int) {
+            Log.e("keyBoardManager","keyBoardHide")
+        }
     }
 
     private val pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {

@@ -55,11 +55,9 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/btn_cm_banner_left"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
                         android:src="@mipmap/img_audio_back"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="12dp"
                         android:background="@null"
                         android:visibility="gone" />
 

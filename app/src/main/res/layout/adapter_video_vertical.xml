@@ -21,8 +21,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#22000000">
+            android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_vertical_play"
@@ -46,85 +45,93 @@
                 android:visibility="gone"
                 android:src="@mipmap/img_vertical_more" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clayout_vertical_video_info"
+        <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/clayouut_vertical_infos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="56dp"
-                android:layout_marginBottom="76dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="60dp"
+                android:orientation="vertical"
+                android:background="@drawable/shape_vertical_bottom_shelter">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/llayout_vertical_video_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    app:layout_constraintTop_toTopOf="@id/clayout_vertical_video_info"
-                    app:layout_constraintLeft_toLeftOf="@id/clayout_vertical_video_info"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginStart="12dp"
-                    android:orientation="horizontal">
+                    android:id="@+id/clayout_vertical_video_info"
+                    android:layout_width="261dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/img_vertical_head"
-                        android:layout_width="39dp"
-                        android:layout_height="39dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/shape_bg_vertical_header"
-                        android:padding="1dp" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/llayout_vertical_video_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_vertical_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="19sp"
+                            android:includeFontPadding="false"
+                            android:layout_gravity="center_vertical"
+                            android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_vertical_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:alpha="0.7"
+                            android:layout_marginStart="10dp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txt_vertical_name"
+                        android:id="@+id/txt_vertical_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:textColor="@color/color_vertical_white"
-                        android:textSize="14sp"
-                        android:includeFontPadding="false"
-                        android:layout_gravity="center_vertical"
-                        android:textStyle="bold" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txt_vertical_attention"
-                        android:layout_width="44dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="center_vertical"
                         android:textColor="@color/white"
-                        android:textSize="12sp"
-                        android:gravity="center"
-                        android:text="@string/txt_follow"
-                        android:layout_marginStart="12dp"
-                        android:background="@drawable/shape_vertical_video_attention" />
+                        android:textSize="15sp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:alpha="0.9"
+                        android:layout_marginTop="8dp" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="21dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/img_vertical_music"
+                            android:layout_gravity="center_vertical" />
+
+                    <!--必须获取焦点，才有跑马灯效果-->
+                    <!--如果界面即存在textview跑马灯效果还存在刷新refresh或edittext要把跑马灯布局给抽取出去 <include>-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_vertical_music"
+                            android:layout_width="156dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:textColor="@color/white"
+                            android:layout_gravity="center_vertical"
+                            android:ellipsize="marquee"
+                            android:scrollHorizontally="true"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:textSize="14sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_vertical_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:textColor="#f2ffffff"
-                    android:textSize="13sp"
-                    android:maxLines="2"
-                    android:ellipsize="end"
-                    android:textStyle="bold"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/llayout_vertical_video_name"
-                    app:layout_constraintLeft_toLeftOf="@id/clayout_vertical_video_info"
-                    app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_video_info" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!--<com.google.android.exoplayer2.ui.DefaultTimeBar
-                android:id="@+id/timebar_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="46dp"
-                app:bar_height="2dp"
-                app:unplayed_color="#22ffffff"
-                app:played_color="@color/color_home_tab_text_selected" />-->
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_vertical_bottom"
@@ -132,39 +139,44 @@
                 android:layout_height="60dp"
                 app:layout_constraintBottom_toBottomOf="parent">
 
+            <!--必须设置focus，才能主动和被动地弹起软键盘-->
             <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edit_vertical"
-                    android:layout_width="230dp"
-                    android:layout_height="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="3dp"
                     app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom"
-                    app:layout_constraintLeft_toLeftOf="@id/clayout_vertical_bottom"
                     android:layout_marginStart="12dp"
-                    android:hint="@string/str_dm_close"
-                    android:textSize="13sp"
-                    android:paddingStart="15dp"
-                    android:textColorHint="#50ffffff"
-                    android:focusable="false"
-                    android:clickable="false"
+                    android:hint="请发送一条友善的评论"
+                    android:textSize="15sp"
+                    android:paddingStart="10dp"
+                    android:textColorHint="#7F7F7F"
                     android:background="@drawable/shape_vertical_edit"
-                    tools:ignore="RtlSymmetry" />
+                    android:textCursorDrawable="@drawable/shape_edit_comment"
+
+                    android:inputType="none"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:focusableInTouchMode="true" />
 
             <View
                     android:layout_width="1dp"
                     android:layout_height="16dp"
-                    app:layout_constraintTop_toTopOf="@id/edit_vertical"
-                    android:layout_marginTop="7dp"
+                    app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom"
                     app:layout_constraintRight_toRightOf="@id/edit_vertical"
-                    android:layout_marginEnd="46dp"
+                    android:layout_marginEnd="56dp"
                     android:background="#50ffffff" />
 
             <androidx.appcompat.widget.AppCompatImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src="@mipmap/img_vertical_face"
+                    app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom"
                     app:layout_constraintRight_toRightOf="@id/edit_vertical"
-                    app:layout_constraintTop_toTopOf="@id/edit_vertical"
-                    android:src="@mipmap/img_vertical_danmu"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginEnd="10dp"
                     android:background="@null" />
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -175,6 +187,7 @@
                     app:layout_constraintTop_toTopOf="@id/edit_vertical"
                     app:layout_constraintLeft_toRightOf="@id/edit_vertical"
                     android:layout_marginStart="15dp"
+                    android:visibility="gone"
                     android:background="@null" />
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -186,121 +199,128 @@
                     app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom"
                     app:layout_constraintRight_toRightOf="@id/clayout_vertical_bottom"
                     android:src="@mipmap/img_vertical_clear"
+                    android:visibility="gone"
                     android:background="@null" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/layout_vertical_right"
-                android:layout_width="55dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="130dp">
+                android:layout_marginBottom="160dp">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/llayout_vertical_like"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clayout_vertical_user"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="70dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_vertical_head"
+                        android:layout_width="47dp"
+                        android:layout_height="47dp"
+                        app:layout_constraintLeft_toLeftOf="@id/clayout_vertical_user"
+                        app:layout_constraintRight_toRightOf="@id/clayout_vertical_user"
+                        app:layout_constraintTop_toTopOf="@id/clayout_vertical_user"
+                        android:layout_marginTop="6dp"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btn_vertical_attention"
+                        android:layout_width="30dp"
+                        android:layout_height="18dp"
+                        app:layout_constraintLeft_toLeftOf="@id/clayout_vertical_user"
+                        app:layout_constraintRight_toRightOf="@id/clayout_vertical_user"
+                        app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_user"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/shape_bg_vertical_attention"
+                        android:src="@mipmap/img_vertical_attention_add" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/llayout_vertical_like"
+                    style="@style/style_vertical_video_right_item">
 
                 <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/ibn_vertical_like"
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:background="@null"
-                        android:focusable="false"
-                        android:clickable="false"
+                        style="@style/style_vertical_video_right_image"
+                        app:layout_constraintLeft_toLeftOf="@id/llayout_vertical_like"
+                        app:layout_constraintRight_toRightOf="@id/llayout_vertical_like"
+                        app:layout_constraintTop_toTopOf="@id/llayout_vertical_like"
                         android:src="@mipmap/img_vertical_like" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_vertical_like"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/color_vertical_white"
-                        android:textStyle="bold"
-                        android:textSize="12sp"
-                        android:layout_gravity="center_horizontal" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                        style="@style/style_vertical_video_right_text"
+                        app:layout_constraintLeft_toLeftOf="@id/llayout_vertical_like"
+                        app:layout_constraintRight_toRightOf="@id/llayout_vertical_like"
+                        app:layout_constraintBottom_toBottomOf="@id/llayout_vertical_like" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/llayout_vertical_comment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical">
+                    style="@style/style_vertical_video_right_item">
 
                 <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/ibn_vertical_comment"
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:background="@null"
-                        android:focusable="false"
-                        android:clickable="false"
+                        style="@style/style_vertical_video_right_image"
+                        app:layout_constraintLeft_toLeftOf="@id/llayout_vertical_comment"
+                        app:layout_constraintRight_toRightOf="@id/llayout_vertical_comment"
+                        app:layout_constraintTop_toTopOf="@id/llayout_vertical_comment"
                         android:src="@mipmap/img_vertical_comment" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_vertical_comment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/color_vertical_white"
-                        android:textStyle="bold"
-                        android:textSize="12sp"
-                        android:layout_gravity="center_horizontal" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                        style="@style/style_vertical_video_right_text"
+                        app:layout_constraintLeft_toLeftOf="@id/llayout_vertical_comment"
+                        app:layout_constraintRight_toRightOf="@id/llayout_vertical_comment"
+                        app:layout_constraintBottom_toBottomOf="@id/llayout_vertical_comment" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/llayout_vertical_collect"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical">
+                    style="@style/style_vertical_video_right_item">
 
                 <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/ibn_vertical_collect"
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:background="@null"
-                        android:focusable="false"
-                        android:clickable="false"
+                        style="@style/style_vertical_video_right_image"
+                        app:layout_constraintLeft_toLeftOf="@id/llayout_vertical_collect"
+                        app:layout_constraintRight_toRightOf="@id/llayout_vertical_collect"
+                        app:layout_constraintTop_toTopOf="@id/llayout_vertical_collect"
                         android:src="@mipmap/img_vertical_collect" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_vertical_collect"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/color_vertical_white"
-                        android:textStyle="bold"
-                        android:textSize="12sp"
-                        android:layout_gravity="center_horizontal" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                        style="@style/style_vertical_video_right_text"
+                        app:layout_constraintLeft_toLeftOf="@id/llayout_vertical_collect"
+                        app:layout_constraintRight_toRightOf="@id/llayout_vertical_collect"
+                        app:layout_constraintBottom_toBottomOf="@id/llayout_vertical_collect" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/llayout_vertical_share"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical">
+                    style="@style/style_vertical_video_right_item">
 
                 <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/ibn_vertical_share"
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:background="@null"
-                        android:focusable="false"
-                        android:clickable="false"
+                        style="@style/style_vertical_video_right_image"
+                        app:layout_constraintLeft_toLeftOf="@id/llayout_vertical_share"
+                        app:layout_constraintRight_toRightOf="@id/llayout_vertical_share"
+                        app:layout_constraintTop_toTopOf="@id/llayout_vertical_share"
                         android:src="@mipmap/img_vertical_share" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_vertical_share"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/color_vertical_white"
-                        android:textStyle="bold"
-                        android:textSize="12sp"
-                        android:layout_gravity="center_horizontal" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                        style="@style/style_vertical_video_right_text"
+                        app:layout_constraintLeft_toLeftOf="@id/llayout_vertical_share"
+                        app:layout_constraintRight_toRightOf="@id/llayout_vertical_share"
+                        app:layout_constraintBottom_toBottomOf="@id/llayout_vertical_share" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
