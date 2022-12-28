@@ -464,7 +464,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                 arrayOf("2.0", "1.5", "1.25", "1.0", "0.75", "0.5"),
                 null,
                 checkPos,
-                false,
                 { position, text ->
                     checkPos = position
                     videoManager.setPlaySpeed(text.toFloat())

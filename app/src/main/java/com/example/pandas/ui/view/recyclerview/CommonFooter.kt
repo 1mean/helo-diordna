@@ -49,11 +49,15 @@ public class CommonFooter(context: Context) : LinearLayoutCompat(context), SwipL
             if (isEmpty) {
                 mProgressBar.visibility = View.GONE
                 message.visibility = View.VISIBLE
-                message.text = "暂时没有数据"
+                message.postDelayed({
+                    message.text = "暂时没有数据"
+                },350)
             } else {
                 mProgressBar.visibility = View.GONE
                 message.visibility = View.VISIBLE
-                message.text = "没有更多数据啦"
+                message.postDelayed({//延时是为了避免每次加载时都显示文字，效果比较突兀
+                    message.text = "没有更多数据啦"
+                },350)
             }
         }
     }

@@ -73,6 +73,12 @@ interface PetVideoDao {
     @Delete
     fun deleteAllComments(list: MutableList<VideoComment>)
 
+    @Query("delete from comment where videoCode=(:videoCode) and commentId=(:commentId)")
+    fun deleteComment(videoCode: Int, commentId: Int)
+
+    @Delete
+    fun deleteComment(comment: VideoComment)
+
     @Query("delete from history")
     fun deleteAllHistory()
 
@@ -132,6 +138,9 @@ interface PetVideoDao {
 
     @Query("select * from video_data where videoCode=(:code)")
     suspend fun queryVideoDataByCode(code: Int): VideoData?
+
+    @Query("select * from comment where commentId=(:commentId) and videoCode=(:videoCode)")
+    fun queryCommentById(videoCode: Int, commentId: Int): VideoComment
 
     /**
      *  这里编译一直失败，记录一下，下面四条为stack overflow上的普遍解决办法
@@ -222,7 +231,7 @@ interface PetVideoDao {
     suspend fun queryVerticalCounts(): Int
 
     @Transaction
-    @Query("select * from pet_video where vertical=1 limit (:startIndex),(:count)")
+    @Query("select * from pet_video where vertical=1 order by releaseTime desc limit (:startIndex),(:count)")
     suspend fun queryVerticalVideos(
         startIndex: Int,
         count: Int
@@ -246,6 +255,9 @@ interface PetVideoDao {
 
     @Query("select count(*) from music")
     suspend fun queryMusicCounts(): Int
+
+    @Query("select count(*) from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode)")
+    suspend fun queryCommentReplyCounts(videoCode: Int, topCommentCode: Int): Int
 
     @Query("select * from music where type=0 and fileName=(:fileName)")
     suspend fun queryMusicByFileName(fileName: String): MusicVo
@@ -343,12 +355,21 @@ interface PetVideoDao {
     ): MutableList<PetVideo>
 
     @Transaction
-    @Query("select * from comment where videoCode=(:videoCode) and type=(:type) order by commitTime desc limit (:startIndex),(:page)")
+    @Query("select * from comment where videoCode=(:videoCode) and type=(:type) order by commitTime asc limit (:startIndex),(:page)")
     suspend fun queryPageCommentsByType(
         videoCode: Int,
         startIndex: Int,
         page: Int,
         type: Int
+    ): MutableList<CommentAndUser>
+
+    @Transaction
+    @Query("select * from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode) order by commitTime asc limit (:startIndex),(:page)")
+    suspend fun queryReplyComments(
+        videoCode: Int,
+        topCommentCode: Int,
+        startIndex: Int,
+        page: Int
     ): MutableList<CommentAndUser>
 
     @Transaction

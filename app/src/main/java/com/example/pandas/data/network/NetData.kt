@@ -1,4 +1,4 @@
-package com.example.pandas.data.network;
+package com.example.pandas.data.network
 
 import com.example.pandas.bean.GridItem
 

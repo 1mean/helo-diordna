@@ -1,11 +1,12 @@
 package com.example.pandas.utils
 
 import android.annotation.SuppressLint
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * @description: TODO
+ * @description: 本项目用到的时间格式转换方法
  * @author: dongyiming
  * @date: 12/31/21 11:50 上午
  * @version: v1.0
@@ -80,7 +81,6 @@ object TimeUtils {
     }
 
     fun parseTime(time: Long): String {
-
         val startTime = time * 1000
         if (!isCurrentYear(startTime)) {//不是今年
             return getYearTime(startTime)
@@ -99,4 +99,85 @@ object TimeUtils {
             }
         }
     }
+
+    fun isYesterday(time: Long): Boolean {
+        val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val calendar = Calendar.getInstance()
+        calendar[Calendar.HOUR_OF_DAY] = -24 //用小时来判断，不能用day来判断，会出现6月1号前一天是5月30号
+        val yesterdayDate: String = dateFormat.format(calendar.time)
+        return true
+    }
+
+    /**
+     * 将传入时间值转换成符合项目要求的描述性时间，总共有以下几种格式的要求
+     *  - 刚刚 60秒内
+     *  - 30分钟前
+     *  - 2小时前
+     *  - 昨天 09:21
+     *  - 一天前
+     *  - 两天前
+     *  - 12月24
+     *  - 2018年12月17
+     *
+     * @param: 时间戳：秒/毫秒 已做处理，10位和13位数字
+     * @return: 仿抖音描述性时间
+     * @author: dongyiming
+     * @date: 12/23/22 5:54 PM
+     * @version: v1.0
+     */
+    fun descriptiveData(parseTime: Long): String? {
+        val inputTime = if (parseTime.toString().length == 10) {
+            parseTime * 1000
+        } else {
+            parseTime
+        }
+        val descriptiveText: String?
+        var format = ""
+        //当前时间
+        val currentTime = Calendar.getInstance()
+        //要转换的时间
+        val time = Calendar.getInstance()
+        time.timeInMillis = inputTime
+        //年相同
+        if (currentTime[Calendar.YEAR] == time[Calendar.YEAR]) {
+            //获取一年中的第几天并相减，取差值
+            when (currentTime[Calendar.DAY_OF_YEAR] - time[Calendar.DAY_OF_YEAR]) {
+                3 -> {
+                    descriptiveText = "2天前"
+                }
+                2 -> {
+                    descriptiveText = "1天前"
+                }
+                1 -> {
+                    format = "HH:mm"
+                    val simpleDateFormat = SimpleDateFormat(format, Locale.getDefault())
+                    val formatDate = simpleDateFormat.format(time.time)
+                    descriptiveText = "昨天$formatDate"
+                }
+                0 -> {
+                    var timeDis = System.currentTimeMillis() - inputTime
+                    if (timeDis < 60 * 1000) {
+                        descriptiveText = "刚刚"
+                    } else if (timeDis < 60 * 60 * 1000) {
+                        timeDis = timeDis / 1000 / 60
+                        descriptiveText = "${timeDis}分钟前"
+                    } else {
+                        timeDis = timeDis / 60 / 60 / 1000
+                        descriptiveText = "${timeDis}小时前"
+                    }
+                }
+                else -> {
+                    format = "MM-dd"
+                    val simpleDateFormat = SimpleDateFormat(format, Locale.getDefault())
+                    descriptiveText = simpleDateFormat.format(time.time)
+                }
+            }
+        } else {
+            format = "yyyy-MM-dd"
+            val simpleDateFormat = SimpleDateFormat(format, Locale.getDefault())
+            descriptiveText = simpleDateFormat.format(time.time)
+        }
+        return descriptiveText
+    }
+
 }

@@ -140,7 +140,8 @@ dependencies {
     implementation 'com.github.lihangleo2:ShadowLayout:3.2.4'
 
     //popu弹窗
-    implementation 'com.github.li-xiaojun:XPopup:2.8.2'
+    //implementation 'com.github.li-xiaojun:XPopup:2.8.2'
+    implementation project(':library')
 
     //leak-android
     // debugImplementation because LeakCanary should only run in debug builds.
@@ -195,7 +196,4 @@ dependencies {
     implementation  'io.github.scwang90:refresh-footer-ball:2.0.5'        //球脉冲加载
     implementation  'io.github.scwang90:refresh-footer-classics:2.0.5'    //经典加载
 
-    //表情
-    implementation 'androidx.emoji:emoji-bundled:1.1.0'
-    implementation 'androidx.emoji:emoji:1.1.0'
 }

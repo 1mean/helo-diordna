@@ -27,15 +27,16 @@ public class VerticalVideoViewModel : BaseViewModel() {
     fun getVerticalVideos(isRefresh: Boolean) {
 
         if (isRefresh) {
-            startIndex = (0..20).random()
+//            startIndex = (0..20).random()
+            startIndex = 0
         }
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getVerticalVideos(startIndex, 11)
+                PetManagerCoroutine.getVerticalVideos(startIndex, 21)
             }.onSuccess {
 
-                hasMore = if (it.size > 10) {
+                hasMore = if (it.size > 20) {
                     it.removeLast()
                     true
                 } else {

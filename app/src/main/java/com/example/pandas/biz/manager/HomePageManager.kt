@@ -73,12 +73,20 @@ class PetManager {
 
         return withContext(Dispatchers.Default) {
             val petVideos = mutableListOf<PetVideo>()
-            val count = petDao.queryVerticalCounts()
-            Log.e("1mean", "count: $count")
             val list = petDao.queryVerticalVideos(startIndex, counts)
             list.forEach {
                 val video = it.video
-                video.videoData = petDao.queryVideoDataByCode(video.code)
+                val videoData = petDao.queryVideoDataByCode(video.code)
+                val comments = petDao.queryCommentCounts(video.code)
+                if (videoData == null) {
+                    if (comments > 0) {
+                        val vd = VideoData(videoCode = video.code, comments = comments)
+                        video.videoData = vd
+                    }
+                } else {
+                    videoData.comments = comments
+                    video.videoData = videoData
+                }
                 video.user = it.user
                 petVideos.add(video)
             }
@@ -813,7 +821,7 @@ class PetManager {
         counts: Int
     ): MutableList<CommentAndUser> {
 
-        return withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.Default) {
 
             //先获取一级弹幕
             val list = if (isOrderByTime) {//获取时间顺序的数据
@@ -832,6 +840,48 @@ class PetManager {
                 }
             }
             list
+        }
+    }
+
+    suspend fun getPageComments(
+        isOrderByTime: Boolean,
+        videoCode: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<CommentAndUser> {
+
+        return withContext(Dispatchers.Default) {
+            //先获取一级弹幕
+            val list = if (isOrderByTime) {//获取时间顺序的数据
+                petDao.queryPageCommentsByType(videoCode, startIndex, counts, 1)
+            } else {
+                petDao.queryCommentsByHot(videoCode, startIndex, counts, 1)
+            }
+            if (list.isNotEmpty()) {
+                list.forEach {
+                    val count =
+                        petDao.queryCommentReplyCounts(it.comment.videoCode, it.comment.commentId)
+                    if (count > 0) {
+                        it.comment.replyCounts = count
+                    } else{
+                        it.comment.replyCounts = (1..10).random()
+                    }
+                }
+            }
+            list
+        }
+    }
+
+    suspend fun getPageReplyComments(
+        videoCode: Int,
+        commentId: Int,
+        startIndex: Int,
+        counts: Int
+    ): MutableList<CommentAndUser> {
+
+        return withContext(Dispatchers.Default) {
+            //先获取一级弹幕
+            petDao.queryReplyComments(videoCode, 33, startIndex, counts)
         }
     }
 

@@ -12,7 +12,7 @@ import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.bean.ReplyInfo
 import com.example.pandas.biz.interaction.CommentsListener
-import com.example.pandas.biz.manager.KeyboardManager
+import com.example.pandas.biz.manager.SoftInputManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.FragmentCommentBinding
 import com.example.pandas.sql.entity.PetVideo
@@ -41,7 +41,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
 
     private var commentListener: CommentsListener? = null
 
-    private val km: KeyboardManager by lazy { KeyboardManager(mActivity) }
+    private val km: SoftInputManager by lazy { SoftInputManager(mActivity) }
 
     private val mAdapter: CommentAdapter by lazy { CommentAdapter(mutableListOf(), this) }
 
@@ -102,7 +102,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
         })
 
         km.setOnSoftKeyBoardChangeListener(object :
-            KeyboardManager.OnSoftKeyBoardChangeListener {
+            SoftInputManager.OnSoftKeyBoardChangeListener {
             override fun keyBoardShow(height: Int) {
                 binding.imgCommentSmile.visibility = View.GONE
                 binding.txtCommentSend.visibility = View.VISIBLE
@@ -194,7 +194,11 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
                     loadingPopup = XPopup.Builder(mActivity).dismissOnBackPressed(true)
                         .isLightNavigationBar(true)
                         .isViewMode(false)
-                        .asLoading(null, R.layout.layout_sending)
+                        .asLoading(
+                            null,
+                            R.layout.layout_sending,
+                            LoadingPopupView.Style.ProgressBar
+                        )
                     loadingPopup!!.show()
                 } else {
                     loadingPopup!!.show()

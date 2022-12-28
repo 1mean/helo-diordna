@@ -32,9 +32,9 @@
     <dimen name="common_lh_11_dimens">11dp</dimen>
     <dimen name="common_lh_12_dimens">12dp</dimen>
     <dimen name="common_lh_14_dimens">14dp</dimen>
-    <dimen name="common_lh_18_dimens">18dp</dimen>
     <dimen name="common_lh_15_dimens">15dp</dimen>
     <dimen name="common_lh_16_dimens">16dp</dimen>
+    <dimen name="common_lh_18_dimens">18dp</dimen>
     <dimen name="common_lh_20_dimens">20dp</dimen>
     <dimen name="common_lh_22_dimens">22dp</dimen>
     <dimen name="common_lh_26_dimens">26dp</dimen>

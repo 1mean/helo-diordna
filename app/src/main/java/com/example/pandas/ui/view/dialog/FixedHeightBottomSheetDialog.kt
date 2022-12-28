@@ -43,6 +43,6 @@ class FixedHeightBottomSheetDialog(
 
     private fun getBottomSheetBehavior(): BottomSheetBehavior<View>? {
         val view: View? = window?.findViewById(com.google.android.material.R.id.design_bottom_sheet)
-        return view?.let { BottomSheetBehavior.from(view) }
+        return view?.let { BottomSheetBehavior.from(it) }
     }
 }

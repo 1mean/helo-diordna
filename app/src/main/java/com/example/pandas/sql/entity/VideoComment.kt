@@ -47,6 +47,11 @@ data class VideoComment(
     @ColumnInfo
     var top: Boolean = false,//消息是否被up主置顶了
 
+    @ColumnInfo
+    var replyCounts: Int = 0,
+    @ColumnInfo
+    var commentType: Int = 0, //弹幕类型，有图片
+
     //界面标识，是否喜欢
     @Ignore
     var like: Boolean = false,
@@ -55,5 +60,9 @@ data class VideoComment(
     @Ignore
     var user: User? = null,
     @Ignore
-    var replyComments: MutableList<CommentAndUser> = mutableListOf()
+    var replyComments: MutableList<CommentAndUser> = mutableListOf(),
+
+    @Ignore
+    var booleanFlag: Boolean = false
+
 )

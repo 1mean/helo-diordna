@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import io.reactivex.rxjava3.internal.functions.ObjectHelper
 import kotlin.math.abs
 
 
@@ -29,6 +28,8 @@ class SwipRecyclerView : RecyclerView {
     private var isLoadingData = false //正在上拉加载数据中，不允许下拉刷新
     private var isRefreshing = false //正在下拉刷新数据中，不允许上拉加载
     private var hasMore = true //是否有更多数据
+    private var autoLoadMore = true //滚动到最后一个时会加载更多
+    private var hasIntercept = true
     private var isLoadError = false //是否加载错误
 
     private var onItemClickListener: OnItemClickListener? = null
@@ -84,7 +85,9 @@ class SwipRecyclerView : RecyclerView {
         adapter.registerAdapterDataObserver(observer)
         observer.onChanged()
         setAdapter(wrapAdapter)
-        addOnItemTouchListener(touchListener)
+        if (hasIntercept) {
+            addOnItemTouchListener(touchListener)
+        }
     }
 
     fun setRefreshAdapterIgnore(adapter: Adapter<out ViewHolder>, listener: ILoadMoreListener?) {
@@ -116,7 +119,7 @@ class SwipRecyclerView : RecyclerView {
     override fun onScrollStateChanged(state: Int) {
         super.onScrollStateChanged(state)
 
-        if (state == SCROLL_STATE_IDLE && mListener != null && !isRefreshing && !isLoadingData) {
+        if (state == SCROLL_STATE_IDLE && mListener != null && !isRefreshing && !isLoadingData && autoLoadMore) {
 
             val lastVisibleItemPosition = if (layoutManager is GridLayoutManager) {
                 (layoutManager as GridLayoutManager).findLastVisibleItemPosition()
@@ -220,6 +223,16 @@ class SwipRecyclerView : RecyclerView {
     fun addFooterView(footerView: View) {
         this.footerView = footerView
         this.loadMoreView = footerView as SwipLoadMoreView
+    }
+
+    fun setAutoLoadMore(autoLoadMore: Boolean): SwipRecyclerView {
+        this.autoLoadMore = autoLoadMore
+        return this
+    }
+
+    fun setIntercept(hasIntercept: Boolean): SwipRecyclerView {
+        this.hasIntercept = hasIntercept
+        return this
     }
 
     var downX = 0

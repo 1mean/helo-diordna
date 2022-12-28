@@ -4,4 +4,4 @@ pluginManagement {
         maven { url "https://chaquo.com/maven" }
     }
 }
-include ':app', ':helo_base', 'opencv460'
+include ':app', ':helo_base', 'opencv460', ':library'

@@ -159,5 +159,6 @@
     <string name="str_phone_input">请输入手机号</string>
     <string name="str_username">姓名</string>
     <string name="str_phone_no">手机号</string>
+    <string name="str_hot_comment">热词</string>
 
 </resources>

@@ -105,10 +105,6 @@ public class TimingBottomSheetDialog(
                 selectPos = position
                 notifyDataSetChanged()
             }
-
         }
-
     }
-
-
 }

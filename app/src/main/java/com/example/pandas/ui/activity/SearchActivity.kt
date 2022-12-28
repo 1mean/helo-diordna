@@ -1,10 +1,8 @@
 package com.example.pandas.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.lifecycleScope
@@ -18,11 +16,10 @@ import com.example.pandas.biz.viewmodel.SearchViewModel
 import com.example.pandas.databinding.ActivitySearchBinding
 import com.example.pandas.ui.adapter.HotSearchAdapter
 import com.example.pandas.ui.adapter.SearchResultAdapter
-import com.example.pandas.ui.ext.addOrShowFragment
 import com.example.pandas.ui.ext.backPressed
 import com.example.pandas.ui.ext.clearEditText
 import com.example.pandas.ui.ext.turnToSearchResultFragment
-import com.example.pandas.utils.KeyboardUtils
+import com.example.pandas.utils.SoftInputUtils
 import com.example.pandas.utils.StatusBarUtils
 import kotlinx.coroutines.launch
 
@@ -63,7 +60,7 @@ public class SearchActivity : BaseExActivity<SearchViewModel, ActivitySearchBind
             }
 
             binding.txtSearchCancel.setOnClickListener {
-                KeyboardUtils.closeKeybord(this@SearchActivity)
+                SoftInputUtils.closeKeybord(this@SearchActivity)
                 finish()
             }
 

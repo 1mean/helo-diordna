@@ -8,7 +8,7 @@ import android.widget.EditText
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewbinding.ViewBinding
 import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.biz.manager.KeyboardManager
+import com.example.pandas.biz.manager.SoftInputManager
 
 /**
  * @description: 扩展，添加软键盘的控制
@@ -21,10 +21,10 @@ public abstract class BaseExActivity<VM : BaseViewModel, VB : ViewBinding> :
 
     var isKeyBoardShow: Boolean = false
 
-    private val km: KeyboardManager by lazy { KeyboardManager(this) }
+    private val km: SoftInputManager by lazy { SoftInputManager(this) }
 
     override fun initView(savedInstanceState: Bundle?) {
-        km.setOnSoftKeyBoardChangeListener(object : KeyboardManager.OnSoftKeyBoardChangeListener {
+        km.setOnSoftKeyBoardChangeListener(object : SoftInputManager.OnSoftKeyBoardChangeListener {
             override fun keyBoardShow(height: Int) {
                 isKeyBoardShow = true
             }
@@ -88,7 +88,7 @@ public abstract class BaseExActivity<VM : BaseViewModel, VB : ViewBinding> :
     override fun onPause() {
         super.onPause()
         if (isKeyBoardShow) {
-            km.hideKeyBoard(this)
+            km.hideKeyBoard(this,currentFocus)
         }
     }
 

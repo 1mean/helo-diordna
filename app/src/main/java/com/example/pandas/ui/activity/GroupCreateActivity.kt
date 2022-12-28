@@ -1,7 +1,6 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
@@ -38,7 +37,7 @@ public class GroupCreateActivity : BaseActivity<HistoryViewModeL, ActivityCreate
                     loadingPopup = XPopup.Builder(this).dismissOnBackPressed(true)
                         .isLightNavigationBar(true)
                         .isViewMode(false)
-                        .asLoading(null, R.layout.layout_waiting)
+                        .asLoading(null, R.layout.layout_waiting, LoadingPopupView.Style.ProgressBar)
                     loadingPopup!!.show()
                 } else {
                     loadingPopup!!.show()

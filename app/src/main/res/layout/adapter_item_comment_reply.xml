@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_reply_header"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llayout_reply_name"
+            android:layout_width="match_parent"
+            android:layout_height="17dp"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="7dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_reply_name_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"
+                android:textColor="#B1B0B1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_reply_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/img_comment_name_right"
+                android:layout_marginStart="5dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_reply_name_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:textColor="#B1B0B1" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_reply_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/llayout_reply_name"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="16dp"
+            android:textSize="15sp"
+            android:lineSpacingExtra="2dp"
+            android:textColor="@color/color_txt_content_item_short_comment" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_reply_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/txt_reply_content"
+            app:layout_constraintTop_toBottomOf="@id/txt_reply_content"
+            android:layout_marginTop="5dp"
+            android:textSize="13sp"
+            android:textColor="@color/color_txt_short_item_name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txt_reply_time"
+            app:layout_constraintLeft_toRightOf="@id/txt_reply_time"
+            android:layout_marginStart="50dp"
+            android:textSize="13sp"
+            android:textColor="@color/color_txt_reply_short_comment"
+            android:text="回复" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_reply_like"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_reply_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_reply_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_reply_like"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_reply_like"
+                android:textSize="12sp"
+                android:textColor="#707579"
+                android:includeFontPadding="false"
+                app:layout_constraintRight_toRightOf="@id/clayout_reply_like"
+                android:layout_marginEnd="10dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_reply_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/txt_reply_like"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_reply_like"
+                app:layout_constraintRight_toLeftOf="@id/txt_reply_like"
+                android:layout_marginEnd="3dp"
+                android:src="@mipmap/img_short_comment_like" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

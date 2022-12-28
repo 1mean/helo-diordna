@@ -68,7 +68,7 @@ fun SwipRecyclerView.init(
     itemDecoration: RecyclerView.ItemDecoration? = null,
     adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>,
     manager: RecyclerView.LayoutManager = LinearLayoutManager(context),
-    listener: SwipRecyclerView.ILoadMoreListener
+    listener: SwipRecyclerView.ILoadMoreListener? = null
 ): SwipRecyclerView {
 
     addFooterView(CommonFooter(context))
@@ -100,7 +100,7 @@ fun SwipRecyclerView.initNoFooter(
     itemDecoration: RecyclerView.ItemDecoration? = null,
     adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>,
     manager: RecyclerView.LayoutManager = LinearLayoutManager(context),
-    listener: SwipRecyclerView.ILoadMoreListener?
+    listener: SwipRecyclerView.ILoadMoreListener? = null
 ): SwipRecyclerView {
 
     layoutManager = manager

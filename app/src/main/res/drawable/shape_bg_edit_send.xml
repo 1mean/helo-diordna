@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--定义圆角-->
-    <corners android:radius="20dp" />
-    <!--内部填充色-->
-    <solid android:color="#FF0061" />
-</shape>
+<!--同时设置点击效果和圆角-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <!--定义圆角-->
+            <corners android:radius="20dp" />
+            <!--内部填充色-->
+            <solid android:color="#33FF004E" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <!--定义圆角-->
+            <corners android:radius="20dp" />
+            <!--内部填充色-->
+            <solid android:color="#FF004E" />
+        </shape>
+    </item>
+</selector>

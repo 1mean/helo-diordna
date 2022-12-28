@@ -6,6 +6,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.Editable
 import android.util.Log
 import android.view.*
 import android.view.animation.LinearInterpolator
@@ -13,19 +14,22 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.interaction.ExoPlayerListener
-import com.example.pandas.biz.manager.KeyboardManager
+import com.example.pandas.biz.manager.SoftInputManager
 import com.example.pandas.biz.manager.VerticalPlayManager
 import com.example.pandas.biz.viewmodel.VerticalVideoViewModel
+import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.ActivityVerticalVideoplayBinding
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoPagerAdapter
 import com.example.pandas.ui.ext.addRefreshAnimation
 import com.example.pandas.ui.ext.startUserInfoActivity
+import com.example.pandas.ui.view.dialog.ShortCommentPopuWindow
 import com.example.pandas.ui.view.dialog.ShortInputPopuWindow
 import com.example.pandas.utils.StatusBarUtils
 import com.example.pandas.utils.VibrateUtils
 import com.google.android.exoplayer2.util.Util
+import com.lxj.xpopup.XPopup
 
 
 /**
@@ -56,10 +60,10 @@ public class ShortVideoActivity :
     private val mAdapter: VideoPagerAdapter by lazy { VideoPagerAdapter(listener = this) }
 
     private var manager: VerticalPlayManager? = null
-    private var keyBoardManager: KeyboardManager? = null
+    private var keyBoardManager: SoftInputManager? = null
     private var inputPopWindow: ShortInputPopuWindow? = null
 
-    private val mHandler:Handler = Handler(Looper.getMainLooper())
+    private val mHandler: Handler = Handler(Looper.getMainLooper())
 
     @SuppressLint("Recycle")
     override fun initView(savedInstanceState: Bundle?) {
@@ -68,10 +72,9 @@ public class ShortVideoActivity :
 
         //bug:一句代码解决了两天的bug，关闭popuwindow时，edittext仍然有焦点，会反复弹出
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
-
         manager = VerticalPlayManager(this, this)
 
-        keyBoardManager = KeyboardManager(this)
+        keyBoardManager = SoftInputManager(this)
         keyBoardManager!!.setOnSoftKeyBoardChangeListener(keyBoardListener)
 
         mVelocityTracker = VelocityTracker.obtain()
@@ -99,6 +102,14 @@ public class ShortVideoActivity :
             val x = location[0]
             val y = location[1]
             Log.e("1mean", "x坐标：$x, y坐标：$y")
+        }
+
+        binding.editVertical.setOnClickListener {
+            showCommentPopuWindow()
+        }
+
+        binding.btnVerticalInputSend.setOnClickListener {
+            sendVideoComment(binding.editVertical.text.toString())
         }
     }
 
@@ -270,26 +281,81 @@ public class ShortVideoActivity :
         return super.dispatchTouchEvent(event)
     }
 
-    //点击底部评论发送按钮
-    override fun showCommentPopuWindow(view: View) {
-        Log.e("keyBoardManager","keyBoardManager: $keyBoardManager")
-       //keyBoardManager?.showKeyBoard(this, view)
+    /**
+     * <弹出软键盘的功能，遇到问题颇多，总结一下>
+     * - 实现功能：点击底部弹幕按钮，显示软键盘，同时缓缓弹出发送弹幕的popuwindow
+     * - 实现过程：
+     *      1，点击底部EditText，在监听方法里显示Popuwindow
+     *      2，主动调用代码，弹出软键盘
+     * - 遇到的问题：
+     *      1，防止EditText有焦点，会反复弹出软键盘，必须先设置，这是基本条件，后续乱七八糟的都必须先基于这个
+     *      window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+     *      2，底部EditText设置android:focusableInTouchMode="false"，让其第一次点击时就能触发点击方法
+     *      3，设置android:focusableInTouchMode="false"后，activity的currentFocus获取不到任何view，此时
+     *   点击Edittext时，是不会主动弹出软键盘的，当我们手动设置弹出软键盘功能时，如果传入的view是currentFocus时，
+     *   也是不会弹出软键盘的，所以我设置了window.decorView
+     *      4，如果设置android:focusableInTouchMode="true",此时底部Edittext是有焦点的，我们第一次点击它时，
+     *   会自动弹出软键盘，但是不会监听到点击事件，此时如果我们监听了软键盘的弹出keyBoardShow()，并在该方法里显示
+     *   popuwindow时，软键盘先弹出，然后popuwindow弹出，由于popuwindow里也有一个edittext，导致软键盘弹下去
+     *   后又继续弹出来，此时传入的view是currentFocus还是window.decorView，都会出现这个问题
+     *      5，弹出软键盘和popuwindow，使用延时加载，避免反复点击的卡顿
+     *      6，这里popuwindow直接放置在中间位置，如果需要通过软键盘将它顶上去的话，需要整个布局实现Scroll相关的
+     *   监听，同时在AndriodManifest.xml里设置相关属性，本例不使用
+     *      7，主动设置偏移位置，将popuwindow放置在软键盘上面，使两者刚好重合，160是调试出来的位置
+     *      showAtLocation(view, Gravity.CENTER, 0, 160)
+     *      8，弹出动画，就是一个位移动画和一个渐隐动画
+     *      9,软键盘要想弹起，就必须设置focus = true
+     *
+     * @author: dongyiming
+     * @date: 12/4/22 6:19 PM
+     * @version: v1.0
+     */
+    private fun showCommentPopuWindow() {
+        mHandler.postDelayed({
+            if (inputPopWindow == null) {
+
+                inputPopWindow = ShortInputPopuWindow(
+                    this@ShortVideoActivity,
+                    binding.editVertical.text.toString(),
+                    object :
+                        ShortInputPopuWindow.ShortPopuListener {
+                        override fun openEmoji(view: View) {
+                            Log.e("1mean", "隐藏软键盘")
+                            keyBoardManager?.hideKeyBoard(this@ShortVideoActivity, view)
+                        }
+
+                        override fun sendComment(comment: String) {
+                            sendVideoComment(comment)
+                        }
+
+                        override fun dissmiss(comment: String) {
+                            if (comment.isNotEmpty()) {
+                                mHandler.post {
+                                    val message =
+                                        QqEmoticons.parseAndShowEmotion(
+                                            this@ShortVideoActivity,
+                                            comment
+                                        )
+                                    binding.editVertical.text =
+                                        Editable.Factory.getInstance().newEditable(message)
+                                    binding.btnVerticalInputSend.visibility = View.VISIBLE
+                                }
+                            }
+                        }
+                    })
+            }
+//            inputPopWindow!!.setBackDark().onShow(this@ShortVideoActivity.currentFocus!!)
+            inputPopWindow!!.setBackDark().onShow(window.decorView)
+            keyBoardManager?.showKeyBoard(this, window.decorView)
+        }, 200)
     }
 
-    private val keyBoardListener = object : KeyboardManager.OnSoftKeyBoardChangeListener {
+    private val keyBoardListener = object : SoftInputManager.OnSoftKeyBoardChangeListener {
         override fun keyBoardShow(height: Int) {
-
-            inputPopWindow = ShortInputPopuWindow(this@ShortVideoActivity)
-            inputPopWindow!!.setBackDark().onShow(this@ShortVideoActivity.currentFocus!!)
-
-//            mHandler.postDelayed({
-//                inputPopWindow = ShortInputPopuWindow(this@ShortVideoActivity)
-//                inputPopWindow!!.setBackDark().onShow(this@ShortVideoActivity.window.decorView)
-//            },500)
         }
 
         override fun keyBoardHide(height: Int) {
-            Log.e("keyBoardManager","keyBoardHide")
+            Log.e("keyBoardManager", "keyBoardHide")
         }
     }
 
@@ -312,6 +378,17 @@ public class ShortVideoActivity :
             super.onPageSelected(position)
             Log.e("1mean", "onPageSelected")
 
+            val hasEdit = binding.editVertical.text?.isNotEmpty()
+            if (hasEdit == true) {
+                Log.e("1mean", "有输入值")
+                binding.editVertical.post {
+                    binding.editVertical.text = null
+                    //binding.editVertical.isCursorVisible = false
+                    inputPopWindow?.let {
+                        it.clear()
+                    }
+                }
+            }
 
             binding.vp2VideoVertical.post {
 
@@ -347,7 +424,6 @@ public class ShortVideoActivity :
     }
 
     override fun updataVideoData(videoData: VideoData) {
-
         mViewModel.addOrUpdateVideoData(videoData)
     }
 
@@ -373,10 +449,32 @@ public class ShortVideoActivity :
         startUserInfoActivity(this, user)
     }
 
+    override fun showComments(videoCode: Int, commentCounts: Int) {
+
+        val popupView = ShortCommentPopuWindow(this, videoCode, commentCounts)
+        XPopup.Builder(this)
+            .moveUpToKeyboard(false) //如果不加这个，评论弹窗会移动到软键盘上面
+            //.enableDrag(false)
+            .isDestroyOnDismiss(false) //对于只使用一次的弹窗，推荐设置这个
+            //.isThreeDrag(true) //是否开启三阶拖拽，如果设置enableDrag(false)则无效
+            .asCustom(popupView)
+            .show()
+    }
+
     override fun onkeyBack() {
+
+        inputPopWindow?.let {
+            if (it.isShowing) {
+                it.dismiss()
+            }
+        }
         mVelocityTracker?.recycle()
         manager?.release()
         manager = null
         super.onkeyBack()
+    }
+
+    private fun sendVideoComment(comment: String) {
+
     }
 }

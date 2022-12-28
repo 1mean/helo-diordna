@@ -16,7 +16,7 @@
             app:scrubber_disabled_size="0dp"
             app:scrubber_dragged_size="0dp"
 
-
+            android:visibility="gone"
             app:unplayed_color="@color/color_vertical_unplay"
             app:buffered_color="@color/color_vertical_buffer"
             app:played_color="@color/color_vertical_played" />

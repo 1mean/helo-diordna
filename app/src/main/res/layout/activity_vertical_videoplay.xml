@@ -7,7 +7,8 @@
     <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp2_video_vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="58dp" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -70,5 +71,82 @@
                 app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_refresh"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_vertical_refresh"
                 app:layout_constraintRight_toRightOf="@id/clayout_vertical_refresh" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_vertical_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_gravity="bottom"
+            android:background="@color/black">
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_vertical_input_send"
+                android:layout_width="52dp"
+                android:layout_height="32dp"
+                android:text="发送"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintRight_toRightOf="@id/clayout_vertical_bottom"
+                app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom"
+                android:background="@drawable/shape_bg_edit_send" />
+
+        <!-- android:background="@drawable/shape_vertical_edit" -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_vertical_input"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_marginEnd="9dp"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/shape_vertical_edit"
+                app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_vertical_bottom"
+                app:layout_constraintRight_toLeftOf="@id/btn_vertical_input_send">
+            <!--必须设置focus，才能主动和被动地弹起软键盘-->
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edit_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    app:layout_constraintTop_toTopOf="@id/clayout_vertical_input"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_input"
+                    android:hint="请发送一条友善的评论"
+                    android:textSize="14sp"
+                    android:paddingStart="10dp"
+                    android:background="@null"
+                    android:layout_marginEnd="100dp"
+                    android:textColorHint="@color/gray"
+                    android:textCursorDrawable="@drawable/shape_edit_comment"
+
+                    android:singleLine="true"
+                    android:textColor="#E6E6E6"
+                    android:inputType="none"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:focusableInTouchMode="false" />
+
+            <View
+                    android:layout_width="1dp"
+                    android:layout_height="16dp"
+                    app:layout_constraintTop_toTopOf="@id/clayout_vertical_input"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_input"
+                    app:layout_constraintRight_toRightOf="@id/clayout_vertical_input"
+                    android:layout_marginEnd="56dp"
+                    android:background="#808080" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@mipmap/img_vertical_face"
+                    app:layout_constraintTop_toTopOf="@id/clayout_vertical_input"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_input"
+                    app:layout_constraintRight_toRightOf="@id/clayout_vertical_input"
+                    android:layout_marginEnd="10dp"
+                    android:background="@null" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

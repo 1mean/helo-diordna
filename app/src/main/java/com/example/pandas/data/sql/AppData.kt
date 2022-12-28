@@ -1,6 +1,7 @@
 package com.example.pandas.data.sql
 
 import android.util.Log
+import com.example.pandas.data.simulate.ShortCommentData
 import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
@@ -57,6 +58,8 @@ object AppData {
             Log.e("1mean", "size21: ${list21.size}")
             val list22 = PetTigerData.getAll()
             Log.e("1mean", "size22: ${list22.size}")
+            val list23 = LandscapeData.getAll()
+            Log.e("1mean", "size23: ${list23.size}")
 
 
             Log.e(
@@ -64,7 +67,7 @@ object AppData {
                 "sum: " + (list1.size + list2.size + list3.size + list4.size + list5.size
                         + list6.size + list7.size + list8.size + list9.size + list10.size + list11.size
                         + list12.size + list13.size + list14.size + list15.size + list16.size + list17.size
-                        + list18.size + list19.size + list20.size + list21.size + list22.size
+                        + list18.size + list19.size + list20.size + list21.size + list22.size + list23.size
                         )
             )
             addAll(list1)
@@ -89,6 +92,7 @@ object AppData {
             addAll(list20)
             addAll(list21)
             addAll(list22)
+            addAll(list23)
         }
     }
 
@@ -105,5 +109,9 @@ object AppData {
 
     fun getComment(): MutableList<VideoComment> {
         return CommentData.getList()
+    }
+
+    fun getShortComment(): MutableList<VideoComment> {
+        return ShortCommentData.getList()
     }
 }

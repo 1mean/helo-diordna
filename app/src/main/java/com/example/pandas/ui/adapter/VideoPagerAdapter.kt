@@ -1,12 +1,9 @@
 package com.example.pandas.ui.adapter
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +18,6 @@ import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.ext.addItemAnimation
 import com.example.pandas.ui.ext.addItemAnimation2
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
-import com.example.pandas.ui.view.dialog.ShortInputPopuWindow
 import com.example.pandas.utils.TimeUtils
 import com.google.android.exoplayer2.ui.DefaultTimeBar
 import com.google.android.exoplayer2.ui.TimeBar
@@ -89,14 +85,12 @@ public class VideoPagerAdapter(
         val header = binding.imgVerticalHead
         val time = binding.txtVerticalTime
         val title = binding.txtVerticalTitle
-        val input = binding.editVertical
         val rightView = binding.layoutVerticalRight
         val bottomView = binding.clayoutVerticalVideoInfo
         val likeItem = binding.llayoutVerticalLike
         val likeImg = binding.ibnVerticalLike
         val likes = binding.txtVerticalLike
         val commentItem = binding.llayoutVerticalComment
-        val commentImg = binding.ibnVerticalComment
         val comments = binding.txtVerticalComment
         val collectItem = binding.llayoutVerticalCollect
         val collectImg = binding.ibnVerticalCollect
@@ -105,8 +99,9 @@ public class VideoPagerAdapter(
         val shareImg = binding.ibnVerticalShare
         val shares = binding.txtVerticalShare
         val play = binding.imgVerticalPlay
-        val clear = binding.ibnVerticalEmpty
-        val reduce = binding.ibnVerticalReduce
+
+        //val clear = binding.ibnVerticalEmpty
+        //val reduce = binding.ibnVerticalReduce
         val playerView = binding.playerVertical
         val timebar = playerView.findViewById<DefaultTimeBar>(R.id.exo_progress)
         val music = binding.txtVerticalMusic
@@ -148,31 +143,9 @@ public class VideoPagerAdapter(
 
             if (videoData == null) {
                 likes.text = "点赞"
-                comments.text = "评论"
+                comments.text = "抢首评"
                 collects.text = "收藏"
                 shares.text = "分享"
-            }
-
-            //input.requestFocus()
-//            input.isFocusable = true
-
-            //点击效果只有点击第二次才会触发的，第一次点击软键盘是会弹出的，如果设置focusableInTouchMode=false能保证第一次触发点击方法，但是软键盘不会自动弹出，通过代码也不会弹出
-            input.setOnClickListener {
-                Log.e("keyBoardManager", "点击了")
-                listener.showCommentPopuWindow(input)
-            }
-
-            clear.setOnClickListener {
-
-                if (hideView) {
-                    rightView.visibility = View.VISIBLE
-                    bottomView.visibility = View.VISIBLE
-                } else {
-                    rightView.visibility = View.GONE
-                    bottomView.visibility = View.GONE
-
-                }
-                hideView = !hideView
             }
 
 
@@ -197,7 +170,7 @@ public class VideoPagerAdapter(
                 }
 
                 if (it.comments == 0) {
-                    comments.text = "评论"
+                    comments.text = "抢首评"
                 } else {
                     comments.text = it.comments.toString()
                 }
@@ -341,6 +314,11 @@ public class VideoPagerAdapter(
                     )
                 }
             })
+
+            commentItem.setOnClickListener {
+                val commentCounts = videoData?.comments ?: 0
+                listener.showComments(video.code, commentCounts)
+            }
         }
 
         fun handleItemLike(position: Int) {
@@ -381,8 +359,6 @@ public class VideoPagerAdapter(
 
     interface VerticalVideoListener {
 
-        fun showCommentPopuWindow(view: View)
-
         fun onDoubleTap()
 
         fun onSingleTap()
@@ -394,5 +370,7 @@ public class VideoPagerAdapter(
         fun updateUserAttention(userCode: Int)
 
         fun startUserActivity(user: User)
+
+        fun showComments(videoCode: Int, commentCounts: Int)
     }
 }

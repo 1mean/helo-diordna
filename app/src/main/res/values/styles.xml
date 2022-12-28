@@ -483,5 +483,10 @@
         <!--设置了没效果-->
         <!--<item name="android:windowExitAnimation">@anim/animate_short_input_out</item>-->
     </style>
+    <style name="style_short_comment_animation">
+        <item name="android:windowEnterAnimation">@anim/animate_short_comment_in</item>
+        <!--设置了没效果-->
+        <!--<item name="android:windowExitAnimation">@anim/animate_short_input_out</item>-->
+    </style>
 
 </resources>

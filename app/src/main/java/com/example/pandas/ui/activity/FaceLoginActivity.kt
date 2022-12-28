@@ -35,7 +35,6 @@ import org.opencv.objdetect.CascadeClassifier
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.util.concurrent.Executors
 import kotlin.concurrent.thread
 import kotlin.math.roundToInt
 
@@ -68,7 +67,11 @@ public class FaceLoginActivity : BaseActivity<BaseViewModel, ActivityFaceLoginBi
                                 XPopup.Builder(this@FaceLoginActivity).dismissOnBackPressed(true)
                                     .isLightNavigationBar(true)
                                     .isViewMode(false)
-                                    .asLoading(null, R.layout.layout_waiting)
+                                    .asLoading(
+                                        null,
+                                        R.layout.layout_waiting,
+                                        LoadingPopupView.Style.ProgressBar
+                                    )
                             loadingPopup!!.show()
                         } else {
                             loadingPopup!!.show()
@@ -88,7 +91,11 @@ public class FaceLoginActivity : BaseActivity<BaseViewModel, ActivityFaceLoginBi
                         XPopup.Builder(this@FaceLoginActivity).dismissOnBackPressed(true)
                             .isLightNavigationBar(true)
                             .isViewMode(false)
-                            .asLoading(null, R.layout.layout_waiting)
+                            .asLoading(
+                                null,
+                                R.layout.layout_waiting,
+                                LoadingPopupView.Style.ProgressBar
+                            )
                     loadingPopup!!.show()
                 } else {
                     loadingPopup!!.show()

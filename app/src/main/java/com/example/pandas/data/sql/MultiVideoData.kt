@@ -137,36 +137,6 @@ object MultiVideoData {
         fox2.vertical = false
         list.add(fox2)
 
-        val fox3 = PetVideo()
-        fox3.type = VideoType.FOX.ordinal
-        fox3.fileName = "pet_fox3"
-        fox3.code = 434
-        fox3.duration = 29
-        fox3.star = true
-        fox3.title = "雪 中 狐 仙"
-        fox3.releaseTime = 1641986039
-        fox3.originalUrl = "https://www.bilibili.com/video/BV12q4y1w7Lu"
-        fox3.tags = "狐,萌宠,动物圈"
-        fox3.authorId = 282239993
-        fox3.cover = "https://i1.hdslb.com/bfs/archive/ab79a89823f227574f663269a6e86667cb8b7510.jpg"
-        fox3.vertical = true
-        list.add(fox3)
-
-        val fox4 = PetVideo()
-        fox4.type = VideoType.FOX.ordinal
-        fox4.fileName = "pet_fox4"
-        fox4.code = 435
-        fox4.duration = 127
-        fox4.star = true
-        fox4.title = "[混剪][北极狐]北极精灵——独属冰原的极致可爱与美丽"
-        fox4.releaseTime = 1584292645
-        fox4.originalUrl = "https://www.bilibili.com/video/BV1fE411373z"
-        fox4.tags = "狐,萌宠,动物圈"
-        fox4.authorId = 11814388
-        fox4.cover = "https://i1.hdslb.com/bfs/archive/30b259a24c170e6e27d9eeb315cce28345cec181.jpg"
-        fox4.vertical = false
-        list.add(fox4)
-
         val fox5 = PetVideo()
         fox5.type = VideoType.FOX.ordinal
         fox5.fileName = "pet_fox5"
@@ -338,22 +308,6 @@ object MultiVideoData {
         fox16.vertical = false
         list.add(fox16)
 
-        val fox17 = PetVideo()
-        fox17.type = VideoType.FOX.ordinal
-        fox17.fileName = "pet_fox17"
-        fox17.code = 1063
-        fox17.duration = 23
-        fox17.star = true
-        fox17.title = "【狐狸】你获得纣王体验卡一张"
-        fox17.releaseTime = 1644037231
-        fox17.originalUrl = "https://www.bilibili.com/video/BV1Nb4y177Aw"
-        fox17.tags = "狐狸,萌宠,动物圈"
-        fox17.authorId = 282239993
-        fox17.cover =
-            "https://i1.hdslb.com/bfs/archive/0561694384bc44f60a74ed0eddcc05405343c3e0.jpg"
-        fox17.vertical = true
-        list.add(fox17)
-
         val fox18 = PetVideo()
         fox18.type = VideoType.FOX.ordinal
         fox18.fileName = "pet_fox18"
@@ -417,22 +371,6 @@ object MultiVideoData {
             "https://i0.hdslb.com/bfs/archive/d45ea8c0410af997ec4f82200bc65df35b9f63da.jpg"
         fox21.vertical = false
         list.add(fox21)
-
-        val fox22 = PetVideo()
-        fox22.type = VideoType.FOX.ordinal
-        fox22.fileName = "pet_fox22"
-        fox22.code = 1068
-        fox22.duration = 21
-        fox22.star = true
-        fox22.title = "狐狐试图舔掉自己的糖霜 ©itseriksen"
-        fox22.releaseTime = 1643698094
-        fox22.originalUrl = "https://www.bilibili.com/video/BV1hr4y1Y7T5"
-        fox22.tags = "狐狸,萌宠,动物圈"
-        fox22.authorId = 28426235
-        fox22.cover =
-            "https://i0.hdslb.com/bfs/archive/e3fc7dc0deb9ffe001550e765e406e78f3b8d9e9.jpg"
-        fox22.vertical = true
-        list.add(fox22)
 
         val fox23 = PetVideo()
         fox23.type = VideoType.FOX.ordinal

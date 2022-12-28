@@ -13,6 +13,7 @@ import com.example.pandas.databinding.DialogDeleteBinding
 import com.example.pandas.databinding.DialogShareBinding
 import com.example.pandas.ui.adapter.ShareDialogAdapter
 import com.example.pandas.ui.adapter.decoration.ShareItemDecoration
+import com.example.pandas.ui.ext.setAnimation
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 /**

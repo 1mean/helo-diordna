@@ -25,4 +25,8 @@ object AppInfos {
     //const val appKey = "62e9ec5305844627b50de961"
     const val appKey = "62ed041d05844627b5129e25"
     const val channel = "um_helo"
+
+
+    //阈值
+    const val useTempShortComment = true
 }

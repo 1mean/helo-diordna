@@ -105,7 +105,7 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
                     loadingPopup = XPopup.Builder(this@CollectActivity).dismissOnBackPressed(true)
                         .isLightNavigationBar(true)
                         .isViewMode(false)
-                        .asLoading(null, R.layout.layout_waiting)
+                        .asLoading(null, R.layout.layout_waiting,LoadingPopupView.Style.ProgressBar)
                     loadingPopup!!.show()
                 } else {
                     loadingPopup!!.show()
