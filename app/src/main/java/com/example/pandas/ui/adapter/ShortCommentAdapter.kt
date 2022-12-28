@@ -148,10 +148,20 @@ public class ShortCommentAdapter(
             content.text = spannableStringBuilder
             time.text = TimeUtils.descriptiveData(comment.commitTime)
             likes.text = comment.likeNum.toString()
+            replyCountsView.visibility = View.VISIBLE
+            comments.text = "展开$replyCounts 条回复"
+
 
             if (comment.booleanFlag) {//已经被点开了
                 replyRecyclerView.visibility = View.VISIBLE
-
+                Log.e("comment_adapter","${adapterMap.containsKey(position)}")
+                Log.e("comment_adapter","${adapterMap[position]}")
+                if (adapterMap.containsKey(position)) {
+                    replyRecyclerView.run {
+                        layoutManager = LinearLayoutManager(mContext)
+                        adapter = adapterMap[position]
+                    }
+                }
             } else {
                 replyRecyclerView.visibility = View.GONE
                 replyRecyclerView.adapter = null
@@ -170,8 +180,6 @@ public class ShortCommentAdapter(
                     "position:$position ,${comment.booleanFlag}, itemCounts:$count"
                 )
             }
-
-            comments.text = "展开${comment.replyCounts}条回复"
 
             var isInit = false
             replyCountsView.setOnClickListener {
