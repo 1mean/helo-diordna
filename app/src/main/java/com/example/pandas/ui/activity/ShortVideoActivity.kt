@@ -24,8 +24,8 @@ import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoPagerAdapter
 import com.example.pandas.ui.ext.addRefreshAnimation
 import com.example.pandas.ui.ext.startUserInfoActivity
-import com.example.pandas.ui.view.dialog.ShortCommentPopuWindow
-import com.example.pandas.ui.view.dialog.ShortInputPopuWindow
+import com.example.pandas.ui.view.dialog.ShortRightPopuWindow
+import com.example.pandas.ui.view.dialog.ShortBottoomPopuWindow
 import com.example.pandas.utils.StatusBarUtils
 import com.example.pandas.utils.VibrateUtils
 import com.google.android.exoplayer2.util.Util
@@ -61,7 +61,7 @@ public class ShortVideoActivity :
 
     private var manager: VerticalPlayManager? = null
     private var keyBoardManager: SoftInputManager? = null
-    private var inputPopWindow: ShortInputPopuWindow? = null
+    private var inputPopWindow: ShortBottoomPopuWindow? = null
 
     private val mHandler: Handler = Handler(Looper.getMainLooper())
 
@@ -314,11 +314,11 @@ public class ShortVideoActivity :
         mHandler.postDelayed({
             if (inputPopWindow == null) {
 
-                inputPopWindow = ShortInputPopuWindow(
+                inputPopWindow = ShortBottoomPopuWindow(
                     this@ShortVideoActivity,
                     binding.editVertical.text.toString(),
                     object :
-                        ShortInputPopuWindow.ShortPopuListener {
+                        ShortBottoomPopuWindow.ShortPopuListener {
                         override fun openEmoji(view: View) {
                             Log.e("1mean", "隐藏软键盘")
                             keyBoardManager?.hideKeyBoard(this@ShortVideoActivity, view)
@@ -451,7 +451,7 @@ public class ShortVideoActivity :
 
     override fun showComments(videoCode: Int, commentCounts: Int) {
 
-        val popupView = ShortCommentPopuWindow(this, videoCode, commentCounts)
+        val popupView = ShortRightPopuWindow(this, videoCode, commentCounts)
         XPopup.Builder(this)
             .moveUpToKeyboard(false) //如果不加这个，评论弹窗会移动到软键盘上面
             //.enableDrag(false)

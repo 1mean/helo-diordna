@@ -29,12 +29,12 @@ import com.example.pandas.ui.adapter.decoration.ShortEmoji2Decoration
 import com.example.pandas.ui.adapter.decoration.ShortEmojiDecoration
 
 /**
- * @description: ShortInputPopuWindow
+ * @description: ShortBottoomPopuWindow
  * @author: dongyiming
  * @date: 8/18/22 5:30 下午
  * @version: v1.0
  */
-public class ShortInputPopuWindow(
+public class ShortBottoomPopuWindow(
     private val activity: Activity,
     private val editStr: String,
     private val listener: ShortPopuListener
@@ -189,7 +189,7 @@ public class ShortInputPopuWindow(
         }
     }
 
-    fun setBackDark(): ShortInputPopuWindow {
+    fun setBackDark(): ShortBottoomPopuWindow {
         //设置背景变暗
         activity.window.run {
             attributes.alpha = 0.7f //代表透明程度，范围为0 - 1.0f

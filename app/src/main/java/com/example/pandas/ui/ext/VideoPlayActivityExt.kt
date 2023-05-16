@@ -163,10 +163,10 @@ fun VideoInfosFragment.initVideo(video: PetVideo) {
         binding.txtVideoInfoTitle.text = title
     }
 
-    binding.txtInfoTime.text = TimeUtils.getStringDate(video.releaseTime)
+    binding.txtInfoTime.text = TimeUtils.getStringDate2(video.releaseTime * 1000)
 
     binding.txtVideoInfoFans.text = "1粉丝"
-    binding.txtInfoComment.text = " -"
+    binding.txtInfoComment.text = " - "
 
     val playCounts: Int
     if (video.videoData == null) {

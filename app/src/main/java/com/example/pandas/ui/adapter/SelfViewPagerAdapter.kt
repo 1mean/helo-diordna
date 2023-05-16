@@ -1,5 +1,6 @@
 package com.example.pandas.ui.adapter
 
+import NullFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -16,13 +17,15 @@ public class SelfViewPagerAdapter(
     fragmentActivity: FragmentActivity
 ) :
     FragmentStateAdapter(fragmentActivity) {
-    override fun getItemCount(): Int = 2
+    override fun getItemCount(): Int = 3
 
     override fun createFragment(position: Int): Fragment {
         return if (position == 0) {
             SelfChildSettingFragment()
-        } else {
+        } else if(position == 1) {
             SelfChildCacheFragment()
+        } else {
+            NullFragment()
         }
     }
 }

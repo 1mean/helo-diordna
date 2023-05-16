@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp">
 
+        <!-- app:tl_indicator_color="@color/color_self_tab_indicator" 蓝色-->
         <com.flyco.tablayout.SlidingTabLayout2
                 android:id="@+id/slide_tab_setting"
                 android:layout_width="wrap_content"
@@ -28,7 +29,7 @@
                 app:tl_textBold="SELECT"
                 app:tl_tab_width="56dp"
                 android:layout_marginStart="15dp"
-                app:tl_indicator_color="@color/color_self_tab_indicator"
+                app:tl_indicator_color="@color/color_home_tab_text_selected"
                 app:tl_textSelectColor="@color/black"
                 app:tl_textsize="@dimen/common_sz_16_dimens"
                 app:tl_selectTextSize="@dimen/common_sz_25_dimens"

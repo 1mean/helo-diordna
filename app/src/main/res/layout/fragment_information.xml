@@ -172,7 +172,7 @@
                     android:layout_height="15dp"
                     app:layout_constraintLeft_toRightOf="@id/txt_info_counts"
                     app:layout_constraintBottom_toBottomOf="@id/image_info_counts"
-                    android:layout_marginStart="11dp"
+                    android:layout_marginStart="21dp"
                     android:src="@mipmap/img_video_comment" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -193,7 +193,7 @@
                     android:layout_height="15dp"
                     app:layout_constraintLeft_toRightOf="@id/txt_info_comment"
                     app:layout_constraintBottom_toBottomOf="@id/image_info_counts"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="30dp"
                     android:textColor="@color/color_eye_txt_time"
                     android:gravity="center"
                     android:includeFontPadding="false"

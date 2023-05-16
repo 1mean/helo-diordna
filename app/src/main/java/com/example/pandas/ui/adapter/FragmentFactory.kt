@@ -35,9 +35,9 @@ public class FragmentFactory {
                     PAGE_ONE -> mFragment = HomeFragment()
                     PAGE_TWO -> mFragment = LiveFragment()
 //                    PAGE_THREE -> mFragment = OtherFragment()
-                    PAGE_THREE -> mFragment = FaceFragment()
-                    PAGE_FOUR -> mFragment = CutePetFragment()
-                    PAGE_FIVE -> mFragment = SelfFragment()
+//                    PAGE_THREE -> mFragment = FaceFragment()  //人脸识别
+                    PAGE_THREE -> mFragment = CutePetFragment()
+                    PAGE_FOUR -> mFragment = SelfFragment()
                 }
                 fragments[page] = mFragment!!
             }

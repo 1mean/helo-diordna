@@ -8,18 +8,18 @@
             android:title="@string/home_button1" />
 
     <item
-            android:id="@+id/menu_pet"
+            android:id="@+id/menu_news"
             android:icon="@drawable/selector_button_pet"
             android:title="@string/home_button2" />
 
     <item
-            android:id="@+id/menu_video"
+            android:id="@+id/menu_more"
             android:icon="@drawable/selector_button_video"
             android:title="@string/home_button3" />
-    <item
+    <!--<item
             android:id="@+id/menu_face"
             android:icon="@drawable/selector_button_face"
-            android:title="@string/home_button4" />
+            android:title="@string/home_button4" />-->
     <item
             android:id="@+id/menu_mine"
             android:icon="@drawable/selector_button_mine"

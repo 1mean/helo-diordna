@@ -19,7 +19,7 @@ public class MainFragment : BaseLazyFragment<BaseViewModel, FragmentMainBinding>
 
         binding.vpHome.apply {
             adapter = HomeAdapter(mActivity)
-            offscreenPageLimit = 5
+            offscreenPageLimit = 4
             //setCurrentItem(0, false)
             isUserInputEnabled = false //禁止滑动
         }
@@ -29,10 +29,10 @@ public class MainFragment : BaseLazyFragment<BaseViewModel, FragmentMainBinding>
             setOnItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.menu_home -> binding.vpHome.setCurrentItem(0, false)
-                    R.id.menu_pet -> binding.vpHome.setCurrentItem(1, false)
-                    R.id.menu_video -> binding.vpHome.setCurrentItem(2, false)
-                    R.id.menu_face -> binding.vpHome.setCurrentItem(3, false)
-                    R.id.menu_mine -> binding.vpHome.setCurrentItem(4, false)
+                    R.id.menu_news -> binding.vpHome.setCurrentItem(1, false)
+                    R.id.menu_more -> binding.vpHome.setCurrentItem(2, false)
+                    //R.id.menu_face -> binding.vpHome.setCurrentItem(3, false)
+                    R.id.menu_mine -> binding.vpHome.setCurrentItem(3, false)
                 }
                 true //true表示拦截，不跳转
             }

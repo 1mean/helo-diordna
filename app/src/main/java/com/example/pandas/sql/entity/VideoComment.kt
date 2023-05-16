@@ -10,7 +10,6 @@ import androidx.room.PrimaryKey
  *   - 一级弹幕:视频弹幕
  *   - 二级弹幕:回复一级弹幕的弹幕
  *   - 三级弹幕:回复二级弹幕
- *
  */
 @Entity(tableName = "comment")
 data class VideoComment(
@@ -48,7 +47,7 @@ data class VideoComment(
     var top: Boolean = false,//消息是否被up主置顶了
 
     @ColumnInfo
-    var replyCounts: Int = 0,
+    var replyCounts: Int = 0,//从服务器获取的评论数(在竖屏页面里，该值为第一次获取的评论数，永远不变)
     @ColumnInfo
     var commentType: Int = 0, //弹幕类型，有图片
 
@@ -63,6 +62,13 @@ data class VideoComment(
     var replyComments: MutableList<CommentAndUser> = mutableListOf(),
 
     @Ignore
-    var booleanFlag: Boolean = false
+    var booleanFlag: Boolean = false, //是否已经展开二级和三级评论列表
+    @Ignore
+    var booleanFlag2: Boolean = false,//是否是自己回复的裸体一级弹幕，该item不用展示加载更多
+    @Ignore
+    var intFlag: Int = 0,//当前list展示第几页
+
+    @Ignore
+    var newReplyCounts: Int = 0,//中间新增加的评论数
 
 )

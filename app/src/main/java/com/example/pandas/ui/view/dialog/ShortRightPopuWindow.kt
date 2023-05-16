@@ -1,7 +1,6 @@
 package com.example.pandas.ui.view.dialog
 
 import ShortCommentAdapter
-import ShortReplyCommentAdapter
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
@@ -11,10 +10,14 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.biz.manager.SoftInputManager
 import com.example.pandas.biz.viewmodel.CommentViewModel
 import com.example.pandas.databinding.DialogBottomCommentBinding
+import com.example.pandas.sql.entity.CommentAndUser
+import com.example.pandas.sql.entity.User
+import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.lxj.xpopup.XPopup
@@ -46,7 +49,7 @@ import kotlinx.coroutines.*
  * @date: 8/4/22 12:59 下午
  * @version: v1.0
  */
-public class ShortCommentPopuWindow(private val mContext: Context) : BottomPopupView(mContext),
+public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupView(mContext),
     ShortCommentAdapter.CommentListener {
 
     private var videoCode: Int = 0
@@ -57,7 +60,7 @@ public class ShortCommentPopuWindow(private val mContext: Context) : BottomPopup
     val binding: DialogBottomCommentBinding get() = _binding!!
 
     private val mAdapter: ShortCommentAdapter by lazy { ShortCommentAdapter(mutableListOf(), this) }
-    private var inputPopWindow: ShortInputPopuWindow? = null
+    private var inputPopWindow: ShortBottoomPopuWindow? = null
     private val mHandler: Handler = Handler(Looper.getMainLooper())
     private var keyBoardManager: SoftInputManager? = null
 
@@ -134,8 +137,30 @@ public class ShortCommentPopuWindow(private val mContext: Context) : BottomPopup
         }
 
         inputView.setOnClickListener {
+            val content = txtCommentIn.text.toString()
             //弹出新的弹窗用来输入
-            val textBottomPopup = ShortCommentInputPop(mContext)
+            val textBottomPopup = ShortReplyPopuWindow(mContext, content,
+                object : ShortReplyPopuWindow.CommentInputListener {
+                    override fun sendComment(message: String) {
+                        commentCounts += 1
+                        val comment = VideoComment(
+                            videoCode = videoCode,
+                            fromUserCode = AppInfos.AUTHOR_ID,
+                            type = 1,
+                            commentId = commentCounts,
+                            commitTime = System.currentTimeMillis(),
+                            content = message
+                        )
+                        val user = User(
+                            userCode = AppInfos.AUTHOR_ID,
+                            userName = AppInfos.AUTHOR_NAME,
+                            headUrl = AppInfos.HEAD_URL
+                        )
+                        val commentAndUser = CommentAndUser(comment, user)
+                        mAdapter.loadOne(commentAndUser, 0, 1)
+                        recyclerView.scrollToPosition(0)
+                    }
+                })
             XPopup.Builder(mContext)
                 .autoOpenSoftInput(true)
                 .autoFocusEditText(true)
@@ -208,65 +233,82 @@ public class ShortCommentPopuWindow(private val mContext: Context) : BottomPopup
 
 
     override fun loadMore(
-        isRefreshing: Boolean,
+        startIndex: Int,
+        pageCount: Int,
         position: Int,
         videoCode: Int,
-        commentId: Int,
-        startIndex: Int
+        commentId: Int
     ) {
         commentScope.launch {
-            val list = PetManagerCoroutine.getPageReplyComments(videoCode, commentId, startIndex, 3)
+            //val commentIds = 33
+            val list = PetManagerCoroutine.getPageReplyComments(
+                videoCode,
+                commentId,
+                startIndex,
+                pageCount
+            )
             val holder =
                 recyclerView.findViewHolderForAdapterPosition(position) as? ShortCommentAdapter.ReplyCommentViewHolder
-            holder?.let {
-                it.replyRecyclerView.adapter?.let { adapter ->
-                    if (adapter is ShortReplyCommentAdapter) {
-                        (adapter as ShortReplyCommentAdapter).refreshAdapter(list)
-                    }
-                }
-                it.comments.text = "展开更多回复"
-            }
+            holder?.loadReplyData(position,list)
         }
     }
 
-    /*private fun showCommentPopuWindow() {
-        mHandler.postDelayed({
-            if (inputPopWindow == null) {
-                inputPopWindow = ShortInputPopuWindow(
-                    activity!!,
-                    binding.editShortComment.text.toString(),
-                    object :
-                        ShortInputPopuWindow.ShortPopuListener {
-                        override fun openEmoji(view: View) {
-                            Log.e("1mean", "隐藏软键盘")
-                            keyBoardManager?.hideKeyBoard(activity!!, view)
-                        }
+    /**
+     * 这里回复的都是2级和3级弹幕
+     */
+    override fun reply(
+        fromName: String,
+        fromUserCode: Int,
+        position: Int,
+        commentId: Int,
+        videoCode: Int,
+        type: Int
+    ) {
+        val textBottomPopup = ShortReplyPopuWindow(
+            mContext,
+            fromName,
+            object : ShortReplyPopuWindow.CommentInputListener {
+                override fun sendComment(message: String) {
 
-                        override fun sendComment(comment: String) {
-                            //sendVideoComment(comment)
-                        }
+                    commentCounts += 1
+                    val comment = VideoComment(
+                        videoCode = videoCode,
+                        topCommentId = commentId,
+                        fromUserCode = AppInfos.AUTHOR_ID,
+                        toUserCode = fromUserCode,
+                        toUserName = fromName,
+                        commentId = commentCounts,
+                        type = type,
+                        commitTime = System.currentTimeMillis(),
+                        content = message
+                    )
+                    val user = User(
+                        userCode = AppInfos.AUTHOR_ID,
+                        userName = AppInfos.AUTHOR_NAME,
+                        headUrl = AppInfos.HEAD_URL
+                    )
+                    val commentAndUser = CommentAndUser(comment, user)
+                    val holder =
+                        recyclerView.findViewHolderForAdapterPosition(position) as? ShortCommentAdapter.ReplyCommentViewHolder
+                    holder?.loadOne(commentAndUser, position)
+                }
+            })
+        XPopup.Builder(mContext)
+            .autoOpenSoftInput(true)
+            .autoFocusEditText(true)
+            .setPopupCallback(object : SimpleCallback() {
+                override fun onShow(popupView: BasePopupView) {
 
-                        override fun dissmiss(comment: String) {
-                            if (comment.isNotEmpty()) {
-                                mHandler.post {
-                                    val message =
-                                        QqEmoticons.parseAndShowEmotion(
-                                            context!!,
-                                            comment
-                                        )
-                                    binding.editShortComment.text =
-                                        Editable.Factory.getInstance().newEditable(message)
-                                    binding.btnShortCommentSend.visibility = View.VISIBLE
-                                }
-                            }
-                        }
-                    })
-            }
-//            inputPopWindow!!.setBackDark().onShow(this@ShortVideoActivity.currentFocus!!)
+                }
 
-            inputPopWindow!!.setBackDark().onShow(this.view!!)
-            keyBoardManager?.showKeyBoard(activity!!, this.view!!)
-        }, 200)
-    }*/
+                override fun onDismiss(popupView: BasePopupView) {
+                    val comment: String = textBottomPopup.getComment()
+                    if (comment.isNotEmpty()) {
 
+                    }
+                }
+            })
+            .asCustom(textBottomPopup)
+            .show()
+    }
 }

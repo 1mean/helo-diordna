@@ -1,14 +1,10 @@
 package com.example.pandas.ui.view.dialog
 
-import ShortCommentAdapter
 import android.animation.ObjectAnimator
 import android.content.Context
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageButton
@@ -21,14 +17,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.biz.manager.SoftInputManager
-import com.example.pandas.biz.viewmodel.CommentViewModel
 import com.example.pandas.data.qq.EmotionItem
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.DialogBottomCommentBinding
 import com.example.pandas.ui.adapter.decoration.ShortEmoji2Decoration
 import com.example.pandas.ui.adapter.decoration.ShortEmojiDecoration
-import com.example.pandas.utils.SoftInputUtils
 import com.lxj.xpopup.core.BottomPopupView
 import com.lxj.xpopup.util.KeyboardUtils
 
@@ -54,22 +47,21 @@ import com.lxj.xpopup.util.KeyboardUtils
  * @date: 8/4/22 12:59 下午
  * @version: v1.0
  */
-public class ShortCommentInputPop(private val mContext: Context) : BottomPopupView(mContext),
-    ShortCommentAdapter.CommentListener {
+public class ShortReplyPopuWindow(private val mContext: Context) : BottomPopupView(mContext) {
 
 
     private var inputStr: String? = null
-    private var mViewModel: CommentViewModel? = null
+    private var listener: CommentInputListener? = null
     private var _binding: DialogBottomCommentBinding? = null
     val binding: DialogBottomCommentBinding get() = _binding!!
 
-    private val mAdapter: ShortCommentAdapter by lazy { ShortCommentAdapter(mutableListOf(), this) }
-    private var inputPopWindow: ShortInputPopuWindow? = null
-    private val mHandler: Handler = Handler(Looper.getMainLooper())
-    private var keyBoardManager: SoftInputManager? = null
-
-    constructor(context: Context, inputStr: String) : this(context) {
+    constructor(
+        context: Context,
+        inputStr: String,
+        listener: CommentInputListener
+    ) : this(context) {
         this.inputStr = inputStr
+        this.listener = listener
     }
 
     override fun getImplLayoutId(): Int = R.layout.dialog_vertical_input
@@ -108,6 +100,10 @@ public class ShortCommentInputPop(private val mContext: Context) : BottomPopupVi
             if (emojiView.isVisible) {
                 emojiView.visibility = View.GONE
             }
+        }
+
+        if (inputStr != null) {
+            editInput.hint = "回复 @$inputStr :"
         }
 
         editInput.addTextChangedListener { input ->
@@ -150,6 +146,10 @@ public class ShortCommentInputPop(private val mContext: Context) : BottomPopupVi
                     input_flag = true
                 }
             }
+        }
+        btnSend.setOnClickListener {
+            listener?.sendComment(editInput.text.toString())
+            dismiss()
         }
     }
 
@@ -209,14 +209,7 @@ public class ShortCommentInputPop(private val mContext: Context) : BottomPopupVi
         return editInput.text.toString()
     }
 
-    override fun loadMore(
-        isRefreshing: Boolean,
-        position: Int,
-        videoCode: Int,
-        commentId: Int,
-        startIndex: Int
-    ) {
-
-
+    interface CommentInputListener {
+        fun sendComment(message: String)
     }
 }

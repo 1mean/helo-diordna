@@ -40,9 +40,10 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="14dp" />
 
+                <!-- 144dp -->
                 <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edit"
-                        android:layout_width="144dp"
+                        android:layout_width="190dp"
                         android:layout_height="30dp"
                         android:drawableStart="@mipmap/img_home_edit_search"
                         android:background="@drawable/shape_home_search"
@@ -72,6 +73,7 @@
                         android:layout_height="46dp"
                         android:src="@mipmap/img_home_music1"
                         android:background="@null"
+                        android:visibility="gone"
                         android:layout_gravity="center_vertical|right"
                         tools:ignore="RtlHardcoded" />
 
@@ -85,7 +87,6 @@
                             android:id="@+id/img_dark"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@mipmap/img_home_message"
                             android:background="@null"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center_vertical|right"

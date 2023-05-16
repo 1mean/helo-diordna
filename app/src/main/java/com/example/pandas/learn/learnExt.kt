@@ -12,6 +12,7 @@ import androidx.core.animation.doOnStart
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
+import com.example.pandas.base.adapter.BaseCommonAdapter
 
 fun ViewGroup.circularClose(button: ImageButton, action: () -> Unit = {}) {
     ViewAnimationUtils.createCircularReveal(
@@ -96,3 +97,10 @@ sealed class Result<out T : Any> {
         }
     }
 }
+
+//FATAL EXCEPTION: main
+//Process: com.example.hello_diordna, PID: 31127
+//java.util.ConcurrentModificationException
+//      at java.util.ArrayList$SubList.size(ArrayList.java:1057)//这里不能点，但是能看到是SubList方法导致的bug，虽然这一步在直接报错点之前
+//      at ShortReplyCommentAdapter.loadMore(ShortReplyCommentAdapter.kt:42) //这里能直接点进去，定位到报错的代码，但无法找到与报错有什么关系
+//      at ShortCommentAdapter$ReplyCommentViewHolder.handle$lambda-6(ShortCommentAdapter.kt:292)

@@ -575,7 +575,7 @@
                             app:layout_constraintBottom_toBottomOf="@id/clayout_mine_exp"
                             app:layout_constraintLeft_toLeftOf="@id/clayout_mine_exp"
                             style="@style/style_self_setting_left_image"
-                            android:src="@mipmap/img_left_exp_blue" />
+                            android:src="@mipmap/img_left_exp_gray" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                             style="@style/style_self_setting_name"
@@ -641,7 +641,7 @@
                             app:layout_constraintBottom_toBottomOf="@id/clayout_setting_about"
                             app:layout_constraintLeft_toLeftOf="@id/clayout_setting_about"
                             style="@style/style_self_setting_left_image"
-                            android:src="@mipmap/img_left_about_blue2" />
+                            android:src="@mipmap/img_left_about_gray2" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                             style="@style/style_self_setting_name"
@@ -674,7 +674,7 @@
                             app:layout_constraintBottom_toBottomOf="@id/clayout_setting_logout"
                             app:layout_constraintLeft_toLeftOf="@id/clayout_setting_logout"
                             style="@style/style_self_setting_left_image"
-                            android:src="@mipmap/img_left_logout" />
+                            android:src="@mipmap/img_left_logout_gray" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                             style="@style/style_self_setting_name"

@@ -157,7 +157,7 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
                 }
             }
         }
-        loadLocalCircleImage(mActivity, R.mipmap.img_fanren_1, binding.imgDark)
+        loadLocalCircleImage(mActivity, R.mipmap.img_dota, binding.imgDark)
     }
 
     override fun firstOnResume() {

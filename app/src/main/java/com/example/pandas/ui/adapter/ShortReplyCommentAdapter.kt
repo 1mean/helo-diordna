@@ -1,4 +1,6 @@
 import android.annotation.SuppressLint
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +22,8 @@ import com.example.pandas.utils.TimeUtils
 public class ShortReplyCommentAdapter(private val commentUsers: MutableList<CommentAndUser>) :
     Adapter<ViewHolder>() {
 
+    private val handler: Handler = Handler(Looper.getMainLooper())
+
     @SuppressLint("NotifyDataSetChanged")
     fun refreshAdapter(list: MutableList<CommentAndUser>) {
 
@@ -33,9 +37,17 @@ public class ShortReplyCommentAdapter(private val commentUsers: MutableList<Comm
     fun loadMore(list: MutableList<CommentAndUser>) {
         if (list.isNotEmpty()) {
             val size = commentUsers.size
+            Log.e("1mean", "$size , ${list.size}")
             commentUsers.addAll(list)
             notifyItemRangeInserted(size, list.size)
         }
+    }
+
+    fun loadOne(commentAndUser: CommentAndUser) {
+
+        val size = commentUsers.size
+        commentUsers.add(commentAndUser)
+        notifyItemRangeInserted(size, 1)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -90,8 +102,8 @@ public class ShortReplyCommentAdapter(private val commentUsers: MutableList<Comm
         val likeImage = binding.imgReplyLike
         val likeText = binding.txtReplyLike
         val toImg = binding.imgReplyArrow
-        fun handle(position: Int) {
 
+        fun handle(position: Int) {
             val commentUser = commentUsers[position]
             val comment = commentUser.comment
             val user = commentUser.user
@@ -103,18 +115,20 @@ public class ShortReplyCommentAdapter(private val commentUsers: MutableList<Comm
             val contentBuilder = QqEmoticons.parseAndShowEmotion(context, comment.content)
             content.text = contentBuilder
 
-            time.text = TimeUtils.parseTime(comment.commitTime)
+            time.text = TimeUtils.descriptiveData(comment.commitTime)
 
             fromName.text = user.userName
 
-            if (comment.toUserName.isNotEmpty()) {
+            if (comment.type == 2) {
+                toImg.visibility = View.GONE
+                toName.visibility = View.GONE
+            } else {
                 toImg.visibility = View.VISIBLE
                 toName.visibility = View.VISIBLE
                 toName.text = comment.toUserName
-            } else {
-                toImg.visibility = View.GONE
-                toName.visibility = View.GONE
             }
         }
     }
+
+
 }

@@ -142,6 +142,7 @@ class PetManager {
                 }
                 recommendData.itemList = list
             } else {
+                delay(350)
                 val list = petDao.queryStarByPage(startIndex, counts)
                 if (list.isNotEmpty()) {
                     list.forEach {
@@ -863,9 +864,9 @@ class PetManager {
                         petDao.queryCommentReplyCounts(it.comment.videoCode, it.comment.commentId)
                     if (count > 0) {
                         it.comment.replyCounts = count
-                    } else{
+                    } /*else{
                         it.comment.replyCounts = (1..10).random()
-                    }
+                    }*/
                 }
             }
             list
@@ -881,7 +882,9 @@ class PetManager {
 
         return withContext(Dispatchers.Default) {
             //先获取一级弹幕
-            petDao.queryReplyComments(videoCode, 33, startIndex, counts)
+//            petDao.queryReplyComments(videoCode, 33, startIndex, counts)
+            delay(200)
+            petDao.queryReplyComments(videoCode, commentId, startIndex, counts)
         }
     }
 

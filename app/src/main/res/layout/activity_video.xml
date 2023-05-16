@@ -108,14 +108,15 @@
                             app:layout_constraintLeft_toLeftOf="@id/cl_tab"
                             android:layout_marginStart="25dp" />
 
-                    <androidx.appcompat.widget.AppCompatImageButton
+                    <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="40dp"
                             android:layout_height="30dp"
                             app:layout_constraintTop_toTopOf="@id/cl_tab"
                             app:layout_constraintBottom_toBottomOf="@id/cl_tab"
                             app:layout_constraintRight_toRightOf="@id/cl_tab"
                             android:layout_marginEnd="12dp"
-                            android:src="@mipmap/img_tanmu_close"
+                            android:text="关闭弹幕"
+                            android:visibility="gone"
                             android:background="@drawable/shape_video_danmu_close" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
