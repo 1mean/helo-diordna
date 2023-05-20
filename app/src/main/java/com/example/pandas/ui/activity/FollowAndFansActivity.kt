@@ -26,7 +26,7 @@ public class FollowAndFansActivity : BaseActivity<SelfViewModel, ActivityFollowB
 
         StatusBarUtils.updataStatus(this, true, false, R.color.white)
 
-        val index = intent.getIntExtra("FollowsOrFans", -1)
+        val index = intent.getIntExtra("FollowsOrFans", 0)
         binding.layoutFollowTop.ibnTopFinish.setOnClickListener { finish() }
         binding.layoutFollowTop.txtTopName.text = resources.getString(R.string.str_mine_friends)
 

@@ -101,7 +101,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="34dp">
+                    android:layout_height="34dp"
+                    android:layout_marginTop="10dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -117,12 +118,20 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.example.pandas.ui.view.GridTextView
-                    android:id="@+id/grid_search"
+            <com.example.pandas.ui.view.MaxHeightNestedScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginEnd="7dp" />
+                    app:maxHeight="205dp"
+                    android:layout_marginTop="5dp"
+                    android:scrollbars="vertical">
+
+                <com.example.pandas.ui.view.GridTextView
+                        android:id="@+id/grid_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:layout_marginEnd="7dp" />
+            </com.example.pandas.ui.view.MaxHeightNestedScrollView>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/cl_clear"

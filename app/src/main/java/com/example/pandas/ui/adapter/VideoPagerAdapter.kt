@@ -16,7 +16,7 @@ import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.ext.addItemAnimation
-import com.example.pandas.ui.ext.addItemAnimation2
+import com.example.pandas.ui.ext.addScaleAnimation
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.utils.TimeUtils
 import com.google.android.exoplayer2.ui.DefaultTimeBar
@@ -195,7 +195,7 @@ public class VideoPagerAdapter(
             collectItem.setOnClickListener {
                 val data = list[position]
                 if (data.videoData == null) {
-                    addItemAnimation2(collectImg)
+                    addScaleAnimation(collectImg)
                     collectImg.setImageResource(R.mipmap.img_vertical_collected)
                     collects.text = "1"
                     val vd = VideoData(
@@ -221,7 +221,7 @@ public class VideoPagerAdapter(
                             vd.collects = collectCount
                             listener.collect(false, data.code)
                         } else {
-                            addItemAnimation2(collectImg)
+                            addScaleAnimation(collectImg)
                             collectImg.setImageResource(R.mipmap.img_vertical_collected)
                             val collectCount = vd.collects + 1
                             collects.text = collectCount.toString()

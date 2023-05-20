@@ -131,7 +131,7 @@ public class GridTextView : ViewGroup {
                 var top = margin
                 var right = 0
                 var bottom = 0
-                for (position in 0 until list.size) {
+                for (position in list.indices) {
                     val childView = getChildAt(position)
                     if (childView != null) {
 

@@ -107,7 +107,7 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
         }
         dBinding.rlayoutCancel.setOnClickListener { _ ->
 
-            mViewModel.unFollow(mActivity, userCode)
+            mViewModel.updateAttention(userCode)
             val holder = binding.recyclerLayout.findViewHolderForLayoutPosition(position)
             mAdapter.updateItem(position, holder)
             bottomSheetDialog.dismiss()

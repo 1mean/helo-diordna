@@ -64,6 +64,8 @@ public class LiveFragment : BaseLazyFragment<LiveViewModel, FragmentLivingBindin
                 }
             })
         }
+
+
     }
 
     override fun createObserver() {

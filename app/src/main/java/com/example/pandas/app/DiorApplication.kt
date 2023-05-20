@@ -41,8 +41,8 @@ class DiorApplication : Application() {
 //                petDao.deleteComment(comment)
 //            }
 
-            val list = ShortCommentData.getList()
-            petDao.insertComment(list)
+//            val list = ShortCommentData.getList()
+//            petDao.insertComment(list)
 
 
             /* add data */

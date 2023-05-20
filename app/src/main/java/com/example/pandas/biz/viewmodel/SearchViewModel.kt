@@ -24,8 +24,7 @@ import kotlinx.coroutines.withContext
  */
 public class SearchViewModel : BaseViewModel() {
 
-    var keyWords:String = ""
-
+    var keyWords: String = ""
 
     private var startIndex = 0
     private var hotMore = true//是否有更多
@@ -78,7 +77,7 @@ public class SearchViewModel : BaseViewModel() {
     fun saveSearchHistory(context: Context) {
 
         viewModelScope.launch {
-            withContext(Dispatchers.Default){
+            withContext(Dispatchers.Default) {
                 SPUtils.putSearchList(context, AppInfos.SEARCH_KEY, keyWords)
             }
         }
@@ -102,7 +101,7 @@ public class SearchViewModel : BaseViewModel() {
 
         request({ PetManagerCoroutine.searchByPage(words, startIndex) },
             {
-
+                Log.e("1mean", "search counts:${it.size}")
                 hotMore = if (it.size > 10) {
                     it.removeLast()
                     true
@@ -134,15 +133,15 @@ public class SearchViewModel : BaseViewModel() {
     fun getHotSearch() {
 
         val list = mutableListOf(
-            "大熊猫 和花",
+            "大熊猫和花",
             "大熊猫宝宝",
-            "传说中的凤凰",
-            "月亮产房四宝",
+            "凤凰",
+            "月亮产房",
             "仙剑奇侠传",
-            "大熊猫成长记",
+            "舌尖上的斧头山",
             "刘亦菲",
-            "梅兰肉肉",
-            "中国之美",
+            "大熊猫萌兰",
+            "雪",
             "小熊猫"
         )
         hotSearchList.value = list

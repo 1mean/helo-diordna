@@ -17,7 +17,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
 
 /**
- * @description: 稍后再看
+ * @description: 我喜欢
  * @author: dongyiming
  * @date: 8/13/22 11:18 上午
  * @version: v1.0
@@ -101,9 +101,9 @@ public class LoveActivity : BaseActivity<HistoryViewModeL, ActivityLoveBinding>(
                 sure.setOnClickListener {
 
                     if (selectList.size == mAdapter.itemCount) {//删除所有
-                        mViewModel.removeLaters(selectList, true)
+                        mViewModel.removeLovers(selectList, true)
                     } else {
-                        mViewModel.removeLaters(selectList, false)
+                        mViewModel.removeLovers(selectList, false)
                     }
                     mAdapter.delete()
                     popWindow.dismiss()

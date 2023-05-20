@@ -46,7 +46,7 @@ public class CommentAdapter(
 
     override fun getItemCount(): Int = if (list.isEmpty()) 0 else list.size + 1
 
-    fun getOrder():Boolean = isOrderByTime
+    fun getOrder(): Boolean = isOrderByTime
 
     @SuppressLint("NotifyDataSetChanged")
     fun update(isRefresh: Boolean, data: MutableList<CommentAndUser>) {

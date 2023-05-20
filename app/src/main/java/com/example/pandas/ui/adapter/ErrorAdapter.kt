@@ -1,4 +1,5 @@
 package com.example.pandas.ui.adapter
+
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
@@ -11,7 +12,8 @@ import java.io.File
  * @date: 3/25/22 12:18 上午
  * @version: v1.0
  */
-public class ErrorAdapter(list: MutableList<File>) : BaseCommonAdapter<File>(list) {
+public class ErrorAdapter(list: MutableList<File>, val listener: ErrorListener) :
+    BaseCommonAdapter<File>(list) {
 
     override fun getLayoutId(): Int = R.layout.adapter_error
 
@@ -22,8 +24,13 @@ public class ErrorAdapter(list: MutableList<File>) : BaseCommonAdapter<File>(lis
         name.text = data.name
 
         holder.itemView.setOnClickListener {
-
+            listener.clickErrorItem(data)
         }
+    }
+
+    interface ErrorListener {
+
+        fun clickErrorItem(file: File)
     }
 
 }

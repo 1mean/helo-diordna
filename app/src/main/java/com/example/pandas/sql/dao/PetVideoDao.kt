@@ -71,6 +71,9 @@ interface PetVideoDao {
     fun deleteAllVideoData(list: MutableList<VideoData>)
 
     @Delete
+    fun deleteVideoData(videoData: VideoData)
+
+    @Delete
     fun deleteAllComments(list: MutableList<VideoComment>)
 
     @Query("delete from comment where videoCode=(:videoCode) and commentId=(:commentId)")
@@ -138,6 +141,9 @@ interface PetVideoDao {
 
     @Query("select * from video_data where videoCode=(:code)")
     suspend fun queryVideoDataByCode(code: Int): VideoData?
+
+    @Query("select * from video_data where videoCode=(:code)")
+    fun queryVideoDataByCode2(code: Int): VideoData
 
     @Query("select * from comment where commentId=(:commentId) and videoCode=(:videoCode)")
     fun queryCommentById(videoCode: Int, commentId: Int): VideoComment
@@ -326,6 +332,9 @@ interface PetVideoDao {
 
     @Query("select * from video_data where laterPlay=1")
     suspend fun queryAllLaters(): MutableList<VideoData>
+
+    @Query("select * from video_data where love=1")
+    suspend fun queryAllLoves(): MutableList<VideoData>
 
     @Query("select code,title,cover,authorId,duration from pet_video where code=(:code)")
     suspend fun queryViewDataByCode(code: Int): PetViewData

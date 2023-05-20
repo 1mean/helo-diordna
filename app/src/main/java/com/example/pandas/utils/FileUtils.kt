@@ -3,16 +3,19 @@ package com.example.pandas.utils
 import android.annotation.SuppressLint
 import android.content.ContentUris
 import android.content.Context
+import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import androidx.core.content.FileProvider
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
+import java.util.*
 
 
 /**
@@ -267,6 +270,138 @@ object FileUtils {
             cursor?.close()
         }
         return path
+    }
+
+    //打开类型的文件
+    fun openFile(context: Context, filePath: String): Intent? {
+        val file = File(filePath)
+        if (!file.exists()) return null
+        /* 取得扩展名 */
+        var end = file
+            .name
+            .substring(
+                file.name.lastIndexOf(".") + 1,
+                file.name.length
+            ).lowercase(Locale.getDefault())
+        end = end.trim { it <= ' ' }.lowercase(Locale.getDefault())
+        //		System.out.println(end);
+        /* 依扩展名的类型决定MimeType */return if (end == "apk") {
+            getApkFileIntent(context, filePath)
+        } else if (end == "ppt") {
+            getPptFileIntent(context, filePath)
+        } else if (end == "xls") {
+            getExcelFileIntent(context, filePath)
+        } else if (end == "doc") {
+            getWordFileIntent(context, filePath)
+        } else if (end == "pdf") {
+            getPdfFileIntent(context, filePath)
+        } else if (end == "txt") {
+            getTextFileIntent(context, filePath, false)
+        } else {
+            getAllIntent(context, filePath)
+        }
+    }
+
+    // Android获取一个用于打开APK文件的intent
+    fun getApkFileIntent(context: Context, param: String): Intent {
+        val intent = Intent(Intent.ACTION_VIEW)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            val contentUri: Uri = FileProvider.getUriForFile(
+                context,
+                "com.filepath.intent.MyFileProvider",
+                File(param)
+            )
+            intent.setDataAndType(contentUri, "application/vnd.android.package-archive")
+        } else {
+            intent.setDataAndType(
+                Uri.fromFile(File(param)),
+                "application/vnd.android.package-archive"
+            )
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        return intent
+    }
+
+    // Android获取一个用于打开PPT文件的intent
+    fun getPptFileIntent(context: Context, param: String): Intent {
+        val intent = Intent("android.intent.action.VIEW")
+        intent.addCategory("android.intent.category.DEFAULT")
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        //        Uri uri = Uri.fromFile(new File(param));
+        val uri: Uri =
+            FileProvider.getUriForFile(context, "com.filepath.intent.MyFileProvider", File(param))
+        intent.setDataAndType(uri, "application/vnd.ms-powerpoint")
+        return intent
+    }
+
+    // Android获取一个用于打开Excel文件的intent
+    fun getExcelFileIntent(context: Context, param: String): Intent {
+        val intent = Intent("android.intent.action.VIEW")
+        intent.addCategory("android.intent.category.DEFAULT")
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        //        Uri uri = Uri.fromFile(new File(param));
+        val uri: Uri =
+            FileProvider.getUriForFile(context, "com.filepath.intent.MyFileProvider", File(param))
+        intent.setDataAndType(uri, "application/vnd.ms-excel")
+        return intent
+    }
+
+    // Android获取一个用于打开Word文件的intent
+    fun getWordFileIntent(context: Context, param: String): Intent {
+        val intent = Intent("android.intent.action.VIEW")
+        intent.addCategory("android.intent.category.DEFAULT")
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        //        Uri uri = Uri.fromFile(new File(param));
+        val uri: Uri =
+            FileProvider.getUriForFile(context, "com.filepath.intent.MyFileProvider", File(param))
+        intent.setDataAndType(uri, "application/msword")
+        return intent
+    }
+
+    // Android获取一个用于打开PDF文件的intent
+    fun getPdfFileIntent(context: Context, param: String): Intent {
+        val intent = Intent("android.intent.action.VIEW")
+        intent.addCategory("android.intent.category.DEFAULT")
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        //        Uri uri = Uri.fromFile(new File(param));
+        val uri: Uri =
+            FileProvider.getUriForFile(context, "com.filepath.intent.MyFileProvider", File(param))
+        intent.setDataAndType(uri, "application/pdf")
+        return intent
+    }
+
+    // Android获取一个用于打开文本文件的intent
+    fun getTextFileIntent(context: Context, param: String, paramBoolean: Boolean): Intent {
+        val intent = Intent("android.intent.action.VIEW")
+        intent.addCategory("android.intent.category.DEFAULT")
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        if (paramBoolean) {
+            val uri1 = Uri.parse(param)
+            intent.setDataAndType(uri1, "text/plain")
+        } else {
+//            Uri uri2 = Uri.fromFile(new File(param));
+            val uri2: Uri = FileProvider.getUriForFile(
+                context,
+                //"$packageName",
+                "com.example.hello_diordna.fileprovider",
+                File(param)
+            )
+            intent.setDataAndType(uri2, "text/plain")
+        }
+        return intent
+    }
+
+    // Android获取一个用于打开APK文件的intent
+    fun getAllIntent(context: Context, param: String): Intent {
+        val intent = Intent()
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.action = Intent.ACTION_VIEW
+        //        Uri uri = Uri.fromFile(new File(param));
+        val uri: Uri =
+            FileProvider.getUriForFile(context, "com.filepath.intent.MyFileProvider", File(param))
+        intent.setDataAndType(uri, "*/*")
+        return intent
     }
 
 

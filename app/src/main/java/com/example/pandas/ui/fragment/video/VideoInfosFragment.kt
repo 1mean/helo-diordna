@@ -13,10 +13,7 @@ import com.example.pandas.databinding.FragmentInformationBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoRecoListAdapter
-import com.example.pandas.ui.ext.initLikeContainer
-import com.example.pandas.ui.ext.initUser
-import com.example.pandas.ui.ext.initVideo
-import com.example.pandas.ui.ext.setAnimation
+import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.dialog.AttentionBottomSheetDialog
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.um.shareManager
@@ -132,7 +129,6 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     isAttention = !isAttention
                 }
             }
-
             mAdapter.refreshAdapter(it.recoVideos)
             binding.viewVideoInfo.visibility = View.VISIBLE
         }
@@ -180,7 +176,8 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     binding.imgLike.setImageResource(R.mipmap.img_video_like)
                     videoData.likes -= 1
                 } else {
-                    setAnimation(binding.imgLike)
+                    //setAnimation(binding.imgLike)
+                    addItemAnimation(binding.imgLike)
                     binding.imgLike.setImageResource(R.mipmap.img_video_liked)
                     if (videoData.hate) {
                         binding.imgDislike.setImageResource(R.mipmap.img_video_dislike)
@@ -218,8 +215,17 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
             R.id.item_love -> {
                 if (videoData.love) {
                     binding.imgLove.setImageResource(R.mipmap.img_love_unpress)
+                    videoData.loves -= 1
                 } else {
+                    addScaleAnimation(binding.imgLove, 1.5f)
+                    videoData.loves += 1
                     binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
+                }
+                if (videoData.loves > 0) {
+                    binding.txtVideoLoves.text = videoData.loves.toString()
+                } else {
+                    binding.txtVideoLoves.text = "喜欢"
+                    videoData.loves = 0
                 }
                 videoData.love = !videoData.love
                 mViewModel.addOrUpdateVideoData(videoData)
@@ -230,6 +236,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     binding.imgCollect.setImageResource(R.mipmap.img_collect_unpress)
                     binding.txtVideoLike.text = videoData.likes.toString()
                 } else {
+                    addScaleAnimation(binding.imgCollect, 1.5f)
                     videoData.collects += 1
                     binding.imgCollect.setImageResource(R.mipmap.img_collect_pressed)
                 }
@@ -237,6 +244,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     binding.txtVideoCollect.text = videoData.collects.toString()
                 } else {
                     binding.txtVideoCollect.text = "收藏"
+                    videoData.collects = 0
                 }
                 videoData.collect = !videoData.collect
                 mViewModel.addOrUpdateVideoData(videoData)

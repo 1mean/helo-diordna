@@ -22,7 +22,7 @@ import com.example.pandas.biz.ext.loadLocalCircleImage
 import com.example.pandas.biz.viewmodel.MainViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
 import com.example.pandas.ui.activity.MessageActivity
-import com.example.pandas.ui.activity.SearchActivity
+import com.example.pandas.ui.activity.NewSearchActivity
 import com.example.pandas.ui.activity.ShortVideoActivity
 import com.example.pandas.ui.adapter.HomePagerAdapter
 import com.example.pandas.utils.SPUtils
@@ -120,7 +120,7 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 //        }
 
         binding.edit.setOnClickListener {
-            startActivity(Intent(mActivity, SearchActivity::class.java))
+            startActivity(Intent(mActivity, NewSearchActivity::class.java))
         }
 
         binding.imgHead.setOnClickListener {

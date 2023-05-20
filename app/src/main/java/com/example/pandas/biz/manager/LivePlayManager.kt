@@ -81,12 +81,12 @@ public class LivePlayManager(
                 }
             } else {
                 if (PlayerConfig.instance.hasMediaItem(videoCode)) {
-                    Log.e("LiveVIdeosss","6666")
+                    Log.e("LiveVIdeosss", "6666")
                     val mediaItemWrapper = PlayerConfig.instance.getMediaItem(videoCode)
                     mediaItemWrapper!!.mediaItem?.let {
                         mPlayer.addMediaItem(it)
                         val index = mediaIndexs.add(mediaInfo)
-                        Log.e("LiveVIdeosss","playPosition: ${mediaItemWrapper.playPosition}")
+                        Log.e("LiveVIdeosss", "playPosition: ${mediaItemWrapper.playPosition}")
                         mPlayer.seekTo(index, mediaItemWrapper.playPosition)
                     }
                 } else {
@@ -211,8 +211,15 @@ public class LivePlayManager(
     }
 
     fun getCurPosition(): Int = playPos
-    fun isPlaying(): Boolean = mPlayer.isPlaying
 
+//    fun isPlaying():Boolean{
+//        if (_mPlayer == null) {
+//            return false
+//        }
+//        return _mPlayer!!.isPlaying
+//    }
+
+    fun isPlaying(): Boolean = mPlayer.isPlaying
 
     private val mListener = object : Player.Listener {
         override fun onPlaybackStateChanged(playbackState: Int) {

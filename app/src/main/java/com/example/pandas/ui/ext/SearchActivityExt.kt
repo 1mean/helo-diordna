@@ -1,7 +1,9 @@
 package com.example.pandas.ui.ext;
 
+import android.util.Log
 import android.view.View
 import com.example.pandas.R
+import com.example.pandas.ui.activity.NewSearchActivity
 import com.example.pandas.ui.activity.SearchActivity
 import com.example.pandas.ui.fragment.search.SearchListFragment
 
@@ -30,6 +32,25 @@ fun SearchActivity.addOrShowFragment() {
     }
 }
 
+fun NewSearchActivity.addOrShowFragment() {
+    val transaction = supportFragmentManager.beginTransaction()
+    val fragment = supportFragmentManager.findFragmentByTag(TAG_SEARCH)
+
+//    fragment?.let {
+//        val fragments = supportFragmentManager.fragments
+//        if (fragments.size > 1) {
+//            supportFragmentManager.popBackStack()
+//            transaction.show(it).commit()
+//        }
+//    }
+
+    if (fragment == null) {
+        val newFragment = SearchListFragment()
+        transaction.add(R.id.llayout_search_content, newFragment, TAG_SEARCH)
+            .addToBackStack(null).commit()
+    }
+}
+
 fun SearchActivity.backPressed() {
     val fragment = supportFragmentManager.findFragmentByTag(TAG_SEARCH)
     if (fragment == null) {
@@ -39,7 +60,18 @@ fun SearchActivity.backPressed() {
     }
 }
 
+
 fun SearchActivity.clearEditText() {
+    binding.editSearch.text = null
+    binding.editSearch.requestFocus()
+    val fragment = supportFragmentManager.findFragmentByTag(TAG_SEARCH)
+    fragment?.let {
+        supportFragmentManager.popBackStack()
+        keyBoardVisible(binding.editSearch)
+    }
+}
+
+fun NewSearchActivity.clearEditText() {
     binding.editSearch.text = null
     binding.editSearch.requestFocus()
     val fragment = supportFragmentManager.findFragmentByTag(TAG_SEARCH)
@@ -53,6 +85,15 @@ fun SearchActivity.turnToSearchResultFragment() {
 
     keyBoardInvisible(binding.editSearch)
     binding.rvList.visibility = View.GONE
+    binding.editSearch.isCursorVisible = false
+    mViewModel.saveSearchHistory(this)
+
+    addOrShowFragment()
+}
+
+fun NewSearchActivity.turnToSearchResultFragment() {
+
+    keyBoardInvisible(binding.editSearch)
     binding.editSearch.isCursorVisible = false
     mViewModel.saveSearchHistory(this)
 

@@ -220,4 +220,9 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
 
     }
 
+    override fun onPause() {
+        super.onPause()
+
+    }
+
 }

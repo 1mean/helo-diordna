@@ -26,7 +26,7 @@
             android:networkSecurityConfig="@xml/network_security_config"
             android:name="com.example.pandas.app.DiorApplication"
             android:allowBackup="true"
-            android:icon="@mipmap/panda"
+            android:icon="@mipmap/panda_2"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
@@ -86,6 +86,7 @@
         <activity android:name=".ui.activity.Face2Activity" />
         <activity android:name=".ui.activity.CommonBannerActivity" />
         <activity android:name=".ui.activity.ShortVideoActivity" />
+        <activity android:name=".ui.activity.NewSearchActivity" />
         <activity
                 android:name=".ui.activity.VideoPlayingActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize" />
@@ -120,15 +121,26 @@
                 android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!--分享7.1.7SDK适配微信官方的v6.8.0版本，需要在工程AndroidManifest.xml清单文件中增加-->
+<!--        <provider-->
+<!--                android:name="androidx.core.content.FileProvider"-->
+<!--                android:authorities="${applicationId}.fileprovider"-->
+<!--                android:exported="false"-->
+<!--                android:grantUriPermissions="true">-->
+<!--            <meta-data-->
+<!--                    android:name="android.support.FILE_PROVIDER_PATHS"-->
+<!--                    android:resource="@xml/filepaths" />-->
+<!--        </provider>-->
+
         <provider
                 android:name="androidx.core.content.FileProvider"
-                android:authorities="${applicationId}.fileprovider"
+                android:authorities="com.example.hello_diordna.fileprovider"
                 android:exported="false"
                 android:grantUriPermissions="true">
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/filepaths" />
+                    android:resource="@xml/provider_paths"/>
         </provider>
+
 
         <!--service-->
         <service android:name=".ui.service.AudioPlayService" />

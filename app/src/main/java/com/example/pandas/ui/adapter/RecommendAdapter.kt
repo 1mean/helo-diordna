@@ -191,7 +191,8 @@ public class RecommendAdapter(
 
             //把http图片换成https就能加载出来
             //val url = petVideo.cover.replace("http", "https")
-            Glide.with(context).load(petVideo.cover).into(cover)
+            //Glide.with(context).load(petVideo.cover).into(cover)
+            loadCenterImage(context,petVideo.cover,cover)
             this.duration.text = duration
             petVideo.user?.let {
                 name.text = it.userName

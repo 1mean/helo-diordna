@@ -1,25 +1,30 @@
 package com.example.pandas.ui.activity
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.ErrorViewModel
 import com.example.pandas.databinding.ActivityErrorBinding
 import com.example.pandas.ui.adapter.ErrorAdapter
-import com.example.pandas.ui.fragment.main.mine.ErrorFragment
+import com.example.pandas.utils.FileUtils
 import com.example.pandas.utils.StatusBarUtils
+import java.io.File
 
 /**
- * @description: ErrorActivity
+ * @description: 我的-日志文件
  * @author: dongyiming
  * @date: 3/24/22 11:34 下午
  * @version: v1.0
  */
-public class ErrorActivity : BaseActivity<ErrorViewModel, ActivityErrorBinding>() {
+public class ErrorActivity : BaseActivity<ErrorViewModel, ActivityErrorBinding>(),
+    ErrorAdapter.ErrorListener {
 
-    private val mAdapter: ErrorAdapter by lazy { ErrorAdapter(mutableListOf()) }
+    private val mAdapter: ErrorAdapter by lazy { ErrorAdapter(mutableListOf(), this) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -31,11 +36,6 @@ public class ErrorActivity : BaseActivity<ErrorViewModel, ActivityErrorBinding>(
             layoutManager = LinearLayoutManager(this@ErrorActivity)
             adapter = mAdapter
         }
-
-//        val transaction = supportFragmentManager.beginTransaction()
-//        val fragment = ErrorFragment()
-//        transaction.add(R.id.fragment_error, fragment).commit()
-//        transaction.show(fragment)
     }
 
     override fun onResume() {
@@ -56,4 +56,41 @@ public class ErrorActivity : BaseActivity<ErrorViewModel, ActivityErrorBinding>(
         }
     }
 
+    val tag = "error_tag"
+    override fun clickErrorItem(file: File) {
+
+//        val intent = Intent()
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//        intent.action = Intent.ACTION_VIEW
+//        intent.setDataAndType(Uri.fromFile(file), "txt")
+//        startActivity(intent)
+
+//        val intent2 = Intent(Intent.ACTION_GET_CONTENT)
+//        val contentUri: Uri = FileProvider
+//            .getUriForFile(this, "$packageName", file)
+//        intent.setDataAndType(contentUri, "*/*")
+//        startActivity(intent2)
+
+        val intent = FileUtils.openFile(this,file.canonicalPath)
+        startActivity(intent)
+
+//        val transaction = supportFragmentManager.beginTransaction()
+//        val fragment = supportFragmentManager.findFragmentByTag(tag)
+//
+//        if (fragment == null) {
+//            val newFragment = ErrorFragment.newInstance(file.absolutePath)
+//            transaction.add(R.id.flayout_content_error, newFragment, tag).addToBackStack(null)
+//                .commit()
+//        }
+    }
+
+    override fun onkeyBack() {
+
+        val fragment = supportFragmentManager.findFragmentByTag(tag)
+        if (fragment == null) {
+            finish()
+        } else {
+            supportFragmentManager.popBackStack()
+        }
+    }
 }

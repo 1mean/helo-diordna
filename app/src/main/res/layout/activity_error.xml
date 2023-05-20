@@ -22,36 +22,35 @@
             android:layout_height="0.6dp"
             android:background="@color/color_video_divider" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clayout_content_error"
+    <FrameLayout
+            android:id="@+id/flayout_content_error"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_error"
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_content_error"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:nestedScrollingEnabled="false" />
+                android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_error_message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_content_error"
-                app:layout_constraintRight_toRightOf="@id/clayout_content_error"
-                app:layout_constraintTop_toTopOf="@id/clayout_content_error"
-                android:layout_marginTop="200dp"
-                android:text="@string/str_no_error"
-                android:textSize="15sp"
-                android:textColor="@color/gray"
-                android:visibility="gone" />
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:nestedScrollingEnabled="false" />
 
-        <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_error"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:name="com.example.pandas.ui.fragment.main.mine.ErrorFragment"
-                android:visibility="gone"
-                android:tag="tag_error" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_error_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_content_error"
+                    app:layout_constraintRight_toRightOf="@id/clayout_content_error"
+                    app:layout_constraintTop_toTopOf="@id/clayout_content_error"
+                    android:layout_marginTop="200dp"
+                    android:text="@string/str_no_error"
+                    android:textSize="15sp"
+                    android:textColor="@color/gray"
+                    android:visibility="gone" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

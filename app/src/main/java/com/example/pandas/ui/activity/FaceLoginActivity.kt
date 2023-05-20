@@ -136,7 +136,7 @@ public class FaceLoginActivity : BaseActivity<BaseViewModel, ActivityFaceLoginBi
                             tempCameraPicName = facePic.absolutePath
                             val uri = FileProvider.getUriForFile(
                                 this@FaceLoginActivity,
-                                "$packageName.fileprovider",
+                                "$packageName.MyFileProvider",
                                 facePic
                             )
                             takePictureLauncher.launch(uri)

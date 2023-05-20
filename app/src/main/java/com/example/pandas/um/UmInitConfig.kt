@@ -25,7 +25,7 @@ public class UmInitConfig {
             ""//pushSecret：Push推送业务的secret
         )
 
-        val FileProvider = "com.example.hello_diordna.fileprovider"
+        val FileProvider = "com.example.hello_diordna.MyFileProvider"
         PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0")
         PlatformConfig.setWXFileProvider(FileProvider)
         //企业微信设置

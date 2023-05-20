@@ -3,6 +3,8 @@ package com.example.pandas.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pandas.biz.ext.loadCenterImage
+import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.databinding.ViewpagerRecommendBinding
 import com.example.pandas.sql.entity.PetVideo
@@ -41,7 +43,7 @@ public class LandViewPagerAdapter(private val list: MutableList<PetVideo>) :
         fun handle(position: Int) {
             val data = list[position]
             data.cover?.let {
-                loadImage(itemView.context, it, cover)
+                loadCenterImage(itemView.context, it, cover)
             }
             title.text = data.title
         }

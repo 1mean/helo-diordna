@@ -23,15 +23,17 @@ import com.example.pandas.databinding.Item2AdapterLiveVideoBinding
 import com.example.pandas.databinding.Item3AdapterLiveVideoBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
+import com.example.pandas.ui.activity.FollowAndFansActivity
 import com.example.pandas.ui.adapter.decoration.LiveVisitorItemDecoration
 import com.example.pandas.ui.ext.setLikeAnimation
+import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.ui.ext.startUserInfoActivity
 import com.example.pandas.ui.view.dialog.LiveBottomSheetDialog
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.utils.TimeUtils
 
 /**
- * @description: 动态-视频
+ * @description: 动态-综合
  * @author: dongyiming
  * @date: 10/10/22 5:11 下午
  * @version: v1.0
@@ -123,6 +125,7 @@ public class LiveVideoAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         val recyclerView = binding.rvLiveVisitor
+        val more = binding.llayoutLiveVisitor
         var mAdapter: LiveVisitorAdapter? = null
 
         fun handle() {
@@ -138,6 +141,13 @@ public class LiveVideoAdapter(
                     adapter = mAdapter
                     addItemDecoration(LiveVisitorItemDecoration(paddingSide, paddingMide))
                 }
+            } else {
+                mAdapter = LiveVisitorAdapter(data.visitors)
+                recyclerView.adapter = mAdapter
+            }
+
+            more.setOnClickListener {
+                startAnyActivity(itemView.context, FollowAndFansActivity::class.java)
             }
         }
     }
@@ -254,7 +264,7 @@ public class LiveVideoAdapter(
             duration.text = TimeUtils.getMMDuration(video.duration.toLong())
 
 
-            val r_time = TimeUtils.parseTime(video.releaseTime)
+            val r_time = TimeUtils.parseTime(video.releaseTime * 1000)
             time.text = StringBuilder(r_time).append(" · 投稿了视频").toString()
 
             video.cover?.let {
@@ -315,7 +325,7 @@ public class LiveVideoAdapter(
             }
 
             commentView.setOnClickListener {
-                listener.startVideoPLayActivity(video)
+                listener.startVideoCommentActivity(video)
             }
 
             player.setOnClickListener {
@@ -335,10 +345,12 @@ public class LiveVideoAdapter(
                             2 -> {
                                 if (dialog == null) {
                                     dialog =
-                                        ShareBottomSheetDialog(context, object : ItemClickListener<String> {
-                                            override fun onItemClick(t: String) {
-                                            }
-                                        })
+                                        ShareBottomSheetDialog(
+                                            context,
+                                            object : ItemClickListener<String> {
+                                                override fun onItemClick(t: String) {
+                                                }
+                                            })
                                     dialog!!.addData()
                                 }
                                 dialog!!.onShow()
@@ -359,8 +371,8 @@ public class LiveVideoAdapter(
 
         fun startVideoPLayActivity(video: PetVideo)
 
+        fun startVideoCommentActivity(video: PetVideo)
+
         fun addLater(videoCode: Int)
-
-
     }
 }

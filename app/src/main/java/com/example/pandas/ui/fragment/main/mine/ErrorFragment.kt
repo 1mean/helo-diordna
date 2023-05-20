@@ -1,43 +1,78 @@
 package com.example.pandas.ui.fragment.main.mine
 
 import android.os.Bundle
-import android.os.FileUtils
+import android.util.Log
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.compose.ui.BiasAlignment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pandas.R
+import com.example.pandas.base.adapter.BaseCommonAdapter
+import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.base.viewmodel.BaseViewModel
+import com.example.pandas.biz.viewmodel.ErrorViewModel
 import com.example.pandas.databinding.FragmentErrorBinding
-import java.io.File
+import java.io.BufferedReader
+import java.io.FileInputStream
+import java.io.InputStreamReader
 
 /**
- * @description: 我的-缓存
+ * @description: ErrorFragment
  * @author: dongyiming
  * @date: 7/12/22 3:34 下午
  * @version: v1.0
  */
-public class ErrorFragment : BaseFragment<BaseViewModel, FragmentErrorBinding>() {
+public class ErrorFragment : BaseFragment<ErrorViewModel, FragmentErrorBinding>() {
+
+    var fileName: String? = null
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        var list = mutableListOf<File>()
-        val localFile = com.example.pandas.utils.FileUtils.getExternalFileDirectory(mActivity, "")
-        localFile?.let { it ->
-            val logPath =
-                StringBuilder(it.absolutePath).append(File.separator).append("log")
-                    .toString()
-            val logFile = File(logPath)
-            if (!logFile.exists()) {
-                logFile.mkdirs()
-            }
-            logFile.listFiles()?.let {
-                list = it.toMutableList()
-                list.reverse()
-            }
-        }
-        //binding.webError.loadData(list[0].absolutePath,"text/text","utf-8")
+
+        fileName = arguments?.getString("fileName")
+        Log.e("1mean","fileName:$fileName")
+
     }
 
     override fun createObserver() {
+
+        mViewModel.fileList.observe(viewLifecycleOwner){
+
+
+            if (it.isNotEmpty()) {
+
+
+                binding.rvContentError.run {
+                    adapter = object : BaseCommonAdapter<String>(it) {
+
+                        override fun getLayoutId(): Int = R.layout.adapter_error_item
+
+                        override fun convert(holder: BaseViewHolder, data: String, position: Int) {
+
+                            val content = holder.getWidget<AppCompatTextView>(R.id.txt_item_error_content)
+
+                            content.text = data
+                        }
+                    }
+                    layoutManager = LinearLayoutManager(mActivity)
+                }
+            }
+        }
     }
 
     override fun firstOnResume() {
+
+        fileName?.let {
+            mViewModel.readFile(it)
+        }
+    }
+
+    companion object {
+        fun newInstance(fileName: String): ErrorFragment {
+            val args = Bundle().apply { putString("fileName", fileName) }
+            val fragment = ErrorFragment()
+            fragment.arguments = args
+            return fragment
+        }
     }
 }

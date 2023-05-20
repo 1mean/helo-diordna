@@ -9,6 +9,7 @@ import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.databinding.AdapterMusicChildBinding
 import com.example.pandas.databinding.LayoutTopMusicBinding
 import com.example.pandas.sql.entity.MusicVo
+import com.example.pandas.ui.ext.startMusicActivity
 
 /**
  * @description: MusicChildAdapter
@@ -105,6 +106,12 @@ public class MusicChildAdapter(private val list: MutableList<MusicVo>) :
 
             likeItem.setOnClickListener {
                 likeView.setImageResource(R.mipmap.img_music_item_liked1)
+            }
+
+            itemView.setOnClickListener {
+                data.fileName?.let {
+                    startMusicActivity(context, it)
+                }
             }
         }
     }

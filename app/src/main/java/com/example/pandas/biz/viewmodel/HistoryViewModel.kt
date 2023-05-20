@@ -1,5 +1,6 @@
 package com.example.pandas.biz.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.viewmodel.BaseViewModel
@@ -193,6 +194,13 @@ public class HistoryViewModeL : BaseViewModel() {
 
         viewModelScope.launch {
             PetManagerCoroutine.removeLaters(list, removeAll)
+        }
+    }
+
+    fun removeLovers(list: MutableList<PetVideo>, removeAll: Boolean) {
+
+        viewModelScope.launch {
+            PetManagerCoroutine.removeLoves(list, removeAll)
         }
     }
 

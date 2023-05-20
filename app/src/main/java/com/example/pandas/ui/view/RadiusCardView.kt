@@ -40,6 +40,7 @@ public class RadiusCardView : CardView {
         rightTopRadiu = array.getDimension(R.styleable.RadiusCardView_rightTopRadiu, 0F)
         rightBottomRadiu = array.getDimension(R.styleable.RadiusCardView_rightBottomRadiu, 0F)
         bgColor = array.getResourceId(R.styleable.RadiusCardView_bgColor, 0)
+        array.recycle()
     }
 
     override fun dispatchDraw(canvas: Canvas?) {

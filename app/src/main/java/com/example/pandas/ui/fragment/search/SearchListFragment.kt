@@ -35,14 +35,21 @@ public class SearchListFragment : BaseFragment<SearchViewModel, LayoutLoadmoreBi
 
     override fun createObserver() {
         mViewModel.searchResult.observe(viewLifecycleOwner) {
-
             if (it.isSuccess) {
-
-                binding.recyclerLoad.visibility = View.VISIBLE
                 when {
                     it.isRefresh -> {
-                        mAdapter
-                        mAdapter.refreshAdapter(mViewModel.keyWords, it.listData)
+                        if (it.isEmpty) {
+                            binding.recyclerLoad.adapter = null
+                            binding.recyclerLoad.visibility = View.GONE
+                            binding.txtSearchNoData.visibility = View.VISIBLE
+                        } else {
+                            binding.recyclerLoad.visibility = View.VISIBLE
+                            binding.txtSearchNoData.visibility = View.GONE
+                            if (binding.recyclerLoad.adapter == null) {
+                                binding.recyclerLoad.adapter = mAdapter
+                            }
+                            mAdapter.refreshAdapter(mViewModel.keyWords, it.listData)
+                        }
                     }
                     else -> {
                         mAdapter.loadMore(it.listData)

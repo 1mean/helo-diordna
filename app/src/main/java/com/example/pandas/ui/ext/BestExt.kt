@@ -13,11 +13,14 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.pandas.R
 import com.example.pandas.biz.interaction.AnimationListener
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
+import com.example.pandas.ui.activity.AudioPlayActivity
 import com.example.pandas.ui.activity.UserInfoActivity
 import com.example.pandas.ui.activity.VideoPlayingActivity
+import com.example.pandas.ui.fragment.search.SearchListFragment
 import kotlin.math.abs
 
 
@@ -98,6 +101,14 @@ fun startUserInfoActivity(context: Context, user: User) {
     context.startActivity(intent)
 }
 
+fun startMusicActivity(context: Context, fileName: String, position: Int = 0) {
+    val intent = Intent(context, AudioPlayActivity::class.java).apply {
+        putExtra("fileName", fileName)
+        putExtra("position", position)
+    }
+    context.startActivity(intent)
+}
+
 fun startVideoPlayingActivity(context: Context, video: PetVideo) {
     val intent = Intent(context, VideoPlayingActivity::class.java).apply {
         putExtra("petVideo", video)
@@ -146,9 +157,20 @@ fun addItemAnimation(view: View) {
     animationSet.start()
 }
 
-fun addItemAnimation2(view: View) {
+//一个普通的放大动画1-1.3f
+fun addScaleAnimation(view: View) {
     val transScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.3f, 1f)
     val transScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.3f, 1f)
+    val animationSet = AnimatorSet()
+    animationSet.duration = 600
+    animationSet.interpolator = DecelerateInterpolator()
+    animationSet.play(transScaleX).with(transScaleY)
+    animationSet.start()
+}
+
+fun addScaleAnimation(view: View, scale: Float) {
+    val transScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, scale, 1f)
+    val transScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, scale, 1f)
     val animationSet = AnimatorSet()
     animationSet.duration = 600
     animationSet.interpolator = DecelerateInterpolator()
@@ -198,6 +220,17 @@ fun setLikeAnimation(view: View, listener: AnimationListener) {
         }
     })
     set.start()
+}
+
+//添加一个新的fragment
+fun addFragment(activity: AppCompatActivity, tag: String, newFragment: Fragment, layoutId: Int) {
+
+    val transaction = activity.supportFragmentManager.beginTransaction()
+    val fragment = activity.supportFragmentManager.findFragmentByTag(tag)
+
+    if (fragment == null) {
+        transaction.add(layoutId, newFragment, tag).addToBackStack(null).commit()
+    }
 }
 
 //-------------------<动画相关 结束>-----------------------------------------------------------------

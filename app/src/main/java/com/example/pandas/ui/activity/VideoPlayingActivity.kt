@@ -1,6 +1,7 @@
 package com.example.pandas.ui.activity
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Rect
 import android.os.*
 import android.util.Log
@@ -76,8 +77,9 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         StatusBarUtils.setStatusBarMode(this, false, R.color.black)
 
         video = intent.getParcelableExtra("petVideo")
+        val index = intent.getIntExtra("index",0)
 
-        initViewPager()
+        initViewPager(index)
 
         val left = binding.playView.findViewById<ConstraintLayout>(R.id.clayout_video_close)
         //val full = binding.playView.findViewById<ConstraintLayout>(R.id.clayout_video_full)
@@ -97,6 +99,11 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             binding.playView.findViewById<AppCompatImageButton>(R.id.btn_fullscreen)
 
         left.setOnClickListener {
+            val intent = Intent()
+            val position = videoManager.getCurrentPos()
+            Log.e("liveeeee","position:$position")
+            intent.putExtra("position", position)
+            setResult(RESULT_OK, intent)
             finish()
         }
 
@@ -249,7 +256,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         video?.let {
 
             val file = getLocalFilePath(this, it.fileName!!)
-            Log.e("1mean","fileName: ${file.absolutePath}")
+            Log.e("1mean", "fileName: ${file.absolutePath}")
             if (file.exists()) {
                 val mediaInfo =
                     MediaInfo(it.code, file.absolutePath, 0)
@@ -258,7 +265,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
             it.videoData?.let { data ->
                 val file = getLocalFilePath(this, it.fileName!!)
-                Log.e("1mean","fileName: ${file.absolutePath}")
+                Log.e("1mean", "fileName: ${file.absolutePath}")
                 if (file.exists()) {
                     val mediaInfo =
                         MediaInfo(it.code, file.absolutePath, data.playPosition)
@@ -426,11 +433,19 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             return
         }
         updateTimeTask.removeMessages(0)
+
+        val intent = Intent()
+        val position = videoManager.getCurrentPos()
+        intent.putExtra("position", position)
+        setResult(RESULT_OK, intent)
+
         //保存历史记录
         video?.let {
             mViewModel.saveHistory(it.code, videoManager.getCurrentPos())
         }
         videoManager.releasePlayer()
+
+
         finish()
     }
 

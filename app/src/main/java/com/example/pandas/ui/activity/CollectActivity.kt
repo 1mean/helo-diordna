@@ -12,6 +12,7 @@ import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityCollectBinding
 import com.example.pandas.ui.adapter.CollectAdapter
 import com.example.pandas.ui.adapter.decoration.LandScapeItemDecoration
+import com.example.pandas.ui.ext.launcherActivity
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.dialog.DeletePopuWindow
 import com.example.pandas.utils.StatusBarUtils
@@ -19,7 +20,7 @@ import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
 
 /**
- * @description: 稍后再看
+ * @description: 我的收藏
  * @author: dongyiming
  * @date: 8/13/22 11:18 上午
  * @version: v1.0
@@ -66,8 +67,7 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
         }
         binding.btnCollectAdd.setOnClickListener {
 
-            val intent = Intent(this, GroupCreateActivity::class.java)
-            requestLauncher.launch(intent)
+            launcherActivity(requestLauncher, this, GroupCreateActivity::class.java)
         }
     }
 

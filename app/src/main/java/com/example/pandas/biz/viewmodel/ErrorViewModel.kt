@@ -1,6 +1,7 @@
 package com.example.pandas.biz.viewmodel
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.viewmodel.BaseViewModel
@@ -8,7 +9,10 @@ import com.example.pandas.utils.FileUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.BufferedReader
 import java.io.File
+import java.io.FileInputStream
+import java.io.InputStreamReader
 
 /**
  * @description: ErrorViewModel
@@ -19,6 +23,7 @@ import java.io.File
 public class ErrorViewModel : BaseViewModel() {
 
     val filesResult: MutableLiveData<MutableList<File>> by lazy { MutableLiveData() }
+    val fileList: MutableLiveData<MutableList<String>> by lazy { MutableLiveData() }
 
     fun getAllLogFile(context: Context) {
 
@@ -45,4 +50,31 @@ public class ErrorViewModel : BaseViewModel() {
             }
         }
     }
+
+    fun readFile(fileName: String?) {
+
+        viewModelScope.launch {
+
+            fileList.value = withContext(Dispatchers.Default) {
+
+                val list = mutableListOf<String>()
+
+                fileName?.let { name ->
+
+                    val fis = FileInputStream(name)
+                    val fir = InputStreamReader(fis)
+                    val bufReader = BufferedReader(fir)
+
+                    bufReader.lines().forEach {
+                        list.add(it)
+                    }
+                    bufReader.close()
+                    fir.close()
+                    fis.close()
+                }
+                list
+            }
+        }
+    }
+
 }

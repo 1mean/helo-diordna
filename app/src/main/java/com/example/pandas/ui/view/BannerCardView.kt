@@ -41,6 +41,7 @@ public class BannerCardView : CardView {
         card3Width = array.getDimension(R.styleable.BannerCardView_card3Width, 0F)
         //bgColor = array.getResourceId(R.styleable.BannerCardView_bgColor, 0)
         initBanner()
+        array.recycle()
     }
 
     private fun initBanner() {

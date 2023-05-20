@@ -333,6 +333,31 @@ class PetManager {
         }
     }
 
+    suspend fun removeLoves(list: MutableList<PetVideo>, isAll: Boolean) {
+        withContext(Dispatchers.Default) {
+            if (isAll) {
+                val laters = petDao.queryAllLoves()
+                laters.forEach {
+                    it.love = false
+                    if (it.loves >= 1) {
+                        it.loves -= 1
+                    }
+                    petDao.updateVideoData(it)
+                }
+            } else {
+                list.forEach {
+                    it.videoData?.let { data ->
+                        data.love = false
+                        if (data.loves >= 1) {
+                            data.loves -= 1
+                        }
+                        petDao.updateVideoData(data)
+                    }
+                }
+            }
+        }
+    }
+
     suspend fun addLater(videoCode: Int) {
 
         withContext(Dispatchers.Default) {
@@ -990,8 +1015,8 @@ class PetManager {
             val startTime = System.currentTimeMillis()
             val data = LiveVideoData()
             if (isRefresh) {
+                delay(350)
                 val users = petDao.queryLiveAttentionUsers()
-                Log.e("1mean", "users: $users")
                 data.visitors = users
             }
             val userCodes = petDao.queryLiveAttentionUserCodes()

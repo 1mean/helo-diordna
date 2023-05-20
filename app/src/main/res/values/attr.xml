@@ -48,4 +48,8 @@
 
     </declare-styleable>
 
+    <declare-styleable name="MaxHeightNestedScrollView">
+        <attr name="maxHeight" format="dimension" />
+    </declare-styleable>
+
 </resources>

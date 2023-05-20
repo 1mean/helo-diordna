@@ -30,7 +30,7 @@ import com.example.pandas.utils.TimeUtils
 import com.google.android.exoplayer2.ui.DefaultTimeBar
 
 
-fun VideoPlayingActivity.initViewPager() {
+fun VideoPlayingActivity.initViewPager(index: Int = 0) {
 
     binding.vpVideo.run {
         adapter = VideoFragmentAdapter(supportFragmentManager, lifecycle)
@@ -82,6 +82,8 @@ fun VideoPlayingActivity.initViewPager() {
     commonNavigator.adapter = cnAdapter
     binding.tabView.setNavigator(commonNavigator)
     ViewPagerHelper.bind(binding.tabView, binding.vpVideo)
+
+    binding.vpVideo.currentItem = index
 }
 
 fun VideoPlayingActivity.showTimeBar(timeBar: DefaultTimeBar?) {
@@ -115,6 +117,11 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
             binding.txtVideoLike.text = it.likes.toString()
         } else {
             binding.txtVideoLike.text = "点赞"
+        }
+        if (it.loves > 0) {
+            binding.txtVideoLoves.text = it.loves.toString()
+        } else {
+            binding.txtVideoLike.text = "喜欢"
         }
         if (it.love) {
             binding.imgLove.setImageResource(R.mipmap.img_love_pressed)

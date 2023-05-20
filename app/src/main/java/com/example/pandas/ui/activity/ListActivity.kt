@@ -75,7 +75,7 @@ public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBindin
             finish()
         }
         binding.viewListTop.ibnTopSearch.setOnClickListener {
-            startActivity(Intent(this, SearchActivity::class.java))
+            startActivity(Intent(this, NewSearchActivity::class.java))
         }
     }
 

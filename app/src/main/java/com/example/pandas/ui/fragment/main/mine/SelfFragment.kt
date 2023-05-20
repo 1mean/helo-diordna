@@ -20,7 +20,7 @@ public class SelfFragment : BaseFragment<SelfViewModel, FragmentMineBinding>() {
 
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
 
-    private val titles = arrayOf("设置", "缓存","预留")
+    private val titles = arrayOf("设置", "缓存", "预留")
     private val pagerAdapter: SelfViewPagerAdapter by lazy { SelfViewPagerAdapter(mActivity) }
 
     override fun initView(savedInstanceState: Bundle?) {
