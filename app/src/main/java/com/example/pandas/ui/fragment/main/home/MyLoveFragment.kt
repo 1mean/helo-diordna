@@ -14,7 +14,7 @@ import com.example.pandas.ui.ext.initNoFooter
 import com.example.pandas.ui.ext.setRefreshColor
 
 /**
- * @description: 我爱看的
+ * @description: 首页-最爱
  * @author: dongyiming
  * @date: 1/28/22 8:51 下午
  * @version: v1.0
@@ -35,7 +35,7 @@ public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefr
         )
 
         binding.swipLayout.run {
-            setBackgroundResource(R.color.color_bg_love2)
+            setBackgroundResource(R.color.color_bg_mylove)
             setRefreshColor()
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)

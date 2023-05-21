@@ -1,13 +1,13 @@
 package com.example.pandas.ui.fragment.main.mine
 
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentMineBinding
 import com.example.pandas.ui.adapter.SelfViewPagerAdapter
+import com.example.pandas.utils.DarkModeUtils
 
 
 /**
@@ -30,6 +30,15 @@ public class SelfFragment : BaseFragment<SelfViewModel, FragmentMineBinding>() {
             currentItem = 0
         }
         binding.slideTabSetting.setViewPager(binding.vp2Self, titles)
+
+        binding.itemModeDark.setOnClickListener {
+            val nightMode = DarkModeUtils.getNightModel(mActivity)
+            if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
+                DarkModeUtils.applyDayMode(mActivity)
+            } else {
+                DarkModeUtils.applyNightMode(mActivity)
+            }
+        }
     }
 
     override fun createObserver() {

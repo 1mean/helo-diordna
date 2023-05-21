@@ -4,5 +4,5 @@
     <!--定义圆角-->
     <corners android:radius="2dp" />
     <!--内部填充色-->
-    <solid android:color="@color/color_bg_reco_followed" />
+    <solid android:color="@color/color_bg_item_follow_recommend" />
 </shape>

@@ -3,14 +3,14 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="152dp"
-        android:background="@color/white">
+        android:background="@color/color_bg_live_video_mid">
 
     <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="43dp"
             android:textSize="14sp"
             android:layout_marginStart="12dp"
-            android:textColor="@color/color_video_name_txt"
+            android:textColor="@color/color_txt_live_mid_title"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

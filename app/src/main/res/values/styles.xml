@@ -7,6 +7,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
         <!--  设置最顶端状态栏为透明，页面第一个控件会顶上去填满状态栏 -->
         <!--<item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>-->
@@ -191,7 +192,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">4dp</item>
-        <item name="android:textColor">@color/grey900</item>
+        <item name="android:textColor">@color/color_txt_fans_self</item>
         <item name="android:textSize">15sp</item>
         <item name="android:gravity">center</item>
     </style>
@@ -208,7 +209,7 @@
     <style name="style_mine_top_drivider">
         <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">20dp</item>
-        <item name="android:background">@color/color_bg_user_divider</item>
+        <item name="android:background">@color/color_bg_divider_self</item>
     </style>
 
     <style name="style_mine_top_clayout">
@@ -257,7 +258,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">12dp</item>
-        <item name="android:textColor">@color/color_self_txt_setting</item>
+        <item name="android:textColor">@color/color_txt_setting_self</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:textSize">14sp</item>
     </style>

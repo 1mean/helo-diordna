@@ -44,7 +44,7 @@
             app:layout_constraintTop_toTopOf="@id/img_landscape"
             app:layout_constraintLeft_toRightOf="@id/img_landscape"
             android:layout_marginStart="11dp"
-            android:textColor="@color/color_video_item_title"
+            android:textColor="@color/color_txt_item_title_land"
             android:textSize="14sp"
             android:maxLines="2"
             android:maxEms="12" />

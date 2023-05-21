@@ -2,6 +2,7 @@ package com.example.pandas.ui.fragment.main.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.bean.LandscapeData
@@ -38,6 +39,7 @@ public class LandscapeFragment :
             })
 
         binding.swipLayout.run {
+            setBackgroundColor(ContextCompat.getColor(context, R.color.color_bg_hot))
             setRefreshColor()
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)

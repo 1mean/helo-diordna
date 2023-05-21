@@ -39,7 +39,7 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefre
             })
 
         binding.swipLayout.run {
-            setBackgroundResource(R.color.color_caption_bg)
+            setBackgroundResource(R.color.color_bg_panda_fragment)
             setRefreshColor()
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)

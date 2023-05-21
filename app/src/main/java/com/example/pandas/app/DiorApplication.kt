@@ -1,11 +1,10 @@
 package com.example.pandas.app
 
 import android.app.Application
-import android.util.Log
-import com.example.pandas.data.simulate.ShortCommentData
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.um.UmInitConfig
-import com.example.pandas.utils.TimeUtils
+import com.example.pandas.utils.DarkModeUtils
 import com.umeng.commonsdk.UMConfigure
 
 
@@ -27,6 +26,12 @@ class DiorApplication : Application() {
 
         val initConfig = UmInitConfig()
         initConfig.UMinit(applicationContext)
+
+        //判断当前设置是黑夜模式时，采用黑夜模式
+        val nightMode = DarkModeUtils.getNightModel(this)
+        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+            DarkModeUtils.applyNightMode(this)
+        }
 
         //initdata()
     }

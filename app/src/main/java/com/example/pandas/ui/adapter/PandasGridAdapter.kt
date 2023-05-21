@@ -33,7 +33,7 @@ public class PandasGridAdapter(list: MutableList<GridItem>) : BaseCommonAdapter<
         if (position == 0) {
             name.setTextColor(ContextCompat.getColor(context,R.color.color_txt_item_name))
         }else {
-            name.setTextColor(ContextCompat.getColor(context,R.color.color_video_name_txt))
+            name.setTextColor(ContextCompat.getColor(context,R.color.color_txt_panda_top))
         }
         name.text = data.item1
 

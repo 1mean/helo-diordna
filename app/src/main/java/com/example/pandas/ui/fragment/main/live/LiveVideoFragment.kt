@@ -83,7 +83,7 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
         }
 
         binding.swipLayout.run {
-            setBackgroundResource(R.color.color_viewpager_bg)
+            setBackgroundResource(R.color.color_bg_live_video)
             setRefreshColor()
             setOnRefreshListener {
                 mViewModel.getLiveVideo(true)

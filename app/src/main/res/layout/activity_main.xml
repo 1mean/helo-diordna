@@ -7,7 +7,7 @@
         tools:context=".ui.activity.MainActivity">
 
     <!--navigation有3个重要的组成部分：导航图 、NavHost  、NavController-->
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
             android:id="@+id/main_navigation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.data.network.getGridItems
 import com.example.pandas.databinding.AdapterPandansTopBinding
 import com.example.pandas.databinding.AdapterPandasItemBinding
@@ -122,7 +123,8 @@ public class PandasAdapter(private val list: MutableList<PetVideo>) :
             val duration = TimeUtils.getDuration(petVideo.duration.toLong())
 
             //把http图片换成https就能加载出来
-            Glide.with(itemView).load(petVideo.cover).into(cover)
+            //Glide.with(itemView).load(petVideo.cover).into(cover)
+            loadCenterImage(itemView.context,petVideo.cover,cover)
             this.duration.text = duration
             petVideo.user?.let {
                 name.text = it.userName

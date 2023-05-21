@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
+import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.ext.startVideoPlayingActivity
@@ -26,7 +27,8 @@ class SleepVideoItemAdapter(list: MutableList<PetVideo>) :
         val context = holder.itemView.context
 
         data.cover?.let {
-            loadRoundedCornerImage(context, 20, it, cover)
+            //loadRoundedCornerImage(context, 20, it, cover)
+            loadCenterRoundedCornerImage(context,20,it,cover)
         }
         title.text = data.title
 

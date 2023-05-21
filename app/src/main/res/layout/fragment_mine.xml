@@ -30,14 +30,14 @@
                 app:tl_tab_width="56dp"
                 android:layout_marginStart="15dp"
                 app:tl_indicator_color="@color/color_home_tab_text_selected"
-                app:tl_textSelectColor="@color/black"
+                app:tl_textSelectColor="@color/color_tab_selected_self"
                 app:tl_textsize="@dimen/common_sz_16_dimens"
                 app:tl_selectTextSize="@dimen/common_sz_25_dimens"
                 app:tl_textUnselectColor="@color/color_audio_menu_singer"
                 app:tl_indicator_width="5dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/item_update_bg"
+                android:id="@+id/item_mode_dark"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginEnd="15dp"
@@ -48,10 +48,10 @@
             <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@id/item_update_bg"
-                    app:layout_constraintBottom_toBottomOf="@id/item_update_bg"
-                    app:layout_constraintRight_toRightOf="@id/item_update_bg"
-                    app:layout_constraintLeft_toLeftOf="@id/item_update_bg"
+                    app:layout_constraintTop_toTopOf="@id/item_mode_dark"
+                    app:layout_constraintBottom_toBottomOf="@id/item_mode_dark"
+                    app:layout_constraintRight_toRightOf="@id/item_mode_dark"
+                    app:layout_constraintLeft_toLeftOf="@id/item_mode_dark"
                     android:src="@mipmap/img_mine_dark_black" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -62,7 +62,7 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/shape_self_bg_scan"
                 app:layout_constraintBottom_toBottomOf="@id/layout_mine_top"
-                app:layout_constraintRight_toLeftOf="@id/item_update_bg">
+                app:layout_constraintRight_toLeftOf="@id/item_mode_dark">
 
             <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"

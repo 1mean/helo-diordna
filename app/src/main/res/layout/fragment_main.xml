@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/activity_bottom_height_dimens"
             app:menu="@menu/menu_fragment_main"
-            android:background="@color/white"
+            android:background="@color/color_bg_home_bottomview"
             app:itemBackground="@null"
             app:itemRippleColor="@color/color_txt_sleep_more"
             app:itemTextColor="@color/color_home_bottom_selector"

@@ -5,7 +5,7 @@
         android:layout_height="189dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="0.3dp"
-        android:background="@color/white">
+        app:cardBackgroundColor="@color/color_bg_panda_top_cardview">
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_pandas_top"

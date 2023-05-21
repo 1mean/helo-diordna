@@ -3,5 +3,5 @@
         android:shape="oval">
 
     <!--内部填充色-->
-    <solid android:color="@color/white" />
+    <solid android:color="@color/color_bg_dark_setting_self" />
 </shape>

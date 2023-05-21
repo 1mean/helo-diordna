@@ -7,7 +7,7 @@
         android:clickable="true"
         app:cardCornerRadius="5dp"
         app:cardElevation="0.5dp"
-        android:background="@color/white"
+        app:cardBackgroundColor="@color/color_bg_itemview_recommend"
         android:foreground="?android:attr/selectableItemBackground">
 
     <!--show_timeout="0" 才能保证永远显示controller-->
@@ -44,6 +44,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
+                android:alpha="0.6"
                 android:src="@mipmap/img_reco_video_play" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -76,7 +77,7 @@
                 android:maxLines="1"
                 android:maxEms="18"
                 android:ellipsize="end"
-                android:textColor="@color/color_video_name_txt"
+                android:textColor="@color/color_txt_video_title_recommend"
                 android:layout_marginStart="8dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton

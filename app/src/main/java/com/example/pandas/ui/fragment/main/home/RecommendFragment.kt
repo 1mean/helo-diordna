@@ -85,7 +85,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
         }
 
         binding.swipLayout.run {
-            setBackgroundResource(R.color.color_caption_bg)
+            setBackgroundResource(R.color.color_bg_recommend)
             setRefreshColor()
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)

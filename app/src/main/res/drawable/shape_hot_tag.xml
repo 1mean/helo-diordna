@@ -4,7 +4,7 @@
     <!--定义圆角-->
     <corners android:radius="2dp" />
     <!--内部填充色-->
-    <solid android:color="@color/white" />
+    <!--<solid android:color="@color/white" />-->
     <stroke
             android:color="@color/color_txt_hot_tag"
             android:width="0.5dp" />

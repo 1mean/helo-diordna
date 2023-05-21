@@ -23,5 +23,5 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:textSize="12sp"
-            android:textColor="@color/color_video_name_txt" />
+            android:textColor="@color/color_txt_panda_top" />
 </androidx.constraintlayout.widget.ConstraintLayout>
