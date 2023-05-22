@@ -48,11 +48,35 @@
     <color name="color_bg_live_fragment">#ffffff</color>
     <color name="color_bg_live_video_top">#ffffff</color>
     <color name="color_bg_live_video_mid">#ffffff</color>
+    <color name="color_bg_live_video_item">#ffffff</color>
     <color name="color_bg_live_top_divider">#E5E5E5</color>
     <color name="color_txt_live_top_title">#161A1C</color>
     <color name="color_txt_live_top_name">#4A4C54</color>
     <color name="color_txt_live_mid_title">#161A1C</color>
     <color name="color_txt_live_mid_name">#161A1A</color>
+    <color name="color_txt_live_item_name">#161A1A</color>
+    <color name="color_txt_live_item_des">#171a1c</color>
+    <color name="color_txt_live_item_share">#61666A</color>
+
+    <!--cutepetfragment-->
+    <color name="color_bg_cute_fragment">#ffffff</color>
+    <color name="color_txt_cute_tablayout_selected">#333333</color>
+    <color name="color_bg_cute_item">#ffffff</color>
+    <color name="color_txt_cute_item_title">#171a1c</color>
+    <color name="color_txt_cute_item_name">#666666</color>
+
+    <!--VideoPlayActivity-->
+    <color name="color_bg_video_activity">#ffffff</color>
+    <color name="color_bg_video_tablayout">#fdfdfd</color>
+    <color name="color_txt_video_info_name">#333333</color>
+    <color name="color_txt_video_info_desc">#171a1c</color>
+    <color name="color_bg_video_info_divider">#E2E6E5</color>
+    <color name="color_txt_video_reco_title">#171a1c</color>
+    <color name="color_bg_video_reco_divider">#E2E6E5</color>
+    <color name="color_bg_video_info_like">#ffffff</color>
+    <color name="color_bg_video_player">#ffffff</color>
+    <color name="color_bg_video_like_pressed">#cdcdcd</color>
+    <color name="color_bg_video_info_unat">#E2E6E6</color>
 
 
     <color name="color_btn_homepage_normal">#717474</color>

@@ -7,7 +7,7 @@
         app:cardCornerRadius="3dp"
         android:focusable="true"
         android:clickable="true"
-        android:background="@color/white"
+        app:cardBackgroundColor="@color/color_bg_cute_item"
         app:cardElevation="0dp"
         tools:viewBindingIgnore="true"
         android:foreground="?android:attr/selectableItemBackground">
@@ -48,7 +48,7 @@
                 android:layout_marginEnd="10dp"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:textColor="@color/color_video_item_title"
+                android:textColor="@color/color_txt_cute_item_title"
                 android:textSize="14sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,7 +84,7 @@
                     app:layout_constraintTop_toTopOf="@id/clayout_child_bottom"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_child_bottom"
                     app:layout_constraintLeft_toRightOf="@id/img_cute_author"
-                    android:textColor="@color/gray_66"
+                    android:textColor="@color/color_txt_cute_item_name"
                     android:textSize="10sp"
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical"
@@ -102,7 +102,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/clayout_child_bottom"
                     app:layout_constraintRight_toRightOf="@id/clayout_child_bottom"
                     android:layout_marginEnd="10dp"
-                    android:textColor="@color/gray_66"
+                    android:textColor="@color/color_txt_cute_item_name"
                     android:textSize="11sp"
                     android:includeFontPadding="false" />
 

@@ -2,16 +2,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_bg_video_activity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/video_root"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            app:divider="@drawable/shape_video_diver"
-            app:showDividers="middle"
-            android:background="@color/white">
+            app:showDividers="middle">
 
         <!--相关属性-->
         <!--keep_content_on_player_reset：当播放器重置时，当前显示的视频帧或媒体插图是否保持可见(退出时播放器不会黑屏，会显示最后一帧)-->
@@ -77,7 +76,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="38dp"
-                        android:background="@color/white_fd"
+                        android:background="@color/color_bg_video_tablayout"
                         android:outlineSpotShadowColor="#44000000"
                         android:outlineAmbientShadowColor="#44000000"
                         android:elevation="15dp"

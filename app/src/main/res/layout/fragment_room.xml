@@ -3,7 +3,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/refresh_pet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_bg_cute_fragment">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/clayout_show"
@@ -97,14 +98,13 @@
                 app:tl_indicator_height="0dp"
                 app:tabMinWidth="58dp"
                 app:tabMaxWidth="74dp"
-                app:tl_textSelectColor="@color/color_talk_name"
+                app:tl_textSelectColor="@color/color_txt_cute_tablayout_selected"
                 app:tl_tab_padding="15dp"
                 app:tl_textBold="SELECT"
                 app:tl_textsize="@dimen/common_sz_13_dimens"
                 app:tl_selectTextSize="@dimen/common_sz_14_dimens"
                 app:tl_textUnselectColor="@color/color_txt_tab"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                />
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
         <!--        <com.google.android.material.tabs.TabLayout-->
