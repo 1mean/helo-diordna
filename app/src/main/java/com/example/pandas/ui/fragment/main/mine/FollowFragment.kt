@@ -45,7 +45,7 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.swipLayout.run {
-            setBackgroundResource(R.color.white)
+            setBackgroundResource(R.color.color_bg_home)
             setRefreshColor()
             setOnRefreshListener {
                 mViewModel.getAllFollowUser()

@@ -62,7 +62,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="5dp"
             android:textSize="13sp"
-            android:textColor="@color/grey900"
+            android:textColor="@color/color_txt_fans_self"
             android:maxLines="1"
             android:maxEms="10"
             android:ellipsize="end" />

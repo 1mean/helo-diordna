@@ -60,7 +60,7 @@ public class FollowFragmentAdapter(
         if (data.vip == 1) {
             name.setTextColor(ContextCompat.getColor(context, R.color.color_tab_text_selected))
         } else {
-            name.setTextColor(ContextCompat.getColor(context, R.color.grey900))
+            name.setTextColor(ContextCompat.getColor(context, R.color.color_txt_follow_name))
         }
         name.text = data.userName
 

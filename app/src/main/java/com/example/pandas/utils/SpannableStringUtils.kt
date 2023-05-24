@@ -71,7 +71,6 @@ object SpannableStringUtils {
         listener: SpanClickListener<Int>
     ): SpannableStringBuilder {
 
-
         val fromUserName = user.userName ?: ""
         val toUserName = comment.toUserName
         val fromUserNameSize: Int = fromUserName.length

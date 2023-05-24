@@ -37,7 +37,7 @@ public class AudioMenuAdapter(
     override fun convert(holder: BaseViewHolder, data: MusicVo, position: Int) {
 
         val context = holder.itemView.context
-        val normalNameColor = ContextCompat.getColor(context, R.color.black)
+        val normalNameColor = ContextCompat.getColor(context, R.color.color_txt_music_dialog_name)
         val normalSingerColor = ContextCompat.getColor(context, R.color.color_audio_menu_singer)
         val playingColor = ContextCompat.getColor(context, R.color.color_tab_text_selected)
         val num = holder.getWidget<AppCompatTextView>(R.id.txt_audio_menu_num)
@@ -71,7 +71,7 @@ public class AudioMenuAdapter(
             item.setBackgroundColor(
                 ContextCompat.getColor(
                     context,
-                    R.color.white
+                    R.color.color_bg_music_dialog
                 )
             )
             name.setTextColor(normalNameColor)

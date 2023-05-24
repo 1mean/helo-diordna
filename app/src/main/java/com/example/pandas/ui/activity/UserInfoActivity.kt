@@ -71,7 +71,7 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                     textSize = resources.getDimension(R.dimen.common_sz_5_dimens)
                     normalColor = ContextCompat.getColor(
                         this@UserInfoActivity,
-                        R.color.color_home_tab_text
+                        R.color.color_unselected_tab_userinfo
                     )
                     selectedColor = ContextCompat.getColor(
                         this@UserInfoActivity,
@@ -129,7 +129,7 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                 binding.ibUserMore.setImageResource(R.mipmap.img_user_more2)
                 binding.ibUserVideo.background = null
                 binding.ibUserMore.background = null
-                binding.toolbarUser.setContentScrimResource(R.color.white)
+                binding.toolbarUser.setContentScrimResource(R.color.color_bg_user_top)
             } else {
                 binding.txtUserBarName.visibility = View.GONE
                 binding.ibUserVideo.setImageResource(R.mipmap.img_user_back)

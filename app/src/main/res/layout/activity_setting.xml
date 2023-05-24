@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/color_bg_setting"
         android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_setting_top"
             android:layout_width="match_parent"
-            android:layout_height="56dp">
+            android:layout_height="56dp"
+            android:background="@color/color_bg_home">
 
         <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/ibn_setting_back"
@@ -41,7 +41,8 @@
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/color_bg_home_bottomview">
 
         <androidx.appcompat.widget.AppCompatTextView
                 style="@style/style_setting_item_title_text"
@@ -124,6 +125,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/color_bg_home_bottomview"
             android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -163,6 +165,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/color_bg_home_bottomview"
             android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView

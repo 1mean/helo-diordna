@@ -42,7 +42,7 @@
             android:layout_marginStart="10dp"
             android:textSize="13sp"
             android:gravity="center_vertical"
-            android:textColor="@color/black" />
+            android:textColor="@color/color_txt_music_item_name" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_singer_name"

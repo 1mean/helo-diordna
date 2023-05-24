@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.3dp"
             android:layout_marginTop="10dp"
-            android:background="@color/color_video_divider" />
+            android:background="@color/color_bg_message_divider" />
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_list"

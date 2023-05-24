@@ -12,6 +12,28 @@
     <color name="color_edit_bg_search_home">#f0f3f3</color>
     <color name="color_bg_divider_home">#E2E6E6</color>
 
+    <!--self-->
+    <color name="color_bg_myself_zone">#F6F7FB</color>
+    <color name="color_txt_zone_self">#000000</color>
+    <color name="color_bg_divider_self">#E7E7E7</color>
+    <color name="color_txt_errorfile_self">#000000</color>
+    <color name="color_txt_download_self">#454E54</color>
+    <color name="color_txt_mylove_self">#000000</color>
+    <color name="color_txt_morefunc_self">#000000</color>
+    <color name="color_txt_setting_self">#484D54</color>
+    <color name="color_bg_dark_setting_self">#ffffff</color>
+    <color name="color_tab_selected_self">#000000</color>
+    <color name="color_bg_download">#000000</color>
+    <color name="color_bg_friend_divider">#f6f6f6</color>
+    <color name="color_txt_friend_tablayout">#757575</color>
+    <color name="color_txt_follow_name">#212121</color>
+    <color name="color_bg_followed">#E7E7E7</color>
+    <color name="color_bg_error">#e4e6e5</color>
+    <color name="color_bg_later_dialog">#ffffff</color>
+    <color name="color_txt_later_dialog_title">#333333</color>
+    <color name="color_bg_setting">#ffffff</color>
+    <color name="color_txt_setting_item_name">#000000</color>
+
     <!--home/recommend-->
     <color name="color_bg_recommend">#F1F2F4</color>
     <color name="color_bg_itemview_recommend">#ffffff</color>
@@ -26,6 +48,9 @@
     <color name="color_txt_panda_recommend">#161A1C</color>
     <color name="color_bg_item_panda">#ffffff</color>
     <color name="color_txt_title_item_panda">#171a1c</color>
+    <color name="color_tablayout_unselect_panda">#757575</color>
+    <color name="color_bg_panda_list">#F0F3F3</color>
+    <color name="color_txt_panda_list_item">#999999</color>
 
     <!--home/hot-->
     <color name="color_bg_hot">#ffffff</color>
@@ -77,6 +102,44 @@
     <color name="color_bg_video_player">#ffffff</color>
     <color name="color_bg_video_like_pressed">#cdcdcd</color>
     <color name="color_bg_video_info_unat">#E2E6E6</color>
+    <color name="color_bg_edit_video_comment">#f4f4f4</color>
+    <color name="color_bg_divider_video_comment">#E7E7E7</color>
+    <color name="color_txt_hot_comment">#333333</color>
+    <color name="color_comment_item_name">#757575</color>
+    <color name="color_comment_item_comment">#212121</color>
+    <color name="color_bg_comment_reply">#F4F4F4</color>
+    <color name="color_txt_name_video">#333333</color>
+    <color name="color_bg_video_share">#F6F7F9</color>
+    <color name="color_txt_video_share">#484D51</color>
+    <color name="color_bg_video_divider">#E2E6E6</color>
+    <color name="color_txt_video_cancel">#444E55</color>
+
+    <!--UserInfoActivity-->
+    <color name="color_txt_name_userinfo">#2E333A</color>
+    <color name="color_bg_divider_userinfo">#E2E6E5</color>
+    <color name="color_unselected_tab_userinfo">#60696C</color>
+    <color name="color_bg_user_daily">#F1F2F4</color>
+    <color name="color_bg_user_top">#ffffff</color>
+    <color name="color_txt_user_top_name">#171a1c</color>
+
+    <!--searchActivity-->
+    <color name="color_txt_num_search">#95999d</color>
+    <color name="color_bg_search_history">#f0f3f3</color>
+    <color name="color_txt_edit_hint_search">#ACB4BB</color>
+    <color name="color_bg_message_divider">#E5E6E6</color>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <color name="color_btn_homepage_normal">#717474</color>
@@ -219,6 +282,10 @@
     <color name="color_music_divider_shadow">#66000000</color>
     <color name="color_video_divider_shadow">#66000000</color>
     <color name="color_music_menu_item_selected">#f8fbfd</color>
+    <color name="color_txt_music_item_name">#000000</color>
+    <color name="color_bg_music_dialog">#ffffff</color>
+    <color name="color_txt_music_dialog_name">#000000</color>
+    <color name="color_txt_music_dialog_num">#808892</color>
 
     <!--cache-->
     <color name="color_cache_bar_title">#5E676D</color>
@@ -312,16 +379,7 @@
     <color name="color_bg_cardview_self">#ffffff</color>
     <color name="color_txt_fans_self">#212121</color>
 
-    <color name="color_bg_myself_zone">#F6F7FB</color>
-    <color name="color_txt_zone_self">#000000</color>
-    <color name="color_bg_divider_self">#E7E7E7</color>
-    <color name="color_txt_errorfile_self">#000000</color>
-    <color name="color_txt_download_self">#454E54</color>
-    <color name="color_txt_mylove_self">#000000</color>
-    <color name="color_txt_morefunc_self">#000000</color>
-    <color name="color_txt_setting_self">#484D54</color>
-    <color name="color_bg_dark_setting_self">#ffffff</color>
-    <color name="color_tab_selected_self">#000000</color>
+
 
 
 </resources>

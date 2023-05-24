@@ -64,7 +64,7 @@
                 android:layout_height="37dp"
                 app:layout_constraintTop_toTopOf="@id/clayout_history_item_content"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_history_item_content"
-                android:textColor="@color/color_video_item_title"
+                android:textColor="@color/color_txt_title_item_panda"
                 android:textSize="14sp"
                 android:maxLines="2"
                 android:ellipsize="end" />

@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@color/color_bg_home">
 
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/bar_title"
@@ -29,7 +29,7 @@
     <View
             android:layout_width="match_parent"
             android:layout_height="0.33dp"
-            android:background="@color/color_bg_user_divider" />
+            android:background="@color/color_bg_divider_self" />
 
     <FrameLayout
             android:id="@+id/flayout_more"

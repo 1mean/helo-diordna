@@ -36,7 +36,7 @@
             android:textSize="14sp"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
-            android:textColor="@color/color_video_item_title" />
+            android:textColor="@color/color_txt_item_title_recommend" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_hot"

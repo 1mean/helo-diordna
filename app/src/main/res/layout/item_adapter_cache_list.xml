@@ -18,7 +18,7 @@
             android:textSize="12sp"
             android:layout_marginTop="5dp"
             android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:textColor="@color/color_bg_item_title" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_cache_item_counts"

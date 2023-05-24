@@ -4,5 +4,5 @@
     <!--定义圆角-->
     <corners android:radius="3dp" />
     <!--内部填充色-->
-    <solid android:color="@color/color_bg_comment_like" />
+    <solid android:color="@color/color_bg_comment_reply" />
 </shape>

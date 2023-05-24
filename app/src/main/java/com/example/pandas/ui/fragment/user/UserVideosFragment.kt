@@ -42,7 +42,7 @@ public class UserVideosFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefr
             })
 
         binding.swipLayout.run {
-            setBackgroundResource(R.color.white)
+            setBackgroundResource(R.color.color_bg_video_activity)
             setRefreshColor()
             isRefreshing = true
             setOnRefreshListener {

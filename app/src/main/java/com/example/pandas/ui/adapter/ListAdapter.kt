@@ -5,7 +5,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.biz.ext.loadImage
+import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.sql.entity.VideoAndUser
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.utils.TimeUtils
@@ -35,7 +35,7 @@ public class ListAdapter(val list: MutableList<VideoAndUser>) :
         name.text = user.userName
 
         video.cover?.let {
-            loadImage(context, it, cover)
+            loadCenterImage(context, it, cover)
         }
 
         duration.text = TimeUtils.getDuration(video.duration.toLong())

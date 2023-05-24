@@ -3,7 +3,7 @@
         android:id="@+id/txt_comment_title"
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:background="@color/color_bg_comment_like"
+        android:background="@color/color_bg_comment_reply"
         android:text="全部回复"
         android:gravity="center_vertical"
         android:paddingStart="12dp"

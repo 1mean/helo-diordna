@@ -25,8 +25,8 @@ public class HotSearchAdapter(
     override fun convert(holder: BaseViewHolder, data: String, position: Int) {
 
         val context = holder.itemView.context
-        val color1 = ContextCompat.getColor(context, R.color.color_video_item_title)
-        val color2 = ContextCompat.getColor(context, R.color.color_text_search_num)
+        val color1 = ContextCompat.getColor(context, R.color.color_txt_item_title_recommend)
+        val color2 = ContextCompat.getColor(context, R.color.color_txt_num_search)
         val num = holder.getWidget<AppCompatTextView>(R.id.txt_search_num)
         val title = holder.getWidget<AppCompatTextView>(R.id.txt_search_title)
         val flag = holder.getWidget<AppCompatTextView>(R.id.txt_hot)

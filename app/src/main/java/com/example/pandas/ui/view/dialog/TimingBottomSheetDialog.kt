@@ -94,7 +94,7 @@ public class TimingBottomSheetDialog(
                 left.setTextColor(ContextCompat.getColor(context, R.color.color_name_txt))
             } else {
                 right.visibility = View.GONE
-                left.setTextColor(ContextCompat.getColor(context, R.color.black))
+                left.setTextColor(ContextCompat.getColor(context, R.color.color_txt_mine_name))
             }
             holder.itemView.setOnClickListener {
 

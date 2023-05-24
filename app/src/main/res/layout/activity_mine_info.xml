@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@color/color_bg_home">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_info_top"
@@ -19,7 +19,7 @@
                 app:layout_constraintLeft_toLeftOf="@id/clayout_info_top"
                 app:layout_constraintRight_toRightOf="@id/clayout_info_top"
                 android:text="@string/str_txt_mine_info"
-                android:textColor="@color/black"
+                android:textColor="@color/color_txt_mylove_self"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
         <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/color_txt_mylove_self"
                 android:textSize="14sp"
                 android:text="@string/str_head"
                 app:layout_constraintTop_toTopOf="@id/clayout_info_head"
@@ -74,7 +74,7 @@
         <View
                 android:layout_width="match_parent"
                 android:layout_height="0.3dp"
-                android:background="@color/color_video_divider"
+                android:background="@color/color_bg_message_divider"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_info_head"
                 app:layout_constraintRight_toRightOf="@id/clayout_info_head"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_info_head" />
@@ -91,7 +91,7 @@
         <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/color_txt_mylove_self"
                 android:textSize="14sp"
                 android:text="@string/str_name"
                 app:layout_constraintTop_toTopOf="@id/clayout_info_name"
@@ -123,7 +123,7 @@
         <View
                 android:layout_width="match_parent"
                 android:layout_height="0.3dp"
-                android:background="@color/color_video_divider"
+                android:background="@color/color_bg_message_divider"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_info_name"
                 app:layout_constraintRight_toRightOf="@id/clayout_info_name"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_info_name" />
@@ -140,7 +140,7 @@
         <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/color_txt_mylove_self"
                 android:textSize="14sp"
                 android:text="@string/str_sex"
                 app:layout_constraintTop_toTopOf="@id/clayout_info_sex"
@@ -172,7 +172,7 @@
         <View
                 android:layout_width="match_parent"
                 android:layout_height="0.3dp"
-                android:background="@color/color_video_divider"
+                android:background="@color/color_bg_message_divider"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_info_sex"
                 app:layout_constraintRight_toRightOf="@id/clayout_info_sex"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_info_sex" />
@@ -189,7 +189,7 @@
         <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/color_txt_mylove_self"
                 android:textSize="14sp"
                 android:text="@string/str_NO"
                 app:layout_constraintTop_toTopOf="@id/clayout_info_num"
@@ -221,7 +221,7 @@
         <View
                 android:layout_width="match_parent"
                 android:layout_height="0.3dp"
-                android:background="@color/color_video_divider"
+                android:background="@color/color_bg_message_divider"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_info_num"
                 app:layout_constraintRight_toRightOf="@id/clayout_info_num"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_info_num" />
@@ -238,7 +238,7 @@
         <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/color_txt_mylove_self"
                 android:textSize="14sp"
                 android:text="@string/str_sign"
                 app:layout_constraintTop_toTopOf="@id/clayout_info_sign"
@@ -271,7 +271,7 @@
         <View
                 android:layout_width="match_parent"
                 android:layout_height="0.3dp"
-                android:background="@color/color_video_divider"
+                android:background="@color/color_bg_message_divider"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_info_sign"
                 app:layout_constraintRight_toRightOf="@id/clayout_info_sign"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_info_sign" />

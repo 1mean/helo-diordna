@@ -44,7 +44,7 @@ public class PandaChildFragment : BaseFragment<PandaViewModel, LayoutSwipRefresh
             })
 
         binding.swipLayout.run {
-            setBackgroundResource(R.color.white)
+            setBackgroundResource(R.color.color_bg_home)
             setRefreshColor()
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)

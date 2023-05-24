@@ -3,7 +3,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F6F7F9"
+        android:background="@color/color_bg_video_share"
         android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -13,7 +13,7 @@
             android:gravity="bottom"
             android:paddingStart="22dp"
             android:textSize="12sp"
-            android:textColor="#484D51"
+            android:textColor="@color/color_txt_video_share"
             tools:ignore="RtlSymmetry" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.33dp"
             android:layout_marginTop="16dp"
-            android:background="#E2E6E6" />
+            android:background="@color/color_bg_video_divider" />
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_share_bottom"
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:layout_marginTop="16dp"
-            android:background="#EFF3F3" />
+            android:background="@color/color_bg_video_divider" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btn_share_close"
@@ -47,5 +47,5 @@
             android:text="@string/str_cancel"
             android:textSize="15sp"
             android:gravity="center"
-            android:textColor="#444E55" />
+            android:textColor="@color/color_txt_video_cancel" />
 </androidx.appcompat.widget.LinearLayoutCompat>

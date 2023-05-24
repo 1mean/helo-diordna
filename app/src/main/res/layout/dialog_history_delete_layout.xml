@@ -14,7 +14,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="20dp"
             android:layout_marginStart="23dp"
-            android:textColor="@color/color_txt_tab_select"
+            android:textColor="@color/color_txt_later_dialog_title"
             android:text="@string/str_delte_history" />
 
     <androidx.appcompat.widget.AppCompatButton

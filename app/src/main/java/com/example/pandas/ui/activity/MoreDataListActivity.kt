@@ -3,6 +3,7 @@ package com.example.pandas.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.base.activity.BaseActivity
@@ -11,6 +12,7 @@ import com.example.pandas.biz.viewmodel.MoreDataViewModel
 import com.example.pandas.databinding.ActivityMoreBinding
 import com.example.pandas.ui.fragment.main.home.music.MusicListFragment
 import com.example.pandas.ui.fragment.video.VideoListFragment
+import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
 /**
@@ -24,9 +26,14 @@ public class MoreDataListActivity : BaseActivity<MoreDataViewModel, ActivityMore
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.updataStatus(this, true, false, R.color.white)
+        //判断当前设置是黑夜模式时，采用黑夜模式
+        val nightMode = DarkModeUtils.getNightModel(this)
+        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+            StatusBarUtils.updataStatus(this, false, false, R.color.color_bg_home)
+        } else {
+            StatusBarUtils.updataStatus(this, true, false, R.color.color_bg_home)
+        }
         initToolBar()
-
     }
 
     override fun createObserver() {

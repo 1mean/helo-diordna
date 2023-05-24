@@ -12,6 +12,30 @@
     <color name="color_edit_bg_search_home">#1e2121</color>
     <color name="color_bg_divider_home">#2f3232</color>
 
+    <!-- 我的->设置界面 -->
+    <color name="color_txt_mine_name">#e7eaea</color>
+    <color name="color_bg_cardview_self">#1e2121</color>
+    <color name="color_txt_fans_self">#e1e1e1</color>
+    <color name="color_bg_myself_zone">#1e2121</color>
+    <color name="color_txt_zone_self">#999999</color>
+    <color name="color_bg_divider_self">#333333</color>
+    <color name="color_txt_errorfile_self">#e7eaea</color>
+    <color name="color_txt_download_self">#b7bec1</color>
+    <color name="color_txt_mylove_self">#e7eaea</color>
+    <color name="color_txt_morefunc_self">#e7eaea</color>
+    <color name="color_txt_setting_self">#b7bec1</color>
+    <color name="color_bg_dark_setting_self">#1e2121</color>
+    <color name="color_tab_selected_self">#e7eaea</color>
+    <color name="color_bg_download">#1e2121</color>
+    <color name="color_bg_friend_divider">#2a2a2a</color>
+    <color name="color_txt_friend_tablayout">#b5b5b5</color>
+    <color name="color_txt_follow_name">#e1e1e1</color>
+    <color name="color_bg_followed">#2a2a2a</color>
+    <color name="color_bg_error">#1e2121</color>
+    <color name="color_bg_later_dialog">#2d2d2d</color>
+    <color name="color_txt_later_dialog_title">#d0d0d0</color>
+    <color name="color_bg_setting">#000000</color>
+    <color name="color_txt_setting_item_name">#d0d4d8</color>
 
     <!--recommend-->
     <color name="color_bg_recommend">#000000</color>
@@ -20,7 +44,6 @@
     <color name="color_txt_video_title_recommend">#e7eaea</color>
     <color name="color_bg_item_follow_recommend">#3c2e28</color>
 
-
     <!--panda-->
     <color name="color_bg_panda_fragment">#000000</color>
     <color name="color_bg_panda_top_cardview">#1e2121</color>
@@ -28,6 +51,16 @@
     <color name="color_txt_panda_recommend">#e7eaea</color>
     <color name="color_bg_item_panda">#1e2121</color>
     <color name="color_txt_title_item_panda">#e7eaea</color>
+    <color name="color_tablayout_unselect_panda">#e1e1e1</color>
+    <color name="color_bg_panda_list">#1e2121</color>
+    <color name="color_txt_panda_list_item">#e7eaea</color>
+
+
+    <!--searchActivity-->
+    <color name="color_txt_num_search">#b7bec1</color>
+    <color name="color_bg_search_history">#232626</color>
+    <color name="color_txt_edit_hint_search">#a0a7ac</color>
+    <color name="color_bg_message_divider">#333334</color>
 
 
     <!--home/hot-->
@@ -80,6 +113,25 @@
     <color name="color_bg_video_player">#17181A</color>
     <color name="color_bg_video_like_pressed">#393c3c</color>
     <color name="color_bg_video_info_unat">#2f3234</color>
+    <color name="color_bg_edit_video_comment">#1e2121</color>
+    <color name="color_bg_divider_video_comment">#2f3234</color>
+    <color name="color_txt_hot_comment">#d0d0d0</color>
+    <color name="color_comment_item_name">#e7eaea</color>
+    <color name="color_comment_item_comment">#e7eaea</color>
+    <color name="color_bg_comment_reply">#1e2121</color>
+    <color name="color_txt_name_video">#e7eaea</color>
+    <color name="color_bg_video_share">#1e2121</color>
+    <color name="color_txt_video_share">#b7bec1</color>
+    <color name="color_bg_video_divider">#2f3232</color>
+    <color name="color_txt_video_cancel">#e7eaea</color>
+
+    <!--UserInfoActivity-->
+    <color name="color_txt_name_userinfo">#d0d4d8</color>
+    <color name="color_bg_divider_userinfo">#2f3234</color>
+    <color name="color_unselected_tab_userinfo">#a1a8ad</color>
+    <color name="color_bg_user_daily">#17181A</color>
+    <color name="color_bg_user_top">#17181A</color>
+    <color name="color_txt_user_top_name">#e7eaea</color>
 
 
     <color name="color_btn_homepage_normal">#717474</color>
@@ -114,7 +166,7 @@
     <color name="color_black_20">#20000000</color>
     <color name="color_txt_tab">#999999</color>
     <color name="color_txt_tab_select">#333333</color>
-    <color name="color_bg_divider">#E5E5E5</color>
+    <color name="color_bg_divider">#333333</color>
     <color name="color_mine_txt_name">#151B1C</color>
     <color name="color_mine_txt_zone_counts">#212121</color>
     <color name="color_mine_txt_zone">#999A97</color>
@@ -145,6 +197,7 @@
     <color name="color_home_music_text_unselected">#808894</color>
     <color name="color_home_music_indicator">#D8F3FB</color>
     <color name="color_home_music_desc">#D39542</color>
+    <color name="color_bg_music_dialog">#1e2121</color>
 
 
     <!--video-->
@@ -156,9 +209,9 @@
     <color name="color_unfollow_bg">#fe679a</color>
     <color name="color_follow_bg">#E4E5E7</color>
     <color name="color_name_txt">#FF669B</color>
-    <color name="color_video_name_txt">#161A1C</color>
+    <color name="color_video_name_txt">#e7eaea</color>
     <color name="color_video_comment_txt">#989C9F</color>
-    <color name="color_video_item_title">#171a1c</color>
+    <color name="color_video_item_title">#e7eaea</color>
     <color name="color_video_item_name">#939a9f</color>
     <color name="color_video_divider">#E5E6E6</color>
     <color name="color_video_timebar_buffered">#cfd8dc</color>
@@ -187,14 +240,14 @@
     <color name="color_home_viewpager_bg">#989C9F</color>
     <!--    <color name="color_bg_reco">#EFF3F3</color>-->
     <color name="color_bg_reco">#F0F3F3</color>
-    <color name="color_bg_home_dialog">#F4F8F8</color>
+    <color name="color_bg_home_dialog">#1e2121</color>
     <color name="color_txt_dialog">#484E4F</color>
 
     <!--love  -->
     <color name="color_txt_love_pet">#111111</color>
     <color name="color_txt_singer">#7F8791</color>
     <color name="color_txt_sleep_more">#cdcdcd</color>
-    <color name="color_talk_name">#333333</color>
+    <color name="color_talk_name">#d0d0d0</color>
     <color name="color_talk_item_pressed">#f46844</color>
     <color name="color_landscape_item_author">#94999D</color>
     <color name="color_bg_love">#f5f5f5</color>
@@ -213,15 +266,18 @@
     <color name="color_search_edit_cursor">#919AA0</color>
 
     <!--more info-->
-    <color name="color_bar_txt_title">#191919</color>
+    <color name="color_bar_txt_title">#e7eaea</color>
 
 
     <!--music-->
-    <color name="color_music_start_bg">#f6f6f6</color>
-    <color name="color_music_top_txt">#2A313B</color>
+    <color name="color_music_start_bg">#2f3232</color>
+    <color name="color_music_top_txt">#e1e1e1</color>
     <color name="color_music_divider_shadow">#66000000</color>
     <color name="color_video_divider_shadow">#66000000</color>
-    <color name="color_music_menu_item_selected">#f8fbfd</color>
+    <color name="color_music_menu_item_selected">#17181A</color>
+    <color name="color_txt_music_item_name">#e7eaea</color>
+    <color name="color_txt_music_dialog_name">#e7eaea</color>
+    <color name="color_txt_music_dialog_num">#484D54</color>
 
     <!--cache-->
     <color name="color_cache_bar_title">#5E676D</color>
@@ -232,6 +288,7 @@
     <color name="color_text_setting_info">#ADB4BE</color>
     <color name="color_audio_menu_singer">#808892</color>
     <color name="color_player_controller_bg">#99000000</color>
+
 
     <!--hot-->
     <color name="color_txt_hot_tag">#FF5D1D</color>
@@ -258,24 +315,24 @@
     <color name="color_txt_panda_selected">#FF569A</color>
 
     <!--history-->
-    <color name="color_history_title">#17191E</color>
-    <color name="color_history_manager">#61666A</color>
+    <color name="color_history_title">#e7eaea</color>
+    <color name="color_history_manager">#a0a8ab</color>
 
     <!--collect-->
     <color name="color_collect_creator">#949DA0</color>
-    <color name="color_creator_bg">#F1F2F4</color>
-    <color name="color_creator_item_bg">#F6F7F9</color>
+    <color name="color_creator_bg">#000000</color>
+    <color name="color_creator_item_bg">#0d0d0d</color>
     <color name="color_craetor_switch">#fa6597</color>
     <color name="color_craetor_switch_closed">#e5e5e5</color>
-    <color name="color_craetor_text">#c2c5ca</color>
+    <color name="color_craetor_text">#adb4b9</color>
     <color name="color_bg_delete_dialog">#F6F7F9</color>
     <color name="color_txt_group_creator">#94999D</color>
-    <color name="color_txt_group_title">#18191D</color>
+    <color name="color_txt_group_title">#e7eaea</color>
 
     <!--setting-->
     <color name="color_txt_setting_item_title">#83888E</color>
-    <color name="color_bg_setting_drivider">#F9FAFE</color>
-    <color name="color_bg_setting_item_drivider">#F3F4F8</color>
+    <color name="color_bg_setting_drivider">#000000</color>
+    <color name="color_bg_setting_item_drivider">#2f3234</color>
     <color name="color_txt_setting_item_desc">#838790</color>
     <color name="color_bg_setting_button_checked">#00A8FF</color>
     <color name="color_bg_setting_button_unchecked">#DBDBDB</color>
@@ -290,14 +347,14 @@
     <color name="color_bg_cute_pet">#FAFAFA</color>
     <color name="color_bg_indicator">#22000000</color>
     <color name="color_bg_list_activity">#F1F7F6</color>
-    <color name="color_bg_cm_drivider">#e4e6e5</color>
+    <color name="color_bg_cm_drivider">#2f3234</color>
     <color name="color_bg_dialog">#F6F7F9</color>
     <color name="color_vertical_white">#E6ffffff</color>
     <color name="color_txt_visitor">#4A4C54</color>
     <color name="color_live_tag_text">#008FD3</color>
     <color name="color_live_vip">#FF4E9B</color>
     <color name="color_live_name">#161A1A</color>
-    <color name="color_text_item_timing">#F2F4F9</color>
+    <color name="color_text_item_timing">#2f3232</color>
     <color name="color_bg_banner_top">#2F2F2F</color>
 
     <!-- face -->
@@ -309,18 +366,4 @@
     <color name="color_txt_reply_short_comment">#74737C</color>
 
 
-    <!-- 我的->设置界面 -->
-    <color name="color_txt_mine_name">#e7eaea</color>
-    <color name="color_bg_cardview_self">#1e2121</color>
-    <color name="color_txt_fans_self">#e1e1e1</color>
-    <color name="color_bg_myself_zone">#1e2121</color>
-    <color name="color_txt_zone_self">#999999</color>
-    <color name="color_bg_divider_self">#333333</color>
-    <color name="color_txt_errorfile_self">#e7eaea</color>
-    <color name="color_txt_download_self">#b7bec1</color>
-    <color name="color_txt_mylove_self">#e7eaea</color>
-    <color name="color_txt_morefunc_self">#e7eaea</color>
-    <color name="color_txt_setting_self">#b7bec1</color>
-    <color name="color_bg_dark_setting_self">#1e2121</color>
-    <color name="color_tab_selected_self">#e7eaea</color>
 </resources>
