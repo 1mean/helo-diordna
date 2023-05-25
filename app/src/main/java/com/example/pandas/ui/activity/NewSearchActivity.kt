@@ -44,8 +44,6 @@ public class NewSearchActivity : BaseExActivity<SearchViewModel, ActivitySearchB
 
         lifecycleScope.launch {
 
-            StatusBarUtils.updataStatus(this@NewSearchActivity, true, false, R.color.white)
-
             binding.rvSearch.run {
                 layoutManager = GridLayoutManager(this@NewSearchActivity, 2)
                 adapter = mAdapter

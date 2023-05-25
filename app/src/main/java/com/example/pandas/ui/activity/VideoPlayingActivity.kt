@@ -72,9 +72,11 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     val videoManager: VideoPlayManager by lazy { VideoPlayManager(this, this) }
 
-    override fun initView(savedInstanceState: Bundle?) {
-
+    override fun initStatusView() {
         StatusBarUtils.setStatusBarMode(this, false, R.color.black)
+    }
+
+    override fun initView(savedInstanceState: Bundle?) {
 
         video = intent.getParcelableExtra("petVideo")
         val index = intent.getIntExtra("index",0)

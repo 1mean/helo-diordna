@@ -3,14 +3,15 @@ package com.example.pandas.ui.activity
 import android.Manifest
 import android.content.Context
 import android.content.IntentFilter
-import android.content.pm.ActivityInfo
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation.findNavController
@@ -20,6 +21,7 @@ import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.databinding.ActivityMainBinding
 import com.example.pandas.ui.broadcast.TimingBroadCast
+import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
 class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
@@ -51,9 +53,16 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
             val alwaysDeniedList = list - deniedList
         }
 
-    override fun initView(savedInstanceState: Bundle?) {
+    override fun initStatusView() {
+        val nightMode = DarkModeUtils.getNightModel(this)
+        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
+            StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
+        } else {
+            StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
+        }
+    }
 
-        StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
+    override fun initView(savedInstanceState: Bundle?) {
 
         requestPermissions.launch(permissions)
 

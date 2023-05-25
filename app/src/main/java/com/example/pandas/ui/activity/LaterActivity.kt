@@ -5,6 +5,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.PopupWindow
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatButton
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
@@ -13,6 +14,7 @@ import com.example.pandas.databinding.ActivityLaterBinding
 import com.example.pandas.ui.adapter.LaterAdapter
 import com.example.pandas.ui.ext.initNoFooter
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
+import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
 /**
@@ -29,10 +31,6 @@ public class LaterActivity : BaseActivity<HistoryViewModeL, ActivityLaterBinding
     private val mAdapter: LaterAdapter by lazy { LaterAdapter(listener = this) }
 
     override fun initView(savedInstanceState: Bundle?) {
-
-        StatusBarUtils.setStatusBarMode(this, true, R.color.white)
-
-        //val padding = resources.getDimension(R.dimen.common_lh_3_dimens).toInt()
 
         binding.rvLater.initNoFooter(
             null,

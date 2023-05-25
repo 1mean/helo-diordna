@@ -27,6 +27,7 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
     override fun initView(savedInstanceState: Bundle?) {
 
         loadCircleImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
+
         binding.clayoutDownload.setOnClickListener {
 //            startActivity(Intent(activity, LocalCacheActivity::class.java))
             mViewModel.IntUpdate()

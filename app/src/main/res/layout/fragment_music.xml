@@ -42,7 +42,7 @@
                                 android:layout_height="wrap_content"
                                 android:textStyle="bold"
                                 android:textSize="15sp"
-                                android:textColor="@color/black"
+                                android:textColor="@color/color_txt_mylove_self"
                                 app:layout_constraintTop_toTopOf="@id/clayout_top_title"
                                 app:layout_constraintBottom_toBottomOf="@id/clayout_top_title"
                                 app:layout_constraintLeft_toLeftOf="@id/clayout_top_title"
@@ -81,7 +81,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:text="@string/string_love_music"
-                            android:textColor="@color/black"
+                            android:textColor="@color/color_txt_mylove_self"
                             android:textSize="15sp"
                             android:paddingStart="15dp"
                             android:layout_marginTop="10dp"
@@ -139,7 +139,7 @@
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
                     app:layout_constraintRight_toRightOf="@id/clayout_tablayout"
-                    android:background="#88f5f8fa">
+                    android:background="@color/color_bg_music_tab_more">
 
                 <androidx.appcompat.widget.AppCompatImageButton
                         android:layout_width="33dp"

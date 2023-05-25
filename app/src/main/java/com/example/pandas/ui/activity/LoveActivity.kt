@@ -31,10 +31,6 @@ public class LoveActivity : BaseActivity<HistoryViewModeL, ActivityLoveBinding>(
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.setStatusBarMode(this, true, R.color.white)
-
-        //val padding = resources.getDimension(R.dimen.common_lh_3_dimens).toInt()
-
         binding.rvLater.initNoFooter(
             null,
             mAdapter,

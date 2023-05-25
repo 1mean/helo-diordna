@@ -6,6 +6,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.PopupWindow
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatButton
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
@@ -14,6 +15,7 @@ import com.example.pandas.databinding.ActivityHistoryBinding
 import com.example.pandas.ui.adapter.HistoryAdapter
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
+import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
 
@@ -31,7 +33,6 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
     private val mAdapter: HistoryAdapter by lazy { HistoryAdapter(listener = this) }
 
     override fun initView(savedInstanceState: Bundle?) {
-        StatusBarUtils.setStatusBarMode(this, true, R.color.white)
 
         val padding = resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
 

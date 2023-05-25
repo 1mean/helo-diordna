@@ -22,7 +22,7 @@
                 app:layout_constraintRight_toRightOf="@id/clayout_short_comment_top"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:textColor="@color/color_bg_eye_tab_indicator" />
+                android:textColor="@color/color_txt_comments_right_dialog" />
 
         <androidx.appcompat.widget.AppCompatImageButton
                 android:layout_width="40dp"
@@ -50,7 +50,7 @@
         <View
                 android:layout_width="0dp"
                 android:layout_height="0.33dp"
-                android:background="#D1D1D2"
+                android:background="@color/color_bg_right_dialig_divider"
                 app:layout_constraintTop_toTopOf="@id/clayout_short_comment_bottom"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_short_comment_bottom"
                 app:layout_constraintRight_toRightOf="@id/clayout_short_comment_bottom" />

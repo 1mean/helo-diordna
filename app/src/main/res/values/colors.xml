@@ -13,6 +13,9 @@
     <color name="color_bg_divider_home">#E2E6E6</color>
 
     <!--self-->
+    <color name="color_txt_mine_name">#000000</color>
+    <color name="color_bg_cardview_self">#ffffff</color>
+    <color name="color_txt_fans_self">#212121</color>
     <color name="color_bg_myself_zone">#F6F7FB</color>
     <color name="color_txt_zone_self">#000000</color>
     <color name="color_bg_divider_self">#E7E7E7</color>
@@ -205,6 +208,8 @@
     <color name="color_home_music_text_unselected">#808894</color>
     <color name="color_home_music_indicator">#D8F3FB</color>
     <color name="color_home_music_desc">#D39542</color>
+    <color name="color_bg_music_tab_more">#88f5f8fa</color>
+    <color name="color_bg_music_item_press">#eaedf6</color>
 
 
     <!--video-->
@@ -368,18 +373,19 @@
     <!-- face -->
     <color name="color_bg_status_bar">#70000000</color>
 
+
+    <!--ShortVideoActivity-->
     <color name="color_bg1">#F8F8F8</color>
     <color name="color_txt_short_item_name">#B0B0B1</color>
     <color name="color_txt_content_item_short_comment">#151A21</color>
     <color name="color_txt_reply_short_comment">#74737C</color>
-
-
-    <!-- 我的->设置界面 -->
-    <color name="color_txt_mine_name">#000000</color>
-    <color name="color_bg_cardview_self">#ffffff</color>
-    <color name="color_txt_fans_self">#212121</color>
-
-
+    <color name="color_bg_short_right_dialog">#ffffff</color>
+    <color name="color_bg_right_dialig_divider">#D1D1D2</color>
+    <color name="color_bg_edit_right_dialog">#f3f3f3</color>
+    <color name="color_txt_comments_right_dialog">#222222</color>
+    <color name="color_bg_item_right_dialog">#ffffff</color>
+    <color name="color_bg_short_loading">#ffffff</color>
+    <color name="color_bg_right_comment_soft">#ffffff</color>
 
 
 </resources>

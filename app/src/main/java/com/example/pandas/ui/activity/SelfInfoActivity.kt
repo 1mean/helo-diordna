@@ -1,11 +1,13 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivityMineInfoBinding
+import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
 /**
@@ -18,7 +20,6 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.updataStatus(this, true, false, R.color.white)
         binding.ibInfo.setOnClickListener {
             finish()
         }

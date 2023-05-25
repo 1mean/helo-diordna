@@ -5,7 +5,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        android:background="@drawable/ripple_landscape_item">
+        android:background="@drawable/ripple_short_comment_reply_item">
 
     <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_reply_header"

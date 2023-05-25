@@ -1,6 +1,7 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.pandas.R
@@ -9,6 +10,7 @@ import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivityFollowBinding
 import com.example.pandas.ui.fragment.main.mine.FansFragment
 import com.example.pandas.ui.fragment.main.mine.FollowFragment
+import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -23,8 +25,6 @@ public class FollowAndFansActivity : BaseActivity<SelfViewModel, ActivityFollowB
     private val tabTitles = arrayListOf("我的关注", "我的粉丝")
 
     override fun initView(savedInstanceState: Bundle?) {
-
-        StatusBarUtils.updataStatus(this, true, false, R.color.white)
 
         val index = intent.getIntExtra("FollowsOrFans", 0)
         binding.layoutFollowTop.ibnTopFinish.setOnClickListener { finish() }

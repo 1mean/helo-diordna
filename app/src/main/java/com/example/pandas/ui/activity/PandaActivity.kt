@@ -28,9 +28,12 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
 
     private val tabTitles = arrayListOf("视频", "熊猫宝宝", "熊猫妈妈", "幼年伙伴")
 
+    override fun initStatusView() {
+        StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
+    }
+
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
         val title = intent.getStringExtra("title")
         binding.txtCmBannerTitle.text = title
 

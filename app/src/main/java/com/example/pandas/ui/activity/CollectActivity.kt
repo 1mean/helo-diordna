@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
@@ -15,6 +16,7 @@ import com.example.pandas.ui.adapter.decoration.LandScapeItemDecoration
 import com.example.pandas.ui.ext.launcherActivity
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.dialog.DeletePopuWindow
+import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
@@ -45,8 +47,6 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
         }
 
     override fun initView(savedInstanceState: Bundle?) {
-
-        StatusBarUtils.setStatusBarMode(this, true, R.color.white)
 
         val padding = resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
         binding.rvCollect.run {

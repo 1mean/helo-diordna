@@ -16,7 +16,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
 
 /**
- * @description: 统一的列表
+ * @description: 熊猫-绩笑/肉肉
  * @author: dongyiming
  * @date: 7/16/22 1:22 上午
  * @version: v1.0
@@ -33,9 +33,8 @@ public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBindin
 
     private val mAdapter by lazy { ListAdapter(mutableListOf()) }
 
-    override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.updataStatus(this, true, false, R.color.white)
+    override fun initView(savedInstanceState: Bundle?) {
 
         type = intent.getIntExtra("list_type", -1)
         localFilePath = intent.getStringExtra("localFilePath")

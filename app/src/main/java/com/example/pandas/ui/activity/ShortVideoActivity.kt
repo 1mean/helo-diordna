@@ -65,10 +65,12 @@ public class ShortVideoActivity :
 
     private val mHandler: Handler = Handler(Looper.getMainLooper())
 
+    override fun initStatusView() {
+        StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
+    }
+
     @SuppressLint("Recycle")
     override fun initView(savedInstanceState: Bundle?) {
-
-        StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
 
         //bug:一句代码解决了两天的bug，关闭popuwindow时，edittext仍然有焦点，会反复弹出
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)

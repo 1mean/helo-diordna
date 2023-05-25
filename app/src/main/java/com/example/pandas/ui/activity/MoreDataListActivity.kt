@@ -26,13 +26,6 @@ public class MoreDataListActivity : BaseActivity<MoreDataViewModel, ActivityMore
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        //判断当前设置是黑夜模式时，采用黑夜模式
-        val nightMode = DarkModeUtils.getNightModel(this)
-        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
-            StatusBarUtils.updataStatus(this, false, false, R.color.color_bg_home)
-        } else {
-            StatusBarUtils.updataStatus(this, true, false, R.color.color_bg_home)
-        }
         initToolBar()
     }
 

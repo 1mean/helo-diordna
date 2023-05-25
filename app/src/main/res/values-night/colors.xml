@@ -192,12 +192,14 @@
     <color name="color_live_comments">#61666A</color>
 
     <!--music-->
-    <color name="color_bg_music_fragment">#f5f8fa</color>
+    <color name="color_bg_music_fragment">#17181A</color>
     <color name="color_home_music_top_title">#848E95</color>
     <color name="color_home_music_text_unselected">#808894</color>
     <color name="color_home_music_indicator">#D8F3FB</color>
     <color name="color_home_music_desc">#D39542</color>
     <color name="color_bg_music_dialog">#1e2121</color>
+    <color name="color_bg_music_tab_more">#881e2121</color>
+    <color name="color_bg_music_item_press">#3a3a3b</color>
 
 
     <!--video-->
@@ -360,10 +362,18 @@
     <!-- face -->
     <color name="color_bg_status_bar">#70000000</color>
 
-    <color name="color_bg1">#F8F8F8</color>
-    <color name="color_txt_short_item_name">#B0B0B1</color>
-    <color name="color_txt_content_item_short_comment">#151A21</color>
-    <color name="color_txt_reply_short_comment">#74737C</color>
 
+    <!--ShortVideoActivity-->
+    <color name="color_bg1">#1e2121</color>
+    <color name="color_txt_short_item_name">#B0B0B1</color>
+    <color name="color_txt_content_item_short_comment">#e1e1e1</color>
+    <color name="color_txt_reply_short_comment">#74737C</color>
+    <color name="color_bg_short_right_dialog">#141414</color>
+    <color name="color_bg_right_dialig_divider">#2a2a2a</color>
+    <color name="color_bg_edit_right_dialog">#1e1e1e</color>
+    <color name="color_txt_comments_right_dialog">#747b80</color>
+    <color name="color_bg_item_right_dialog">#141414</color>
+    <color name="color_bg_short_loading">#1e1e1e</color>
+    <color name="color_bg_right_comment_soft">#000000</color>
 
 </resources>

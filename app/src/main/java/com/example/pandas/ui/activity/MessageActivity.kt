@@ -15,8 +15,6 @@ import com.example.pandas.utils.StatusBarUtils
 public class MessageActivity : BaseActivity<MessageViewModel,ActivityMessageBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
-
-        StatusBarUtils.setStatusBarMode(this, true, R.color.white)
     }
 
     override fun createObserver() {

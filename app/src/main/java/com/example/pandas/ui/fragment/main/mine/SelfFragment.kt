@@ -3,11 +3,13 @@ package com.example.pandas.ui.fragment.main.mine
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelStoreOwner
+import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentMineBinding
 import com.example.pandas.ui.adapter.SelfViewPagerAdapter
 import com.example.pandas.utils.DarkModeUtils
+import com.example.pandas.utils.StatusBarUtils
 
 
 /**
@@ -35,8 +37,10 @@ public class SelfFragment : BaseFragment<SelfViewModel, FragmentMineBinding>() {
             val nightMode = DarkModeUtils.getNightModel(mActivity)
             if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
                 DarkModeUtils.applyDayMode(mActivity)
+                StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
             } else {
                 DarkModeUtils.applyNightMode(mActivity)
+                StatusBarUtils.updataStatus(mActivity, true, true, R.color.color_white_lucency)
             }
         }
     }

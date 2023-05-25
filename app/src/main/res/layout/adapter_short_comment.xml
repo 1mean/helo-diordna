@@ -9,7 +9,7 @@
             android:id="@+id/clayout_content_item_short_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_landscape_item"
+            android:background="@drawable/ripple_short_comment_item"
             app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -105,6 +105,7 @@
             app:layout_constraintTop_toBottomOf="@id/clayout_content_item_short_comment"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginStart="54dp"
+            android:background="@color/color_bg_short_loading"
             android:visibility="gone" />
 
     <FrameLayout
@@ -156,7 +157,7 @@
                 android:id="@+id/clayout_reply_loading"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
+                android:background="@color/color_bg_short_loading"
                 android:visibility="gone">
 
             <ProgressBar

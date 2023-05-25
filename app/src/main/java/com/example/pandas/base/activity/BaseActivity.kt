@@ -1,13 +1,18 @@
 package com.example.pandas.base.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.example.pandas.R
 import com.example.pandas.base.viewmodel.BaseViewModel
+import com.example.pandas.utils.DarkModeUtils
+import com.example.pandas.utils.StatusBarUtils
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.ParameterizedType
 
@@ -31,8 +36,24 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
         preInit()
         setContentView(initViewBinding())
         initViewModel()
+        initStatusView()
         initView(savedInstanceState)
         createObserver()
+    }
+
+    /**
+     * <设置白天和黑夜模式，如果想自己控制，自己继承方法定制>
+     * @author: dongyiming
+     * @date: 5/25/23 6:15 PM
+     * @version: v1.0
+     */
+    open fun initStatusView() {
+        val nightMode = DarkModeUtils.getNightModel(this)
+        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+            StatusBarUtils.setStatusBarMode(this, true, R.color.white)
+        }
     }
 
     override fun onResume() {
