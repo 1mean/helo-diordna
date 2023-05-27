@@ -59,6 +59,7 @@
 
         <activity android:name=".ui.activity.BehaviorActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
+        <activity android:name=".ui.activity.IntegralActivity" />
         <activity android:name=".ui.activity.VerticalVideoActivity" />
         <activity android:name=".ui.activity.MoreDataListActivity" />
         <activity android:name=".ui.activity.AudioPlayActivity" />

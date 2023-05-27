@@ -33,6 +33,10 @@ public class SelfFragment : BaseFragment<SelfViewModel, FragmentMineBinding>() {
         }
         binding.slideTabSetting.setViewPager(binding.vp2Self, titles)
 
+        
+        //1。主题不一致，会导致MainActivity刷新重建，即会主动调用recreate方法
+        //2。如果不想要重建，可在activity中设置android:configChanges="uiMode"，使模式的改变对其无效
+        //3。在MainActivity的onConfigurationChanged方法里，自己处理界面的改变
         binding.itemModeDark.setOnClickListener {
             val nightMode = DarkModeUtils.getNightModel(mActivity)
             if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式

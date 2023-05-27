@@ -6,7 +6,6 @@
         android:layout_height="114dp"
         android:clickable="true"
         android:focusable="true"
-        tools:viewBindingIgnore="true"
         android:background="@drawable/ripple_landscape_item">
 
     <androidx.appcompat.widget.AppCompatImageView

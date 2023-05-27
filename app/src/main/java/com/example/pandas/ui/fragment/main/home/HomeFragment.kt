@@ -3,6 +3,7 @@ package com.example.pandas.ui.fragment.main.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.core.content.ContextCompat
@@ -39,7 +40,7 @@ import com.google.android.material.appbar.AppBarLayout
  */
 public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 
-    private val tabTitles = arrayListOf("熊猫", "推荐", "热门", "最爱", "山水", "音乐")
+    private val tabTitles = arrayListOf("熊猫", "推荐", "热门", "娱乐", "风景", "音乐")
 
     private var verticalOffset: Int = 0 //Appbar偏移
     override fun lazyLoadTime(): Long = 0
@@ -98,8 +99,10 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
                 return linePagerIndicator
             }
         }
-        binding.tab.setNavigator(commonNavigator)
-        binding.tab.onPageSelected(1)
+        binding.tab.run {
+            setNavigator(commonNavigator)
+            onPageSelected(1)
+        }
         ViewPagerHelper.bind(binding.tab, binding.viewpager)
 
 //        val mTabEntities = ArrayList<CustomTabEntity>()
@@ -142,9 +145,9 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 //        binding.bar.setExpanded(true,true)
     }
 
-    fun getVerticalOffset(): Int = verticalOffset
-
-    fun setSwipeRefreshEnable(isEnable: Boolean) {
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.e("2mean","onSaveInstanceState")
     }
 
     override fun createObserver() {

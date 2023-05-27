@@ -3,6 +3,7 @@ package com.example.pandas.ui.activity
 import android.Manifest
 import android.content.Context
 import android.content.IntentFilter
+import android.content.res.Configuration
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log

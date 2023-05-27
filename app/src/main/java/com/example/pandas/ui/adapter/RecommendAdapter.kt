@@ -147,7 +147,6 @@ public class RecommendAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.itemView.tag = position
 
-        Log.e("1mean", "position: $position")
         when (getItemViewType(position)) {
             TYPE_ITEM -> {
                 (holder as CardHolder).handle(position)

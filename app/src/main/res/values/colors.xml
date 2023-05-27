@@ -26,7 +26,7 @@
     <color name="color_txt_setting_self">#484D54</color>
     <color name="color_bg_dark_setting_self">#ffffff</color>
     <color name="color_tab_selected_self">#000000</color>
-    <color name="color_bg_download">#000000</color>
+    <color name="color_bg_download">#ffffff</color>
     <color name="color_bg_friend_divider">#f6f6f6</color>
     <color name="color_txt_friend_tablayout">#757575</color>
     <color name="color_txt_follow_name">#212121</color>
@@ -191,6 +191,7 @@
     <color name="color_self_txt_log">#818892</color>
     <color name="color_self_tab_indicator">#00BBFF</color>
     <color name="color_self_cache_title">#d0effc</color>
+    <color name="color_self_total_integral">#252525</color>
 
     <!--eye-->
     <color name="color_eye_view_bg">#ededed</color>
@@ -203,7 +204,8 @@
     <color name="color_live_comments">#61666A</color>
 
     <!--music-->
-    <color name="color_bg_music_fragment">#f5f8fa</color>
+    <!--<color name="color_bg_music_fragment">#f5f8fa</color>-->
+    <color name="color_bg_music_fragment">#ffffff</color>
     <color name="color_home_music_top_title">#848E95</color>
     <color name="color_home_music_text_unselected">#808894</color>
     <color name="color_home_music_indicator">#D8F3FB</color>

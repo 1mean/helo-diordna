@@ -1,14 +1,17 @@
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
+import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.interaction.ItemClickListener
+import com.example.pandas.databinding.AdapterHotFragmentBinding
+import com.example.pandas.databinding.AdapterTopHotFragmentBinding
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.ui.adapter.decoration.HotFragmentTopDecoration
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.utils.NumUtils
@@ -20,61 +23,118 @@ import com.example.pandas.utils.TimeUtils
  * @date: 4/20/22 11:27 下午
  * @version: v1.0
  */
-public class HotFragmentAdapter(list: MutableList<PetVideo>) : BaseCommonAdapter<PetVideo>(list) {
+public class HotFragmentAdapter(val list: MutableList<PetVideo>) : Adapter<ViewHolder>() {
 
     private val max = 1 * 1000 * 1000 * 2
     private val th = 1 * 1000 * 1000
 
-    override fun getLayoutId(): Int = R.layout.adapter_hot_fragment
+    private val TYPE_TOP = 1
+    private val TYPE_ITEM = 2
 
-    override fun convert(holder: BaseViewHolder, data: PetVideo, position: Int) {
+    override fun getItemCount(): Int = if (list.isEmpty()) {
+        0
+    } else {
+        list.size + 1
+    }
 
-        val context = holder.itemView.context
-        val cover = holder.getWidget<AppCompatImageView>(R.id.img_hot_cover)
-        val duration = holder.getWidget<AppCompatTextView>(R.id.txt_hot_duration)
-        val title = holder.getWidget<AppCompatTextView>(R.id.txt_hot_title)
-        val tag = holder.getWidget<AppCompatTextView>(R.id.txt_hot_tag)
-        val author = holder.getWidget<AppCompatTextView>(R.id.txt_hot_author)
-        val playCounts = holder.getWidget<AppCompatTextView>(R.id.txt_hot_video_counts)
-        val time = holder.getWidget<AppCompatTextView>(R.id.txt_hot_time)
-        val more = holder.getWidget<ConstraintLayout>(R.id.item_hot_more)
+    override fun getItemViewType(position: Int): Int = if (position == 0) {
+        TYPE_TOP
+    } else {
+        TYPE_ITEM
+    }
 
-        Log.e("asdasdadasdas", "position: $position, time:$time")
-        data.cover?.let {
-            loadCenterRoundedCornerImage(context, 10, it, cover)
-        }
-        duration.text = TimeUtils.getDuration(data.duration.toLong())
-        title.text = data.title
-        tag.text = "百万播放"
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val rCounts = (1..max).random()
-        val rCountsString = NumUtils.getShortNum(rCounts)
-        playCounts.text = rCountsString
-        if (rCounts >= th) {
-            tag.visibility = View.VISIBLE
+        if (viewType == TYPE_TOP) {
+            val binding = AdapterTopHotFragmentBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+            return TopViewHolder(binding)
         } else {
-            tag.visibility = View.GONE
-        }
-
-        data.user?.let {
-            author.text = it.userName
-        }
-
-        val parseTime = TimeUtils.getMdTime(data.releaseTime)
-        time.text = StringBuilder("- ").append(parseTime).toString()
-        
-        holder.itemView.setOnClickListener {
-            startVideoPlayingActivity(context, data)
-        }
-
-        more.setOnClickListener {
-            val dialog =
-                ShareBottomSheetDialog(context, object : ItemClickListener<String> {
-                    override fun onItemClick(t: String) {
-                    }
-                })
-            dialog.addData().onShow()
+            val binding = AdapterHotFragmentBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+            return ItemViewHolder(binding)
         }
     }
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        if (getItemViewType(position) == TYPE_TOP) {
+            (holder as TopViewHolder).handle()
+        } else {
+            (holder as ItemViewHolder).handle(position)
+        }
+    }
+
+    class TopViewHolder(binding: AdapterTopHotFragmentBinding) : ViewHolder(binding.root) {
+
+        val recyclerView = binding.rvTopHotFragment
+        fun handle() {
+            recyclerView.run {
+                layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+                addItemDecoration(HotFragmentTopDecoration())
+                adapter = HotTopItemAdapter(mutableListOf())
+            }
+        }
+    }
+
+    inner class ItemViewHolder(binding: AdapterHotFragmentBinding) : ViewHolder(binding.root) {
+
+        val context = itemView.context
+        val cover = binding.imgHotCover
+
+        val duration = binding.txtHotDuration
+        val title = binding.txtHotTitle
+        val tag = binding.txtHotTag
+        val author = binding.txtHotAuthor
+        val playCounts = binding.txtHotVideoCounts
+        val time = binding.txtHotTime
+        val more = binding.itemHotMore
+
+        fun handle(position: Int) {
+
+            val data = list[position - 1]
+            Log.e("asdasdadasdas", "position: $position, time:$time")
+            data.cover?.let {
+                loadCenterRoundedCornerImage(context, 10, it, cover)
+            }
+            duration.text = TimeUtils.getDuration(data.duration.toLong())
+            title.text = data.title
+            tag.text = "百万播放"
+
+            val rCounts = (1..max).random()
+            val rCountsString = NumUtils.getShortNum(rCounts)
+            playCounts.text = rCountsString
+            if (rCounts >= th) {
+                tag.visibility = View.VISIBLE
+            } else {
+                tag.visibility = View.GONE
+            }
+
+            data.user?.let {
+                author.text = it.userName
+            }
+
+            val parseTime = TimeUtils.getMdTime(data.releaseTime)
+            time.text = StringBuilder("- ").append(parseTime).toString()
+
+            itemView.setOnClickListener {
+                startVideoPlayingActivity(context, data)
+            }
+
+            more.setOnClickListener {
+                val dialog =
+                    ShareBottomSheetDialog(context, object : ItemClickListener<String> {
+                        override fun onItemClick(t: String) {
+                        }
+                    })
+                dialog.addData().onShow()
+            }
+        }
+
+    }
 }

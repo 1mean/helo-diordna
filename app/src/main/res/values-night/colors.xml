@@ -180,6 +180,7 @@
     <color name="color_self_txt_log">#818892</color>
     <color name="color_self_tab_indicator">#00BBFF</color>
     <color name="color_self_cache_title">#d0effc</color>
+    <color name="color_self_total_integral">#999A97</color>
 
     <!--eye-->
     <color name="color_eye_view_bg">#ededed</color>
