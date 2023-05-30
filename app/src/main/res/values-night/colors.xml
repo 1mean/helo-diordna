@@ -4,6 +4,7 @@
     <color name="colorPrimary">@color/color_white_lucency</color>
     <color name="colorPrimaryDark">@color/color_white_lucency</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="color_bg_video_item">#e8eaef</color>
 
     <!-- 首页底部  -->
     <color name="color_bg_home_bottomview">#17181A</color>

@@ -19,6 +19,7 @@
                 android:id="@+id/flayout_top"
                 android:layout_width="0dp"
                 android:layout_height="105dp"
+                android:background="@color/color_bg_video_item"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
