@@ -5,8 +5,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
+import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
-import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.sql.entity.VideoAndUser
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 
@@ -30,6 +30,7 @@ public class MusicTopAdapter(list: MutableList<VideoAndUser>) :
         val video = data.video
 
         video.cover?.let {
+//            loadCenterImage(context, it, cover)
             loadCenterRoundedCornerImage(context, 20, it, cover)
         }
 

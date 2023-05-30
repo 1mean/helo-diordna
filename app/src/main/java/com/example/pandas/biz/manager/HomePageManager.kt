@@ -24,6 +24,8 @@ val PetManagerCoroutine: PetManager by lazy(mode = LazyThreadSafetyMode.SYNCHRON
 
 class PetManager {
 
+    private val delayTime = 300L
+
     private val petDao: PetVideoDao by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
         AppDataBase.getInstance().petVideoDao()
     }
@@ -35,7 +37,7 @@ class PetManager {
     ): MutableList<PetVideo> {
 
         return withContext(Dispatchers.IO) {
-            delay(200)
+            delay(delayTime)
             val list = petDao.queryLovedPanda(startIndex, counts)
             if (list.isNotEmpty()) {
                 list.forEach {
@@ -61,7 +63,7 @@ class PetManager {
     ): MutableList<VideoAndUser> {
 
         return withContext(Dispatchers.IO) {
-            delay(200)
+            delay(delayTime)
             petDao.queryVideosByVideoType(type, startIndex, counts)
         }
     }
@@ -142,7 +144,7 @@ class PetManager {
                 }
                 recommendData.itemList = list
             } else {
-                delay(350)
+                delay(delayTime)
                 val list = petDao.queryStarByPage(startIndex, counts)
                 if (list.isNotEmpty()) {
                     list.forEach {
@@ -202,7 +204,7 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
 
-            delay(500)
+            delay(delayTime)
             val data = PageCommonData()
             if (isFresh) {
                 data.run {
@@ -224,17 +226,23 @@ class PetManager {
     /**
      * 获取分页的music数据
      */
-    suspend fun getPageMusic(startIndex: Int, counts: Int): MutableList<MusicVo> {
+    suspend fun getPageMusic(type: Int, startIndex: Int, counts: Int): MutableList<MusicVo> {
 
-        return withContext(Dispatchers.IO) {
-            petDao.queryMusicByPage(0, startIndex, counts)
+        return withContext(Dispatchers.Default) {
+            if (type != 0) {
+                val startDex = (8 - type) * 10
+                petDao.queryMusicByPage(0, startDex, 10)
+            } else {
+                petDao.queryMusicByPage(0, startIndex, counts)
+            }
         }
     }
 
     suspend fun getLandscapeData(startIndex: Int, counts: Int): LandscapeData {
 
-        return withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.Default) {
 
+            delay(delayTime)
             val itemList = petDao.queryVideoByType(VideoType.LANDSCAPE.ordinal, startIndex, counts)
             itemList.forEach {
                 it.user = petDao.queryUserByCode(it.authorId)
@@ -256,7 +264,7 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
 
-            delay(500)
+            delay(delayTime)
             val list = petDao.queryHotVideo(startIndex, counts)
             list.forEach {
                 val code = it.authorId
@@ -895,6 +903,16 @@ class PetManager {
                 }
             }
             list
+        }
+    }
+
+    suspend fun getPageRanks(
+        startIndex: Int,
+        counts: Int
+    ): MutableList<VideoAndUser> {
+
+        return withContext(Dispatchers.Default) {
+            petDao.queryVideosByReleaseTime(startIndex, counts)
         }
     }
 

@@ -69,7 +69,7 @@ public class MoreDataViewModel : BaseViewModel() {
 
     fun getPageMusic() {
 
-        request({ PetManagerCoroutine.getPageMusic(musicStartIndex, 21) },
+        request({ PetManagerCoroutine.getPageMusic(0, musicStartIndex, 21) },
             { list ->
                 val hasMore = list.size == 21
                 if (list.size == 21) {

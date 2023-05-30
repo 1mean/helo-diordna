@@ -494,4 +494,8 @@ interface PetVideoDao {
     @Transaction
     @Query("select * from pet_video where star=1 order by releaseTime desc limit 30,35")
     suspend fun queryMaxPlayedVideos(): MutableList<PetVideo>
+
+    @Transaction
+    @Query("select * from pet_video order by releaseTime desc limit (:startIndex),(:count)")
+    suspend fun queryVideosByReleaseTime(startIndex: Int, count: Int): MutableList<VideoAndUser>
 }

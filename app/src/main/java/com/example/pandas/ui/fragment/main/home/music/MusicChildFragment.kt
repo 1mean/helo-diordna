@@ -25,16 +25,17 @@ public class MusicChildFragment : BaseFragment<HomePageViewModel, LayoutOnlyLoad
 
     override fun lazyLoadTime(): Long = 0
 
-    override fun initView(savedInstanceState: Bundle?) {
-        val type = requireArguments().getInt("type")
+    private var type: Int = -1
 
+    override fun initView(savedInstanceState: Bundle?) {
+        type = requireArguments().getInt("type")
         binding.rvLoadmore.run {
             init2(
                 null, mAdapter,
                 LinearLayoutManager(context),
                 object : SwipRecyclerView2.ILoadMoreListener {
                     override fun onLoadMore() {
-                        mViewModel.getSongData(false)
+                        mViewModel.getSongData(false, type)
                     }
                 })
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -96,7 +97,7 @@ public class MusicChildFragment : BaseFragment<HomePageViewModel, LayoutOnlyLoad
     }
 
     override fun firstOnResume() {
-        mViewModel.getSongData(true)
+        mViewModel.getSongData(true, type)
     }
 
     companion object {

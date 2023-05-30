@@ -219,7 +219,13 @@ public class LivePlayManager(
 //        return _mPlayer!!.isPlaying
 //    }
 
-    fun isPlaying(): Boolean = mPlayer.isPlaying
+    fun isPlaying(): Boolean {
+        return if (_mPlayer == null) {
+            false
+        } else {
+            mPlayer.isPlaying
+        }
+    }
 
     private val mListener = object : Player.Listener {
         override fun onPlaybackStateChanged(playbackState: Int) {

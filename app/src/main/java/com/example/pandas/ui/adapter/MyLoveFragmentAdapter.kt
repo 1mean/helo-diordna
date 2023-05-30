@@ -425,7 +425,7 @@ public class MyLoveFragmentAdapter(
     }
 
     private fun getNextSongs(): Flow<MutableList<MusicVo>> = flow {
-        val list = PetManagerCoroutine.getPageMusic(startIndex, pageItems)
+        val list = PetManagerCoroutine.getPageMusic(0,startIndex, pageItems)
         emit(list)
     }
 

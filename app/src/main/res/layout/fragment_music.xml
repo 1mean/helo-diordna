@@ -18,6 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:elevation="0dp"
+                android:background="@color/color_bg_music_top"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -35,6 +36,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/clayout_top_title"
                             android:layout_width="match_parent"
+                            android:visibility="gone"
                             android:layout_height="50dp">
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -75,7 +77,52 @@
                             android:id="@+id/recycler_home_music_top"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
                             android:nestedScrollingEnabled="false" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clayout_music_notice"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_bg_music_notice">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toTopOf="@id/clayout_music_notice"
+                                app:layout_constraintBottom_toBottomOf="@id/clayout_music_notice"
+                                app:layout_constraintRight_toRightOf="@id/clayout_music_notice"
+                                android:layout_marginEnd="30dp"
+                                android:textSize="12sp"
+                                android:text="更多音乐视频"
+                                android:textColor="@color/color_txt_music_notice" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toTopOf="@id/clayout_music_notice"
+                                app:layout_constraintBottom_toBottomOf="@id/clayout_music_notice"
+                                app:layout_constraintLeft_toLeftOf="@id/clayout_music_notice"
+                                android:layout_marginStart="10dp"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:text="歌曲"
+                                android:textColor="@color/color_txt_music_notice" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/img_music_forward"
+                                app:layout_constraintTop_toTopOf="@id/clayout_music_notice"
+                                app:layout_constraintBottom_toBottomOf="@id/clayout_music_notice"
+                                app:layout_constraintRight_toRightOf="@id/clayout_music_notice"
+                                android:layout_marginEnd="10dp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
@@ -87,8 +134,10 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center_vertical"
                             android:textStyle="bold"
+                            android:visibility="gone"
                             tools:ignore="RtlSymmetry" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -96,26 +145,27 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_tablayout"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <!--实现细节-->
             <!--1，设置最小和最大宽度，保证item字数不同时，占据的宽度能随着字数而改变-->
             <!--2，应对不同的字数，设置tabIndicatorFullWidth，使指示器看起来宽度是随着字数而变化的-->
+            <!--android:layout_marginEnd="39dp"-->
             <com.example.pandas.ui.view.MyTabLayout
                     android:id="@+id/tab_music"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:tabMode="scrollable"
-                    android:layout_marginEnd="39dp"
                     app:tabIndicatorAnimationDuration="500"
                     app:tabIndicatorGravity="center"
                     app:tabMaxWidth="60dp"
                     app:tabMinWidth="50dp"
-                    android:paddingStart="10dp"
+                    android:paddingStart="5dp"
+                    android:paddingBottom="10dp"
                     android:overScrollMode="never"
                     app:tabIndicatorFullWidth="true"
-                    app:tabSelectedTextColor="@color/black"
+                    app:tabSelectedTextColor="@color/color_home_music_text_selected"
                     app:tabTextColor="@color/color_home_music_text_unselected"
                     app:tabTextAppearance="@style/MusicTabLayoutTextStyle"
                     app:tabIndicator="@drawable/layer_music_indicator"
@@ -138,6 +188,7 @@
                     android:id="@+id/clayout_music_tab_setting"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
                     app:layout_constraintRight_toRightOf="@id/clayout_tablayout"
                     android:background="@color/color_bg_music_tab_more">
 
@@ -152,17 +203,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!--解决viewpager2嵌套滑动冲突-->
-         <com.example.pandas.ui.view.NestedScrollableHost
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:layout_marginTop="40dp"
-                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <com.example.pandas.ui.view.NestedScrollableHost
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-             <androidx.viewpager2.widget.ViewPager2
-                     android:id="@+id/vp2_music"
-                     android:layout_width="match_parent"
-                     android:layout_height="match_parent" />
-         </com.example.pandas.ui.view.NestedScrollableHost>
+            <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp2_music"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+        </com.example.pandas.ui.view.NestedScrollableHost>
         <!--<androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp2_music"
                 android:layout_width="match_parent"

@@ -31,6 +31,24 @@ public class HotFragmentAdapter(val list: MutableList<PetVideo>) : Adapter<ViewH
     private val TYPE_TOP = 1
     private val TYPE_ITEM = 2
 
+    fun refreshAdapter(data: MutableList<PetVideo>) {
+        if (data.isNotEmpty() && list != data) {
+            list.clear()
+            list.addAll(data)
+            notifyDataSetChanged()
+
+        }
+    }
+
+    fun loadMore(data: MutableList<PetVideo>) {
+
+        if (data.isNotEmpty()) {
+            val size = list.size
+            list.addAll(data)
+            notifyItemRangeInserted(size, data.size)
+        }
+    }
+
     override fun getItemCount(): Int = if (list.isEmpty()) {
         0
     } else {
@@ -73,11 +91,12 @@ public class HotFragmentAdapter(val list: MutableList<PetVideo>) : Adapter<ViewH
     class TopViewHolder(binding: AdapterTopHotFragmentBinding) : ViewHolder(binding.root) {
 
         val recyclerView = binding.rvTopHotFragment
+        val topList = mutableListOf<String>("播放榜", "创作榜","热搜榜")
         fun handle() {
             recyclerView.run {
                 layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 addItemDecoration(HotFragmentTopDecoration())
-                adapter = HotTopItemAdapter(mutableListOf())
+                adapter = HotTopItemAdapter(topList)
             }
         }
     }

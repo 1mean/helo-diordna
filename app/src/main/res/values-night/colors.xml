@@ -195,13 +195,16 @@
     <!--music-->
     <color name="color_bg_music_fragment">#17181A</color>
     <color name="color_home_music_top_title">#848E95</color>
-    <color name="color_home_music_text_unselected">#808894</color>
-    <color name="color_home_music_indicator">#D8F3FB</color>
+    <color name="color_home_music_text_unselected">#a1a8ad</color>
+    <color name="color_home_music_text_selected">#e7eaea</color>
+    <color name="color_home_music_indicator">#1e2121</color>
     <color name="color_home_music_desc">#D39542</color>
     <color name="color_bg_music_dialog">#1e2121</color>
     <color name="color_bg_music_tab_more">#881e2121</color>
     <color name="color_bg_music_item_press">#3a3a3b</color>
-
+    <color name="color_bg_music_notice">#1e2121</color>
+    <color name="color_bg_music_top">#17181A</color>
+    <color name="color_txt_music_notice">#a1a8ad</color>
 
     <!--video-->
     <color name="color_tab_text_selected">#F26E9A</color>

@@ -48,7 +48,7 @@ public class VideoListAdapter(private val list: MutableList<VideoAndUser>) :
         val rCountsString = NumUtils.getShortNum(rCounts)
         counts.text = rCountsString
 
-        val parseTime = TimeUtils.getMdTime(video.releaseTime)
+        val parseTime = TimeUtils.descriptiveData(video.releaseTime)
         time.text = StringBuilder("- ").append(parseTime).toString()
 
         holder.itemView.setOnClickListener {

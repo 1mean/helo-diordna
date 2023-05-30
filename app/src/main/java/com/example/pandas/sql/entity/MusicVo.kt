@@ -2,6 +2,7 @@ package com.example.pandas.sql.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "music")
@@ -27,6 +28,8 @@ data class MusicVo(
     @ColumnInfo
     var reservedInt: Int = 0,//预留int字段
     @ColumnInfo
-    var reservedString: String? = null//预留string字段
+    var reservedString: String? = null,//预留string字段
 
+    @Ignore
+    var booleanFlag: Boolean = false
 )

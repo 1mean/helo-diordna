@@ -11,7 +11,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:text="歌曲数量不足，分类数据会变得很少"
-            android:textSize="13sp"
+            android:textSize="12sp"
             android:layout_marginStart="15dp"
             android:textColor="@color/color_home_music_desc" />
 </androidx.constraintlayout.widget.ConstraintLayout>

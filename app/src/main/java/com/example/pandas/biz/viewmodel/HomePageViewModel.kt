@@ -29,6 +29,7 @@ class HomePageViewModel : BaseViewModel() {
     var recoIndex = 0
     var landIndex = 0
     var hotIndex = 0
+    var musicIndex = 0
     var hasMore = true//是否有更多
     var hotHasMore = true//是否有更多
     var pandaHasMore = true//是否有更多
@@ -275,34 +276,44 @@ class HomePageViewModel : BaseViewModel() {
     }
 
     var songHasMore = false
-    fun getSongData(isRefresh: Boolean) {
+    fun getSongData(isRefresh: Boolean, type: Int) {
 
         if (isRefresh) {
-            landIndex = 0
+            musicIndex = 0
         }
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getPageMusic(landIndex, 21)
+                PetManagerCoroutine.getPageMusic(type, musicIndex, 21)
             }.onSuccess {
-
-                songHasMore = if (it.size > 20) {
-                    it.removeLast()
-                    true
+                if (type == 0) {
+                    songHasMore = if (it.size > 20) {
+                        it.removeLast()
+                        true
+                    } else {
+                        false
+                    }
+                    val dataList = UIDataWrapper(
+                        isSuccess = true,
+                        isRefresh = isRefresh,
+                        isEmpty = it.isEmpty(),
+                        hasMore = songHasMore,
+                        isFirstEmpty = isRefresh && it.isEmpty(),
+                        listData = it
+                    )
+                    musicIndex += 20
+                    songDataWrapper.value = dataList
                 } else {
-                    false
+                    val dataList = UIDataWrapper(
+                        isSuccess = true,
+                        isRefresh = isRefresh,
+                        isEmpty = it.isEmpty(),
+                        hasMore = false,
+                        isFirstEmpty = isRefresh && it.isEmpty(),
+                        listData = it
+                    )
+                    songDataWrapper.value = dataList
                 }
-
-                val dataList = UIDataWrapper(
-                    isSuccess = true,
-                    isRefresh = isRefresh,
-                    isEmpty = it.isEmpty(),
-                    hasMore = songHasMore,
-                    isFirstEmpty = isRefresh && it.isEmpty(),
-                    listData = it
-                )
-                landIndex += 20
-                songDataWrapper.value = dataList
             }.onFailure {
 
                 it.message?.loge()

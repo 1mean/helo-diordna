@@ -1,12 +1,11 @@
 package com.example.pandas.ui.adapter
 
 import androidx.fragment.app.Fragment
-import com.example.pandas.ui.fragment.main.live.LiveFragment
-import com.example.pandas.ui.fragment.main.pet.CutePetFragment
-import com.example.pandas.ui.fragment.main.home.HomeFragment
-import com.example.pandas.ui.fragment.main.eyepetozer.OtherFragment
 import com.example.pandas.ui.fragment.main.face.FaceFragment
+import com.example.pandas.ui.fragment.main.home.HomeFragment
+import com.example.pandas.ui.fragment.main.live.LiveFragment
 import com.example.pandas.ui.fragment.main.mine.SelfFragment
+import com.example.pandas.ui.fragment.main.pet.CutePetFragment
 
 /**
  * @description: 创建home界面的4个fragment
@@ -34,10 +33,10 @@ public class FragmentFactory {
                 when (page) {
                     PAGE_ONE -> mFragment = HomeFragment()
                     PAGE_TWO -> mFragment = LiveFragment()
-//                    PAGE_THREE -> mFragment = OtherFragment()
+                    PAGE_THREE -> mFragment = FaceFragment()
 //                    PAGE_THREE -> mFragment = FaceFragment()  //人脸识别
-                    PAGE_THREE -> mFragment = CutePetFragment()
-                    PAGE_FOUR -> mFragment = SelfFragment()
+                    PAGE_FOUR -> mFragment = CutePetFragment()
+                    PAGE_FIVE -> mFragment = SelfFragment()
                 }
                 fragments[page] = mFragment!!
             }

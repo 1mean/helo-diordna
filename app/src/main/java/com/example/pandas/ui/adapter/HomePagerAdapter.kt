@@ -36,10 +36,10 @@ public class HomePagerAdapter(
                 "热门" -> {
                     HotFragment()
                 }
-                "最爱" -> {
+                "娱乐" -> {
                     MyLoveFragment()
                 }
-                "山水" -> {
+                "风景" -> {
                     LandscapeFragment()
                 }
                 "音乐" -> {

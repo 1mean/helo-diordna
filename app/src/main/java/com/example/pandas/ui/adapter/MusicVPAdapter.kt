@@ -31,19 +31,21 @@ public class MusicVPAdapter(
 
     override fun containsItem(itemId: Long): Boolean = pageIds.contains(itemId)
 
-    private fun getType(position: Int): Int {
+    private fun getType(position: Int): Int = position
 
-        var type = 0
-        when (position) {
-            0 -> type = VideoType.CAT.ordinal
-            1 -> type = VideoType.BIRD.ordinal
-            2 -> type = VideoType.FOX.ordinal
-            3 -> type = VideoType.RED_PANDA.ordinal
-            4 -> type = VideoType.PENGUIN.ordinal
-            5 -> type = VideoType.GOLDEN_MONKEY.ordinal
-            6 -> type = VideoType.BEAR.ordinal
-            else -> type = VideoType.BEAR.ordinal
-        }
-        return type
-    }
+//    private fun getType(position: Int): Int {
+//
+//        var type = 0
+//        type = when (position) {
+//            0 -> VideoType.CAT.ordinal
+//            1 -> VideoType.BIRD.ordinal
+//            2 -> VideoType.FOX.ordinal
+//            3 -> VideoType.RED_PANDA.ordinal
+//            4 -> VideoType.PENGUIN.ordinal
+//            5 -> VideoType.GOLDEN_MONKEY.ordinal
+//            6 -> VideoType.BEAR.ordinal
+//            else -> VideoType.BEAR.ordinal
+//        }
+//        return type
+//    }
 }

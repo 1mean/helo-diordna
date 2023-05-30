@@ -1,14 +1,15 @@
 package com.example.pandas.ui.fragment.main.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
+import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.FragmentMusicBinding
+import com.example.pandas.ui.activity.MoreDataListActivity
 import com.example.pandas.ui.adapter.MusicTopAdapter
 import com.example.pandas.ui.adapter.MusicVPAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
@@ -41,7 +42,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBinding>() {
 
     private val mTitles = arrayOf(
-        "推荐", "全部", "国语", "英语", "流行", "纯音乐", "国风", "民谣", "动漫"
+        "全部", "流行", "国风", "民谣", "动漫", "爵士", "摇滚", "校园"
     )
 
     private var verticalOffset: Int = 0//AppBarLayout的滑动偏移
@@ -54,17 +55,17 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        Log.e("1mean", "${mTitles.size}")
         binding.vp2Music.run {
             adapter = MusicVPAdapter(childFragmentManager, lifecycle, mTitles)
             offscreenPageLimit = mTitles.size
             currentItem = 0
         }
 
-        val padding = mActivity.resources.getDimension(R.dimen.common_lh_18_dimens).toInt()
+        val padding = mActivity.resources.getDimension(R.dimen.common_lh_5_dimens).toInt()
 
         binding.recyclerHomeMusicTop.run {
             addItemDecoration(CommonItemDecoration(false, 2, 0, padding, 0))
+//            addItemDecoration(MusicTopDecoration())
             layoutManager = GridLayoutManager(mActivity, 2)
             adapter = topAdapter
         }
@@ -108,8 +109,8 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
             }
         })
 
-        binding.clayoutTopTitle.setOnClickListener {
-
+        binding.clayoutMusicNotice.setOnClickListener {
+            MoreDataListActivity.startMoreDataActivity(mActivity, VideoType.MUSIC.ordinal)
         }
     }
 
