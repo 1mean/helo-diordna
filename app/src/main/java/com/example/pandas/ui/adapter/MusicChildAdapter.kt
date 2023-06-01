@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
-import com.example.pandas.biz.ext.loadRoundedCornerImage
+import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.databinding.AdapterMusicChildBinding
 import com.example.pandas.databinding.LayoutTopMusicBinding
 import com.example.pandas.sql.entity.MusicVo
@@ -110,7 +110,7 @@ public class MusicChildAdapter(private val list: MutableList<MusicVo>) :
 //            val data = list[position - 1]
             val data = list[position]
             data.cover?.let {
-                loadRoundedCornerImage(context, 30, it, cover)
+                loadCenterRoundedCornerImage(context, 30, it, cover)
             }
             name.text = data.audioName
             singer.text = data.singerName

@@ -7,8 +7,7 @@ import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.pet.PetViewData
-import com.example.pandas.biz.ext.loadRoundedCornerImage
-import com.example.pandas.ui.ext.startVideoPlayingActivity
+import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -32,7 +31,7 @@ public class CacheItemAdapter(private val list: MutableList<PetViewData>) :
         val more = holder.getWidget<ConstraintLayout>(R.id.item_cache_load_more)
         val file = holder.getWidget<AppCompatTextView>(R.id.txt_cache_file)
 
-        loadRoundedCornerImage(context, 15, data.cover, cover)
+        loadCenterRoundedCornerImage(context, 15, data.cover, cover)
         duration.text = TimeUtils.getMMDuration(data.duration.toLong())
         title.text = data.title
         data.user?.let {

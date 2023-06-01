@@ -5,7 +5,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.biz.ext.loadRoundedCornerImage
+import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.sql.entity.VideoAndUser
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.utils.NumUtils
@@ -38,7 +38,7 @@ public class VideoListAdapter(private val list: MutableList<VideoAndUser>) :
         val user = data.user
 
         video.cover?.let {
-            loadRoundedCornerImage(holder.itemView.context, 20, it, cover)
+            loadCenterRoundedCornerImage(holder.itemView.context, 20, it, cover)
         }
         duration.text = TimeUtils.getDuration(video.duration.toLong())
         title.text = video.title

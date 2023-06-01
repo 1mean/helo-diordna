@@ -51,11 +51,15 @@ fun loadRoundedCornerImage(context: Context, radius: Int, url: String, view: Ima
 fun loadCenterRoundedCornerImage(context: Context, radius: Int, url: String?, view: ImageView) {
     val options =
         RequestOptions.bitmapTransform(MultiTransformation(CenterCrop(), RoundedCorners(radius)))
-    if (url == null) {
-        Glide.with(context).load(R.mipmap.img_null_01).apply(options).into(view)
-    } else {
-        Glide.with(context).load(url).apply(options).into(view)
+    url?.let {
+        Glide.with(context).load(it).apply(options).placeholder(R.color.color_bg_video_item)
+            .into(view)
     }
+//    if (url == null) {
+//        Glide.with(context).load(R.mipmap.img_null_01).apply(options).into(view)
+//    } else {
+//        Glide.with(context).load(url).apply(options).placeholder(R.color.color_bg_video_item).into(view)
+//    }
 }
 
 /**
@@ -64,11 +68,16 @@ fun loadCenterRoundedCornerImage(context: Context, radius: Int, url: String?, vi
 fun loadCenterImage(context: Context, url: String?, view: ImageView) {
     val options =
         RequestOptions.bitmapTransform(MultiTransformation(CenterCrop()))
-    if (url == null) {
-        Glide.with(context).load(R.mipmap.img_null_01).apply(options).into(view)
-    } else {
-        Glide.with(context).load(url).apply(options).into(view)
+    url.let {
+        Glide.with(context).load(it).apply(options).placeholder(R.color.color_bg_video_item)
+            .into(view)
     }
+//    if (url == null) {
+//        Glide.with(context).load(R.mipmap.img_null_01).apply(options).into(view)
+//    } else {
+//        Glide.with(context).load(url).apply(options).placeholder(R.color.color_bg_video_item)
+//            .into(view)
+//    }
 }
 
 /**
@@ -76,7 +85,7 @@ fun loadCenterImage(context: Context, url: String?, view: ImageView) {
  */
 fun loadCircleBitmap(context: Context, bitmap: Bitmap, view: ImageView) {
     val options =
-        RequestOptions.bitmapTransform(MultiTransformation(CenterCrop(),CircleCrop()))
+        RequestOptions.bitmapTransform(MultiTransformation(CenterCrop(), CircleCrop()))
     Glide.with(context).load(bitmap).apply(options).into(view)
 }
 
@@ -85,12 +94,13 @@ fun loadCircleBitmap(context: Context, bitmap: Bitmap, view: ImageView) {
  */
 fun loadCircleImage(context: Context, url: String, view: ImageView) {
     val options = RequestOptions.bitmapTransform(CircleCrop())
-    Glide.with(context).load(url).apply(options).into(view)
+    Glide.with(context).load(url).apply(options).placeholder(R.color.color_bg_video_item).into(view)
 }
 
 fun loadLocalCircleImage(context: Context, urlRes: Int, view: ImageView) {
     val options = RequestOptions.bitmapTransform(CircleCrop())
-    Glide.with(context).load(urlRes).apply(options).into(view)
+    Glide.with(context).load(urlRes).apply(options).placeholder(R.color.color_bg_video_item)
+        .into(view)
 }
 
 fun loadImage(context: Context, url: String, view: ImageView) {

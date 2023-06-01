@@ -24,8 +24,8 @@ import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoPagerAdapter
 import com.example.pandas.ui.ext.addRefreshAnimation
 import com.example.pandas.ui.ext.startUserInfoActivity
-import com.example.pandas.ui.view.dialog.ShortRightPopuWindow
 import com.example.pandas.ui.view.dialog.ShortBottoomPopuWindow
+import com.example.pandas.ui.view.dialog.ShortRightPopuWindow
 import com.example.pandas.utils.StatusBarUtils
 import com.example.pandas.utils.VibrateUtils
 import com.google.android.exoplayer2.util.Util
@@ -365,6 +365,7 @@ public class ShortVideoActivity :
 
         override fun onPageScrollStateChanged(state: Int) {
             super.onPageScrollStateChanged(state)
+
         }
 
         override fun onPageScrolled(
@@ -373,6 +374,13 @@ public class ShortVideoActivity :
             positionOffsetPixels: Int
         ) {
             super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            transRotation?.let {
+                if (it.isStarted) {
+                    it.repeatCount = 0
+                    it.cancel()
+                    it.end()
+                }
+            }
         }
 
         //界面初始化，第一次注册时也会被调用，所以要注意为null的判断
@@ -461,6 +469,19 @@ public class ShortVideoActivity :
             //.isThreeDrag(true) //是否开启三阶拖拽，如果设置enableDrag(false)则无效
             .asCustom(popupView)
             .show()
+    }
+
+    private var transRotation: ObjectAnimator? = null
+    //启动当前页面右下角的音乐旋转动画
+    override fun startMusicAnimation(musicImg: View) {
+
+        mHandler.postDelayed({
+            transRotation = ObjectAnimator.ofFloat(musicImg, "rotation", 0f, 360f)
+            transRotation!!.interpolator = LinearInterpolator()
+            transRotation!!.duration = 7000
+            transRotation!!.repeatCount = -1 //动画永不停止
+            transRotation!!.start()
+        }, 1500)
     }
 
     override fun onkeyBack() {

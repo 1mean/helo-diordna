@@ -4,7 +4,7 @@ import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.eyes.EyepetozerItem
-import com.example.pandas.biz.ext.loadRoundedCornerImage
+import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -27,7 +27,7 @@ public class EyeRecAdapter(list: MutableList<EyepetozerItem>) :
         val tag = holder.getWidget<AppCompatTextView>(R.id.txt_eye_item_tag)
 
         data.coverUrl?.let {
-            loadRoundedCornerImage(context, 10, it, cover)
+            loadCenterRoundedCornerImage(context, 10, it, cover)
         }
         duration.text = TimeUtils.getMMDuration(data.duration.toLong())
         data.title?.let {

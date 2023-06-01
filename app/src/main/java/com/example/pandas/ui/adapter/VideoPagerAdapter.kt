@@ -4,23 +4,21 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.ext.loadLocalCircleImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.interaction.PlayerDoubleTapListener
 import com.example.pandas.databinding.AdapterVideoVerticalBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
-import com.example.pandas.ui.ext.addItemAnimation
-import com.example.pandas.ui.ext.addScaleAnimation
+import com.example.pandas.ui.ext.addShortEndAnimation
+import com.example.pandas.ui.ext.addShortStartAnimation
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.utils.TimeUtils
-import com.google.android.exoplayer2.ui.DefaultTimeBar
-import com.google.android.exoplayer2.ui.TimeBar
 import java.util.*
 
 /**
@@ -99,22 +97,23 @@ public class VideoPagerAdapter(
         val shareImg = binding.ibnVerticalShare
         val shares = binding.txtVerticalShare
         val play = binding.imgVerticalPlay
+        val musicImg = binding.imgVerticalMusic
 
         //val clear = binding.ibnVerticalEmpty
         //val reduce = binding.ibnVerticalReduce
         val playerView = binding.playerVertical
-        val timebar = playerView.findViewById<DefaultTimeBar>(R.id.exo_progress)
-        val music = binding.txtVerticalMusic
+        //val timebar = playerView.findViewById<DefaultTimeBar>(R.id.exo_progress)
+        //val music = binding.txtVerticalMusic
 
         fun init() {
             play.visibility = View.GONE
             playerView.showController()
-            timebar.setPlayedColor(
-                ContextCompat.getColor(
-                    context,
-                    R.color.color_vertical_played
-                )
-            )
+//            timebar.setPlayedColor(
+//                ContextCompat.getColor(
+//                    context,
+//                    R.color.color_vertical_played
+//                )
+//            )
             rightView.visibility = View.VISIBLE
             bottomView.visibility = View.VISIBLE
         }
@@ -126,19 +125,19 @@ public class VideoPagerAdapter(
 
             hideView = false
 
-            time.text = TimeUtils.parseTime(video.releaseTime)
+            time.text = TimeUtils.getStringDate2(video.releaseTime * 1000)
             title.text = video.title
 
             user?.let {
                 name.text = "@" + it.userName
                 loadCircleImage(context, it.headUrl!!, header)
-                music.text = it.userName + "的作品原声" + "       " + it.userName + "的作品原声"
-                music.run {
-                    isSingleLine = true
-                    isSelected = true
-                    isFocusable = true
-                    isFocusableInTouchMode = true
-                }
+//                music.text = it.userName + "的作品原声" + "       " + it.userName + "的作品原声"
+//                music.run {
+//                    isSingleLine = true
+//                    isSelected = true
+//                    isFocusable = true
+//                    isFocusableInTouchMode = true
+//                }
             }
 
             if (videoData == null) {
@@ -148,6 +147,8 @@ public class VideoPagerAdapter(
                 shares.text = "分享"
             }
 
+            loadLocalCircleImage(context, R.mipmap.liuyifei, musicImg)
+            listener.startMusicAnimation(musicImg)
 
             videoData?.let {
 
@@ -164,7 +165,7 @@ public class VideoPagerAdapter(
                 }
 
                 if (it.collect) {
-                    collectImg.setImageResource(R.mipmap.img_vertical_collected)
+                    collectImg.setImageResource(R.mipmap.img_vertical_collected1)
                 } else {
                     collectImg.setImageResource(R.mipmap.img_vertical_collect)
                 }
@@ -195,8 +196,8 @@ public class VideoPagerAdapter(
             collectItem.setOnClickListener {
                 val data = list[position]
                 if (data.videoData == null) {
-                    addScaleAnimation(collectImg)
-                    collectImg.setImageResource(R.mipmap.img_vertical_collected)
+                    addShortStartAnimation(collectImg)
+                    collectImg.setImageResource(R.mipmap.img_vertical_collected1)
                     collects.text = "1"
                     val vd = VideoData(
                         videoCode = data.code,
@@ -210,6 +211,7 @@ public class VideoPagerAdapter(
                 } else {
                     data.videoData?.let { vd ->
                         if (vd.collect) {
+                            addShortEndAnimation(collectImg)
                             collectImg.setImageResource(R.mipmap.img_vertical_collect)
                             var collectCount = vd.collects - 1
                             if (collectCount > 0) {
@@ -221,8 +223,8 @@ public class VideoPagerAdapter(
                             vd.collects = collectCount
                             listener.collect(false, data.code)
                         } else {
-                            addScaleAnimation(collectImg)
-                            collectImg.setImageResource(R.mipmap.img_vertical_collected)
+                            addShortStartAnimation(collectImg)
+                            collectImg.setImageResource(R.mipmap.img_vertical_collected1)
                             val collectCount = vd.collects + 1
                             collects.text = collectCount.toString()
                             vd.collectTime = System.currentTimeMillis()
@@ -261,20 +263,20 @@ public class VideoPagerAdapter(
                     listener.onSingleTap()
                     if (play.isVisible) {
                         play.visibility = View.GONE
-                        timebar.setPlayedColor(
-                            ContextCompat.getColor(
-                                context,
-                                R.color.color_vertical_played
-                            )
-                        )
+//                        timebar.setPlayedColor(
+//                            ContextCompat.getColor(
+//                                context,
+//                                R.color.color_vertical_played
+//                            )
+//                        )
                     } else {
                         play.visibility = View.VISIBLE
-                        timebar.setPlayedColor(
-                            ContextCompat.getColor(
-                                context,
-                                R.color.color_home_tab_text_selected
-                            )
-                        )
+//                        timebar.setPlayedColor(
+//                            ContextCompat.getColor(
+//                                context,
+//                                R.color.color_home_tab_text_selected
+//                            )
+//                        )
                     }
                 }
 
@@ -291,29 +293,29 @@ public class VideoPagerAdapter(
 
             })
 
-            timebar.addListener(object : TimeBar.OnScrubListener {
-                override fun onScrubStart(timeBar: TimeBar, position: Long) {
-
-                    (timeBar as DefaultTimeBar).setPlayedColor(
-                        ContextCompat.getColor(
-                            context,
-                            R.color.color_home_tab_text_selected
-                        )
-                    )
-                }
-
-                override fun onScrubMove(timeBar: TimeBar, position: Long) {
-                }
-
-                override fun onScrubStop(timeBar: TimeBar, position: Long, canceled: Boolean) {
-                    (timeBar as DefaultTimeBar).setPlayedColor(
-                        ContextCompat.getColor(
-                            context,
-                            R.color.color_vertical_played
-                        )
-                    )
-                }
-            })
+//            timebar.addListener(object : TimeBar.OnScrubListener {
+//                override fun onScrubStart(timeBar: TimeBar, position: Long) {
+//
+//                    (timeBar as DefaultTimeBar).setPlayedColor(
+//                        ContextCompat.getColor(
+//                            context,
+//                            R.color.color_home_tab_text_selected
+//                        )
+//                    )
+//                }
+//
+//                override fun onScrubMove(timeBar: TimeBar, position: Long) {
+//                }
+//
+//                override fun onScrubStop(timeBar: TimeBar, position: Long, canceled: Boolean) {
+//                    (timeBar as DefaultTimeBar).setPlayedColor(
+//                        ContextCompat.getColor(
+//                            context,
+//                            R.color.color_vertical_played
+//                        )
+//                    )
+//                }
+//            })
 
             commentItem.setOnClickListener {
                 val commentCounts = videoData?.comments ?: 0
@@ -324,7 +326,7 @@ public class VideoPagerAdapter(
         fun handleItemLike(position: Int) {
             val data = list[position]
             if (data.videoData == null) {
-                addItemAnimation(likeImg)
+                addShortStartAnimation(likeImg)
                 likeImg.setImageResource(R.mipmap.img_vertical_liked)
                 likes.text = "1"
                 val vd = VideoData(videoCode = data.code, like = true, likes = 1)
@@ -334,12 +336,13 @@ public class VideoPagerAdapter(
                 data.videoData?.let {
                     var likeCount: Int
                     if (!it.like) {
-                        addItemAnimation(likeImg)
+                        addShortStartAnimation(likeImg)
                         likeImg.setImageResource(R.mipmap.img_vertical_liked)
                         likeCount = it.likes + 1
                         likes.text = likeCount.toString()
                         it.likes = likeCount
                     } else {
+                        addShortEndAnimation(likeImg)
                         likeImg.setImageResource(R.mipmap.img_vertical_like)
                         likeCount = it.likes - 1
                         if (likeCount > 0) {
@@ -372,5 +375,7 @@ public class VideoPagerAdapter(
         fun startUserActivity(user: User)
 
         fun showComments(videoCode: Int, commentCounts: Int)
+
+        fun startMusicAnimation(musicImg: View)
     }
 }

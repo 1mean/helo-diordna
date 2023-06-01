@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
+import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.ext.loadLayoutBackGround
-import com.example.pandas.biz.ext.loadRoundedCornerImage
 import com.example.pandas.biz.interaction.AudioServiceListener
 import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.viewmodel.AudioViewModel
@@ -155,7 +155,7 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
                 val currentItem = list[mediaIndex]
                 fileName = currentItem.fileName
                 position = mediaIndex
-                loadRoundedCornerImage(
+                loadCenterRoundedCornerImage(
                     this@AudioPlayActivity,
                     50,
                     currentItem.cover!!,

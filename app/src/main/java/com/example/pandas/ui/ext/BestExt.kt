@@ -7,20 +7,21 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation.RESTART
+import android.view.animation.Animation.REVERSE
 import android.view.animation.DecelerateInterpolator
+import android.view.animation.LinearInterpolator
 import android.view.animation.OvershootInterpolator
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.pandas.R
 import com.example.pandas.biz.interaction.AnimationListener
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.activity.AudioPlayActivity
 import com.example.pandas.ui.activity.UserInfoActivity
 import com.example.pandas.ui.activity.VideoPlayingActivity
-import com.example.pandas.ui.fragment.search.SearchListFragment
 import kotlin.math.abs
 
 
@@ -168,6 +169,27 @@ fun addScaleAnimation(view: View) {
     animationSet.start()
 }
 
+//短视频界面的动画，先缩放到0，然后缩放到1.3f，然后缩放正常
+fun addShortStartAnimation(view: View) {
+    val transScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0f, 1.4f, 1f)
+    val transScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0f, 1.4f, 1f)
+    val animationSet = AnimatorSet()
+    animationSet.duration = 1000
+    animationSet.interpolator = DecelerateInterpolator()
+    animationSet.play(transScaleX).with(transScaleY)
+    animationSet.start()
+}
+
+fun addShortEndAnimation(view: View) {
+    val transScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.3f, 1f)
+    val transScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.3f, 1f)
+    val animationSet = AnimatorSet()
+    animationSet.duration = 200
+    animationSet.interpolator = DecelerateInterpolator()
+    animationSet.play(transScaleX).with(transScaleY)
+    animationSet.start()
+}
+
 fun addScaleAnimation(view: View, scale: Float) {
     val transScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, scale, 1f)
     val transScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, scale, 1f)
@@ -176,6 +198,16 @@ fun addScaleAnimation(view: View, scale: Float) {
     animationSet.interpolator = DecelerateInterpolator()
     animationSet.play(transScaleX).with(transScaleY)
     animationSet.start()
+}
+
+//旋转动画
+fun addRotateAnimation(view:View,duration:Long){
+    //默认是按照中心点旋转
+    val transRotation = ObjectAnimator.ofFloat(view, "rotation", 0f,360f)
+    transRotation.interpolator = LinearInterpolator()
+    transRotation.duration = duration
+    transRotation.repeatCount = -1 //动画永不停止
+    transRotation.start()
 }
 
 fun addRefreshAnimation(view: View, offSet: Float, listener: Animator.AnimatorListener) {

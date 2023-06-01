@@ -8,7 +8,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.bean.LandscapeData
-import com.example.pandas.biz.ext.loadRoundedCornerImage
+import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.AdapterLandscapeItemBinding
 import com.example.pandas.databinding.LayoutBannerLandscapeBinding
@@ -153,7 +153,7 @@ public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data
             }
 
             video.cover?.let {
-                loadRoundedCornerImage(itemView.context, 10, it, cover)
+                loadCenterRoundedCornerImage(itemView.context, 10, it, cover)
             }
             duration.text = TimeUtils.getDuration(video.duration.toLong())
             title.text = video.title

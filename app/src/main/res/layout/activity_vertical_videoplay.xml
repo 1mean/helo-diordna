@@ -99,10 +99,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_vertical_input"
                 android:layout_width="0dp"
-                android:layout_height="38dp"
-                android:layout_marginEnd="9dp"
-                android:layout_marginStart="12dp"
-                android:background="@drawable/shape_vertical_edit"
+                android:layout_height="42dp"
+                android:layout_marginEnd="120dp"
+                android:layout_marginStart="16dp"
                 app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_vertical_bottom"
@@ -111,15 +110,13 @@
             <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edit_vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="38dp"
+                    android:layout_height="42dp"
                     app:layout_constraintTop_toTopOf="@id/clayout_vertical_input"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_input"
-                    android:hint="请发送一条友善的评论"
-                    android:textSize="14sp"
-                    android:paddingStart="10dp"
+                    android:hint="善语结善缘，恶言伤人心"
+                    android:textSize="15sp"
                     android:background="@null"
-                    android:layout_marginEnd="100dp"
-                    android:textColorHint="@color/gray"
+                    android:textColorHint="#808080"
                     android:textCursorDrawable="@drawable/shape_edit_comment"
 
                     android:singleLine="true"
@@ -129,15 +126,6 @@
                     android:clickable="true"
                     android:focusableInTouchMode="false" />
 
-            <View
-                    android:layout_width="1dp"
-                    android:layout_height="16dp"
-                    app:layout_constraintTop_toTopOf="@id/clayout_vertical_input"
-                    app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_input"
-                    app:layout_constraintRight_toRightOf="@id/clayout_vertical_input"
-                    android:layout_marginEnd="56dp"
-                    android:background="#808080" />
-
             <androidx.appcompat.widget.AppCompatImageButton
                     android:layout_width="42dp"
                     android:layout_height="42dp"
@@ -146,6 +134,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_input"
                     app:layout_constraintRight_toRightOf="@id/clayout_vertical_input"
                     android:layout_marginEnd="10dp"
+                    android:visibility="gone"
                     android:background="@null" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

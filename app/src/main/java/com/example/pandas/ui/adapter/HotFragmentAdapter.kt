@@ -45,7 +45,7 @@ public class HotFragmentAdapter(val list: MutableList<PetVideo>) : Adapter<ViewH
         if (data.isNotEmpty()) {
             val size = list.size
             list.addAll(data)
-            notifyItemRangeInserted(size, data.size)
+            notifyItemRangeInserted(size + 1, data.size)
         }
     }
 
@@ -91,7 +91,7 @@ public class HotFragmentAdapter(val list: MutableList<PetVideo>) : Adapter<ViewH
     class TopViewHolder(binding: AdapterTopHotFragmentBinding) : ViewHolder(binding.root) {
 
         val recyclerView = binding.rvTopHotFragment
-        val topList = mutableListOf<String>("播放榜", "创作榜","热搜榜")
+        val topList = mutableListOf<String>("播放榜", "创作榜", "热搜榜")
         fun handle() {
             recyclerView.run {
                 layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
