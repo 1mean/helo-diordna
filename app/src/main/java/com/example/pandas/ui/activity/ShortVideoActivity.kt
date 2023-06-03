@@ -107,7 +107,7 @@ public class ShortVideoActivity :
         }
 
         binding.editVertical.setOnClickListener {
-            showCommentPopuWindow()
+            showBottomCommentWindow()
         }
 
         binding.btnVerticalInputSend.setOnClickListener {
@@ -312,7 +312,7 @@ public class ShortVideoActivity :
      * @date: 12/4/22 6:19 PM
      * @version: v1.0
      */
-    private fun showCommentPopuWindow() {
+    private fun showBottomCommentWindow() {
         mHandler.postDelayed({
             if (inputPopWindow == null) {
 
@@ -349,7 +349,7 @@ public class ShortVideoActivity :
 //            inputPopWindow!!.setBackDark().onShow(this@ShortVideoActivity.currentFocus!!)
             inputPopWindow!!.setBackDark().onShow(window.decorView)
             keyBoardManager?.showKeyBoard(this, window.decorView)
-        }, 200)
+        }, 100)
     }
 
     private val keyBoardListener = object : SoftInputManager.OnSoftKeyBoardChangeListener {
@@ -361,24 +361,33 @@ public class ShortVideoActivity :
         }
     }
 
+    /**
+     * 第一次进入会触发onPageSelected position=0
+     * 只有手动滑动时，才会触发onPageScrollStateChanged回调，执行顺序如下
+     *   --翻页时回调
+     *      --SCROLL_STATE_DRAGGING
+     *      --SCROLL_STATE_SETTLING
+     *      --onPageSelected : 1
+     *      --SCROLL_STATE_IDLE
+     *
+     *   --滑动后，仍然在当前页面，不会回调 onPageSelected
+     *      --SCROLL_STATE_DRAGGING
+     *      --SCROLL_STATE_SETTLING
+     *      --SCROLL_STATE_IDLE
+     *
+     */
+    private var currentPosition: Int = 0
     private val pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
 
         override fun onPageScrollStateChanged(state: Int) {
-            super.onPageScrollStateChanged(state)
-
-        }
-
-        override fun onPageScrolled(
-            position: Int,
-            positionOffset: Float,
-            positionOffsetPixels: Int
-        ) {
-            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-            transRotation?.let {
-                if (it.isStarted) {
-                    it.repeatCount = 0
-                    it.cancel()
-                    it.end()
+            when (state) {
+                ViewPager2.SCROLL_STATE_IDLE -> {
+                    mAdapter.startAnimation(currentPosition)
+                }
+                ViewPager2.SCROLL_STATE_DRAGGING -> {
+                    mAdapter.pauseAnimation(currentPosition)
+                }
+                ViewPager2.SCROLL_STATE_SETTLING -> {
                 }
             }
         }
@@ -386,7 +395,8 @@ public class ShortVideoActivity :
         //界面初始化，第一次注册时也会被调用，所以要注意为null的判断
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
-            Log.e("1mean", "onPageSelected")
+            currentPosition = position
+            //开启右下角的旋转动画
 
             val hasEdit = binding.editVertical.text?.isNotEmpty()
             if (hasEdit == true) {
@@ -394,9 +404,7 @@ public class ShortVideoActivity :
                 binding.editVertical.post {
                     binding.editVertical.text = null
                     //binding.editVertical.isCursorVisible = false
-                    inputPopWindow?.let {
-                        it.clear()
-                    }
+                    inputPopWindow?.clear()
                 }
             }
 
@@ -404,7 +412,6 @@ public class ShortVideoActivity :
 
                 val count = mAdapter.itemCount
                 if (position == (count - 1) && hasMore) {
-                    Log.e("1mean", "position:$position, count:$count 准备加载更多")
                     mViewModel.getVerticalVideos(false)
                 }
 
@@ -413,11 +420,22 @@ public class ShortVideoActivity :
                         it.findViewHolderForAdapterPosition(position) as? VideoPagerAdapter.MyViewHolder
                     viewHolder?.let { vh ->
                         vh.init()
-                        Log.e("asdasdadasd", "position: $position, playerView: ${vh.playerView}")
                         manager?.seekTo(position, vh.playerView)
                     }
                 }
             }
+        }
+    }
+
+    override fun isPlayingChanged(isPlaying: Boolean) {
+        super.isPlayingChanged(isPlaying)
+
+        if (isPlaying) {
+            mAdapter.startAnimation(currentPosition)
+            Log.e("lidandan", "player isPlaying")
+        } else {
+            mAdapter.pauseAnimation(currentPosition)
+            Log.e("lidandan", "player is not Playing")
         }
     }
 
@@ -469,19 +487,6 @@ public class ShortVideoActivity :
             //.isThreeDrag(true) //是否开启三阶拖拽，如果设置enableDrag(false)则无效
             .asCustom(popupView)
             .show()
-    }
-
-    private var transRotation: ObjectAnimator? = null
-    //启动当前页面右下角的音乐旋转动画
-    override fun startMusicAnimation(musicImg: View) {
-
-        mHandler.postDelayed({
-            transRotation = ObjectAnimator.ofFloat(musicImg, "rotation", 0f, 360f)
-            transRotation!!.interpolator = LinearInterpolator()
-            transRotation!!.duration = 7000
-            transRotation!!.repeatCount = -1 //动画永不停止
-            transRotation!!.start()
-        }, 1500)
     }
 
     override fun onkeyBack() {

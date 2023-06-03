@@ -205,9 +205,13 @@ fun addRotateAnimation(view:View,duration:Long){
     //默认是按照中心点旋转
     val transRotation = ObjectAnimator.ofFloat(view, "rotation", 0f,360f)
     transRotation.interpolator = LinearInterpolator()
-    transRotation.duration = duration
     transRotation.repeatCount = -1 //动画永不停止
-    transRotation.start()
+
+    val animationSet = AnimatorSet()
+    animationSet.duration = duration
+    animationSet.play(transRotation)
+    animationSet.start()
+
 }
 
 fun addRefreshAnimation(view: View, offSet: Float, listener: Animator.AnimatorListener) {

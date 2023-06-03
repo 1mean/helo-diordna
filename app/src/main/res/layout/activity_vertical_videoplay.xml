@@ -89,7 +89,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:visibility="gone"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="12dp"
                 app:layout_constraintRight_toRightOf="@id/clayout_vertical_bottom"
                 app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom"
@@ -118,7 +118,6 @@
                     android:background="@null"
                     android:textColorHint="#808080"
                     android:textCursorDrawable="@drawable/shape_edit_comment"
-
                     android:singleLine="true"
                     android:textColor="#E6E6E6"
                     android:inputType="none"
@@ -126,16 +125,25 @@
                     android:clickable="true"
                     android:focusableInTouchMode="false" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-                    android:src="@mipmap/img_vertical_face"
-                    app:layout_constraintTop_toTopOf="@id/clayout_vertical_input"
-                    app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_input"
-                    app:layout_constraintRight_toRightOf="@id/clayout_vertical_input"
-                    android:layout_marginEnd="10dp"
-                    android:visibility="gone"
-                    android:background="@null" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_short_emotion"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                app:layout_constraintRight_toLeftOf="@id/btn_vertical_input_send"
+                android:src="@mipmap/img_short_emotion"
+                android:background="@null"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_short_at"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                app:layout_constraintRight_toLeftOf="@id/btn_short_emotion"
+                android:src="@mipmap/img_short_eit"
+                android:background="@null"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

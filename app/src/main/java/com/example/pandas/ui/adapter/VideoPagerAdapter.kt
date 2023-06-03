@@ -1,9 +1,13 @@
 package com.example.pandas.ui.adapter
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.LinearInterpolator
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
@@ -75,6 +79,51 @@ public class VideoPagerAdapter(
         this.recyclerView = null
     }
 
+    /**
+     * 方法为什么不写在viewHolder里，因为viewholder的预加载导致position不对
+     *  handle(position)执行
+     *  第一次加载0 1
+     *  第二次加载2
+     *  第三次加载3
+     *
+     */
+    private var animationList: MutableMap<Int, ObjectAnimator> = mutableMapOf()
+    fun startAnimation(position: Int) {
+
+        val animatom = animationList.get(position)
+        Log.e("lidandan", "transRotation: $animatom")
+        if (animatom == null) {
+            val vh = recyclerView?.findViewHolderForAdapterPosition(position)
+            vh?.let {
+                if (it is MyViewHolder) {
+                    val music = (it as MyViewHolder).musicImg
+                    val transRotation = ObjectAnimator.ofFloat(music, "rotation", 0f, 360f)
+                    transRotation.interpolator = LinearInterpolator()
+                    transRotation.repeatCount = -1 //动画永不停止
+                    transRotation.duration = 7000
+                    transRotation.start()
+                    list[position].booleanFlag = true
+                    animationList.put(position, transRotation)
+                }
+            }
+        } else {
+            if (animatom.isPaused) {
+                animatom.resume()
+            } else {
+                animatom.start()
+            }
+        }
+    }
+
+    //通过获取musicImg(同一个对象)，通过clearAnimation()/animation.cancel()方法都无效，只能通过transRotation对象
+    fun pauseAnimation(position: Int) {
+        val transRotation = animationList.get(position)
+        if (transRotation != null && transRotation.isRunning) {
+            transRotation.pause()
+        }
+    }
+
+
     inner class MyViewHolder(binding: AdapterVideoVerticalBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -131,13 +180,7 @@ public class VideoPagerAdapter(
             user?.let {
                 name.text = "@" + it.userName
                 loadCircleImage(context, it.headUrl!!, header)
-//                music.text = it.userName + "的作品原声" + "       " + it.userName + "的作品原声"
-//                music.run {
-//                    isSingleLine = true
-//                    isSelected = true
-//                    isFocusable = true
-//                    isFocusableInTouchMode = true
-//                }
+                loadCircleImage(context, it.headUrl!!, musicImg)
             }
 
             if (videoData == null) {
@@ -147,8 +190,7 @@ public class VideoPagerAdapter(
                 shares.text = "分享"
             }
 
-            loadLocalCircleImage(context, R.mipmap.liuyifei, musicImg)
-            listener.startMusicAnimation(musicImg)
+            //listener.startMusicAnimation(musicImg)
 
             videoData?.let {
 
@@ -375,7 +417,5 @@ public class VideoPagerAdapter(
         fun startUserActivity(user: User)
 
         fun showComments(videoCode: Int, commentCounts: Int)
-
-        fun startMusicAnimation(musicImg: View)
     }
 }
