@@ -1,5 +1,7 @@
 package com.example.pandas.ui.adapter
 
+import android.animation.Animator
+import android.animation.Animator.AnimatorListener
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
@@ -12,7 +14,6 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCircleImage
-import com.example.pandas.biz.ext.loadLocalCircleImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.interaction.PlayerDoubleTapListener
 import com.example.pandas.databinding.AdapterVideoVerticalBinding
@@ -103,7 +104,7 @@ public class VideoPagerAdapter(
                     transRotation.duration = 7000
                     transRotation.start()
                     list[position].booleanFlag = true
-                    animationList.put(position, transRotation)
+                    animationList[position] = transRotation
                 }
             }
         } else {
@@ -123,6 +124,13 @@ public class VideoPagerAdapter(
         }
     }
 
+    fun clearAnimation() {
+        if (animationList.isNotEmpty()) {
+            animationList.values.forEach {
+                it.cancel()
+            }
+        }
+    }
 
     inner class MyViewHolder(binding: AdapterVideoVerticalBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -132,7 +140,9 @@ public class VideoPagerAdapter(
         val header = binding.imgVerticalHead
         val time = binding.txtVerticalTime
         val title = binding.txtVerticalTitle
-        val rightView = binding.layoutVerticalRight
+
+        //val rightView = binding.layoutVerticalRight
+        val rightView = binding.clayoutShortRight
         val bottomView = binding.clayoutVerticalVideoInfo
         val likeItem = binding.llayoutVerticalLike
         val likeImg = binding.ibnVerticalLike
@@ -147,12 +157,47 @@ public class VideoPagerAdapter(
         val shares = binding.txtVerticalShare
         val play = binding.imgVerticalPlay
         val musicImg = binding.imgVerticalMusic
+        val attentionView = binding.btnVerticalAttention
 
         //val clear = binding.ibnVerticalEmpty
         //val reduce = binding.ibnVerticalReduce
         val playerView = binding.playerVertical
         //val timebar = playerView.findViewById<DefaultTimeBar>(R.id.exo_progress)
         //val music = binding.txtVerticalMusic
+
+        fun playerChanged(isReduce: Boolean, height: Long) {
+            if (isReduce) {
+                rightView.visibility = View.GONE
+                bottomView.visibility = View.GONE
+
+                //1390f
+                playerView.animate().translationX(200f).translationY(0f).setListener(object : AnimatorListener {
+                    override fun onAnimationStart(animation: Animator?) {
+
+                    }
+
+                    override fun onAnimationEnd(animation: Animator?) {
+                        val params = playerView.layoutParams
+                        params.height = 834
+//                params.width = (834/2226)*1080
+                        params.width = 454
+                        playerView.layoutParams = params
+
+                    }
+
+                    override fun onAnimationCancel(animation: Animator?) {
+                    }
+
+                    override fun onAnimationRepeat(animation: Animator?) {
+                    }
+                }).setDuration(300).start()
+
+
+            } else {
+                rightView.visibility = View.VISIBLE
+                bottomView.visibility = View.VISIBLE
+            }
+        }
 
         fun init() {
             play.visibility = View.GONE
@@ -181,6 +226,14 @@ public class VideoPagerAdapter(
                 name.text = "@" + it.userName
                 loadCircleImage(context, it.headUrl!!, header)
                 loadCircleImage(context, it.headUrl!!, musicImg)
+
+                if (it.attention) {
+                    attentionView.visibility = View.GONE
+                } else {
+                    attentionView.setBackgroundResource(R.drawable.shape_bg_vertical_attention)
+                    attentionView.setImageResource(R.mipmap.img_vertical_attention_add)
+                    attentionView.visibility = View.VISIBLE
+                }
             }
 
             if (videoData == null) {
@@ -363,6 +416,65 @@ public class VideoPagerAdapter(
                 val commentCounts = videoData?.comments ?: 0
                 listener.showComments(video.code, commentCounts)
             }
+
+            attentionView.setOnClickListener {
+
+                val alphaAnimation = ObjectAnimator.ofFloat(attentionView, "alpha", 1f, 0f)
+                alphaAnimation.duration = 200
+                alphaAnimation.addListener(object : Animator.AnimatorListener {
+                    override fun onAnimationStart(animation: Animator?) {
+                    }
+
+                    override fun onAnimationEnd(animation: Animator?) {
+
+                        attentionView.setBackgroundResource(R.drawable.shape_bg_vertical_attentioned)
+                        attentionView.setImageResource(R.mipmap.img_short_attentioned)
+
+                        val alphaAnimation1 = ObjectAnimator.ofFloat(attentionView, "alpha", 0f, 1f)
+                        val transScaleX =
+                            ObjectAnimator.ofFloat(attentionView, "scaleX", 0f, 1.3f, 1f)
+                        val transScaleY =
+                            ObjectAnimator.ofFloat(attentionView, "scaleY", 0f, 1.3f, 1f)
+
+                        val animatorSet = AnimatorSet()
+                        animatorSet.play(alphaAnimation1).with(transScaleX).with(transScaleY)
+                        animatorSet.duration = 500
+                        animatorSet.start()
+
+                        val alphaAnimation2 = ObjectAnimator.ofFloat(attentionView, "alpha", 1f, 0f)
+                        alphaAnimation2.duration = 200
+                        alphaAnimation2.startDelay = 2000
+                        alphaAnimation2.start()
+
+                        alphaAnimation2.addListener(object : Animator.AnimatorListener {
+                            override fun onAnimationStart(animation: Animator?) {
+                            }
+
+                            override fun onAnimationEnd(animation: Animator?) {
+                                attentionView.visibility = View.GONE
+                            }
+
+                            override fun onAnimationCancel(animation: Animator?) {
+                            }
+
+                            override fun onAnimationRepeat(animation: Animator?) {
+                            }
+                        })
+                    }
+
+                    override fun onAnimationCancel(animation: Animator?) {
+                    }
+
+                    override fun onAnimationRepeat(animation: Animator?) {
+                    }
+                })
+                alphaAnimation.start()
+
+                user?.let {
+                    it.attention = true
+                    listener.addAttention(it.userCode)
+                }
+            }
         }
 
         fun handleItemLike(position: Int) {
@@ -417,5 +529,7 @@ public class VideoPagerAdapter(
         fun startUserActivity(user: User)
 
         fun showComments(videoCode: Int, commentCounts: Int)
+
+        fun addAttention(userCode: Int)
     }
 }

@@ -9,43 +9,43 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_short_comment_top"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp">
+            android:layout_height="32dp">
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_short_comments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/clayout_short_comment_top"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_short_comment_top"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_short_comment_top"
                 app:layout_constraintRight_toRightOf="@id/clayout_short_comment_top"
+                android:layout_marginTop="12dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/color_txt_comments_right_dialog" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-                android:layout_width="40dp"
-                android:layout_height="0dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 app:layout_constraintTop_toTopOf="@id/clayout_short_comment_top"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_short_comment_top"
                 app:layout_constraintRight_toRightOf="@id/clayout_short_comment_top"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
                 android:background="@null"
-                android:src="@mipmap/img_short_dialog_delete" />
+                android:src="@mipmap/img_close_right_dialog" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
             android:id="@+id/rv_short_comment"
             android:layout_width="match_parent"
-            android:layout_height="436dp"
+            android:layout_height="434dp"
             android:overScrollMode="never" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_short_comment_bottom"
             android:layout_width="match_parent"
-            android:layout_height="56dp">
+            android:layout_marginTop="4dp"
+            android:layout_height="52dp">
 
         <View
                 android:layout_width="0dp"

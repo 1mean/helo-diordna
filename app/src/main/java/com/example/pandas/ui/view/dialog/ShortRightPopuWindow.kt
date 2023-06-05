@@ -4,6 +4,7 @@ import ShortCommentAdapter
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
@@ -249,7 +250,7 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
             )
             val holder =
                 recyclerView.findViewHolderForAdapterPosition(position) as? ShortCommentAdapter.ReplyCommentViewHolder
-            holder?.loadReplyData(position,list)
+            holder?.loadReplyData(position, list)
         }
     }
 

@@ -128,6 +128,7 @@ public class BottomPopupView extends BasePopupView {
     protected void doAfterDismiss() {
         if(popupInfo==null) return;
         if(popupInfo.enableDrag){
+            Log.e("xpopu11","showSoftInput6");
             if (popupInfo.autoOpenSoftInput)
                 KeyboardUtils.hideSoftInput(this);
             handler.removeCallbacks(doAfterDismissTask);
@@ -152,6 +153,7 @@ public class BottomPopupView extends BasePopupView {
         if(popupInfo.enableDrag){
             if (popupStatus == PopupStatus.Dismissing) return;
             popupStatus = PopupStatus.Dismissing;
+            Log.e("xpopu11","showSoftInput7");
             if (popupInfo.autoOpenSoftInput) KeyboardUtils.hideSoftInput(this);
             clearFocus();
             bottomPopupContainer.close();

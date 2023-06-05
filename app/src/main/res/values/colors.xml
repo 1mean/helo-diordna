@@ -392,7 +392,7 @@
     <color name="color_bg_short_right_dialog">#ffffff</color>
     <color name="color_bg_right_dialig_divider">#D1D1D2</color>
     <color name="color_bg_edit_right_dialog">#f3f3f3</color>
-    <color name="color_txt_comments_right_dialog">#222222</color>
+    <color name="color_txt_comments_right_dialog">#161923</color>
     <color name="color_bg_item_right_dialog">#ffffff</color>
     <color name="color_bg_short_loading">#ffffff</color>
     <color name="color_bg_right_comment_soft">#ffffff</color>

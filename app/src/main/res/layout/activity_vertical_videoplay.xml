@@ -36,6 +36,7 @@
                     android:layout_height="match_parent"
                     app:layout_constraintRight_toRightOf="@id/clayout_vertical_top"
                     android:background="@null"
+                    android:visibility="gone"
                     android:src="@mipmap/img_vertical_top_more" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -90,9 +91,9 @@
                 android:textStyle="bold"
                 android:visibility="gone"
                 android:layout_marginEnd="12dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintRight_toRightOf="@id/clayout_vertical_bottom"
                 app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom"
                 android:background="@drawable/shape_bg_edit_send" />
 
         <!-- android:background="@drawable/shape_vertical_edit" -->
@@ -107,7 +108,7 @@
                 app:layout_constraintLeft_toLeftOf="@id/clayout_vertical_bottom"
                 app:layout_constraintRight_toLeftOf="@id/btn_vertical_input_send">
             <!--必须设置focus，才能主动和被动地弹起软键盘-->
-            <androidx.appcompat.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/edit_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
@@ -121,9 +122,10 @@
                     android:singleLine="true"
                     android:textColor="#E6E6E6"
                     android:inputType="none"
-                    android:focusable="true"
+                    android:textStyle="normal"
                     android:clickable="true"
-                    android:focusableInTouchMode="false" />
+                    android:gravity="center_vertical"
+                    android:focusable="true" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

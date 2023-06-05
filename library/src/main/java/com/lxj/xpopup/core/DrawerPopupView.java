@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -157,6 +158,7 @@ public abstract class DrawerPopupView extends BasePopupView {
     }
 
     protected void doAfterDismiss() {
+        Log.e("xpopu11","showSoftInput8");
         if (popupInfo != null && popupInfo.autoOpenSoftInput)
             KeyboardUtils.hideSoftInput(this);
         handler.removeCallbacks(doAfterDismissTask);
@@ -168,6 +170,7 @@ public abstract class DrawerPopupView extends BasePopupView {
         if(popupInfo==null)return;
         if (popupStatus == PopupStatus.Dismissing) return;
         popupStatus = PopupStatus.Dismissing;
+        Log.e("xpopu11","showSoftInput9");
         if (popupInfo.autoOpenSoftInput) KeyboardUtils.hideSoftInput(this);
         clearFocus();
         doStatusBarColorTransform(false);

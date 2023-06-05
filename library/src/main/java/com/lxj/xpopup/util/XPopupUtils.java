@@ -40,13 +40,11 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.FloatRange;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
 
 import com.lxj.xpopup.R;
@@ -133,12 +131,12 @@ public class XPopupUtils {
      * @return the navigation bar's height
      */
     public static int getNavBarHeight(Window window) {
-        if(!isNavBarVisible(window)) return 0;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && window!=null) {
+        if (!isNavBarVisible(window)) return 0;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && window != null) {
             View view = window.findViewById(android.R.id.navigationBarBackground);
             if (view == null) return 0;
-            return view.getVisibility()==View.VISIBLE ? view.getHeight() : 0;
-        }else {
+            return view.getVisibility() == View.VISIBLE ? view.getHeight() : 0;
+        } else {
             Resources res = Resources.getSystem();
             int resourceId = res.getIdentifier("navigation_bar_height", "dimen", "android");
             if (resourceId != 0) {
@@ -151,13 +149,13 @@ public class XPopupUtils {
 
     public static int getActionBarHeight(Context context) {
         Activity activity = context2Activity(context);
-        if(activity==null) return 0;
-        if(activity instanceof AppCompatActivity){
+        if (activity == null) return 0;
+        if (activity instanceof AppCompatActivity) {
             androidx.appcompat.app.ActionBar supportActionBar = ((AppCompatActivity) activity).getSupportActionBar();
-            return supportActionBar==null ? 0 : supportActionBar.getHeight();
+            return supportActionBar == null ? 0 : supportActionBar.getHeight();
         }
         ActionBar actionBar = activity.getActionBar();
-        return actionBar==null ? 0 : actionBar.getHeight();
+        return actionBar == null ? 0 : actionBar.getHeight();
     }
 
     public static void setWidthHeight(View target, int width, int height) {
@@ -179,7 +177,7 @@ public class XPopupUtils {
             // response impl view wrap_content params.
             if (maxWidth > 0) {
                 //指定了最大宽度，就限制最大宽度
-                if(w > maxWidth) params.width = Math.min(w, maxWidth);
+                if (w > maxWidth) params.width = Math.min(w, maxWidth);
                 if (implParams.width == ViewGroup.LayoutParams.MATCH_PARENT) {
                     implParams.width = Math.min(w, maxWidth);
                     if (implParams instanceof ViewGroup.MarginLayoutParams) {
@@ -198,7 +196,7 @@ public class XPopupUtils {
 
             if (maxHeight > 0) {
                 int h = content.getMeasuredHeight();
-                if(h > maxHeight) params.height = Math.min(h, maxHeight);
+                if (h > maxHeight) params.height = Math.min(h, maxHeight);
                 if (popupHeight > 0) {
                     params.height = Math.min(popupHeight, maxHeight);
                     implParams.height = Math.min(popupHeight, maxHeight);
@@ -336,8 +334,19 @@ public class XPopupUtils {
             }
         }
         int animDuration = 180;
+
+        Log.e("xpopu", "1005 -dy= " + dy);
+
+//        ObjectAnimator transY = ObjectAnimator.ofFloat(pv.getPopupContentView(), "translationY", 0, -891);
+//        ObjectAnimator transAlpha = ObjectAnimator.ofFloat(pv.getPopupContentView(), "alpha", 0f, 1f);
+//        AnimatorSet animationSet = new AnimatorSet();
+//        animationSet.setDuration(300);
+//        animationSet.play(transY).with(transAlpha);
+//        animationSet.start();
+
+        Log.e("xpopu", "translationY1111");
         pv.getPopupContentView().animate().translationY(-dy)
-                .setDuration(animDuration)
+                .setDuration(350)
                 .setInterpolator(new LinearOutSlowInInterpolator())
                 .start();
     }
@@ -350,6 +359,7 @@ public class XPopupUtils {
             //如果正在执行动画，则不下移
             return;
         }
+        Log.e("xpopu1", "bbbbbbbbbbbbbbbbbbbbbb");
         pv.getPopupContentView().animate().translationY(0)
                 .setInterpolator(new LinearInterpolator())
                 .setDuration(100).start();
@@ -563,20 +573,20 @@ public class XPopupUtils {
             view.buildDrawingCache();
             drawingCache = view.getDrawingCache();
             if (drawingCache != null) {
-                bitmap = Bitmap.createBitmap(drawingCache, 0,0,drawingCache.getWidth(),clipHeight>0 ?clipHeight: drawingCache.getHeight());
+                bitmap = Bitmap.createBitmap(drawingCache, 0, 0, drawingCache.getWidth(), clipHeight > 0 ? clipHeight : drawingCache.getHeight());
             } else {
-                bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), clipHeight>0 ?clipHeight: view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), clipHeight > 0 ? clipHeight : view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(bitmap);
                 view.draw(canvas);
             }
         } else {
-            bitmap = Bitmap.createBitmap(drawingCache,0,0,drawingCache.getWidth(),clipHeight>0 ?clipHeight: drawingCache.getHeight());
+            bitmap = Bitmap.createBitmap(drawingCache, 0, 0, drawingCache.getWidth(), clipHeight > 0 ? clipHeight : drawingCache.getHeight());
         }
         view.destroyDrawingCache();
         view.setWillNotCacheDrawing(willNotCacheDrawing);
         view.setDrawingCacheEnabled(drawingCacheEnabled);
         Bitmap small = Bitmap.createScaledBitmap(bitmap, view.getMeasuredWidth() / scale, view.getMeasuredHeight() / scale, true);
-        if (!bitmap.isRecycled() && bitmap!=small ) bitmap.recycle();
+        if (!bitmap.isRecycled() && bitmap != small) bitmap.recycle();
         return small;
     }
 
@@ -601,6 +611,7 @@ public class XPopupUtils {
         }
         return null;
     }
+
     public static Activity context2Activity(View view) {
         return context2Activity(view.getContext());
     }

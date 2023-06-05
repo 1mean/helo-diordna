@@ -62,6 +62,7 @@ public class BubbleHorizontalAttachPopupView extends BubbleAttachPopupView {
                     }else {
                         translationX = isShowLeftToTarget() ? (popupInfo.touchPoint.x - getPopupContentView().getMeasuredWidth() - defaultOffsetX) : (popupInfo.touchPoint.x + defaultOffsetX);
                     }
+                    Log.e("xpopu","translationY10");
                     translationY = popupInfo.touchPoint.y - getPopupContentView().getMeasuredHeight() * .5f + defaultOffsetY;
                     doBubble();
                 }
@@ -95,6 +96,7 @@ public class BubbleHorizontalAttachPopupView extends BubbleAttachPopupView {
                     }else {
                         translationX = isShowLeftToTarget() ? (rect.left - getPopupContentView().getMeasuredWidth() - defaultOffsetX) : (rect.right + defaultOffsetX);
                     }
+                    Log.e("xpopu","translationY11");
                     translationY = rect.top + (rect.height()-getPopupContentView().getMeasuredHeight() - bubbleContainer.getShadowRadius()*2)/2f + defaultOffsetY;
                     doBubble();
                 }

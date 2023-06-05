@@ -5,6 +5,8 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
+import android.view.animation.LinearInterpolator;
+
 import com.lxj.xpopup.enums.PopupAnimation;
 
 /**
@@ -31,6 +33,7 @@ public class TranslateAnimator extends PopupAnimator {
     }
 
     private void applyTranslation() {
+        Log.e("xpopu","translationY6");
         switch (popupAnimation) {
             case TranslateFromLeft:
                 targetView.setTranslationX(-targetView.getRight() + targetView.getTranslationX());
@@ -49,6 +52,7 @@ public class TranslateAnimator extends PopupAnimator {
 
     @Override
     public void animateShow() {
+        Log.e("xpopu","1000");
         ViewPropertyAnimator animator = null;
         switch (popupAnimation) {
             case TranslateFromLeft:
@@ -57,13 +61,16 @@ public class TranslateAnimator extends PopupAnimator {
                 break;
             case TranslateFromTop:
             case TranslateFromBottom:
-                animator = targetView.animate().translationY(endTranslationY);
+                //TODO:从底下谈出来时，总是要先在底下停一会再上来
+                Log.e("xpopu","translationY5");
+//                animator = targetView.animate().translationY(endTranslationY);
                 break;
         }
-        if (animator != null) animator.setInterpolator(new FastOutSlowInInterpolator())
-                .setDuration(animationDuration)
-                .withLayer()
-                .start();
+
+//        if (animator != null) animator.setInterpolator(new LinearInterpolator())
+//                .setDuration(animationDuration)
+//                .withLayer()
+//                .start();
         Log.e("part", "start: " + targetView.getTranslationY() + "  endy: " + endTranslationY);
     }
 
@@ -77,6 +84,7 @@ public class TranslateAnimator extends PopupAnimator {
                 animator = targetView.animate().translationX(startTranslationX);
                 break;
             case TranslateFromTop:
+                Log.e("xpopu","translationY7");
                 startTranslationY = -targetView.getBottom();
                 animator = targetView.animate().translationY(startTranslationY);
                 break;
@@ -85,6 +93,7 @@ public class TranslateAnimator extends PopupAnimator {
                 animator = targetView.animate().translationX(startTranslationX);
                 break;
             case TranslateFromBottom:
+                Log.e("xpopu","translationY6");
                 startTranslationY = ((View) targetView.getParent()).getMeasuredHeight() - targetView.getTop();
                 animator = targetView.animate().translationY(startTranslationY);
                 break;

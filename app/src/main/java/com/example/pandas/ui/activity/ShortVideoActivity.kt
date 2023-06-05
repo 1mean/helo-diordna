@@ -22,9 +22,9 @@ import com.example.pandas.databinding.ActivityVerticalVideoplayBinding
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoPagerAdapter
+import com.example.pandas.ui.dialog.ShortBottomDialog
 import com.example.pandas.ui.ext.addRefreshAnimation
 import com.example.pandas.ui.ext.startUserInfoActivity
-import com.example.pandas.ui.view.dialog.ShortBottoomPopuWindow
 import com.example.pandas.ui.view.dialog.ShortRightPopuWindow
 import com.example.pandas.utils.StatusBarUtils
 import com.example.pandas.utils.VibrateUtils
@@ -61,7 +61,6 @@ public class ShortVideoActivity :
 
     private var manager: VerticalPlayManager? = null
     private var keyBoardManager: SoftInputManager? = null
-    private var inputPopWindow: ShortBottoomPopuWindow? = null
 
     private val mHandler: Handler = Handler(Looper.getMainLooper())
 
@@ -103,15 +102,21 @@ public class ShortVideoActivity :
             binding.clayoutVerticalTop.getLocationOnScreen(location)
             val x = location[0]
             val y = location[1]
-            Log.e("1mean", "x坐标：$x, y坐标：$y")
         }
 
         binding.editVertical.setOnClickListener {
-            showBottomCommentWindow()
+            showBottomCommentWindow(false, false)
         }
 
         binding.btnVerticalInputSend.setOnClickListener {
             sendVideoComment(binding.editVertical.text.toString())
+        }
+
+        binding.btnShortEmotion.setOnClickListener {
+            showBottomCommentWindow(true, false)
+        }
+        binding.btnShortAt.setOnClickListener {
+            showBottomCommentWindow(false, true)
         }
     }
 
@@ -312,44 +317,105 @@ public class ShortVideoActivity :
      * @date: 12/4/22 6:19 PM
      * @version: v1.0
      */
-    private fun showBottomCommentWindow() {
-        mHandler.postDelayed({
-            if (inputPopWindow == null) {
+    private var shortBottomDialog: ShortBottomDialog? = null
 
-                inputPopWindow = ShortBottoomPopuWindow(
-                    this@ShortVideoActivity,
-                    binding.editVertical.text.toString(),
-                    object :
-                        ShortBottoomPopuWindow.ShortPopuListener {
-                        override fun openEmoji(view: View) {
-                            Log.e("1mean", "隐藏软键盘")
-                            keyBoardManager?.hideKeyBoard(this@ShortVideoActivity, view)
-                        }
+    private fun showBottomCommentWindow(showEmotion: Boolean, showet: Boolean) {
 
-                        override fun sendComment(comment: String) {
-                            sendVideoComment(comment)
-                        }
+        //未解决问题，在edittext输入内容时，第二行开始每次都会下沉到软键盘之下，然后再弹回
+//        mHandler.postDelayed({
+//            if (inputPopWindow == null) {
+//                inputPopWindow = ShortBottoomPopuWindow(
+//                    this@ShortVideoActivity,
+//                    binding.editVertical.text.toString(),
+//                    object :
+//                        ShortBottoomPopuWindow.ShortPopuListener {
+//                        override fun openEmoji(view: View) {
+//                            Log.e("1mean", "隐藏软键盘")
+//                            keyBoardManager?.hideKeyBoard(this@ShortVideoActivity, view)
+//                        }
+//
+//                        override fun sendComment(comment: String) {
+//                            sendVideoComment(comment)
+//                        }
+//
+//                        override fun dissmiss(comment: String) {
+//                            if (comment.isNotEmpty()) {
+//                                mHandler.post {
+//                                    val message =
+//                                        QqEmoticons.parseAndShowEmotion(
+//                                            this@ShortVideoActivity,
+//                                            comment
+//                                        )
+//                                    binding.editVertical.text =
+//                                        Editable.Factory.getInstance().newEditable(message)
+//                                    binding.btnVerticalInputSend.visibility = View.VISIBLE
+//                                }
+//                            }
+//                        }
+//                    })
+//            }
+//            inputPopWindow!!.setBackDark().onShow(window.decorView)
+//            keyBoardManager?.showKeyBoard(this, window.decorView)
+//        }, 100)
 
-                        override fun dissmiss(comment: String) {
-                            if (comment.isNotEmpty()) {
-                                mHandler.post {
-                                    val message =
-                                        QqEmoticons.parseAndShowEmotion(
-                                            this@ShortVideoActivity,
-                                            comment
-                                        )
-                                    binding.editVertical.text =
-                                        Editable.Factory.getInstance().newEditable(message)
-                                    binding.btnVerticalInputSend.visibility = View.VISIBLE
-                                }
+        if (shortBottomDialog == null) {
+            shortBottomDialog = ShortBottomDialog(
+                this,
+                binding.editVertical.text.toString(),
+                object : ShortBottomDialog.ShortPopuListener {
+                    override fun openEmoji(view: View) {
+                        Log.e("1mean", "隐藏软键盘")
+//                        keyBoardManager?.hideKeyBoard(this@ShortVideoActivity, view)
+                    }
+
+                    override fun sendComment(comment: String) {
+                        sendVideoComment(comment)
+                    }
+
+                    override fun dissmiss(comment: String) {
+                        if (comment.isNotEmpty()) {
+                            mHandler.post {
+                                val message =
+                                    QqEmoticons.parseAndShowEmotion(
+                                        this@ShortVideoActivity,
+                                        comment
+                                    )
+                                binding.editVertical.text =
+                                    Editable.Factory.getInstance().newEditable(message)
+                                binding.btnVerticalInputSend.visibility = View.VISIBLE
                             }
+                        } else {
+                            binding.editVertical.text = null
                         }
-                    })
-            }
-//            inputPopWindow!!.setBackDark().onShow(this@ShortVideoActivity.currentFocus!!)
-            inputPopWindow!!.setBackDark().onShow(window.decorView)
-            keyBoardManager?.showKeyBoard(this, window.decorView)
-        }, 100)
+                    }
+
+                })
+        }
+        val builder = XPopup.Builder(this)
+        builder.enableDrag(false)
+            .animationDuration(100)//动画时长，不设置时长，就是默认的301ms，效果会很差
+            // .popupAnimation(PopupAnimation.TranslateAlphaFromBottom)
+            .asCustom(shortBottomDialog)
+        if (showEmotion) {
+            builder.autoOpenSoftInput(false)
+                .autoFocusEditText(false)
+                .asCustom(shortBottomDialog)
+                .show()
+            shortBottomDialog?.postDelayed({
+                shortBottomDialog!!.showEmotion()
+            }, 300)
+        } else {
+            builder.autoOpenSoftInput(true)
+                .autoFocusEditText(true)
+                .asCustom(shortBottomDialog)
+                .show()
+
+//            if (showet) {
+//                shortBottomDialog?.postDelayed({
+//                    shortBottomDialog!!.showet()
+//                }, 1000)
+//            }
+        }
     }
 
     private val keyBoardListener = object : SoftInputManager.OnSoftKeyBoardChangeListener {
@@ -400,11 +466,11 @@ public class ShortVideoActivity :
 
             val hasEdit = binding.editVertical.text?.isNotEmpty()
             if (hasEdit == true) {
-                Log.e("1mean", "有输入值")
                 binding.editVertical.post {
                     binding.editVertical.text = null
+                    binding.btnVerticalInputSend.visibility = View.GONE
                     //binding.editVertical.isCursorVisible = false
-                    inputPopWindow?.clear()
+                    shortBottomDialog?.clear()
                 }
             }
 
@@ -477,25 +543,28 @@ public class ShortVideoActivity :
         startUserInfoActivity(this, user)
     }
 
+    var popupView: ShortRightPopuWindow? = null
     override fun showComments(videoCode: Int, commentCounts: Int) {
 
-        val popupView = ShortRightPopuWindow(this, videoCode, commentCounts)
+        binding.clayoutVerticalTop.visibility = View.GONE
+        mAdapter.recyclerView?.let {
+            val vh =
+                it.findViewHolderForAdapterPosition(currentPosition) as VideoPagerAdapter.MyViewHolder
+            vh.playerChanged(true,200)
+        }
+
+        popupView = ShortRightPopuWindow(this, videoCode, commentCounts)
         XPopup.Builder(this)
             .moveUpToKeyboard(false) //如果不加这个，评论弹窗会移动到软键盘上面
-            //.enableDrag(false)
-            .isDestroyOnDismiss(false) //对于只使用一次的弹窗，推荐设置这个
-            //.isThreeDrag(true) //是否开启三阶拖拽，如果设置enableDrag(false)则无效
             .asCustom(popupView)
             .show()
     }
 
-    override fun onkeyBack() {
+    override fun addAttention(userCode: Int) {
+        mViewModel.updateAttention(userCode)
+    }
 
-        inputPopWindow?.let {
-            if (it.isShowing) {
-                it.dismiss()
-            }
-        }
+    override fun onkeyBack() {
         mVelocityTracker?.recycle()
         manager?.release()
         manager = null
@@ -504,5 +573,10 @@ public class ShortVideoActivity :
 
     private fun sendVideoComment(comment: String) {
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mAdapter.clearAnimation()
     }
 }

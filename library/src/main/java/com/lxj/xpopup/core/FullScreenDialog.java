@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -184,8 +185,10 @@ public class FullScreenDialog extends Dialog {
         setStatusBarLightMode();
         setNavBarLightMode();
         if(hasFocus && contentView!=null && contentView.hasMoveUp && contentView.popupStatus== PopupStatus.Show){
+            Log.e("xpopu11", "7asd7");
             contentView.focusAndProcessBackPress();
-            KeyboardUtils.showSoftInput(contentView);
+            //TODO:右侧弹幕列表，点开后，切换到其他app再回来，就会自动弹出软键盘，屏蔽
+           // KeyboardUtils.showSoftInput(contentView);
         }
     }
 

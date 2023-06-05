@@ -78,4 +78,8 @@ public class VerticalVideoViewModel : BaseViewModel() {
             }
         }
     }
+
+    fun addAttention(userCode:Int){
+
+    }
 }

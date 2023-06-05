@@ -455,7 +455,7 @@
     <!-- ShortVideoActivity ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <style name="style_vertical_video_right_item">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">65dp</item>
+        <item name="android:layout_height">67dp</item>
     </style>
 
     <style name="style_vertical_video_right_image">

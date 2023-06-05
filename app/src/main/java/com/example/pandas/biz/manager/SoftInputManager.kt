@@ -318,7 +318,8 @@ class SoftInputManager(private val mContext: Context) {
         if (km == null) {
             km = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         }
-        km?.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+//        km?.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        km?.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     fun onDestroy() {

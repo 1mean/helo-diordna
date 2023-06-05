@@ -1,6 +1,8 @@
 package com.lxj.xpopup.animator;
 
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+
+import android.util.Log;
 import android.view.View;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.enums.PopupAnimation;
@@ -30,6 +32,8 @@ public class TranslateAlphaAnimator extends PopupAnimator {
     }
 
     private void applyTranslation() {
+
+        Log.e("xpopu","translationY3");
         switch (popupAnimation){
             case TranslateAlphaFromLeft:
                 targetView.setTranslationX(-(targetView.getMeasuredWidth()/* + halfWidthOffset*/));
@@ -48,6 +52,7 @@ public class TranslateAlphaAnimator extends PopupAnimator {
 
     @Override
     public void animateShow() {
+        Log.e("xpopu","TranslationY2");
         targetView.animate().translationX(defTranslationX).translationY(defTranslationY).alpha(1f)
                 .setInterpolator(new FastOutSlowInInterpolator())
                 .setDuration(animationDuration)
@@ -58,6 +63,7 @@ public class TranslateAlphaAnimator extends PopupAnimator {
     @Override
     public void animateDismiss() {
         if(animating)return;
+        Log.e("xpopu","translationY4");
         observerAnimator(targetView.animate().translationX(startTranslationX).translationY(startTranslationY).alpha(0f)
                 .setInterpolator(new FastOutSlowInInterpolator())
                 .setDuration(animationDuration)

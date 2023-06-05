@@ -1,11 +1,11 @@
 package com.lxj.xpopup.core;
 
 import static com.lxj.xpopup.enums.PopupAnimation.NoAnimation;
+
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
@@ -21,9 +21,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowManager;
-import android.view.animation.LayoutAnimationController;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
@@ -34,6 +34,7 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LifecycleRegistry;
 import androidx.lifecycle.OnLifecycleEvent;
+
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.animator.BlurAnimator;
 import com.lxj.xpopup.animator.EmptyAnimator;
@@ -57,7 +58,7 @@ import java.util.List;
  * Create by lxj, at 2018/12/7
  */
 public abstract class BasePopupView extends FrameLayout implements LifecycleObserver, LifecycleOwner,
-        ViewCompat.OnUnhandledKeyEventListenerCompat{
+        ViewCompat.OnUnhandledKeyEventListenerCompat {
     public PopupInfo popupInfo;
     protected PopupAnimator popupContentAnimator;
     protected ShadowBgAnimator shadowBgAnimator;
@@ -98,7 +99,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
 
     public BasePopupView show() {
         Activity activity = getActivity();
-        if (activity == null || activity.isFinishing() ) {
+        if (activity == null || activity.isFinishing()) {
             return this;
         }
         if (popupInfo == null) {
@@ -128,9 +129,9 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
         if (popupInfo == null) {
             throw new IllegalArgumentException("如果弹窗对象是复用的，则不要设置isDestroyOnDismiss(true)");
         }
-        if(popupInfo.hostLifecycle!=null){
+        if (popupInfo.hostLifecycle != null) {
             popupInfo.hostLifecycle.addObserver(this);
-        }else {
+        } else {
             if (getContext() instanceof FragmentActivity) {
                 ((FragmentActivity) getContext()).getLifecycle().addObserver(this);
             }
@@ -140,38 +141,43 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
         if (popupInfo.isViewMode) {
             //view实现
             ViewGroup decorView = (ViewGroup) getActivity().getWindow().getDecorView();
-            if(getParent()!=null) ((ViewGroup)getParent()).removeView(this);
+            if (getParent() != null) ((ViewGroup) getParent()).removeView(this);
             decorView.addView(this, getLayoutParams());
         } else {
+            Log.e("xpopu", "11");
             //dialog实现
             if (dialog == null) {
+                Log.e("xpopu", "22");
                 dialog = new FullScreenDialog(getContext()).setContent(this);
             }
             Activity activity = getActivity();
-            if(activity!=null && !activity.isFinishing() && !dialog.isShowing()) dialog.show();
+            if (activity != null && !activity.isFinishing() && !dialog.isShowing()) {
+                Log.e("xpopu11", "show");
+                dialog.show();
+            }
         }
 
+        //TODO:有毛病呀。第一次弹出软键盘时，也会回调height=0，后续每一次都不会回调
         //2. 注册对话框监听器
         KeyboardUtils.registerSoftInputChangedListener(getHostWindow(), BasePopupView.this, new KeyboardUtils.OnSoftInputChangedListener() {
             @Override
             public void onSoftInputChanged(int height) {
+                Log.e("1me111an", "registerSoftInputChangedListener");
                 onKeyboardHeightChange(height);
                 if (popupInfo != null && popupInfo.xPopupCallback != null) {
                     popupInfo.xPopupCallback.onKeyBoardStateChanged(BasePopupView.this, height);
                 }
-                if (height == 0) { // 说明输入法隐藏
-                    post(new Runnable() {
-                        @Override
-                        public void run() {
-                            XPopupUtils.moveDown(BasePopupView.this);
-                        }
-                    });
-                    hasMoveUp = false;
+                if (height == 0 && hasMoveUp) { // 说明输入法隐藏
+//                    XPopupUtils.moveDown(BasePopupView.this);
+//                    hasMoveUp = false;
                 } else {
                     //when show keyboard, move up
+                    boolean isInn = popupStatus == PopupStatus.Showing;
+                    Log.e("1me111an", "show--isInn=" + isInn);
                     if (BasePopupView.this instanceof PartShadowPopupView && popupStatus == PopupStatus.Showing) {
                         return;
                     }
+                    Log.e("1me111an", "show1");
                     XPopupUtils.moveUpToKeyboard(height, BasePopupView.this);
                     hasMoveUp = true;
                 }
@@ -181,9 +187,10 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
 //        init();
     }
 
-    protected Activity getActivity(){
+    protected Activity getActivity() {
         return XPopupUtils.context2Activity(getContext());
     }
+
     protected View getWindowDecorView() {
         if (getHostWindow() == null) return null;
         return (ViewGroup) getHostWindow().getDecorView();
@@ -192,6 +199,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
     /**
      * 注意此处的Activity content并不是android.R.id.content，而是decorView的第一个子View，
      * 是包含了ActionBar/ToolBar在内的
+     *
      * @return
      */
     public View getActivityContentView() {
@@ -199,7 +207,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
         return decorView.getChildAt(0);
     }
 
-    protected int getActivityContentLeft(){
+    protected int getActivityContentLeft() {
         return 0;
 //        if(!XPopupUtils.isLandscape(getContext())) return 0;
 //        //以Activity的content的left为准
@@ -209,22 +217,22 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
 //        return loc[0];
     }
 
-    protected void doMeasure(){
+    protected void doMeasure() {
         //设置自己的大小，和Activity的contentView保持一致
         Activity act = getActivity();
-        if(act==null) return;
+        if (act == null) return;
         WindowManager wm = (WindowManager) act.getSystemService(Context.WINDOW_SERVICE);
         Point point = new Point();
         wm.getDefaultDisplay().getSize(point);
         ViewGroup.MarginLayoutParams params = (MarginLayoutParams) getLayoutParams();
         View activityContent = getActivityContentView();
-        if(params==null){
+        if (params == null) {
             params = new MarginLayoutParams(activityContent.getWidth(), activityContent.getHeight());
-        }else {
+        } else {
             params.width = activityContent.getWidth();
             params.height = activityContent.getHeight();
         }
-        params.leftMargin = popupInfo!=null && popupInfo.isViewMode ?  activityContent.getLeft():0;
+        params.leftMargin = popupInfo != null && popupInfo.isViewMode ? activityContent.getLeft() : 0;
         params.topMargin = activityContent.getTop();
         setLayoutParams(params);
     }
@@ -255,8 +263,10 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
      * 执行初始化
      */
     protected void init() {
-        if (shadowBgAnimator == null)
+        if (shadowBgAnimator == null) {
+            Log.e("xpopu", "33");
             shadowBgAnimator = new ShadowBgAnimator(this, getAnimationDuration(), getShadowBgColor());
+        }
         if (popupInfo.hasBlurBg) {
             blurAnimator = new BlurAnimator(this, getShadowBgColor());
             blurAnimator.hasShadowBg = popupInfo.hasShadowBg;
@@ -269,9 +279,11 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
                 || this instanceof PartShadowPopupView || this instanceof PositionPopupView) {
             initPopupContent();
         } else if (!isCreated) {
+            Log.e("xpopu", "44");
             initPopupContent();
         }
         if (!isCreated) {
+            Log.e("xpopu", "55");
             isCreated = true;
             onCreate();
             lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE);
@@ -283,17 +295,20 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
     private final Runnable initTask = new Runnable() {
         @Override
         public void run() {
+            Log.e("xpopu", "66");
             if (getHostWindow() == null) return;
-            if (popupInfo!=null && popupInfo.xPopupCallback != null)
+            if (popupInfo != null && popupInfo.xPopupCallback != null)
                 popupInfo.xPopupCallback.beforeShow(BasePopupView.this);
             beforeShow();
             lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_START);
+            Log.e("xpopu11", "1111111111");
             if (!(BasePopupView.this instanceof FullScreenPopupView)) focusAndProcessBackPress();
 
             //由于部分弹窗有个位置设置过程，需要在位置设置完毕自己开启动画
             if (!(BasePopupView.this instanceof AttachPopupView) && !(BasePopupView.this instanceof BubbleAttachPopupView)
                     && !(BasePopupView.this instanceof PositionPopupView)
                     && !(BasePopupView.this instanceof PartShadowPopupView)) {
+                Log.e("xpopu", "77");
                 initAnimator();
 
                 doShowAnimation();
@@ -306,9 +321,11 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
     protected void initAnimator() {
         getPopupContentView().setAlpha(1f);
         // 优先使用自定义的动画器
-        if (popupInfo!=null && popupInfo.customAnimator != null) {
+        if (popupInfo != null && popupInfo.customAnimator != null) {
+            Log.e("xpopu", "888");
             popupContentAnimator = popupInfo.customAnimator;
-            if(popupContentAnimator.targetView==null) popupContentAnimator.targetView = getPopupContentView();
+            if (popupContentAnimator.targetView == null)
+                popupContentAnimator.targetView = getPopupContentView();
         } else {
             // 根据PopupInfo的popupAnimation字段来生成对应的动画执行器，如果popupAnimation字段为null，则返回null
             popupContentAnimator = genAnimatorByPopupType();
@@ -318,10 +335,10 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
         }
 
         //3. 初始化动画执行器
-        if (popupInfo!=null && popupInfo.hasShadowBg) {
+        if (popupInfo != null && popupInfo.hasShadowBg) {
             shadowBgAnimator.initAnimator();
         }
-        if (popupInfo!=null && popupInfo.hasBlurBg && blurAnimator != null) {
+        if (popupInfo != null && popupInfo.hasBlurBg && blurAnimator != null) {
             blurAnimator.initAnimator();
         }
         if (popupContentAnimator != null) {
@@ -341,33 +358,41 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
     public Window getHostWindow() {
         if (popupInfo != null && popupInfo.isViewMode) {
             Activity activity = getActivity();
-            return activity==null ? null : activity.getWindow();
+            return activity == null ? null : activity.getWindow();
         }
         return dialog == null ? null : dialog.getWindow();
     }
 
     protected void doAfterShow() {
         handler.removeCallbacks(doAfterShowTask);
-        handler.postDelayed(doAfterShowTask, getAnimationDuration());
+        int time = getAnimationDuration();
+        Log.e("xpopu", "time: " + time);
+        handler.postDelayed(doAfterShowTask, time);
     }
 
     protected Runnable doAfterShowTask = new Runnable() {
         @Override
         public void run() {
+            Log.e("xpopu", "999");
             popupStatus = PopupStatus.Show;
             lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
             onShow();
+            Log.e("xpopu11", "2222222");
             if (BasePopupView.this instanceof FullScreenPopupView) focusAndProcessBackPress();
             if (popupInfo != null && popupInfo.xPopupCallback != null)
                 popupInfo.xPopupCallback.onShow(BasePopupView.this);
             //再次检测移动距离
-            if (getHostWindow() != null && XPopupUtils.getDecorViewInvisibleHeight(getHostWindow()) > 0 && !hasMoveUp) {
+            int heiht11 = XPopupUtils.getDecorViewInvisibleHeight(getHostWindow());
+            Log.e("1me111an", "heiht11=" + heiht11 + ", hasMoveUp= " + hasMoveUp);
+            //TODO:将 >0 改成 >= 0，第一次点击表情按钮时正常，但第二次就不正常了，不会显示dialog，不会触发registerSoftInputChangedListener，需要这里开发一个=0，让后续执行，执行dialog的位移显示
+            if (getHostWindow() != null && XPopupUtils.getDecorViewInvisibleHeight(getHostWindow()) >= 0 && !hasMoveUp) {
                 XPopupUtils.moveUpToKeyboard(XPopupUtils.getDecorViewInvisibleHeight(getHostWindow()), BasePopupView.this);
             }
         }
     };
 
     private ShowSoftInputTask showSoftInputTask;
+
     public void focusAndProcessBackPress() {
         if (popupInfo != null && popupInfo.isRequestFocus) {
             setFocusableInTouchMode(true);
@@ -393,22 +418,25 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
 //                    addOnUnhandledKeyListener(et);
                     if (Build.VERSION.SDK_INT >= 28) {
                         addOnUnhandledKeyListener(et);
-                    }else {
+                    } else {
                         boolean hasSetKeyListener = XPopupUtils.hasSetKeyListener(et);
-                        if(!hasSetKeyListener) et.setOnKeyListener(new BackPressListener());
+                        if (!hasSetKeyListener) et.setOnKeyListener(new BackPressListener());
                     }
                     if (i == 0) {
                         if (popupInfo.autoFocusEditText) {
                             et.setFocusable(true);
                             et.setFocusableInTouchMode(true);
                             et.requestFocus();
+                            Log.e("xpopu11", "showSoftInput1");
                             if (popupInfo.autoOpenSoftInput) showSoftInput(et);
                         } else {
+                            Log.e("xpopu11", "showSoftInput2");
                             if (popupInfo.autoOpenSoftInput) showSoftInput(this);
                         }
                     }
                 }
             } else {
+                Log.e("xpopu11", "showSoftInput3");
                 if (popupInfo.autoOpenSoftInput) showSoftInput(this);
             }
         }
@@ -419,7 +447,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
         return processKeyEvent(event.getKeyCode(), event);
     }
 
-    protected void addOnUnhandledKeyListener(View view){
+    protected void addOnUnhandledKeyListener(View view) {
         ViewCompat.removeOnUnhandledKeyEventListener(view, this);
         ViewCompat.addOnUnhandledKeyEventListener(view, this);
     }
@@ -457,9 +485,9 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
         }
     }
 
-    protected boolean processKeyEvent(int keyCode, KeyEvent event){
+    protected boolean processKeyEvent(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP && popupInfo != null) {
-            if(onBackPressed()) return true;
+            if (onBackPressed()) return true;
             if (popupInfo.isDismissOnBackPressed &&
                     (popupInfo.xPopupCallback == null || !popupInfo.xPopupCallback.onBackPressed(BasePopupView.this))) {
                 dismissOrHideSoftInput();
@@ -519,6 +547,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
 
     /**
      * 内部使用，自定义弹窗的时候不要重新这个方法
+     *
      * @return
      */
     protected abstract int getInnerLayoutId();
@@ -544,16 +573,20 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
     /**
      * 请使用onCreate，主要给弹窗内部用，不要去重写。
      */
-    protected void initPopupContent() { }
+    protected void initPopupContent() {
+    }
 
     /**
      * do init.
      */
-    protected void onCreate() { }
+    protected void onCreate() {
+    }
 
-    protected void applyDarkTheme() { }
+    protected void applyDarkTheme() {
+    }
 
-    protected void applyLightTheme() { }
+    protected void applyLightTheme() {
+    }
 
     /**
      * 执行显示动画：动画由2部分组成，一个是背景渐变动画，一个是Content的动画；
@@ -561,7 +594,8 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
      */
     protected void doShowAnimation() {
         if (popupInfo == null) return;
-        if (popupInfo.hasShadowBg && !popupInfo.hasBlurBg && shadowBgAnimator!=null) {
+        if (popupInfo.hasShadowBg && !popupInfo.hasBlurBg && shadowBgAnimator != null) {
+            Log.e("xpopu", "999");
             shadowBgAnimator.animateShow();
         } else if (popupInfo.hasBlurBg && blurAnimator != null) {
             blurAnimator.animateShow();
@@ -576,7 +610,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
      */
     protected void doDismissAnimation() {
         if (popupInfo == null) return;
-        if (popupInfo.hasShadowBg && !popupInfo.hasBlurBg && shadowBgAnimator!=null) {
+        if (popupInfo.hasShadowBg && !popupInfo.hasBlurBg && shadowBgAnimator != null) {
             shadowBgAnimator.animateDismiss();
         } else if (popupInfo.hasBlurBg && blurAnimator != null) {
             blurAnimator.animateDismiss();
@@ -621,7 +655,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
      * @return
      */
     protected int getMaxWidth() {
-        return popupInfo==null ? 0 : popupInfo.maxWidth;
+        return popupInfo == null ? 0 : popupInfo.maxWidth;
     }
 
     /**
@@ -631,7 +665,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
      * @return
      */
     protected int getMaxHeight() {
-        return popupInfo==null ? 0 : popupInfo.maxHeight;
+        return popupInfo == null ? 0 : popupInfo.maxHeight;
     }
 
     /**
@@ -641,7 +675,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
      * @return
      */
     protected int getPopupWidth() {
-        return popupInfo==null ? 0 : popupInfo.popupWidth;
+        return popupInfo == null ? 0 : popupInfo.popupWidth;
     }
 
     /**
@@ -651,7 +685,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
      * @return
      */
     protected int getPopupHeight() {
-        return popupInfo==null ? 0 : popupInfo.popupHeight;
+        return popupInfo == null ? 0 : popupInfo.popupHeight;
     }
 
     /**
@@ -699,6 +733,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
 
     protected void doAfterDismiss() {
         // PartShadowPopupView要等到完全关闭再关闭输入法，不然有问题
+        Log.e("xpopu11", "showSoftInput4");
         if (popupInfo != null && popupInfo.autoOpenSoftInput && !(this instanceof PartShadowPopupView))
             KeyboardUtils.hideSoftInput(this);
         handler.removeCallbacks(doAfterDismissTask);
@@ -711,6 +746,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
             popupStatus = PopupStatus.Dismiss;
             lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP);
             if (popupInfo == null) return;
+            Log.e("xpopu11", "showSoftInput5");
             if (popupInfo.autoOpenSoftInput && BasePopupView.this instanceof PartShadowPopupView)
                 KeyboardUtils.hideSoftInput(BasePopupView.this);
             onDismiss();
@@ -803,7 +839,9 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
     /**
      * 执行返回监听
      */
-    protected boolean onBackPressed() { return false; }
+    protected boolean onBackPressed() {
+        return false;
+    }
 
     /**
      * onDismiss之前执行一次
@@ -826,7 +864,8 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
         Log.d("tag", "onShow");
     }
 
-    protected void onKeyboardHeightChange(int height) { }
+    protected void onKeyboardHeightChange(int height) {
+    }
 
     @OnLifecycleEvent(value = Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
@@ -837,19 +876,19 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
 
     public void destroy() {
         ViewCompat.removeOnUnhandledKeyEventListener(this, this);
-        if(isCreated){
+        if (isCreated) {
             lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY);
         }
         lifecycleRegistry.removeObserver(this);
         if (popupInfo != null) {
             popupInfo.atView = null;
             popupInfo.xPopupCallback = null;
-            if(popupInfo.hostLifecycle!=null){
+            if (popupInfo.hostLifecycle != null) {
                 popupInfo.hostLifecycle.removeObserver(this);
                 popupInfo.hostLifecycle = null;
             }
             if (popupInfo.customAnimator != null) {
-                if(popupInfo.customAnimator.targetView != null){
+                if (popupInfo.customAnimator.targetView != null) {
                     popupInfo.customAnimator.targetView.animate().cancel();
                     popupInfo.customAnimator.targetView = null;
                 }
@@ -859,7 +898,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
             popupInfo = null;
         }
         if (dialog != null) {
-            if(dialog.isShowing()) dialog.dismiss();
+            if (dialog.isShowing()) dialog.dismiss();
             dialog.contentView = null;
             dialog = null;
         }
@@ -875,10 +914,11 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
         }
     }
 
-    protected int getStatusBarHeight(){
+    protected int getStatusBarHeight() {
         return XPopupUtils.getStatusBarHeight(getHostWindow());
     }
-    protected int getNavBarHeight(){
+
+    protected int getNavBarHeight() {
         return XPopupUtils.getNavBarHeight(getHostWindow());
     }
 
@@ -896,9 +936,9 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
             }
             if (popupInfo.isDestroyOnDismiss) destroy();//如果开启isDestroyOnDismiss，强制释放资源
         }
-        if(popupInfo!=null && popupInfo.hostLifecycle!=null){
+        if (popupInfo != null && popupInfo.hostLifecycle != null) {
             popupInfo.hostLifecycle.removeObserver(this);
-        }else {
+        } else {
             if (getContext() != null && getContext() instanceof FragmentActivity) {
                 ((FragmentActivity) getContext()).getLifecycle().removeObserver(this);
             }
@@ -909,7 +949,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
     }
 
     public void passTouchThrough(MotionEvent event) {
-        if (popupInfo != null && (popupInfo.isClickThrough || popupInfo.isTouchThrough) ) {
+        if (popupInfo != null && (popupInfo.isClickThrough || popupInfo.isTouchThrough)) {
             if (popupInfo.isViewMode) {
                 //需要从DecorView分发，并且要排除自己，否则死循环
                 ViewGroup decorView = (ViewGroup) getActivity().getWindow().getDecorView();
@@ -925,6 +965,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
     }
 
     private float x, y;
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         // 如果自己接触到了点击，并且不在PopupContentView范围内点击，则进行判断是否是点击事件,如果是，则dismiss
@@ -935,17 +976,17 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
                 case MotionEvent.ACTION_DOWN:
                     x = event.getX();
                     y = event.getY();
-                    if(popupInfo!=null && popupInfo.xPopupCallback!=null){
+                    if (popupInfo != null && popupInfo.xPopupCallback != null) {
                         popupInfo.xPopupCallback.onClickOutside(this);
                     }
                     passTouchThrough(event);
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    if(popupInfo != null){
-                        if(popupInfo.isDismissOnTouchOutside){
+                    if (popupInfo != null) {
+                        if (popupInfo.isDismissOnTouchOutside) {
                             checkDismissArea(event);
                         }
-                        if(popupInfo.isTouchThrough)passTouchThrough(event);
+                        if (popupInfo.isTouchThrough) passTouchThrough(event);
                     }
                     break;
                 case MotionEvent.ACTION_UP:
@@ -965,21 +1006,21 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
         return true;
     }
 
-    private void checkDismissArea(MotionEvent event){
+    private void checkDismissArea(MotionEvent event) {
         //查看是否在排除区域外
         ArrayList<Rect> rects = popupInfo.notDismissWhenTouchInArea;
-        if(rects!=null && rects.size()>0){
+        if (rects != null && rects.size() > 0) {
             boolean inRect = false;
             for (Rect r : rects) {
-                if(XPopupUtils.isInRect(event.getX(), event.getY(), r)){
+                if (XPopupUtils.isInRect(event.getX(), event.getY(), r)) {
                     inRect = true;
                     break;
                 }
             }
-            if(!inRect){
+            if (!inRect) {
                 dismiss();
             }
-        }else {
+        } else {
             dismiss();
         }
     }

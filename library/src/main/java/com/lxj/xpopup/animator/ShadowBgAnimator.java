@@ -3,8 +3,10 @@ package com.lxj.xpopup.animator;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+import android.util.Log;
 import android.view.View;
+
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 /**
  * Description: 背景Shadow动画器，负责执行半透明的渐入渐出动画
@@ -15,11 +17,15 @@ public class ShadowBgAnimator extends PopupAnimator {
     public int startColor = Color.TRANSPARENT;
     public boolean isZeroDuration = false;
     public int shadowColor;
+
     public ShadowBgAnimator(View target, int animationDuration, int shadowColor) {
         super(target, animationDuration);
         this.shadowColor = shadowColor;
     }
-    public ShadowBgAnimator() {}
+
+    public ShadowBgAnimator() {
+    }
+
     @Override
     public void initAnimator() {
         targetView.setBackgroundColor(startColor);
@@ -27,6 +33,7 @@ public class ShadowBgAnimator extends PopupAnimator {
 
     @Override
     public void animateShow() {
+        Log.e("xpopu", "1004");
         ValueAnimator animator = ValueAnimator.ofObject(argbEvaluator, startColor, shadowColor);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -35,12 +42,12 @@ public class ShadowBgAnimator extends PopupAnimator {
             }
         });
         animator.setInterpolator(new FastOutSlowInInterpolator());
-        animator.setDuration(isZeroDuration? 0: animationDuration).start();
+        animator.setDuration(isZeroDuration ? 0 : animationDuration).start();
     }
 
     @Override
     public void animateDismiss() {
-        if(animating) return;
+        if (animating) return;
         ValueAnimator animator = ValueAnimator.ofObject(argbEvaluator, shadowColor, startColor);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -50,14 +57,14 @@ public class ShadowBgAnimator extends PopupAnimator {
         });
         observerAnimator(animator);
         animator.setInterpolator(new FastOutSlowInInterpolator());
-        animator.setDuration(isZeroDuration ? 0: animationDuration).start();
+        animator.setDuration(isZeroDuration ? 0 : animationDuration).start();
     }
 
-    public void applyColorValue(float val){
+    public void applyColorValue(float val) {
         targetView.setBackgroundColor((Integer) calculateBgColor(val));
     }
 
-    public int calculateBgColor(float fraction){
+    public int calculateBgColor(float fraction) {
         return (int) argbEvaluator.evaluate(fraction, startColor, shadowColor);
     }
 

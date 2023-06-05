@@ -130,6 +130,7 @@ public abstract class BubbleAttachPopupView extends BasePopupView {
                         }
                     }
 
+                    Log.e("xpopu","translationY9");
                     if (isShowUpToTarget()) {
                         // 应显示在point上方
                         // translationX: 在左边就和atView左边对齐，在右边就和其右边对齐
@@ -149,7 +150,8 @@ public abstract class BubbleAttachPopupView extends BasePopupView {
                     }
                     bubbleContainer.setLookPosition(Math.max(0, (int) (popupInfo.touchPoint.x - defaultOffsetX - translationX - bubbleContainer.mLookWidth/2)));
                     bubbleContainer.invalidate();
-                   
+
+                    Log.e("xpopu","translationY8");
                     getPopupContentView().setTranslationX(translationX);
                     getPopupContentView().setTranslationY(translationY);
                     initAndStartAnimation();
