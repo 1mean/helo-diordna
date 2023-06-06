@@ -3,11 +3,14 @@ package com.lxj.xpopup.core;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.view.View;
+
 import androidx.lifecycle.Lifecycle;
+
 import com.lxj.xpopup.animator.PopupAnimator;
 import com.lxj.xpopup.enums.PopupAnimation;
 import com.lxj.xpopup.enums.PopupPosition;
 import com.lxj.xpopup.interfaces.XPopupCallback;
+
 import java.util.ArrayList;
 
 /**
@@ -31,6 +34,7 @@ public class PopupInfo {
     public float borderRadius = 15; // 圆角
     public Boolean autoOpenSoftInput = false;//是否自动打开输入法
     public XPopupCallback xPopupCallback;
+    public XPopupDragCallback xPopupDragCallback;
 
     public Boolean isMoveUpToKeyboard = true; //是否移动到软键盘上面，默认弹窗会移到软键盘上面
     public PopupPosition popupPosition = null; //弹窗出现在目标的什么位置
@@ -61,10 +65,14 @@ public class PopupInfo {
     public Lifecycle hostLifecycle; //自定义的宿主生命周期
     public Boolean isCoverSoftInput = false; //弹窗是否覆盖/遮挡在输入法之上
 
-    public Rect getAtViewRect(){
+    public Rect getAtViewRect() {
         int[] locations = new int[2];
         atView.getLocationInWindow(locations);
         return new Rect(locations[0], locations[1], locations[0] + atView.getMeasuredWidth(),
                 locations[1] + atView.getMeasuredHeight());
+    }
+
+    public interface XPopupDragCallback {
+        public void onDrag(BasePopupView popupView, int value, float percent, boolean upOrLeft);
     }
 }

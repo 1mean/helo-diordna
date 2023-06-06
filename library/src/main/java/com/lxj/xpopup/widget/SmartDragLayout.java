@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.LinearLayout;
 import android.widget.OverScroller;
+
 import androidx.core.view.NestedScrollingParent;
 import androidx.core.view.ViewCompat;
+
 import com.lxj.xpopup.enums.LayoutStatus;
 import com.lxj.xpopup.util.XPopupUtils;
 
@@ -56,10 +58,11 @@ public class SmartDragLayout extends LinearLayout implements NestedScrollingPare
     }
 
     int lastHeight;
+
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        if(enableDrag){
-            if(child==null) return;
+        if (enableDrag) {
+            if (child == null) return;
             maxY = child.getMeasuredHeight();
             minY = 0;
             int l = getMeasuredWidth() / 2 - child.getMeasuredWidth() / 2;
@@ -74,16 +77,16 @@ public class SmartDragLayout extends LinearLayout implements NestedScrollingPare
                 }
             }
             lastHeight = maxY;
-        }else {
+        } else {
             int l = getMeasuredWidth() / 2 - child.getMeasuredWidth() / 2;
-            child.layout(l, getMeasuredHeight()-child.getMeasuredHeight(), l + child.getMeasuredWidth(), getMeasuredHeight());
+            child.layout(l, getMeasuredHeight() - child.getMeasuredHeight(), l + child.getMeasuredWidth(), getMeasuredHeight());
         }
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         isUserClose = true;
-        if(status == LayoutStatus.Closing || status==LayoutStatus.Opening) return false;
+        if (status == LayoutStatus.Closing || status == LayoutStatus.Opening) return false;
         return super.onInterceptTouchEvent(ev);
     }
 
@@ -91,8 +94,8 @@ public class SmartDragLayout extends LinearLayout implements NestedScrollingPare
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(status == LayoutStatus.Closing || status==LayoutStatus.Opening) return false;
-        if (enableDrag && ( scroller.computeScrollOffset() || status==LayoutStatus.Close)){
+        if (status == LayoutStatus.Closing || status == LayoutStatus.Opening) return false;
+        if (enableDrag && (scroller.computeScrollOffset() || status == LayoutStatus.Close)) {
             touchX = 0;
             touchY = 0;
             return true;
@@ -181,6 +184,7 @@ public class SmartDragLayout extends LinearLayout implements NestedScrollingPare
                 status = LayoutStatus.Open;
                 listener.onOpen();
             }
+            Log.e("1m234234234ean", "y: " + y + ", fraction= " + fraction + ", isScrollUp= " + isScrollUp);
             listener.onDrag(y, fraction, isScrollUp);
         }
         super.scrollTo(x, y);

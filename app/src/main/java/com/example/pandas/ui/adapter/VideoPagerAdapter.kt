@@ -1,7 +1,6 @@
 package com.example.pandas.ui.adapter
 
 import android.animation.Animator
-import android.animation.Animator.AnimatorListener
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
@@ -92,7 +91,6 @@ public class VideoPagerAdapter(
     fun startAnimation(position: Int) {
 
         val animatom = animationList.get(position)
-        Log.e("lidandan", "transRotation: $animatom")
         if (animatom == null) {
             val vh = recyclerView?.findViewHolderForAdapterPosition(position)
             vh?.let {
@@ -165,37 +163,91 @@ public class VideoPagerAdapter(
         //val timebar = playerView.findViewById<DefaultTimeBar>(R.id.exo_progress)
         //val music = binding.txtVerticalMusic
 
-        fun playerChanged(isReduce: Boolean, height: Long) {
-            if (isReduce) {
+        /**
+         * 弹窗被拖拽时执行，适用于能拖拽的弹窗，比如Bottom弹窗和Drawer弹窗
+         * @param value  拖拽的距离
+         * @param percent  拖拽的百分比
+         * @param upOrLeft 是否是向上或者向左；垂直拖拽时，true表示向上，false表现向下；
+         *                 水平拖拽时，true表示向左，false表示向右
+         */
+
+        val lastWidthPercent = 0.5
+        val lastHeightPercent = 0.4053
+        var lastPercent = 0f
+        fun playerChanged(value: Int, percent: Float, upOrLeft: Boolean) {
+
+            //bug:经常出现两次偏移的value值相同回调，会导致通过位移来判断上还是下的upOrLeft出现问题，
+            // 导致在一系列up中出现几次down，导致屏幕抖动，所以相同数值的结果规避掉
+            if (lastPercent == percent) {
+                return
+            }
+            lastPercent = percent
+
+            if (percent == 0f) {
+                rightView.visibility = View.VISIBLE
+                bottomView.visibility = View.VISIBLE
+            }
+
+            val params = playerView.layoutParams
+            val with = 1080 * (1 - lastWidthPercent * percent)
+            val height = 2226 * (1 - lastHeightPercent * percent)
+//            val height = 2125 * (1 - lastHeightPercent * percent)
+            Log.e("lidandan", "value : $value , percent: $percent, with=$with")
+            params.width = with.toInt()
+            params.height = height.toInt()
+            playerView.layoutParams = params
+
+
+            if (upOrLeft) {//向上或者向左
                 rightView.visibility = View.GONE
                 bottomView.visibility = View.GONE
 
+                //statusbar = 101 pHeight=2226
+                //val scaleY = 835 / 2125.0
+
+
+                //playerView.scrollY = 1400 * percent.toInt()
+
+
+                //playerView.offsetTopAndBottom(2)
+
+//                val transScaleX = ObjectAnimator.ofFloat(playerView, "scaleX", 1f, 0.5f)
+//                val transScaleY = ObjectAnimator.ofFloat(playerView, "scaleY", 1f, scaleY.toFloat())
+//                //偏移坐标是不包含状态栏高度的，即从状态栏以下开始计算，状态栏高度101
+//                val translationY = ObjectAnimator.ofFloat(playerView, "translationY", 0f,-730f)
+//                val animationSet = AnimatorSet()
+//                animationSet.duration = 400
+//                animationSet.interpolator = DecelerateInterpolator()
+//                animationSet.play(transScaleX).with(transScaleY).with(translationY)
+//                animationSet.start()
+
+
                 //1390f
-                playerView.animate().translationX(200f).translationY(0f).setListener(object : AnimatorListener {
-                    override fun onAnimationStart(animation: Animator?) {
+//                playerView.animate().translationX(200f).translationY(0f)
+//                    .setListener(object : AnimatorListener {
+//                        override fun onAnimationStart(animation: Animator?) {
+//
+//                        }
+//
+//                        override fun onAnimationEnd(animation: Animator?) {
+//                            val params = playerView.layoutParams
+//                            params.height = 834
+//                            //params.width = (834 / 2226) * 1080
+//                            params.width = 454
+//                            playerView.layoutParams = params
+//
+//                        }
+//
+//                        override fun onAnimationCancel(animation: Animator?) {
+//                        }
+//
+//                        override fun onAnimationRepeat(animation: Animator?) {
+//                        }
+//                    }).setDuration(300).start()
+            } else {//向下或向右
 
-                    }
-
-                    override fun onAnimationEnd(animation: Animator?) {
-                        val params = playerView.layoutParams
-                        params.height = 834
-//                params.width = (834/2226)*1080
-                        params.width = 454
-                        playerView.layoutParams = params
-
-                    }
-
-                    override fun onAnimationCancel(animation: Animator?) {
-                    }
-
-                    override fun onAnimationRepeat(animation: Animator?) {
-                    }
-                }).setDuration(300).start()
-
-
-            } else {
-                rightView.visibility = View.VISIBLE
-                bottomView.visibility = View.VISIBLE
+//                rightView.visibility = View.VISIBLE
+//                bottomView.visibility = View.VISIBLE
             }
         }
 
@@ -334,10 +386,11 @@ public class VideoPagerAdapter(
 
             shareItem.setOnClickListener {
 
-                val dialog = ShareBottomSheetDialog(context, object : ItemClickListener<String> {
-                    override fun onItemClick(t: String) {
-                    }
-                })
+                val dialog =
+                    ShareBottomSheetDialog(context, object : ItemClickListener<String> {
+                        override fun onItemClick(t: String) {
+                        }
+                    })
                 dialog.addData().onShow()
             }
 
@@ -430,7 +483,8 @@ public class VideoPagerAdapter(
                         attentionView.setBackgroundResource(R.drawable.shape_bg_vertical_attentioned)
                         attentionView.setImageResource(R.mipmap.img_short_attentioned)
 
-                        val alphaAnimation1 = ObjectAnimator.ofFloat(attentionView, "alpha", 0f, 1f)
+                        val alphaAnimation1 =
+                            ObjectAnimator.ofFloat(attentionView, "alpha", 0f, 1f)
                         val transScaleX =
                             ObjectAnimator.ofFloat(attentionView, "scaleX", 0f, 1.3f, 1f)
                         val transScaleY =
@@ -441,7 +495,8 @@ public class VideoPagerAdapter(
                         animatorSet.duration = 500
                         animatorSet.start()
 
-                        val alphaAnimation2 = ObjectAnimator.ofFloat(attentionView, "alpha", 1f, 0f)
+                        val alphaAnimation2 =
+                            ObjectAnimator.ofFloat(attentionView, "alpha", 1f, 0f)
                         alphaAnimation2.duration = 200
                         alphaAnimation2.startDelay = 2000
                         alphaAnimation2.start()

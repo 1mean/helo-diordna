@@ -30,6 +30,8 @@ import com.example.pandas.utils.StatusBarUtils
 import com.example.pandas.utils.VibrateUtils
 import com.google.android.exoplayer2.util.Util
 import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.core.BasePopupView
+import com.lxj.xpopup.interfaces.XPopupCallback
 
 
 /**
@@ -61,6 +63,8 @@ public class ShortVideoActivity :
 
     private var manager: VerticalPlayManager? = null
     private var keyBoardManager: SoftInputManager? = null
+
+    var popupView: ShortRightPopuWindow? = null
 
     private val mHandler: Handler = Handler(Looper.getMainLooper())
 
@@ -498,10 +502,8 @@ public class ShortVideoActivity :
 
         if (isPlaying) {
             mAdapter.startAnimation(currentPosition)
-            Log.e("lidandan", "player isPlaying")
         } else {
             mAdapter.pauseAnimation(currentPosition)
-            Log.e("lidandan", "player is not Playing")
         }
     }
 
@@ -543,21 +545,67 @@ public class ShortVideoActivity :
         startUserInfoActivity(this, user)
     }
 
-    var popupView: ShortRightPopuWindow? = null
     override fun showComments(videoCode: Int, commentCounts: Int) {
 
-        binding.clayoutVerticalTop.visibility = View.GONE
-        mAdapter.recyclerView?.let {
-            val vh =
-                it.findViewHolderForAdapterPosition(currentPosition) as VideoPagerAdapter.MyViewHolder
-            vh.playerChanged(true,200)
-        }
+        binding.clayoutVerticalTop.postDelayed({
+            binding.clayoutVerticalTop.visibility = View.GONE
+        }, 200)
 
         popupView = ShortRightPopuWindow(this, videoCode, commentCounts)
-        XPopup.Builder(this)
+        XPopup.Builder(this).setPopupCallback(object : XPopupCallback {
+            override fun onCreated(popupView: BasePopupView?) {
+            }
+
+            override fun beforeShow(popupView: BasePopupView?) {
+            }
+
+            override fun onShow(popupView: BasePopupView?) {
+            }
+
+            override fun onDismiss(popupView: BasePopupView?) {
+            }
+
+            override fun beforeDismiss(popupView: BasePopupView?) {
+            }
+
+            override fun onBackPressed(popupView: BasePopupView?): Boolean {
+                return false
+            }
+
+            override fun onKeyBoardStateChanged(popupView: BasePopupView?, height: Int) {
+            }
+
+            override fun onDrag(
+                popupView: BasePopupView?,
+                value: Int,
+                percent: Float,
+                upOrLeft: Boolean
+            ) {
+                mAdapter.recyclerView?.let {
+                    val vh =
+                        it.findViewHolderForAdapterPosition(currentPosition) as VideoPagerAdapter.MyViewHolder
+                    vh.playerChanged(value, percent, upOrLeft)
+                }
+            }
+
+            override fun onClickOutside(popupView: BasePopupView?) {
+            }
+
+        })
             .moveUpToKeyboard(false) //如果不加这个，评论弹窗会移动到软键盘上面
+            .animationDuration(1000)
             .asCustom(popupView)
             .show()
+
+
+
+        popupView!!.setOnDragListener { v, event ->
+
+            val dialogHeight = popupView!!.height
+            Log.e("1mean", "start drah: $dialogHeight")
+
+            true
+        }
     }
 
     override fun addAttention(userCode: Int) {

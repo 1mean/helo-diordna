@@ -15,6 +15,7 @@
             app:show_timeout="0"
             app:resize_mode="zoom"
             app:show_buffering="never"
+            android:layout_gravity="center_horizontal"
             app:controller_layout_id="@layout/controller_vertical_player" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

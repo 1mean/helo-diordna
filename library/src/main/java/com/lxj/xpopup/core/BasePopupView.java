@@ -373,7 +373,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
     protected Runnable doAfterShowTask = new Runnable() {
         @Override
         public void run() {
-            Log.e("xpopu", "999");
+            Log.e("xpopu", "9992");
             popupStatus = PopupStatus.Show;
             lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
             onShow();
@@ -595,7 +595,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
     protected void doShowAnimation() {
         if (popupInfo == null) return;
         if (popupInfo.hasShadowBg && !popupInfo.hasBlurBg && shadowBgAnimator != null) {
-            Log.e("xpopu", "999");
+            Log.e("xpopu", "9991");
             shadowBgAnimator.animateShow();
         } else if (popupInfo.hasBlurBg && blurAnimator != null) {
             blurAnimator.animateShow();

@@ -61,6 +61,7 @@ public class BottomPopupView extends BasePopupView {
         bottomPopupContainer.setOnCloseListener(new SmartDragLayout.OnCloseListener() {
             @Override
             public void onClose() {
+                Log.e("xpopu","onClose");
                 beforeDismiss();
                 if(popupInfo!=null && popupInfo.xPopupCallback!=null) popupInfo.xPopupCallback.beforeDismiss(BottomPopupView.this);
                 doAfterDismiss();
@@ -68,6 +69,7 @@ public class BottomPopupView extends BasePopupView {
 
             @Override
             public void onDrag(int value, float percent, boolean isScrollUp) {
+                Log.e("xpopu","onDrag : _percent= " + percent + ", isScrollUp=" + isScrollUp);
                 if(popupInfo==null)return;
                 if(popupInfo.xPopupCallback!=null) popupInfo.xPopupCallback.onDrag(BottomPopupView.this, value, percent,isScrollUp);
                 if (popupInfo.hasShadowBg && !popupInfo.hasBlurBg) setBackgroundColor(shadowBgAnimator.calculateBgColor(percent));
