@@ -390,7 +390,7 @@
     <color name="color_txt_content_item_short_comment">#151A21</color>
     <color name="color_txt_reply_short_comment">#74737C</color>
     <color name="color_bg_short_right_dialog">#ffffff</color>
-    <color name="color_bg_right_dialig_divider">#D1D1D2</color>
+    <color name="color_bg_right_dialig_divider">#cfd2d1</color>
     <color name="color_bg_edit_right_dialog">#f3f3f3</color>
     <color name="color_txt_comments_right_dialog">#161923</color>
     <color name="color_bg_item_right_dialog">#ffffff</color>

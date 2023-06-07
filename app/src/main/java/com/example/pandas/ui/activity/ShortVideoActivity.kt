@@ -469,6 +469,7 @@ public class ShortVideoActivity :
             currentPosition = position
             //开启右下角的旋转动画
 
+            popupView = null //切换到新页面时，不保存右侧评论弹出窗
             vh = null
             val hasEdit = binding.editVertical.text?.isNotEmpty()
             if (hasEdit == true) {
@@ -550,7 +551,9 @@ public class ShortVideoActivity :
     private var vh: VideoPagerAdapter.MyViewHolder? = null
     override fun showComments(videoCode: Int, commentCounts: Int) {
 
-        popupView = ShortRightPopuWindow(this, videoCode, commentCounts)
+        if (popupView == null) {
+            popupView = ShortRightPopuWindow(this, videoCode, commentCounts)
+        }
         XPopup.setShadowBgColor(ContextCompat.getColor(this, R.color.color_white_lucency))
         XPopup.Builder(this).setPopupCallback(object : XPopupCallback {
             override fun onCreated(popupView: BasePopupView?) {
@@ -605,7 +608,7 @@ public class ShortVideoActivity :
 
         })
             .moveUpToKeyboard(false) //如果不加这个，评论弹窗会移动到软键盘上面
-            .animationDuration(500)
+            .animationDuration(600)
             .asCustom(popupView)
             .show()
 

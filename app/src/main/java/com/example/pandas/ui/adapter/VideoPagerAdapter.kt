@@ -177,6 +177,7 @@ public class VideoPagerAdapter(
          */
         private val lastWidthPercent = 0.5
         private val lastHeightPercent = 0.6253
+
         //private val lastHeightPercent = 0.3747
         private var lastPercent = 0f
         fun playerChanged(value: Int, percent: Float, upOrLeft: Boolean) {
@@ -196,6 +197,7 @@ public class VideoPagerAdapter(
             val params = playerView.layoutParams
             val with = 1080 * (1 - lastWidthPercent * percent)
             val height = 2226 * (1 - lastHeightPercent * percent)
+            Log.e("lidandan", "percent:$percent, upOrLeft:$upOrLeft, height:$height, with:$with")
             //val height = 2125 * (1 - lastHeightPercent * percent)
             params.width = with.toInt()
             params.height = height.toInt()

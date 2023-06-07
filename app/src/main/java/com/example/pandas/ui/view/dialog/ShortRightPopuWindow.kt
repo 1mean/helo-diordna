@@ -4,15 +4,17 @@ import ShortCommentAdapter
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
+import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
+import com.example.pandas.bean.UIDataWrapper
+import com.example.pandas.biz.interaction.ICommentCallback
 import com.example.pandas.biz.manager.PetManagerCoroutine
+import com.example.pandas.biz.manager.ShortCommentManage
 import com.example.pandas.biz.manager.SoftInputManager
 import com.example.pandas.biz.viewmodel.CommentViewModel
 import com.example.pandas.databinding.DialogBottomCommentBinding
@@ -25,7 +27,10 @@ import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
 import com.lxj.xpopup.core.BottomPopupView
 import com.lxj.xpopup.interfaces.SimpleCallback
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 
 /**
@@ -51,7 +56,7 @@ import kotlinx.coroutines.*
  * @version: v1.0
  */
 public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupView(mContext),
-    ShortCommentAdapter.CommentListener {
+    ShortCommentAdapter.CommentListener, ICommentCallback, SwipRecyclerView.ILoadMoreListener {
 
     private var videoCode: Int = 0
     private var commentCounts: Int = 0
@@ -64,12 +69,14 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
     private var inputPopWindow: ShortBottoomPopuWindow? = null
     private val mHandler: Handler = Handler(Looper.getMainLooper())
     private var keyBoardManager: SoftInputManager? = null
+    private var commentManage: ShortCommentManage? = null
 
     private lateinit var txtShortComments: AppCompatTextView
     private lateinit var txtCommentIn: AppCompatTextView
     private lateinit var recyclerView: SwipRecyclerView
     private lateinit var btnSend: AppCompatButton
     private lateinit var inputView: ConstraintLayout
+    private lateinit var progress: ProgressBar
 
     private var startIndex = 0
     private val pageCount = 21
@@ -79,16 +86,10 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
     constructor(context: Context, videoCode: Int, commentCounts: Int) : this(context) {
         this.videoCode = videoCode
         this.commentCounts = commentCounts
+        this.commentManage = ShortCommentManage(context, commentScope)
     }
 
     override fun getImplLayoutId(): Int = R.layout.dialog_bottom_comment
-
-    override fun onShow() {
-        super.onShow()
-        txtShortComments.post {
-            txtShortComments.text = "${commentCounts}条评论"
-        }
-    }
 
     override fun onCreate() {
         super.onCreate()
@@ -98,44 +99,13 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
         recyclerView = findViewById(R.id.rv_short_comment)
         btnSend = findViewById(R.id.btn_short_comment_send)
         inputView = findViewById(R.id.clayout_short_comment_input)
+        progress = findViewById(R.id.pbar_right_comment)
 
-        recyclerView.init(
-            null,
-            mAdapter,
-            LinearLayoutManager(context),
-            object : SwipRecyclerView.ILoadMoreListener {
-                override fun onLoadMore() {
-                    //mViewModel.getLandScapeData(false)
-                    commentScope.launch {
-                        val list = PetManagerCoroutine.getPageComments(
-                            true,
-                            videoCode,
-                            startIndex,
-                            pageCount
-                        )
-                        val hasMore = list.size > 20
-                        if (hasMore) {
-                            startIndex += 20
-                            list.removeLast()
-                        }
-                        mAdapter.loadMore(list)
-                        recyclerView.loadMoreFinished(list.isEmpty(), hasMore)
-                    }
-                }
-            })
-
-
-        commentScope.launch {
-            val list = PetManagerCoroutine.getPageComments(true, videoCode, startIndex, pageCount)
-            val hasMore = list.size > 20
-            if (hasMore) {
-                startIndex += 20
-                list.removeLast()
-            }
-            mAdapter.refreshAdapter(list)
-            recyclerView.isRefreshing(false)
-            recyclerView.loadMoreFinished(list.isEmpty(), hasMore)
+        txtShortComments.post {
+            txtShortComments.text = "${commentCounts}条评论"
         }
+
+        recyclerView.init(null, mAdapter, listener = this)
 
         inputView.setOnClickListener {
             val content = txtCommentIn.text.toString()
@@ -180,29 +150,12 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
                 .asCustom(textBottomPopup)
                 .show()
         }
-        /*
-        mViewModel!!.pageComments.observe(viewLifecycleOwner) {
-            if (it.isSuccess) {
-                binding.rvShortComment.visibility = View.VISIBLE
-                when {
-                    it.isRefresh -> {
-                        mAdapter.refreshAdapter(it.listData)
-                        binding.rvShortComment.isRefreshing(false)
-                    }
-                    else -> {
-                        mAdapter.loadMore(it.listData)
-                    }
-                }
-                binding.rvShortComment.loadMoreFinished(it.isEmpty, it.hasMore)
-            }
-        }
-        */
     }
 
-    suspend fun getComments() {
-        coroutineScope {
-            PetManagerCoroutine.getPageComments(true, videoCode, startIndex, pageCount)
-        }
+    //显示之后，相当于onresume
+    override fun onShow() {
+        super.onShow()
+        commentManage!!.getPageComment(videoCode, startIndex, pageCount, this)
     }
 
     private fun showSheetDialog() {
@@ -311,5 +264,28 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
             })
             .asCustom(textBottomPopup)
             .show()
+    }
+
+    override fun getPageComments(data: UIDataWrapper<CommentAndUser>) {
+
+        if (startIndex == 0) {//刷新
+            if (!data.isEmpty) {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+
+                mAdapter.refreshAdapter(data.listData)
+            }
+        } else {//加载更多
+            mAdapter.loadMore(data.listData)
+        }
+        if (data.hasMore) {
+            startIndex += 20
+        }
+        recyclerView.loadMoreFinished(data.isEmpty, data.hasMore)
+
+    }
+
+    override fun onLoadMore() {
+        commentManage!!.getPageComment(videoCode, startIndex, pageCount, this)
     }
 }

@@ -35,17 +35,33 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
-            android:id="@+id/rv_short_comment"
+    <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never" />
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+        <ProgressBar
+                android:id="@+id/pbar_right_comment"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:indeterminate="true"
+                android:layout_gravity="center"
+                style="?android:attr/progressBarStyleSmall"
+                android:indeterminateTint="@color/color_progress_loadmore" />
+
+        <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
+                android:id="@+id/rv_short_comment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:overScrollMode="never" />
+    </FrameLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_short_comment_bottom"
             android:layout_width="match_parent"
-            android:layout_marginTop="4dp"
-            android:layout_height="52dp">
+            android:layout_height="56dp">
 
         <View
                 android:layout_width="0dp"
@@ -59,7 +75,7 @@
                 android:id="@+id/btn_short_comment_send"
                 android:layout_width="52dp"
                 android:layout_height="32dp"
-                android:text="发送"
+                android:text="@string/str_send"
                 android:textSize="14sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -75,8 +91,8 @@
                 android:id="@+id/clayout_short_comment_input"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="19dp"
-                android:layout_marginStart="19dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
                 android:background="@drawable/shape_short_comment_edit"
                 app:layout_constraintTop_toTopOf="@id/clayout_short_comment_bottom"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_short_comment_bottom"
@@ -105,30 +121,35 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_short_comment_in"
-                    android:layout_width="match_parent"
+                    android:layout_width="218dp"
                     android:layout_height="match_parent"
-                    app:layout_constraintTop_toTopOf="@id/clayout_short_comment_input"
-                    app:layout_constraintBottom_toBottomOf="@id/clayout_short_comment_input"
-                    android:text="请发送一条友善的评论"
-                    android:textSize="14sp"
-                    android:paddingStart="10dp"
-                    android:layout_marginEnd="100dp"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_short_comment_input"
+                    android:hint="@string/str_hint_edit_short"
+                    android:textSize="15sp"
                     android:gravity="center_vertical"
-                    android:textColor="#6E7076"
+                    android:textColorHint="#6d6f77"
+                    android:textColor="#161927"
+                    android:layout_marginStart="15dp"
                     android:singleLine="true" />
 
             <androidx.appcompat.widget.AppCompatImageButton
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
+                    android:id="@+id/img_right_comment_eit"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/img_eit_right_comment"
+                    app:layout_constraintLeft_toRightOf="@id/txt_short_comment_in"
+                    android:layout_marginStart="10dp"
+                    android:background="@null" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
                     android:src="@mipmap/img_short_comment_face"
-                    app:layout_constraintTop_toTopOf="@id/clayout_short_comment_input"
-                    app:layout_constraintBottom_toBottomOf="@id/clayout_short_comment_input"
-                    app:layout_constraintRight_toRightOf="@id/clayout_short_comment_input"
+                    app:layout_constraintLeft_toRightOf="@id/img_right_comment_eit"
                     android:layout_marginEnd="10dp"
                     android:clickable="false"
                     android:background="@null" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -115,7 +115,7 @@
                     android:layout_height="42dp"
                     app:layout_constraintTop_toTopOf="@id/clayout_vertical_input"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_input"
-                    android:hint="善语结善缘，恶言伤人心"
+                    android:hint="@string/str_hint_edit_short"
                     android:textSize="15sp"
                     android:background="@null"
                     android:textColorHint="#808080"

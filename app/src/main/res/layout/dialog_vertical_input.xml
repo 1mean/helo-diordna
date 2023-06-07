@@ -54,7 +54,7 @@
                     app:layout_constraintLeft_toLeftOf="@id/clayout_comment_input"
                     android:maxLines="4"
                     android:textColorHint="#9C9C9C"
-                    android:hint="善语结善缘，恶言伤人心"
+                    android:hint="@string/str_hint_edit_short"
                     android:background="@null"
                     android:textCursorDrawable="@drawable/shape_edit_comment"
                     android:textSize="15sp"
