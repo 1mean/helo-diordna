@@ -28,6 +28,7 @@
                     android:layout_height="match_parent"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_vertical_top"
                     android:background="@null"
+                    android:alpha="0.9"
                     android:src="@mipmap/img_vertical_back" />
 
             <androidx.appcompat.widget.AppCompatImageButton

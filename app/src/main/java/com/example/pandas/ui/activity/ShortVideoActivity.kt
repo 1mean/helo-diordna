@@ -10,6 +10,7 @@ import android.text.Editable
 import android.util.Log
 import android.view.*
 import android.view.animation.LinearInterpolator
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
@@ -468,6 +469,7 @@ public class ShortVideoActivity :
             currentPosition = position
             //开启右下角的旋转动画
 
+            vh = null
             val hasEdit = binding.editVertical.text?.isNotEmpty()
             if (hasEdit == true) {
                 binding.editVertical.post {
@@ -545,27 +547,35 @@ public class ShortVideoActivity :
         startUserInfoActivity(this, user)
     }
 
+    private var vh: VideoPagerAdapter.MyViewHolder? = null
     override fun showComments(videoCode: Int, commentCounts: Int) {
 
-        binding.clayoutVerticalTop.postDelayed({
-            binding.clayoutVerticalTop.visibility = View.GONE
-        }, 200)
-
         popupView = ShortRightPopuWindow(this, videoCode, commentCounts)
+        XPopup.setShadowBgColor(ContextCompat.getColor(this, R.color.color_white_lucency))
         XPopup.Builder(this).setPopupCallback(object : XPopupCallback {
             override fun onCreated(popupView: BasePopupView?) {
             }
 
             override fun beforeShow(popupView: BasePopupView?) {
+                binding.clayoutVerticalTop.visibility = View.GONE
+                if (vh == null) {
+                    mAdapter.recyclerView?.let {
+                        vh =
+                            it.findViewHolderForAdapterPosition(currentPosition) as VideoPagerAdapter.MyViewHolder
+                    }
+                }
+                vh?.hidePlayerView()
             }
 
             override fun onShow(popupView: BasePopupView?) {
             }
 
             override fun onDismiss(popupView: BasePopupView?) {
+                binding.clayoutVerticalTop.visibility = View.VISIBLE
             }
 
             override fun beforeDismiss(popupView: BasePopupView?) {
+
             }
 
             override fun onBackPressed(popupView: BasePopupView?): Boolean {
@@ -581,11 +591,13 @@ public class ShortVideoActivity :
                 percent: Float,
                 upOrLeft: Boolean
             ) {
-                mAdapter.recyclerView?.let {
-                    val vh =
-                        it.findViewHolderForAdapterPosition(currentPosition) as VideoPagerAdapter.MyViewHolder
-                    vh.playerChanged(value, percent, upOrLeft)
+                if (vh == null) {
+                    mAdapter.recyclerView?.let {
+                        vh =
+                            it.findViewHolderForAdapterPosition(currentPosition) as VideoPagerAdapter.MyViewHolder
+                    }
                 }
+                vh?.playerChanged(value, percent, upOrLeft)
             }
 
             override fun onClickOutside(popupView: BasePopupView?) {
@@ -593,7 +605,7 @@ public class ShortVideoActivity :
 
         })
             .moveUpToKeyboard(false) //如果不加这个，评论弹窗会移动到软键盘上面
-            .animationDuration(1000)
+            .animationDuration(500)
             .asCustom(popupView)
             .show()
 
