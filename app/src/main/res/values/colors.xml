@@ -386,9 +386,9 @@
 
     <!--ShortVideoActivity-->
     <color name="color_bg1">#F8F8F8</color>
-    <color name="color_txt_short_item_name">#B0B0B1</color>
-    <color name="color_txt_content_item_short_comment">#151A21</color>
-    <color name="color_txt_reply_short_comment">#74737C</color>
+    <color name="color_txt_short_item_name">#B0B0B3</color>
+    <color name="color_txt_content_item_short_comment">#161923</color>
+    <color name="color_txt_reply_short_comment">#727479</color>
     <color name="color_bg_short_right_dialog">#ffffff</color>
     <color name="color_bg_right_dialig_divider">#cfd2d1</color>
     <color name="color_bg_edit_right_dialog">#f3f3f3</color>
@@ -396,6 +396,9 @@
     <color name="color_bg_item_right_dialog">#ffffff</color>
     <color name="color_bg_short_loading">#ffffff</color>
     <color name="color_bg_right_comment_soft">#ffffff</color>
+    <color name="color_txt_right_comment_item_liked">#ff2852</color>
+    <color name="color_txt_right_comment_item_like">#72747b</color>
+    <color name="color_bg_bottom_dialog">#7F000000</color>
 
 
 </resources>

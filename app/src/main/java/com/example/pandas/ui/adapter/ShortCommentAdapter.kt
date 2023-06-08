@@ -2,15 +2,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.AdapterShortCommentBinding
 import com.example.pandas.sql.entity.CommentAndUser
+import com.example.pandas.sql.entity.User
+import com.example.pandas.sql.entity.VideoComment
+import com.example.pandas.ui.ext.addScaleAnimation
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -112,6 +117,7 @@ public class ShortCommentAdapter(
         val name = binding.txtNameItemShortComment
         val content = binding.txtContentItemShortComment
         val time = binding.txtTimeItemShortComment
+        val address = binding.txtAddressItemShortComment
         val reply = binding.txtReplyItemShortComment
         val likeLayout = binding.clayoutLikeItemShort
         val itemContentView = binding.clayoutContentItemShortComment
@@ -142,6 +148,8 @@ public class ShortCommentAdapter(
             } else {
                 (replyRecyclerView.adapter as ShortReplyCommentAdapter).loadMore(replies)
             }
+
+
             replyRecyclerView.post {
                 replyLoadingView.visibility = View.GONE
                 if (hasMore) {
@@ -208,12 +216,71 @@ public class ShortCommentAdapter(
 
             loadImage(mContext, user.headUrl!!, header)
 
+            val addressString = AppInfos.provinces.random()
+            address.text = StringBuilder(" · ").append(addressString).toString()
+
             name.text = user.userName
             val spannableStringBuilder = QqEmoticons.parseAndShowEmotion(mContext, comment.content)
             content.text = spannableStringBuilder
             time.text = TimeUtils.descriptiveData(comment.commitTime)
-            likes.text = comment.likeNum.toString()
 
+            if (comment.likeNum == 0) {
+                likes.visibility = View.GONE
+            } else {
+                likes.visibility = View.VISIBLE
+                likes.text = comment.likeNum.toString()
+            }
+
+            if (!comment.like) {
+                likeView.setImageResource(R.mipmap.img_item_comment_like)
+                likes.setTextColor(
+                    ContextCompat.getColor(
+                        mContext,
+                        R.color.color_txt_right_comment_item_like
+                    )
+                )
+            } else {
+                likeView.setImageResource(R.mipmap.img_item_comment_liked)
+                likes.setTextColor(
+                    ContextCompat.getColor(
+                        mContext,
+                        R.color.color_txt_right_comment_item_liked
+                    )
+                )
+            }
+
+            likeLayout.setOnClickListener {
+                likeView.post {
+                    addScaleAnimation(likeView, 1.3f)
+                }
+                if (comment.like) {
+                    likeView.setImageResource(R.mipmap.img_item_comment_like)
+                    likes.setTextColor(
+                        ContextCompat.getColor(
+                            mContext,
+                            R.color.color_txt_right_comment_item_like
+                        )
+                    )
+                    comment.likeNum -= 1
+                    likes.text = comment.likeNum.toString()
+                    if (comment.likeNum == 0) {
+                        likes.visibility = View.GONE
+                    }
+                } else {
+                    likeView.setImageResource(R.mipmap.img_item_comment_liked)
+                    likes.setTextColor(
+                        ContextCompat.getColor(
+                            mContext,
+                            R.color.color_txt_right_comment_item_liked
+                        )
+                    )
+                    comment.likeNum += 1
+                    likes.visibility = View.VISIBLE
+                    likes.text = comment.likeNum.toString()
+                }
+                comment.like = !comment.like
+                listener.updateComment(comment)
+            }
 
             //无回复 或 自己对无回复的一级评论进行评论，标记该item为不用展示加载更多
             if (comment.replyCounts == 0 || comment.booleanFlag2) {
@@ -343,24 +410,26 @@ public class ShortCommentAdapter(
 
             reply.setOnClickListener {
                 listener.reply(
-                    user.userName!!,
-                    user.userCode,
-                    position,
-                    comment.commentId,
-                    comment.videoCode,
-                    2
+                    convertCommentAndUser(
+                        comment.videoCode,
+                        comment.commentId,
+                        user.userCode,
+                        user.userName!!,
+                        2
+                    )
                 )
             }
 
             //避免使用itemview的点击，导致点击空余地方也会触发item的渐变和点击效果
             itemContentView.setOnClickListener {
                 listener.reply(
-                    user.userName!!,
-                    user.userCode,
-                    position,
-                    comment.commentId,
-                    comment.videoCode,
-                    2
+                    convertCommentAndUser(
+                        comment.videoCode,
+                        comment.commentId,
+                        user.userCode,
+                        user.userName!!,
+                        2
+                    )
                 )
             }
         }
@@ -375,13 +444,34 @@ public class ShortCommentAdapter(
             commentId: Int
         )
 
-        fun reply(
-            fromName: String,
-            fromUserCode: Int,
-            position: Int,
-            commentId: Int,
-            videoCode: Int,
-            type: Int
+        fun reply(commentUser: CommentAndUser)
+
+        fun updateComment(comment: VideoComment)
+    }
+
+    fun convertCommentAndUser(
+        videoCode: Int,
+        topCommentId: Int,
+        toUserCode: Int,
+        toUserName: String,
+        type: Int
+    ): CommentAndUser {
+
+        val comment = VideoComment(
+            videoCode = videoCode,
+            topCommentId = topCommentId,
+            toUserCode = toUserCode,
+            toUserName = toUserName,
+            type = type,
+            commentId = System.currentTimeMillis().toInt(),
+            fromUserCode = AppInfos.AUTHOR_ID,
+            fromUserName = AppInfos.AUTHOR_NAME
         )
+        val user = User(
+            userCode = AppInfos.AUTHOR_ID,
+            userName = AppInfos.AUTHOR_NAME,
+            headUrl = AppInfos.HEAD_URL
+        )
+        return CommentAndUser(comment, user)
     }
 }

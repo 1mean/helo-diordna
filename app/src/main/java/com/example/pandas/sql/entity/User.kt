@@ -3,6 +3,7 @@ package com.example.pandas.sql.entity
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
@@ -42,6 +43,9 @@ data class User(
     @ColumnInfo
     var reservedInt: Int = 0,//预留int字段
     @ColumnInfo
-    var reservedString: String? = null//预留string字段
+    var reservedString: String? = null,//预留string字段
+
+    @Ignore
+    var ipAddress: String? = null//用户的ip地址
 
 ) : Parcelable

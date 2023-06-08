@@ -391,6 +391,9 @@ public class ShortVideoActivity :
                             }
                         } else {
                             binding.editVertical.text = null
+                            binding.editVertical.hint =
+                                resources.getString(R.string.str_hint_edit_short)
+                            binding.btnVerticalInputSend.visibility = View.GONE
                         }
                     }
 
@@ -399,8 +402,7 @@ public class ShortVideoActivity :
         val builder = XPopup.Builder(this)
         builder.enableDrag(false)
             .animationDuration(100)//动画时长，不设置时长，就是默认的301ms，效果会很差
-            // .popupAnimation(PopupAnimation.TranslateAlphaFromBottom)
-            .asCustom(shortBottomDialog)
+        // .popupAnimation(PopupAnimation.TranslateAlphaFromBottom)
         if (showEmotion) {
             builder.autoOpenSoftInput(false)
                 .autoFocusEditText(false)

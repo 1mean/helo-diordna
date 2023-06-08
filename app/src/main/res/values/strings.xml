@@ -165,5 +165,6 @@
     <string name="str_hot_comment">热词</string>
     <string name="str_mine_total_integral">我的总积分</string>
     <string name="str_hint_edit_short">善语结善缘，恶言伤人心</string>
+    <string name="str_reply">回复</string>
 
 </resources>

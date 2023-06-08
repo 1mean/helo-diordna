@@ -5,12 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.AdapterItemCommentReplyBinding
 import com.example.pandas.sql.entity.CommentAndUser
+import com.example.pandas.ui.ext.addScaleAnimation
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -98,9 +102,10 @@ public class ShortReplyCommentAdapter(private val commentUsers: MutableList<Comm
         val toName = binding.txtReplyNameTo
         val content = binding.txtReplyContent
         val time = binding.txtReplyTime
-        val likeView = binding.clayoutReplyLike
-        val likeImage = binding.imgReplyLike
-        val likeText = binding.txtReplyLike
+        val address = binding.txtAddressReplyComment
+        val likeLayout = binding.clayoutReplyLike
+        val likeView = binding.imgReplyLike
+        val likes = binding.txtReplyLike
         val toImg = binding.imgReplyArrow
 
         fun handle(position: Int) {
@@ -110,6 +115,67 @@ public class ShortReplyCommentAdapter(private val commentUsers: MutableList<Comm
 
             user.headUrl?.let {
                 loadImage(context, it, header)
+            }
+
+            val addressString = AppInfos.provinces.random()
+            address.text = StringBuilder(" · ").append(addressString).toString()
+
+            if (comment.likeNum == 0) {
+                likes.visibility = View.GONE
+            } else {
+                likes.visibility = View.VISIBLE
+                likes.text = comment.likeNum.toString()
+            }
+
+            if (!comment.like) {
+                likeView.setImageResource(R.mipmap.img_item_comment_like)
+                likes.setTextColor(
+                    ContextCompat.getColor(
+                        context,
+                        R.color.color_txt_right_comment_item_like
+                    )
+                )
+            } else {
+                likeView.setImageResource(R.mipmap.img_item_comment_liked)
+                likes.setTextColor(
+                    ContextCompat.getColor(
+                        context,
+                        R.color.color_txt_right_comment_item_liked
+                    )
+                )
+            }
+
+            likeLayout.setOnClickListener {
+                likeView.post {
+                    addScaleAnimation(likeView, 1.3f)
+                }
+                if (comment.like) {
+                    likeView.setImageResource(R.mipmap.img_item_comment_like)
+                    likes.setTextColor(
+                        ContextCompat.getColor(
+                            context,
+                            R.color.color_txt_right_comment_item_like
+                        )
+                    )
+                    comment.likeNum -= 1
+                    likes.text = comment.likeNum.toString()
+                    if (comment.likeNum == 0) {
+                        likes.visibility = View.GONE
+                    }
+                } else {
+                    likeView.setImageResource(R.mipmap.img_item_comment_liked)
+                    likes.setTextColor(
+                        ContextCompat.getColor(
+                            context,
+                            R.color.color_txt_right_comment_item_liked
+                        )
+                    )
+                    comment.likeNum += 1
+                    likes.visibility = View.VISIBLE
+                    likes.text = comment.likeNum.toString()
+                }
+                comment.like = !comment.like
+                //listener.updateComment(comment)
             }
 
             val contentBuilder = QqEmoticons.parseAndShowEmotion(context, comment.content)
@@ -129,6 +195,4 @@ public class ShortReplyCommentAdapter(private val commentUsers: MutableList<Comm
             }
         }
     }
-
-
 }

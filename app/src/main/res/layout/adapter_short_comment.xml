@@ -18,10 +18,10 @@
                 android:layout_height="36dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:civ_border_width="1dp"
+                app:civ_border_width="0.3dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="16dp"
-                app:civ_border_color="#12000000" />
+                app:civ_border_color="#c7c9c1" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_name_item_short_comment"
@@ -55,46 +55,69 @@
                 android:textColor="@color/color_txt_short_item_name" />
 
         <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_address_item_short_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/txt_time_item_short_comment"
+                app:layout_constraintTop_toTopOf="@id/txt_time_item_short_comment"
+                android:textSize="13sp"
+                android:textColor="@color/color_txt_short_item_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_reply_item_short_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/txt_time_item_short_comment"
-                app:layout_constraintLeft_toRightOf="@id/txt_time_item_short_comment"
-                android:layout_marginStart="50dp"
+                app:layout_constraintTop_toTopOf="@id/txt_address_item_short_comment"
+                app:layout_constraintLeft_toRightOf="@id/txt_address_item_short_comment"
+                android:layout_marginStart="12dp"
                 android:textSize="13sp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:textColor="@color/color_txt_reply_short_comment"
-                android:text="回复" />
+                android:text="@string/str_reply" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_like_item_short"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginTop="-2dp"
                 app:layout_constraintTop_toBottomOf="@id/txt_content_item_short_comment">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_likes_item_short"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clayout_like_comment"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     app:layout_constraintTop_toTopOf="@id/clayout_like_item_short"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_like_item_short"
-                    android:textSize="12sp"
-                    android:textColor="#707579"
-                    android:includeFontPadding="false"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_like_item_short"
                     app:layout_constraintRight_toRightOf="@id/clayout_like_item_short"
-                    android:layout_marginEnd="10dp" />
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_like_item_short"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@id/clayout_like_item_short"
-                    app:layout_constraintBottom_toBottomOf="@id/clayout_like_item_short"
-                    app:layout_constraintRight_toLeftOf="@id/txt_likes_item_short"
-                    android:layout_marginEnd="3dp"
-                    android:src="@mipmap/img_short_comment_like" />
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_likes_item_short"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@id/clayout_like_comment"
+                        app:layout_constraintBottom_toBottomOf="@id/clayout_like_comment"
+                        android:textSize="13sp"
+                        android:textColor="#72747b"
+                        android:includeFontPadding="false"
+                        app:layout_constraintRight_toRightOf="@id/clayout_like_comment" />
 
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_like_item_short"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@id/clayout_like_comment"
+                        app:layout_constraintBottom_toBottomOf="@id/clayout_like_comment"
+                        app:layout_constraintRight_toLeftOf="@id/txt_likes_item_short"
+                        android:layout_marginEnd="3dp"
+                        android:paddingStart="5dp"
+                        android:src="@mipmap/img_item_comment_like" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -106,6 +129,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginStart="54dp"
             android:background="@color/color_bg_short_loading"
+            android:nestedScrollingEnabled="false"
             android:visibility="gone" />
 
     <FrameLayout
@@ -126,7 +150,7 @@
                 android:orientation="horizontal">
 
             <View
-                    android:layout_width="20dp"
+                    android:layout_width="19dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center_vertical"
                     android:background="#E4E4E4" />
@@ -134,13 +158,12 @@
             <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_comments_item_short"
                     android:layout_width="wrap_content"
-                    android:layout_height="27dp"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="9dp"
                     tools:ignore="RtlSymmetry"
                     android:textSize="13sp"
                     android:gravity="center_vertical"
-                    android:layout_gravity="center_vertical"
-                    android:textColor="#72747A" />
+                    android:textColor="#72747B" />
 
             <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_comments_item_short"
@@ -166,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:indeterminate="true"
                     style="?android:attr/progressBarStyleSmall"
-                    android:indeterminateTint="@android:color/black"
+                    android:indeterminateTint="@color/color_progress_loadmore"
                     app:layout_constraintTop_toTopOf="@id/clayout_reply_loading"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_reply_loading"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_reply_loading"

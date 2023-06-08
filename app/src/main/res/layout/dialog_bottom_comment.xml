@@ -142,6 +142,7 @@
                     android:background="@null" />
 
             <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_right_comment_emo"
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:src="@mipmap/img_short_comment_face"

@@ -14,5 +14,4 @@ import com.example.pandas.sql.entity.VideoComment
 public interface ICommentCallback {
 
     fun getPageComments(data: UIDataWrapper<CommentAndUser>)
-
 }

@@ -1,10 +1,13 @@
 package com.example.pandas.ui.view.dialog
 
+import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageButton
@@ -23,7 +26,6 @@ import com.example.pandas.databinding.DialogBottomCommentBinding
 import com.example.pandas.ui.adapter.decoration.ShortEmoji2Decoration
 import com.example.pandas.ui.adapter.decoration.ShortEmojiDecoration
 import com.lxj.xpopup.core.BottomPopupView
-import com.lxj.xpopup.util.KeyboardUtils
 
 /**
  * <设置圆角和固定高度>
@@ -47,22 +49,16 @@ import com.lxj.xpopup.util.KeyboardUtils
  * @date: 8/4/22 12:59 下午
  * @version: v1.0
  */
-public class ShortReplyPopuWindow(private val mContext: Context) : BottomPopupView(mContext) {
+@SuppressLint("ViewConstructor")
+public class ShortReplyPopuWindow(
+    context: Context,
+    private val fromName: String,
+    private val listener: CommentInputListener
+) : BottomPopupView(context) {
 
 
-    private var inputStr: String? = null
-    private var listener: CommentInputListener? = null
     private var _binding: DialogBottomCommentBinding? = null
     val binding: DialogBottomCommentBinding get() = _binding!!
-
-    constructor(
-        context: Context,
-        inputStr: String,
-        listener: CommentInputListener
-    ) : this(context) {
-        this.inputStr = inputStr
-        this.listener = listener
-    }
 
     override fun getImplLayoutId(): Int = R.layout.dialog_vertical_input
 
@@ -74,6 +70,7 @@ public class ShortReplyPopuWindow(private val mContext: Context) : BottomPopupVi
     private lateinit var btnSend: AppCompatButton
 
     private var input_flag = false
+    private var isFaceOpen = false
 
     override fun onCreate() {
         super.onCreate()
@@ -88,12 +85,30 @@ public class ShortReplyPopuWindow(private val mContext: Context) : BottomPopupVi
         initEmoji()
 
         btnFace.setOnClickListener {
+            if (emojiView != null && emojiView!!.isVisible) {
+                return@setOnClickListener
+            }
+            isFaceOpen = true
+            //listener.openEmoji(editText)
+            //1。关闭软键盘
+            val km = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            km.hideSoftInputFromWindow(windowToken, 0)
 
-            KeyboardUtils.hideSoftInput(emojiView)
-            emojiView.postDelayed({
-                //SoftInputUtils.hideSoftInput(emojiView)
-                emojiView.visibility = View.VISIBLE
-            }, 200)
+            //将dialog移动到最底部，同时显示表情界面，两个动画效果先后执行
+            postDelayed({
+                val transY = ObjectAnimator.ofFloat(bottomPopupContainer, "translationY", 891f, 0f)
+                val transAlpha = ObjectAnimator.ofFloat(bottomPopupContainer, "alpha", 1f, 0f, 1f)
+                val animationSet = AnimatorSet()
+                animationSet.duration = 300
+                animationSet.play(transY).with(transAlpha)
+                animationSet.start()
+            }, 100)
+
+            emojiView?.let {
+                it.postDelayed({
+                    emojiView?.visibility = View.VISIBLE
+                }, 300)
+            }
         }
 
         editInput.setOnClickListener {
@@ -102,8 +117,10 @@ public class ShortReplyPopuWindow(private val mContext: Context) : BottomPopupVi
             }
         }
 
-        if (inputStr != null) {
-            editInput.hint = "回复 @$inputStr :"
+        if (fromName.isEmpty()) {
+            editInput.hint = resources.getString(R.string.str_hint_edit_short)
+        } else {
+            editInput.hint = "回复 @$fromName :"
         }
 
         editInput.addTextChangedListener { input ->
@@ -150,6 +167,13 @@ public class ShortReplyPopuWindow(private val mContext: Context) : BottomPopupVi
         btnSend.setOnClickListener {
             listener?.sendComment(editInput.text.toString())
             dismiss()
+        }
+    }
+
+    fun updateHint(toUserName: String) {
+        if (toUserName.isNotEmpty()) {
+            editInput.text = null
+            editInput.hint = "回复 @$toUserName :"
         }
     }
 
@@ -201,6 +225,20 @@ public class ShortReplyPopuWindow(private val mContext: Context) : BottomPopupVi
         }
     }
 
+    fun showEmotion() {
+        editInput.requestFocus()
+        editInput.isFocusable = true
+        isFaceOpen = true
+        emojiView.visibility = View.VISIBLE
+    }
+
+    override fun dismiss() {
+        super.dismiss()
+        isFaceOpen = false
+        emojiView.visibility = View.GONE
+        listener.dissmiss(editInput.text.toString())
+    }
+
     override fun onShow() {
         super.onShow()
     }
@@ -210,6 +248,9 @@ public class ShortReplyPopuWindow(private val mContext: Context) : BottomPopupVi
     }
 
     interface CommentInputListener {
+
         fun sendComment(message: String)
+
+        fun dissmiss(comment: String)
     }
 }
