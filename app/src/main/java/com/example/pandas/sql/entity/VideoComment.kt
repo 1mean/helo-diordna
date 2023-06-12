@@ -15,9 +15,9 @@ import androidx.room.PrimaryKey
 data class VideoComment(
 
     @PrimaryKey(autoGenerate = true)
-    var id: Int = 0,
+    var id: Int = 0,//评论id，同一个video的评论自增长。
     @ColumnInfo
-    var commentId: Int = 0,//评论id，同一个video的评论自增长。
+    var commentId: Int = 0,//不用此字段
     @ColumnInfo
     var videoCode: Int = 0,
     @ColumnInfo
@@ -70,5 +70,16 @@ data class VideoComment(
 
     @Ignore
     var newReplyCounts: Int = 0,//中间新增加的评论数
+
+    /**
+     *  state
+     *    - 0:默认常规评论.没有回复
+     *    - 1：默认有作者回复的单一评论
+     *    - 2：默认有评论的常规评论，未点开
+     *    - 3：有评论，但未展开，只是我回复的几条评论
+     *    - 4：有评论，也展开了
+     */
+    @Ignore
+    var state: Int = 0
 
 )

@@ -11,7 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.GridLayoutManager
@@ -64,11 +64,12 @@ public class ShortReplyPopuWindow(
 
     private lateinit var faceRecyclerView: RecyclerView
     private lateinit var emojiView: RecyclerView
-    private lateinit var inputLayout: ConstraintLayout
+    private lateinit var inputLayout: LinearLayoutCompat
     private lateinit var editInput: AppCompatEditText
     private lateinit var btnFace: AppCompatImageButton
     private lateinit var btnSend: AppCompatButton
 
+    private var isSending = false
     private var input_flag = false
     private var isFaceOpen = false
 
@@ -77,7 +78,7 @@ public class ShortReplyPopuWindow(
 
         faceRecyclerView = findViewById(R.id.rv_short_input_face)
         emojiView = findViewById(R.id.clayout_short_input_emoji)
-        inputLayout = findViewById(R.id.clayout_comment_input)
+        inputLayout = findViewById(R.id.clayout_short_top)
         editInput = findViewById(R.id.edit_vertical_input)
         btnFace = findViewById(R.id.btn_short_input_face)
         btnSend = findViewById(R.id.btn_short_send)
@@ -85,7 +86,7 @@ public class ShortReplyPopuWindow(
         initEmoji()
 
         btnFace.setOnClickListener {
-            if (emojiView != null && emojiView!!.isVisible) {
+            if (emojiView != null && emojiView.isVisible) {
                 return@setOnClickListener
             }
             isFaceOpen = true
@@ -104,9 +105,9 @@ public class ShortReplyPopuWindow(
                 animationSet.start()
             }, 100)
 
-            emojiView?.let {
+            emojiView.let {
                 it.postDelayed({
-                    emojiView?.visibility = View.VISIBLE
+                    emojiView.visibility = View.VISIBLE
                 }, 300)
             }
         }
@@ -138,8 +139,8 @@ public class ShortReplyPopuWindow(
                 if (!input_flag) {//0.77
 
                     val params = inputLayout.layoutParams
-                    params.width = 751
-                    params.height = ViewGroup.LayoutParams.MATCH_PARENT
+                    params.width = 819
+                    params.height = ViewGroup.LayoutParams.WRAP_CONTENT
                     inputLayout.layoutParams = params
 
                     //bug:第一次设置visible时，动画是不会执行的
@@ -165,8 +166,12 @@ public class ShortReplyPopuWindow(
             }
         }
         btnSend.setOnClickListener {
-            listener?.sendComment(editInput.text.toString())
+            isSending = true
+            listener.sendComment(editInput.text.toString())
             dismiss()
+            editInput.postDelayed({
+                clearInput()
+            }, 200)
         }
     }
 
@@ -232,11 +237,18 @@ public class ShortReplyPopuWindow(
         emojiView.visibility = View.VISIBLE
     }
 
+    fun clearInput() {
+        editInput.text = null
+        editInput.hint = resources.getString(R.string.str_hint_edit_short)
+        btnSend.visibility = View.GONE
+    }
+
     override fun dismiss() {
         super.dismiss()
         isFaceOpen = false
         emojiView.visibility = View.GONE
-        listener.dissmiss(editInput.text.toString())
+        listener.dissmiss(editInput.text.toString(), isSending)
+        isSending = false
     }
 
     override fun onShow() {
@@ -251,6 +263,6 @@ public class ShortReplyPopuWindow(
 
         fun sendComment(message: String)
 
-        fun dissmiss(comment: String)
+        fun dissmiss(comment: String, isSending: Boolean)
     }
 }

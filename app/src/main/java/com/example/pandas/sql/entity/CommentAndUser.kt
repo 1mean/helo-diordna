@@ -1,6 +1,7 @@
 package com.example.pandas.sql.entity
 
 import androidx.room.Embedded
+import androidx.room.Ignore
 import androidx.room.Relation
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment

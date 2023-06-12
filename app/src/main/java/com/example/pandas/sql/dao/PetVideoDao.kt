@@ -265,6 +265,9 @@ interface PetVideoDao {
     @Query("select count(*) from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode)")
     suspend fun queryCommentReplyCounts(videoCode: Int, topCommentCode: Int): Int
 
+    @Query("select * from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode)")
+    suspend fun queryCommentReply(videoCode: Int, topCommentCode: Int): MutableList<VideoComment>
+
     @Query("select * from music where type=0 and fileName=(:fileName)")
     suspend fun queryMusicByFileName(fileName: String): MusicVo
 
@@ -373,11 +376,11 @@ interface PetVideoDao {
     ): MutableList<CommentAndUser>
 
     @Transaction
-    @Query("select * from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode) order by commitTime asc limit (:startIndex),(:page)")
+    @Query("select * from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode) and commitTime>(:commitTime) order by commitTime asc limit 0,(:page)")
     suspend fun queryReplyComments(
+        commitTime: Long,
         videoCode: Int,
         topCommentCode: Int,
-        startIndex: Int,
         page: Int
     ): MutableList<CommentAndUser>
 

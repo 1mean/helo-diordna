@@ -1,10 +1,12 @@
 package com.example.pandas.ui.view.dialog
 
 import ShortCommentAdapter
+import ShortCommentAdapter1
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatButton
@@ -12,8 +14,8 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.biz.interaction.ICommentCallback
 import com.example.pandas.biz.manager.PetManagerCoroutine
@@ -21,7 +23,6 @@ import com.example.pandas.biz.manager.ShortCommentManage
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.DialogBottomCommentBinding
 import com.example.pandas.sql.entity.CommentAndUser
-import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
@@ -56,7 +57,7 @@ import kotlinx.coroutines.launch
  * @version: v1.0
  */
 public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupView(mContext),
-    ShortCommentAdapter.CommentListener, ICommentCallback, SwipRecyclerView.ILoadMoreListener,
+    ShortCommentAdapter1.CommentListener, ICommentCallback, SwipRecyclerView.ILoadMoreListener,
     ShortReplyPopuWindow.CommentInputListener {
 
     private var videoCode: Int = 0
@@ -83,7 +84,12 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
 
     private var commentUser: CommentAndUser? = null
     private val commentScope = CoroutineScope(Job() + Dispatchers.Main)
-    private val mAdapter: ShortCommentAdapter by lazy { ShortCommentAdapter(mutableListOf(), this) }
+    private val mAdapter: ShortCommentAdapter1 by lazy {
+        ShortCommentAdapter1(
+            mutableListOf(),
+            this
+        )
+    }
 
     constructor(context: Context, videoCode: Int, commentCounts: Int) : this(context) {
         this.videoCode = videoCode
@@ -125,13 +131,24 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
         showReplyDialog(showEmotion, "")
     }
 
-    private fun showReplyDialog(showEmotion: Boolean, fromName: String) {
+    /**
+     * 弹出回复弹窗
+     * 1,第一次创建，只可能显示空的输入/回复谁，通过content是否为""来判断
+     * 2,第二次创建时，textBottomPopup已存在，只需要修改输入框里面的内容,也通过content是否为""来判断
+     *      - 传入的content为空，说明仍然按原来的内容，不需要修改.仍然显示默认的hint或是默认的内容
+     *      - 传入的content不为空，显示为回复@
+     */
+    private fun showReplyDialog(showEmotion: Boolean, content: String) {
 
-        //弹出新的弹窗用来输入
-        if (textBottomPopup == null) {
-            textBottomPopup = ShortReplyPopuWindow(mContext, fromName, this)
-        } else {
-            textBottomPopup!!.updateHint(fromName)
+        if (textBottomPopup == null) {//第一次创建，只可能显示空的输入/回复谁，通过content是否为""来判断
+            textBottomPopup = ShortReplyPopuWindow(mContext, content, this)
+        } else {//第二次创建时，textBottomPopup已存在，只需要修改输入框里面的内容,也通过content是否为""来判断
+            val inputContent = txtCommentIn.text.toString()
+            if (content.isEmpty()) {//传入的content为空，说明仍然按原来的内容，不需要修改
+                //不做处理，仍然显示默认的hint或是默认的内容
+            } else {//传入的content不为空，显示为回复@
+                textBottomPopup!!.updateHint(content)
+            }
         }
         XPopup.setShadowBgColor(ContextCompat.getColor(mContext, R.color.color_bg_bottom_dialog))
         val builder = XPopup.Builder(mContext)
@@ -154,69 +171,48 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
 
 
     override fun loadMore(
-        startIndex: Int,
+        topCommentPosition: Int,
+        commitTime: Long,
         pageCount: Int,
-        position: Int,
         videoCode: Int,
         commentId: Int
     ) {
-        commentScope.launch {
-            //val commentIds = 33
-            val list = PetManagerCoroutine.getPageReplyComments(
-                videoCode,
-                commentId,
-                startIndex,
-                pageCount
-            )
-            val holder =
-                recyclerView.findViewHolderForAdapterPosition(position) as? ShortCommentAdapter.ReplyCommentViewHolder
-            holder?.loadReplyData(position, list)
-        }
+        commentManage!!.getPageReply(
+            topCommentPosition,
+            commitTime,
+            pageCount,
+            videoCode,
+            commentId,
+            this
+        )
     }
+
+    private var replyPosition: Int = 0
 
     /**
      * 这里回复的都是2级和3级弹幕
+     * 回复的如果是同一条消息，输入的内容需要保留。不是回复的同一人，输入内容才需要清空
      */
-    override fun reply(commentUser: CommentAndUser) {
+    override fun reply(commentUser: CommentAndUser, position: Int) {
 
-        showReplyDialog(false, commentUser.comment.toUserName)
-        this.commentUser = commentUser
-
-//        val textBottomPopup = ShortReplyPopuWindow(
-//            mContext,
-//            commentUser.comment.toUserName,
-//            object : ShortReplyPopuWindow.CommentInputListener {
-//                override fun sendComment(message: String) {
-//                    commentCounts += 1
-//                    commentUser.comment.run {
-//                        commitTime = System.currentTimeMillis()
-//                        content = message
-//                    }
-//                    val holder =
-//                        recyclerView.findViewHolderForAdapterPosition(position) as? ShortCommentAdapter.ReplyCommentViewHolder
-//                    holder?.loadOne(commentAndUser, position)
-//                }
-//            })
-//        XPopup.Builder(mContext)
-//            .autoOpenSoftInput(true)
-//            .autoFocusEditText(true)
-//            .setPopupCallback(object : SimpleCallback() {
-//                override fun onShow(popupView: BasePopupView) {
-//
-//                }
-//
-//                override fun onDismiss(popupView: BasePopupView) {
-//                    val comment: String = textBottomPopup.getComment()
-//                    if (comment.isNotEmpty()) {
-//
-//                    }
-//                }
-//            })
-//            .asCustom(textBottomPopup)
-//            .show()
+        replyPosition = position
+        if (this.commentUser == null) {
+            this.commentUser = commentUser
+            showReplyDialog(false, commentUser.comment.toUserName)
+        } else {
+            if (this.commentUser!!.comment.toUserCode == commentUser.comment.toUserCode
+                && this.commentUser!!.comment.content == commentUser.comment.content
+            ) {//两次回复的是同一个人的同一条消息，不做处理，仍然保持原来的输入框内容
+                showReplyDialog(false, "")
+            } else {
+                this.commentUser = commentUser
+                showReplyDialog(false, commentUser.comment.toUserName)
+            }
+        }
     }
 
     override fun updateComment(comment: VideoComment) {
+
     }
 
     override fun getPageComments(data: UIDataWrapper<CommentAndUser>) {
@@ -239,6 +235,13 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
 
     }
 
+    override fun getPageReply(position: Int, list: MutableList<CommentAndUser>) {
+        Log.e("lidandan","list size: ${list.size}")
+        val holder =
+            recyclerView.findViewHolderForAdapterPosition(position) as? ShortCommentAdapter1.ReplyCommentViewHolder
+        holder?.loadReplyData(position, list)
+    }
+
     override fun onLoadMore() {
         commentManage!!.getPageComment(videoCode, startIndex, pageCount, this)
     }
@@ -253,43 +256,50 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
      */
     override fun sendComment(message: String) {
 
-        if (message.isEmpty()) {
-            return
+        if (message.isEmpty()) return
+        Log.e("comment", "commentUser:$commentUser")
+        if (commentUser == null) {//自己发送的一级弹幕
+            val commentUser = commentManage!!.buildCommentUser(videoCode, message)
+            Log.e("comment", "commentUser1:$commentUser")
+            mAdapter.loadOne(commentUser, 0, 1)
+            recyclerView.scrollToPosition(0)
+        } else {//发送的二级弹幕
+            val commentUser = commentManage!!.buildCommentUser(commentUser!!, message)
+            mAdapter.loadOne(commentUser, replyPosition, commentUser.comment.type)
         }
-
-        val comment = VideoComment(
-            videoCode = videoCode,
-            fromUserCode = AppInfos.AUTHOR_ID,
-            type = 1,
-            commentId = System.currentTimeMillis().toInt(),
-            commitTime = System.currentTimeMillis(),
-            content = message
-        )
-        val user = User(
-            userCode = AppInfos.AUTHOR_ID,
-            userName = AppInfos.AUTHOR_NAME,
-            headUrl = AppInfos.HEAD_URL
-        )
-        val commentAndUser = CommentAndUser(comment, user)
-        mAdapter.loadOne(commentAndUser, 0, 1)
-        recyclerView.scrollToPosition(0)
+        if (!recyclerView.isVisible) {
+            recyclerView.visibility = View.VISIBLE
+        }
+        recoverInputView()
+        textBottomPopup?.clearInput()
     }
 
     /**
-     * 输入弹窗关闭后
+     * 输入弹窗关闭后，两种情况
+     *
+     * 1- 清空输入框
+     * 2- 输入框设置输入内容
      */
-    override fun dissmiss(comment: String) {
-
-        if (comment.isNotEmpty()) {
-            mHandler.post {
-                val message = QqEmoticons.parseAndShowEmotion(mContext, comment)
-                txtCommentIn.text = Editable.Factory.getInstance().newEditable(message)
-                btnSend.visibility = View.VISIBLE
+    override fun dissmiss(comment: String, isSending: Boolean) {
+        if (isSending) {//1.发送完成后，关闭输入框
+            recoverInputView()
+            this.commentUser = null
+        } else {//2.输入内容后，关闭输入框
+            if (comment.isNotEmpty()) {
+                mHandler.post {
+                    val message = QqEmoticons.parseAndShowEmotion(mContext, comment)
+                    txtCommentIn.text = Editable.Factory.getInstance().newEditable(message)
+                    btnSend.visibility = View.VISIBLE
+                }
+            } else {
+                recoverInputView()
             }
-        } else {
-            txtCommentIn.text = null
-            txtCommentIn.hint = resources.getString(R.string.str_hint_edit_short)
-            btnSend.visibility = View.GONE
         }
+    }
+
+    private fun recoverInputView() {
+        txtCommentIn.text = null
+        txtCommentIn.hint = resources.getString(R.string.str_hint_edit_short)
+        btnSend.visibility = View.GONE
     }
 }

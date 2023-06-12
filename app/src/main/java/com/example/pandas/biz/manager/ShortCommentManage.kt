@@ -1,9 +1,14 @@
 package com.example.pandas.biz.manager
 
 import android.content.Context
+import android.util.Log
+import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.biz.interaction.ICommentCallback
 import com.example.pandas.sql.entity.CommentAndUser
+import com.example.pandas.sql.entity.User
+import com.example.pandas.sql.entity.VideoComment
+import com.google.android.exoplayer2.C.ContentType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -48,6 +53,54 @@ public class ShortCommentManage(val context: Context, val commentScope: Coroutin
                 listData = list
             )
             listener.getPageComments(dataList)
+        }
+    }
+
+    fun buildCommentUser(videoCode: Int, content: String): CommentAndUser {
+
+        val comment = VideoComment(
+            videoCode = videoCode,
+            fromUserCode = AppInfos.AUTHOR_ID,
+            fromUserName = AppInfos.AUTHOR_NAME,
+            type = 1,
+            commitTime = System.currentTimeMillis(),
+            content = content,
+        )
+        val user = User(
+            userCode = AppInfos.AUTHOR_ID,
+            userName = AppInfos.AUTHOR_NAME,
+            headUrl = AppInfos.HEAD_URL,
+            ipAddress = "湖北"
+        )
+        return CommentAndUser(comment, user)
+    }
+
+    fun buildCommentUser(commentAndUser: CommentAndUser, content: String): CommentAndUser {
+
+        commentAndUser.comment.run {
+            this.content = content
+            commitTime = System.currentTimeMillis()
+        }
+        return commentAndUser
+    }
+
+    fun getPageReply(
+        topCommentPosition: Int,
+        commitTime: Long,
+        pageCount: Int,
+        videoCode: Int,
+        commentId: Int,
+        listener: ICommentCallback
+    ) {
+
+        commentScope.launch {
+            val list = PetManagerCoroutine.getPageReplyComments(
+                commitTime,
+                videoCode,
+                commentId,
+                pageCount
+            )
+            listener.getPageReply(topCommentPosition, list)
         }
     }
 }

@@ -60,6 +60,7 @@ public class ShortCommentAdapter(
      */
     fun loadOne(comment: CommentAndUser, position: Int, type: Int) {
         if (type == 1) {//一级评论
+            Log.e("comment", "comment:$comment, position:$position")
             data.add(0, comment)
             notifyItemInserted(0)
         } else {
@@ -214,10 +215,15 @@ public class ShortCommentAdapter(
             val user = data[position].user
             val replyCounts = comment.replyCounts
 
+            Log.e("comment", "comment:$comment, user:$user")
             loadImage(mContext, user.headUrl!!, header)
 
-            val addressString = AppInfos.provinces.random()
-            address.text = StringBuilder(" · ").append(addressString).toString()
+            if (user.ipAddress != null) {
+                address.text = StringBuilder(" · ").append(user.ipAddress).toString()
+            } else {
+                val addressString = AppInfos.provinces.random()
+                address.text = StringBuilder(" · ").append(addressString).toString()
+            }
 
             name.text = user.userName
             val spannableStringBuilder = QqEmoticons.parseAndShowEmotion(mContext, comment.content)
@@ -415,8 +421,9 @@ public class ShortCommentAdapter(
                         comment.commentId,
                         user.userCode,
                         user.userName!!,
-                        2
-                    )
+                        2,
+                        comment.content
+                    ), position
                 )
             }
 
@@ -428,8 +435,9 @@ public class ShortCommentAdapter(
                         comment.commentId,
                         user.userCode,
                         user.userName!!,
-                        2
-                    )
+                        2,
+                        comment.content
+                    ), position
                 )
             }
         }
@@ -444,7 +452,7 @@ public class ShortCommentAdapter(
             commentId: Int
         )
 
-        fun reply(commentUser: CommentAndUser)
+        fun reply(commentUser: CommentAndUser, position: Int)
 
         fun updateComment(comment: VideoComment)
     }
@@ -454,7 +462,8 @@ public class ShortCommentAdapter(
         topCommentId: Int,
         toUserCode: Int,
         toUserName: String,
-        type: Int
+        type: Int,
+        content: String
     ): CommentAndUser {
 
         val comment = VideoComment(
@@ -463,7 +472,7 @@ public class ShortCommentAdapter(
             toUserCode = toUserCode,
             toUserName = toUserName,
             type = type,
-            commentId = System.currentTimeMillis().toInt(),
+            content = content,
             fromUserCode = AppInfos.AUTHOR_ID,
             fromUserName = AppInfos.AUTHOR_NAME
         )

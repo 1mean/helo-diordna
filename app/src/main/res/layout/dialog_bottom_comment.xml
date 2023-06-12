@@ -121,9 +121,11 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_short_comment_in"
-                    android:layout_width="218dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_short_comment_input"
+                    app:layout_constraintRight_toRightOf="@id/clayout_short_comment_input"
+                    android:layout_marginEnd="82dp"
                     android:hint="@string/str_hint_edit_short"
                     android:textSize="15sp"
                     android:gravity="center_vertical"
@@ -133,23 +135,22 @@
                     android:singleLine="true" />
 
             <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/img_right_comment_eit"
-                    android:layout_width="40dp"
-                    android:layout_height="match_parent"
-                    android:src="@mipmap/img_eit_right_comment"
-                    app:layout_constraintLeft_toRightOf="@id/txt_short_comment_in"
-                    android:layout_marginStart="10dp"
-                    android:background="@null" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btn_right_comment_emo"
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:src="@mipmap/img_short_comment_face"
-                    app:layout_constraintLeft_toRightOf="@id/img_right_comment_eit"
-                    android:layout_marginEnd="10dp"
+                    app:layout_constraintRight_toRightOf="@id/clayout_short_comment_input"
                     android:clickable="false"
                     android:background="@null" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/img_right_comment_eit"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/img_eit_right_comment"
+                    app:layout_constraintRight_toLeftOf="@id/btn_right_comment_emo"
+                    android:background="@null" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

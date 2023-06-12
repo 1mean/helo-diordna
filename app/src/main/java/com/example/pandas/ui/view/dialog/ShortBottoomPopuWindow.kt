@@ -15,6 +15,7 @@ import android.widget.PopupWindow
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isVisible
@@ -60,7 +61,7 @@ public class ShortBottoomPopuWindow(
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_short_input_face)
         emojiView = view.findViewById<RecyclerView>(R.id.clayout_short_input_emoji)
-        val inputLayout = view.findViewById<ConstraintLayout>(R.id.clayout_comment_input)
+        val inputLayout = view.findViewById<LinearLayoutCompat>(R.id.clayout_short_top)
         _editText = view.findViewById<AppCompatEditText>(R.id.edit_vertical_input)
         val btnFace = view.findViewById<AppCompatImageButton>(R.id.btn_short_input_face)
         val btnSend = view.findViewById<AppCompatButton>(R.id.btn_short_send)

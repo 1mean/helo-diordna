@@ -894,7 +894,7 @@ class PetManager {
             if (list.isNotEmpty()) {
                 list.forEach {
                     val count =
-                        petDao.queryCommentReplyCounts(it.comment.videoCode, it.comment.commentId)
+                        petDao.queryCommentReplyCounts(it.comment.videoCode, it.comment.id)
                     if (count > 0) {
                         it.comment.replyCounts = count
                     } /*else{
@@ -917,17 +917,19 @@ class PetManager {
     }
 
     suspend fun getPageReplyComments(
+        commitTime: Long,
         videoCode: Int,
         commentId: Int,
-        startIndex: Int,
         counts: Int
     ): MutableList<CommentAndUser> {
 
         return withContext(Dispatchers.Default) {
-            //先获取一级弹幕
-//            petDao.queryReplyComments(videoCode, 33, startIndex, counts)
             delay(200)
-            petDao.queryReplyComments(videoCode, commentId, startIndex, counts)
+            Log.e(
+                "lidandan",
+                "commitTime:$commitTime, videoCode:$videoCode, commentId:$commentId, counts:$counts"
+            )
+            petDao.queryReplyComments(commitTime, videoCode, commentId, counts)
         }
     }
 

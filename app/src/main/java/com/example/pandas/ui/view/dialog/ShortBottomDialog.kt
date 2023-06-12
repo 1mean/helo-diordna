@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
@@ -57,7 +58,7 @@ public class ShortBottomDialog(
 
         val recyclerView = findViewById<RecyclerView>(R.id.rv_short_input_face)
         emojiView = findViewById<MyVerticalRecyclerView>(R.id.clayout_short_input_emoji)
-        val inputLayout = findViewById<ConstraintLayout>(R.id.clayout_comment_input)
+        val inputLayout = findViewById<LinearLayoutCompat>(R.id.clayout_short_top)
         _editText = findViewById<AppCompatEditText>(R.id.edit_vertical_input)
         val btnFace = findViewById<AppCompatImageButton>(R.id.btn_short_input_face)
         val btnSend = findViewById<AppCompatButton>(R.id.btn_short_send)
@@ -91,7 +92,7 @@ public class ShortBottomDialog(
                 if (!input_flag) {//0.77
 
                     val params = inputLayout.layoutParams
-                    params.width = 751
+                    params.width = 819
                     params.height = ViewGroup.LayoutParams.MATCH_PARENT
                     inputLayout.layoutParams = params
 
