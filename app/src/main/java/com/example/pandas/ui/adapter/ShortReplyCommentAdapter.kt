@@ -14,6 +14,8 @@ import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.AdapterItemCommentReplyBinding
 import com.example.pandas.sql.entity.CommentAndUser
+import com.example.pandas.sql.entity.User
+import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.ext.addScaleAnimation
 import com.example.pandas.utils.TimeUtils
 
@@ -23,7 +25,10 @@ import com.example.pandas.utils.TimeUtils
  * @date: 12/20/22 4:15 AM
  * @version: v1.0
  */
-public class ShortReplyCommentAdapter(private val commentUsers: MutableList<CommentAndUser>) :
+public class ShortReplyCommentAdapter(
+    private val commentUsers: MutableList<CommentAndUser>,
+    val listener: ReplyItemClickListener
+) :
     Adapter<ViewHolder>() {
 
     private val handler: Handler = Handler(Looper.getMainLooper())
@@ -117,8 +122,12 @@ public class ShortReplyCommentAdapter(private val commentUsers: MutableList<Comm
                 loadImage(context, it, header)
             }
 
-            val addressString = AppInfos.provinces.random()
-            address.text = StringBuilder(" · ").append(addressString).toString()
+            if (user.ipAddress != null) {
+                address.text = StringBuilder(" · ").append(user.ipAddress).toString()
+            } else {
+                val addressString = AppInfos.provinces.random()
+                address.text = StringBuilder(" · ").append(addressString).toString()
+            }
 
             if (comment.likeNum == 0) {
                 likes.visibility = View.GONE
@@ -193,6 +202,51 @@ public class ShortReplyCommentAdapter(private val commentUsers: MutableList<Comm
                 toName.visibility = View.VISIBLE
                 toName.text = comment.toUserName
             }
+
+            itemView.setOnClickListener {
+                listener.reply(
+                    convertCommentAndUser(
+                        comment.videoCode,
+                        comment.topCommentId,
+                        user.userCode,
+                        user.userName!!,
+                        3,
+                        comment.content
+                    )
+                )
+            }
         }
+    }
+
+    interface ReplyItemClickListener {
+        fun reply(commentUser: CommentAndUser)
+    }
+
+    fun convertCommentAndUser(
+        videoCode: Int,
+        topCommentId: Int,
+        toUserCode: Int,
+        toUserName: String,
+        type: Int,
+        content: String
+    ): CommentAndUser {
+
+        val comment = VideoComment(
+            videoCode = videoCode,
+            topCommentId = topCommentId,
+            toUserCode = toUserCode,
+            toUserName = toUserName,
+            type = type,
+            content = content,
+            fromUserCode = AppInfos.AUTHOR_ID,
+            fromUserName = AppInfos.AUTHOR_NAME
+        )
+        val user = User(
+            userCode = AppInfos.AUTHOR_ID,
+            userName = AppInfos.AUTHOR_NAME,
+            headUrl = AppInfos.HEAD_URL,
+            ipAddress = "湖北"
+        )
+        return CommentAndUser(comment, user)
     }
 }

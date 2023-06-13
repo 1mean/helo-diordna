@@ -91,7 +91,6 @@ public class VerticalVideoActivity :
             val firstLocalMediaItem = MediaItem.fromUri(url)
             mPlayer?.run {
                 //clearMediaItems()
-                Log.e("1mean", "mediaCounts: ${this.mediaItemCount}")
                 addMediaItem(firstLocalMediaItem)
                 playWhenReady = true
                 prepare()

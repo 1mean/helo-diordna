@@ -124,8 +124,6 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
 
     override fun onStart() {
         super.onStart()
-        Log.e("LiveVIdeosss", "onStart()")
-        Log.e("1mean1", "onStart()")
         playerManager?.initPlayer(mActivity)
     }
 
@@ -188,7 +186,6 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
                     position = it.getLongExtra("position", -1)
                 }
                 isBack = true
-                Log.e("liveeeee", "requestLauncher back, position=$position")
 //                binding.refreshCollect.isRefreshing = true
 //                mViewModel.getCollects()
             }
@@ -240,13 +237,10 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
         val lastPos = manager.findLastVisibleItemPosition()
 
         if (firstPos < 0 || lastPos < 0) return
-        Log.e("LiveVIdeosss", "$firstPos,$lastPos")
         for (index in firstPos..lastPos) {
 
-            Log.e("LiveVIdeosss", " -------------开始循环")
             if (mAdapter.getItemViewType(index) == 3) {
                 val petVideo = mAdapter.getItemData(index)
-                Log.e("LiveVIdeosss", "title: ${petVideo.title} ,index=$index")
                 val itemView = mRecyclerView.getChildAt(index - firstPos) ?: return
                 //15 21 27 playerView 相同   5  29  17
                 val playerView =
@@ -254,12 +248,10 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
                         0
                     ) as CardView).getChildAt(0) ?: return
                 //val playerView = itemView.findViewById<StyledPlayerView>(R.id.player_live)
-                Log.e("LiveVIdeosss", "index: $index, playerView:$playerView")
                 if (playerManager == null) return
                 val playPos = playerManager!!.getCurPosition()
 
                 val height = ScreenUtil.getLocationHeight(playerView)
-                Log.e("LiveVIdeosss", "index:$index, ---------------------height:$height")
                 //val isOverHalfViewVisiable = ScreenUtil.isOverHalfViewVisiable(playerView)
                 if (playerView is StyledPlayerView) {
                     if (height > -18.5) {
@@ -285,7 +277,6 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
                                         MediaInfo(petVideo.code, file.absolutePath, 0)
                                     it.addPlayerView(playerView).startPlay(true, playInfo, index)
                                 } else {
-                                    Log.e("LiveVIdeosss", "4444")
                                     val file = getLocalFilePath(mActivity, petVideo.fileName!!)
                                     val playInfo =
                                         MediaInfo(petVideo.code, file.absolutePath, 0)

@@ -32,10 +32,6 @@ public class CacheItemFragment : BaseFragment<LocalCacheViewModel, FragmentMoreB
     override fun createObserver() {
 
         mViewModel.localVideos.observe(viewLifecycleOwner) {
-            Log.e(
-                "111111mean",
-                "size: ${it.listData.size}, isRefresh: ${it.isRefresh}, hasMore: ${it.hasMore}"
-            )
             if (it.isSuccess) {
                 if (it.isRefresh) {
                     if (!it.hasMore) {

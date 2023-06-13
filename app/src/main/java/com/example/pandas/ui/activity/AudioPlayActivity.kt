@@ -95,7 +95,6 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
     private val conn = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName, service: IBinder) {
 
-            Log.e("1mean", "success to connect service")
             val binder = service as AudioPlayService.LocalBinder
             mService = binder.getService()
             mService!!.addListener(audiolistener)

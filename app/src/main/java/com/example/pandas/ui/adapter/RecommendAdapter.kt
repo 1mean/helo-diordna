@@ -57,7 +57,6 @@ public class RecommendAdapter(
     //会导致item里播放器的playview视图的绑定关系解除，需要重启绑定
     fun updateVideoItem(isHide: Boolean, position: Int) {
 
-        Log.e("RecommendAdapter", "updateVideoItem")
         if (position < 0) return
         val petVideo = data.itemList[position - 1]
         petVideo.booleanFlag = isHide

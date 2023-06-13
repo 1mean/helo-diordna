@@ -115,10 +115,8 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                 binding.ibUserMore.setImageResource(R.mipmap.img_user_more)
                 binding.ibUserVideo.setBackgroundResource(R.drawable.shape_bg_user_video)
                 binding.ibUserMore.setBackgroundResource(R.drawable.shape_bg_user_video)
-                Log.e("1mean", "展开状态")
                 binding.toolbarUser.contentScrim = null
             } else if (Math.abs(verticalOffset) >= 0.6 * appBarLayout.totalScrollRange) {
-                Log.e("1mean", "折叠状态")
                 if (!binding.txtUserBarName.isVisible) {
                     binding.txtUserBarName.visibility = View.VISIBLE
                     user?.let {
@@ -136,7 +134,6 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                 binding.ibUserMore.setImageResource(R.mipmap.img_user_more)
                 binding.ibUserVideo.setBackgroundResource(R.drawable.shape_bg_user_video)
                 binding.ibUserMore.setBackgroundResource(R.drawable.shape_bg_user_video)
-                Log.e("1mean", "中间状态")
                 binding.toolbarUser.contentScrim = null
             }
         })

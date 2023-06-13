@@ -103,7 +103,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         left.setOnClickListener {
             val intent = Intent()
             val position = videoManager.getCurrentPos()
-            Log.e("liveeeee","position:$position")
             intent.putExtra("position", position)
             setResult(RESULT_OK, intent)
             finish()
@@ -233,7 +232,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             override fun onScrubStop(timeBar: TimeBar, position: Long, canceled: Boolean) {
                 videoManager.seekTo(position)
                 isOnScroll = false
-                Log.e("VideoPlayingActivity_1", "onScrubStop position: $position")
             }
         })
     }
@@ -258,7 +256,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         video?.let {
 
             val file = getLocalFilePath(this, it.fileName!!)
-            Log.e("1mean", "fileName: ${file.absolutePath}")
             if (file.exists()) {
                 val mediaInfo =
                     MediaInfo(it.code, file.absolutePath, 0)
@@ -267,7 +264,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
             it.videoData?.let { data ->
                 val file = getLocalFilePath(this, it.fileName!!)
-                Log.e("1mean", "fileName: ${file.absolutePath}")
                 if (file.exists()) {
                     val mediaInfo =
                         MediaInfo(it.code, file.absolutePath, data.playPosition)
@@ -286,7 +282,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             updateTimeTask.removeMessages(0)
             videoManager.releasePlayer()
         }
-        Log.e("adasdas", "onStop()")
     }
 
     override fun createObserver() {
@@ -306,7 +301,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     }
 
     override fun isPlayingChanged(isPlaying: Boolean) {
-        Log.e("VideoPlayingActivity", "isPlaying: $isPlaying")
         if (isPlaying && !isControllerShow) {//解决视频开始播放时,进度条显示错误，task会有1秒才会显示正确值
             binding.exoTime.run {
                 visibility = View.VISIBLE
@@ -332,7 +326,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
      * isVisibility: 控制器是否会显示/全屏，显示/全屏状态下隐藏时间进度条
      */
     private fun updateTimeBar(isVisibility: Int) {
-        Log.e("1mean", "isFullScreen: $isFullScreen")
         if (!isFullScreen) {
             if (isVisibility == View.GONE) {//点击隐藏ControllerView
                 showTimeBar(binding.exoTime)
@@ -349,7 +342,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         override fun handleMessage(msg: Message) {
 
             if (videoManager.isPlaying() && !isOnScroll) {//不要使用return中断循环
-                Log.e("VideoPlayingActivity", "updateTimeTask $isControllerShow $isOnScroll")
                 if (isFullScreen && fullPos!!.isVisible) {
                     val formatBuilder = StringBuilder()
                     val formatter = Formatter(formatBuilder, Locale.getDefault())
@@ -361,7 +353,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                         )
                 } else {
                     if (isControllerShow) {
-                        Log.e("VideoPlayingActivity", "showTimeBar: $isOnScroll")
                         showTimeBar(exoProgress)
                     } else {
                         showTimeBar(binding.exoTime)
@@ -411,7 +402,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     override fun showCommentsFragment(commentId: Int) {
         val fragments = supportFragmentManager.fragments
-        Log.e("1mean", "fragments: $fragments")
         addFragment(
             "comment_list", R.id.llayout_video_info, CommentListFragment.newInstance(commentId),
             intArrayOf(

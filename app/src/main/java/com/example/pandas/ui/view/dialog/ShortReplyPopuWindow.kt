@@ -125,9 +125,7 @@ public class ShortReplyPopuWindow(
         }
 
         editInput.addTextChangedListener { input ->
-            Log.e("input", "input:$input")
             val inpputext = editInput.text.toString()
-            Log.e("input", "inpputext:$inpputext")
             if (input == null || input.isEmpty()) {
                 btnSend.visibility = View.GONE
                 val params = inputLayout.layoutParams

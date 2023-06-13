@@ -117,7 +117,6 @@ public class HotFragmentAdapter(val list: MutableList<PetVideo>) : Adapter<ViewH
         fun handle(position: Int) {
 
             val data = list[position - 1]
-            Log.e("asdasdadasdas", "position: $position, time:$time")
             data.cover?.let {
                 loadCenterRoundedCornerImage(context, 10, it, cover)
             }

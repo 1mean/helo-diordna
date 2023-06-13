@@ -144,7 +144,7 @@ public class ShortCommentAdapter(
                 replyRecyclerView.run {
                     visibility = View.VISIBLE
                     layoutManager = LinearLayoutManager(mContext)
-                    adapter = ShortReplyCommentAdapter(replies)
+                    //adapter = ShortReplyCommentAdapter(replies)
                 }
             } else {
                 (replyRecyclerView.adapter as ShortReplyCommentAdapter).loadMore(replies)
@@ -167,7 +167,6 @@ public class ShortCommentAdapter(
 
         //添加一个2级评论或3级评论，不需要刷新，刷新每次都需要重新加载adapter
         fun loadOne(commentUser: CommentAndUser, position: Int) {
-            Log.e("shortAdapter", "asdasda")
             val topComment = data[position].comment
             if (topComment.booleanFlag2) {//不用展示加载更多的item
                 if (replyCountsLayout.isVisible) {
@@ -193,7 +192,7 @@ public class ShortCommentAdapter(
                         }
                         replyRecyclerView.run {
                             layoutManager = LinearLayoutManager(mContext)
-                            adapter = ShortReplyCommentAdapter(mutableListOf(commentUser))
+                            //adapter = ShortReplyCommentAdapter(mutableListOf(commentUser))
                         }
                         if (topComment.replyCounts == 0) {//没有回复的一级评论，标记为不用展示加载更多
                             if (replyCountsLayout.isVisible) {
@@ -368,7 +367,7 @@ public class ShortCommentAdapter(
                             replyRecyclerView.run {
                                 visibility = View.VISIBLE
                                 layoutManager = LinearLayoutManager(mContext)
-                                adapter = ShortReplyCommentAdapter(list)
+                                //adapter = ShortReplyCommentAdapter(list)
                             }
                         } else {
                             (replyRecyclerView.adapter as ShortReplyCommentAdapter).loadMore(list)

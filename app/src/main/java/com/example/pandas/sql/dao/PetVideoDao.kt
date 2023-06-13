@@ -376,11 +376,11 @@ interface PetVideoDao {
     ): MutableList<CommentAndUser>
 
     @Transaction
-    @Query("select * from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode) and commitTime>(:commitTime) order by commitTime asc limit 0,(:page)")
+    @Query("select * from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode) order by commitTime asc limit (:startIndex),(:page)")
     suspend fun queryReplyComments(
-        commitTime: Long,
         videoCode: Int,
         topCommentCode: Int,
+        startIndex: Int,
         page: Int
     ): MutableList<CommentAndUser>
 

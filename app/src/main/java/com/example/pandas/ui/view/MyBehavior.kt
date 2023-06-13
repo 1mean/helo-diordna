@@ -86,7 +86,6 @@ public class MyBehavior() : CoordinatorLayout.Behavior<View>() {
             sinceDirectionChange = 0
         }
         sinceDirectionChange += dyConsumed
-        Log.e("1mean", "sinceDirectionChange: $sinceDirectionChange")
         val visibility = child.visibility
         if (sinceDirectionChange > child.height && visibility == View.VISIBLE) {
             hide(child)

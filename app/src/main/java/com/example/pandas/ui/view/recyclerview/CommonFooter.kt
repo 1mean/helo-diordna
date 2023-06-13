@@ -41,7 +41,6 @@ public class CommonFooter(context: Context) : LinearLayoutCompat(context), SwipL
 
     override fun onLoadFinished(isEmpty: Boolean, hasMore: Boolean) {
 
-        Log.e("1mean", "onLoadFinished: $isEmpty, $hasMore")
         if (hasMore) {
             visibility = View.GONE
         } else {

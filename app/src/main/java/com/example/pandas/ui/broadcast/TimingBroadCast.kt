@@ -18,7 +18,6 @@ public class TimingBroadCast : BroadcastReceiver() {
         intent?.let {
             val content = it.getIntExtra("time", 0)
         }
-        Log.e("TimingService", "接受广播成功")
 
     }
 

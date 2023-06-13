@@ -130,7 +130,6 @@ public class MyStyledPlayerView : StyledPlayerView {
         }
 
         override fun onDown(e: MotionEvent): Boolean {
-            Log.e("1mmmmmmmm", "onDown isDoubleTapping=$isDoubleTapping")
             // Used to override the other methods
             controls?.onDown()
             if (isDoubleTapping) {
@@ -141,7 +140,6 @@ public class MyStyledPlayerView : StyledPlayerView {
         }
 
         override fun onSingleTapUp(e: MotionEvent): Boolean {//双击时第一次按下也会触发
-            Log.e("1mmmmmmmm", "onSingleTapUp isDoubleTapping=$isDoubleTapping")
             controls?.onSingleTapUp()
             if (isDoubleTapping) {
                 if (DEBUG) Log.d(TAG, "onSingleTapUp: isDoubleTapping = true")
@@ -156,7 +154,6 @@ public class MyStyledPlayerView : StyledPlayerView {
             // Return true needed because this method is also called if you tap e.g. three times
             // in a row, therefore the controller would appear since the original behavior is
             // to hide and show on single tap
-            Log.e("1mmmmmmmm", "onSingleTapConfirmed: isDoubleTapping=$isDoubleTapping")
             if (isDoubleTapping) return true
             if (DEBUG) Log.d(TAG, "onSingleTapConfirmed: isDoubleTap = false")
             return rootView.performClick()
@@ -164,7 +161,6 @@ public class MyStyledPlayerView : StyledPlayerView {
 
         override fun onDoubleTap(e: MotionEvent): Boolean {
             // First tap (ACTION_DOWN) of both taps
-            Log.e("1mmmmmmmm", "onDoubleTap isDoubleTapping:$isDoubleTapping")
             if (!isDoubleTapping) {
                 isDoubleTapping = true
                 keepInDoubleTapMode()
@@ -176,7 +172,6 @@ public class MyStyledPlayerView : StyledPlayerView {
         override fun onDoubleTapEvent(e: MotionEvent): Boolean {
 
             val isUp = e.actionMasked == MotionEvent.ACTION_UP
-            Log.e("1mmmmmmmm", "onDoubleTapEvent： isUp=$isUp, isDoubleTapping=$isDoubleTapping")
             // Second tap (ACTION_UP) of both taps
             if (e.actionMasked == MotionEvent.ACTION_UP && isDoubleTapping) {
                 if (DEBUG) Log.d(

@@ -99,7 +99,6 @@ public class VerticalPlayManager(
         mPlayer.addMediaItems(mediaItems)
         mPlayer.playWhenReady = true
         mPlayer.prepare()
-        Log.e("1mean", "play cost time: ${System.currentTimeMillis() - startTime}")
     }
 
     val mListener = object : Player.Listener {
@@ -147,7 +146,6 @@ public class VerticalPlayManager(
         mPlayer.seekTo(position, 0)
         mPlayer.playWhenReady = true
         mPlayer.prepare()
-        Log.e("1mean", "play cost time: ${System.currentTimeMillis() - startTime}")
     }
 
     fun isPlaying(): Boolean = mPlayer.isPlaying

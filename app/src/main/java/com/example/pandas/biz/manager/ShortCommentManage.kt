@@ -1,14 +1,12 @@
 package com.example.pandas.biz.manager
 
 import android.content.Context
-import android.util.Log
 import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.biz.interaction.ICommentCallback
 import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment
-import com.google.android.exoplayer2.C.ContentType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -86,7 +84,7 @@ public class ShortCommentManage(val context: Context, val commentScope: Coroutin
 
     fun getPageReply(
         topCommentPosition: Int,
-        commitTime: Long,
+        startIndex: Int,
         pageCount: Int,
         videoCode: Int,
         commentId: Int,
@@ -95,10 +93,10 @@ public class ShortCommentManage(val context: Context, val commentScope: Coroutin
 
         commentScope.launch {
             val list = PetManagerCoroutine.getPageReplyComments(
-                commitTime,
+                startIndex,
+                pageCount,
                 videoCode,
                 commentId,
-                pageCount
             )
             listener.getPageReply(topCommentPosition, list)
         }

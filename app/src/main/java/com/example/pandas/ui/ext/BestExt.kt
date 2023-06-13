@@ -222,7 +222,6 @@ fun addRefreshAnimation(view: View, offSet: Float, listener: Animator.AnimatorLi
     } else {
         ObjectAnimator.ofFloat(view, "translationY", y_trans, -offSet - abs(y_trans))
     }
-    Log.e("dispatchTouchEvent", "totalOffset: $offSet, y_trans: $y_trans")
     val transAlpha = ObjectAnimator.ofFloat(view, "alpha", 0f, 1f)
     val animationSet = AnimatorSet()
     animationSet.duration = 400

@@ -50,7 +50,6 @@ public class TimingService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         duration = intent?.getIntExtra("time", 0)!!
-        Log.e("TimingService", "服务启动成功，时间为= $duration")
 
         if (duration == 0) {
             alarmManager?.let {

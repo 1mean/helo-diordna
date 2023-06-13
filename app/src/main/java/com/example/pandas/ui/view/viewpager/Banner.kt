@@ -91,7 +91,6 @@ class Banner : RelativeLayout, LifecycleObserver {
     public fun onPause() {
 
         if (isAutoPlayed() && isStartPlaying && isAttached) {
-            Log.e("banner", "onPause")
             stopPlaying()
         }
     }
@@ -99,7 +98,6 @@ class Banner : RelativeLayout, LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public fun onResume() {
         if (isAutoPlayed() && getRealCount() > 1 && !isStartPlaying && isAttached) {
-            Log.e("banner", "onResume")
             startPlaying()
         }
     }
@@ -109,7 +107,6 @@ class Banner : RelativeLayout, LifecycleObserver {
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         isAttached = true
-        Log.e("banner", "onAttachedToWindow")
         if (isAutoPlayed() && getRealCount() > 1 && !isStartPlaying) {
             startPlaying()
         }
@@ -118,7 +115,6 @@ class Banner : RelativeLayout, LifecycleObserver {
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         isAttached = false
-        Log.e("banner", "banner onDetachedFromWindow " + isAutoPlayed())
         if (isAutoPlayed()) {
             stopPlaying()
         }
@@ -306,7 +302,6 @@ class Banner : RelativeLayout, LifecycleObserver {
             if (getRealCount() > 1) {
                 tempPosition = position
             }
-            Log.e("Banner","${realPosition(position)}")
             pageChangeListener?.onChange(realPosition(position))
         }
 
@@ -367,14 +362,12 @@ class Banner : RelativeLayout, LifecycleObserver {
     fun startPlaying() {
 
         stopPlaying()
-        Log.e("1mean", "startPlaying")
         postDelayed(task, autoTime)
         isStartPlaying = true
     }
 
     fun stopPlaying() {
 
-        Log.e("1mean", "stopPlaying: $isStartPlaying")
         if (isStartPlaying) {
             removeCallbacks(task)
             isStartPlaying = false
@@ -453,7 +446,6 @@ class Banner : RelativeLayout, LifecycleObserver {
      * @date: 2021/12/24 12:39 下午
      */
     fun setAutoPlayed(autoPlay: Boolean): Banner {
-        Log.e("1mean", "setAutoPlayed")
         isAutoPlay = autoPlay
         if (isAutoPlay && getRealCount() > 1) {
             //onAttachedToWindow里执行了开始轮播

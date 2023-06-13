@@ -133,7 +133,6 @@ class SwipRecyclerView2 : RecyclerView {
                 layoutManager?.let {
                     val childCount =
                         layoutManager!!.childCount // 未隐藏的数目 childCount = count - hiddenCount
-                    Log.e("1mean", "$isRefreshing,,,$hasMore")
                     if (childCount > 0 && lastVisibleItemPosition >= total - 1 && total > childCount
 
                         && !isRefreshing && hasMore
@@ -147,7 +146,6 @@ class SwipRecyclerView2 : RecyclerView {
 
     private fun dispatchLoadMore() {
 
-        Log.e("1mean", "dispatchLoadMore")
         isLoadingData = true
         loadMoreView?.onLoading()//显示正在加载中
         mListener?.onLoadMore()

@@ -42,7 +42,6 @@ public class LocalCacheActivity : BaseActivity<LocalCacheViewModel, ActivityCach
 
     override fun onBackPressed() {
         super.onBackPressed()
-        Log.e("1mean", "onBackPressed")
     }
 
     //    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {

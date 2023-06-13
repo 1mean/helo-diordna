@@ -184,7 +184,6 @@ public class SmartDragLayout extends LinearLayout implements NestedScrollingPare
                 status = LayoutStatus.Open;
                 listener.onOpen();
             }
-            Log.e("1m234234234ean", "y: " + y + ", fraction= " + fraction + ", isScrollUp= " + isScrollUp);
             listener.onDrag(y, fraction, isScrollUp);
         }
         super.scrollTo(x, y);

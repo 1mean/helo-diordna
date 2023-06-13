@@ -51,7 +51,6 @@ public class MySwipeRefreshLayout : SwipeRefreshLayout {
             MotionEvent.ACTION_UP -> {
             }
         }
-        Log.e("1mean", "onInterceptTouchEvent: ${super.onInterceptTouchEvent(event)}")
         return super.onInterceptTouchEvent(event)
     }
 }

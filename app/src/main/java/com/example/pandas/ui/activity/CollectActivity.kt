@@ -39,7 +39,6 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
     private val requestLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 
-            Log.e("1mean", "result: $result")
             if (result.resultCode == RESULT_OK) {
                 binding.refreshCollect.isRefreshing = true
                 mViewModel.getCollects()

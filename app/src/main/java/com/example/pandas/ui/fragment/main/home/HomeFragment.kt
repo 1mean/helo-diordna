@@ -147,7 +147,6 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Log.e("2mean","onSaveInstanceState")
     }
 
     override fun createObserver() {

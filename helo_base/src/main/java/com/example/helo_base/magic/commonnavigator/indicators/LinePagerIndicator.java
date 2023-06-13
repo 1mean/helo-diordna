@@ -96,10 +96,6 @@ public class LinePagerIndicator extends View implements IPagerIndicator {
             nextLeftX = next.mContentLeft + mXOffset;
             rightX = current.mContentRight - mXOffset;
             nextRightX = next.mContentRight - mXOffset;
-            Log.e("LinePagerIndicator", "leftX= " + leftX);
-            Log.e("LinePagerIndicator", "nextLeftX= " + nextLeftX);
-            Log.e("LinePagerIndicator", "rightX= " + rightX);
-            Log.e("LinePagerIndicator", "nextRightX= " + nextRightX);
         } else {    // MODE_EXACTLY
             leftX = current.mLeft + (current.width() - mLineWidth) / 2;
             nextLeftX = next.mLeft + (next.width() - mLineWidth) / 2;

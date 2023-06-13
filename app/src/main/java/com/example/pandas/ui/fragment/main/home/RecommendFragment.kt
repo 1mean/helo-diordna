@@ -51,7 +51,6 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
             if (result.resultCode == AppCompatActivity.RESULT_OK) {
                 val backPosition = result.data?.getLongExtra("videoPosition", -1L)
                 backPosition?.let {
-                    Log.e("1mean", "currentPos: $it")
                     if (it != -1L) {
                         startPlay()
                     }
@@ -100,7 +99,6 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
      */
     override fun onStart() {
         super.onStart()
-        Log.e("RecommendFragment", "onStart")
         if (Util.SDK_INT > 23) {
             recoManager.initPlayer()
         }
@@ -112,7 +110,6 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
     }
 
     override fun againOnResume() {
-        Log.e("RecommendFragment", "againOnResume")
         startPlay()
     }
 

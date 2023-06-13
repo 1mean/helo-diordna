@@ -77,9 +77,7 @@ public class ShortBottomDialog(
         }
 
         editText.addTextChangedListener { input ->
-            Log.e("input", "input:$input")
             val inpputext = editText.text.toString()
-            Log.e("input", "inpputext:$inpputext")
 
             if (input == null || input.isEmpty()) {
                 btnSend.visibility = View.GONE

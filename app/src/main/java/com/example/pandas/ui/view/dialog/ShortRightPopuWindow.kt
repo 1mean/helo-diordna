@@ -18,6 +18,7 @@ import androidx.core.view.isVisible
 import com.example.pandas.R
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.biz.interaction.ICommentCallback
+import com.example.pandas.biz.interaction.ShortCommentListener
 import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.biz.manager.ShortCommentManage
 import com.example.pandas.data.qq.QqEmoticons
@@ -57,7 +58,7 @@ import kotlinx.coroutines.launch
  * @version: v1.0
  */
 public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupView(mContext),
-    ShortCommentAdapter1.CommentListener, ICommentCallback, SwipRecyclerView.ILoadMoreListener,
+    ShortCommentListener, ICommentCallback, SwipRecyclerView.ILoadMoreListener,
     ShortReplyPopuWindow.CommentInputListener {
 
     private var videoCode: Int = 0
@@ -169,17 +170,16 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
         }
     }
 
-
     override fun loadMore(
         topCommentPosition: Int,
-        commitTime: Long,
+        startIndex: Int,
         pageCount: Int,
         videoCode: Int,
         commentId: Int
     ) {
         commentManage!!.getPageReply(
             topCommentPosition,
-            commitTime,
+            startIndex,
             pageCount,
             videoCode,
             commentId,
@@ -195,6 +195,7 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
      */
     override fun reply(commentUser: CommentAndUser, position: Int) {
 
+        Log.e("11mean","position: $position")
         replyPosition = position
         if (this.commentUser == null) {
             this.commentUser = commentUser
@@ -236,7 +237,6 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
     }
 
     override fun getPageReply(position: Int, list: MutableList<CommentAndUser>) {
-        Log.e("lidandan","list size: ${list.size}")
         val holder =
             recyclerView.findViewHolderForAdapterPosition(position) as? ShortCommentAdapter1.ReplyCommentViewHolder
         holder?.loadReplyData(position, list)
@@ -261,11 +261,13 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
         if (commentUser == null) {//自己发送的一级弹幕
             val commentUser = commentManage!!.buildCommentUser(videoCode, message)
             Log.e("comment", "commentUser1:$commentUser")
-            mAdapter.loadOne(commentUser, 0, 1)
+            mAdapter.loadOneCmMessage(commentUser)
             recyclerView.scrollToPosition(0)
         } else {//发送的二级弹幕
             val commentUser = commentManage!!.buildCommentUser(commentUser!!, message)
-            mAdapter.loadOne(commentUser, replyPosition, commentUser.comment.type)
+            val holder =
+                recyclerView.findViewHolderForAdapterPosition(replyPosition) as? ShortCommentAdapter1.ReplyCommentViewHolder
+            holder?.loadOne(commentUser, replyPosition)
         }
         if (!recyclerView.isVisible) {
             recyclerView.visibility = View.VISIBLE

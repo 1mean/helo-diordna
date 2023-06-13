@@ -115,7 +115,6 @@ public class HistoryAdapter(
     @SuppressLint("NotifyDataSetChanged")
     fun isSelectAll(selectAll: Boolean) {
 
-        Log.e("HistoryAdapter", "isSelectAll: selectAll")
         isSelectAll = !selectAll
         if (!isShow) return
         selectMaps.clear()

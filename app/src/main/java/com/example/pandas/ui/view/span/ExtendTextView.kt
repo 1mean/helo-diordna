@@ -121,13 +121,11 @@ public class ExtendTextView : View {
         val measureWidth = measureWidth(widthMeasureSpec)
         val measureHeight = measureHeight(heightMeasureSpec)
 
-        Log.e("ExtendTextView", "最终测量结果：宽=$measureWidth, 高(减行间距加上下顶)=$measureHeight")
         setMeasuredDimension(measureWidth, measureHeight)
     }
 
     private fun measureHeight(highMeasureSpec: Int): Int {
 
-        Log.e("12333asdasd333mean", "onMeasure")
         var lineHeight = 0
         var lineWidth = 0
         var lineNum = 1
@@ -137,7 +135,6 @@ public class ExtendTextView : View {
 
         //初始化高度
         val metrics = mPaint.fontMetrics //字体的各种指标属性
-        Log.e("1mean", "descent=${metrics.descent},bottom=${metrics.bottom}")
         lineHeight =
             ceil((metrics.descent - metrics.top).toDouble()).toInt() + columnPadding.toInt()
 
@@ -173,7 +170,6 @@ public class ExtendTextView : View {
             totalHeight =
                 lineNum * lineHeight - columnPadding.toInt() + marginTop.toInt() + marginBottom.toInt()
         }
-        Log.e("ExtendTextView", "测量结果：行数=$lineNum, 行高(含行间距)=$lineHeight, 行间距=$columnPadding")
         var result = totalHeight
         if (mode == MeasureSpec.AT_MOST) {
             result = size
@@ -231,11 +227,9 @@ public class ExtendTextView : View {
                 } else {
                     lineWidth += ceil(widths[0].toDouble()).toInt()
                     if (lineWidth > maxWidth) {
-                        Log.e("1mean", "当前index=$index 开始是下一行，内容是$char")
                         lineNum++
                         lineWidth = ceil(widths[0].toDouble()).toInt()
                         mString.addElement(mText.substring(start, index))
-                        Log.e("1mean", "mString:${mString.toString()}")
                         start = index
                     } else {
                         if (index == mText.length - 1) {
@@ -248,7 +242,6 @@ public class ExtendTextView : View {
             totalHeight = lineNum * lineHeight - columnPadding.toInt()
             for (i in 0 until lineNum) {
                 //其实设置y的只就是为了迎合这个函数，要是不清楚可以自己百度一下
-                Log.e("adasdasdasd", "x: $x ,y=${(y + lineHeight * i)}")
                 if (i == 0) {
                     mPaint.color = clickableTextColor
                 } else {

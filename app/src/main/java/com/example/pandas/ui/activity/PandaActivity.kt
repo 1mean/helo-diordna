@@ -61,7 +61,6 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
             .setPagePadding(60, 60, 36)
             .addPageChangeListener(object : PagerChangedListener {
                 override fun onChange(position: Int) {
-                    Log.e("PandaActivity", "position: $position")
                     list[position].cover?.let {
                         loadLayoutBackGround(this@PandaActivity, it, binding.imgBgBanner)
                     }
@@ -76,9 +75,7 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
                 binding.btnCmBannerLeft.visibility = View.GONE
                 binding.btnCmBannerBack.visibility = View.VISIBLE
                 binding.collapsCmBanner.contentScrim = null
-                Log.e("1mean", "展开状态")
             } else if (Math.abs(verticalOffset) >= 0.6 * appBarLayout.totalScrollRange) {
-                Log.e("1mean", "折叠状态")
                 if (!binding.txtCmBannerTitle.isVisible) {
                     binding.txtCmBannerTitle.visibility = View.VISIBLE
                     binding.btnCmBannerLeft.visibility = View.VISIBLE
@@ -91,7 +88,6 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
                 binding.btnCmBannerLeft.visibility = View.GONE
                 binding.btnCmBannerBack.visibility = View.VISIBLE
                 binding.collapsCmBanner.contentScrim = null
-                Log.e("1mean", "中间状态")
             }
         })
         binding.btnCmBannerLeft.setOnClickListener {

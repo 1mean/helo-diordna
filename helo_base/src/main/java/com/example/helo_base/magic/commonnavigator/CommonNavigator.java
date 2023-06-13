@@ -194,10 +194,6 @@ public class CommonNavigator extends FrameLayout implements IPagerNavigator, Nav
                 data.mTop = v.getTop();
                 data.mRight = v.getRight();
                 data.mBottom = v.getBottom();
-                Log.e("CommonNavigator", "left= " + v.getLeft());
-                Log.e("CommonNavigator", "top= " + v.getTop());
-                Log.e("CommonNavigator", "right= " + v.getRight());
-                Log.e("CommonNavigator", "bottom= " + v.getBottom());
                 if (v instanceof IMeasurablePagerTitleView) {
                     IMeasurablePagerTitleView view = (IMeasurablePagerTitleView) v;
                     data.mContentLeft = view.getContentLeft();

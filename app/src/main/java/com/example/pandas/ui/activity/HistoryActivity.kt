@@ -108,10 +108,6 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
 
                 sure.setOnClickListener {
 
-                    Log.e(
-                        "deleteHistory",
-                        "select size:${selectList.size}, adapter counts:${mAdapter.itemCount}"
-                    )
                     if (selectList.size == mAdapter.itemCount) {//删除所有
                         mViewModel.removeHistory(selectList, true)
                     } else {

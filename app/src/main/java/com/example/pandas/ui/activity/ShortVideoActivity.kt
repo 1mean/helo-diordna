@@ -129,7 +129,6 @@ public class ShortVideoActivity :
 
         mViewModel.verticalVideos.observe(this) {
 
-            Log.e("1mean", "createObserver")
             if (it.isSuccess) {
                 when {
                     it.isRefresh -> {
@@ -189,7 +188,6 @@ public class ShortVideoActivity :
 
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-                Log.e("onTouchEvent", "ACTION_DOWN")
                 startX = event.rawX
                 startY = event.rawY
                 totalOffset = 0
@@ -211,7 +209,6 @@ public class ShortVideoActivity :
 
                 if (distanceY > distanceX && distanceY > 0 && !isRefreshing) {//下拉操作
                     if (y_velocity > 10000) {//快速滑动，普遍都是13000
-                        Log.e("dispatchTouchEvent", "y_velocity: $y_velocity")
                         if (!quickFlag) {
                             totalOffset = 100
                             binding.clayoutVerticalTop.offsetTopAndBottom(totalOffset)
@@ -221,14 +218,11 @@ public class ShortVideoActivity :
                             binding.ibnVerticalTopMore.alpha = 0f
                         }
                     } else {
-                        Log.e("dispatchTouchEvent", "y speed: ${mVelocityTracker?.yVelocity}")
                         if (distanceY > 100) {
                             val offset = ((distanceY - 100) / 100).toInt()
-                            Log.e("dispatchTouchEvent", "distanceY: $distanceY, offset: $offset")
                             if (totalOffset <= 100) {
                                 if (totalOffset <= 40) {
                                     val topAlpha = (40 - totalOffset).toFloat() / 40
-                                    Log.e("1mean", "topAlpha: $topAlpha")
                                     binding.ibnVerticalTopClose.alpha = topAlpha //可能不为0f
                                     binding.ibnVerticalTopMore.alpha = topAlpha
                                 } else {

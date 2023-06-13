@@ -56,31 +56,26 @@ public class MyStyledPlayerView2 : StyledPlayerView {
         var controls: PlayerDoubleTapListener? = null
 
         override fun onDown(e: MotionEvent): Boolean {
-            Log.e("PlayerDoubleTapListener","onDown")
             controls?.onDown()
             return super.onDown(e)
         }
 
 
         override fun onSingleTapUp(e: MotionEvent): Boolean {//双击时第一次按下也会触发
-            Log.e("PlayerDoubleTapListener","onSingleTapUp")
             return true
         }
 
         override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
-            Log.e("PlayerDoubleTapListener","onSingleTapConfirmed")
             controls?.onSingleTapConfirmed()
             return super.onSingleTapConfirmed(e)
         }
 
         override fun onDoubleTap(e: MotionEvent): Boolean {
-            Log.e("PlayerDoubleTapListener","onDoubleTap")
             controls?.onDoubleTap()
             return super.onDoubleTap(e)
         }
 
         override fun onDoubleTapEvent(e: MotionEvent): Boolean {
-            Log.e("PlayerDoubleTapListener","onDoubleTapEvent")
             return super.onDoubleTapEvent(e)
         }
 

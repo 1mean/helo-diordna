@@ -282,12 +282,9 @@ class PetManager {
         counts: Int
     ): MutableList<VideoAndData> {
 
-        Log.e("getUserVideos", "code: $code")
         return withContext(Dispatchers.Default) {
             val list = petDao.queryUserVideos(code)
             val user = petDao.queryUserByCode(code)
-            Log.e("getUserVideos", "list: $list")
-            Log.e("getUserVideos", "user: $user")
             petDao.quertUserVideos(code, startIndex, counts)
         }
     }
@@ -458,9 +455,6 @@ class PetManager {
                 }
                 list.addAll(list1)
             }
-            Log.e("1mean", "videoData1: ${video.videoData}")
-
-            Log.e("1mean", "get video info cost time: " + (System.currentTimeMillis() - startTime))
             VideoInfo(video, list)
         }
     }
@@ -679,7 +673,6 @@ class PetManager {
      */
     suspend fun addOrUpdateVideoData(videoData: VideoData) {
 
-        Log.e("1mean", "videoData: $videoData")
         withContext(Dispatchers.Default) {
             val data = petDao.queryVideoDataByCode(videoData.videoCode)
             if (data == null) {
@@ -917,19 +910,15 @@ class PetManager {
     }
 
     suspend fun getPageReplyComments(
-        commitTime: Long,
+        startIndex: Int,
+        pageCounts: Int,
         videoCode: Int,
-        commentId: Int,
-        counts: Int
+        topCommentId: Int
     ): MutableList<CommentAndUser> {
 
         return withContext(Dispatchers.Default) {
             delay(200)
-            Log.e(
-                "lidandan",
-                "commitTime:$commitTime, videoCode:$videoCode, commentId:$commentId, counts:$counts"
-            )
-            petDao.queryReplyComments(commitTime, videoCode, commentId, counts)
+            petDao.queryReplyComments(videoCode, topCommentId, startIndex, pageCounts)
         }
     }
 
@@ -953,7 +942,6 @@ class PetManager {
                 if (list.isNotEmpty()) {
                     comments.addAll(list)
                 }
-                Log.e("HomePageMnanger", "size: ${comments.size}")
                 comments
             } else {
                 petDao.queryReplyByPage(videoCode, commentId, startIndex, counts)
@@ -1051,10 +1039,6 @@ class PetManager {
                 data.follows.add(it)
             }
             data.lives = videos
-            Log.e(
-                "1mean",
-                "follows: ${data.follows}, cost=" + (System.currentTimeMillis() - startTime)
-            )
             data
         }
     }

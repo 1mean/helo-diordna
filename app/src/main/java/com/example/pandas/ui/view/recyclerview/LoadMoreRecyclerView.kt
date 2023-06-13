@@ -314,7 +314,6 @@ class LoadMoreRecyclerView : RecyclerView {
             private val footer: ConstraintLayout = itemView.findViewById(R.id.footer)
 
             fun handle() {
-                Log.e("1mean", "handle: $isNoMore")
                 if (isNoMore) {//没有更多数据
                     progressBar.visibility = GONE
                     txtFooter.visibility = VISIBLE

@@ -92,7 +92,6 @@ object TimeUtils {
         if (!isCurrentYear(time)) {//不是今年
             return getYearTime(startTime)
         } else {
-            Log.e("1mea23n","current:${System.currentTimeMillis()}, startTime:$startTime")
             var timeLong = System.currentTimeMillis() - startTime
             if (timeLong < 60 * 1000) {
                 return "刚刚"
