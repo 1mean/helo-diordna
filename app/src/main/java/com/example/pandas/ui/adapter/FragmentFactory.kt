@@ -6,6 +6,7 @@ import com.example.pandas.ui.fragment.main.home.HomeFragment
 import com.example.pandas.ui.fragment.main.live.LiveFragment
 import com.example.pandas.ui.fragment.main.mine.SelfFragment
 import com.example.pandas.ui.fragment.main.pet.CutePetFragment
+import com.example.pandas.ui.fragment.main.short.ShortVideoFragment
 
 /**
  * @description: 创建home界面的4个fragment
@@ -34,7 +35,8 @@ public class FragmentFactory {
                     PAGE_ONE -> mFragment = HomeFragment()
                     PAGE_TWO -> mFragment = LiveFragment()
                     PAGE_THREE -> mFragment = FaceFragment()
-                    PAGE_FOUR -> mFragment = CutePetFragment()
+//                    PAGE_FOUR -> mFragment = CutePetFragment()
+                    PAGE_FOUR -> mFragment = ShortVideoFragment()
                     PAGE_FIVE -> mFragment = SelfFragment()
                 }
                 fragments[page] = mFragment!!

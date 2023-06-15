@@ -75,7 +75,7 @@ class PetManager {
 
         return withContext(Dispatchers.Default) {
             val petVideos = mutableListOf<PetVideo>()
-            val list = petDao.queryVerticalVideos(startIndex, counts)
+            val list = petDao.queryRandomVerticalVideos(startIndex, counts)
             list.forEach {
                 val video = it.video
                 val videoData = petDao.queryVideoDataByCode(video.code)
@@ -89,6 +89,24 @@ class PetManager {
                     videoData.comments = comments
                     video.videoData = videoData
                 }
+                video.user = it.user
+                petVideos.add(video)
+            }
+            petVideos
+        }
+    }
+
+    suspend fun getFallsShortVideos(
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetVideo> {
+
+        return withContext(Dispatchers.Default) {
+            val petVideos = mutableListOf<PetVideo>()
+            val list = petDao.queryVerticalVideos(startIndex, counts)
+            list.forEach {
+                val video = it.video
+                video.videoData = petDao.queryVideoDataByCode(video.code)
                 video.user = it.user
                 petVideos.add(video)
             }

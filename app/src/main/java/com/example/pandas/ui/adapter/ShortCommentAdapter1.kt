@@ -66,7 +66,9 @@ public class ShortCommentAdapter1(
     }
 
     fun loadOneCmMessage(videoComment: CommentAndUser) {
+        Log.e("lidandan", "add one message: $videoComment")
         data.add(0, videoComment)
+        //bug:在数据首位添加一个元素后，list的缓存里的position并未改变，只有当我们滑动后，缓存更改后，position才会改变，所以我们必须使用notifyItemRangeChanged进行局部刷新
         notifyItemInserted(0)
         //notifyItemRangeChanged(0, data.size)
     }
@@ -123,12 +125,12 @@ public class ShortCommentAdapter1(
             val topComment = data[position].comment
             val topCommentId = comment.comment.topCommentId
             Log.e(
-                "1mean",
-                "position:$position, topCommentId:$topCommentId, commentId:${topComment.id}"
+                "lidandan",
+                "loadOne() position:$position, topCommentId:$topCommentId, commentId:${topComment.id}"
             )
-            if (topComment.id != topCommentId) {
-                throw IllegalArgumentException("不是该条消息的回复内容，请重新确认！")
-            }
+//            if (topComment.id != topCommentId) {
+//                throw IllegalArgumentException("不是该条消息的回复内容，请重新确认！")
+//            }
             if (replyRecyclerView.adapter == null) {
                 replyRecyclerView.run {
                     visibility = View.VISIBLE
@@ -138,11 +140,21 @@ public class ShortCommentAdapter1(
                         override fun reply(commentUser: CommentAndUser) {
                             val commentId = data[position].comment.id
                             val commentId1 = commentUser.comment.topCommentId
-                            Log.e("1mean", "commentId:$commentId, commentId1:$commentId1")
-                            if (commentId != commentId1) {
-                                throw IllegalArgumentException("不是该条消息的回复内容，请重新确认！")
+                            Log.e(
+                                "lidandan",
+                                "commentId:$commentId, commentId1:$commentId1, position:$position"
+                            )
+//                            if (commentId != commentId1) {
+//                                throw IllegalArgumentException("不是该条消息的回复内容，请重新确认！")
+//                            }
+                            var curPos = 0
+                            data.forEachIndexed { index, commentAndUser ->
+
+                                if (commentAndUser.comment.id == commentUser.comment.topCommentId) {
+                                    curPos = index
+                                }
                             }
-                            listener.reply(commentUser, position)
+                            listener.reply(commentUser, curPos)
                         }
                     })
                 }
@@ -184,7 +196,14 @@ public class ShortCommentAdapter1(
                     adapter = ShortReplyCommentAdapter(replies, object :
                         ShortReplyCommentAdapter.ReplyItemClickListener {
                         override fun reply(commentUser: CommentAndUser) {
-                            listener.reply(commentUser, position)
+                            var curPos = 0
+                            data.forEachIndexed { index, commentAndUser ->
+
+                                if (commentAndUser.comment.id == commentUser.comment.topCommentId) {
+                                    curPos = index
+                                }
+                            }
+                            listener.reply(commentUser, curPos)
                         }
                     })
                 }
@@ -242,6 +261,11 @@ public class ShortCommentAdapter1(
                 }
             }
 
+            Log.e(
+                "lidandan",
+                "position=$position--------recyclerView:$replyRecyclerView, adapter:${replyRecyclerView.adapter}"
+            )
+
             //点开回复 或 加载更多 或 收起
             replyCountsLayout.setOnClickListener {
                 val replySize = comment.replyCounts
@@ -289,7 +313,14 @@ public class ShortCommentAdapter1(
                             adapter = ShortReplyCommentAdapter(currentPageList, object :
                                 ShortReplyCommentAdapter.ReplyItemClickListener {
                                 override fun reply(commentUser: CommentAndUser) {
-                                    listener.reply(commentUser, position)
+                                    var curPos = 0
+                                    data.forEachIndexed { index, commentAndUser ->
+
+                                        if (commentAndUser.comment.id == commentUser.comment.topCommentId) {
+                                            curPos = index
+                                        }
+                                    }
+                                    listener.reply(commentUser, curPos)
                                 }
                             })
                         }
@@ -351,6 +382,7 @@ public class ShortCommentAdapter1(
             //避免使用itemview的点击，导致点击空余地方也会触发item的渐变和点击效果
             itemContentView.setOnClickListener {
 
+                Log.e("1mean111", "item click position: $position")
                 var curPos = 0
                 data.forEachIndexed { index, commentAndUser ->
 

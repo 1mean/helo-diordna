@@ -195,7 +195,7 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
      */
     override fun reply(commentUser: CommentAndUser, position: Int) {
 
-        Log.e("11mean","position: $position")
+        Log.e("lidandan","reply() position:$position, commentUser: $commentUser")
         replyPosition = position
         if (this.commentUser == null) {
             this.commentUser = commentUser
@@ -257,17 +257,17 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
     override fun sendComment(message: String) {
 
         if (message.isEmpty()) return
-        Log.e("comment", "commentUser:$commentUser")
         if (commentUser == null) {//自己发送的一级弹幕
             val commentUser = commentManage!!.buildCommentUser(videoCode, message)
-            Log.e("comment", "commentUser1:$commentUser")
             mAdapter.loadOneCmMessage(commentUser)
             recyclerView.scrollToPosition(0)
         } else {//发送的二级弹幕
             val commentUser = commentManage!!.buildCommentUser(commentUser!!, message)
             val holder =
                 recyclerView.findViewHolderForAdapterPosition(replyPosition) as? ShortCommentAdapter1.ReplyCommentViewHolder
+            Log.e("lidandan","sendComment() replyPosition:$replyPosition,holder:$holder, commentUser: $commentUser")
             holder?.loadOne(commentUser, replyPosition)
+
         }
         if (!recyclerView.isVisible) {
             recyclerView.visibility = View.VISIBLE

@@ -384,5 +384,7 @@
     <color name="color_txt_right_comment_item_like">#72747b</color>
     <color name="color_bg_bottom_dialog">#7F000000</color>
     <color name="color_text_input_short">#161a21</color>
+    <color name="color_bg_falls_short">#1e1e1e</color>
+    <color name="color_txt_name_short">#4f5359</color>
 
 </resources>

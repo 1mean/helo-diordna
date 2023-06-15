@@ -2531,6 +2531,7 @@ object PetSinglePandaData {
         panda151.originalUrl = "https://www.bilibili.com/video/BV1PU4y1k79C"
         panda151.tags = "大熊猫,萌宠,动物圈"
         panda151.vertical = true
+        panda151.authorId = 31122700
         panda151.cover =
             "https://i1.hdslb.com/bfs/archive/22bbdc2edca902e2d640bfdfe0e3974904dc6340.jpg"
         list.add(panda151)

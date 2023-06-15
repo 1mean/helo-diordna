@@ -6,11 +6,14 @@ import android.util.Log
 import com.example.pandas.biz.ext.getLocalFilePath
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.sql.entity.PetVideo
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.PlaybackException
-import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.*
+import com.google.android.exoplayer2.analytics.AnalyticsListener
+import com.google.android.exoplayer2.source.LoadEventInfo
+import com.google.android.exoplayer2.source.MediaLoadData
+import com.google.android.exoplayer2.trackselection.TrackSelectionParameters
 import com.google.android.exoplayer2.ui.StyledPlayerView
+import java.io.IOException
+import java.lang.Exception
 
 /**
  * @description: VerticalPlayManager
@@ -33,6 +36,83 @@ public class VerticalPlayManager(
         if (_mPlayer == null) {
             _mPlayer = ExoPlayer.Builder(context).build()
             mPlayer.addListener(mListener)
+            mPlayer.addAnalyticsListener(object : AnalyticsListener{
+
+                override fun onAudioCodecError(
+                    eventTime: AnalyticsListener.EventTime,
+                    audioCodecError: Exception
+                ) {
+                    super.onAudioCodecError(eventTime, audioCodecError)
+                    Log.e("2mean","onAudioCodecError audioCodecError:${audioCodecError.toString()}")
+                }
+
+                override fun onAudioSinkError(
+                    eventTime: AnalyticsListener.EventTime,
+                    audioSinkError: Exception
+                ) {
+                    super.onAudioSinkError(eventTime, audioSinkError)
+                    Log.e("2mean","onAudioSinkError audioSinkError:${audioSinkError.toString()}")
+                }
+
+                override fun onDrmSessionManagerError(
+                    eventTime: AnalyticsListener.EventTime,
+                    error: Exception
+                ) {
+                    super.onDrmSessionManagerError(eventTime, error)
+                    Log.e("2mean","onDrmSessionManagerError error:${error.toString()}")
+                }
+
+                override fun onLoadError(
+                    eventTime: AnalyticsListener.EventTime,
+                    loadEventInfo: LoadEventInfo,
+                    mediaLoadData: MediaLoadData,
+                    error: IOException,
+                    wasCanceled: Boolean
+                ) {
+                    super.onLoadError(eventTime, loadEventInfo, mediaLoadData, error, wasCanceled)
+                    Log.e("2mean","onLoadError error:${error.toString()}")
+                }
+
+                override fun onPlayerError(
+                    eventTime: AnalyticsListener.EventTime,
+                    error: PlaybackException
+                ) {
+                    super.onPlayerError(eventTime, error)
+                    Log.e("2mean","onPlayerError error:${error.toString()}")
+                }
+
+                override fun onVideoCodecError(
+                    eventTime: AnalyticsListener.EventTime,
+                    videoCodecError: Exception
+                ) {
+                    super.onVideoCodecError(eventTime, videoCodecError)
+                    Log.e("2mean","onVideoCodecError videoCodecError:${videoCodecError.toString()}")
+                }
+
+                override fun onPlayerErrorChanged(
+                    eventTime: AnalyticsListener.EventTime,
+                    error: PlaybackException?
+                ) {
+                    super.onPlayerErrorChanged(eventTime, error)
+                    Log.e("2mean","onPlayerErrorChanged PlaybackException:${error.toString()}")
+                }
+
+                override fun onTracksChanged(
+                    eventTime: AnalyticsListener.EventTime,
+                    tracks: Tracks
+                ) {
+                    super.onTracksChanged(eventTime, tracks)
+                    Log.e("2mean","onTracksChanged tracks:${tracks.toString()}")
+                }
+
+                override fun onTrackSelectionParametersChanged(
+                    eventTime: AnalyticsListener.EventTime,
+                    trackSelectionParameters: TrackSelectionParameters
+                ) {
+                    super.onTrackSelectionParametersChanged(eventTime, trackSelectionParameters)
+                    Log.e("2mean","onTrackSelectionParametersChanged trackSelectionParameters:${trackSelectionParameters.toString()}")
+                }
+            })
         }
     }
 
@@ -54,7 +134,7 @@ public class VerticalPlayManager(
         }
     }
 
-    fun addMediaItems(list: MutableList<PetVideo>){
+    fun addMediaItems(list: MutableList<PetVideo>) {
         if (list.isNotEmpty()) {
             val mediaItems = mutableListOf<MediaItem>()
             list.forEach {
@@ -68,7 +148,7 @@ public class VerticalPlayManager(
         }
     }
 
-    fun initPlayer(list: MutableList<PetVideo>){
+    fun initPlayer(list: MutableList<PetVideo>) {
 
         mPlayer.repeatMode = Player.REPEAT_MODE_ONE
         val mediaItems = mutableListOf<MediaItem>()
@@ -125,6 +205,10 @@ public class VerticalPlayManager(
 
         override fun onPlayerError(error: PlaybackException) {
             super.onPlayerError(error)
+            Log.e(
+                "2mean",
+                "ExoPlayer error: ${error.errorCode},${error.errorCodeName},${error.toString()}"
+            )
         }
 
         //当 #{isPlaying()} 的值改变时调用 ，是否player正在播放中

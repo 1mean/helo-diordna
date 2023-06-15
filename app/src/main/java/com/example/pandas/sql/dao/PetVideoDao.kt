@@ -244,6 +244,13 @@ interface PetVideoDao {
     ): MutableList<VideoAndUser>
 
     @Transaction
+    @Query("select * from pet_video where vertical=1 order by random() desc limit (:startIndex),(:count)")
+    suspend fun queryRandomVerticalVideos(
+        startIndex: Int,
+        count: Int
+    ): MutableList<VideoAndUser>
+
+    @Transaction
     @Query("select * from pet_video where period=(:period) and type=0 and videoType=0 limit (:startIndex),(:counts)")
     suspend fun queryByPeried(
         period: Int,
@@ -335,6 +342,15 @@ interface PetVideoDao {
 
     @Query("select * from video_data where laterPlay=1")
     suspend fun queryAllLaters(): MutableList<VideoData>
+
+    @Query("select * from pet_video where vertical=1 limit (:startIndex),(:count)")
+    fun queryVerticalVideoByPage(startIndex: Int, count: Int): MutableList<PetVideo>
+
+    @Query("select * from pet_video limit (:startIndex),(:count)")
+    fun queryVideosByPage(startIndex: Int, count: Int): MutableList<PetVideo>
+
+    @Query("select * from user where userCode=(:userCode)")
+    fun queryVerticalUser(userCode: Int): User
 
     @Query("select * from video_data where love=1")
     suspend fun queryAllLoves(): MutableList<VideoData>

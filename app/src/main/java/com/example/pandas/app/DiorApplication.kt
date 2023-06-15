@@ -1,6 +1,7 @@
 package com.example.pandas.app
 
 import android.app.Application
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.um.UmInitConfig
@@ -36,15 +37,34 @@ class DiorApplication : Application() {
         //initdata()
     }
 
+    private var startIndex = 0
+    private val page = 10
     private fun initdata() {
 
         Thread {
             val petDao = AppDataBase.getInstance().petVideoDao()
 
-//            for(index in 33..69){
-//                val comment= petDao.queryCommentById(videoCode = 3800, commentId = index)
-//                petDao.deleteComment(comment)
-//            }
+
+            //petDao.insert(panda151)
+            //petDao.delete(code)
+
+
+            //判断是否有没有存在的user对象
+            for (i in 0..1000) {
+                //Log.e("2mean", "startIndex:$startIndex , page:$page")
+                val list = petDao.queryVideosByPage(startIndex, page)
+                if (list.isEmpty()) {
+                    break
+                }
+                list.forEach {
+                    val user = petDao.queryVerticalUser(it.authorId)
+                    if (user == null) {
+                        Log.e("2mean", "user is null by userCode=${it}")
+                    }
+                }
+                startIndex += 10
+            }
+
 
 //            val list = ShortCommentData.getList()
 //            petDao.insertComment(list)

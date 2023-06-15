@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.interaction.PlayerDoubleTapListener
 import com.example.pandas.databinding.AdapterVideoVerticalBinding
@@ -160,6 +160,7 @@ public class VideoPagerAdapter(
         //val clear = binding.ibnVerticalEmpty
         //val reduce = binding.ibnVerticalReduce
         val playerView = binding.playerVertical
+        val playerCover = binding.playerCover
         //val timebar = playerView.findViewById<DefaultTimeBar>(R.id.exo_progress)
         //val music = binding.txtVerticalMusic
 
@@ -204,6 +205,7 @@ public class VideoPagerAdapter(
         }
 
         fun init() {
+            playerCover.visibility = View.GONE
             play.visibility = View.GONE
             playerView.showController()
 //            timebar.setPlayedColor(
@@ -226,6 +228,11 @@ public class VideoPagerAdapter(
             time.text = TimeUtils.getStringDate2(video.releaseTime * 1000)
             title.text = video.title
 
+//            video.cover?.let {
+//                loadImage(context, it, playerCover)
+//            }
+
+            //playerView.show
             user?.let {
                 name.text = "@" + it.userName
                 loadCircleImage(context, it.headUrl!!, header)
@@ -241,6 +248,8 @@ public class VideoPagerAdapter(
             }
 
             if (videoData == null) {
+                likeImg.setImageResource(R.mipmap.img_vertical_like)
+                collectImg.setImageResource(R.mipmap.img_vertical_collect)
                 likes.text = "点赞"
                 comments.text = "抢首评"
                 collects.text = "收藏"

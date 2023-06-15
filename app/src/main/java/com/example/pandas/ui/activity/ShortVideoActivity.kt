@@ -17,7 +17,7 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.manager.SoftInputManager
 import com.example.pandas.biz.manager.VerticalPlayManager
-import com.example.pandas.biz.viewmodel.VerticalVideoViewModel
+import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.ActivityVerticalVideoplayBinding
 import com.example.pandas.sql.entity.User
@@ -42,7 +42,7 @@ import com.lxj.xpopup.interfaces.XPopupCallback
  * @version: v1.0
  */
 public class ShortVideoActivity :
-    BaseActivity<VerticalVideoViewModel, ActivityVerticalVideoplayBinding>(), ExoPlayerListener,
+    BaseActivity<ShortVideoViewModel, ActivityVerticalVideoplayBinding>(), ExoPlayerListener,
     VideoPagerAdapter.VerticalVideoListener {
 
     private var startX: Float = 0f
@@ -77,7 +77,7 @@ public class ShortVideoActivity :
     override fun initView(savedInstanceState: Bundle?) {
 
         //bug:一句代码解决了两天的bug，关闭popuwindow时，edittext仍然有焦点，会反复弹出
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+        //window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
         manager = VerticalPlayManager(this, this)
 
         keyBoardManager = SoftInputManager(this)
@@ -105,8 +105,8 @@ public class ShortVideoActivity :
         binding.clayoutVerticalTop.post {
             val location = IntArray(2)
             binding.clayoutVerticalTop.getLocationOnScreen(location)
-            val x = location[0]
-            val y = location[1]
+//            val x = location[0]
+//            val y = location[1]
         }
 
         binding.editVertical.setOnClickListener {
@@ -319,52 +319,12 @@ public class ShortVideoActivity :
     private var shortBottomDialog: ShortBottomDialog? = null
 
     private fun showBottomCommentWindow(showEmotion: Boolean, showet: Boolean) {
-
-        //未解决问题，在edittext输入内容时，第二行开始每次都会下沉到软键盘之下，然后再弹回
-//        mHandler.postDelayed({
-//            if (inputPopWindow == null) {
-//                inputPopWindow = ShortBottoomPopuWindow(
-//                    this@ShortVideoActivity,
-//                    binding.editVertical.text.toString(),
-//                    object :
-//                        ShortBottoomPopuWindow.ShortPopuListener {
-//                        override fun openEmoji(view: View) {
-//                            Log.e("1mean", "隐藏软键盘")
-//                            keyBoardManager?.hideKeyBoard(this@ShortVideoActivity, view)
-//                        }
-//
-//                        override fun sendComment(comment: String) {
-//                            sendVideoComment(comment)
-//                        }
-//
-//                        override fun dissmiss(comment: String) {
-//                            if (comment.isNotEmpty()) {
-//                                mHandler.post {
-//                                    val message =
-//                                        QqEmoticons.parseAndShowEmotion(
-//                                            this@ShortVideoActivity,
-//                                            comment
-//                                        )
-//                                    binding.editVertical.text =
-//                                        Editable.Factory.getInstance().newEditable(message)
-//                                    binding.btnVerticalInputSend.visibility = View.VISIBLE
-//                                }
-//                            }
-//                        }
-//                    })
-//            }
-//            inputPopWindow!!.setBackDark().onShow(window.decorView)
-//            keyBoardManager?.showKeyBoard(this, window.decorView)
-//        }, 100)
-
         if (shortBottomDialog == null) {
             shortBottomDialog = ShortBottomDialog(
                 this,
                 binding.editVertical.text.toString(),
                 object : ShortBottomDialog.ShortPopuListener {
                     override fun openEmoji(view: View) {
-                        Log.e("1mean", "隐藏软键盘")
-//                        keyBoardManager?.hideKeyBoard(this@ShortVideoActivity, view)
                     }
 
                     override fun sendComment(comment: String) {
@@ -498,7 +458,6 @@ public class ShortVideoActivity :
 
     override fun isPlayingChanged(isPlaying: Boolean) {
         super.isPlayingChanged(isPlaying)
-
         if (isPlaying) {
             mAdapter.startAnimation(currentPosition)
         } else {

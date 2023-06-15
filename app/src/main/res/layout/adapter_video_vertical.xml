@@ -18,6 +18,13 @@
             android:layout_gravity="center_horizontal"
             app:controller_layout_id="@layout/controller_vertical_player" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/player_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:scaleType="fitXY" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
