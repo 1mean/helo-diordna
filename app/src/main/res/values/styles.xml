@@ -1,7 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+    <!--要对tablayout进行添加数字和红点，必须设置这个-->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <!-- 导航栏设置背景为透明色     -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -44,6 +46,11 @@
     <!--self-tablayout-->
     <style name="SelfTabLayoutTextStyle">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ShortTabLayoutTextStyle">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="BannerTabLayoutTextStyle">
@@ -484,6 +491,7 @@
         <!--设置了没效果-->
         <!--<item name="android:windowExitAnimation">@anim/animate_short_input_out</item>-->
     </style>
+
     <style name="style_short_comment_animation">
         <item name="android:windowEnterAnimation">@anim/animate_short_comment_in</item>
         <!--设置了没效果-->

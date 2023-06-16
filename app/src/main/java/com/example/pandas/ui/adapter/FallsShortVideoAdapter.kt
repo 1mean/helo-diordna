@@ -62,26 +62,17 @@ public class FallsShortVideoAdapter(
 
         data.cover?.let {
 
-//            val option = BitmapFactory.Options()
-//            option.inJustDecodeBounds = true
-//            BitmapFactory.decodeStream()
-
-//            val requestOptions = RequestOptions()
-//                .fitCenter()
-//                .error(R.mipmap.liuyifei)
-//                .skipMemoryCache(false)
-//                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-
+            //卡顿的原因是由于要加载图片完成后，根据bitmap的宽高比设置给imageview对应的高度
+            //没有太好的办法，让后台返回图片尺寸，直接设置给imageview，这种方法效果是最好的
+            //可还要考虑后台不一定返回的情况，就需要自己按原样请求了，只是请求成功计算出imageview高度保存一下，以后的滑动就不会每次请求了，只是第一次卡顿了
             Glide.with(context).asBitmap().load(it)
-                .listener(object :RequestListener<Bitmap>{
+                .listener(object : RequestListener<Bitmap> {
                     override fun onLoadFailed(
                         exception: GlideException?,
                         model: Any?,
                         target: Target<Bitmap>?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        Log.e("lidandan3","exception: ${exception.toString()}")
-
                         val finalWidth = ScreenUtil.getScreenWidth(context) / 2
                         val finalHeight = ScreenUtil.getScreenWidth(context) / 2
                         val params = cover.layoutParams
@@ -90,9 +81,7 @@ public class FallsShortVideoAdapter(
                         params.height = finalHeight
                         cover.layoutParams = params
 
-                        cover.setImageResource(R.mipmap.liuyifei)
-
-
+                        cover.setImageResource(R.mipmap.angle)
                         return false
                     }
 
@@ -125,11 +114,6 @@ public class FallsShortVideoAdapter(
 //                        (finalWidth / resourceWidth.toDouble()) * resourceHeight
 //                    }
                         val finalHeight = (resourceHeight / resourceWidth.toDouble()) * finalWidth
-                        Log.e("lidandan3", "title:${data.title}, header:${data.cover}")
-                        Log.e(
-                            "lidandan3",
-                            "宽=$resourceWidth, 高=$resourceHeight , width=$finalWidth, finalHeight:$finalHeight"
-                        )
                         val params = cover.layoutParams
                         //params.width = finalWidth
                         params.width = finalWidth
@@ -141,10 +125,7 @@ public class FallsShortVideoAdapter(
 
                     override fun onLoadCleared(placeholder: Drawable?) {
                     }
-
                 })
-
-
         }
 
         title.text = data.title

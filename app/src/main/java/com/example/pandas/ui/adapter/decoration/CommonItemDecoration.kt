@@ -1,4 +1,5 @@
 package com.example.pandas.ui.adapter.decoration
+
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.view.View
@@ -6,6 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 
 /**
  * 【等分必须满足，paddingleft + paddingright 的和相同】
+ *  均分是给每一列相同的大小。然后再再此基础上添加space,即每一列的leftspace+rightspace+width必须相等，才能实现均分
+ *  val totalSpace = leftSpace + rightSpace + midSpace * (spanCounts - 1)
+ *  val itemNeedSpace = totalSpace / spanCounts
+ *  outRect.left = leftSpace
+ *  outRect.right = itemNeedSpace - leftSpace
+ *
+ *  //切记：
+ *   - StaggeredGridLayoutManager通过layoutposition设置会错乱
+ *   - 使用StaggeredGridLayoutManager.layoutParams.getSpanIndex()就好了
+ *
  * @description: common ItemDecoration
  * @author: dongyiming
  * @date: 4/12/22 6:06 下午

@@ -20,6 +20,7 @@ public class ShortVideoViewModel : BaseViewModel() {
 
     var startIndex = 0//分页起始
     var fallsStartIndex = 0//分页起始
+    var fallsPage = 10
     var hasMore = true//是否有更多
 
     val verticalVideos: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
@@ -74,16 +75,18 @@ public class ShortVideoViewModel : BaseViewModel() {
      */
     fun getFallsShortVideos(isRefresh: Boolean) {
 
+        fallsPage = 10
         if (isRefresh) {
 //            startIndex = (0..20).random()
             fallsStartIndex = 0
+            fallsPage = 20
         }
         viewModelScope.launch {
             runCatching {
-                PetManagerCoroutine.getFallsShortVideos(fallsStartIndex, 21)
+                PetManagerCoroutine.getFallsShortVideos(fallsStartIndex, fallsPage + 1)
             }.onSuccess {
 
-                hasMore = if (it.size > 20) {
+                hasMore = if (it.size > fallsPage) {
                     it.removeLast()
                     true
                 } else {
@@ -98,7 +101,7 @@ public class ShortVideoViewModel : BaseViewModel() {
                     isFirstEmpty = isRefresh && it.isEmpty(),
                     listData = it
                 )
-                fallsStartIndex += 10
+                fallsStartIndex += fallsPage
                 fallsShortVideos.value = dataList
             }.onFailure {
 

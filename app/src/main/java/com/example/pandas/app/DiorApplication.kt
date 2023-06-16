@@ -44,26 +44,51 @@ class DiorApplication : Application() {
         Thread {
             val petDao = AppDataBase.getInstance().petVideoDao()
 
+            //landscape73.code = 3801
+            //landscape78.code = 3806
+            //landscape81.code = 3809
+            //landscape81.code = 3797
+            //landscape81.code = 3795
+            //landscape81.code = 3796
+            //landscape81.code = 3794
+            //landscape81.code = 3798
 
-            //petDao.insert(panda151)
-            //petDao.delete(code)
+            //landscape65.code = 3793
+            //landscape64.code = 3792
+            //landscape62.code = 3790
+            //landscape61.code = 3789
+            //landscape59.code = 3787
+            //landscape58.code = 3786
+            //landscape60.code = 3788
+            //landscape74.code = 3802
+
+
+            //清理掉封面加载失败的视频
+//            val list = arrayOf(3802)
+//            for (i in list) {
+//                val video = petDao.queryVideoByCode1(i)
+//                petDao.delete(video)
+//
+//                val videodata = petDao.queryVideoDataByCode2(i)
+//                petDao.deleteVideoData(videodata)
+//            }
 
 
             //判断是否有没有存在的user对象
-            for (i in 0..1000) {
-                //Log.e("2mean", "startIndex:$startIndex , page:$page")
-                val list = petDao.queryVideosByPage(startIndex, page)
-                if (list.isEmpty()) {
-                    break
-                }
-                list.forEach {
-                    val user = petDao.queryVerticalUser(it.authorId)
-                    if (user == null) {
-                        Log.e("2mean", "user is null by userCode=${it}")
-                    }
-                }
-                startIndex += 10
-            }
+//            for (i in 0..1000) {
+//                //Log.e("2mean", "startIndex:$startIndex , page:$page")
+//                val list = petDao.queryVideosByPage(startIndex, page)
+//                if (list.isEmpty()) {
+//                    break
+//                }
+//                list.forEach {
+//                    val user = petDao.queryVerticalUser(it.authorId)
+//                    if (user == null) {
+//                        Log.e("2mean", "user is null by userCode=${it}")
+//                    }
+//                }
+//                startIndex += 10
+//            }
 
 
 //            val list = ShortCommentData.getList()

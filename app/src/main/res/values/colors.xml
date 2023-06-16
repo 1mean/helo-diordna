@@ -400,8 +400,10 @@
     <color name="color_txt_right_comment_item_like">#72747b</color>
     <color name="color_bg_bottom_dialog">#7F000000</color>
     <color name="color_text_input_short">#161a21</color>
-    <color name="color_bg_falls_short">#f3f3f3</color>
+    <color name="color_bg_falls_short">#efefef</color>
     <color name="color_txt_name_short">#4f5359</color>
+    <color name="color_txt_short_tab_unselected">#7c7c7c</color>
+    <color name="color_txt_short_tab_selected">#222222</color>
 
 
 </resources>

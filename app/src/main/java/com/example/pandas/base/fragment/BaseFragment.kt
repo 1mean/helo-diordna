@@ -1,4 +1,5 @@
 package com.example.pandas.base.fragment
+
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
@@ -191,11 +192,11 @@ public abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragm
     }
 
     /**
-     * 数据共享时使用
+     * 数据共享时使用,通过Activity这个媒介来共享数据，返回mActivity
      */
     open fun getCurrentLifeOwner(): ViewModelStoreOwner {
         return this
     }
 
-    open fun againOnResume(){}
+    open fun againOnResume() {}
 }
