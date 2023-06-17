@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/clayout_title1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clayout_bottom_publish"
+            android:id="@+id/clayout_bottom_title"
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginTop="3dp"
@@ -19,12 +20,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
-                android:textColor="#666a70"
+                android:textColor="@color/color_txt_bottom_unselected"
                 android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="@id/clayout_bottom_publish"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_bottom_publish"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_bottom_publish"
-                app:layout_constraintRight_toRightOf="@id/clayout_bottom_publish"/>
+                app:layout_constraintTop_toTopOf="@id/clayout_bottom_title"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_bottom_title"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_bottom_title"
+                app:layout_constraintRight_toRightOf="@id/clayout_bottom_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

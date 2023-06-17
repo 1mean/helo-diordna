@@ -5,6 +5,9 @@
 
     <!-- 普通文字 @auther dongyiming -->
     <dimen name="common_sz_5_dimens">5sp</dimen>
+    <dimen name="common_sz_6_dimens">6sp</dimen>
+    <dimen name="common_sz_7_dimens">7sp</dimen>
+    <dimen name="common_sz_8_dimens">8sp</dimen>
     <dimen name="common_sz_9_dimens">9sp</dimen>
     <dimen name="common_sz_10_dimens">10sp</dimen>
     <dimen name="common_sz_11_dimens">11sp</dimen>

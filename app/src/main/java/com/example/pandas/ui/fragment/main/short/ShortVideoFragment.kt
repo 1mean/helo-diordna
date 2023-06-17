@@ -1,9 +1,11 @@
 package com.example.pandas.ui.fragment.main.short
 
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelStoreOwner
@@ -14,6 +16,8 @@ import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentShortVideoBinding
 import com.example.pandas.ui.fragment.main.pet.CutePetFragment
+import com.example.pandas.utils.DarkModeUtils
+import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
@@ -28,14 +32,14 @@ import java.util.*
 public class ShortVideoFragment() :
     BaseFragment<MainFragmentViewModel, FragmentShortVideoBinding>() {
 
-    private val tabTitles = arrayListOf("发现", "精选", "推荐")
+    private val tabTitles = arrayListOf("关注", "发现", "推荐")
 
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.vp2Short.run {
             offscreenPageLimit = tabTitles.size
             isSaveEnabled = false
-            setCurrentItem(0, false)
+            setCurrentItem(1, false)
             adapter = object : FragmentStateAdapter(this@ShortVideoFragment) {
                 override fun getItemCount(): Int = 3
 
@@ -45,7 +49,7 @@ public class ShortVideoFragment() :
                             ShortVideoListFragment()
                         }
                         1 -> {
-                            CutePetFragment()
+                            ShortVideoListFragment()
                         }
                         else -> {
                             ShortFragment()
@@ -60,81 +64,145 @@ public class ShortVideoFragment() :
             tab.text = tabTitles[position]
         }.attach()
 
+        binding.tbShort.getTabAt(1)?.select()
+
         //获取TabLayout设置的字体颜色,包含tabTextColor及tabSelectedTextColor
-        //获取TabLayout设置的字体颜色,包含tabTextColor及tabSelectedTextColor
-        val colorStateList = binding.tbShort.tabTextColors
         for (i in 0 until binding.tbShort.tabCount) {
             val tab: TabLayout.Tab = binding.tbShort.getTabAt(i)!!
             if (tab.customView == null || tab.customView !is TextView) {
                 val tv = TextView(binding.tbShort.context)
                 val tabStr = Objects.requireNonNull(tab.text).toString()
-                tv.setTextColor(colorStateList)
                 tv.text = tabStr
-                tv.textSize = if (tab.isSelected) 17f else 15f
+                tv.textSize =
+                    if (tab.isSelected) resources.getDimension(R.dimen.common_sz_7_dimens) else
+                        resources.getDimension(R.dimen.common_sz_6_dimens)
+                tv.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
+                if (tab.isSelected) {
+                    tv.setTextColor(
+                        ContextCompat.getColor(
+                            mActivity,
+                            R.color.color_txt_short_tab_selected
+                        )
+                    )
+                } else {
+                    tv.setTextColor(
+                        ContextCompat.getColor(
+                            mActivity,
+                            R.color.color_txt_short_tab_unselected
+                        )
+                    )
+                }
                 tab.customView = tv
             }
         }
 
         binding.tbShort.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
+                val selectedIndex = binding.tbShort.selectedTabPosition
                 val tv = (tab.customView as TextView?)!!
-                tv.setTextColor(ContextCompat.getColor(mActivity, R.color.black))
-            }
 
-            override fun onTabReselected(tab: TabLayout.Tab) {}
-        })
+                if (selectedIndex == 2) {
+                    StatusBarUtils.updataStatus(
+                        mActivity,
+                        false,
+                        true,
+                        R.color.color_white_lucency
+                    )
+                    tv.setTextColor(
+                        ContextCompat.getColor(
+                            mActivity,
+                            R.color.white
+                        )
+                    )
+                    binding.tbShort.setSelectedTabIndicatorColor(
+                        ContextCompat.getColor(
+                            mActivity,
+                            R.color.white
+                        )
+                    )
 
-        //设置数字
-        binding.tbShort.getTabAt(0)?.let { tab ->
-            tab.orCreateBadge.apply {
-                backgroundColor = ContextCompat.getColor(mActivity, R.color.red500)
-                maxCharacterCount = 3
-                number = 99
-                badgeTextColor = Color.WHITE
-            }
-        }
-        //设置红点
-        binding.tbShort.getTabAt(2)?.let { tab ->
-            tab.orCreateBadge.backgroundColor = ContextCompat.getColor(mActivity, R.color.orange)
-        }
-
-        binding.vp2Short.registerOnPageChangeCallback(object : OnPageChangeCallback() {
-
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                Log.e("lidandan3", "onPageSelected position: $position")
-                if (position == 2) {
-                    for (i in 0 until binding.tbShort.tabCount){
-                        val tab = binding.tbShort.getTabAt(i)!!
-                        val tv = (tab.customView as TextView?)!!
-                        tv.setTextColor(ContextCompat.getColor(mActivity, R.color.white))
+                    for (index in 0 until (tabTitles.size - 1)) {
+                        val tabView = binding.tbShort.getTabAt(index)!!
+                        val title = (tabView.customView as TextView?)!!
+                        title.setTextColor(
+                            ContextCompat.getColor(
+                                mActivity,
+                                R.color.color_vertical_played
+                            )
+                        )
+                        title.textSize = resources.getDimension(R.dimen.common_sz_6_dimens)
                     }
+
                     mViewModel.updateBottomBackground(true)
                 } else {
 
-                    for (i in 0 until binding.tbShort.tabCount){
-                        val tab = binding.tbShort.getTabAt(i)!!
-                        val tv = (tab.customView as TextView?)!!
-                        tv.setTextColor(ContextCompat.getColor(mActivity, R.color.black))
+                    for (index in 0 until tabTitles.size) {
+                        if (index == selectedIndex) {
+                            tv.setTextColor(
+                                ContextCompat.getColor(
+                                    mActivity,
+                                    R.color.color_txt_short_tab_selected
+                                )
+                            )
+                        } else {
+                            val tabView = binding.tbShort.getTabAt(index)!!
+                            val title = (tabView.customView as TextView?)!!
+                            title.setTextColor(
+                                ContextCompat.getColor(
+                                    mActivity,
+                                    R.color.color_txt_short_tab_unselected
+                                )
+                            )
+                            title.textSize = resources.getDimension(R.dimen.common_sz_6_dimens)
+                        }
                     }
+
+                    binding.tbShort.setSelectedTabIndicatorColor(
+                        ContextCompat.getColor(
+                            mActivity,
+                            R.color.color_txt_short_tab_selected
+                        )
+                    )
+                    StatusBarUtils.updataStatus(mActivity, true, true, R.color.color_white_lucency)
                     mViewModel.updateBottomBackground(false)
                 }
+                tv.textSize = resources.getDimension(R.dimen.common_sz_7_dimens)
             }
-        })
 
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
     }
 
     override fun createObserver() {
     }
 
     override fun firstOnResume() {
+
     }
 
     override fun getCurrentLifeOwner(): ViewModelStoreOwner {
         return mActivity
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (binding.tbShort.selectedTabPosition == 2) {
+            val nightMode = DarkModeUtils.getNightModel(mActivity)
+            if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
+                StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
+            } else {
+                StatusBarUtils.updataStatus(mActivity, true, true, R.color.color_white_lucency)
+            }
+            mViewModel.updateBottomBackground(false)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (binding.tbShort.selectedTabPosition == 2) {
+            StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
+            mViewModel.updateBottomBackground(true)
+        }
     }
 }

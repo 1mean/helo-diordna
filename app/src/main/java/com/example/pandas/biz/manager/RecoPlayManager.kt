@@ -59,22 +59,18 @@ public class RecoPlayManager(
         val playPos = mediaInfo.playPos
 
         if (mediaIndexs.exist(mediaInfo.videoCode)) {
-            Log.e("recoooooooo","444")
             mediaIndexs.get(mediaInfo.videoCode)?.let {
                 mPlayer.seekTo(mediaIndexs.indexOf(videoCode), it.playPos)
             }
         } else {
             if (PlayerConfig.instance.hasMediaItem(videoCode)) {
-                Log.e("recoooooooo","555")
                 val mediaItemWrapper = PlayerConfig.instance.getMediaItem(videoCode)
                 mediaItemWrapper!!.mediaItem?.let {
                     mPlayer.addMediaItem(it)
                     val index = mediaIndexs.add(mediaInfo)
-                    Log.e("recoooooooo", "playPosition: ${mediaItemWrapper.playPosition}")
                     mPlayer.seekTo(index, mediaItemWrapper.playPosition)
                 }
             } else {
-                Log.e("recoooooooo","666")
                 val mediaItem =
                     MediaItem.Builder().setUri(Uri.fromFile(File(mediaInfo.playUrl)))
                         .setMediaId(mediaInfo.videoCode.toString()).build()

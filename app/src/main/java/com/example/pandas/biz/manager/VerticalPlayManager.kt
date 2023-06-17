@@ -3,6 +3,7 @@ package com.example.pandas.biz.manager
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import com.example.pandas.bean.MediaItemWrapper
 import com.example.pandas.biz.ext.getLocalFilePath
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.sql.entity.PetVideo
@@ -30,20 +31,24 @@ public class VerticalPlayManager(
     private val mPlayer get() = _mPlayer!!
     private var oldPlayerView: StyledPlayerView? = null
 
+    //缓存所有创建的mediaItems。该创建是相对耗时的操作，缓存起来重用<videoCode,mediaItem>
+    private val mediaItemCaches: MutableMap<Int, MediaItem> by lazy { mutableMapOf() }
 
     fun initPlayer() {
-
         if (_mPlayer == null) {
             _mPlayer = ExoPlayer.Builder(context).build()
             mPlayer.addListener(mListener)
-            mPlayer.addAnalyticsListener(object : AnalyticsListener{
+            mPlayer.addAnalyticsListener(object : AnalyticsListener {
 
                 override fun onAudioCodecError(
                     eventTime: AnalyticsListener.EventTime,
                     audioCodecError: Exception
                 ) {
                     super.onAudioCodecError(eventTime, audioCodecError)
-                    Log.e("2mean","onAudioCodecError audioCodecError:${audioCodecError.toString()}")
+                    Log.e(
+                        "2mean",
+                        "onAudioCodecError audioCodecError:${audioCodecError.toString()}"
+                    )
                 }
 
                 override fun onAudioSinkError(
@@ -51,7 +56,7 @@ public class VerticalPlayManager(
                     audioSinkError: Exception
                 ) {
                     super.onAudioSinkError(eventTime, audioSinkError)
-                    Log.e("2mean","onAudioSinkError audioSinkError:${audioSinkError.toString()}")
+                    Log.e("2mean", "onAudioSinkError audioSinkError:${audioSinkError.toString()}")
                 }
 
                 override fun onDrmSessionManagerError(
@@ -59,7 +64,7 @@ public class VerticalPlayManager(
                     error: Exception
                 ) {
                     super.onDrmSessionManagerError(eventTime, error)
-                    Log.e("2mean","onDrmSessionManagerError error:${error.toString()}")
+                    Log.e("2mean", "onDrmSessionManagerError error:${error.toString()}")
                 }
 
                 override fun onLoadError(
@@ -70,7 +75,7 @@ public class VerticalPlayManager(
                     wasCanceled: Boolean
                 ) {
                     super.onLoadError(eventTime, loadEventInfo, mediaLoadData, error, wasCanceled)
-                    Log.e("2mean","onLoadError error:${error.toString()}")
+                    Log.e("2mean", "onLoadError error:${error.toString()}")
                 }
 
                 override fun onPlayerError(
@@ -78,7 +83,7 @@ public class VerticalPlayManager(
                     error: PlaybackException
                 ) {
                     super.onPlayerError(eventTime, error)
-                    Log.e("2mean","onPlayerError error:${error.toString()}")
+                    Log.e("2mean", "onPlayerError error:${error.toString()}")
                 }
 
                 override fun onVideoCodecError(
@@ -86,7 +91,10 @@ public class VerticalPlayManager(
                     videoCodecError: Exception
                 ) {
                     super.onVideoCodecError(eventTime, videoCodecError)
-                    Log.e("2mean","onVideoCodecError videoCodecError:${videoCodecError.toString()}")
+                    Log.e(
+                        "2mean",
+                        "onVideoCodecError videoCodecError:${videoCodecError.toString()}"
+                    )
                 }
 
                 override fun onPlayerErrorChanged(
@@ -94,7 +102,7 @@ public class VerticalPlayManager(
                     error: PlaybackException?
                 ) {
                     super.onPlayerErrorChanged(eventTime, error)
-                    Log.e("2mean","onPlayerErrorChanged PlaybackException:${error.toString()}")
+                    Log.e("2mean", "onPlayerErrorChanged PlaybackException:${error.toString()}")
                 }
 
                 override fun onTracksChanged(
@@ -102,7 +110,7 @@ public class VerticalPlayManager(
                     tracks: Tracks
                 ) {
                     super.onTracksChanged(eventTime, tracks)
-                    Log.e("2mean","onTracksChanged tracks:${tracks.toString()}")
+                    Log.e("2mean", "onTracksChanged tracks:${tracks.toString()}")
                 }
 
                 override fun onTrackSelectionParametersChanged(
@@ -110,7 +118,10 @@ public class VerticalPlayManager(
                     trackSelectionParameters: TrackSelectionParameters
                 ) {
                     super.onTrackSelectionParametersChanged(eventTime, trackSelectionParameters)
-                    Log.e("2mean","onTrackSelectionParametersChanged trackSelectionParameters:${trackSelectionParameters.toString()}")
+                    Log.e(
+                        "2mean",
+                        "onTrackSelectionParametersChanged trackSelectionParameters:${trackSelectionParameters.toString()}"
+                    )
                 }
             })
         }
@@ -143,6 +154,7 @@ public class VerticalPlayManager(
                     MediaItem.Builder().setUri(Uri.fromFile(file))
                         .setMediaId(it.code.toString()).build()
                 mediaItems.add(mediaItem)
+                mediaItemCaches[it.code] = mediaItem
             }
             mPlayer.addMediaItems(mediaItems)
         }
@@ -158,6 +170,7 @@ public class VerticalPlayManager(
                 MediaItem.Builder().setUri(Uri.fromFile(file))
                     .setMediaId(it.code.toString()).build()
             mediaItems.add(mediaItem)
+            mediaItemCaches[it.code] = mediaItem
         }
         mPlayer.addMediaItems(mediaItems)
     }

@@ -12,6 +12,8 @@
     <color name="color_txt_unselected_home">#60696C</color>
     <color name="color_edit_bg_search_home">#f0f3f3</color>
     <color name="color_bg_divider_home">#E2E6E6</color>
+    <color name="color_txt_bottom_selected">#cccccc</color>
+    <color name="color_txt_bottom_unselected">#8c8c8c</color>
 
     <!--self-->
     <color name="color_txt_mine_name">#000000</color>

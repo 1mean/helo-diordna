@@ -9,6 +9,7 @@ import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
+import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.manager.VerticalPlayManager
@@ -32,7 +33,7 @@ import com.lxj.xpopup.interfaces.XPopupCallback
  * @version: v1.0
  */
 public class ShortFragment :
-    BaseLazyFragment<ShortVideoViewModel, FragmentVerticalVideoplayBinding>(), ExoPlayerListener,
+    BaseFragment<ShortVideoViewModel, FragmentVerticalVideoplayBinding>(), ExoPlayerListener,
     VideoPagerAdapter.VerticalVideoListener {
 
     private var isRefreshing = false
@@ -113,11 +114,6 @@ public class ShortFragment :
             manager?.initPlayer()
         }
     }
-
-//    override fun againOnResume() {
-//        super.againOnResume()
-//        manager?.continuePlayer()
-//    }
 
     override fun firstOnResume() {
         mViewModel.getVerticalVideos(true)
@@ -307,13 +303,6 @@ public class ShortFragment :
         mViewModel.updateAttention(userCode)
     }
 
-//    override fun onkeyBack() {
-//        mVelocityTracker?.recycle()
-//        manager?.release()
-//        manager = null
-//        super.onkeyBack()
-//    }
-
     private fun sendVideoComment(comment: String) {
 
     }
@@ -321,5 +310,27 @@ public class ShortFragment :
     override fun onDestroy() {
         super.onDestroy()
         mAdapter.clearAnimation()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        manager?.let {
+            if (it.isPlaying()) {
+                it.release()
+            }
+        }
+    }
+
+    override fun againOnResume() {
+        super.againOnResume()
+
+        manager?.let {
+
+            it.initPlayer()
+
+
+
+        }
+
     }
 }
