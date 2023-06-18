@@ -114,6 +114,25 @@ class PetManager {
         }
     }
 
+    suspend fun getAttentionFallsShortVideos(
+        startIndex: Int,
+        counts: Int
+    ): MutableList<PetVideo> {
+        return withContext(Dispatchers.Default) {
+            val userCodes = petDao.queryLiveAttentionUserCodes()
+            if (userCodes.isEmpty()) {
+                mutableListOf()
+            } else {
+                val videos = petDao.queryVerticalVideos(userCodes, startIndex, counts)
+                videos.forEach {
+                    it.user = petDao.queryUserByCode(it.authorId)
+                    it.videoData = petDao.queryVideoDataByCode(it.code)
+                }
+                videos
+            }
+        }
+    }
+
     suspend fun getMusicCounts(): Int {
 
         return withContext(Dispatchers.IO) {

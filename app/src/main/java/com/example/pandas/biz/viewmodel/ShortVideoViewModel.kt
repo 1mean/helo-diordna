@@ -20,11 +20,14 @@ public class ShortVideoViewModel : BaseViewModel() {
 
     var startIndex = 0//分页起始
     var fallsStartIndex = 0//分页起始
+    var attentionStartIndex = 0//分页起始
     var fallsPage = 10
+    var attentionPage = 10
     var hasMore = true//是否有更多
 
     val verticalVideos: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
     val fallsShortVideos: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
+    val attentionShortVideos: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
 
     fun getVerticalVideos(isRefresh: Boolean) {
 
@@ -119,6 +122,55 @@ public class ShortVideoViewModel : BaseViewModel() {
         }
     }
 
+    /**
+     * 获取关注的短视频
+     */
+    fun getAttentionFallVideos(isRefresh: Boolean) {
+
+        attentionPage = 10
+        if (isRefresh) {
+//            startIndex = (0..20).random()
+            attentionStartIndex = 0
+            attentionPage = 20
+        }
+        viewModelScope.launch {
+            runCatching {
+                PetManagerCoroutine.getAttentionFallsShortVideos(attentionStartIndex, attentionPage + 1)
+            }.onSuccess {
+
+                hasMore = if (it.size > attentionPage) {
+                    it.removeLast()
+                    true
+                } else {
+                    false
+                }
+
+                val dataList = UIDataWrapper(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    isEmpty = it.isEmpty(),
+                    hasMore = hasMore,
+                    isFirstEmpty = isRefresh && it.isEmpty(),
+                    listData = it
+                )
+                attentionStartIndex += attentionPage
+                attentionShortVideos.value = dataList
+            }.onFailure {
+
+                it.message?.loge()
+                it.printStackTrace()
+                val exception = ExceptionHandle.handleException(it)
+                val dataList = UIDataWrapper<PetVideo>(
+                    isSuccess = false,
+                    errMessage = exception.errorMsg,
+                    isRefresh = isRefresh,
+                    listData = mutableListOf()
+                )
+                attentionShortVideos.value = dataList
+            }
+        }
+    }
+
     fun updateCollect(isAdd: Boolean, videoCode: Int) {
         viewModelScope.launch {
             if (isAdd) {
@@ -129,7 +181,7 @@ public class ShortVideoViewModel : BaseViewModel() {
         }
     }
 
-    fun addAttention(userCode:Int){
+    fun addAttention(userCode: Int) {
 
     }
 }

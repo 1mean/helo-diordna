@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -21,7 +19,6 @@ import com.example.pandas.ui.adapter.HomeAdapter
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
-import com.google.android.material.internal.BaselineLayout
 
 
 /**
@@ -34,10 +31,16 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
 
     private val tabTitles = arrayListOf("首页", "动态", "发布", "视频", "我的")
 
-    private val colors
+    private val shortVideoColors
         get() = arrayOf(
-            ContextCompat.getColor(mActivity, R.color.color_txt_bottom_unselected),
-            ContextCompat.getColor(mActivity, R.color.color_txt_bottom_selected)
+            ContextCompat.getColor(mActivity, R.color.color_txt_bottom_selected),
+            ContextCompat.getColor(mActivity, R.color.color_txt_bottom_unselected)
+        )
+
+    private val shortColors
+        get() = arrayOf(
+            ContextCompat.getColor(mActivity, R.color.color_txt_short_bottom_selected),
+            ContextCompat.getColor(mActivity, R.color.color_txtshort_bottom_unselected)
         )
 
     private val bottomBgColors
@@ -67,15 +70,11 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
         binding.bnvMain.run {
             itemIconTintList = null //必须代码设置，点击后变化的图片才能显示
             setOnItemSelectedListener { item ->
-                updateBottom(false)
                 when (item.itemId) {
                     R.id.menu_home -> binding.vpHome.setCurrentItem(0, false)
                     R.id.menu_news -> binding.vpHome.setCurrentItem(1, false)
                     R.id.menu_add -> binding.vpHome.setCurrentItem(2, false)
-                    R.id.menu_more -> {
-                        binding.vpHome.setCurrentItem(3, false)
-                        updateBottom(true)
-                    }
+                    R.id.menu_more -> binding.vpHome.setCurrentItem(3, false)
                     R.id.menu_mine -> binding.vpHome.setCurrentItem(4, false)
                 }
                 true //true表示拦截，不跳转
@@ -96,89 +95,111 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
         }
     }
 
-    private var isShortVideo = false
+    private var vpStatus = 0
     override fun createObserver() {
-        mViewModel.bottomState.observe(viewLifecycleOwner) { isUpdate ->
-            Log.e("lidandan3", "改变了: $isUpdate")
-            if (isUpdate) {
-                isShortVideo = true
-                binding.bnvMain.setBackgroundColor(bottomBgColors[1])
-            } else {
-                if (isShortVideo) {
-                    binding.bnvMain.setBackgroundColor(bottomBgColors[0])
-                }
-            }
-        }
-    }
-
-    private var update: Boolean = false
-    private fun updateBottom(isUpdate: Boolean) {
-
-        if (isUpdate) {//修改底部效果
-            if (binding.bnvMain[0] is BottomNavigationMenuView) {
-                for (i in 0..4) {
-                    val item = (binding.bnvMain[0] as BottomNavigationMenuView)[i]
-                    if (item is BottomNavigationItemView) {
-                        item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
-                            childView.visibility = View.GONE
+        mViewModel.bottomState.observe(viewLifecycleOwner) { status ->
+            Log.e("lidandan3", "状态改变了: $status")
+            when (status) {
+                1 -> {//常规
+                    if (vpStatus != 1) {
+                        if (binding.bnvMain[0] is BottomNavigationMenuView) {
+                            for (i in 0..4) {
+                                val item = (binding.bnvMain[0] as BottomNavigationMenuView)[i]
+                                if (item is BottomNavigationItemView) {
+                                    if (i == 2) {
+                                        val publishView =
+                                            item.findViewById<ConstraintLayout>(R.id.clayout_bottom_publish)
+                                        publishView.setBackgroundResource(R.drawable.shape_bottom_publish)
+                                    } else {
+                                        item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
+                                            if (childView is ConstraintLayout) {
+                                                childView.visibility = View.GONE
+                                            } else {
+                                                childView.visibility = View.VISIBLE
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
-                        if (i == 2) {
-                            val publishView =
-                                item.findViewById<ConstraintLayout>(R.id.clayout_bottom_publish)
-                            publishView.setBackgroundResource(R.drawable.shape_bottom_publish1)
-                        } else {
-                            val titleView = LayoutInflater.from(mActivity)
-                                .inflate(R.layout.view_bottom_navigation_name, null)
-                            (item as BottomNavigationItemView).addView(titleView)
-                            val title =
-                                titleView.findViewById<AppCompatTextView>(R.id.txt_bottom_title)
-                            title.text = tabTitles[i]
-                            if (i == 3) {
-                                title.setTextColor(colors[1])
-                            } else {
-                                title.setTextColor(colors[0])
+                        vpStatus = 1
+                        binding.bnvMain.setBackgroundColor(bottomBgColors[0])
+                    }
+                }
+                2 -> {//白色底部的短视频界面
+                    if (vpStatus != 2) {
+                        if (binding.bnvMain[0] is BottomNavigationMenuView) {
+                            for (i in 0..4) {
+                                val item = (binding.bnvMain[0] as BottomNavigationMenuView)[i]
+                                if (item is BottomNavigationItemView) {
+                                    if (i == 2) {
+                                        val publishView =
+                                            item.findViewById<ConstraintLayout>(R.id.clayout_bottom_publish)
+                                        publishView.setBackgroundResource(R.drawable.shape_bottom_publish1)
+                                    } else {
+                                        var hasTitleView = false
+                                        item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
+                                            if (childView is ConstraintLayout) {
+                                                childView.visibility = View.VISIBLE
+                                                hasTitleView = true
+                                            } else {
+                                                childView.visibility = View.GONE
+                                            }
+                                        }
+                                        if (!hasTitleView) {
+                                            val titleView = LayoutInflater.from(mActivity)
+                                                .inflate(R.layout.view_bottom_navigation_name, null)
+                                            (item as BottomNavigationItemView).addView(titleView)
+                                        }
+                                        val title =
+                                            item.findViewById<AppCompatTextView>(R.id.txt_bottom_title)
+                                        title.text = tabTitles[i]
+                                        if (i == 3) {
+                                            title.setTextColor(shortColors[0])
+                                        } else {
+                                            title.setTextColor(shortColors[1])
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        vpStatus = 2
+                        binding.bnvMain.setBackgroundColor(bottomBgColors[0])
+                    }
+                }
+                3 -> {//黑色底部的视频播放界面
+                    if (binding.bnvMain[0] is BottomNavigationMenuView) {
+                        for (i in 0..4) {
+                            val item = (binding.bnvMain[0] as BottomNavigationMenuView)[i]
+                            if (item is BottomNavigationItemView) {
+
+                                if (i == 2) {
+                                    val publishView =
+                                        item.findViewById<ConstraintLayout>(R.id.clayout_bottom_publish)
+                                    publishView.setBackgroundResource(R.drawable.shape_bottom_publish1)
+                                } else {
+                                    item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
+                                        if (childView is ConstraintLayout) {
+                                            childView.visibility = View.VISIBLE
+                                            val title =
+                                                childView.findViewById<AppCompatTextView>(R.id.txt_bottom_title)
+                                            if (i == 3) {
+                                                title.setTextColor(shortVideoColors[0])
+                                            } else {
+                                                title.setTextColor(shortVideoColors[1])
+                                            }
+                                        } else {
+                                            childView.visibility = View.GONE
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
+                    vpStatus = 3
+                    binding.bnvMain.setBackgroundColor(bottomBgColors[1])
                 }
             }
-            update = true
-        } else {
-            if (!update) {
-                return
-            }
-            if (binding.bnvMain[0] is BottomNavigationMenuView) {
-                for (i in 0..4) {
-                    val item = (binding.bnvMain[0] as BottomNavigationMenuView)[i]
-                    if (item is BottomNavigationItemView) {
-                        item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
-                            Log.e("lidandan3","childVIew: $childView")
-                            if (childView is ConstraintLayout) {
-                                childView.visibility = View.GONE
-                            } else {
-                                childView.visibility = View.VISIBLE
-                            }
-                        }
-
-//                        if (i == 2) {
-//                            val publishView =
-//                                item.findViewById<ConstraintLayout>(R.id.clayout_bottom_publish)
-//                            publishView.setBackgroundResource(R.drawable.shape_bottom_publish)
-//                        } else {
-//                            val size = item.childCount
-//                            for (i in 0 until size) {
-//                                val childView = item[i]
-//                                if (childView is ConstraintLayout && childView.id == R.id.clayout_title1) {
-//                                    item.removeView(childView)
-//                                }
-//                            }
-//                        }
-                    }
-                }
-            }
-
-
-            update = false
         }
     }
 

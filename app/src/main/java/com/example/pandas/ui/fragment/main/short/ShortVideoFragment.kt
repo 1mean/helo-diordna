@@ -34,6 +34,14 @@ public class ShortVideoFragment() :
 
     private val tabTitles = arrayListOf("关注", "发现", "推荐")
 
+    private val tabTitleColors
+        get() = arrayOf(
+            ContextCompat.getColor(mActivity, R.color.color_vertical_played),
+            ContextCompat.getColor(mActivity, R.color.color_txt_short_tab_unselected),
+            ContextCompat.getColor(mActivity, R.color.color_txt_short_tab_selected),
+            ContextCompat.getColor(mActivity, R.color.white)
+        )
+
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.vp2Short.run {
@@ -46,7 +54,7 @@ public class ShortVideoFragment() :
                 override fun createFragment(position: Int): Fragment {
                     return when (position) {
                         0 -> {
-                            ShortVideoListFragment()
+                            ShortVideoAttentionFragment()
                         }
                         1 -> {
                             ShortVideoListFragment()
@@ -78,19 +86,9 @@ public class ShortVideoFragment() :
                         resources.getDimension(R.dimen.common_sz_6_dimens)
                 tv.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
                 if (tab.isSelected) {
-                    tv.setTextColor(
-                        ContextCompat.getColor(
-                            mActivity,
-                            R.color.color_txt_short_tab_selected
-                        )
-                    )
+                    tv.setTextColor(tabTitleColors[2])
                 } else {
-                    tv.setTextColor(
-                        ContextCompat.getColor(
-                            mActivity,
-                            R.color.color_txt_short_tab_unselected
-                        )
-                    )
+                    tv.setTextColor(tabTitleColors[1])
                 }
                 tab.customView = tv
             }
@@ -108,12 +106,7 @@ public class ShortVideoFragment() :
                         true,
                         R.color.color_white_lucency
                     )
-                    tv.setTextColor(
-                        ContextCompat.getColor(
-                            mActivity,
-                            R.color.white
-                        )
-                    )
+                    tv.setTextColor(tabTitleColors[3])
                     binding.tbShort.setSelectedTabIndicatorColor(
                         ContextCompat.getColor(
                             mActivity,
@@ -124,47 +117,26 @@ public class ShortVideoFragment() :
                     for (index in 0 until (tabTitles.size - 1)) {
                         val tabView = binding.tbShort.getTabAt(index)!!
                         val title = (tabView.customView as TextView?)!!
-                        title.setTextColor(
-                            ContextCompat.getColor(
-                                mActivity,
-                                R.color.color_vertical_played
-                            )
-                        )
+                        title.setTextColor(tabTitleColors[0])
                         title.textSize = resources.getDimension(R.dimen.common_sz_6_dimens)
                     }
-
-                    mViewModel.updateBottomBackground(true)
+                    mViewModel.updateBottomBackground(3)
                 } else {
 
                     for (index in 0 until tabTitles.size) {
                         if (index == selectedIndex) {
-                            tv.setTextColor(
-                                ContextCompat.getColor(
-                                    mActivity,
-                                    R.color.color_txt_short_tab_selected
-                                )
-                            )
+                            tv.setTextColor(tabTitleColors[2])
                         } else {
                             val tabView = binding.tbShort.getTabAt(index)!!
                             val title = (tabView.customView as TextView?)!!
-                            title.setTextColor(
-                                ContextCompat.getColor(
-                                    mActivity,
-                                    R.color.color_txt_short_tab_unselected
-                                )
-                            )
+                            title.setTextColor(tabTitleColors[1])
                             title.textSize = resources.getDimension(R.dimen.common_sz_6_dimens)
                         }
                     }
 
-                    binding.tbShort.setSelectedTabIndicatorColor(
-                        ContextCompat.getColor(
-                            mActivity,
-                            R.color.color_txt_short_tab_selected
-                        )
-                    )
+                    binding.tbShort.setSelectedTabIndicatorColor(tabTitleColors[2])
                     StatusBarUtils.updataStatus(mActivity, true, true, R.color.color_white_lucency)
-                    mViewModel.updateBottomBackground(false)
+                    mViewModel.updateBottomBackground(2)
                 }
                 tv.textSize = resources.getDimension(R.dimen.common_sz_7_dimens)
             }
@@ -194,15 +166,17 @@ public class ShortVideoFragment() :
             } else {
                 StatusBarUtils.updataStatus(mActivity, true, true, R.color.color_white_lucency)
             }
-            mViewModel.updateBottomBackground(false)
         }
+        mViewModel.updateBottomBackground(1)
     }
 
     override fun onResume() {
         super.onResume()
         if (binding.tbShort.selectedTabPosition == 2) {
             StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
-            mViewModel.updateBottomBackground(true)
+            mViewModel.updateBottomBackground(3)
+        } else {
+            mViewModel.updateBottomBackground(2)
         }
     }
 }

@@ -14,6 +14,8 @@
     <color name="color_bg_divider_home">#E2E6E6</color>
     <color name="color_txt_bottom_selected">#cccccc</color>
     <color name="color_txt_bottom_unselected">#8c8c8c</color>
+    <color name="color_txt_short_bottom_selected">#454651</color>
+    <color name="color_txtshort_bottom_unselected">#666a71</color>
 
     <!--self-->
     <color name="color_txt_mine_name">#000000</color>

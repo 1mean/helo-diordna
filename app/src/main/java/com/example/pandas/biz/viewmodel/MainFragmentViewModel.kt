@@ -2,8 +2,6 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.bean.UIDataWrapper
-import com.example.pandas.sql.entity.CommentAndUser
 
 /**
  * @description: 全局viewmodel
@@ -14,10 +12,10 @@ import com.example.pandas.sql.entity.CommentAndUser
 public class MainFragmentViewModel : BaseViewModel() {
 
 
-    val bottomState: MutableLiveData<Boolean> by lazy { MutableLiveData() }
+    val bottomState: MutableLiveData<Int> by lazy { MutableLiveData() }
 
-    fun updateBottomBackground(openShortVideo: Boolean) {
-        bottomState.value = openShortVideo
+    fun updateBottomBackground(status: Int) {
+        bottomState.value = status
     }
 
 }
