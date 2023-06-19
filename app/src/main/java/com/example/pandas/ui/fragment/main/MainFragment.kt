@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -58,14 +59,14 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
             isUserInputEnabled = false //禁止滑动
         }
 
-        binding.bnvMain.getOrCreateBadge(R.id.menu_news).run {
-            badgeGravity = BadgeDrawable.BOTTOM_END
-            backgroundColor =
-                ContextCompat.getColor(mActivity, R.color.color_groupbutton_text_selected)
-            maxCharacterCount = 3
-            number = 99
-            badgeTextColor = Color.WHITE
-        }
+//        binding.bnvMain.getOrCreateBadge(R.id.menu_news).run {
+//            badgeGravity = BadgeDrawable.BOTTOM_END
+//            backgroundColor =
+//                ContextCompat.getColor(mActivity, R.color.color_groupbutton_text_selected)
+//            maxCharacterCount = 3
+//            number = 99
+//            badgeTextColor = Color.WHITE
+//        }
 
         binding.bnvMain.run {
             itemIconTintList = null //必须代码设置，点击后变化的图片才能显示
@@ -109,7 +110,10 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
                                     if (i == 2) {
                                         val publishView =
                                             item.findViewById<ConstraintLayout>(R.id.clayout_bottom_publish)
+                                        val publishImg =
+                                            item.findViewById<AppCompatImageView>(R.id.img_bottom_publish)
                                         publishView.setBackgroundResource(R.drawable.shape_bottom_publish)
+                                        publishImg.setImageResource(R.mipmap.img_bottom_publish)
                                     } else {
                                         item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
                                             if (childView is ConstraintLayout) {
@@ -176,11 +180,16 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
                                 if (i == 2) {
                                     val publishView =
                                         item.findViewById<ConstraintLayout>(R.id.clayout_bottom_publish)
+                                    val publishImg =
+                                        item.findViewById<AppCompatImageView>(R.id.img_bottom_publish)
                                     publishView.setBackgroundResource(R.drawable.shape_bottom_publish1)
+                                    publishImg.setImageResource(R.mipmap.img_bottom_publish1)
                                 } else {
+                                    var hasTitleView = false
                                     item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
                                         if (childView is ConstraintLayout) {
                                             childView.visibility = View.VISIBLE
+                                            hasTitleView = true
                                             val title =
                                                 childView.findViewById<AppCompatTextView>(R.id.txt_bottom_title)
                                             if (i == 3) {
@@ -191,6 +200,19 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
                                         } else {
                                             childView.visibility = View.GONE
                                         }
+                                    }
+                                    if (!hasTitleView) {
+                                        val titleView = LayoutInflater.from(mActivity)
+                                            .inflate(R.layout.view_bottom_navigation_name, null)
+                                        (item as BottomNavigationItemView).addView(titleView)
+                                    }
+                                    val title =
+                                        item.findViewById<AppCompatTextView>(R.id.txt_bottom_title)
+                                    title.text = tabTitles[i]
+                                    if (i == 3) {
+                                        title.setTextColor(shortVideoColors[0])
+                                    } else {
+                                        title.setTextColor(shortVideoColors[1])
                                     }
                                 }
                             }

@@ -1,6 +1,7 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
@@ -122,7 +123,9 @@ public class LoveActivity : BaseActivity<HistoryViewModeL, ActivityLoveBinding>(
     override fun createObserver() {
 
         mViewModel.loveResult.observe(this) {
+            Log.e("1mean","listdata: ${it.listData.size}")
             if (it.isSuccess) {
+                Log.e("1mean","listdata: ${it.listData.size}")
                 if (it.isRefresh) {
                     mAdapter.refreshAdapter(it.listData)
                     binding.rvLater.isRefreshing(false)

@@ -17,7 +17,8 @@ object AppInfos {
     const val ATTENTION_KEY = "attention" //搜索关注列表的key
     const val VIDEO_PLAY_KEY = "code" //视频播放界面需要传递的key
     const val HEAD_URL =
-        "https://i2.hdslb.com/bfs/face/7974f1f6c031d305a30ea3ecd7aedadacb3921a4.jpg@150w_150h.jpg"
+        "https://i2.hdslb.com/bfs/face/7974f1f6c031d305a30ea3ecd7aedadacb3921a4.jpg"
+       // "https://i2.hdslb.com/bfs/face/7974f1f6c031d305a30ea3ecd7aedadacb3921a4.jpg@150w_150h.jpg"
     const val TYPE_MP3 = 999 //音乐类型
 
     const val headImgUrl = "https://i0.hdslb.com/bfs/face/member/noface.jpg@240w_240h_1c_1s.webp"

@@ -11,6 +11,7 @@ import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.databinding.FragmentListShortVideoBinding
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
+import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.FallsShortVideoAdapter
 import com.example.pandas.ui.adapter.decoration.FallsItemDecoration
 import com.example.pandas.ui.ext.init
@@ -24,9 +25,10 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @version: v1.0
  */
 public class ShortVideoAttentionFragment() :
-    BaseLazyFragment<ShortVideoViewModel, FragmentListShortVideoBinding>() {
+    BaseLazyFragment<ShortVideoViewModel, FragmentListShortVideoBinding>(),
+    FallsShortVideoAdapter.ItemListener {
 
-    private val mAdapter: FallsShortVideoAdapter by lazy { FallsShortVideoAdapter() }
+    private val mAdapter: FallsShortVideoAdapter by lazy { FallsShortVideoAdapter(listener = this) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -94,5 +96,9 @@ public class ShortVideoAttentionFragment() :
 
     override fun firstOnResume() {
         mViewModel.getAttentionFallVideos(true)
+    }
+
+    override fun updataVideoData(videoData: VideoData) {
+        mViewModel.addOrUpdateVideoData(videoData)
     }
 }

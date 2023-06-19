@@ -73,12 +73,11 @@
                                 android:src="@mipmap/img_music_top_right" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <com.example.pandas.ui.view.recyclerview.MyVerticalRecyclerView
                             android:id="@+id/recycler_home_music_top"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:nestedScrollingEnabled="false" />
+                            android:layout_marginTop="10dp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/clayout_music_notice"

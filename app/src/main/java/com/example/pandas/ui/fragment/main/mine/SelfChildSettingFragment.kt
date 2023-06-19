@@ -1,11 +1,14 @@
 package com.example.pandas.ui.fragment.main.mine
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.ViewModelStoreOwner
+import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentChildSettingBinding
@@ -13,6 +16,8 @@ import com.example.pandas.ui.activity.*
 import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.ui.ext.startToActivity
 import com.example.pandas.ui.view.dialog.TimingBottomSheetDialog
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.util.SmartGlideImageLoader
 
 /**
  * @description: 我的-设置
@@ -26,7 +31,10 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        loadCircleImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
+        //loadCircleImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
+        loadImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
+
+        binding.viewHeader.setOnClickListener { showHeader() }
 
         binding.clayoutDownload.setOnClickListener {
 //            startActivity(Intent(activity, LocalCacheActivity::class.java))
@@ -97,4 +105,26 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
         mViewModel.getCurrentFollows(mActivity)
     }
 
+    private fun showHeader() {
+        XPopup.Builder(context)
+            .isDestroyOnDismiss(true)
+            .asImageViewer(
+                binding.imgMineHeader,
+                AppInfos.HEAD_URL,
+                true,
+                Color.parseColor("#f1f1f1"),
+                -1,
+                0,
+                true,
+                Color.BLACK,
+                SmartGlideImageLoader(R.mipmap.liuyifei)
+            ) { popupView, position ->
+                Toast.makeText(
+                    requireContext(),
+                    "点击右下角保存",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            .show()
+    }
 }

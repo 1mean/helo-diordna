@@ -82,6 +82,9 @@ interface PetVideoDao {
     @Delete
     fun deleteComment(comment: VideoComment)
 
+    @Delete
+    suspend fun deleteHistory(history: History)
+
     @Query("delete from history")
     fun deleteAllHistory()
 
@@ -248,6 +251,14 @@ interface PetVideoDao {
     suspend fun queryRandomVerticalVideos(
         startIndex: Int,
         count: Int
+    ): MutableList<VideoAndUser>
+
+    @Transaction
+    @Query("select * from pet_video where vertical=1 and code!=(:videoCode) order by random() desc limit (:startIndex),(:count)")
+    suspend fun queryRandomVerticalVideos1(
+        startIndex: Int,
+        count: Int,
+        videoCode: Int
     ): MutableList<VideoAndUser>
 
     @Transaction

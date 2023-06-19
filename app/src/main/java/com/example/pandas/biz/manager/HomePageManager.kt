@@ -96,6 +96,42 @@ class PetManager {
         }
     }
 
+    suspend fun getVerticalVideos1(
+        startIndex: Int,
+        counts: Int,
+        videoCode: Int
+    ): MutableList<PetVideo> {
+
+        return withContext(Dispatchers.Default) {
+            val petVideos = mutableListOf<PetVideo>()
+            val list = if (startIndex == 0) {
+                val list = petDao.queryRandomVerticalVideos1(0, 20, videoCode)
+                val firstVideo = petDao.queryVideoUserByCode(videoCode)
+                list.add(0, firstVideo)
+                list
+            } else {
+                petDao.queryRandomVerticalVideos1(startIndex, counts, videoCode)
+            }
+            list.forEach {
+                val video = it.video
+                val videoData = petDao.queryVideoDataByCode(video.code)
+                val comments = petDao.queryCommentCounts(video.code)
+                if (videoData == null) {
+                    if (comments > 0) {
+                        val vd = VideoData(videoCode = video.code, comments = comments)
+                        video.videoData = vd
+                    }
+                } else {
+                    videoData.comments = comments
+                    video.videoData = videoData
+                }
+                video.user = it.user
+                petVideos.add(video)
+            }
+            petVideos
+        }
+    }
+
     suspend fun getFallsShortVideos(
         startIndex: Int,
         counts: Int
@@ -608,10 +644,12 @@ class PetManager {
             val history = petDao.queryHistoryByPage(startIndex, counts)
             history.forEach {
                 val videoUser = petDao.queryVideoUserByCode(it.code)
-                videoUser.video.user = videoUser.user
-                videoUser.video.videoData = petDao.queryVideoDataByCode(it.code)
-                val historyItem = HistoryItem(it, videoUser.video)
-                historyList.add(historyItem)
+                if (videoUser != null) {
+                    videoUser.video.user = videoUser.user
+                    videoUser.video.videoData = petDao.queryVideoDataByCode(it.code)
+                    val historyItem = HistoryItem(it, videoUser.video)
+                    historyList.add(historyItem)
+                }
             }
             historyList
         }
@@ -641,13 +679,16 @@ class PetManager {
 
             val laters = mutableListOf<PetVideo>()
             val videoDatas = petDao.queryLoveByPage(startIndex, counts)
+            Log.e("1mean", "videoDatas: ${videoDatas.size}")
             videoDatas.forEach {
-
                 val videoUser = petDao.queryVideoUserByCode(it.videoCode)
-                val video = videoUser.video
-                video.user = videoUser.user
-                video.videoData = it
-                laters.add(video)
+                Log.e("1mean", "videoUser:$videoUser")
+                if (videoUser != null) {
+                    val video = videoUser.video
+                    video.user = videoUser.user
+                    video.videoData = it
+                    laters.add(video)
+                }
             }
             laters
         }

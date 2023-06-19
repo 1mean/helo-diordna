@@ -3,17 +3,14 @@ package com.example.pandas.ui.adapter
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.util.Log
-import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
@@ -22,7 +19,9 @@ import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.ext.addScaleAnimation
+import com.example.pandas.ui.ext.startShortVideoActivity
 import com.example.pandas.utils.ScreenUtil
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -35,6 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView
  */
 public class FallsShortVideoAdapter(
     private val list: MutableList<PetVideo> = mutableListOf(),
+    private val listener:ItemListener
 ) :
     BaseCommonAdapter<PetVideo>(list) {
 
@@ -50,8 +50,14 @@ public class FallsShortVideoAdapter(
         val likeLayout = holder.getWidget<ConstraintLayout>(R.id.clayout_falls_short_like)
         val likeView = holder.getWidget<AppCompatImageView>(R.id.img_falls_short_like)
 
+        val textColors =
+            arrayOf(
+                ContextCompat.getColor(context, R.color.color_txt_right_comment_item_like),
+                ContextCompat.getColor(context, R.color.color_txt_right_comment_item_liked)
+            )
+
         val user = data.user
-        val videoData = data.videoData
+        var videoData = data.videoData
 
         user?.let {
             it.headUrl?.let { headerUrl ->
@@ -126,77 +132,64 @@ public class FallsShortVideoAdapter(
                     override fun onLoadCleared(placeholder: Drawable?) {
                     }
                 })
+            holder.itemView.setOnClickListener {
+                startShortVideoActivity(context, data.code)
+            }
         }
 
         title.text = data.title
 
         if (videoData == null) {
-            likes.visibility = View.GONE
+            likes.text = "0"
             likeView.setImageResource(R.mipmap.img_item_comment_like)
+            likes.setTextColor(textColors[0])
         }
 
         videoData?.let {
-            if (it.likes > 0) {
-                likes.visibility = View.VISIBLE
-                likes.text = it.likes.toString()
-            } else {
-                likes.visibility = View.GONE
-            }
+
+            likes.text = it.likes.toString()
 
             if (!it.like) {
                 likeView.setImageResource(R.mipmap.img_item_comment_like)
-                likes.setTextColor(
-                    ContextCompat.getColor(
-                        context,
-                        R.color.color_txt_right_comment_item_like
-                    )
-                )
+                likes.setTextColor(textColors[0])
             } else {
                 likeView.setImageResource(R.mipmap.img_item_comment_liked)
-                likes.setTextColor(
-                    ContextCompat.getColor(
-                        context,
-                        R.color.color_txt_right_comment_item_liked
-                    )
-                )
+                likes.setTextColor(textColors[1])
             }
         }
 
         likeLayout.setOnClickListener {
-            likeView.post {
-                addScaleAnimation(likeView, 1.3f)
-            }
-            videoData?.let {
-                if (it.like) {
+            addScaleAnimation(likeView, 1.3f)
+            if (videoData == null) {
+                Log.e("lidandan3","1")
+                likeView.setImageResource(R.mipmap.img_item_comment_liked)
+                likes.text = "1"
+                videoData = VideoData(videoCode = data.code, like = true, likes = 1)
+                data.videoData = videoData
+                likes.setTextColor(textColors[1])
+            } else {
+                if (videoData!!.like) {
+                    Log.e("lidandan3","2")
                     likeView.setImageResource(R.mipmap.img_item_comment_like)
-                    likes.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            R.color.color_txt_right_comment_item_like
-                        )
-                    )
-                    it.likes -= 1
-                    likes.text = it.likes.toString()
-                    if (it.likes == 0) {
-                        likes.visibility = View.GONE
-                    }
+                    likes.setTextColor(textColors[0])
+                    videoData!!.likes -= 1
+                    likes.text = videoData!!.likes.toString()
                 } else {
+                    Log.e("lidandan3","3")
                     likeView.setImageResource(R.mipmap.img_item_comment_liked)
-                    likes.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            R.color.color_txt_right_comment_item_liked
-                        )
-                    )
-                    it.likes += 1
-                    likes.visibility = View.VISIBLE
-                    likes.text = it.likes.toString()
+                    likes.setTextColor(textColors[1])
+                    videoData!!.likes += 1
+                    likes.text = videoData!!.likes.toString()
                 }
-                it.like = !it.like
+                videoData!!.like = !videoData!!.like
             }
+            listener.updataVideoData(videoData!!)
         }
     }
 
+    interface ItemListener {
+        fun updataVideoData(videoData: VideoData)
+    }
 //    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
 //        super.onAttachedToRecyclerView(recyclerView)
 //        val manager = recyclerView.layoutManager

@@ -38,7 +38,7 @@
                 android:required="false" />
 
         <activity
-                android:name="com.example.pandas.ui.activity.MainActivity"
+                android:name="com.example.pandas.ui.activity.SplashActivity"
                 android:exported="true"
                 android:launchMode="singleTask">
             <intent-filter>
@@ -57,6 +57,9 @@
             </intent-filter>
         </activity>
 
+        <activity
+                android:name=".ui.activity.MainActivity"
+                android:launchMode="singleTask" />
         <activity android:name=".ui.activity.BehaviorActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.IntegralActivity" />
@@ -123,15 +126,15 @@
                 android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!--分享7.1.7SDK适配微信官方的v6.8.0版本，需要在工程AndroidManifest.xml清单文件中增加-->
-<!--        <provider-->
-<!--                android:name="androidx.core.content.FileProvider"-->
-<!--                android:authorities="${applicationId}.fileprovider"-->
-<!--                android:exported="false"-->
-<!--                android:grantUriPermissions="true">-->
-<!--            <meta-data-->
-<!--                    android:name="android.support.FILE_PROVIDER_PATHS"-->
-<!--                    android:resource="@xml/filepaths" />-->
-<!--        </provider>-->
+        <!--        <provider-->
+        <!--                android:name="androidx.core.content.FileProvider"-->
+        <!--                android:authorities="${applicationId}.fileprovider"-->
+        <!--                android:exported="false"-->
+        <!--                android:grantUriPermissions="true">-->
+        <!--            <meta-data-->
+        <!--                    android:name="android.support.FILE_PROVIDER_PATHS"-->
+        <!--                    android:resource="@xml/filepaths" />-->
+        <!--        </provider>-->
 
         <provider
                 android:name="androidx.core.content.FileProvider"
@@ -140,7 +143,7 @@
                 android:grantUriPermissions="true">
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/provider_paths"/>
+                    android:resource="@xml/provider_paths" />
         </provider>
 
 

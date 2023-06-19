@@ -67,6 +67,8 @@ public class ShortVideoActivity :
 
     var popupView: ShortRightPopuWindow? = null
 
+    var videoCode: Int = -1
+
     private val mHandler: Handler = Handler(Looper.getMainLooper())
 
     override fun initStatusView() {
@@ -80,6 +82,7 @@ public class ShortVideoActivity :
         //window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
         manager = VerticalPlayManager(this, this)
 
+        videoCode = intent.getIntExtra("videoCode", -1)
         keyBoardManager = SoftInputManager(this)
         keyBoardManager!!.setOnSoftKeyBoardChangeListener(keyBoardListener)
 
@@ -165,7 +168,7 @@ public class ShortVideoActivity :
 
     override fun firstOnResume() {
         super.firstOnResume()
-        mViewModel.getVerticalVideos(true)
+        mViewModel.getVerticalVideos(true, videoCode)
     }
 
     /**
@@ -265,7 +268,7 @@ public class ShortVideoActivity :
                             if (totalOffset >= 100) {
                                 isRefreshing = true
                                 binding.clayoutVerticalRefresh.visibility = View.VISIBLE
-                                mViewModel.getVerticalVideos(true)
+                                mViewModel.getVerticalVideos(true, videoCode)
                             }
                         }
 
@@ -441,7 +444,7 @@ public class ShortVideoActivity :
 
                 val count = mAdapter.itemCount
                 if (position == (count - 1) && hasMore) {
-                    mViewModel.getVerticalVideos(false)
+                    mViewModel.getVerticalVideos(false, videoCode)
                 }
 
                 mAdapter.recyclerView?.let {

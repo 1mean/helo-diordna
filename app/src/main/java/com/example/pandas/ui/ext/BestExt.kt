@@ -1,6 +1,7 @@
 package com.example.pandas.ui.ext
 
 import android.animation.Animator
+import android.animation.Animator.AnimatorListener
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
@@ -20,6 +21,7 @@ import com.example.pandas.biz.interaction.AnimationListener
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.activity.AudioPlayActivity
+import com.example.pandas.ui.activity.ShortVideoActivity
 import com.example.pandas.ui.activity.UserInfoActivity
 import com.example.pandas.ui.activity.VideoPlayingActivity
 import kotlin.math.abs
@@ -92,6 +94,7 @@ fun AppCompatActivity.popBack(tag: String) {
 //-------------------<Activity相关 开始>-------------------------------------------------------------
 
 fun startAnyActivity(context: Context, cls: Class<*>) {
+
     context.startActivity(Intent(context, cls))
 }
 
@@ -113,6 +116,13 @@ fun startMusicActivity(context: Context, fileName: String, position: Int = 0) {
 fun startVideoPlayingActivity(context: Context, video: PetVideo) {
     val intent = Intent(context, VideoPlayingActivity::class.java).apply {
         putExtra("petVideo", video)
+    }
+    context.startActivity(intent)
+}
+
+fun startShortVideoActivity(context: Context, videoCode: Int) {
+    val intent = Intent(context, ShortVideoActivity::class.java).apply {
+        putExtra("videoCode", videoCode)
     }
     context.startActivity(intent)
 }
@@ -169,6 +179,14 @@ fun addScaleAnimation(view: View) {
     animationSet.start()
 }
 
+//一个普通的放大动画1-1.3f
+fun addAlphaAnimation(view: View, duration: Long, listener: AnimatorListener) {
+    val alphaAnimator = ObjectAnimator.ofFloat(view, "alpha", 0f, 1f)
+    alphaAnimator.duration = duration
+    alphaAnimator.start()
+    alphaAnimator.addListener(listener)
+}
+
 //短视频界面的动画，先缩放到0，然后缩放到1.3f，然后缩放正常
 fun addShortStartAnimation(view: View) {
     val transScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0f, 1.4f, 1f)
@@ -201,9 +219,9 @@ fun addScaleAnimation(view: View, scale: Float) {
 }
 
 //旋转动画
-fun addRotateAnimation(view:View,duration:Long){
+fun addRotateAnimation(view: View, duration: Long) {
     //默认是按照中心点旋转
-    val transRotation = ObjectAnimator.ofFloat(view, "rotation", 0f,360f)
+    val transRotation = ObjectAnimator.ofFloat(view, "rotation", 0f, 360f)
     transRotation.interpolator = LinearInterpolator()
     transRotation.repeatCount = -1 //动画永不停止
 

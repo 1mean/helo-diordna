@@ -10,6 +10,7 @@ import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.GridItem
 import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.ui.activity.ListActivity
 import com.example.pandas.ui.activity.PandaActivity
 import com.example.pandas.ui.activity.VideoItemListActivity
@@ -30,7 +31,8 @@ public class PandasGridAdapter(list: MutableList<GridItem>) : BaseCommonAdapter<
         val image = holder.getWidget<AppCompatImageView>(R.id.img_pandas_top)
         val name = holder.getWidget<AppCompatTextView>(R.id.txt_pandas_top)
 
-        loadCircleImage(holder.itemView.context, data.item2, image)
+        //loadCircleImage(holder.itemView.context, data.item2, image)
+        loadImage(holder.itemView.context, data.item2, image)
         if (position == 0) {
             name.setTextColor(ContextCompat.getColor(context, R.color.color_txt_item_name))
         } else {

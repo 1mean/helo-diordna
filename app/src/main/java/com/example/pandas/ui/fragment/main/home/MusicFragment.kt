@@ -16,6 +16,7 @@ import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.fragment.main.home.music.MusicChildFragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 /**
  * @description: 首页-音乐
@@ -93,6 +94,7 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
             this.verticalOffset = verticalOffset
             if (verticalOffset < 0) {
                 binding.swipMusic.isEnabled = false
+
             } else if (verticalOffset == 0) {//当滑动到偏移为0时处理，再往下拉不会触发监听
                 val fragments = childFragmentManager.fragments
                 val currentItem = binding.vp2Music.currentItem

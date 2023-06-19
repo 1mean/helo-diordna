@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
  */
 public class ShortVideoViewModel : BaseViewModel() {
 
+    var startIndex1 = 0//分页起始
     var startIndex = 0//分页起始
     var fallsStartIndex = 0//分页起始
     var attentionStartIndex = 0//分页起始
@@ -29,10 +30,52 @@ public class ShortVideoViewModel : BaseViewModel() {
     val fallsShortVideos: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
     val attentionShortVideos: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
 
+    fun getVerticalVideos(isRefresh: Boolean, videoCode: Int) {
+
+        if (isRefresh) {
+            startIndex1 = 0
+        }
+        viewModelScope.launch {
+            runCatching {
+                PetManagerCoroutine.getVerticalVideos1(startIndex1, 21, videoCode)
+            }.onSuccess {
+
+                hasMore = if (it.size > 20) {
+                    it.removeLast()
+                    true
+                } else {
+                    false
+                }
+
+                val dataList = UIDataWrapper(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    isEmpty = it.isEmpty(),
+                    hasMore = hasMore,
+                    isFirstEmpty = isRefresh && it.isEmpty(),
+                    listData = it
+                )
+                startIndex1 += 10
+                verticalVideos.value = dataList
+            }.onFailure {
+
+                it.message?.loge()
+                it.printStackTrace()
+                val exception = ExceptionHandle.handleException(it)
+                val dataList = UIDataWrapper<PetVideo>(
+                    isSuccess = false,
+                    errMessage = exception.errorMsg,
+                    isRefresh = isRefresh,
+                    listData = mutableListOf()
+                )
+                verticalVideos.value = dataList
+            }
+        }
+    }
+
     fun getVerticalVideos(isRefresh: Boolean) {
 
         if (isRefresh) {
-//            startIndex = (0..20).random()
             startIndex = 0
         }
         viewModelScope.launch {
@@ -135,7 +178,10 @@ public class ShortVideoViewModel : BaseViewModel() {
         }
         viewModelScope.launch {
             runCatching {
-                PetManagerCoroutine.getAttentionFallsShortVideos(attentionStartIndex, attentionPage + 1)
+                PetManagerCoroutine.getAttentionFallsShortVideos(
+                    attentionStartIndex,
+                    attentionPage + 1
+                )
             }.onSuccess {
 
                 hasMore = if (it.size > attentionPage) {
