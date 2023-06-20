@@ -13,7 +13,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 32
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
@@ -197,4 +197,6 @@ dependencies {
     implementation  'io.github.scwang90:refresh-footer-ball:2.0.5'        //球脉冲加载
     implementation  'io.github.scwang90:refresh-footer-classics:2.0.5'    //经典加载
 
+    /*web*/
+    implementation 'com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx'
 }

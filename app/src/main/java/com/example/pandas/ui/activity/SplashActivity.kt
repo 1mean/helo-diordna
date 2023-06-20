@@ -1,14 +1,13 @@
 package com.example.pandas.ui.activity
 
 import android.animation.Animator
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.databinding.ActivitySplashBinding
 import com.example.pandas.ui.ext.addAlphaAnimation
-import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.utils.StatusBarUtils
 
 /**
@@ -29,7 +28,12 @@ public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>
                 }
 
                 override fun onAnimationEnd(animation: Animator?) {
-                    startAnyActivity(this@SplashActivity, MainActivity::class.java)
+                    val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(
+                        R.anim.animate_activity_in,
+                        R.anim.animate_activity_out
+                    )
                     finish()
                 }
 

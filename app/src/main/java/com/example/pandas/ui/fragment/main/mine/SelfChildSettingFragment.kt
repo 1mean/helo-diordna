@@ -92,6 +92,10 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
         binding.clayoutMineExp.setOnClickListener {
             startAnyActivity(mActivity, IntegralActivity::class.java)
         }
+
+        binding.clayoutSettingAbout.setOnClickListener {
+            startAnyActivity(mActivity, AboutActivity::class.java)
+        }
     }
 
     override fun createObserver() {

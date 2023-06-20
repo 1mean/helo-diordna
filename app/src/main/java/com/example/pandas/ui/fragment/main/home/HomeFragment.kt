@@ -17,6 +17,7 @@ import com.example.helo_base.magic.commonnavigator.indicators.LinePagerIndicator
 import com.example.helo_base.magic.commonnavigator.titles.ColorFlipPagerTitleView
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadLocalCircleImage
@@ -150,6 +151,12 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
     }
 
     override fun createObserver() {
+
+        appViewModel.appColor.observe(this) {
+            Log.e("lidandan3", "背景颜色改变了呀：$it")
+
+            binding.bar.setBackgroundResource(it)
+        }
 
         mViewModel.userInfo.observe(viewLifecycleOwner) {
 

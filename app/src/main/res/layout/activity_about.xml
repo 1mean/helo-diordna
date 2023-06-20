@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_bg_setting"
+        android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_setting_top"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/color_bg_home">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ibn_setting_back"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_setting_top"
+                android:background="@null"
+                android:src="@mipmap/img_back_1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_setting_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_setting_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_setting_top"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_setting_top"
+                app:layout_constraintRight_toRightOf="@id/clayout_setting_top"
+                android:includeFontPadding="false"
+                android:textSize="17sp"
+                android:text="@string/str_setting_about"
+                android:textColor="@color/color_history_title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            style="@style/style_setting_activity_drivider"
+            android:background="@color/color_bg_setting_drivider" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_about_top"
+            android:layout_width="match_parent"
+            android:layout_height="142dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@mipmap/panda_2"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_about_top"
+                app:layout_constraintRight_toRightOf="@id/clayout_about_top"
+                app:layout_constraintTop_toTopOf="@id/clayout_about_top"
+                android:layout_marginTop="28dp"
+                android:scaleType="fitXY" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_about_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_about_top"
+                app:layout_constraintRight_toRightOf="@id/clayout_about_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_about_top"
+                android:layout_marginBottom="20dp"
+                android:textSize="11sp"
+                android:textColor="@color/color_txt_mine_name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            style="@style/style_setting_activity_drivider"
+            android:background="@color/color_bg_setting_drivider" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_about_check"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="@drawable/ripple_landscape_item">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_about_check"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_about_check"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_about_check"
+                android:layout_marginStart="15dp"
+                android:textSize="15sp"
+                android:text="检查更新"
+                android:textColor="@color/color_txt_mine_name" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            style="@style/style_about_activity_drivider"
+            android:background="@color/color_bg_setting_drivider2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_about_function"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="@drawable/ripple_landscape_item">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_about_function"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_about_function"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_about_function"
+                android:layout_marginStart="15dp"
+                android:textSize="15sp"
+                android:text="功能介绍"
+                android:textColor="@color/color_txt_mine_name" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            style="@style/style_about_activity_drivider"
+            android:background="@color/color_bg_setting_drivider2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_about_source"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="@drawable/ripple_landscape_item">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_about_source"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_about_source"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_about_source"
+                android:layout_marginStart="15dp"
+                android:textSize="15sp"
+                android:text="项目源码"
+                android:textColor="@color/color_txt_mine_name" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                style="@style/style_self_setting_arrow"
+                app:layout_constraintTop_toTopOf="@id/clayout_about_source"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_about_source"
+                app:layout_constraintRight_toRightOf="@id/clayout_about_source" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            style="@style/style_about_activity_drivider"
+            android:background="@color/color_bg_setting_drivider2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_about_state"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="@drawable/ripple_landscape_item">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_about_state"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_about_state"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_about_state"
+                android:layout_marginStart="15dp"
+                android:textSize="15sp"
+                android:text="项目声明"
+                android:textColor="@color/color_txt_mine_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="@id/clayout_about_state"
+                app:layout_constraintTop_toTopOf="@id/clayout_about_state"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_about_state"
+                android:textSize="11sp"
+                android:layout_marginEnd="15dp"
+                android:text="仅作个人及非商业用途"
+                android:textStyle="bold"
+                android:textColor="@color/blue500" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            style="@style/style_about_activity_drivider"
+            android:background="@color/color_bg_setting_drivider2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Copyright 2022-2023 IPANDA-Inc.All Rights Reserved"
+            android:textSize="10sp"
+            android:textColor="#828994" />
+</androidx.appcompat.widget.LinearLayoutCompat>

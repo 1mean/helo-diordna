@@ -61,6 +61,9 @@
                 android:name=".ui.activity.MainActivity"
                 android:launchMode="singleTask" />
         <activity android:name=".ui.activity.BehaviorActivity" />
+        <activity android:name=".ui.activity.AboutActivity" />
+        <activity android:name=".ui.activity.WebActivity" />
+        <activity android:name=".ui.activity.BackGroundActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.IntegralActivity" />
         <activity android:name=".ui.activity.RankingActivity" />

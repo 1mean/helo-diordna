@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_setting_top"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/color_bg_home">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ibn_setting_back"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_setting_top"
+                android:background="@null"
+                android:src="@mipmap/img_back_1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_setting_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_setting_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_setting_top"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_setting_top"
+                app:layout_constraintRight_toRightOf="@id/clayout_setting_top"
+                android:includeFontPadding="false"
+                android:textSize="17sp"
+                android:text="项目源码"
+                android:textColor="@color/color_history_title" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_web_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="@id/clayout_setting_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_setting_top"
+                app:layout_constraintRight_toRightOf="@id/clayout_setting_top"
+                android:background="@null"
+                android:text="刷新"
+                android:textColor="@color/color_history_title"
+                android:textSize="15sp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            style="@style/style_about_activity_drivider"
+            android:background="@color/color_bg_setting_drivider2" />
+
+    <LinearLayout
+            android:id="@+id/llayout_web"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+</androidx.appcompat.widget.LinearLayoutCompat>

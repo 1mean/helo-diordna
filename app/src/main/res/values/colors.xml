@@ -358,6 +358,7 @@
     <!--setting-->
     <color name="color_txt_setting_item_title">#83888E</color>
     <color name="color_bg_setting_drivider">#F9FAFE</color>
+    <color name="color_bg_setting_drivider2">#f2f5f5</color>
     <color name="color_bg_setting_item_drivider">#F3F4F8</color>
     <color name="color_txt_setting_item_desc">#838790</color>
     <color name="color_bg_setting_button_checked">#00A8FF</color>
@@ -409,5 +410,15 @@
     <color name="color_txt_short_tab_unselected">#7c7c7c</color>
     <color name="color_txt_short_tab_selected">#222222</color>
 
+
+    <!--主题相关-->
+    <color name="color_bg_white">#ffffff</color>
+    <color name="color_bg_pink">#fa7298</color>
+    <color name="color_bg_black">#141414</color>
+    <color name="color_bg_red">#f44435</color>
+    <color name="color_bg_yellow">#fec107</color>
+    <color name="color_bg_grey">#8bc24b</color>
+    <color name="color_bg_blue">#2095f4</color>
+    <color name="color_bg_purple">#9b27b0</color>
 
 </resources>

@@ -1,25 +1,45 @@
 package com.example.pandas.app
 
+import AppViewModel
 import android.app.Application
-import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
+import com.example.pandas.biz.viewmodel.EventViewModel
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.um.UmInitConfig
 import com.example.pandas.utils.DarkModeUtils
 import com.umeng.commonsdk.UMConfigure
 
 
-class DiorApplication : Application() {
+//Application全局共享的ViewModel，里面存放了一些账户信息，基本配置信息等
+val appViewModel: AppViewModel by lazy { DiorApplication.appViewModelInstance }
+
+//Application全局的ViewModel，用于发送全局通知操作
+val eventViewModel: EventViewModel by lazy { DiorApplication.eventViewModelInstance }
+
+class DiorApplication : Application(), ViewModelStoreOwner {
+
+    private lateinit var mAppViewModelStore: ViewModelStore
+    private var mFactory: ViewModelProvider.Factory? = null
 
     companion object {
-
-        private lateinit var _instance: Application
-        fun instance() = _instance
+        lateinit var instance: DiorApplication
+        lateinit var eventViewModelInstance: EventViewModel
+        lateinit var appViewModelInstance: AppViewModel
     }
 
     override fun onCreate() {
         super.onCreate()
-        _instance = this
+
+        mAppViewModelStore = ViewModelStore()
+
+        //获取全局可用
+        instance = this
+        eventViewModelInstance = getAppViewModelProvider()[EventViewModel::class.java]
+        appViewModelInstance = getAppViewModelProvider()[AppViewModel::class.java]
+
         CrashHandler.init(this)
 
         //友盟初始化
@@ -35,6 +55,21 @@ class DiorApplication : Application() {
         }
 
         //initdata()
+    }
+
+    /**
+     * 获取一个全局的ViewModel
+     */
+    private fun getAppViewModelProvider(): ViewModelProvider {
+        return ViewModelProvider(this, this.getAppFactory())
+    }
+
+    private fun getAppFactory(): ViewModelProvider.Factory {
+        if (mFactory == null) {
+            //在MyApplication中，使用了ViewModelProvider.AndroidViewModelFactory这个工厂来创建ViewModel实例
+            mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(this)
+        }
+        return mFactory as ViewModelProvider.Factory
     }
 
     private var startIndex = 0
@@ -108,5 +143,9 @@ class DiorApplication : Application() {
 //            petDao.insertComment(list4)
 
         }.start()
+    }
+
+    override fun getViewModelStore(): ViewModelStore {
+        return mAppViewModelStore
     }
 }

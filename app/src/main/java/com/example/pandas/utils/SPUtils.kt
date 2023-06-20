@@ -35,11 +35,22 @@ object SPUtils {
         return getInstanse(context).getString(key, "").toString()
     }
 
+    fun getInt(context: Context, key: String): Int {
+
+        return getInstanse(context).getInt(key, 0)
+    }
+
     @SuppressLint("CommitPrefEdits")
     fun putString(context: Context, key: String, value: String) {
 
         val editor = getInstanse(context).edit()
         editor.putString(key, value).apply()
+    }
+
+    fun putInt(context: Context, key: String, value: Int) {
+
+        val editor = getInstanse(context).edit()
+        editor.putInt(key, value).apply()
     }
 
     /**

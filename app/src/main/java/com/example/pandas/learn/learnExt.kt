@@ -2,17 +2,20 @@ package com.example.pandas.learn;
 
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
-import com.example.pandas.base.adapter.BaseCommonAdapter
+import com.example.pandas.ui.activity.MainActivity
 
 fun ViewGroup.circularClose(button: ImageButton, action: () -> Unit = {}) {
     ViewAnimationUtils.createCircularReveal(
@@ -104,3 +107,15 @@ sealed class Result<out T : Any> {
 //      at java.util.ArrayList$SubList.size(ArrayList.java:1057)//这里不能点，但是能看到是SubList方法导致的bug，虽然这一步在直接报错点之前
 //      at ShortReplyCommentAdapter.loadMore(ShortReplyCommentAdapter.kt:42) //这里能直接点进去，定位到报错的代码，但无法找到与报错有什么关系
 //      at ShortCommentAdapter$ReplyCommentViewHolder.handle$lambda-6(ShortCommentAdapter.kt:292)
+
+
+fun MainActivity.test(text: TextView) {
+
+    kotlin.runCatching {
+        val color = Color.parseColor("#433333")
+        text.setTextColor(color)
+    }.onFailure {
+        Log.e("1mean", "test")
+    }
+}
+

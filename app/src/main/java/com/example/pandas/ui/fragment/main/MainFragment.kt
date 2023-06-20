@@ -13,10 +13,12 @@ import androidx.core.view.children
 import androidx.core.view.get
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.R
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentMainBinding
 import com.example.pandas.ui.adapter.HomeAdapter
+import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView

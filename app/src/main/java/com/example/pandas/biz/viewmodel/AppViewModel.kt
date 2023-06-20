@@ -1,22 +1,15 @@
-package com.example.pandas.biz.viewmodel
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.coroutineScope
+import androidx.lifecycle.ViewModel
+import com.example.pandas.base.viewmodel.BaseViewModel
+import com.example.pandas.base.viewmodel.UnPeekLiveData
 
 /**
- * @description: 全局viewmodel
+ * @description: AppViewModel
  * @author: dongyiming
- * @date: 7/5/22 12:09 上午
+ * @date: 6/21/23 1:27 AM
  * @version: v1.0
  */
-public class AppViewModel(application: Application) : AndroidViewModel(application) {
+public class AppViewModel : ViewModel() {
 
-
-    suspend fun corountinfun(){
-
-        coroutineScope {
-
-        }
-    }
+    //App主题颜色 中大型项目不推荐以这种方式改变主题颜色，比较繁琐耦合，且容易有遗漏某些控件没有设置主题色
+    val appColor by lazy { UnPeekLiveData<Int>() }
 }

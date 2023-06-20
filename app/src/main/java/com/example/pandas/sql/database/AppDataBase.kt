@@ -43,7 +43,7 @@ public abstract class AppDataBase : RoomDatabase() {
 
             if (instance == null) {
                 return Room.databaseBuilder(
-                    DiorApplication.instance(),
+                    DiorApplication.instance,
                     AppDataBase::class.java,
                     dbName
                 )

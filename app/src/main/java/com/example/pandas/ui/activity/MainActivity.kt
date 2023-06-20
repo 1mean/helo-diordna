@@ -3,7 +3,6 @@ package com.example.pandas.ui.activity
 import android.Manifest
 import android.content.Context
 import android.content.IntentFilter
-import android.content.res.Configuration
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation.findNavController
 import com.example.pandas.R
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.biz.manager.PlayerManager
@@ -97,9 +97,14 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
         intentFilter.addAction(ALARM_EVENT)
         broadCast = TimingBroadCast()
         registerReceiver(broadCast, intentFilter)
+
     }
 
     override fun createObserver() {
+        appViewModel.appColor.observe(this) {
+            Log.e("lidandan3", "背景颜色改变了呀：$it")
+            StatusBarUtils.updataStatus(this, false, true, it)
+        }
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {

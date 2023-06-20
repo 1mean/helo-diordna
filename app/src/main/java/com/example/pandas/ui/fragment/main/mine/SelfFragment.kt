@@ -7,7 +7,9 @@ import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentMineBinding
+import com.example.pandas.ui.activity.BackGroundActivity
 import com.example.pandas.ui.adapter.SelfViewPagerAdapter
+import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
@@ -33,7 +35,7 @@ public class SelfFragment : BaseFragment<SelfViewModel, FragmentMineBinding>() {
         }
         binding.slideTabSetting.setViewPager(binding.vp2Self, titles)
 
-        
+
         //1。主题不一致，会导致MainActivity刷新重建，即会主动调用recreate方法
         //2。如果不想要重建，可在activity中设置android:configChanges="uiMode"，使模式的改变对其无效
         //3。在MainActivity的onConfigurationChanged方法里，自己处理界面的改变
@@ -46,6 +48,10 @@ public class SelfFragment : BaseFragment<SelfViewModel, FragmentMineBinding>() {
                 DarkModeUtils.applyNightMode(mActivity)
                 StatusBarUtils.updataStatus(mActivity, true, true, R.color.color_white_lucency)
             }
+        }
+
+        binding.itemCharacter.setOnClickListener {
+            startAnyActivity(mActivity, BackGroundActivity::class.java)
         }
     }
 

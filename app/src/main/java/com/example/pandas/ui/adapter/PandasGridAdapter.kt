@@ -1,19 +1,16 @@
 package com.example.pandas.ui.adapter
 
 import android.content.Intent
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.GridItem
-import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.ui.activity.ListActivity
 import com.example.pandas.ui.activity.PandaActivity
-import com.example.pandas.ui.activity.VideoItemListActivity
+import de.hdodenhof.circleimageview.CircleImageView
 
 /**
  * @description: PandasGridAdapter
@@ -28,7 +25,7 @@ public class PandasGridAdapter(list: MutableList<GridItem>) : BaseCommonAdapter<
     override fun convert(holder: BaseViewHolder, data: GridItem, position: Int) {
 
         val context = holder.itemView.context
-        val image = holder.getWidget<AppCompatImageView>(R.id.img_pandas_top)
+        val image = holder.getWidget<CircleImageView>(R.id.img_pandas_top)
         val name = holder.getWidget<AppCompatTextView>(R.id.txt_pandas_top)
 
         //loadCircleImage(holder.itemView.context, data.item2, image)
