@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--<item android:drawable="@mipmap/img_tab_mine_selected" android:state_pressed="true"/>
+    <item android:drawable="@mipmap/img_tab_mine_selected" android:state_checked="true"/>
+    <item android:drawable="@mipmap/img_tab_mine"/>-->
+    <item android:drawable="@mipmap/img_bottom_item2_pressed_yellow" android:state_pressed="true" />
+    <item android:drawable="@mipmap/img_bottom_item2_pressed_yellow" android:state_checked="true" />
+    <item android:drawable="@mipmap/img_bottom_item2" />
+
+</selector>

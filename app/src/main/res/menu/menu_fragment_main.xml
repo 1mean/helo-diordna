@@ -9,7 +9,7 @@
 
     <item
             android:id="@+id/menu_news"
-            android:icon="@drawable/selector_button_pet"
+            android:icon="@drawable/selector_button_dynamic"
             android:title="@string/home_button2" />
 
     <item

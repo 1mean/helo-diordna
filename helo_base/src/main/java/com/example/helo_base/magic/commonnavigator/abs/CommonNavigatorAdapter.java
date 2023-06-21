@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.DataSetObservable;
 import android.database.DataSetObserver;
 
+import java.util.List;
+
 /**
  * CommonNavigator适配器，通过它可轻松切换不同的指示器样式
  * 博客: http://hackware.lucode.net
@@ -14,6 +16,12 @@ public abstract class CommonNavigatorAdapter {
     private final DataSetObservable mDataSetObservable = new DataSetObservable();
 
     public abstract int getCount();
+
+    public void updateIndicatorColors(int color) {
+    }
+
+    public void updateTextViewColors(int[] colors) {
+    }
 
     public abstract IPagerTitleView getTitleView(Context context, int index);
 

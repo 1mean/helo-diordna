@@ -66,7 +66,7 @@ public class BackGroundActivity : BaseActivity<BaseViewModel, ActivityBgBinding>
         SPUtils.putInt(this, AppInfos.BG_STATUS_KEY, position)
         mAdapter.updateSelect(position)
         Log.e("lidandan3", "colors[position]= ${colors[position]}")
-        appViewModel.appColor.value = colors[position]
+        appViewModel.appColorType.value = position
     }
 
 }

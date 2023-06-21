@@ -1,5 +1,7 @@
 package com.example.pandas.app
 
+import com.example.pandas.R
+
 /**
  * 项目通用信息
  * @author: dongyiming
@@ -68,5 +70,16 @@ object AppInfos {
         "新疆",
         "香港",
         "澳门"
+    )
+
+    val bgColors = arrayOf(
+        R.color.color_bg_white,
+        R.color.color_bg_pink,
+        R.color.color_bg_black,
+        R.color.color_bg_red,
+        R.color.color_bg_yellow,
+        R.color.color_bg_grey,
+        R.color.color_bg_blue,
+        R.color.color_bg_purple
     )
 }

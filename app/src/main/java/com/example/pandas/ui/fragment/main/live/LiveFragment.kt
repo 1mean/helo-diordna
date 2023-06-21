@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.LiveViewModel
 import com.example.pandas.databinding.FragmentLivingBinding
@@ -69,6 +71,9 @@ public class LiveFragment : BaseLazyFragment<LiveViewModel, FragmentLivingBindin
     }
 
     override fun createObserver() {
+        appViewModel.appColorType.observe(this) {
+            binding.clayoutOtherTop.setBackgroundResource(AppInfos.bgColors[it])
+        }
     }
 
     override fun firstOnResume() {

@@ -1,10 +1,11 @@
 package com.example.pandas.ui.fragment.main
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -13,15 +14,15 @@ import androidx.core.view.children
 import androidx.core.view.get
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentMainBinding
 import com.example.pandas.ui.adapter.HomeAdapter
-import com.example.pandas.utils.StatusBarUtils
-import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.internal.BaselineLayout
 
 
 /**
@@ -98,8 +99,122 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
         }
     }
 
+    private val homeDrawable
+        get() = arrayOf(
+            R.drawable.selector_button_home,
+            R.drawable.selector_button_home,
+            R.drawable.selector_button_home,
+            R.drawable.selector_button_home_red,
+            R.drawable.selector_button_home_yellow,
+            R.drawable.selector_button_home_grey,
+            R.drawable.selector_button_home_blue,
+            R.drawable.selector_button_home_purple
+        )
+    private val dynamicDrawable
+        get() = arrayOf(
+            R.drawable.selector_button_dynamic,
+            R.drawable.selector_button_dynamic,
+            R.drawable.selector_button_dynamic,
+            R.drawable.selector_button_dynamic_red,
+            R.drawable.selector_button_dynamic_yellow,
+            R.drawable.selector_button_dynamic_grey,
+            R.drawable.selector_button_dynamic_blue,
+            R.drawable.selector_button_dynamic_purple
+        )
+    private val videoDrawable
+        get() = arrayOf(
+            R.drawable.selector_button_video,
+            R.drawable.selector_button_video,
+            R.drawable.selector_button_video,
+            R.drawable.selector_button_video_red,
+            R.drawable.selector_button_video_yellow,
+            R.drawable.selector_button_video_grey,
+            R.drawable.selector_button_video_blue,
+            R.drawable.selector_button_video_purple
+        )
+    private val mineDrawable
+        get() = arrayOf(
+            R.drawable.selector_button_mine,
+            R.drawable.selector_button_mine,
+            R.drawable.selector_button_mine,
+            R.drawable.selector_button_mine_red,
+            R.drawable.selector_button_mine_yellow,
+            R.drawable.selector_button_mine_grey,
+            R.drawable.selector_button_mine_blue,
+            R.drawable.selector_button_mine_purple
+        )
+
     private var vpStatus = 0
+    private var indexArray = arrayOf(0, 1, 3, 4)
     override fun createObserver() {
+
+        appViewModel.appColorType.observe(this) { type ->
+
+            if (binding.bnvMain[0] is BottomNavigationMenuView) {
+                for (i in indexArray) {
+                    val item = (binding.bnvMain[0] as BottomNavigationMenuView)[i]
+                    if (item is BottomNavigationItemView) {
+                        item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
+                            Log.e("1mean", "childView: $childView")
+                            if (childView is ImageView) {
+                                when (i) {
+                                    0 -> {
+                                        childView.setImageDrawable(
+                                            ContextCompat.getDrawable(
+                                                mActivity,
+                                                homeDrawable[type]
+                                            )
+                                        )
+                                    }
+                                    1 -> {
+                                        childView.setImageDrawable(
+                                            ContextCompat.getDrawable(
+                                                mActivity,
+                                                dynamicDrawable[type]
+                                            )
+                                        )
+                                    }
+                                    3 -> {
+                                        childView.setImageDrawable(
+                                            ContextCompat.getDrawable(
+                                                mActivity,
+                                                videoDrawable[type]
+                                            )
+                                        )
+                                    }
+                                    4 -> {
+                                        childView.setImageDrawable(
+                                            ContextCompat.getDrawable(
+                                                mActivity,
+                                                mineDrawable[type]
+                                            )
+                                        )
+                                    }
+                                }
+                            } else if (childView is BaselineLayout) {
+
+                                val text1 = childView[0] as TextView
+                                val text2 = childView[1] as TextView
+                                text2.setTextColor(
+                                    ContextCompat.getColor(
+                                        mActivity,
+                                        AppInfos.bgColors[type]
+                                    )
+                                )
+                                text1.setTextColor(
+                                    ContextCompat.getColor(
+                                        mActivity,
+                                        R.color.color_groupbutton_text
+                                    )
+                                )
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         mViewModel.bottomState.observe(viewLifecycleOwner) { status ->
             Log.e("lidandan3", "状态改变了: $status")
             when (status) {

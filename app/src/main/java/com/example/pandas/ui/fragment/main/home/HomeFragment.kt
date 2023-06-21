@@ -43,6 +43,8 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 
     private val tabTitles = arrayListOf("熊猫", "推荐", "热门", "娱乐", "风景", "音乐")
 
+    private var commonNavigator: CommonNavigator? = null
+
     private var verticalOffset: Int = 0 //Appbar偏移
     override fun lazyLoadTime(): Long = 0
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
@@ -54,11 +56,35 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
             setCurrentItem(1, false)
         }
 
-        val commonNavigator = CommonNavigator(mActivity)
-        commonNavigator.isAdjustMode = true
-        commonNavigator.adapter = object : CommonNavigatorAdapter() {
+        commonNavigator = CommonNavigator(mActivity)
+        commonNavigator!!.isAdjustMode = true
+        commonNavigator!!.adapter = object : CommonNavigatorAdapter() {
 
             override fun getCount(): Int = tabTitles.size
+            private var indiColors = ContextCompat.getColor(
+                context!!,
+                R.color.color_home_tab_text_selected
+            )
+
+            private var titleColors = intArrayOf(
+                ContextCompat.getColor(
+                    context!!,
+                    R.color.color_home_tab_text
+                ), ContextCompat.getColor(
+                    context!!,
+                    R.color.color_home_tab_text_selected
+                )
+            )
+
+            override fun updateIndicatorColors(color: Int) {
+                indiColors = ContextCompat.getColor(context!!, color)
+                notifyDataSetChanged()
+            }
+
+            override fun updateTextViewColors(colors: IntArray) {
+                this.titleColors = colors
+                notifyDataSetChanged()
+            }
 
             override fun getTitleView(context: Context?, index: Int): IPagerTitleView {
 
@@ -66,14 +92,8 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
                 simplePagerTitleView.run {
                     text = tabTitles[index]
                     textSize = resources.getDimension(R.dimen.common_sz_5_dimens)
-                    normalColor = ContextCompat.getColor(
-                        mActivity,
-                        R.color.color_home_tab_text
-                    )
-                    selectedColor = ContextCompat.getColor(
-                        mActivity,
-                        R.color.color_home_tab_text_selected
-                    )
+                    normalColor = titleColors[0]
+                    selectedColor = titleColors[1]
                     setOnClickListener {
                         binding.viewpager.currentItem = index
                     }
@@ -90,18 +110,13 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
                     //roundRadius = ScreenUtil.dip2px(3f)
                     startInterpolator = AccelerateInterpolator()
                     endInterpolator = DecelerateInterpolator(0.9f)
-                    setColors(
-                        ContextCompat.getColor(
-                            mActivity,
-                            R.color.color_home_tab_text_selected
-                        )
-                    )
+                    setColors(indiColors)
                 }
                 return linePagerIndicator
             }
         }
         binding.tab.run {
-            setNavigator(commonNavigator)
+            setNavigator(commonNavigator!!)
             onPageSelected(1)
         }
         ViewPagerHelper.bind(binding.tab, binding.viewpager)
@@ -152,10 +167,69 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 
     override fun createObserver() {
 
-        appViewModel.appColor.observe(this) {
-            Log.e("lidandan3", "背景颜色改变了呀：$it")
 
-            binding.bar.setBackgroundResource(it)
+
+        appViewModel.appColorType.observe(this) {
+            binding.bar.setBackgroundResource(AppInfos.bgColors[it])
+            when (it) {
+                0 -> {
+                    commonNavigator?.let { navigator ->
+                        val adapter = navigator.adapter as CommonNavigatorAdapter
+                        adapter.updateTextViewColors(
+                            intArrayOf(
+                                ContextCompat.getColor(
+                                    context!!,
+                                    R.color.color_home_tab_text
+                                ), ContextCompat.getColor(
+                                    context!!,
+                                    AppInfos.bgColors[1]
+                                )
+                            )
+                        )
+                        adapter.updateIndicatorColors(AppInfos.bgColors[1])
+                    }
+                    binding.ibMessage.setImageResource(R.mipmap.img_home_message)
+                }
+                1 -> {
+                    commonNavigator?.let { navigator ->
+                        val adapter = navigator.adapter as CommonNavigatorAdapter
+                        adapter.updateTextViewColors(
+                            intArrayOf(
+                                ContextCompat.getColor(
+                                    context!!,
+                                    R.color.color_home_tab_text
+                                ), ContextCompat.getColor(
+                                    context!!,
+                                    AppInfos.bgColors[it]
+                                )
+                            )
+                        )
+                        adapter.updateIndicatorColors(AppInfos.bgColors[it])
+                    }
+                }
+                2 -> {//黑色
+                    binding.ibMessage.setImageResource(R.mipmap.img_home_message_gray)
+                }
+                else -> {
+                    binding.ibMessage.setImageResource(R.mipmap.img_home_message_white)
+                    commonNavigator?.let { navigator ->
+                        val adapter = navigator.adapter as CommonNavigatorAdapter
+                        adapter.updateTextViewColors(
+                            intArrayOf(
+                                ContextCompat.getColor(
+                                    context!!,
+                                    R.color.color_home_tab_text
+                                ), ContextCompat.getColor(
+                                    context!!,
+                                    AppInfos.bgColors[it]
+                                )
+                            )
+                        )
+                        adapter.updateIndicatorColors(AppInfos.bgColors[it])
+                    }
+
+                }
+            }
         }
 
         mViewModel.userInfo.observe(viewLifecycleOwner) {

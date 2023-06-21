@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentMineBinding
@@ -60,6 +62,10 @@ public class SelfFragment : BaseFragment<SelfViewModel, FragmentMineBinding>() {
         mViewModel.intFlag.observe(viewLifecycleOwner) {
 
             binding.slideTabSetting.currentTab = 1
+        }
+
+        appViewModel.appColorType.observe(this) {
+            binding.layoutMineTop.setBackgroundResource(AppInfos.bgColors[it])
         }
     }
 

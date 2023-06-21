@@ -36,7 +36,7 @@
             <RadioButton
                     android:id="@+id/rb_name2"
                     style="@style/styles_homepage_radiobuttom"
-                    android:drawableTop="@drawable/selector_button_pet"
+                    android:drawableTop="@drawable/selector_button_dynamic"
                     android:text="@string/home_button2" />
 
             <RadioButton

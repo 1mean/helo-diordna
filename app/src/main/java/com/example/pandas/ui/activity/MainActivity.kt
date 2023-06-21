@@ -16,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation.findNavController
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
@@ -101,9 +102,8 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
     }
 
     override fun createObserver() {
-        appViewModel.appColor.observe(this) {
-            Log.e("lidandan3", "背景颜色改变了呀：$it")
-            StatusBarUtils.updataStatus(this, false, true, it)
+        appViewModel.appColorType.observe(this) {
+            StatusBarUtils.updataStatus(this, false, true, AppInfos.bgColors[it])
         }
     }
 
