@@ -27,7 +27,7 @@ import com.lxj.xpopup.interfaces.XPopupCallback
 
 
 /**
- * @description: 横屏视频,使用Viewpager2来实现
+ * @description: 竖屏视频,使用Viewpager2来实现
  * @author: dongyiming
  * @date: 2/23/22 10:20 下午
  * @version: v1.0

@@ -24,6 +24,7 @@ import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.databinding.ActivityMainBinding
 import com.example.pandas.ui.broadcast.TimingBroadCast
 import com.example.pandas.utils.DarkModeUtils
+import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils
 
 class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
@@ -99,11 +100,20 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
         broadCast = TimingBroadCast()
         registerReceiver(broadCast, intentFilter)
 
+        appViewModel.appColorType.value?.let {
+            if (it != 0) {
+                StatusBarUtils.updataStatus(this, false, true, AppInfos.bgColors[it])
+            }
+        }
     }
 
     override fun createObserver() {
         appViewModel.appColorType.observe(this) {
-            StatusBarUtils.updataStatus(this, false, true, AppInfos.bgColors[it])
+            if (it == 0) {
+                StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
+            } else {
+                StatusBarUtils.updataStatus(this, false, true, AppInfos.bgColors[it])
+            }
         }
     }
 

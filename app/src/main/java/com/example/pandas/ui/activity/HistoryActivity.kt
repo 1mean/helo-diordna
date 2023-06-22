@@ -8,7 +8,10 @@ import android.view.WindowManager
 import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityHistoryBinding
@@ -122,6 +125,40 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
                 cancel.setOnClickListener {
                     popWindow.dismiss()
                 }
+            }
+        }
+
+        appViewModel.appColorType.value?.let {
+            binding.clayoutHistoryTop.setBackgroundResource(AppInfos.bgColors[it])
+            if (it == 0) {
+                binding.ibnHistoryBack.setImageResource(R.mipmap.img_topview_back)
+                binding.txtHistoryTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_history_title
+                    )
+                )
+                binding.txtHistoryManager.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_history_manager
+                    )
+                )
+            } else {
+                binding.ibnHistoryBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.txtHistoryTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                binding.txtHistoryManager.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
             }
         }
     }

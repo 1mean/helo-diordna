@@ -1,7 +1,10 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityCreateGroupBinding
@@ -37,7 +40,11 @@ public class GroupCreateActivity : BaseActivity<HistoryViewModeL, ActivityCreate
                     loadingPopup = XPopup.Builder(this).dismissOnBackPressed(true)
                         .isLightNavigationBar(true)
                         .isViewMode(false)
-                        .asLoading(null, R.layout.layout_waiting, LoadingPopupView.Style.ProgressBar)
+                        .asLoading(
+                            null,
+                            R.layout.layout_waiting,
+                            LoadingPopupView.Style.ProgressBar
+                        )
                     loadingPopup!!.show()
                 } else {
                     loadingPopup!!.show()
@@ -45,11 +52,45 @@ public class GroupCreateActivity : BaseActivity<HistoryViewModeL, ActivityCreate
                 mViewModel.createAGroup(name.toString(), desc.toString(), isOpen)
             }
         }
+
+        appViewModel.appColorType.value?.let {
+            binding.clayoutCreatorTop.setBackgroundResource(AppInfos.bgColors[it])
+            if (it == 0) {
+                binding.ibnCreatorBack.setImageResource(R.mipmap.img_topview_back)
+                binding.txtCreatorTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_history_title
+                    )
+                )
+                binding.txtCreatorFinish.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_history_manager
+                    )
+                )
+            } else {
+                binding.ibnCreatorBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.txtCreatorTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                binding.txtCreatorFinish.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+            }
+        }
     }
 
     override fun createObserver() {
 
-        mViewModel.createResult.observe(this){
+        mViewModel.createResult.observe(this) {
             loadingPopup!!.dismiss()
             if (it) {
                 setResult(RESULT_OK)

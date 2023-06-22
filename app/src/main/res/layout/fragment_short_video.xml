@@ -16,21 +16,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tb_short"
-            android:layout_width="wrap_content"
-            android:layout_height="44dp"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="5dp"
-            app:tabMinWidth="70dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_short_tab"
+            android:layout_width="match_parent"
             android:layout_marginTop="32.66dp"
             android:background="@color/color_white_lucency"
-            app:tabRippleColor="@android:color/transparent"
-            app:tabTextColor="@color/color_txt_short_tab_unselected"
-            app:tabIndicatorColor="@color/color_txt_short_tab_selected"
-            app:tabSelectedTextColor="@color/color_txt_short_tab_selected"
-            app:tabTextAppearance="@style/ShortTabLayoutTextStyle"
-            app:tabIndicator="@drawable/layer_short_indicator" />
+            android:layout_height="44dp">
+
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tb_short"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_short_tab"
+                app:layout_constraintRight_toRightOf="@id/clayout_short_tab"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="5dp"
+                app:tabMinWidth="70dp"
+                android:background="@color/color_white_lucency"
+                app:tabRippleColor="@android:color/transparent"
+                app:tabTextColor="@color/color_txt_short_tab_unselected"
+                app:tabIndicatorColor="@color/color_txt_short_tab_selected"
+                app:tabSelectedTextColor="@color/color_txt_short_tab_selected"
+                app:tabTextAppearance="@style/ShortTabLayoutTextStyle"
+                app:tabIndicator="@drawable/layer_short_indicator" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_short_search"

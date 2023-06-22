@@ -6,9 +6,47 @@
         android:orientation="vertical"
         android:background="@color/color_bg_home">
 
-    <include
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_follow_top"
-            layout="@layout/layout_top" />
+            android:layout_width="match_parent"
+            android:background="@color/color_bg_home"
+            android:outlineSpotShadowColor="#44000000"
+            android:outlineAmbientShadowColor="#44000000"
+            android:elevation="15dp"
+            android:layout_height="56dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ibn_top_finish"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                android:src="@mipmap/img_back_1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="@null" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_top_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/color_txt_panda_top"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/ibn_top_finish"
+                android:layout_marginStart="5dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ibn_top_search"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:src="@mipmap/img_list_search"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:visibility="gone"
+                android:background="@null" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
             android:layout_width="match_parent"

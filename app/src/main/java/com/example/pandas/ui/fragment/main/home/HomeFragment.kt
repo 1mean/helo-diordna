@@ -3,7 +3,6 @@ package com.example.pandas.ui.fragment.main.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.core.content.ContextCompat
@@ -20,6 +19,7 @@ import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.ext.loadLocalCircleImage
 import com.example.pandas.biz.viewmodel.MainViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
@@ -159,6 +159,10 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
         })
 
 //        binding.bar.setExpanded(true,true)
+
+        appViewModel.appColorType.value?.let {
+            updateTopView(it)
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -166,77 +170,15 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
     }
 
     override fun createObserver() {
-
-
-
         appViewModel.appColorType.observe(this) {
-            binding.bar.setBackgroundResource(AppInfos.bgColors[it])
-            when (it) {
-                0 -> {
-                    commonNavigator?.let { navigator ->
-                        val adapter = navigator.adapter as CommonNavigatorAdapter
-                        adapter.updateTextViewColors(
-                            intArrayOf(
-                                ContextCompat.getColor(
-                                    context!!,
-                                    R.color.color_home_tab_text
-                                ), ContextCompat.getColor(
-                                    context!!,
-                                    AppInfos.bgColors[1]
-                                )
-                            )
-                        )
-                        adapter.updateIndicatorColors(AppInfos.bgColors[1])
-                    }
-                    binding.ibMessage.setImageResource(R.mipmap.img_home_message)
-                }
-                1 -> {
-                    commonNavigator?.let { navigator ->
-                        val adapter = navigator.adapter as CommonNavigatorAdapter
-                        adapter.updateTextViewColors(
-                            intArrayOf(
-                                ContextCompat.getColor(
-                                    context!!,
-                                    R.color.color_home_tab_text
-                                ), ContextCompat.getColor(
-                                    context!!,
-                                    AppInfos.bgColors[it]
-                                )
-                            )
-                        )
-                        adapter.updateIndicatorColors(AppInfos.bgColors[it])
-                    }
-                }
-                2 -> {//黑色
-                    binding.ibMessage.setImageResource(R.mipmap.img_home_message_gray)
-                }
-                else -> {
-                    binding.ibMessage.setImageResource(R.mipmap.img_home_message_white)
-                    commonNavigator?.let { navigator ->
-                        val adapter = navigator.adapter as CommonNavigatorAdapter
-                        adapter.updateTextViewColors(
-                            intArrayOf(
-                                ContextCompat.getColor(
-                                    context!!,
-                                    R.color.color_home_tab_text
-                                ), ContextCompat.getColor(
-                                    context!!,
-                                    AppInfos.bgColors[it]
-                                )
-                            )
-                        )
-                        adapter.updateIndicatorColors(AppInfos.bgColors[it])
-                    }
-
-                }
-            }
+            updateTopView(it)
         }
 
         mViewModel.userInfo.observe(viewLifecycleOwner) {
 
             if (it != null) {
                 it.headUrl?.let { url ->
-                    loadCircleImage(mActivity, url, binding.imgHead)
+                    loadImage(mActivity, url, binding.imgHead)
                 }
             }
         }
@@ -253,6 +195,74 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
             val color = SPUtils.getString(mActivity, AppInfos.THEME_COLOR)
             binding.tbHome.setBackgroundResource(R.color.red)
             StatusBarUtils.updataStatus(mActivity, false, true, R.color.red)
+        }
+    }
+
+    private fun updateTopView(it: Int) {
+        binding.bar.setBackgroundResource(AppInfos.bgColors[it])
+        when (it) {
+            0 -> {
+                commonNavigator?.let { navigator ->
+                    val adapter = navigator.adapter as CommonNavigatorAdapter
+                    adapter.updateTextViewColors(
+                        intArrayOf(
+                            ContextCompat.getColor(
+                                context!!,
+                                R.color.color_home_tab_text
+                            ), ContextCompat.getColor(
+                                context!!,
+                                AppInfos.bgColors[1]
+                            )
+                        )
+                    )
+                    adapter.updateIndicatorColors(AppInfos.bgColors[1])
+                }
+                binding.ibMessage.setImageResource(R.mipmap.img_home_message)
+                binding.edit.setBackgroundResource(R.drawable.shape_home_search)
+            }
+            1 -> {
+                commonNavigator?.let { navigator ->
+                    val adapter = navigator.adapter as CommonNavigatorAdapter
+                    adapter.updateTextViewColors(
+                        intArrayOf(
+                            ContextCompat.getColor(
+                                context!!,
+                                R.color.color_home_tab_text
+                            ), ContextCompat.getColor(
+                                context!!,
+                                AppInfos.bgColors[it]
+                            )
+                        )
+                    )
+                    adapter.updateIndicatorColors(AppInfos.bgColors[it])
+                }
+                binding.ibMessage.setImageResource(R.mipmap.img_home_message_white)
+                binding.edit.setBackgroundResource(R.drawable.shape_home_search_white)
+            }
+            2 -> {//黑色
+                binding.ibMessage.setImageResource(R.mipmap.img_home_message_gray)
+                binding.edit.setBackgroundResource(R.drawable.shape_home_search_white)
+            }
+            else -> {
+                binding.ibMessage.setImageResource(R.mipmap.img_home_message_white)
+                binding.edit.setBackgroundResource(R.drawable.shape_home_search_white)
+                commonNavigator?.let { navigator ->
+                    val adapter = navigator.adapter as CommonNavigatorAdapter
+                    adapter.updateTextViewColors(
+                        intArrayOf(
+                            ContextCompat.getColor(
+                                context!!,
+                                R.color.color_home_tab_text
+                            ), ContextCompat.getColor(
+                                context!!,
+                                AppInfos.bgColors[it]
+                            )
+                        )
+                    )
+                    adapter.updateIndicatorColors(AppInfos.bgColors[it])
+                }
+
+            }
         }
     }
 }

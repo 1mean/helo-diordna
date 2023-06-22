@@ -2,7 +2,11 @@ package com.example.pandas.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.RankViewModel
 import com.example.pandas.databinding.ActivityRankingBinding
@@ -10,10 +14,11 @@ import com.example.pandas.ui.adapter.VideoListAdapter
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
+import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.impl.LoadingPopupView
 
 /**
- * @description: 我的收藏
+ * @description: 播放榜单
  * @author: dongyiming
  * @date: 8/13/22 11:18 上午
  * @version: v1.0
@@ -40,6 +45,28 @@ public class RankingActivity : BaseActivity<RankViewModel, ActivityRankingBindin
             setOnRefreshListener {
                 binding.swipLayoutRank.isRefreshing = true
                 mViewModel.getRanks(true)
+            }
+        }
+
+        appViewModel.appColorType.value?.let {
+            binding.clayoutPlayTop.setBackgroundResource(AppInfos.bgColors[it])
+            if (it == 0) {
+                binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back)
+                binding.txtPlayTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_history_title
+                    )
+                )
+            } else {
+                binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.txtPlayTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
             }
         }
     }

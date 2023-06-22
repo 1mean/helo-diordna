@@ -7,7 +7,10 @@ import android.view.WindowManager
 import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityLaterBinding
@@ -111,6 +114,40 @@ public class LaterActivity : BaseActivity<HistoryViewModeL, ActivityLaterBinding
                 cancel.setOnClickListener {
                     popWindow.dismiss()
                 }
+            }
+        }
+
+        appViewModel.appColorType.value?.let {
+            binding.clayoutLaterTop.setBackgroundResource(AppInfos.bgColors[it])
+            if (it == 0) {
+                binding.ibnLaterBack.setImageResource(R.mipmap.img_topview_back)
+                binding.txtLaterTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_history_title
+                    )
+                )
+                binding.txtLaterManager.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_history_manager
+                    )
+                )
+            } else {
+                binding.ibnLaterBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.txtLaterTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                binding.txtLaterManager.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
             }
         }
     }

@@ -2,8 +2,10 @@ package com.example.pandas.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
@@ -72,6 +74,40 @@ public class CollectListActivity : BaseActivity<HistoryViewModeL, ActivityCollec
                 binding.imgLike.setImageResource(R.mipmap.img_collect_list_liked)
             }
             isLike = !isLike
+        }
+
+        appViewModel.appColorType.value?.let {
+            binding.clayoutCollectListTop.setBackgroundResource(AppInfos.bgColors[it])
+            if (it == 0) {
+                binding.ibnCollectListBack.setImageResource(R.mipmap.img_topview_back)
+                binding.txtCollectListTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_history_title
+                    )
+                )
+                binding.txtCollectListTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_history_title
+                    )
+                )
+            } else {
+                binding.ibnCollectListBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.txtCollectListTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                binding.txtCollectListTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+            }
         }
     }
 

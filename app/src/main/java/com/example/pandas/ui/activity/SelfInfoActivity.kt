@@ -2,7 +2,10 @@ package com.example.pandas.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.viewmodel.SelfViewModel
@@ -20,12 +23,34 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.ibInfo.setOnClickListener {
+        binding.btnSelfBack.setOnClickListener {
             finish()
         }
         mViewModel.getUserInfo()
         binding.clayoutInfoHead.setOnClickListener {
 
+        }
+
+        appViewModel.appColorType.value?.let {
+            binding.clayoutInfoTop.setBackgroundResource(AppInfos.bgColors[it])
+            if (it == 0) {
+                binding.btnSelfBack.setImageResource(R.mipmap.img_topview_back)
+                binding.txtSelfInfo.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_txt_mylove_self
+                    )
+                )
+            } else {
+                binding.btnSelfBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.txtSelfInfo.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+            }
         }
     }
 

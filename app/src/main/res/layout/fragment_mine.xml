@@ -41,37 +41,36 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginEnd="15dp"
-                android:background="@drawable/shape_self_bg_scan"
                 app:layout_constraintBottom_toBottomOf="@id/layout_mine_top"
                 app:layout_constraintRight_toRightOf="@id/layout_mine_top">
 
             <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_update_dark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="@id/item_mode_dark"
                     app:layout_constraintBottom_toBottomOf="@id/item_mode_dark"
                     app:layout_constraintRight_toRightOf="@id/item_mode_dark"
                     app:layout_constraintLeft_toLeftOf="@id/item_mode_dark"
-                    android:src="@mipmap/img_mine_dark_black" />
+                    android:src="@mipmap/img_mine_dark_gray" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/item_character"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/shape_self_bg_scan"
                 app:layout_constraintBottom_toBottomOf="@id/layout_mine_top"
                 app:layout_constraintRight_toLeftOf="@id/item_mode_dark">
 
             <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_update_background"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="@id/item_character"
                     app:layout_constraintBottom_toBottomOf="@id/item_character"
                     app:layout_constraintRight_toRightOf="@id/item_character"
                     app:layout_constraintLeft_toLeftOf="@id/item_character"
-                    android:src="@mipmap/img_clothes_black" />
+                    android:src="@mipmap/img_clothes_gray" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,7 +90,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/item_mine_scan"
                     app:layout_constraintRight_toRightOf="@id/item_mine_scan"
                     app:layout_constraintLeft_toLeftOf="@id/item_mine_scan"
-                    android:src="@mipmap/img_mine_scan_black" />
+                    android:src="@mipmap/img_mine_scan_gray" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

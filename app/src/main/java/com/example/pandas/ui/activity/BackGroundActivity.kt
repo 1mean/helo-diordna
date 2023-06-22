@@ -12,7 +12,9 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.databinding.ActivityBgBinding
 import com.example.pandas.ui.adapter.decoration.BackgroundItemDecoration
+import com.example.pandas.ui.ext.toastTopShow
 import com.example.pandas.utils.SPUtils
+import com.example.pandas.utils.StatusBarUtils
 
 /**
  * @description: 个性设置
@@ -49,10 +51,15 @@ public class BackGroundActivity : BaseActivity<BaseViewModel, ActivityBgBinding>
             addItemDecoration(BackgroundItemDecoration(paddingTop))
         }
 
+        appViewModel.appColorType.value?.let {
+            update(it)
+        }
     }
 
     override fun createObserver() {
-
+        appViewModel.appColorType.observe(this) {
+            update(it)
+        }
     }
 
     override fun onResume() {
@@ -67,6 +74,24 @@ public class BackGroundActivity : BaseActivity<BaseViewModel, ActivityBgBinding>
         mAdapter.updateSelect(position)
         Log.e("lidandan3", "colors[position]= ${colors[position]}")
         appViewModel.appColorType.value = position
+        toastTopShow(this, "已更换的主题将在切换到主页后生效")
     }
 
+    private fun update(status: Int) {
+        if (status == 0) {
+            binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back)
+            binding.txtSettingTitle.setTextColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.color_history_title
+                )
+            )
+            StatusBarUtils.setStatusBarMode(this, true, AppInfos.bgColors[status])
+        } else {
+            binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back_white)
+            binding.txtSettingTitle.setTextColor(ContextCompat.getColor(this, R.color.white))
+            StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[status])
+        }
+        binding.clayoutSettingTop.setBackgroundResource(AppInfos.bgColors[status])
+    }
 }

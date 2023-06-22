@@ -2,7 +2,10 @@ package com.example.pandas.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.biz.viewmodel.SelfViewModel
@@ -21,6 +24,27 @@ public class SettingActivity : BaseActivity<BaseViewModel, ActivitySettingBindin
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        appViewModel.appColorType.value?.let {
+            binding.clayoutSettingTop.setBackgroundResource(AppInfos.bgColors[it])
+            if (it == 0) {
+                binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back)
+                binding.txtSettingTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_history_title
+                    )
+                )
+            } else {
+                binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.txtSettingTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+            }
+        }
     }
 
     override fun createObserver() {

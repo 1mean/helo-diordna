@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentShortVideoBinding
@@ -118,21 +120,59 @@ public class ShortVideoFragment() :
                         title.textSize = resources.getDimension(R.dimen.common_sz_5_7_dimens)
                     }
                     mViewModel.updateBottomBackground(3)
+                    binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
                 } else {
 
                     for (index in 0 until tabTitles.size) {
                         if (index == selectedIndex) {
-                            tv.setTextColor(tabTitleColors[2])
+                            val status = appViewModel.appColorType.value
+                            if (status == null || status == 0) {
+                                tv.setTextColor(tabTitleColors[2])
+                            } else {
+                                tv.setTextColor(tabTitleColors[3])
+                            }
                         } else {
                             val tabView = binding.tbShort.getTabAt(index)!!
                             val title = (tabView.customView as TextView?)!!
-                            title.setTextColor(tabTitleColors[1])
+                            val status = appViewModel.appColorType.value
+                            if (status == null || status == 0) {
+                                title.setTextColor(tabTitleColors[1])
+                            } else {
+                                title.setTextColor(tabTitleColors[3])
+                            }
                             title.textSize = resources.getDimension(R.dimen.common_sz_5_7_dimens)
                         }
                     }
+                    if (appViewModel.appColorType.value == null) {
+                        binding.tbShort.setSelectedTabIndicatorColor(tabTitleColors[2])
+                        StatusBarUtils.updataStatus(
+                            mActivity,
+                            true,
+                            true,
+                            R.color.color_white_lucency
+                        )
+                    } else {
+                        val status = appViewModel.appColorType.value!!
+                        if (status == 0) {
+                            StatusBarUtils.updataStatus(
+                                mActivity,
+                                true,
+                                true,
+                                R.color.color_white_lucency
+                            )
+                            binding.tbShort.setSelectedTabIndicatorColor(tabTitleColors[2])
+                        } else {
+                            StatusBarUtils.updataStatus(
+                                mActivity,
+                                false,
+                                true,
+                                AppInfos.bgColors[status]
+                            )
+                            binding.tbShort.setSelectedTabIndicatorColor(tabTitleColors[3])
+                        }
+                        binding.clayoutShortTab.setBackgroundResource(AppInfos.bgColors[status])
+                    }
 
-                    binding.tbShort.setSelectedTabIndicatorColor(tabTitleColors[2])
-                    StatusBarUtils.updataStatus(mActivity, true, true, R.color.color_white_lucency)
                     mViewModel.updateBottomBackground(1)
                 }
                 tv.textSize = resources.getDimension(R.dimen.common_sz_6_dimens)
@@ -141,9 +181,45 @@ public class ShortVideoFragment() :
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
+
+        appViewModel.appColorType.value?.let {
+            updateTop(it)
+        }
+    }
+
+    private fun updateTop(status: Int) {
+        val selectIndex = binding.tbShort.selectedTabPosition
+        if (selectIndex == 2) {
+            binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
+        } else {
+            binding.clayoutShortTab.setBackgroundResource(AppInfos.bgColors[status])
+        }
+        if (status == 0) {
+            binding.tbShort.setSelectedTabIndicatorColor(tabTitleColors[2])
+            for (index in 0 until tabTitles.size) {
+                val tabView = binding.tbShort.getTabAt(index)!!
+                val title = (tabView.customView as TextView?)!!
+                if (index == selectIndex) {
+                    title.setTextColor(tabTitleColors[2])
+                } else {
+                    title.setTextColor(tabTitleColors[1])
+                }
+            }
+        } else {
+            binding.tbShort.setSelectedTabIndicatorColor(tabTitleColors[3])
+
+            for (index in 0 until tabTitles.size) {
+                val tabView = binding.tbShort.getTabAt(index)!!
+                val title = (tabView.customView as TextView?)!!
+                title.setTextColor(tabTitleColors[3])
+            }
+        }
     }
 
     override fun createObserver() {
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
+            updateTop(it)
+        }
     }
 
     override fun firstOnResume() {
@@ -161,7 +237,12 @@ public class ShortVideoFragment() :
             if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
                 StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
             } else {
-                StatusBarUtils.updataStatus(mActivity, true, true, R.color.color_white_lucency)
+                val status = appViewModel.appColorType.value
+                if (status == null || status == 0) {
+                    StatusBarUtils.updataStatus(mActivity, true, true, R.color.color_white_lucency)
+                } else {
+                    StatusBarUtils.updataStatus(mActivity, false, true, AppInfos.bgColors[status])
+                }
             }
         }
         mViewModel.updateBottomBackground(1)

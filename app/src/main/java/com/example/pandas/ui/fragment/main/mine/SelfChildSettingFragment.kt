@@ -4,9 +4,11 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.interaction.ItemClickListener
@@ -102,6 +104,9 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
 
         mViewModel.follows.observe(viewLifecycleOwner) {
             binding.txtMineFollow.text = it.toString()
+        }
+
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
         }
     }
 

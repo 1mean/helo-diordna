@@ -3,11 +3,15 @@ package com.example.pandas.ui.activity
 import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.databinding.ActivitySplashBinding
 import com.example.pandas.ui.ext.addAlphaAnimation
+import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils
 
 /**
@@ -28,6 +32,7 @@ public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>
                 }
 
                 override fun onAnimationEnd(animation: Animator?) {
+
                     val intent = Intent(this@SplashActivity, MainActivity::class.java)
                     startActivity(intent)
                     overridePendingTransition(
@@ -48,6 +53,11 @@ public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+
+        val status = SPUtils.getInt(this, AppInfos.BG_STATUS_KEY)
+        if (status != 0) {
+            appViewModel.appColorType.value = status
+        }
     }
 
     override fun createObserver() {

@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.interaction.OnSureListener
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
@@ -67,6 +70,23 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
         binding.btnCollectAdd.setOnClickListener {
 
             launcherActivity(requestLauncher, this, GroupCreateActivity::class.java)
+        }
+
+        appViewModel.appColorType.value?.let {
+            binding.clayoutCollectTop.setBackgroundResource(AppInfos.bgColors[it])
+            if (it == 0) {
+                binding.ibnCollectBack.setImageResource(R.mipmap.img_topview_back)
+                binding.txtCollectTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_history_title
+                    )
+                )
+            } else {
+                binding.ibnCollectBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.txtCollectTitle.setTextColor(ContextCompat.getColor(this, R.color.white))
+                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+            }
         }
     }
 

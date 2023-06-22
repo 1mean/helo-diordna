@@ -1,9 +1,11 @@
 package com.example.pandas.ui.fragment.main.live
 
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseLazyFragment
@@ -24,7 +26,7 @@ import java.util.ArrayList
  */
 public class LiveFragment : BaseLazyFragment<LiveViewModel, FragmentLivingBinding>() {
 
-    private val tabTitles = arrayListOf("综合","视频")
+    private val tabTitles = arrayListOf("综合", "视频")
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -67,16 +69,40 @@ public class LiveFragment : BaseLazyFragment<LiveViewModel, FragmentLivingBindin
             })
         }
 
-
+        appViewModel.appColorType.value?.let {
+            updateTop(it)
+        }
     }
 
     override fun createObserver() {
         appViewModel.appColorType.observe(this) {
-            binding.clayoutOtherTop.setBackgroundResource(AppInfos.bgColors[it])
+            updateTop(it)
         }
     }
 
     override fun firstOnResume() {
     }
 
+    private fun updateTop(status: Int) {
+        if (status == 0) {
+            binding.clayoutOtherTop.setBackgroundResource(AppInfos.bgColors[status])
+            binding.ibnPublish.setImageResource(R.mipmap.img_live_publish_gray)
+
+            binding.tabLiving.textSelectColor =
+                ContextCompat.getColor(mActivity, R.color.color_live_tab_select)
+            binding.tabLiving.textUnselectColor =
+                ContextCompat.getColor(mActivity, R.color.color_text_eye_unselect)
+            binding.tabLiving.indicatorColor =
+                ContextCompat.getColor(mActivity, R.color.color_live_tab_select)
+        } else {
+
+            binding.clayoutOtherTop.setBackgroundResource(AppInfos.bgColors[status])
+            binding.ibnPublish.setImageResource(R.mipmap.img_live_publish_white)
+
+            binding.tabLiving.textSelectColor = ContextCompat.getColor(mActivity, R.color.white)
+            binding.tabLiving.textUnselectColor =
+                ContextCompat.getColor(mActivity, R.color.snow)
+            binding.tabLiving.indicatorColor = ContextCompat.getColor(mActivity, R.color.white)
+        }
+    }
 }

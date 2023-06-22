@@ -3,12 +3,16 @@ package com.example.pandas.ui.activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseExActivity
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.interaction.OnItemmmmClickListener
@@ -94,6 +98,26 @@ public class SearchActivity : BaseExActivity<SearchViewModel, ActivitySearchBind
                 }
                 //如果设置为false，后续会继续触发edit的点击事件
                 true
+            }
+        }
+
+        appViewModel.appColorType.value?.let {
+            binding.clayoutSearchTitle.setBackgroundResource(AppInfos.bgColors[it])
+            if (it == 0) {
+                binding.txtSearchCancel.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_text_search_cancel
+                    )
+                )
+            } else {
+                binding.txtSearchCancel.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
             }
         }
     }

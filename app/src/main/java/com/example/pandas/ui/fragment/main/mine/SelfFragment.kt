@@ -2,6 +2,7 @@ package com.example.pandas.ui.fragment.main.mine
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
@@ -13,6 +14,7 @@ import com.example.pandas.ui.activity.BackGroundActivity
 import com.example.pandas.ui.adapter.SelfViewPagerAdapter
 import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.utils.DarkModeUtils
+import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils
 
 
@@ -55,6 +57,37 @@ public class SelfFragment : BaseFragment<SelfViewModel, FragmentMineBinding>() {
         binding.itemCharacter.setOnClickListener {
             startAnyActivity(mActivity, BackGroundActivity::class.java)
         }
+
+        appViewModel.appColorType.value?.let {
+            updateTop(it)
+        }
+
+    }
+
+    private fun updateTop(status: Int) {
+        if (status == 0) {
+            binding.layoutMineTop.setBackgroundResource(R.color.color_bg_self)
+            binding.slideTabSetting.textSelectColor =
+                ContextCompat.getColor(mActivity, R.color.color_tab_selected_self)
+            binding.slideTabSetting.textUnselectColor =
+                ContextCompat.getColor(mActivity, R.color.color_audio_menu_singer)
+            binding.slideTabSetting.indicatorColor =
+                ContextCompat.getColor(mActivity, R.color.color_home_tab_text_selected)
+
+            binding.imgUpdateDark.setImageResource(R.mipmap.img_mine_dark_gray)
+            binding.imgUpdateBackground.setImageResource(R.mipmap.img_clothes_gray)
+        } else {
+            binding.layoutMineTop.setBackgroundResource(AppInfos.bgColors[status])
+            binding.slideTabSetting.textSelectColor =
+                ContextCompat.getColor(mActivity, R.color.white)
+            binding.slideTabSetting.textUnselectColor =
+                ContextCompat.getColor(mActivity, R.color.white)
+            binding.slideTabSetting.indicatorColor =
+                ContextCompat.getColor(mActivity, R.color.white)
+
+            binding.imgUpdateDark.setImageResource(R.mipmap.img_mine_dark_white)
+            binding.imgUpdateBackground.setImageResource(R.mipmap.img_clothes_white)
+        }
     }
 
     override fun createObserver() {
@@ -65,7 +98,7 @@ public class SelfFragment : BaseFragment<SelfViewModel, FragmentMineBinding>() {
         }
 
         appViewModel.appColorType.observe(this) {
-            binding.layoutMineTop.setBackgroundResource(AppInfos.bgColors[it])
+            updateTop(it)
         }
     }
 

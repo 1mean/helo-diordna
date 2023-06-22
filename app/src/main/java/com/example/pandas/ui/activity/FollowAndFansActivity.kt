@@ -2,9 +2,12 @@ package com.example.pandas.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivityFollowBinding
@@ -27,8 +30,8 @@ public class FollowAndFansActivity : BaseActivity<SelfViewModel, ActivityFollowB
     override fun initView(savedInstanceState: Bundle?) {
 
         val index = intent.getIntExtra("FollowsOrFans", 0)
-        binding.layoutFollowTop.ibnTopFinish.setOnClickListener { finish() }
-        binding.layoutFollowTop.txtTopName.text = resources.getString(R.string.str_mine_friends)
+        binding.ibnTopFinish.setOnClickListener { finish() }
+        binding.txtTopName.text = resources.getString(R.string.str_mine_friends)
 
         binding.vp2Follow.run {
             offscreenPageLimit = tabTitles.size
@@ -51,6 +54,28 @@ public class FollowAndFansActivity : BaseActivity<SelfViewModel, ActivityFollowB
         ) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
+
+        appViewModel.appColorType.value?.let {
+            binding.layoutFollowTop.setBackgroundResource(AppInfos.bgColors[it])
+            if (it == 0) {
+                binding.ibnTopFinish.setImageResource(R.mipmap.img_topview_back)
+                binding.txtTopName.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_txt_panda_top
+                    )
+                )
+            } else {
+                binding.ibnTopFinish.setImageResource(R.mipmap.img_topview_back_white)
+                binding.txtTopName.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+            }
+        }
     }
 
     override fun createObserver() {
