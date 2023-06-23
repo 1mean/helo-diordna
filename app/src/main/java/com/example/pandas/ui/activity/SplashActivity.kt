@@ -58,6 +58,11 @@ public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>
         if (status != 0) {
             appViewModel.appColorType.value = status
         }
+
+        val type = SPUtils.getInt(this,AppInfos.RECO_STATUS_KEY)
+        if (type != 0) {
+            appViewModel.recommendType.value = type
+        }
     }
 
     override fun createObserver() {

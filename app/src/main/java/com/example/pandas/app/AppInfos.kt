@@ -19,6 +19,7 @@ object AppInfos {
     const val ATTENTION_KEY = "attention" //搜索关注列表的key
     const val VIDEO_PLAY_KEY = "code" //视频播放界面需要传递的key
     const val BG_STATUS_KEY = "bg_status" //设置背景色
+    const val RECO_STATUS_KEY = "reco_type" //设置推荐页面的排布类型
     const val HEAD_URL =
         "https://i2.hdslb.com/bfs/face/7974f1f6c031d305a30ea3ecd7aedadacb3921a4.jpg"
 

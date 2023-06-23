@@ -16,4 +16,8 @@ public interface OnSureListener {
     default void onCancel() {
 
     }
+
+    default void onSure(int type) {
+
+    }
 }

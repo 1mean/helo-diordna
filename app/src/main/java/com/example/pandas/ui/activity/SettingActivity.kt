@@ -8,11 +8,16 @@ import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
+import com.example.pandas.biz.interaction.OnSureListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivityMineInfoBinding
 import com.example.pandas.databinding.ActivitySettingBinding
+import com.example.pandas.ui.view.dialog.DeletePopuWindow
+import com.example.pandas.ui.view.dialog.StyleSettingPopuWindow
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.impl.LoadingPopupView
 
 /**
  * @description: SettingActivity
@@ -20,7 +25,7 @@ import com.example.pandas.utils.StatusBarUtils
  * @date: 8/20/22 12:28 上午
  * @version: v1.0
  */
-public class SettingActivity : BaseActivity<BaseViewModel, ActivitySettingBinding>(){
+public class SettingActivity : BaseActivity<BaseViewModel, ActivitySettingBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -44,6 +49,16 @@ public class SettingActivity : BaseActivity<BaseViewModel, ActivitySettingBindin
                 )
                 StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
             }
+        }
+
+        binding.clayoutSetLayout.setOnClickListener {
+
+            val popWindow = StyleSettingPopuWindow(this, object : OnSureListener {
+                override fun onSure(type: Int) {
+                    appViewModel.recommendType.value = type
+                }
+            })
+            popWindow.setBackDark().onShow(binding.clayoutSetLayout)
         }
     }
 

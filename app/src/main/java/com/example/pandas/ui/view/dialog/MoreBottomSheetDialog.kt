@@ -29,7 +29,8 @@ public class MoreBottomSheetDialog(
         _binding = DialogHomeItemBinding.inflate(LayoutInflater.from(context))
         setContentView(binding.root)
 
-        window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        //dialog一定要设定/计算出具体高度，然后设置进去，不然只是设置Wrap_content时，在底部一定会有间隙
+        //window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, 2700)
         initWidget()
     }
 

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseCMFragment
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
@@ -21,6 +22,7 @@ import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.RecommendAdapter
 import com.example.pandas.ui.adapter.decoration.RecommendDecoration
+import com.example.pandas.ui.adapter.decoration.RecommendDecoration2
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.startVideoPlayingActivity
@@ -60,8 +62,19 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.recyclerLayout.run {
-            init(
+        val type = appViewModel.recommendType.value
+        if (type != null && type == 1) {
+            val padding: Int = resources.getDimension(R.dimen.common_lh_5_dimens).toInt()
+            binding.recyclerLayout.init(
+                RecommendDecoration2(padding, padding, padding, padding, padding), mAdapter,
+                GridLayoutManager(activity, 2),
+                object : SwipRecyclerView.ILoadMoreListener {
+                    override fun onLoadMore() {
+                        mViewModel.getRecommendData(false)
+                    }
+                })
+        } else {
+            binding.recyclerLayout.init(
                 RecommendDecoration(mActivity), mAdapter,
                 GridLayoutManager(activity, 2),
                 object : SwipRecyclerView.ILoadMoreListener {
@@ -69,6 +82,9 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                         mViewModel.getRecommendData(false)
                     }
                 })
+        }
+
+        with(binding.recyclerLayout) {
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     when (newState) {
@@ -150,6 +166,23 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
             binding.swipLayout.visibility = View.VISIBLE
             binding.swipLayout.isRefreshing = false
         }
+
+//        appViewModel.recommendType.observe(viewLifecycleOwner) {
+//            if (it == 0) {
+//
+//            } else {
+//                val padding: Int = resources.getDimension(R.dimen.common_lh_5_dimens).toInt()
+//                binding.recyclerLayout.addItemDecoration(
+//                    RecommendDecoration2(
+//                        padding,
+//                        padding,
+//                        padding,
+//                        padding,
+//                        padding
+//                    )
+//                )
+//            }
+//        }
     }
 
     override fun onClick(video: PetVideo) {
@@ -225,12 +258,12 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                 val isOverHalf = ScreenUtil.isOverHalfViewVisiable(childView)
                 if (isOverHalf) {
                     if (!recoManager.isPlaying()) {
-                        Log.e("recoooooooo","111")
+                        Log.e("recoooooooo", "111")
                         recoManager.resumePlay()
                     }
                 } else {
                     if (recoManager.isPlaying()) {
-                        Log.e("recoooooooo","222")
+                        Log.e("recoooooooo", "222")
                         recoManager.pausePlayer()
                         updatePlayerView(true, playPos)
                     }
@@ -247,7 +280,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                         val isOverHalf = ScreenUtil.isOverHalfViewVisiable(childView)
                         if (isOverHalf) {
                             val file = getLocalFilePath(mActivity, petVideo.fileName!!)
-                            Log.e("recoooooooo","333")
+                            Log.e("recoooooooo", "333")
                             val playInfo =
                                 MediaInfo(petVideo.code, file.absolutePath, 0)
                             recoManager.play(childView, playInfo, position)

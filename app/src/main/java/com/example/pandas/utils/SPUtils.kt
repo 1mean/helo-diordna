@@ -36,7 +36,6 @@ object SPUtils {
     }
 
     fun getInt(context: Context, key: String): Int {
-
         return getInstanse(context).getInt(key, 0)
     }
 
