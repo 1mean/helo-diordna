@@ -18,8 +18,10 @@ import com.example.helo_base.magic.commonnavigator.abs.IPagerIndicator
 import com.example.helo_base.magic.commonnavigator.abs.IPagerTitleView
 import com.example.helo_base.magic.commonnavigator.indicators.LinePagerIndicator
 import com.example.pandas.R
+import com.example.pandas.app.appViewModel
 import com.example.pandas.bean.VideoInfo
 import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
@@ -38,7 +40,7 @@ fun VideoPlayingActivity.initViewPager(index: Int = 0) {
         offscreenPageLimit = ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
     }
 
-    val commonNavigator = CommonNavigator(this)
+    commonNavigator = CommonNavigator(this)
     cnAdapter = object : CommonNavigatorAdapter() {
 
         override fun getCount(): Int = tabNames.size
@@ -52,12 +54,23 @@ fun VideoPlayingActivity.initViewPager(index: Int = 0) {
                     R.color.color_tab_text
                 )
             )
-            tabView.setSelectedColor(
-                ContextCompat.getColor(
-                    this@initViewPager,
-                    R.color.color_video_tab_selected
+
+            val status = appViewModel.appColorType.value
+            if (status == null) {
+                tabView.setSelectedColor(
+                    ContextCompat.getColor(
+                        this@initViewPager,
+                        bgColors[0]
+                    )
                 )
-            )
+            } else {
+                tabView.setSelectedColor(
+                    ContextCompat.getColor(
+                        this@initViewPager,
+                        bgColors[status]
+                    )
+                )
+            }
             if (index == 0) {
                 tabView.hideNum()
             }
@@ -71,17 +84,28 @@ fun VideoPlayingActivity.initViewPager(index: Int = 0) {
             //补上margin的距离
             linePagerIndicator.xOffset = resources.getDimension(R.dimen.dimen_video_tabitem_margin)
             linePagerIndicator.mode = LinePagerIndicator.MODE_WRAP_CONTENT
-            linePagerIndicator.setColors(
-                ContextCompat.getColor(
-                    this@initViewPager,
-                    R.color.color_video_tab_selected
+
+            val status = appViewModel.appColorType.value
+            if (status == null) {
+                linePagerIndicator.setColors(
+                    ContextCompat.getColor(
+                        this@initViewPager,
+                        bgColors[0]
+                    )
                 )
-            )
+            } else {
+                linePagerIndicator.setColors(
+                    ContextCompat.getColor(
+                        this@initViewPager,
+                        bgColors[status]
+                    )
+                )
+            }
             return linePagerIndicator
         }
     }
-    commonNavigator.adapter = cnAdapter
-    binding.tabView.setNavigator(commonNavigator)
+    commonNavigator!!.adapter = cnAdapter
+    binding.tabView.setNavigator(commonNavigator!!)
     ViewPagerHelper.bind(binding.tabView, binding.vpVideo)
 
     binding.vpVideo.currentItem = index
@@ -143,7 +167,7 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
 fun VideoInfosFragment.initUser(user: User) {
 
     user.headUrl?.let { url ->
-        loadCircleImage(mActivity, url, binding.imgVideoInfoHead)
+        loadImage(mActivity, url, binding.imgVideoInfoHead)
     }
 
     if (user.vip == 1) {//是会员

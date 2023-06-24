@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.VideoViewModel
@@ -34,6 +35,18 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
     private lateinit var videoData: VideoData
     private var userCode: Int = -1
     private var isAttention = false
+    private val drawables
+        get() = arrayOf(
+            R.drawable.shape_user_attention,
+            R.drawable.shape_user_attention_pink,
+            R.drawable.shape_user_attention_pink,
+            R.drawable.shape_user_attention_red,
+            R.drawable.shape_user_attention_yellow,
+            R.drawable.shape_user_attention_grey,
+            R.drawable.shape_user_attention_blue,
+            R.drawable.shape_user_attention_purple
+        )
+
     override fun lazyLoadTime(): Long = 0
 
     private val bottomSheetDialog: AttentionBottomSheetDialog by lazy {
@@ -113,6 +126,15 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     binding.llayoutInfoAttention.visibility = View.GONE
                     binding.llayoutInfoAttentioned.visibility = View.VISIBLE
                     binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_unattention)
+                } else {
+                    val status = appViewModel.appColorType.value
+                    binding.llayoutInfoAttention.visibility = View.VISIBLE
+                    binding.llayoutInfoAttentioned.visibility = View.GONE
+                    if (status == null) {
+                        binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[0])
+                    } else {
+                        binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[status])
+                    }
                 }
 
                 binding.clayoutVideoInfoFollow.setOnClickListener {
@@ -124,9 +146,9 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                         binding.llayoutInfoAttentioned.visibility = View.VISIBLE
                         binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_unattention)
                         Toast.makeText(mActivity, "已关注", Toast.LENGTH_SHORT).show()
+                        author.attention = !author.attention
+                        isAttention = !isAttention
                     }
-                    author.attention = !author.attention
-                    isAttention = !isAttention
                 }
             }
             mAdapter.refreshAdapter(it.recoVideos)
@@ -145,10 +167,18 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     Toast.makeText(mActivity, "加入默认分组", Toast.LENGTH_SHORT).show()
                 }
                 2 -> {//取消关注
+
                     mViewModel.updateAttention(userCode)
-                    binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_attention)
+
+                    val status = appViewModel.appColorType.value
                     binding.llayoutInfoAttention.visibility = View.VISIBLE
                     binding.llayoutInfoAttentioned.visibility = View.GONE
+                    if (status == null) {
+                        binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[0])
+                    } else {
+                        binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[status])
+                    }
+
                     Toast.makeText(mActivity, "已取消关注", Toast.LENGTH_SHORT).show()
                     isAttention = false
                 }

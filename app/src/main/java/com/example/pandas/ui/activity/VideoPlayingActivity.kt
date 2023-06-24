@@ -15,10 +15,13 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.example.helo_base.magic.commonnavigator.CommonNavigator
 import com.example.helo_base.magic.commonnavigator.abs.CommonNavigatorAdapter
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
@@ -56,6 +59,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     val tabNames = arrayListOf("简介", "评论")
 
+    var commonNavigator: CommonNavigator? = null
     private var isFullScreen: Boolean = false
     private val MAX_UPDATE_INTERVAL_MS = 1000L
 
@@ -68,6 +72,17 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     private var fullPos: AppCompatTextView? = null
     private var video: PetVideo? = null
 
+    val bgColors = arrayOf(
+        R.color.color_bg_pink,
+        R.color.color_bg_pink,
+        R.color.color_bg_black,
+        R.color.color_bg_red,
+        R.color.color_bg_yellow,
+        R.color.color_bg_grey,
+        R.color.color_bg_blue,
+        R.color.color_bg_purple
+    )
+
     private val moreDialog by lazy { VideoMoreBottomSheetDialog(this, this) }
 
     val videoManager: VideoPlayManager by lazy { VideoPlayManager(this, this) }
@@ -79,7 +94,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     override fun initView(savedInstanceState: Bundle?) {
 
         video = intent.getParcelableExtra("petVideo")
-        val index = intent.getIntExtra("index",0)
+        val index = intent.getIntExtra("index", 0)
 
         initViewPager(index)
 
@@ -118,10 +133,10 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         stop.setOnClickListener {
             if (videoManager.isPlaying()) {
                 videoManager.onPause()
-                stop.setImageResource(R.mipmap.img_video_full_play)
+                stop.setImageResource(R.mipmap.img_video_full_play1)
             } else {
                 videoManager.continuePlay()
-                stop.setImageResource(R.mipmap.img_video_full_pause)
+                stop.setImageResource(R.mipmap.img_video_full_pause1)
             }
         }
 
@@ -160,9 +175,9 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                 title.text = it.title
             }
             if (videoManager.isPlaying()) {
-                stop.setImageResource(R.mipmap.img_video_full_pause)
+                stop.setImageResource(R.mipmap.img_video_full_pause1)
             } else {
-                stop.setImageResource(R.mipmap.img_video_full_play)
+                stop.setImageResource(R.mipmap.img_video_full_play1)
             }
         }
 

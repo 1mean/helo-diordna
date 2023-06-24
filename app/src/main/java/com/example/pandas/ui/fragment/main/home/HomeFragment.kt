@@ -26,6 +26,7 @@ import com.example.pandas.databinding.FragmentHomeBinding
 import com.example.pandas.ui.activity.MessageActivity
 import com.example.pandas.ui.activity.NewSearchActivity
 import com.example.pandas.ui.activity.ShortVideoActivity
+import com.example.pandas.ui.activity.ShortVideoActivity2
 import com.example.pandas.ui.adapter.HomePagerAdapter
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.ScreenUtil
@@ -143,7 +144,7 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
         }
 
         binding.imgHead.setOnClickListener {
-            mActivity.startActivity(Intent(mActivity, ShortVideoActivity::class.java))
+            mActivity.startActivity(Intent(mActivity, ShortVideoActivity2::class.java))
         }
         binding.ibMessage.setOnClickListener {
             mActivity.startActivity(Intent(mActivity, MessageActivity::class.java))
@@ -261,7 +262,6 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
                     )
                     adapter.updateIndicatorColors(AppInfos.bgColors[it])
                 }
-
             }
         }
     }

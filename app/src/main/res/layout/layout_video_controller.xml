@@ -41,7 +41,7 @@
                             app:layout_constraintTop_toTopOf="@id/clayout_video_close"
                             app:layout_constraintBottom_toBottomOf="@id/clayout_video_close"
                             app:layout_constraintRight_toRightOf="@id/clayout_video_close"
-                            android:src="@mipmap/img_video_left1" />
+                            android:src="@mipmap/img_video_left2" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -173,7 +173,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="3dp"
-                        android:src="@mipmap/img_video_fulling1"
+                        android:src="@mipmap/img_video_fulling2"
                         android:background="@null" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -200,7 +200,7 @@
                     app:layout_constraintLeft_toLeftOf="@id/clayout_video_vertical_top"
                     android:background="@null"
                     android:layout_marginStart="16dp"
-                    android:src="@mipmap/img_video_vertical_left" />
+                    android:src="@mipmap/img_video_vertical_left1" />
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_full_title"

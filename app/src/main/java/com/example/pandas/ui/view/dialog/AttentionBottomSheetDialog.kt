@@ -30,7 +30,7 @@ public class AttentionBottomSheetDialog(
         _binding = DialogAttentionCancelBinding.inflate(LayoutInflater.from(context))
         setContentView(binding.root)
 
-        window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         initWidget()
     }
 
