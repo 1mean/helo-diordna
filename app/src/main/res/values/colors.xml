@@ -157,7 +157,7 @@
     <color name="color_RadioGroup_bg_homepage">#00000000</color>
     <color name="color_bg_bottom_gb">#00000000</color>
     <color name="color_groupbutton_text">#616A70</color>
-    <color name="color_groupbutton_text_selected">#FF5596</color>
+    <color name="color_groupbutton_text_selected">#ff3e37</color>
     <color name="color_home_divider">#E2E6E6</color>
 
     <!--room-->

@@ -1,5 +1,6 @@
 package com.example.pandas.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -31,6 +32,9 @@ public class RankingActivity : BaseActivity<RankViewModel, ActivityRankingBindin
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        val title = intent.getStringExtra("title")
+        binding.txtPlayTitle.text = title
+
         binding.recyclerLayoutRank.init(
             null, mAdapter, LinearLayoutManager(this),
             object : SwipRecyclerView.ILoadMoreListener {
@@ -50,24 +54,19 @@ public class RankingActivity : BaseActivity<RankViewModel, ActivityRankingBindin
 
         appViewModel.appColorType.value?.let {
             binding.clayoutPlayTop.setBackgroundResource(AppInfos.bgColors[it])
-            if (it == 0) {
-                binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back)
-                binding.txtPlayTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_title
-                    )
+            binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back_white)
+            binding.txtPlayTitle.setTextColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.white
                 )
-            } else {
-                binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back_white)
-                binding.txtPlayTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
-            }
+            )
+            binding.btnRankingSearch.setImageResource(R.mipmap.img_topview_search_white)
+            StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+        }
+
+        binding.btnRankingSearch.setOnClickListener {
+            startActivity(Intent(this, NewSearchActivity::class.java))
         }
     }
 

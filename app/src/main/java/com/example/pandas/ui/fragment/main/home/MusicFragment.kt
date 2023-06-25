@@ -2,9 +2,12 @@ package com.example.pandas.ui.fragment.main.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.viewmodel.HomePageViewModel
@@ -16,7 +19,6 @@ import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.fragment.main.home.music.MusicChildFragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.NonDisposableHandle.parent
 
 /**
  * @description: 首页-音乐
@@ -129,6 +131,7 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
             binding.clayoutMusic.visibility = View.VISIBLE
             binding.swipMusic.isRefreshing = false
         }
+
     }
 
     override fun firstOnResume() {

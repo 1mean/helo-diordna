@@ -3,8 +3,11 @@ package com.example.pandas.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.LocalCacheViewModel
 import com.example.pandas.databinding.ActivityListBinding
@@ -32,7 +35,6 @@ public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBindin
     private var title: String? = null
 
     private val mAdapter by lazy { ListAdapter(mutableListOf()) }
-
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -70,10 +72,19 @@ public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBindin
             }
         )
 
-        binding.viewListTop.ibnTopFinish.setOnClickListener {
+        appViewModel.appColorType.value?.let {
+            StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+            binding.viewListTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.txtPandaTitle.setTextColor(ContextCompat.getColor(this, AppInfos.bgColors[0]))
+            binding.ibnPandaBack.setImageResource(R.mipmap.img_topview_back_white)
+            binding.btnPandaSearch.setImageResource(R.mipmap.img_topview_search_white)
+        }
+
+        binding.ibnPandaBack.setOnClickListener {
             finish()
         }
-        binding.viewListTop.ibnTopSearch.setOnClickListener {
+
+        binding.btnPandaSearch.setOnClickListener {
             startActivity(Intent(this, NewSearchActivity::class.java))
         }
     }
@@ -121,7 +132,7 @@ public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBindin
         super.firstOnResume()
 
         title?.let {
-            binding.viewListTop.txtTopName.text = it
+            binding.txtPandaTitle.text = it
         }
         request(true)
     }

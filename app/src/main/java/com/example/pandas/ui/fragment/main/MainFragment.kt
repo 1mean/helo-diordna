@@ -1,5 +1,6 @@
 package com.example.pandas.ui.fragment.main
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,9 +21,11 @@ import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentMainBinding
 import com.example.pandas.ui.adapter.HomeAdapter
+import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.internal.BaselineLayout
+import com.google.android.material.shape.CornerSize
 
 
 /**
@@ -131,14 +134,14 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
             isUserInputEnabled = false //禁止滑动
         }
 
-//        binding.bnvMain.getOrCreateBadge(R.id.menu_news).run {
-//            badgeGravity = BadgeDrawable.BOTTOM_END
-//            backgroundColor =
-//                ContextCompat.getColor(mActivity, R.color.color_groupbutton_text_selected)
-//            maxCharacterCount = 3
-//            number = 99
-//            badgeTextColor = Color.WHITE
-//        }
+        binding.bnvMain.getOrCreateBadge(R.id.menu_news).run {
+            badgeGravity = BadgeDrawable.TOP_END
+            backgroundColor =
+                ContextCompat.getColor(mActivity, R.color.color_groupbutton_text_selected)
+            maxCharacterCount = 3 //101显示99+
+            number = 23
+            badgeTextColor = Color.WHITE
+        }
 
         binding.bnvMain.run {
             itemIconTintList = null //必须代码设置，点击后变化的图片才能显示

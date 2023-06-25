@@ -42,6 +42,12 @@ object TimeUtils {
     }
 
     @SuppressLint("SimpleDateFormat")
+    fun getStringDate3(time: Long): String {
+        val formatter = SimpleDateFormat("yyyy年MM月dd日 HH:mm")
+        return formatter.format(Date(time))
+    }
+
+    @SuppressLint("SimpleDateFormat")
     fun getTime(time: Long): String {
         val formatter = SimpleDateFormat("MM-dd HH:mm")
         return formatter.format(Date(time))

@@ -4,8 +4,10 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
@@ -104,7 +106,6 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
         km.setOnSoftKeyBoardChangeListener(object :
             SoftInputManager.OnSoftKeyBoardChangeListener {
             override fun keyBoardShow(height: Int) {
-                binding.imgCommentSmile.visibility = View.GONE
                 binding.txtCommentSend.visibility = View.VISIBLE
             }
 
@@ -114,7 +115,6 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
                 if (content.isNullOrEmpty()) {
                     binding.editVideo.hint = "发一条友善的评论"
                 }
-                binding.imgCommentSmile.visibility = View.VISIBLE
                 binding.txtCommentSend.visibility = View.GONE
                 binding.editVideo.clearFocus()
             }
@@ -128,9 +128,16 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
 
         mViewModel.comments.observe(viewLifecycleOwner) {
 
+            binding.clayoutComment.visibility = View.VISIBLE
             if (it.isSuccess) {
                 when {
+                    it.isFirstEmpty -> {
+                        binding.rvComment.visibility = View.GONE
+                        binding.txtCommentEmpty.visibility = View.VISIBLE
+                    }
                     it.isRefresh -> {
+                        binding.rvComment.visibility = View.VISIBLE
+                        binding.txtCommentEmpty.visibility = View.GONE
                         mAdapter.update(true, it.listData)
                         binding.rvComment.isRefreshing(false)
                     }
@@ -140,7 +147,6 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
                 }
                 binding.rvComment.loadMoreFinished(it.isEmpty, it.hasMore)
             }
-            binding.clayoutComment.visibility = View.VISIBLE
             binding.refreshComment.isRefreshing = false
         }
 
@@ -150,6 +156,13 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
                 binding.rvComment.scrollToPosition(0)
             }
             loadingPopup!!.dismiss()
+
+            if (!binding.rvComment.isVisible) {
+                binding.rvComment.post {
+                    binding.rvComment.visibility = View.VISIBLE
+                    binding.txtCommentEmpty.visibility = View.GONE
+                }
+            }
             mAdapter.addComment(it)
             binding.editVideo.setText("")
             binding.editVideo.hint = "发一条友善的评论"

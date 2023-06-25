@@ -50,6 +50,7 @@
                         android:layout_height="30dp"
                         android:background="@drawable/shape_bg_cm_banner"
                         android:src="@mipmap/img_cm_banner_left"
+                        android:visibility="gone"
                         android:layout_marginTop="13dp"
                         android:layout_marginStart="12dp" />
 
@@ -57,7 +58,7 @@
                         android:id="@+id/btn_cm_banner_left"
                         android:layout_width="44dp"
                         android:layout_height="match_parent"
-                        android:src="@mipmap/img_audio_back"
+                        android:src="@mipmap/img_topview_back_white"
                         android:background="@null"
                         android:visibility="gone" />
 

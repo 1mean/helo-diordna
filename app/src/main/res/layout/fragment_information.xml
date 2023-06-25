@@ -140,18 +140,30 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_video_info_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
                     android:textSize="16sp"
+                    android:lines="1"
+                    android:ellipsize="end"
                     app:layout_constraintTop_toTopOf="@id/cl_video_info_desc"
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:textColor="@color/color_txt_video_info_desc" />
 
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_title_show"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintRight_toRightOf="@id/cl_video_info_desc"
+                    app:layout_constraintTop_toTopOf="@id/cl_video_info_desc"
+                    android:background="@null"
+                    android:src="@mipmap/img_title_show" />
+
             <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_info_counts"
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="7dp"
                     app:layout_constraintLeft_toLeftOf="@id/cl_video_info_desc"
                     app:layout_constraintTop_toBottomOf="@id/txt_video_info_title"
                     android:src="@mipmap/img_video_play_times" />
@@ -159,7 +171,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_info_counts"
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="16dp"
                     app:layout_constraintLeft_toRightOf="@id/image_info_counts"
                     app:layout_constraintBottom_toBottomOf="@id/image_info_counts"
                     android:layout_marginStart="3dp"
@@ -171,7 +183,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_info_comment"
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="16dp"
                     app:layout_constraintLeft_toRightOf="@id/txt_info_counts"
                     app:layout_constraintBottom_toBottomOf="@id/image_info_counts"
                     android:layout_marginStart="21dp"
@@ -180,7 +192,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_info_comment"
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="16dp"
                     app:layout_constraintLeft_toRightOf="@id/image_info_comment"
                     app:layout_constraintBottom_toBottomOf="@id/image_info_counts"
                     android:layout_marginStart="3dp"
@@ -192,7 +204,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_info_time"
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="16dp"
                     app:layout_constraintLeft_toRightOf="@id/txt_info_comment"
                     app:layout_constraintBottom_toBottomOf="@id/image_info_counts"
                     android:layout_marginStart="30dp"
@@ -204,7 +216,7 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="51dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"

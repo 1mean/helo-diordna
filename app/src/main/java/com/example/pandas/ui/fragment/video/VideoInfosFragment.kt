@@ -32,6 +32,8 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
 
     private val mAdapter: VideoRecoListAdapter by lazy { VideoRecoListAdapter() }
 
+    private var isTitleShow: Boolean = false
+
     private lateinit var videoData: VideoData
     private var userCode: Int = -1
     private var isAttention = false
@@ -75,6 +77,21 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
         binding.itemLove.setOnClickListener(this)
         binding.itemShare.setOnClickListener(this)
         binding.itemCollect.setOnClickListener(this)
+
+        binding.btnTitleShow.setOnClickListener {
+            with(binding.txtVideoInfoTitle) {
+                if (!isTitleShow) {
+                    maxLines = Int.MAX_VALUE
+                    minLines = 1
+                    binding.btnTitleShow.setImageResource(R.mipmap.img_title_hide)
+                } else {
+                    maxLines = 1
+                    minLines = 1
+                    binding.btnTitleShow.setImageResource(R.mipmap.img_title_show)
+                }
+            }
+            isTitleShow = !isTitleShow
+        }
     }
 
     private val shareItemListener = object : ItemClickListener<String> {
@@ -200,14 +217,14 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
     }
 
     override fun onClick(v: View?) {
+
         when (v?.id) {
             R.id.item_like -> {
+                addScaleAnimation(binding.imgLike,1.3f)
                 if (videoData.like) {
                     binding.imgLike.setImageResource(R.mipmap.img_video_like)
                     videoData.likes -= 1
                 } else {
-                    //setAnimation(binding.imgLike)
-                    addItemAnimation(binding.imgLike)
                     binding.imgLike.setImageResource(R.mipmap.img_video_liked)
                     if (videoData.hate) {
                         binding.imgDislike.setImageResource(R.mipmap.img_video_dislike)
@@ -224,6 +241,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                 mViewModel.addOrUpdateVideoData(videoData)
             }
             R.id.item_dislike -> {
+                addScaleAnimation(binding.imgDislike,1.3f)
                 if (videoData.hate) {
                     binding.imgDislike.setImageResource(R.mipmap.img_video_dislike)
                 } else {
@@ -243,11 +261,11 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                 mViewModel.addOrUpdateVideoData(videoData)
             }
             R.id.item_love -> {
+                addScaleAnimation(binding.imgLove,1.3f)
                 if (videoData.love) {
                     binding.imgLove.setImageResource(R.mipmap.img_love_unpress)
                     videoData.loves -= 1
                 } else {
-                    addScaleAnimation(binding.imgLove, 1.5f)
                     videoData.loves += 1
                     binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
                 }
@@ -261,12 +279,12 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                 mViewModel.addOrUpdateVideoData(videoData)
             }
             R.id.item_collect -> {
+                addScaleAnimation(binding.imgCollect,1.3f)
                 if (videoData.collect) {
                     videoData.collects -= 1
                     binding.imgCollect.setImageResource(R.mipmap.img_collect_unpress)
                     binding.txtVideoLike.text = videoData.likes.toString()
                 } else {
-                    addScaleAnimation(binding.imgCollect, 1.5f)
                     videoData.collects += 1
                     binding.imgCollect.setImageResource(R.mipmap.img_collect_pressed)
                 }

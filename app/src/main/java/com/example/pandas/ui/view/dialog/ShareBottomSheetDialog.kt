@@ -38,7 +38,7 @@ public class ShareBottomSheetDialog(
         _binding = DialogShareBinding.inflate(LayoutInflater.from(context))
         setContentView(binding.root)
 
-        window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         initWidget()
     }
 

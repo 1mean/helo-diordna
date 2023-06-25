@@ -27,7 +27,7 @@ public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>
         StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
 
         binding.imgSplash.post {
-            addAlphaAnimation(binding.imgSplash, 2000, object : Animator.AnimatorListener {
+            addAlphaAnimation(binding.imgSplash, 200, object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator?) {
                 }
 

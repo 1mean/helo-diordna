@@ -585,6 +585,10 @@ class PetManager {
     ): MutableList<VideoAndUser> {
 
         return withContext(Dispatchers.Default) {
+
+            if (startIndex == 0) {
+                delay(500)
+            }
             if (period == PeriodType.CUTE.ordinal) {
                 petDao.queryLovedByKey("%$words%", startIndex, counts)
             } else {
@@ -616,10 +620,10 @@ class PetManager {
                 "幼年班" -> {
                     petDao.queryByPeried(PeriodType.GROUP.ordinal, startIndex, counts)
                 }
-                "成长记录" -> {
+                "成长记" -> {
                     petDao.queryByPeried(PeriodType.ALL.ordinal, startIndex, counts)
                 }
-                "熊猫科普" -> {
+                "科普" -> {
                     petDao.queryByPeried(PeriodType.KNOWLEDGE.ordinal, startIndex, counts)
                 }
                 else -> {
@@ -928,6 +932,7 @@ class PetManager {
 
         return withContext(Dispatchers.Default) {
 
+            delay(500)
             //先获取一级弹幕
             val list = if (isOrderByTime) {//获取时间顺序的数据
                 petDao.queryPageCommentsByType(videoCode, startIndex, counts, 1)

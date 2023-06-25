@@ -32,6 +32,13 @@
                 android:text="播放榜"
                 android:textColor="@color/color_history_title" />
 
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_ranking_search"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                app:layout_constraintRight_toRightOf="@id/clayout_play_top"
+                android:src="@mipmap/img_topview_search"
+                android:background="@null" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View

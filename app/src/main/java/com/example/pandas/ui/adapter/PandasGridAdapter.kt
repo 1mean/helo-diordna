@@ -28,14 +28,14 @@ public class PandasGridAdapter(list: MutableList<GridItem>) : BaseCommonAdapter<
         val image = holder.getWidget<CircleImageView>(R.id.img_pandas_top)
         val name = holder.getWidget<AppCompatTextView>(R.id.txt_pandas_top)
 
-        //loadCircleImage(holder.itemView.context, data.item2, image)
-        loadImage(holder.itemView.context, data.item2, image)
-        if (position == 0) {
-            name.setTextColor(ContextCompat.getColor(context, R.color.color_txt_item_name))
-        } else {
-            name.setTextColor(ContextCompat.getColor(context, R.color.color_txt_panda_top))
-        }
         name.text = data.item1
+
+        when (position) {
+//            8 -> image.setImageResource(R.mipmap.img_old)
+//            9 -> image.setImageResource(R.mipmap.img_kepu)
+            else ->
+                loadImage(holder.itemView.context, data.item2, image)
+        }
 
         holder.itemView.setOnClickListener {
 

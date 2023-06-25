@@ -146,7 +146,7 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
         if (it.loves > 0) {
             binding.txtVideoLoves.text = it.loves.toString()
         } else {
-            binding.txtVideoLike.text = "喜欢"
+            binding.txtVideoLoves.text = "喜欢"
         }
         if (it.love) {
             binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
@@ -195,10 +195,10 @@ fun VideoInfosFragment.initVideo(video: PetVideo) {
         binding.txtVideoInfoTitle.text = title
     }
 
-    binding.txtInfoTime.text = TimeUtils.getStringDate2(video.releaseTime * 1000)
+    binding.txtInfoTime.text = TimeUtils.getStringDate3(video.releaseTime * 1000)
 
     binding.txtVideoInfoFans.text = "1粉丝"
-    binding.txtInfoComment.text = " - "
+    binding.txtInfoComment.text = "0"
 
     val playCounts: Int
     if (video.videoData == null) {

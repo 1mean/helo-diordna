@@ -17,7 +17,7 @@ fun getGridItems(): MutableList<GridItem> = mutableListOf(
         "https://i0.hdslb.com/bfs/face/356ff0f1c971b048f7c3df4c605fc7ba13a0560b.jpg@240w_240h_1c_1s.webp"
     ),
     GridItem(
-        "肉肉",
+        "梅兰",
         "https://i0.hdslb.com/bfs/face/4234aa9658217c530a2bb41cace6775cfce949b1.jpg@240w_240h_1c_1s.webp"
     ),
     GridItem(
@@ -40,11 +40,11 @@ fun getGridItems(): MutableList<GridItem> = mutableListOf(
         "https://i2.hdslb.com/bfs/face/02e2792704518967309dd53f87c02fc2290f7f04.jpg@150w_150h.jpg"
     ),
     GridItem(
-        "成长记录",
+        "成长记",
         "https://i2.hdslb.com/bfs/face/5b346efd80b30daacc8d06e87e3d0fb367b18529.jpg@150w_150h.jpg"
     ),
     GridItem(
-        "熊猫科普",
+        "科普",
         "https://i2.hdslb.com/bfs/face/3eb095132ebeaef597d84f1129a1135439432807.jpg@150w_150h.jpg"
     )
 )

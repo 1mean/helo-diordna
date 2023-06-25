@@ -3,8 +3,10 @@ package com.example.pandas.ui.activity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.example.pandas.R
+import com.example.pandas.app.appViewModel
 import com.example.pandas.app.getHehuaBanner
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.ext.loadLayoutBackGround
@@ -26,7 +28,18 @@ import com.google.android.material.tabs.TabLayoutMediator
  */
 public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBinding>() {
 
-    private val tabTitles = arrayListOf("视频", "熊猫宝宝", "熊猫妈妈", "幼年伙伴")
+    private val tabTitles = arrayListOf("成和花", "幼年花", "月亮花", "小二班")
+
+    val bgColors = arrayOf(
+        R.color.color_bg_pink,
+        R.color.color_bg_pink,
+        R.color.color_bg_black,
+        R.color.color_bg_red,
+        R.color.color_bg_yellow,
+        R.color.color_bg_grey,
+        R.color.color_bg_blue,
+        R.color.color_bg_purple
+    )
 
     override fun initStatusView() {
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
@@ -37,7 +50,7 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
         val title = intent.getStringExtra("title")
         binding.txtCmBannerTitle.text = title
 
-        binding.btnCmBannerBack.setOnClickListener { finish() }
+        //binding.btnCmBannerBack.setOnClickListener { finish() }
 
         binding.vp2CmBanner.apply {
             adapter = ActivityPandaAdapter(this@PandaActivity, title!!, tabTitles)
@@ -54,6 +67,35 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
         ) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
+
+        val status = appViewModel.appColorType.value
+        if (status == null) {
+            binding.tabCmBanner.setTabTextColors(
+                ContextCompat.getColor(
+                    this,
+                    R.color.color_tablayout_unselect_panda
+                ), ContextCompat.getColor(this, bgColors[0])
+            )
+            binding.tabCmBanner.setSelectedTabIndicatorColor(
+                ContextCompat.getColor(
+                    this,
+                    bgColors[0]
+                )
+            )
+        } else {
+            binding.tabCmBanner.setTabTextColors(
+                ContextCompat.getColor(
+                    this,
+                    R.color.color_tablayout_unselect_panda
+                ), ContextCompat.getColor(this, bgColors[status])
+            )
+            binding.tabCmBanner.setSelectedTabIndicatorColor(
+                ContextCompat.getColor(
+                    this,
+                    bgColors[status]
+                )
+            )
+        }
 
         val list = getHehuaBanner()
         val adapter = CommonBannerAdapter(list)
@@ -73,7 +115,7 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
             if (verticalOffset == 0) {
                 binding.txtCmBannerTitle.visibility = View.GONE
                 binding.btnCmBannerLeft.visibility = View.GONE
-                binding.btnCmBannerBack.visibility = View.VISIBLE
+                //binding.btnCmBannerBack.visibility = View.VISIBLE
                 binding.collapsCmBanner.contentScrim = null
             } else if (Math.abs(verticalOffset) >= 0.6 * appBarLayout.totalScrollRange) {
                 if (!binding.txtCmBannerTitle.isVisible) {
@@ -81,12 +123,12 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
                     binding.btnCmBannerLeft.visibility = View.VISIBLE
                     binding.txtCmBannerTitle.text = "大熊猫和花"
                 }
-                binding.btnCmBannerBack.visibility = View.GONE
+                //binding.btnCmBannerBack.visibility = View.GONE
                 binding.collapsCmBanner.setContentScrimResource(R.color.color_bg_banner_top)
             } else {
                 binding.txtCmBannerTitle.visibility = View.GONE
                 binding.btnCmBannerLeft.visibility = View.GONE
-                binding.btnCmBannerBack.visibility = View.VISIBLE
+                //binding.btnCmBannerBack.visibility = View.VISIBLE
                 binding.collapsCmBanner.contentScrim = null
             }
         })

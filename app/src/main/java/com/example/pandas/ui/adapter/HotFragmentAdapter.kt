@@ -91,12 +91,18 @@ public class HotFragmentAdapter(val list: MutableList<PetVideo>) : Adapter<ViewH
     class TopViewHolder(binding: AdapterTopHotFragmentBinding) : ViewHolder(binding.root) {
 
         val recyclerView = binding.rvTopHotFragment
-        val topList = mutableListOf<String>("播放榜", "创作榜", "热搜榜")
+        private val topList = mutableListOf("播放榜", "创作榜", "热搜榜")
+
+        var mAdapter: HotTopItemAdapter? = null
+
         fun handle() {
-            recyclerView.run {
-                layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-                addItemDecoration(HotFragmentTopDecoration())
-                adapter = HotTopItemAdapter(topList)
+            if (mAdapter == null) {
+                mAdapter = HotTopItemAdapter(topList)
+                with(recyclerView) {
+                    layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+                    addItemDecoration(HotFragmentTopDecoration())
+                    adapter = mAdapter
+                }
             }
         }
     }
