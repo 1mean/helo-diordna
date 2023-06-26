@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.UserInfoViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
@@ -51,6 +53,10 @@ public class UserVideosFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefr
                     mViewModel.getUserVideos(it.userCode, true)
                 }
             }
+        }
+
+        appViewModel.appColorType.value?.let {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
         }
     }
 

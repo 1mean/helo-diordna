@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.PandaViewModel
 import com.example.pandas.databinding.ActivityVideoListBinding
@@ -55,6 +57,10 @@ public class VideoItemListActivity : BaseActivity<PandaViewModel, ActivityVideoL
                 binding.recyclerLayout.isRefreshing(true)
                 title?.let { mViewModel.getPandas(true, it) }
             }
+        }
+
+        appViewModel.appColorType.value?.let {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
         }
     }
 

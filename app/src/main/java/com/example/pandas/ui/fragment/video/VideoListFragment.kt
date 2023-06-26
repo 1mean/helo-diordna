@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MoreDataViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
@@ -40,6 +42,10 @@ public class VideoListFragment : BaseFragment<MoreDataViewModel, LayoutSwipRefre
                 binding.recyclerLayout.isRefreshing(true)
                 mViewModel.getListResult(true)
             }
+        }
+
+        appViewModel.appColorType.value?.let {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
         }
     }
 

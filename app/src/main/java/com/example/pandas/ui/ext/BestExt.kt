@@ -6,10 +6,8 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
-import android.util.Log
+import android.view.Gravity
 import android.view.View
-import android.view.animation.Animation.RESTART
-import android.view.animation.Animation.REVERSE
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.view.animation.OvershootInterpolator
@@ -17,6 +15,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.pandas.R
 import com.example.pandas.biz.interaction.AnimationListener
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
@@ -291,4 +290,5 @@ fun addFragment(activity: AppCompatActivity, tag: String, newFragment: Fragment,
 fun shortToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
+
 //-------------------<辅助功能 结束>-----------------------------------------------------------------

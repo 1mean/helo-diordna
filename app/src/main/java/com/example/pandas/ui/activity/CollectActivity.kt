@@ -68,11 +68,12 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
             finish()
         }
         binding.btnCollectAdd.setOnClickListener {
-
             launcherActivity(requestLauncher, this, GroupCreateActivity::class.java)
         }
 
         appViewModel.appColorType.value?.let {
+
+            binding.refreshCollect.setColorSchemeResources(AppInfos.viewColors[it])
             binding.clayoutCollectTop.setBackgroundResource(AppInfos.bgColors[it])
             if (it == 0) {
                 binding.ibnCollectBack.setImageResource(R.mipmap.img_topview_back)
@@ -124,7 +125,11 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
                     loadingPopup = XPopup.Builder(this@CollectActivity).dismissOnBackPressed(true)
                         .isLightNavigationBar(true)
                         .isViewMode(false)
-                        .asLoading(null, R.layout.layout_waiting,LoadingPopupView.Style.ProgressBar)
+                        .asLoading(
+                            null,
+                            R.layout.layout_waiting,
+                            LoadingPopupView.Style.ProgressBar
+                        )
                     loadingPopup!!.show()
                 } else {
                     loadingPopup!!.show()

@@ -83,4 +83,15 @@ object AppInfos {
         R.color.color_bg_blue,
         R.color.color_bg_purple
     )
+
+    val viewColors = arrayOf(
+        R.color.color_bg_pink,
+        R.color.color_bg_pink,
+        R.color.color_bg_black,
+        R.color.color_bg_red,
+        R.color.color_bg_yellow,
+        R.color.color_bg_grey,
+        R.color.color_bg_blue,
+        R.color.color_bg_purple
+    )
 }

@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.DialogAttentionCancelBinding
@@ -59,6 +61,10 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
                 LinearLayoutManager(mActivity),
                 null
             )
+        }
+
+        appViewModel.appColorType.value?.let {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
         }
     }
 

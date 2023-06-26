@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.databinding.FragmentListShortVideoBinding
@@ -69,7 +71,9 @@ public class ShortVideoAttentionFragment() :
             }
         })
 
-
+        appViewModel.appColorType.value?.let {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+        }
     }
 
     override fun createObserver() {
@@ -91,6 +95,10 @@ public class ShortVideoAttentionFragment() :
             }
             binding.swipLayout.visibility = View.VISIBLE
             binding.swipLayout.isRefreshing = false
+        }
+
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
         }
     }
 

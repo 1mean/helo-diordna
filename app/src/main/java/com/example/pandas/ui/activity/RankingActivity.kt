@@ -53,6 +53,7 @@ public class RankingActivity : BaseActivity<RankViewModel, ActivityRankingBindin
         }
 
         appViewModel.appColorType.value?.let {
+            binding.swipLayoutRank.setColorSchemeResources(AppInfos.viewColors[it])
             binding.clayoutPlayTop.setBackgroundResource(AppInfos.bgColors[it])
             binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back_white)
             binding.txtPlayTitle.setTextColor(

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseCMFragment
 import com.example.pandas.bean.MediaInfo
@@ -107,6 +108,10 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                 mViewModel.getRecommendData(true)
             }
         }
+
+        appViewModel.appColorType.value?.let {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+        }
     }
 
     /**
@@ -147,6 +152,10 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
     }
 
     override fun createObserver() {
+
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+        }
 
         mViewModel.recommendDataWrapper.observe(viewLifecycleOwner) {
 

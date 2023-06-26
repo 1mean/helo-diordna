@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.PandaViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
@@ -52,6 +54,10 @@ public class PandaChildFragment : BaseFragment<PandaViewModel, LayoutSwipRefresh
                     mViewModel.getPandas(true, it, type)
                 }
             }
+        }
+
+        appViewModel.appColorType.value?.let {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
         }
     }
 

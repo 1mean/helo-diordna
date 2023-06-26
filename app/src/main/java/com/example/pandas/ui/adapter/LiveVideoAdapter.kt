@@ -25,6 +25,7 @@ import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.activity.FollowAndFansActivity
 import com.example.pandas.ui.adapter.decoration.LiveVisitorItemDecoration
+import com.example.pandas.ui.ext.addScaleAnimation
 import com.example.pandas.ui.ext.setLikeAnimation
 import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.ui.ext.startUserInfoActivity
@@ -221,7 +222,7 @@ public class LiveVideoAdapter(
 
             user?.let {
                 it.headUrl?.let { url ->
-                    loadCircleImage(context, url, userIcon)
+                    loadImage(context, url, userIcon)
                 }
                 userName.text = it.userName
 
@@ -243,9 +244,9 @@ public class LiveVideoAdapter(
             }
 
             if (videoData.like) {
-                likeImg.setImageResource(R.mipmap.img_eye_item_liked)
+                likeImg.setImageResource(R.mipmap.img_eye_item_liked1)
             } else {
-                likeImg.setImageResource(R.mipmap.img_eye_item_like)
+                likeImg.setImageResource(R.mipmap.img_eye_item_like1)
             }
 
             if (videoData.likes == 0) {
@@ -285,8 +286,9 @@ public class LiveVideoAdapter(
 
             likeView.setOnClickListener {
 
+                addScaleAnimation(likeImg, 1.4f)
                 if (videoData.like) {
-                    likeImg.setImageResource(R.mipmap.img_eye_item_like)
+                    likeImg.setImageResource(R.mipmap.img_eye_item_like1)
                     videoData.likes -= 1
                     if (videoData.likes > 0) {
                         likeTxt.text = videoData.likes.toString()
@@ -308,7 +310,7 @@ public class LiveVideoAdapter(
                             listener.updateVideoData(videoData)
                         }
                     })
-                    likeImg.setImageResource(R.mipmap.img_eye_item_liked)
+                    likeImg.setImageResource(R.mipmap.img_eye_item_liked1)
                 }
             }
 

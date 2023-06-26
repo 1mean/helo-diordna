@@ -11,6 +11,8 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.bean.ReplyInfo
 import com.example.pandas.biz.interaction.CommentsListener
@@ -121,10 +123,18 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
         })
 
         binding.txtCommentSend.setOnClickListener { sendMessage() } //发送弹幕
+
+        appViewModel.appColorType.value?.let {
+            binding.refreshComment.setColorSchemeResources(AppInfos.viewColors[it])
+        }
     }
 
 
     override fun createObserver() {
+
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
+            binding.refreshComment.setColorSchemeResources(AppInfos.viewColors[it])
+        }
 
         mViewModel.comments.observe(viewLifecycleOwner) {
 

@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.bean.LandscapeData
 import com.example.pandas.biz.viewmodel.HomePageViewModel
@@ -46,9 +48,17 @@ public class LandscapeFragment :
                 mViewModel.getLandScapeData(true)
             }
         }
+
+        appViewModel.appColorType.value?.let {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+        }
     }
 
     override fun createObserver() {
+
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+        }
 
         mViewModel.landScapeDataWrapper.observe(viewLifecycleOwner) {
 

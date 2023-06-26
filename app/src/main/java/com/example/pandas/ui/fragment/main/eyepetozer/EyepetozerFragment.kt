@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseCMFragment
 import com.example.pandas.biz.manager.ExoPlayerManager
 import com.example.pandas.biz.viewmodel.EyepetozerViewModel
@@ -64,6 +66,10 @@ public class EyepetozerFragment :
                 mViewModel.initData(true)
             }
         }
+
+        appViewModel.appColorType.value?.let {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+        }
     }
 
     override fun onStart() {
@@ -95,6 +101,10 @@ public class EyepetozerFragment :
     }
 
     override fun createObserver() {
+
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+        }
 
         mViewModel.eyepetozerWrapper.observe(viewLifecycleOwner) {
 

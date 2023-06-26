@@ -46,6 +46,9 @@ data class User(
     var reservedString: String? = null,//预留string字段
 
     @Ignore
-    var ipAddress: String? = null//用户的ip地址
+    var ipAddress: String? = null,//用户的ip地址
+
+    @Ignore
+    var booleanFlag: Boolean = false
 
 ) : Parcelable

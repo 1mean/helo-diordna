@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.biz.viewmodel.HomePageViewModel
@@ -42,9 +44,17 @@ public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefr
                 mViewModel.getLoveData(true)
             }
         }
+
+        appViewModel.appColorType.value?.let {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+        }
     }
 
     override fun createObserver() {
+
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+        }
 
         mViewModel.loveDataWrapper.observe(viewLifecycleOwner) {
             if (it.isSuccess) {

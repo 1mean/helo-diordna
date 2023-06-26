@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +12,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseCMFragment
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
@@ -27,6 +28,7 @@ import com.example.pandas.ui.adapter.LiveVideoAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.toastTopShow
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.ScreenUtil
 import com.google.android.exoplayer2.Player.REPEAT_MODE_ONE
@@ -92,9 +94,18 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
         }
 
         playerManager = LivePlayManager(mActivity, this)
+
+        appViewModel.appColorType.value?.let {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+        }
     }
 
+    private var isNews = false
     override fun createObserver() {
+
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+        }
 
         mViewModel.liveVideos.observe(viewLifecycleOwner) {
 
@@ -108,6 +119,10 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
                         mAdapter.refresh(it.liveVides)
                         binding.recyclerLayout.isRefreshing(false)
 
+                        if (!isNews) {
+                            toastTopShow(mActivity, "发现了23条新内容")
+                            isNews = true
+                        }
                         //直接切换到该界面，不会自动播放视频，只有当人为滑动后，才开始进行播放
                         //binding.recyclerLayout.postDelayed({ startPlay() }, delayTime)
                     }

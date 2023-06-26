@@ -116,6 +116,10 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
         binding.clayoutMusicNotice.setOnClickListener {
             MoreDataListActivity.startMoreDataActivity(mActivity, VideoType.MUSIC.ordinal)
         }
+
+        appViewModel.appColorType.value?.let {
+            binding.swipMusic.setColorSchemeResources(AppInfos.viewColors[it])
+        }
     }
 
     fun getBarVerticalOffset(): Int = verticalOffset
@@ -125,6 +129,11 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
     }
 
     override fun createObserver() {
+
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
+            binding.swipMusic.setColorSchemeResources(AppInfos.viewColors[it])
+        }
+
         mViewModel.musicData.observe(viewLifecycleOwner) {
 
             topAdapter.refreshAdapter(it)

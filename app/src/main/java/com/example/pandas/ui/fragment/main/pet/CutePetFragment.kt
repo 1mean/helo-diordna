@@ -14,6 +14,8 @@ import com.example.helo_base.magic.commonnavigator.abs.IPagerTitleView
 import com.example.helo_base.magic.commonnavigator.indicators.LinePagerIndicator
 import com.example.helo_base.magic.commonnavigator.titles.ColorFlipPagerTitleView
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.CutePetViewModel
 import com.example.pandas.databinding.FragmentRoomBinding
@@ -95,6 +97,10 @@ public class CutePetFragment : BaseLazyFragment<CutePetViewModel, FragmentRoomBi
 //        }.attach()
 
         binding.tlayoutPet.setViewPager(binding.vpPet, tabNames)
+
+        appViewModel.appColorType.value?.let {
+            binding.refreshPet.setColorSchemeResources(AppInfos.viewColors[it])
+        }
     }
 
     override fun createObserver() {

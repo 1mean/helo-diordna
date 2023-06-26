@@ -141,6 +141,7 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
             maxCharacterCount = 3 //101显示99+
             number = 23
             badgeTextColor = Color.WHITE
+            verticalOffset = 10
         }
 
         binding.bnvMain.run {
@@ -148,7 +149,10 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
             setOnItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.menu_home -> binding.vpHome.setCurrentItem(0, false)
-                    R.id.menu_news -> binding.vpHome.setCurrentItem(1, false)
+                    R.id.menu_news -> {
+                        binding.vpHome.setCurrentItem(1, false)
+                        binding.bnvMain.getOrCreateBadge(R.id.menu_news).isVisible = false
+                    }
                     R.id.menu_add -> binding.vpHome.setCurrentItem(2, false)
                     R.id.menu_more -> binding.vpHome.setCurrentItem(3, false)
                     R.id.menu_mine -> binding.vpHome.setCurrentItem(4, false)
