@@ -204,6 +204,12 @@ public class VideoPagerAdapter(
             playerView.layoutParams = params
         }
 
+        fun hidePlerView(){
+            if (play.isVisible) {
+                play.visibility = View.GONE
+            }
+        }
+
         fun init() {
             playerCover.visibility = View.GONE
             play.visibility = View.GONE

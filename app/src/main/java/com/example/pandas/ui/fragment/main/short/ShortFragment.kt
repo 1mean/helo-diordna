@@ -1,11 +1,16 @@
 package com.example.pandas.ui.fragment.main.short
 
+import ShortManager
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.*
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
@@ -17,6 +22,7 @@ import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.databinding.FragmentVerticalVideoplayBinding
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
+import com.example.pandas.ui.activity.UserInfoActivity
 import com.example.pandas.ui.adapter.VideoPagerAdapter
 import com.example.pandas.ui.ext.startUserInfoActivity
 import com.example.pandas.ui.view.dialog.ShortRightPopuWindow
@@ -36,33 +42,24 @@ public class ShortFragment :
     BaseFragment<ShortVideoViewModel, FragmentVerticalVideoplayBinding>(), ExoPlayerListener,
     VideoPagerAdapter.VerticalVideoListener {
 
-    private var isRefreshing = false
-
-    var mMinimumVelocity: Int = 0
-    var mMaximumVelocity: Int = 0
-    var mTouchSlop: Int = 0
     private var hasMore = false
-    var mVelocityTracker: VelocityTracker? = null //速度跟踪器
+    private var startActivity = false
     private val mAdapter: VideoPagerAdapter by lazy { VideoPagerAdapter(listener = this) }
 
-    private var manager: VerticalPlayManager? = null
+    private var manager: ShortManager? = null
     var popupView: ShortRightPopuWindow? = null
 
-    private val mHandler: Handler = Handler(Looper.getMainLooper())
+
+    //onStart -> 返回数据后 -> 然后执行onResume()
+    private val requestLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            manager?.continuePlayer()
+        }
 
     @SuppressLint("Recycle")
     override fun initView(savedInstanceState: Bundle?) {
 
-        //bug:一句代码解决了两天的bug，关闭popuwindow时，edittext仍然有焦点，会反复弹出
-        //window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
-        manager = VerticalPlayManager(mActivity, this)
-
-
-        mVelocityTracker = VelocityTracker.obtain()
-        val viewConfig = ViewConfiguration.get(mActivity)
-        mTouchSlop = viewConfig.scaledTouchSlop
-        mMinimumVelocity = viewConfig.scaledMinimumFlingVelocity
-        mMaximumVelocity = viewConfig.scaledMaximumFlingVelocity
+        manager = ShortManager(mActivity, this)
 
         binding.vp2VideoVertical.run {
             orientation = ViewPager2.ORIENTATION_VERTICAL
@@ -70,33 +67,16 @@ public class ShortFragment :
             offscreenPageLimit = 1
             registerOnPageChangeCallback(pageChangeCallback)
         }
-
-//        binding.ibnVerticalTopClose.setOnClickListener {
-//            mVelocityTracker?.recycle()
-//            manager?.release()
-//        }
-
-        binding.clayoutVerticalTop.post {
-            val location = IntArray(2)
-            binding.clayoutVerticalTop.getLocationOnScreen(location)
-        }
     }
 
     override fun createObserver() {
-
         mViewModel.verticalVideos.observe(this) {
-
             if (it.isSuccess) {
                 when {
                     it.isRefresh -> {
+                        Log.e("222aaa", "isRefresh")
                         mAdapter.refreshAdapter(it.listData)
-                        if (isRefreshing) {
-                            manager?.refreshPlayer(it.listData)
-                            isRefreshing = false
-                            binding.clayoutVerticalRefresh.visibility = View.GONE
-                        } else {
-                            manager?.initPlayer(it.listData)
-                        }
+                        manager?.addMediaItems(it.listData)
                     }
                     it.hasMore -> {
                         mAdapter.loadMore(it.listData)
@@ -150,9 +130,11 @@ public class ShortFragment :
             }
         }
 
-        //界面初始化，第一次注册时也会被调用，所以要注意为null的判断
+        //界面初始化，第一次注册时也会被调用，所以要注意为null的判断,而且肯定是在加载完数据，界面显示后才回调的
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
+
+            Log.e("222aaa", "onPageSelected")
             currentPosition = position
             //开启右下角的旋转动画
 
@@ -214,14 +196,12 @@ public class ShortFragment :
 
         if (manager!!.isPlaying()) {
             manager?.pause()
-        } else {
-            mAdapter.recyclerView?.let {
-                val viewHolder =
-                    it.findViewHolderForAdapterPosition(binding.vp2VideoVertical.currentItem) as? VideoPagerAdapter.MyViewHolder
-                viewHolder?.init()
-            }
         }
-        startUserInfoActivity(mActivity, user)
+        val intent = Intent(context, UserInfoActivity::class.java).apply {
+            putExtra("user", user)
+        }
+        requestLauncher.launch(intent)
+        startActivity = true
     }
 
     private var vh: VideoPagerAdapter.MyViewHolder? = null
@@ -287,9 +267,6 @@ public class ShortFragment :
             .animationDuration(600)
             .asCustom(popupView)
             .show()
-
-
-
         popupView!!.setOnDragListener { v, event ->
 
             val dialogHeight = popupView!!.height
@@ -303,10 +280,6 @@ public class ShortFragment :
         mViewModel.updateAttention(userCode)
     }
 
-    private fun sendVideoComment(comment: String) {
-
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         mAdapter.clearAnimation()
@@ -314,23 +287,21 @@ public class ShortFragment :
 
     override fun onPause() {
         super.onPause()
-        manager?.let {
-            if (it.isPlaying()) {
-                it.release()
-            }
+        if (!startActivity) {
+            manager?.release()
         }
     }
 
     override fun againOnResume() {
         super.againOnResume()
-
-        manager?.let {
-
-            it.initPlayer()
-
-
-
+        startActivity = false
+        mAdapter.recyclerView?.let {
+            val viewHolder =
+                it.findViewHolderForAdapterPosition(binding.vp2VideoVertical.currentItem) as? VideoPagerAdapter.MyViewHolder
+            viewHolder?.let { vh ->
+                vh.hidePlerView()
+                manager?.againOnResume(vh.playerView,currentPosition)
+            }
         }
-
     }
 }
