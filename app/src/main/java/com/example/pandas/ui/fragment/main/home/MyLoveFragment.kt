@@ -77,4 +77,9 @@ public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefr
         mViewModel.getLoveData(true)
     }
 
+    override fun refresh() {
+        super.refresh()
+        binding.swipLayout.isRefreshing = true
+        mViewModel.getLoveData(true)
+    }
 }

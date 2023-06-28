@@ -199,4 +199,6 @@ public abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragm
     }
 
     open fun againOnResume() {}
+
+    open fun refresh() {}
 }

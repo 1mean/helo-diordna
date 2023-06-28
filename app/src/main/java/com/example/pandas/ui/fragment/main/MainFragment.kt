@@ -15,7 +15,6 @@ import androidx.core.view.children
 import androidx.core.view.get
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
@@ -25,7 +24,6 @@ import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.internal.BaselineLayout
-import com.google.android.material.shape.CornerSize
 
 
 /**
@@ -125,6 +123,9 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
             ContextCompat.getColor(mActivity, R.color.black)
         )
 
+    private var curPosition = 0
+    private var lastPosition = 0
+
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.vpHome.apply {
@@ -148,15 +149,36 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
             itemIconTintList = null //必须代码设置，点击后变化的图片才能显示
             setOnItemSelectedListener { item ->
                 when (item.itemId) {
-                    R.id.menu_home -> binding.vpHome.setCurrentItem(0, false)
+                    R.id.menu_home -> {
+                        if (curPosition == 0) {
+                            mViewModel.bottomState
+                        }
+                        curPosition = 0
+                        binding.vpHome.setCurrentItem(0, false)
+                    }
                     R.id.menu_news -> {
+                        curPosition = 1
                         binding.vpHome.setCurrentItem(1, false)
                         binding.bnvMain.getOrCreateBadge(R.id.menu_news).isVisible = false
                     }
-                    R.id.menu_add -> binding.vpHome.setCurrentItem(2, false)
-                    R.id.menu_more -> binding.vpHome.setCurrentItem(3, false)
-                    R.id.menu_mine -> binding.vpHome.setCurrentItem(4, false)
+                    R.id.menu_add -> {
+                        curPosition = 2
+                        binding.vpHome.setCurrentItem(2, false)
+                    }
+                    R.id.menu_more -> {
+                        curPosition = 3
+                        binding.vpHome.setCurrentItem(3, false)
+                    }
+                    R.id.menu_mine -> {
+                        curPosition = 4
+                        binding.vpHome.setCurrentItem(4, false)
+                    }
                 }
+                if (curPosition == lastPosition) {
+                    Log.e("doubleCilik", "开始刷新了， lastPosition：$lastPosition")
+                    mViewModel.updateRefreshPosition(curPosition)
+                }
+                lastPosition = curPosition
                 true //true表示拦截，不跳转
             }
         }
@@ -191,19 +213,25 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
         mViewModel.bottomState.observe(viewLifecycleOwner) { status ->
             Log.e("lidandan3", "状态改变了: $status")
             when (status) {
-                1 -> {//常规
+                1 -> {//修改底部成正常底色
                     if (vpStatus != 1) {
                         if (binding.bnvMain[0] is BottomNavigationMenuView) {
                             for (i in 0..4) {
                                 val item = (binding.bnvMain[0] as BottomNavigationMenuView)[i]
                                 if (item is BottomNavigationItemView) {
                                     if (i == 2) {
+                                        val status = appViewModel.appColorType.value
                                         val publishView =
                                             item.findViewById<ConstraintLayout>(R.id.clayout_bottom_publish)
                                         val publishImg =
                                             item.findViewById<AppCompatImageView>(R.id.img_bottom_publish)
-                                        publishView.setBackgroundResource(R.drawable.shape_bottom_publish)
-                                        publishImg.setImageResource(R.mipmap.img_bottom_publish)
+                                        if (status == null || status == 0) {
+                                            publishView.setBackgroundResource(R.drawable.shape_bottom_publish)
+                                            publishImg.setImageResource(R.mipmap.img_bottom_publish)
+                                        } else {
+                                            publishView.setBackgroundResource(publishDrawable[status])
+                                            publishImg.setImageResource(publishImages[status])
+                                        }
                                     } else {
                                         item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
                                             if (childView is ConstraintLayout) {
@@ -261,7 +289,7 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
                         binding.bnvMain.setBackgroundColor(bottomBgColors[0])
                     }
                 }
-                3 -> {//黑色底部的视频播放界面
+                3 -> {//将底部修改成黑色底部的短视频播放界面
                     if (binding.bnvMain[0] is BottomNavigationMenuView) {
                         for (i in 0..4) {
                             val item = (binding.bnvMain[0] as BottomNavigationMenuView)[i]
@@ -295,14 +323,14 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
                                         val titleView = LayoutInflater.from(mActivity)
                                             .inflate(R.layout.view_bottom_navigation_name, null)
                                         (item as BottomNavigationItemView).addView(titleView)
-                                    }
-                                    val title =
-                                        item.findViewById<AppCompatTextView>(R.id.txt_bottom_title)
-                                    title.text = tabTitles[i]
-                                    if (i == 3) {
-                                        title.setTextColor(shortVideoColors[0])
-                                    } else {
-                                        title.setTextColor(shortVideoColors[1])
+                                        val title =
+                                            item.findViewById<AppCompatTextView>(R.id.txt_bottom_title)
+                                        title.text = tabTitles[i]
+                                        if (i == 3) {
+                                            title.setTextColor(shortVideoColors[0])
+                                        } else {
+                                            title.setTextColor(shortVideoColors[1])
+                                        }
                                     }
                                 }
                             }

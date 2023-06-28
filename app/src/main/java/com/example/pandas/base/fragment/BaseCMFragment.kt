@@ -97,7 +97,7 @@ public abstract class BaseCMFragment<VM : BaseViewModel, VB : ViewBinding> : Fra
 
         if (isFirstShow) {
             onVisible()
-        } else{
+        } else {
             againOnResume()
         }
     }
@@ -199,4 +199,8 @@ public abstract class BaseCMFragment<VM : BaseViewModel, VB : ViewBinding> : Fra
     open fun getCurrentLifeOwner(): ViewModelStoreOwner {
         return this
     }
+
+    open fun refresh() {
+    }
+
 }

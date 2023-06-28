@@ -54,6 +54,11 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefre
         }
     }
 
+    override fun refresh() {
+        binding.swipLayout.isRefreshing = true
+        mViewModel.getPagePet(true)
+    }
+
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {

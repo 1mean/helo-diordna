@@ -326,6 +326,7 @@
     <color name="color_bg_user_unattention">#E2E6E6</color>
     <color name="color_txt_user_unattention">#919AA0</color>
     <color name="color_bg_user_divider">#E7E7E7</color>
+    <color name="color_txt_user_fans">#72747b</color>
     <color name="color_user_dialog_txt_cancel">#505050</color>
 
     <!--eye-->

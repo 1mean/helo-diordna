@@ -14,8 +14,13 @@ public class MainFragmentViewModel : BaseViewModel() {
 
     val bottomState: MutableLiveData<Int> by lazy { MutableLiveData() }
 
+    val refreshPosition: MutableLiveData<Int> by lazy { MutableLiveData() }
+
     fun updateBottomBackground(status: Int) {
         bottomState.value = status
     }
 
+    fun updateRefreshPosition(position:Int){
+        refreshPosition.value = position
+    }
 }

@@ -83,4 +83,10 @@ public class HotFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefresh
         mViewModel.getHotData(true)
     }
 
+    override fun refresh() {
+        super.refresh()
+        binding.swipLayout.isRefreshing = true
+        mViewModel.getHotData(true)
+    }
+
 }

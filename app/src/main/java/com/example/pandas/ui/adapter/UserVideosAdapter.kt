@@ -43,7 +43,7 @@ public class UserVideosAdapter(list: MutableList<VideoAndData>) :
             counts.text = NumUtils.getShortNum(data.videoData.plays)
         }
 
-        time.text = TimeUtils.parseTime(video.releaseTime)
+        time.text = TimeUtils.descriptiveData(video.releaseTime)
 
         holder.itemView.setOnClickListener {
             startVideoPlayingActivity(context, video)

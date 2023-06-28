@@ -1,8 +1,9 @@
 package com.example.pandas.ui.fragment.main.short
 
-import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
@@ -10,14 +11,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentShortVideoBinding
-import com.example.pandas.ui.fragment.main.pet.CutePetFragment
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.tabs.TabLayout
@@ -36,6 +35,8 @@ public class ShortVideoFragment() :
     BaseFragment<MainFragmentViewModel, FragmentShortVideoBinding>() {
 
     private val tabTitles = arrayListOf("关注", "发现", "推荐")
+
+    var isUpdate = true
 
     private val tabTitleColors
         get() = arrayOf(
@@ -172,7 +173,6 @@ public class ShortVideoFragment() :
                         }
                         binding.clayoutShortTab.setBackgroundResource(AppInfos.bgColors[status])
                     }
-
                     mViewModel.updateBottomBackground(1)
                 }
                 tv.textSize = resources.getDimension(R.dimen.common_sz_6_dimens)
@@ -232,29 +232,43 @@ public class ShortVideoFragment() :
 
     override fun onPause() {
         super.onPause()
-        if (binding.tbShort.selectedTabPosition == 2) {
-            val nightMode = DarkModeUtils.getNightModel(mActivity)
-            if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
-                StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
-            } else {
-                val status = appViewModel.appColorType.value
-                if (status == null || status == 0) {
-                    StatusBarUtils.updataStatus(mActivity, true, true, R.color.color_white_lucency)
+        if (isUpdate) {
+            if (binding.tbShort.selectedTabPosition == 2) {
+                val nightMode = DarkModeUtils.getNightModel(mActivity)
+                if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
+                    StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
                 } else {
-                    StatusBarUtils.updataStatus(mActivity, false, true, AppInfos.bgColors[status])
+                    val status = appViewModel.appColorType.value
+                    if (status == null || status == 0) {
+                        StatusBarUtils.updataStatus(
+                            mActivity,
+                            true,
+                            true,
+                            R.color.color_white_lucency
+                        )
+                    } else {
+                        StatusBarUtils.updataStatus(
+                            mActivity,
+                            false,
+                            true,
+                            AppInfos.bgColors[status]
+                        )
+                    }
                 }
             }
+            mViewModel.updateBottomBackground(1)
         }
-        mViewModel.updateBottomBackground(1)
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (binding.tbShort.selectedTabPosition == 2) {
-            StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
-            mViewModel.updateBottomBackground(3)
-        } else {
-            mViewModel.updateBottomBackground(1)
+    override fun againOnResume() {
+        super.againOnResume()
+        if (isUpdate) {
+            if (binding.tbShort.selectedTabPosition == 2) {
+                StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
+                mViewModel.updateBottomBackground(3)
+            } else {
+                //mViewModel.updateBottomBackground(1)
+            }
         }
     }
 }

@@ -4,6 +4,8 @@
     <!-- dimens.xml命名规范：模块_具体作用名 -->
 
     <!-- 普通文字 @auther dongyiming -->
+    <dimen name="common_sz_3_dimens">3sp</dimen>
+    <dimen name="common_sz_4_dimens">4sp</dimen>
     <dimen name="common_sz_5_dimens">5sp</dimen>
     <dimen name="common_sz_5_7_dimens">5.7sp</dimen>
     <dimen name="common_sz_6_dimens">6sp</dimen>

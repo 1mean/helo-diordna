@@ -10,6 +10,7 @@ import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.UserInfoViewModel
+import com.example.pandas.databinding.FragmentUserVideosBinding
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.ext.init
@@ -22,7 +23,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @date: 4/22/22 1:00 上午
  * @version: v1.0
  */
-public class UserVideosFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefreshBinding>() {
+public class UserVideosFragment : BaseFragment<UserInfoViewModel, FragmentUserVideosBinding>() {
 
     private var user: User? = null
 
@@ -31,6 +32,7 @@ public class UserVideosFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefr
     override fun initView(savedInstanceState: Bundle?) {
 
         user = mActivity.intent.getParcelableExtra("user")
+        binding.recyclerLayout.setIntercept(false)
         binding.recyclerLayout.init(
             null,
             mAdapter,
@@ -42,31 +44,11 @@ public class UserVideosFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefr
                     }
                 }
             })
-
-        binding.swipLayout.run {
-            setBackgroundResource(R.color.color_bg_video_activity)
-            setRefreshColor()
-            isRefreshing = true
-            setOnRefreshListener {
-                binding.recyclerLayout.isRefreshing(true)
-                user?.let {
-                    mViewModel.getUserVideos(it.userCode, true)
-                }
-            }
-        }
-
-        appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
-        }
     }
 
     override fun createObserver() {
 
         mViewModel.userVideos.observe(viewLifecycleOwner) {
-            Log.e("listData1","size: ${it.listData.size}")
-            it.listData.forEach {
-                Log.e("listData1", "listData1: ${it.videoData}")
-            }
             if (it.isSuccess) {
                 binding.recyclerLayout.visibility = View.VISIBLE
                 when {
@@ -80,8 +62,6 @@ public class UserVideosFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefr
                 }
                 binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
             }
-            binding.swipLayout.visibility = View.VISIBLE
-            binding.swipLayout.isRefreshing = false
         }
     }
 

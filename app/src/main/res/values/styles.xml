@@ -154,9 +154,8 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:textSize">13sp</item>
-        <item name="android:textColor">@color/color_txt_item_title_land</item>
-        <item name="android:layout_marginTop">7dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/color_txt_user_top_name</item>
     </style>
 
     <style name="style_user_top_name">
@@ -164,7 +163,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:textSize">11sp</item>
-        <item name="android:textColor">@color/color_txt_user_unattention</item>
+        <item name="android:textColor">@color/color_video_item_name</item>
     </style>
 
     <style name="style_user_dialog_relative">

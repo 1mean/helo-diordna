@@ -1,12 +1,16 @@
 package com.example.pandas.ui.fragment.main.home
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.helo_base.magic.ViewPagerHelper
 import com.example.helo_base.magic.commonnavigator.CommonNavigator
 import com.example.helo_base.magic.commonnavigator.abs.CommonNavigatorAdapter
@@ -21,6 +25,7 @@ import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.ext.loadLocalCircleImage
+import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.biz.viewmodel.MainViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
 import com.example.pandas.ui.activity.MessageActivity
@@ -28,6 +33,7 @@ import com.example.pandas.ui.activity.NewSearchActivity
 import com.example.pandas.ui.activity.ShortVideoActivity
 import com.example.pandas.ui.activity.ShortVideoActivity2
 import com.example.pandas.ui.adapter.HomePagerAdapter
+import com.example.pandas.ui.ext.addScaleAnimation
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
@@ -40,7 +46,7 @@ import com.google.android.material.appbar.AppBarLayout
  * @date: 1/3/22 11:42 下午
  * @version: v1.0
  */
-public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
+public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBinding>() {
 
     private val tabTitles = arrayListOf("熊猫", "推荐", "热门", "娱乐", "风景", "音乐")
 
@@ -171,23 +177,55 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
     }
 
     override fun createObserver() {
-        appViewModel.appColorType.observe(this) {
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
             updateTopView(it)
         }
+        loadImage(mActivity, AppInfos.HEAD_URL, binding.imgHead)
+        loadLocalCircleImage(mActivity, R.mipmap.img_dota, binding.imgDark)
 
-        mViewModel.userInfo.observe(viewLifecycleOwner) {
-
-            if (it != null) {
-                it.headUrl?.let { url ->
-                    loadImage(mActivity, url, binding.imgHead)
+        mViewModel.refreshPosition.observe(viewLifecycleOwner) { position ->
+            if (position == 0) {
+                val currentItem = binding.viewpager.currentItem
+                val fragments = childFragmentManager.fragments
+                fragments.forEach {
+                    when (currentItem) {
+                        0 -> {
+                            if (it is PandaFragment) {
+                                (it as PandaFragment).refresh()
+                            }
+                        }
+                        1 -> {
+                            if (it is RecommendFragment) {
+                                (it as RecommendFragment).refresh()
+                            }
+                        }
+                        2 -> {
+                            if (it is HotFragment) {
+                                (it as HotFragment).refresh()
+                            }
+                        }
+                        3 -> {
+                            if (it is MyLoveFragment) {
+                                (it as MyLoveFragment).refresh()
+                            }
+                        }
+                        4 -> {
+                            if (it is LandscapeFragment) {
+                                (it as LandscapeFragment).refresh()
+                            }
+                        }
+                        5 -> {
+                            if (it is MusicFragment) {
+                                (it as MusicFragment).refresh()
+                            }
+                        }
+                    }
                 }
             }
         }
-        loadLocalCircleImage(mActivity, R.mipmap.img_dota, binding.imgDark)
     }
 
     override fun firstOnResume() {
-        mViewModel.getUserInfo()
     }
 
     override fun againOnResume() {
@@ -201,6 +239,7 @@ public class HomeFragment : BaseFragment<MainViewModel, FragmentHomeBinding>() {
 
     private fun updateTopView(it: Int) {
         binding.bar.setBackgroundResource(AppInfos.bgColors[it])
+        binding.clayoutTopHeader.setBackgroundResource(AppInfos.bgColors[it])
         when (it) {
             0 -> {
                 commonNavigator?.let { navigator ->

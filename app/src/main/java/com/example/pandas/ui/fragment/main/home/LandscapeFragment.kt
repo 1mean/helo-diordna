@@ -86,4 +86,9 @@ public class LandscapeFragment :
         mViewModel.getLandScapeData(true)
     }
 
+    override fun refresh() {
+        super.refresh()
+        binding.swipLayout.isRefreshing = true
+        mViewModel.getLandScapeData(true)
+    }
 }

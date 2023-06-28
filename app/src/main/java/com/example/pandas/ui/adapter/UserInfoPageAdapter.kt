@@ -15,7 +15,7 @@ import com.example.pandas.ui.fragment.user.UserVideosFragment
 public class UserInfoPageAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {
         return if (position == 0) {

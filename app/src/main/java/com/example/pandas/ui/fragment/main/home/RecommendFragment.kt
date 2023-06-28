@@ -130,6 +130,12 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
         mViewModel.getRecommendData(true)
     }
 
+    override fun refresh() {
+        super.refresh()
+        binding.swipLayout.isRefreshing = true
+        mViewModel.getRecommendData(true)
+    }
+
     override fun againOnResume() {
         startPlay()
     }

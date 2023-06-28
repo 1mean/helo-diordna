@@ -22,7 +22,7 @@ import kotlin.math.abs
  * @date: 12/27/19 6:30 下午
  * @version: v1.0
  */
-class SwipRecyclerView : RecyclerView {
+open class SwipRecyclerView : RecyclerView {
 
     private var wrapAdapter: AdapterWrapper? = null
     private var isLoadingData = false //正在上拉加载数据中，不允许下拉刷新

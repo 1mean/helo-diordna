@@ -94,4 +94,16 @@ object AppInfos {
         R.color.color_bg_blue,
         R.color.color_bg_purple
     )
+
+    val drawables
+        get() = arrayOf(
+            R.drawable.shape_user_attention,
+            R.drawable.shape_user_attention_pink,
+            R.drawable.shape_user_attention_pink,
+            R.drawable.shape_user_attention_red,
+            R.drawable.shape_user_attention_yellow,
+            R.drawable.shape_user_attention_grey,
+            R.drawable.shape_user_attention_blue,
+            R.drawable.shape_user_attention_purple
+        )
 }

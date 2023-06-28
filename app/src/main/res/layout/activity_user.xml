@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/bar_user"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
             app:elevation="0dp">
 
         <!--app:titleEnabled="false" 解决Toolbar中文字无法居中问题，左侧会为折叠预留的空间，导致文字右移-->
@@ -18,51 +18,80 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:contentScrim="@color/white"
                 app:titleEnabled="false">
 
             <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="144dp"
                     android:src="@mipmap/img_bg_user"
-                    app:layout_collapseMode="parallax"
-                    app:layout_collapseParallaxMultiplier="0.5"
                     android:scaleType="fitXY" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clayout_user_top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="134dp"
+                    android:layout_marginTop="121dp"
                     android:background="@color/color_white_lucency">
 
-                <net.csdn.roundview.CircleImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/img_user_header"
-                        android:layout_width="81dp"
-                        android:layout_height="81dp"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="2dp"
                         app:layout_constraintTop_toTopOf="@id/clayout_user_top"
                         app:layout_constraintLeft_toLeftOf="@id/clayout_user_top"
-                        android:layout_marginStart="24dp" />
+                        android:layout_marginStart="25dp" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/llayout_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/img_user_header"
+                        app:layout_constraintLeft_toLeftOf="@id/clayout_user_top"
+                        android:layout_marginTop="34dp"
+                        android:layout_marginStart="12dp"
+                        android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:includeFontPadding="false"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/color_txt_name_userinfo" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_user_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="7dp"
+                            android:layout_gravity="center_vertical" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                         android:id="@+id/clayout_user_info"
                         android:layout_width="193dp"
-                        android:layout_height="39dp"
+                        android:layout_height="35dp"
                         app:layout_constraintTop_toTopOf="@id/clayout_user_top"
                         app:layout_constraintRight_toRightOf="@id/clayout_user_top"
                         android:layout_marginEnd="12dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="29dp"
                         android:orientation="horizontal">
 
                     <androidx.appcompat.widget.LinearLayoutCompat style="@style/style_user_top_info">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/txt_user_fans"
+                                android:id="@+id/txt_user_like"
                                 style="@style/style_user_top_value"
-                                android:text="2350" />
+                                android:text="18.7万" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                                 style="@style/style_user_top_name"
-                                android:text="@string/str_fans" />
+                                android:text="@string/str_praise" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <androidx.appcompat.widget.LinearLayoutCompat style="@style/style_user_top_info">
@@ -80,136 +109,154 @@
                     <androidx.appcompat.widget.LinearLayoutCompat style="@style/style_user_top_info">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/txt_user_like"
+                                android:id="@+id/txt_user_fans"
                                 style="@style/style_user_top_value"
-                                android:text="18.7万" />
+                                android:text="2350" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                                 style="@style/style_user_top_name"
-                                android:text="@string/str_praise" />
+                                android:text="@string/str_fans" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/clayout_user_follow"
-                        android:layout_width="193dp"
-                        android:layout_height="30dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:layout_constraintTop_toBottomOf="@id/clayout_user_info"
-                        app:layout_constraintLeft_toLeftOf="@id/clayout_user_info"
-                        android:background="@drawable/shape_user_attention"
-                        android:layout_marginTop="7dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/clayout_user_attention"
-                            android:layout_width="60dp"
-                            android:layout_height="match_parent"
-                            app:layout_constraintLeft_toLeftOf="@id/clayout_user_follow"
-                            app:layout_constraintRight_toRightOf="@id/clayout_user_follow">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintLeft_toLeftOf="@id/clayout_user_attention"
-                                app:layout_constraintTop_toTopOf="@id/clayout_user_attention"
-                                app:layout_constraintBottom_toBottomOf="@id/clayout_user_attention"
-                                android:src="@mipmap/img_user_add" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintRight_toRightOf="@id/clayout_user_attention"
-                                app:layout_constraintTop_toTopOf="@id/clayout_user_attention"
-                                app:layout_constraintBottom_toBottomOf="@id/clayout_user_attention"
-                                android:layout_marginEnd="7dp"
-                                android:textColor="@color/white"
-                                android:includeFontPadding="false"
-                                android:textSize="14sp"
-                                android:text="@string/txt_follow" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/clayout_user_unattention"
-                            android:layout_width="60dp"
-                            android:layout_height="match_parent"
-                            android:visibility="gone"
-                            app:layout_constraintLeft_toLeftOf="@id/clayout_user_follow"
-                            app:layout_constraintRight_toRightOf="@id/clayout_user_follow">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintLeft_toLeftOf="@id/clayout_user_unattention"
-                                app:layout_constraintTop_toTopOf="@id/clayout_user_unattention"
-                                app:layout_constraintBottom_toBottomOf="@id/clayout_user_unattention"
-                                android:src="@mipmap/img_user_unattention" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintRight_toRightOf="@id/clayout_user_unattention"
-                                app:layout_constraintTop_toTopOf="@id/clayout_user_unattention"
-                                app:layout_constraintBottom_toBottomOf="@id/clayout_user_unattention"
-                                android:layout_marginEnd="7dp"
-                                android:textColor="@color/color_txt_user_unattention"
-                                android:includeFontPadding="false"
-                                android:textSize="14sp"
-                                android:text="已关注" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/llayout_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="24dp"
-                        app:layout_constraintLeft_toLeftOf="@id/clayout_user_top"
-                        app:layout_constraintTop_toBottomOf="@id/img_user_header"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="17dp"
-                        android:layout_marginEnd="12dp"
-                        android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/txt_user_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="17sp"
-                            android:gravity="center_vertical"
-                            android:includeFontPadding="false"
-                            android:layout_gravity="center_vertical"
-                            android:textColor="@color/color_txt_name_userinfo" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/img_user_level"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="7dp"
-                            android:layout_gravity="center_vertical" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_user_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/llayout_name"
+                        app:layout_constraintTop_toBottomOf="@id/llayout_user_name"
+                        app:layout_constraintLeft_toLeftOf="@id/clayout_user_top"
+                        android:layout_marginEnd="16dp"
                         android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="13sp"
+                        android:textColor="@color/color_video_item_name" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/llayout_user_ip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/txt_user_desc"
+                        android:layout_marginTop="17dp"
+                        app:layout_constraintLeft_toLeftOf="@id/txt_user_desc"
+                        android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clayout_user_ip"
+                            android:layout_width="10dp"
+                            android:layout_height="9dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/shape_user_ip">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="5sp"
+                                android:textColor="#58646b"
+                                android:text="IP"
+                                android:textStyle="bold"
+                                app:layout_constraintLeft_toLeftOf="@id/clayout_user_ip"
+                                app:layout_constraintRight_toRightOf="@id/clayout_user_ip"
+                                app:layout_constraintTop_toTopOf="@id/clayout_user_ip"
+                                app:layout_constraintBottom_toBottomOf="@id/clayout_user_ip"
+                                android:includeFontPadding="false"
+                                tools:ignore="SmallSp" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_user_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:layout_gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:layout_marginStart="3dp"
+                            android:textColor="#60676a"
+                            tools:ignore="SmallSp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clayout_user_follow"
+                        android:layout_width="185dp"
+                        android:layout_height="30dp"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:layout_marginEnd="12dp"
-                        android:layout_marginTop="9dp"
-                        android:textSize="12sp"
-                        android:maxLines="2"
-                        android:ellipsize="end"
-                        android:textColor="@color/color_eye_txt_time" />
+                        app:layout_constraintTop_toBottomOf="@id/clayout_user_info"
+                        app:layout_constraintRight_toRightOf="@id/clayout_user_top"
+                        android:background="@drawable/shape_user_attention"
+                        android:layout_marginTop="7dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/clayout_user_attention"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_user_follow"
+                            app:layout_constraintRight_toRightOf="@id/clayout_user_follow">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/img_user_add" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:includeFontPadding="false"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+                                android:textSize="14sp"
+                                android:text="@string/txt_follow" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/clayout_user_unattention"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:visibility="gone"
+                            android:orientation="horizontal"
+                            android:background="@drawable/shape_user_unattention"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_user_follow"
+                            app:layout_constraintRight_toRightOf="@id/clayout_user_follow">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@mipmap/img_user_unattention" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/color_txt_user_unattention"
+                                android:includeFontPadding="false"
+                                android:layout_marginStart="5dp"
+                                android:textSize="14sp"
+                                android:text="已关注" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="bottom"
+                        app:layout_constraintTop_toBottomOf="@id/llayout_user_ip"
+                        android:background="#e5e5e6"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="15dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!--Toolbar左侧控件一直有空白，无法放置在最左侧，设置四个contentInset值解决-->
             <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="32.66dp"
                     app:contentInsetLeft="0dp"
                     app:contentInsetStart="0dp"
@@ -247,20 +294,13 @@
                         tools:ignore="RtlHardcoded" />
 
             </androidx.appcompat.widget.Toolbar>
-
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.33dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginStart="12dp"
-                    android:background="@color/color_bg_divider_userinfo" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.example.helo_base.magic.MagicIndicator
             android:id="@+id/tb_user"
             android:layout_width="match_parent"
-            android:layout_height="41dp"
+            android:layout_height="40dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <androidx.viewpager2.widget.ViewPager2

@@ -148,4 +148,9 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
         mViewModel.getMusicTopData()
     }
 
+    override fun refresh() {
+        super.refresh()
+        binding.swipMusic.isRefreshing = true
+        mViewModel.getMusicTopData()
+    }
 }

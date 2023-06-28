@@ -53,6 +53,7 @@ public class ShortFragment :
     //onStart -> 返回数据后 -> 然后执行onResume()
     private val requestLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
             manager?.continuePlayer()
         }
 
@@ -60,7 +61,6 @@ public class ShortFragment :
     override fun initView(savedInstanceState: Bundle?) {
 
         manager = ShortManager(mActivity, this)
-
         binding.vp2VideoVertical.run {
             orientation = ViewPager2.ORIENTATION_VERTICAL
             adapter = mAdapter
@@ -194,6 +194,11 @@ public class ShortFragment :
 
     override fun startUserActivity(user: User) {
 
+        val fragment = parentFragment
+        if (fragment != null && fragment is ShortVideoFragment) {
+            (fragment as ShortVideoFragment).isUpdate = false
+        }
+
         if (manager!!.isPlaying()) {
             manager?.pause()
         }
@@ -270,7 +275,6 @@ public class ShortFragment :
         popupView!!.setOnDragListener { v, event ->
 
             val dialogHeight = popupView!!.height
-            Log.e("1mean", "start drah: $dialogHeight")
 
             true
         }
@@ -294,6 +298,12 @@ public class ShortFragment :
 
     override fun againOnResume() {
         super.againOnResume()
+
+        val fragment = parentFragment
+        if (fragment != null && fragment is ShortVideoFragment) {
+            (fragment as ShortVideoFragment).isUpdate = true
+        }
+
         startActivity = false
         mAdapter.recyclerView?.let {
             val viewHolder =

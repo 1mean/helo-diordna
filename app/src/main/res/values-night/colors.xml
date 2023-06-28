@@ -133,6 +133,7 @@
     <color name="color_bg_user_daily">#17181A</color>
     <color name="color_bg_user_top">#17181A</color>
     <color name="color_txt_user_top_name">#e7eaea</color>
+    <color name="color_txt_user_fans">#72747b</color>
 
 
     <color name="color_btn_homepage_normal">#717474</color>
