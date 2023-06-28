@@ -15,6 +15,8 @@ public class HomeAdapter(fragmentActivity: FragmentActivity) :
 
     override fun getItemCount() = 5
 
-    override fun createFragment(position: Int): Fragment = FragmentFactory.buildFragment(position)
-
+    override fun createFragment(position: Int): Fragment {
+        val fragment = FragmentFactory.buildFragment(position)
+        return fragment
+    }
 }

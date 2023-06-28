@@ -101,6 +101,13 @@ public class ShortVideoListFragment() :
 
     override fun firstOnResume() {
         mViewModel.getFallsShortVideos(true)
+        binding.swipLayout.isRefreshing = true
+    }
+
+    override fun refresh() {
+        super.refresh()
+        mViewModel.getFallsShortVideos(true)
+        binding.swipLayout.isRefreshing = true
     }
 
     override fun updataVideoData(videoData: VideoData) {

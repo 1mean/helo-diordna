@@ -104,6 +104,13 @@ public class ShortVideoAttentionFragment() :
 
     override fun firstOnResume() {
         mViewModel.getAttentionFallVideos(true)
+        binding.swipLayout.isRefreshing = true
+    }
+
+    override fun refresh() {
+        super.refresh()
+        mViewModel.getAttentionFallVideos(true)
+        binding.swipLayout.isRefreshing = true
     }
 
     override fun updataVideoData(videoData: VideoData) {

@@ -165,6 +165,12 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
         mViewModel.getLiveVideo(true)
     }
 
+    override fun refresh() {
+        super.refresh()
+        binding.swipLayout.isRefreshing = true
+        mViewModel.getLiveVideo(true)
+    }
+
     //1,从左右切换过来的，不会自动播放，手动滑动后才播放
     //2,从其他界面退回到该界面的，会自动播放，而且延续之前的播放进度
     override fun againOnResume() {

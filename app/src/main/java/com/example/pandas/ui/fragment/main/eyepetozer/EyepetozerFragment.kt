@@ -84,8 +84,13 @@ public class EyepetozerFragment :
         mViewModel.initData(true)
     }
 
-    override fun againOnResume() {
+    override fun refresh() {
+        super.refresh()
+        binding.swipLayout.isRefreshing = true
+        mViewModel.initData(true)
+    }
 
+    override fun againOnResume() {
         if (!ExoPlayerManager.instance.isPlayIng()) {
             ExoPlayerManager.instance.prePare()
         }

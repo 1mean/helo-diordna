@@ -17,6 +17,8 @@ import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentShortVideoBinding
+import com.example.pandas.ui.fragment.main.eyepetozer.EyepetozerFragment
+import com.example.pandas.ui.fragment.main.live.LiveVideoFragment
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.tabs.TabLayout
@@ -220,15 +222,35 @@ public class ShortVideoFragment() :
         appViewModel.appColorType.observe(viewLifecycleOwner) {
             updateTop(it)
         }
+
+        mViewModel.refreshPosition.observe(viewLifecycleOwner){
+            if (it == 3) {
+                val currentItem = binding.vp2Short.currentItem
+                val fragments = childFragmentManager.fragments
+                fragments.forEach {
+                    when(currentItem){
+                        0->{
+                            if (it is ShortVideoAttentionFragment) {
+                                (it as ShortVideoAttentionFragment).refresh()
+                            }
+                        }
+                        1->{
+                            if (it is ShortVideoListFragment) {
+                                (it as ShortVideoListFragment).refresh()
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
     }
 
     override fun firstOnResume() {
 
     }
 
-    override fun getCurrentLifeOwner(): ViewModelStoreOwner {
-        return mActivity
-    }
+    override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
 
     override fun onPause() {
         super.onPause()

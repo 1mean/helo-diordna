@@ -1,7 +1,5 @@
 package com.example.pandas.ui.fragment.main.home
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +8,6 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.helo_base.magic.ViewPagerHelper
 import com.example.helo_base.magic.commonnavigator.CommonNavigator
 import com.example.helo_base.magic.commonnavigator.abs.CommonNavigatorAdapter
@@ -22,18 +19,14 @@ import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.ext.loadLocalCircleImage
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
-import com.example.pandas.biz.viewmodel.MainViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
 import com.example.pandas.ui.activity.MessageActivity
 import com.example.pandas.ui.activity.NewSearchActivity
-import com.example.pandas.ui.activity.ShortVideoActivity
 import com.example.pandas.ui.activity.ShortVideoActivity2
 import com.example.pandas.ui.adapter.HomePagerAdapter
-import com.example.pandas.ui.ext.addScaleAnimation
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
@@ -184,6 +177,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
         loadLocalCircleImage(mActivity, R.mipmap.img_dota, binding.imgDark)
 
         mViewModel.refreshPosition.observe(viewLifecycleOwner) { position ->
+            Log.e("doubleCilik", "HomeFragment: $position")
             if (position == 0) {
                 val currentItem = binding.viewpager.currentItem
                 val fragments = childFragmentManager.fragments

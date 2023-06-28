@@ -1,15 +1,19 @@
 package com.example.pandas.ui.fragment.main.live
 
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
+import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.LiveViewModel
+import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentLivingBinding
 import com.example.pandas.ui.fragment.main.eyepetozer.EyeOtherFragment
 import com.example.pandas.ui.fragment.main.eyepetozer.EyepetozerFragment
@@ -24,7 +28,7 @@ import java.util.ArrayList
  * @date: 10/10/22 10:17 上午
  * @version: v1.0
  */
-public class LiveFragment : BaseLazyFragment<LiveViewModel, FragmentLivingBinding>() {
+public class LiveFragment : BaseFragment<MainFragmentViewModel, FragmentLivingBinding>() {
 
     private val tabTitles = arrayListOf("综合", "视频")
 
@@ -78,6 +82,27 @@ public class LiveFragment : BaseLazyFragment<LiveViewModel, FragmentLivingBindin
         appViewModel.appColorType.observe(this) {
             updateTop(it)
         }
+        mViewModel.refreshPosition.observe(viewLifecycleOwner) { position ->
+            Log.e("doubleCilik", "LiveFragment: $position")
+            if (position == 1) {
+                val currentItem = binding.vp2Living.currentItem
+                val fragments = childFragmentManager.fragments
+                fragments.forEach {
+                    when(currentItem){
+                        0->{
+                            if (it is LiveVideoFragment) {
+                                (it as LiveVideoFragment).refresh()
+                            }
+                        }
+                        1->{
+                            if (it is EyepetozerFragment) {
+                                (it as EyepetozerFragment).refresh()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     override fun firstOnResume() {
@@ -104,5 +129,9 @@ public class LiveFragment : BaseLazyFragment<LiveViewModel, FragmentLivingBindin
                 ContextCompat.getColor(mActivity, R.color.snow)
             binding.tabLiving.indicatorColor = ContextCompat.getColor(mActivity, R.color.white)
         }
+    }
+
+    override fun getCurrentLifeOwner(): ViewModelStoreOwner {
+        return mActivity
     }
 }
