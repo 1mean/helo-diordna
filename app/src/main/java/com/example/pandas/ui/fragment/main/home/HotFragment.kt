@@ -2,6 +2,7 @@ package com.example.pandas.ui.fragment.main.home
 
 import HotFragmentAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager

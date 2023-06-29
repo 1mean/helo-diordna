@@ -54,6 +54,15 @@ data class PetVideo(
     var videoType: Int = 0,
     @ColumnInfo
     var vertical: Boolean = false, //是否是竖屏视屏
+    @ColumnInfo
+    var width: Int = 0, //宽
+    @ColumnInfo
+    var height: Int = 0, //长
+
+    @ColumnInfo
+    var reservedInt: Int = 0,//预留int字段
+    @ColumnInfo
+    var reservedString: String? = null,//预留string字段
 
     @Ignore
     var user: User? = null,

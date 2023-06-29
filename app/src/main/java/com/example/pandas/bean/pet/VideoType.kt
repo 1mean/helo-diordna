@@ -31,4 +31,5 @@ enum class VideoType {
     FOOTBALL,//足球
     RABBIT,//兔兔
     HAMSTER,//仓鼠
+    SHORT,//短视频
 }

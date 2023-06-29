@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.biz.viewmodel.EventViewModel
+import com.example.pandas.data.simulate.ShortCommentData
+import com.example.pandas.data.sql.AppData
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.um.UmInitConfig
 import com.example.pandas.utils.DarkModeUtils
@@ -78,24 +80,6 @@ class DiorApplication : Application(), ViewModelStoreOwner {
 
         Thread {
             val petDao = AppDataBase.getInstance().petVideoDao()
-
-            //landscape73.code = 3801
-            //landscape78.code = 3806
-            //landscape81.code = 3809
-            //landscape81.code = 3797
-            //landscape81.code = 3795
-            //landscape81.code = 3796
-            //landscape81.code = 3794
-            //landscape81.code = 3798
-
-            //landscape65.code = 3793
-            //landscape64.code = 3792
-            //landscape62.code = 3790
-            //landscape61.code = 3789
-            //landscape59.code = 3787
-            //landscape58.code = 3786
-            //landscape60.code = 3788
-            //landscape74.code = 3802
 
 
             //清理掉封面加载失败的视频

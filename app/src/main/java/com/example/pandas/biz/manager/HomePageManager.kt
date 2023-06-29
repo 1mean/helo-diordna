@@ -38,7 +38,7 @@ class PetManager {
 
         return withContext(Dispatchers.IO) {
             delay(delayTime)
-            val list = petDao.queryLovedPanda(startIndex, counts)
+            val list = petDao.queryLovedPanda1(startIndex, counts)
             if (list.isNotEmpty()) {
                 list.forEach {
                     it.user = petDao.queryUserByCode(it.authorId)
@@ -138,8 +138,9 @@ class PetManager {
     ): MutableList<PetVideo> {
 
         return withContext(Dispatchers.Default) {
+            delay(delayTime)
             val petVideos = mutableListOf<PetVideo>()
-            val list = petDao.queryVerticalVideos(startIndex, counts)
+            val list = petDao.queryVerticalVideos1(startIndex, counts)
             list.forEach {
                 val video = it.video
                 video.videoData = petDao.queryVideoDataByCode(video.code)
@@ -155,6 +156,7 @@ class PetManager {
         counts: Int
     ): MutableList<PetVideo> {
         return withContext(Dispatchers.Default) {
+            delay(delayTime)
             val userCodes = petDao.queryLiveAttentionUserCodes()
             if (userCodes.isEmpty()) {
                 mutableListOf()
@@ -205,10 +207,12 @@ class PetManager {
     suspend fun getRecommendByPage(startIndex: Int, counts: Int): RecommendData<PetVideo> {
 
         return withContext(Dispatchers.IO) {
+            delay(300)
             val recommendData = RecommendData<PetVideo>()
             if (startIndex == 0) {//首页
                 recommendData.bannerList = petDao.queryRecoBanner(1)
-                val list = petDao.queryStarByPage(startIndex, counts)
+//                val list = petDao.queryStarByPage(startIndex, counts)
+                val list = petDao.queryStarByPage1(startIndex, counts)
                 if (list.isNotEmpty()) {
                     list.forEach {
                         it.user = petDao.queryUserByCode(it.authorId)
@@ -316,7 +320,7 @@ class PetManager {
         return withContext(Dispatchers.Default) {
 
             delay(delayTime)
-            val itemList = petDao.queryVideoByType(VideoType.LANDSCAPE.ordinal, startIndex, counts)
+            val itemList = petDao.queryVideoByType1(VideoType.LANDSCAPE.ordinal, startIndex, counts)
             itemList.forEach {
                 it.user = petDao.queryUserByCode(it.authorId)
                 it.videoData = petDao.queryVideoDataByCode(it.code)
@@ -338,7 +342,7 @@ class PetManager {
         return withContext(Dispatchers.IO) {
 
             delay(delayTime)
-            val list = petDao.queryHotVideo(startIndex, counts)
+            val list = petDao.queryHotVideo1(startIndex, counts)
             list.forEach {
                 val code = it.authorId
                 if (code != 0) {

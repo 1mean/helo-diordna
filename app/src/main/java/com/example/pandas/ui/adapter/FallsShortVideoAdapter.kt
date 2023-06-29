@@ -17,6 +17,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
+import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
@@ -68,6 +69,16 @@ public class FallsShortVideoAdapter(
 
         data.cover?.let {
 
+            val finalWidth = ScreenUtil.getScreenWidth(context) / 2
+            val finalHeight = ScreenUtil.getScreenWidth(context) / 2
+            val params = cover.layoutParams
+            params.width = finalWidth
+            params.height = finalHeight
+            cover.layoutParams = params
+
+            //loadCenterImage(context,it,cover)
+
+
             //卡顿的原因是由于要加载图片完成后，根据bitmap的宽高比设置给imageview对应的高度
             //没有太好的办法，让后台返回图片尺寸，直接设置给imageview，这种方法效果是最好的
             //可还要考虑后台不一定返回的情况，就需要自己按原样请求了，只是请求成功计算出imageview高度保存一下，以后的滑动就不会每次请求了，只是第一次卡顿了
@@ -112,13 +123,17 @@ public class FallsShortVideoAdapter(
                         //只能通过屏幕宽/高这种固定大小，才能保证不会出现空白item和长宽错乱的item
                         val resourceWidth = resource.width
                         val resourceHeight = resource.height
+
+                        data.title
+                        //listener.updatePetVideo()
+
                         //val finalWidth = cover.width
                         val finalWidth = ScreenUtil.getScreenWidth(context) / 2
-//                    val finalHeight = if (resourceWidth > finalWidth) {
-//                        (resourceWidth / finalWidth.toDouble()) * resourceHeight
-//                    } else {
-//                        (finalWidth / resourceWidth.toDouble()) * resourceHeight
-//                    }
+                        //val finalHeight = if (resourceWidth > finalWidth) {
+                         //   (resourceWidth / finalWidth.toDouble()) * resourceHeight
+                        //} else {
+                          //  (finalWidth / resourceWidth.toDouble()) * resourceHeight
+                        //}
                         val finalHeight = (resourceHeight / resourceWidth.toDouble()) * finalWidth
                         val params = cover.layoutParams
                         //params.width = finalWidth
@@ -189,6 +204,8 @@ public class FallsShortVideoAdapter(
 
     interface ItemListener {
         fun updataVideoData(videoData: VideoData)
+
+        fun updatePetVideo(video: PetVideo)
     }
 //    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
 //        super.onAttachedToRecyclerView(recyclerView)

@@ -52,10 +52,22 @@ data class VideoComment(
     var commentType: Int = 0, //弹幕类型，有图片
 
     //界面标识，是否喜欢
-    @Ignore
+    @ColumnInfo
     var like: Boolean = false,
-    @Ignore
+    @ColumnInfo
     var unLike: Boolean = false,
+
+    /**
+     *  state
+     *    - 0:默认常规评论.没有回复
+     *    - 1：默认有作者回复的单一评论
+     *    - 2：默认有评论的常规评论，未点开
+     *    - 3：有评论，但未展开，只是我回复的几条评论
+     *    - 4：有评论，也展开了
+     */
+    @ColumnInfo
+    var state: Int = 0,
+
     @Ignore
     var user: User? = null,
     @Ignore
@@ -70,16 +82,5 @@ data class VideoComment(
 
     @Ignore
     var newReplyCounts: Int = 0,//中间新增加的评论数
-
-    /**
-     *  state
-     *    - 0:默认常规评论.没有回复
-     *    - 1：默认有作者回复的单一评论
-     *    - 2：默认有评论的常规评论，未点开
-     *    - 3：有评论，但未展开，只是我回复的几条评论
-     *    - 4：有评论，也展开了
-     */
-    @Ignore
-    var state: Int = 0
 
 )

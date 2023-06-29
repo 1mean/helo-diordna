@@ -39,14 +39,13 @@ data class User(
     var coin: Int = 0,//硬币
     @ColumnInfo
     var attention: Boolean = false,//是否被关注
+    @ColumnInfo
+    var ipAddress: String? = null,//用户的ip地址
 
     @ColumnInfo
     var reservedInt: Int = 0,//预留int字段
     @ColumnInfo
     var reservedString: String? = null,//预留string字段
-
-    @Ignore
-    var ipAddress: String? = null,//用户的ip地址
 
     @Ignore
     var booleanFlag: Boolean = false

@@ -18,6 +18,7 @@
             app:show_buffering="never"
             app:show_timeout="0"
             app:hide_on_touch="true"
+            app:resize_mode="fixed_width"
             android:background="@color/black"
             app:keep_content_on_player_reset="true"
             app:controller_layout_id="@layout/item_reco_player" />

@@ -13,6 +13,7 @@ import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.databinding.FragmentListShortVideoBinding
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.FallsShortVideoAdapter
 import com.example.pandas.ui.adapter.decoration.FallsItemDecoration
@@ -115,5 +116,8 @@ public class ShortVideoAttentionFragment() :
 
     override fun updataVideoData(videoData: VideoData) {
         mViewModel.addOrUpdateVideoData(videoData)
+    }
+
+    override fun updatePetVideo(video: PetVideo) {
     }
 }

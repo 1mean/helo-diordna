@@ -182,6 +182,9 @@ interface PetVideoDao {
     @Query("select * from pet_video where  type=0 and videoType=0 and star=1 limit (:startIndex),(:count)")
     suspend fun queryLovedPanda(startIndex: Int, count: Int): MutableList<PetVideo>
 
+    @Query("select * from pet_video where type=0 and videoType=0 and star=1 order by random() desc limit (:startIndex),(:count)")
+    suspend fun queryLovedPanda1(startIndex: Int, count: Int): MutableList<PetVideo>
+
     @Query("select * from pet_video where type=(:type) and videoType=0 order by releaseTime desc limit (:startIndex),(:count)")
     suspend fun queryPageType(type: Int, startIndex: Int, count: Int): MutableList<PetVideo>
 
@@ -194,11 +197,17 @@ interface PetVideoDao {
     @Query("select * from pet_video where star=1 and videoType=0 order by releaseTime desc limit (:startIndex),(:count)")
     suspend fun queryStarByPage(startIndex: Int, count: Int): MutableList<PetVideo>
 
+    @Query("select * from pet_video where star=1 and videoType=0 order by random() desc limit (:startIndex),(:count)")
+    suspend fun queryStarByPage1(startIndex: Int, count: Int): MutableList<PetVideo>
+
     @Query("select * from pet_video where videoType = (:videoType)")
     suspend fun queryVideoType(videoType: Int): MutableList<PetVideo>
 
     @Query("select * from pet_video where videoType=0 and star=1 order by releaseTime desc limit (:startIndex),(:count)")
     suspend fun queryHotVideo(startIndex: Int, count: Int): MutableList<PetVideo>
+
+    @Query("select * from pet_video where videoType=0 order by random() desc limit (:startIndex),(:count)")
+    suspend fun queryHotVideo1(startIndex: Int, count: Int): MutableList<PetVideo>
 
     @Query("select * from music where type=(:type) limit (:startIndex),(:count)")
     suspend fun queryMusicByPage(type: Int, startIndex: Int, count: Int): MutableList<MusicVo>
@@ -219,6 +228,9 @@ interface PetVideoDao {
 
     @Query("select * from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
     suspend fun queryVideoByType(type: Int, startIndex: Int, count: Int): MutableList<PetVideo>
+
+    @Query("select * from pet_video where type=(:type) and videoType=0 order by random() desc limit (:startIndex),(:count)")
+    suspend fun queryVideoByType1(type: Int, startIndex: Int, count: Int): MutableList<PetVideo>
 
     @Transaction
     @Query("select * from pet_video where fileName=(:fileName)")
@@ -242,6 +254,13 @@ interface PetVideoDao {
     @Transaction
     @Query("select * from pet_video where vertical=1 order by releaseTime desc limit (:startIndex),(:count)")
     suspend fun queryVerticalVideos(
+        startIndex: Int,
+        count: Int
+    ): MutableList<VideoAndUser>
+
+    @Transaction
+    @Query("select * from pet_video where vertical=1 order by random() desc limit (:startIndex),(:count)")
+    suspend fun queryVerticalVideos1(
         startIndex: Int,
         count: Int
     ): MutableList<VideoAndUser>
@@ -521,7 +540,7 @@ interface PetVideoDao {
         count: Int
     ): MutableList<PetVideo>
 
-    @Query("select * from pet_video where authorId in (:userCodes) and vertical=1 order by releaseTime desc limit (:startIndex),(:count)")
+    @Query("select * from pet_video where authorId in (:userCodes) and vertical=1 order by random() desc limit (:startIndex),(:count)")
     suspend fun queryVerticalVideos(
         userCodes: MutableList<Int>,
         startIndex: Int,
