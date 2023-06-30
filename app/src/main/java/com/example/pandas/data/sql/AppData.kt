@@ -60,14 +60,15 @@ object AppData {
             Log.e("1mean", "size22: ${list22.size}")
             val list23 = LandscapeData.getAll()
             Log.e("1mean", "size23: ${list23.size}")
-
-
+            val list24 = DouyinData.getAll()
+            Log.e("1mean", "size24: ${list24.size}")
             Log.e(
                 "1mean",
                 "sum: " + (list1.size + list2.size + list3.size + list4.size + list5.size
                         + list6.size + list7.size + list8.size + list9.size + list10.size + list11.size
                         + list12.size + list13.size + list14.size + list15.size + list16.size + list17.size
                         + list18.size + list19.size + list20.size + list21.size + list22.size + list23.size
+                        + list24.size
                         )
             )
             addAll(list1)
@@ -93,6 +94,7 @@ object AppData {
             addAll(list21)
             addAll(list22)
             addAll(list23)
+            addAll(list24)
         }
     }
 
@@ -103,7 +105,9 @@ object AppData {
     fun getUser(): MutableList<User> {
         val list1 = UserData.getAll()
         val list2 = UserData2.getAll()
+        val list3 = UserData3.getAll()
         list1.addAll(list2)
+        list1.addAll(list3)
         return list1
     }
 
