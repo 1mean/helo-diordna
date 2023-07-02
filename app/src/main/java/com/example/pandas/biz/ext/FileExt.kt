@@ -46,6 +46,8 @@ fun getLocalFilePath(context: Context, fileName: String): File {
     when {
         fileName.startsWith("pet_bear") ->
             finalPath = appendVideoFile("animal", "bear", fileName)
+        fileName.startsWith("short") ->
+            finalPath = appendVideoFile("short", fileName)
         fileName.startsWith("bird") ->
             finalPath = appendVideoFile("animal", "bird", fileName)
         fileName.startsWith("cat") ->

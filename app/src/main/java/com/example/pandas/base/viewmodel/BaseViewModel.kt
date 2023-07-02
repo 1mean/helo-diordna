@@ -9,6 +9,7 @@ import com.example.pandas.biz.ext.loge
 import com.example.pandas.biz.http.exception.AppException
 import com.example.pandas.biz.http.exception.ExceptionHandle
 import com.example.pandas.biz.manager.PetManagerCoroutine
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.utils.SPUtils
 import kotlinx.coroutines.Dispatchers
@@ -103,6 +104,12 @@ open class BaseViewModel : ViewModel() {
     fun addOrUpdateVideoData(videoData: VideoData) {
         viewModelScope.launch {
             PetManagerCoroutine.addOrUpdateVideoData(videoData)
+        }
+    }
+
+    fun updatePetVideo(video:PetVideo){
+        viewModelScope.launch {
+            PetManagerCoroutine.updatePetVideo(video)
         }
     }
 

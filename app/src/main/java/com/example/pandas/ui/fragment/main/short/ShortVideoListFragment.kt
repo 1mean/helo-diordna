@@ -116,5 +116,6 @@ public class ShortVideoListFragment() :
     }
 
     override fun updatePetVideo(video: PetVideo) {
+        mViewModel.updatePetVideo(video)
     }
 }

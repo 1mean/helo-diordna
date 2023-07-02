@@ -69,85 +69,84 @@ public class FallsShortVideoAdapter(
 
         data.cover?.let {
 
-            val finalWidth = ScreenUtil.getScreenWidth(context) / 2
-            val finalHeight = ScreenUtil.getScreenWidth(context) / 2
-            val params = cover.layoutParams
-            params.width = finalWidth
-            params.height = finalHeight
-            cover.layoutParams = params
+            val width = data.width
+            val height = data.height
+            if (width == 0 && height == 0) {
 
-            //loadCenterImage(context,it,cover)
+                //卡顿的原因是由于要加载图片完成后，根据bitmap的宽高比设置给imageview对应的高度
+                //没有太好的办法，让后台返回图片尺寸，直接设置给imageview，这种方法效果是最好的
+                //可还要考虑后台不一定返回的情况，就需要自己按原样请求了，只是请求成功计算出imageview高度保存一下，以后的滑动就不会每次请求了，只是第一次卡顿了
+                Glide.with(context).asBitmap().load(it)
+                    .listener(object : RequestListener<Bitmap> {
+                        override fun onLoadFailed(
+                            exception: GlideException?,
+                            model: Any?,
+                            target: Target<Bitmap>?,
+                            isFirstResource: Boolean
+                        ): Boolean {
+
+                            return false
+                        }
+
+                        override fun onResourceReady(
+                            resource: Bitmap?,
+                            model: Any?,
+                            target: Target<Bitmap>?,
+                            dataSource: DataSource?,
+                            isFirstResource: Boolean
+                        ): Boolean {
+                            return false
+                        }
+
+                    })
+                    //.apply(requestOptions)
+                    .into(object : CustomTarget<Bitmap>() {
+                        override fun onResourceReady(
+                            resource: Bitmap,
+                            transition: Transition<in Bitmap>?
+                        ) {
+                            //只能通过屏幕宽/高这种固定大小，才能保证不会出现空白item和长宽错乱的item
+                            val resourceWidth = resource.width
+                            val resourceHeight = resource.height
+
+                            data.width = resourceWidth
+                            data.height = resourceHeight
+                            Log.e("1mean","code:${data.code}, width=$resourceWidth, height=$resourceHeight")
+                            listener.updatePetVideo(data)
+
+                            //val finalWidth = cover.width
+                            val finalWidth = ScreenUtil.getScreenWidth(context) / 2
+                            //val finalHeight = if (resourceWidth > finalWidth) {
+                            //   (resourceWidth / finalWidth.toDouble()) * resourceHeight
+                            //} else {
+                            //  (finalWidth / resourceWidth.toDouble()) * resourceHeight
+                            //}
+                            val finalHeight = (resourceHeight / resourceWidth.toDouble()) * finalWidth
+                            val params = cover.layoutParams
+                            //params.width = finalWidth
+                            params.width = 30
+                            params.height = 30
+                            cover.layoutParams = params
+
+                            cover.setImageBitmap(resource)
+                        }
+
+                        override fun onLoadCleared(placeholder: Drawable?) {
+                        }
+                    })
+            } else {
+                val finalWidth = ScreenUtil.getScreenWidth(context) / 2
+                val finalHeight = (height / width.toDouble()) * finalWidth
+                val params = cover.layoutParams
+                params.width = finalWidth
+                params.height = finalHeight.toInt()
+                cover.layoutParams = params
+                loadImage(context,it,cover)
+            }
 
 
-            //卡顿的原因是由于要加载图片完成后，根据bitmap的宽高比设置给imageview对应的高度
-            //没有太好的办法，让后台返回图片尺寸，直接设置给imageview，这种方法效果是最好的
-            //可还要考虑后台不一定返回的情况，就需要自己按原样请求了，只是请求成功计算出imageview高度保存一下，以后的滑动就不会每次请求了，只是第一次卡顿了
-            Glide.with(context).asBitmap().load(it)
-                .listener(object : RequestListener<Bitmap> {
-                    override fun onLoadFailed(
-                        exception: GlideException?,
-                        model: Any?,
-                        target: Target<Bitmap>?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        val finalWidth = ScreenUtil.getScreenWidth(context) / 2
-                        val finalHeight = ScreenUtil.getScreenWidth(context) / 2
-                        val params = cover.layoutParams
-                        //params.width = finalWidth
-                        params.width = finalWidth
-                        params.height = finalHeight
-                        cover.layoutParams = params
 
-                        cover.setImageResource(R.mipmap.angle)
-                        return false
-                    }
-
-                    override fun onResourceReady(
-                        resource: Bitmap?,
-                        model: Any?,
-                        target: Target<Bitmap>?,
-                        dataSource: DataSource?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        return false
-                    }
-
-                })
-                //.apply(requestOptions)
-                .into(object : CustomTarget<Bitmap>() {
-                    override fun onResourceReady(
-                        resource: Bitmap,
-                        transition: Transition<in Bitmap>?
-                    ) {
-
-                        //只能通过屏幕宽/高这种固定大小，才能保证不会出现空白item和长宽错乱的item
-                        val resourceWidth = resource.width
-                        val resourceHeight = resource.height
-
-                        data.title
-                        //listener.updatePetVideo()
-
-                        //val finalWidth = cover.width
-                        val finalWidth = ScreenUtil.getScreenWidth(context) / 2
-                        //val finalHeight = if (resourceWidth > finalWidth) {
-                         //   (resourceWidth / finalWidth.toDouble()) * resourceHeight
-                        //} else {
-                          //  (finalWidth / resourceWidth.toDouble()) * resourceHeight
-                        //}
-                        val finalHeight = (resourceHeight / resourceWidth.toDouble()) * finalWidth
-                        val params = cover.layoutParams
-                        //params.width = finalWidth
-                        params.width = finalWidth
-                        params.height = finalHeight.toInt()
-                        cover.layoutParams = params
-
-                        cover.setImageBitmap(resource)
-                    }
-
-                    override fun onLoadCleared(placeholder: Drawable?) {
-                    }
-                })
-            holder.itemView.setOnClickListener {
+             holder.itemView.setOnClickListener {
                 startShortVideoActivity(context, data.code)
             }
         }

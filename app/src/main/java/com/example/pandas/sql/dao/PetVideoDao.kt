@@ -258,6 +258,9 @@ interface PetVideoDao {
         count: Int
     ): MutableList<VideoAndUser>
 
+    @Query("select * from pet_video where vertical=1 order by releaseTime desc")
+    fun queryVerticalVideos(): MutableList<PetVideo>
+
     @Transaction
     @Query("select * from pet_video where vertical=1 order by random() desc limit (:startIndex),(:count)")
     suspend fun queryVerticalVideos1(

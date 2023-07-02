@@ -2,6 +2,7 @@ package com.example.pandas.app
 
 import AppViewModel
 import android.app.Application
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
@@ -9,6 +10,8 @@ import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.biz.viewmodel.EventViewModel
 import com.example.pandas.data.simulate.ShortCommentData
 import com.example.pandas.data.sql.AppData
+import com.example.pandas.data.sql.DouyinData
+import com.example.pandas.data.sql.UserData3
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.um.UmInitConfig
 import com.example.pandas.utils.DarkModeUtils
@@ -81,6 +84,18 @@ class DiorApplication : Application(), ViewModelStoreOwner {
         Thread {
             val petDao = AppDataBase.getInstance().petVideoDao()
 
+//            val videos = petDao.queryVerticalVideos()
+//            videos.forEach {
+//                if (it.width == 0) {
+//                    Log.e("2mean","videos: $videos")
+//                }
+//            }
+
+
+//            val list = DouyinData.getAll()
+//            petDao.insertAll(list)
+//            val users = UserData3.getAll()
+//            petDao.insertUsers(users)
 
             //清理掉封面加载失败的视频
 //            val list = arrayOf(3802)

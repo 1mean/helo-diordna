@@ -770,6 +770,19 @@ class PetManager {
         }
     }
 
+    suspend fun updatePetVideo(petVideo: PetVideo) {
+
+        withContext(Dispatchers.Default) {
+            val video = petDao.queryVideoByCode(petVideo.code)
+            if (video == null) {
+                throw NullPointerException("no video by videoCode=${petVideo.code}")
+            } else {
+                petVideo.id = video.id
+                Log.e("1mean","petvideo:$petVideo")
+                petDao.updatePetVideo(petVideo)
+            }
+        }
+    }
 
     suspend fun addOrUpdateVideoData(videoCode: Int, isLike: Boolean) {
 

@@ -261,7 +261,7 @@ object DouyinData {
         short16.vertical = true
         short16.title = "飞云宝宝真可爱#大熊猫#大熊猫飞云#大熊猫飞云萌妹 #大熊猫飞云笑 #大熊猫飞云专属bgm"
         short16.releaseTime = 1687582092
-        short16.authorId = 1587875228
+        short16.authorId = 374231948
         short16.width = 323
         short16.height = 430
         short16.cover =
@@ -1423,21 +1423,21 @@ object DouyinData {
             "https://p3-pc-sign.douyinpic.com/tos-cn-p-0015/oQ2AnhDs4eKEABDCFkZv9EgzCDIZbAJnQOwheC~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=2003461200&x-signature=zOsk%2FWHMxqE1WdkJoH0CcRKnAkE%3D"
         list.add(short88)
 
-        val short89 = PetVideo()
-        short89.type = VideoType.SHORT.ordinal
-        short89.fileName = "short89"
-        short89.code = 3902
-        short89.duration = 28
-        short89.star = true
-        short89.vertical = true
-        short89.title = "那年28岁喜提人生第一套房历尽15个月，终于变成自己喜欢的样子……#实景拍摄效果 #轻奢极简"
-        short89.releaseTime = 1684769772
-        short89.authorId = 36468993
-        short89.width = 323
-        short89.height = 430
-        short89.cover =
-            "https://p6-pc-sign.douyinpic.com/tos-cn-p-0015/o0uf1nFZQAEMmYCBYBeDstowhIU7AVeyJXCyub~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=2003461200&x-signature=LWR4OzYqz1L5yxD4Uy5EQzbtbIo%3D"
-        list.add(short89)
+//        val short89 = PetVideo()
+//        short89.type = VideoType.SHORT.ordinal
+//        short89.fileName = "short89"
+//        short89.code = 3902
+//        short89.duration = 28
+//        short89.star = true
+//        short89.vertical = true
+//        short89.title = "那年28岁喜提人生第一套房历尽15个月，终于变成自己喜欢的样子……#实景拍摄效果 #轻奢极简"
+//        short89.releaseTime = 1684769772
+//        short89.authorId = 36468993
+//        short89.width = 323
+//        short89.height = 430
+//        short89.cover =
+//            "https://p6-pc-sign.douyinpic.com/tos-cn-p-0015/o0uf1nFZQAEMmYCBYBeDstowhIU7AVeyJXCyub~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=2003461200&x-signature=LWR4OzYqz1L5yxD4Uy5EQzbtbIo%3D"
+//        list.add(short89)
 
         val short90 = PetVideo()
         short90.type = VideoType.SHORT.ordinal
