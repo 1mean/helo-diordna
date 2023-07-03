@@ -134,6 +134,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
         super.refresh()
         binding.swipLayout.isRefreshing = true
         mViewModel.getRecommendData(true)
+        binding.recyclerLayout.smoothScrollToPosition(0)
     }
 
     override fun againOnResume() {
@@ -181,23 +182,6 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
             binding.swipLayout.visibility = View.VISIBLE
             binding.swipLayout.isRefreshing = false
         }
-
-//        appViewModel.recommendType.observe(viewLifecycleOwner) {
-//            if (it == 0) {
-//
-//            } else {
-//                val padding: Int = resources.getDimension(R.dimen.common_lh_5_dimens).toInt()
-//                binding.recyclerLayout.addItemDecoration(
-//                    RecommendDecoration2(
-//                        padding,
-//                        padding,
-//                        padding,
-//                        padding,
-//                        padding
-//                    )
-//                )
-//            }
-//        }
     }
 
     override fun onClick(video: PetVideo) {
@@ -236,7 +220,6 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
     }
 
     override fun addLaterPLay(videoCode: Int) {
-
         mViewModel.addLaterPlayer(videoCode)
         Toast.makeText(mActivity, "添加成功", Toast.LENGTH_SHORT).show()
     }

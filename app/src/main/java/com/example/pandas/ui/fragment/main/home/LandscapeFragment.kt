@@ -29,10 +29,11 @@ public class LandscapeFragment :
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        val padding = mActivity.resources.getDimension(R.dimen.item_home_padding).toInt()
+        val paddingTop = mActivity.resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
+        val paddingHorizontal = mActivity.resources.getDimension(R.dimen.common_lh_5_dimens).toInt()
 
         binding.recyclerLayout.init(
-            LandScapeItemDecoration(padding),
+            LandScapeItemDecoration(paddingTop,paddingHorizontal),
             mAdapter,
             listener = object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
@@ -90,5 +91,6 @@ public class LandscapeFragment :
         super.refresh()
         binding.swipLayout.isRefreshing = true
         mViewModel.getLandScapeData(true)
+        binding.recyclerLayout.smoothScrollToPosition(0)
     }
 }

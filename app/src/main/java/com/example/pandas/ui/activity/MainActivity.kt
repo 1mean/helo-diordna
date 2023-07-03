@@ -105,6 +105,9 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
                 StatusBarUtils.updataStatus(this, false, true, AppInfos.bgColors[it])
             }
         }
+
+        //appViewModel.downLoadVideoCovers(this,this)
+        //appViewModel.downLoadUserCovers(this,this)
     }
 
     override fun createObserver() {

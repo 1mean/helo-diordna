@@ -109,6 +109,7 @@ public class ShortVideoListFragment() :
         super.refresh()
         mViewModel.getFallsShortVideos(true)
         binding.swipLayout.isRefreshing = true
+        binding.recyclerLayout.smoothScrollToPosition(0)
     }
 
     override fun updataVideoData(videoData: VideoData) {

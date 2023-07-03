@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Environment
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.lifecycle.LifecycleOwner
@@ -51,10 +52,10 @@ fun loadRoundedCornerImage(context: Context, radius: Int, url: String, view: Ima
 fun loadCenterRoundedCornerImage(context: Context, radius: Int, url: String?, view: ImageView) {
     val options =
         RequestOptions.bitmapTransform(MultiTransformation(CenterCrop(), RoundedCorners(radius)))
-    url?.let {
-        Glide.with(context).load(it).apply(options).placeholder(R.color.color_bg_video_item)
-            .into(view)
-    }
+    //url是可以为null的
+    Glide.with(context).load(url).apply(options).placeholder(R.color.color_bg_video_item)
+        .into(view)
+    //}
 //    if (url == null) {
 //        Glide.with(context).load(R.mipmap.img_null_01).apply(options).into(view)
 //    } else {
@@ -68,10 +69,8 @@ fun loadCenterRoundedCornerImage(context: Context, radius: Int, url: String?, vi
 fun loadCenterImage(context: Context, url: String?, view: ImageView) {
     val options =
         RequestOptions.bitmapTransform(MultiTransformation(CenterCrop()))
-    url.let {
-        Glide.with(context).load(it).apply(options).placeholder(R.color.color_bg_video_item)
-            .into(view)
-    }
+    Glide.with(context).load(url).apply(options).placeholder(R.color.color_bg_video_item)
+        .into(view)
 //    if (url == null) {
 //        Glide.with(context).load(R.mipmap.img_null_01).apply(options).into(view)
 //    } else {
@@ -161,63 +160,5 @@ fun clearFileCache(context: Context) {
     Thread {
         Glide.get(context).clearDiskCache()
     }.start()
-}
-
-/**
- * 下载项目所有的封面图片到本地，防止远程项目被删除
- * DiskCacheStrategy.DATA： /data/user/0/com.example.hello_diordna/cache/image_manager_disk_cache/74a05aa0349bb3bb72622d1ca50e52882ba535458555fd9ff23993c4b98ef39a.0
- * 存储在专属外部存储空间：/storage/emulated/0/Android/data/com.example.hello_diordna/files/Download/landscape_40.jpg
- * 导出图片 adb pull /storage/emulated/0/Android/data/com.example.hello_diordna/files/Download /Users/dongyiming/Downloads/pandas
- * 导入视频位置 adb push /Users/dongyiming/Desktop/pet/pandas/hehua/videos/ /storage/emulated/0/Android/data/com.example.hello_diordna/files/videos/
- *
- * @date: 2/6/22 4:33 下午
- * @version: v1.0
- */
-fun downLoadVideoCovers(
-    lifecycleOwner: LifecycleOwner,
-    context: Context
-) {
-
-    lifecycleOwner.lifecycleScope.launch {
-
-        PetManagerCoroutine.getAllPetCoverUrl().forEach {
-
-            withContext(Dispatchers.IO) {
-                val fileName = it.fileName
-                Glide.with(context).downloadOnly().load(it.cover)
-                    .diskCacheStrategy(DiskCacheStrategy.DATA)
-                    .listener(object : RequestListener<File> {
-                        override fun onLoadFailed(
-                            e: GlideException?,
-                            model: Any?,
-                            target: Target<File>?,
-                            isFirstResource: Boolean
-                        ): Boolean {
-                            return false
-                        }
-
-                        override fun onResourceReady(
-                            resource: File?,
-                            model: Any?,
-                            target: Target<File>?,
-                            dataSource: DataSource?,
-                            isFirstResource: Boolean
-                        ): Boolean {
-
-                            //存储图片
-                            val fileDir =
-                                FileUtils.getExternalFileDirectory(
-                                    context,
-                                    Environment.DIRECTORY_DOWNLOADS
-                                )
-                            val newFile = File(fileDir, "$fileName.jpg")
-                            FileUtils.copy(resource, newFile)
-                            return false
-                        }
-
-                    }).preload()
-            }
-        }
-    }
 }
 

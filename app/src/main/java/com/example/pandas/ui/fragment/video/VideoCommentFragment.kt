@@ -163,7 +163,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
         mViewModel.createComment.observe(viewLifecycleOwner) {
 
             if (it.comment.type == 1) {
-                binding.rvComment.scrollToPosition(0)
+                binding.rvComment.smoothScrollToPosition(0)
             }
             loadingPopup!!.dismiss()
 

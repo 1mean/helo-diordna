@@ -142,13 +142,12 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
 
         mViewModel.createReply.observe(viewLifecycleOwner) {
 
-            binding.recyclerLayout.scrollToPosition(2)
+            binding.recyclerLayout.smoothScrollToPosition(2)
             loadingPopup?.dismiss()
             mAdapter.addComment(it)
             binding.editVideo.setText("")
             binding.editVideo.hint = "发一条友善的评论"
             km.hideKeyBoard(mActivity, binding.editVideo)
-
         }
     }
 
@@ -166,7 +165,11 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
                     loadingPopup = XPopup.Builder(mActivity).dismissOnBackPressed(true)
                         .isLightNavigationBar(true)
                         .isViewMode(false)
-                        .asLoading(null, R.layout.layout_sending, LoadingPopupView.Style.ProgressBar)
+                        .asLoading(
+                            null,
+                            R.layout.layout_sending,
+                            LoadingPopupView.Style.ProgressBar
+                        )
                     loadingPopup!!.show()
                 } else {
                     loadingPopup!!.show()

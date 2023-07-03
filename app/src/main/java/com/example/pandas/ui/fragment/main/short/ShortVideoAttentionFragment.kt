@@ -112,6 +112,7 @@ public class ShortVideoAttentionFragment() :
         super.refresh()
         mViewModel.getAttentionFallVideos(true)
         binding.swipLayout.isRefreshing = true
+        binding.recyclerLayout.smoothScrollToPosition(0)
     }
 
     override fun updataVideoData(videoData: VideoData) {

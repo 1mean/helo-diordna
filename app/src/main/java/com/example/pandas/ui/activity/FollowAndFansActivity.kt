@@ -30,14 +30,15 @@ public class FollowAndFansActivity : BaseActivity<SelfViewModel, ActivityFollowB
     override fun initView(savedInstanceState: Bundle?) {
 
         val index = intent.getIntExtra("FollowsOrFans", 0)
+
         binding.ibnTopFinish.setOnClickListener { finish() }
         binding.txtTopName.text = resources.getString(R.string.str_mine_friends)
 
         binding.vp2Follow.run {
             offscreenPageLimit = tabTitles.size
             isSaveEnabled = false
-            setCurrentItem(index, false)
             adapter = object : FragmentStateAdapter(this@FollowAndFansActivity) {
+
                 override fun getItemCount(): Int = 2
 
                 override fun createFragment(position: Int): Fragment {
@@ -54,6 +55,8 @@ public class FollowAndFansActivity : BaseActivity<SelfViewModel, ActivityFollowB
         ) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
+
+        binding.vp2Follow.currentItem = index
 
         appViewModel.appColorType.value?.let {
             binding.layoutFollowTop.setBackgroundResource(AppInfos.bgColors[it])

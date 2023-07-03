@@ -2,7 +2,6 @@ package com.example.pandas.ui.fragment.main.home
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R

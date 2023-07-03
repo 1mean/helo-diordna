@@ -124,8 +124,6 @@ public class FallsShortVideoAdapter(
                             val finalHeight = (resourceHeight / resourceWidth.toDouble()) * finalWidth
                             val params = cover.layoutParams
                             //params.width = finalWidth
-                            params.width = 30
-                            params.height = 30
                             cover.layoutParams = params
 
                             cover.setImageBitmap(resource)
@@ -141,7 +139,7 @@ public class FallsShortVideoAdapter(
                 params.width = finalWidth
                 params.height = finalHeight.toInt()
                 cover.layoutParams = params
-                loadImage(context,it,cover)
+                loadCenterImage(context,it,cover)
             }
 
 

@@ -3,6 +3,7 @@ package com.example.pandas.sql.entity
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
@@ -58,5 +59,10 @@ public data class VideoData(
     @ColumnInfo
     var collectTime: Long = 0,//收藏的时间
     @ColumnInfo
-    var shareTime: Long = 0,//分享的时间
+    var shareTime: Long = 0,//分享的时间,  目前当lovetime使用
+
+    @Ignore
+    var loveTime: Long = 0
+
+
 ) : Parcelable

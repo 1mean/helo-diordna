@@ -107,7 +107,7 @@ public class HistoryViewModeL : BaseViewModel() {
 
         request({ PetManagerCoroutine.getLove(loveIndex, 21) },
             {
-                Log.e("1mean","getLove: $it")
+                Log.e("1mean", "getLove: $it")
                 val hasMore = it.size > 20
                 if (hasMore) {
                     it.removeLast()
@@ -123,7 +123,7 @@ public class HistoryViewModeL : BaseViewModel() {
                 loveResult.value = dataList
             },
             {
-                Log.e("1mean","getLove: $it")
+                Log.e("1mean", "getLove: $it")
                 val dataList = UIDataWrapper(
                     isSuccess = false,
                     errMessage = it.errorMsg,

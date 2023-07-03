@@ -1,10 +1,7 @@
 package com.example.pandas.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
@@ -15,11 +12,10 @@ import com.example.pandas.biz.interaction.OnSureListener
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityCollectBinding
 import com.example.pandas.ui.adapter.CollectAdapter
-import com.example.pandas.ui.adapter.decoration.LandScapeItemDecoration
+import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.ext.launcherActivity
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.dialog.DeletePopuWindow
-import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
@@ -50,10 +46,10 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        val padding = resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
+        val paddingTop = resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
         binding.rvCollect.run {
             adapter = mAdapter
-            addItemDecoration(LandScapeItemDecoration(padding))
+            addItemDecoration(CommonItemDecoration(paddingTop = paddingTop))
             layoutManager = LinearLayoutManager(this@CollectActivity)
         }
 
@@ -83,10 +79,12 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
                         R.color.color_history_title
                     )
                 )
+                binding.btnCollectAdd.setImageResource(R.mipmap.img_topview_add_black)
             } else {
                 binding.ibnCollectBack.setImageResource(R.mipmap.img_topview_back_white)
                 binding.txtCollectTitle.setTextColor(ContextCompat.getColor(this, R.color.white))
                 StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                binding.btnCollectAdd.setImageResource(R.mipmap.img_topview_add_white)
             }
         }
     }

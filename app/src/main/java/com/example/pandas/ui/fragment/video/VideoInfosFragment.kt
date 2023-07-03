@@ -1,6 +1,7 @@
 package com.example.pandas.ui.fragment.video
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelStoreOwner
@@ -14,11 +15,13 @@ import com.example.pandas.databinding.FragmentInformationBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoRecoListAdapter
-import com.example.pandas.ui.ext.*
+import com.example.pandas.ui.ext.addScaleAnimation
+import com.example.pandas.ui.ext.initLikeContainer
+import com.example.pandas.ui.ext.initUser
+import com.example.pandas.ui.ext.initVideo
 import com.example.pandas.ui.view.dialog.AttentionBottomSheetDialog
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.um.shareManager
-import com.umeng.socialize.UMShareListener
 import com.umeng.socialize.bean.SHARE_MEDIA
 
 /**
@@ -107,27 +110,13 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
         }
     }
 
-
-    private val mShareListener: UMShareListener = object : UMShareListener {
-        override fun onStart(p0: SHARE_MEDIA?) {
-        }
-
-        override fun onResult(p0: SHARE_MEDIA?) {
-        }
-
-        override fun onError(p0: SHARE_MEDIA?, p1: Throwable?) {
-        }
-
-        override fun onCancel(p0: SHARE_MEDIA?) {
-        }
-    }
-
-
     override fun createObserver() {
 
         mViewModel.videos.observe(viewLifecycleOwner) {
 
-            videoData = it.videoInfo.videoData ?: VideoData(it.videoInfo.code)
+            videoData = it.videoInfo.videoData ?: VideoData(videoCode = it.videoInfo.code)
+
+            Log.e("22mean", "videoData: $videoData")
 
             initVideo(it.videoInfo)
             initLikeContainer(it)
@@ -220,7 +209,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
 
         when (v?.id) {
             R.id.item_like -> {
-                addScaleAnimation(binding.imgLike,1.3f)
+                addScaleAnimation(binding.imgLike, 1.3f)
                 if (videoData.like) {
                     binding.imgLike.setImageResource(R.mipmap.img_video_like)
                     videoData.likes -= 1
@@ -241,7 +230,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                 mViewModel.addOrUpdateVideoData(videoData)
             }
             R.id.item_dislike -> {
-                addScaleAnimation(binding.imgDislike,1.3f)
+                addScaleAnimation(binding.imgDislike, 1.3f)
                 if (videoData.hate) {
                     binding.imgDislike.setImageResource(R.mipmap.img_video_dislike)
                 } else {
@@ -261,13 +250,15 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                 mViewModel.addOrUpdateVideoData(videoData)
             }
             R.id.item_love -> {
-                addScaleAnimation(binding.imgLove,1.3f)
+                addScaleAnimation(binding.imgLove, 1.3f)
                 if (videoData.love) {
                     binding.imgLove.setImageResource(R.mipmap.img_love_unpress)
                     videoData.loves -= 1
+                    videoData.shareTime = 0
                 } else {
                     videoData.loves += 1
                     binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
+                    videoData.shareTime = System.currentTimeMillis() //暂时当喜欢时间用
                 }
                 if (videoData.loves > 0) {
                     binding.txtVideoLoves.text = videoData.loves.toString()
@@ -279,7 +270,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                 mViewModel.addOrUpdateVideoData(videoData)
             }
             R.id.item_collect -> {
-                addScaleAnimation(binding.imgCollect,1.3f)
+                addScaleAnimation(binding.imgCollect, 1.3f)
                 if (videoData.collect) {
                     videoData.collects -= 1
                     binding.imgCollect.setImageResource(R.mipmap.img_collect_unpress)

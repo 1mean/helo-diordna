@@ -169,6 +169,7 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
         super.refresh()
         binding.swipLayout.isRefreshing = true
         mViewModel.getLiveVideo(true)
+        binding.recyclerLayout.smoothScrollToPosition(0)
     }
 
     //1,从左右切换过来的，不会自动播放，手动滑动后才播放

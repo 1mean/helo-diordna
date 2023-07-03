@@ -41,7 +41,7 @@
                 app:layout_constraintRight_toRightOf="@id/clayout_collect_top"
                 android:layout_marginEnd="8dp"
                 android:background="@null"
-                android:src="@mipmap/img_top_add" />
+                android:src="@mipmap/img_topview_add_black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View

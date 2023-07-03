@@ -75,7 +75,6 @@ public class CollectAdapter(
                 deleteDialog = DeleteBottomSheetDialog(context, object : ItemClickListener<Int> {
                     override fun onItemClick(t: Int) {
                         if (t == 0) {
-
                             mPos = position
                             listener.deleteGroup(data.groupCode)
                         }

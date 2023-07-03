@@ -260,7 +260,7 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
         if (commentUser == null) {//自己发送的一级弹幕
             val commentUser = commentManage!!.buildCommentUser(videoCode, message)
             mAdapter.loadOneCmMessage(commentUser)
-            recyclerView.scrollToPosition(0)
+            recyclerView.smoothScrollToPosition(0)
         } else {//发送的二级弹幕
             val commentUser = commentManage!!.buildCommentUser(commentUser!!, message)
             val holder =

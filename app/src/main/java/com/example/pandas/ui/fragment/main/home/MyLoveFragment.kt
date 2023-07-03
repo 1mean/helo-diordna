@@ -81,5 +81,6 @@ public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefr
         super.refresh()
         binding.swipLayout.isRefreshing = true
         mViewModel.getLoveData(true)
+        binding.recyclerLayout.smoothScrollToPosition(0)
     }
 }

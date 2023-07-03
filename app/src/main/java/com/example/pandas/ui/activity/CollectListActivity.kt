@@ -1,6 +1,7 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.pandas.R
@@ -27,8 +28,6 @@ public class CollectListActivity : BaseActivity<HistoryViewModeL, ActivityCollec
     CollectListAdapter.CollectListListener {
 
     private var groupCode: Int = -1
-    private var isLike = false
-
     private val mAdapter by lazy { CollectListAdapter(listener = this) }
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -38,15 +37,9 @@ public class CollectListActivity : BaseActivity<HistoryViewModeL, ActivityCollec
         val group = intent.getParcelableExtra<Group>("group")
         group?.let {
             groupCode = it.groupCode
-            binding.txtGroupTitle.text = it.groupName
+            Log.e("1mean","groudName: ${it.groupName}")
             binding.txtCollectListTitle.text = it.groupName
-            binding.txtCollectListCounts.text =
-                StringBuilder(it.videoCounts.toString()).append("个内容").toString()
-            binding.txtCollectListCreator.text =
-                StringBuilder("创建者：").append(AppInfos.AUTHOR_NAME).toString()
         }
-        loadCenterRoundedCornerImage(this, 15, group?.groupCover, binding.imgCollectListCover)
-
         val padding = resources.getDimension(R.dimen.item_home_padding).toInt()
 
         binding.rvCollectList.initNoFooter(
@@ -56,25 +49,6 @@ public class CollectListActivity : BaseActivity<HistoryViewModeL, ActivityCollec
                     mViewModel.getPageGroupItem(false, groupCode)
                 }
             })
-
-        binding.barCollect.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-            //像上滑动时，verticalOffset为负值，完全展示时为0
-            if (verticalOffset <= -216) {
-                binding.txtCollectListTitle.visibility = View.VISIBLE
-            } else {
-                binding.txtCollectListTitle.visibility = View.GONE
-            }
-        })
-
-        binding.llayoutCollectListLike.setOnClickListener {
-
-            if (isLike) {
-                binding.imgLike.setImageResource(R.mipmap.img_collect_list_like)
-            } else {
-                binding.imgLike.setImageResource(R.mipmap.img_collect_list_liked)
-            }
-            isLike = !isLike
-        }
 
         appViewModel.appColorType.value?.let {
             binding.clayoutCollectListTop.setBackgroundResource(AppInfos.bgColors[it])
@@ -86,7 +60,7 @@ public class CollectListActivity : BaseActivity<HistoryViewModeL, ActivityCollec
                         R.color.color_history_title
                     )
                 )
-                binding.txtCollectListTitle.setTextColor(
+                binding.txtCollectListManager.setTextColor(
                     ContextCompat.getColor(
                         this,
                         R.color.color_history_title
@@ -101,7 +75,7 @@ public class CollectListActivity : BaseActivity<HistoryViewModeL, ActivityCollec
                     )
                 )
                 StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
-                binding.txtCollectListTitle.setTextColor(
+                binding.txtCollectListManager.setTextColor(
                     ContextCompat.getColor(
                         this,
                         R.color.white

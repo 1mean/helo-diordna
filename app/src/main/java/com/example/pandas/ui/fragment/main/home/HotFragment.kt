@@ -88,6 +88,7 @@ public class HotFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefresh
         super.refresh()
         binding.swipLayout.isRefreshing = true
         mViewModel.getHotData(true)
+        binding.recyclerLayout.smoothScrollToPosition(0)
     }
 
 }

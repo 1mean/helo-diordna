@@ -57,6 +57,7 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefre
     override fun refresh() {
         binding.swipLayout.isRefreshing = true
         mViewModel.getPagePet(true)
+        binding.recyclerLayout.smoothScrollToPosition(0)
     }
 
     override fun createObserver() {

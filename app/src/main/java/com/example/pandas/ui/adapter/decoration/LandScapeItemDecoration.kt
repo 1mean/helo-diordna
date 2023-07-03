@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
  * @date: 2/5/22 2:52 下午
  * @version: v1.0
  */
-public class LandScapeItemDecoration(private val padding: Int) : RecyclerView.ItemDecoration() {
+public class LandScapeItemDecoration(
+    private val paddingTop: Int,
+    private val paddingHorizontal: Int
+) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -21,7 +24,7 @@ public class LandScapeItemDecoration(private val padding: Int) : RecyclerView.It
 
         val position = parent.getChildAdapterPosition(view)
         if (position == 0) {
-            outRect.set(padding, padding, padding, 0)
+            outRect.set(paddingHorizontal, paddingTop, paddingHorizontal, 0)
         }
     }
 }

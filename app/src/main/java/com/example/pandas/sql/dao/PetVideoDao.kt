@@ -2,6 +2,7 @@ package com.example.pandas.sql.dao
 
 import androidx.room.*
 import com.example.pandas.bean.CoverDownLoad
+import com.example.pandas.bean.HeaderDownLoad
 import com.example.pandas.bean.SearchInfo
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.sql.entity.*
@@ -206,7 +207,7 @@ interface PetVideoDao {
     @Query("select * from pet_video where videoType=0 and star=1 order by releaseTime desc limit (:startIndex),(:count)")
     suspend fun queryHotVideo(startIndex: Int, count: Int): MutableList<PetVideo>
 
-    @Query("select * from pet_video where videoType=0 order by random() desc limit (:startIndex),(:count)")
+    @Query("select * from pet_video where videoType=0 and star=1 order by random() desc limit (:startIndex),(:count)")
     suspend fun queryHotVideo1(startIndex: Int, count: Int): MutableList<PetVideo>
 
     @Query("select * from music where type=(:type) limit (:startIndex),(:count)")
@@ -324,6 +325,9 @@ interface PetVideoDao {
     @Query("select cover,fileName from pet_video")
     suspend fun queryAllPetCovers(): MutableList<CoverDownLoad>
 
+    @Query("select userCode,headUrl from user")
+    suspend fun queryAllUserCovers(): MutableList<HeaderDownLoad>
+
     @Query("select * from pet_video where code=(:code)")
     suspend fun queryVideoByCode(code: Int): PetVideo
 
@@ -370,7 +374,7 @@ interface PetVideoDao {
     @Query("select * from video_data where laterPlay=1 order by laterTime desc limit (:startIndex),(:count)")
     suspend fun queryLaterByPage(startIndex: Int, count: Int): MutableList<VideoData>
 
-    @Query("select * from video_data where love=1 order by laterTime desc limit (:startIndex),(:count)")
+    @Query("select * from video_data where love=1 order by shareTime desc limit (:startIndex),(:count)")
     suspend fun queryLoveByPage(startIndex: Int, count: Int): MutableList<VideoData>
 
     @Query("select * from video_data where laterPlay=1")

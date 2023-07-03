@@ -88,6 +88,7 @@ public class EyepetozerFragment :
         super.refresh()
         binding.swipLayout.isRefreshing = true
         mViewModel.initData(true)
+        binding.recyclerLayout.smoothScrollToPosition(0)
     }
 
     override fun againOnResume() {

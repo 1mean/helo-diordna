@@ -24,7 +24,7 @@ val PetManagerCoroutine: PetManager by lazy(mode = LazyThreadSafetyMode.SYNCHRON
 
 class PetManager {
 
-    private val delayTime = 300L
+    private val delayTime = 500L
 
     private val petDao: PetVideoDao by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
         AppDataBase.getInstance().petVideoDao()
@@ -207,7 +207,7 @@ class PetManager {
     suspend fun getRecommendByPage(startIndex: Int, counts: Int): RecommendData<PetVideo> {
 
         return withContext(Dispatchers.IO) {
-            delay(300)
+            delay(delayTime)
             val recommendData = RecommendData<PetVideo>()
             if (startIndex == 0) {//首页
                 recommendData.bannerList = petDao.queryRecoBanner(1)
@@ -221,7 +221,6 @@ class PetManager {
                 }
                 recommendData.itemList = list
             } else {
-                delay(delayTime)
                 val list = petDao.queryStarByPage(startIndex, counts)
                 if (list.isNotEmpty()) {
                     list.forEach {
@@ -279,7 +278,7 @@ class PetManager {
      */
     suspend fun getLoveData(isFresh: Boolean, startIndex: Int): PageCommonData {
 
-        return withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.Default) {
 
             delay(delayTime)
             val data = PageCommonData()
@@ -370,6 +369,13 @@ class PetManager {
 
         return withContext(Dispatchers.Default) {
             petDao.queryAllPetCovers()
+        }
+    }
+
+    suspend fun getAllUserCovers(): MutableList<HeaderDownLoad> {
+
+        return withContext(Dispatchers.Default) {
+            petDao.queryAllUserCovers()
         }
     }
 
@@ -687,10 +693,8 @@ class PetManager {
 
             val laters = mutableListOf<PetVideo>()
             val videoDatas = petDao.queryLoveByPage(startIndex, counts)
-            Log.e("1mean", "videoDatas: ${videoDatas.size}")
             videoDatas.forEach {
                 val videoUser = petDao.queryVideoUserByCode(it.videoCode)
-                Log.e("1mean", "videoUser:$videoUser")
                 if (videoUser != null) {
                     val video = videoUser.video
                     video.user = videoUser.user
@@ -929,6 +933,7 @@ class PetManager {
     suspend fun getAllFollowUsers(): MutableList<User> {
 
         return withContext(Dispatchers.Default) {
+            delay(delayTime)
             petDao.queryAllAttentionUsers()
         }
     }
