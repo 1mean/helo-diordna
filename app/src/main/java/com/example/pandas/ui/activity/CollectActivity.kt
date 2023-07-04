@@ -72,7 +72,7 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
             binding.refreshCollect.setColorSchemeResources(AppInfos.viewColors[it])
             binding.clayoutCollectTop.setBackgroundResource(AppInfos.bgColors[it])
             if (it == 0) {
-                binding.ibnCollectBack.setImageResource(R.mipmap.img_topview_back)
+                binding.ibnCollectBack.setImageResource(R.mipmap.img_top_leave)
                 binding.txtCollectTitle.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -81,7 +81,7 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
                 )
                 binding.btnCollectAdd.setImageResource(R.mipmap.img_topview_add_black)
             } else {
-                binding.ibnCollectBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.ibnCollectBack.setImageResource(R.mipmap.img_top_leave_white)
                 binding.txtCollectTitle.setTextColor(ContextCompat.getColor(this, R.color.white))
                 StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
                 binding.btnCollectAdd.setImageResource(R.mipmap.img_topview_add_white)

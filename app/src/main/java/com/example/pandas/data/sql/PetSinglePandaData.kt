@@ -4938,7 +4938,7 @@ object PetSinglePandaData {
         panda1.fileName = "panda_all_panda1"
         panda1.code = 1246
         panda1.duration = 274
-        panda1.star = true
+        panda1.star = false
         panda1.title = "【17级熊孩子成长记】团宠的小馨妹妹"
         panda1.releaseTime = 1564121257
         panda1.period = PeriodType.ALL.ordinal
@@ -4955,7 +4955,7 @@ object PetSinglePandaData {
         panda2.fileName = "panda_all_panda2"
         panda2.code = 1247
         panda2.duration = 277
-        panda2.star = true
+        panda2.star = false
         panda2.title = "【17级熊孩子成长记】快跑！芝家兄弟来追你啦"
         panda2.releaseTime = 1556092833
         panda2.period = PeriodType.ALL.ordinal
@@ -4972,7 +4972,7 @@ object PetSinglePandaData {
         panda3.fileName = "panda_all_panda3"
         panda3.code = 1248
         panda3.duration = 202
-        panda3.star = true
+        panda3.star = false
         panda3.title = "【18级熊孩子成长记】是爱泡澡的鱼摆摆，也是爱麻麻的小金鱼"
         panda3.releaseTime = 1643175009
         panda3.period = PeriodType.ALL.ordinal
@@ -4989,7 +4989,7 @@ object PetSinglePandaData {
         panda4.fileName = "panda_all_panda4"
         panda4.code = 1249
         panda4.duration = 267
-        panda4.star = true
+        panda4.star = false
         panda4.title = "【18级熊孩子成长记】斧头山“润九爷”的名号，你听过没？"
         panda4.releaseTime = 1642570207
         panda4.period = PeriodType.ALL.ordinal
@@ -5006,7 +5006,7 @@ object PetSinglePandaData {
         panda5.fileName = "panda_all_panda5"
         panda5.code = 1250
         panda5.duration = 303
-        panda5.star = true
+        panda5.star = false
         panda5.title = "好燃！乘风破浪的大熊猫，就在这刻浪起来"
         panda5.releaseTime = 1592394615
         panda5.period = PeriodType.ALL.ordinal
@@ -5023,7 +5023,7 @@ object PetSinglePandaData {
         panda6.fileName = "panda_all_panda6"
         panda6.code = 1251
         panda6.duration = 147
-        panda6.star = true
+        panda6.star = false
         panda6.title = "如果熊猫开黑玩王者，战况会如何？"
         panda6.releaseTime = 1629796236
         panda6.period = PeriodType.ALL.ordinal
@@ -5091,7 +5091,7 @@ object PetSinglePandaData {
         panda10.fileName = "panda_all_panda10"
         panda10.code = 1255
         panda10.duration = 225
-        panda10.star = true
+        panda10.star = false
         panda10.title = "强强国国成长记：一周岁生日到啦！"
         panda10.releaseTime = 1635123611
         panda10.period = PeriodType.ALL.ordinal
@@ -5108,7 +5108,7 @@ object PetSinglePandaData {
         panda11.fileName = "panda_all_panda11"
         panda11.code = 1256
         panda11.duration = 277
-        panda11.star = true
+        panda11.star = false
         panda11.title = "【18级熊孩子成长记】学霸仔姐语言技能点满，看完直呼佩服！"
         panda11.releaseTime = 1639027825
         panda11.period = PeriodType.ALL.ordinal
@@ -5125,7 +5125,7 @@ object PetSinglePandaData {
         panda12.fileName = "panda_all_panda12"
         panda12.code = 1257
         panda12.duration = 282
-        panda12.star = true
+        panda12.star = false
         panda12.title = "【18级熊孩子成长记】家里有和自己同样可爱的姐妹，是种怎样的体验？"
         panda12.releaseTime = 1639553650
         panda12.period = PeriodType.ALL.ordinal
@@ -5142,7 +5142,7 @@ object PetSinglePandaData {
         panda13.fileName = "panda_all_panda13"
         panda13.code = 1258
         panda13.duration = 412
-        panda13.star = true
+        panda13.star = false
         panda13.title = "请查收滚滚们的2021年终总结！"
         panda13.releaseTime = 1640939083
         panda13.period = PeriodType.ALL.ordinal
@@ -5159,7 +5159,7 @@ object PetSinglePandaData {
         panda14.fileName = "panda_all_panda14"
         panda14.code = 1259
         panda14.duration = 250
-        panda14.star = true
+        panda14.star = false
         panda14.title = "滚滚新年送祝福！一家人不说两家话，看看谁最会吹彩虹屁？"
         panda14.releaseTime = 1641015018
         panda14.period = PeriodType.ALL.ordinal
@@ -5176,7 +5176,7 @@ object PetSinglePandaData {
         panda15.fileName = "panda_all_panda15"
         panda15.code = 1260
         panda15.duration = 254
-        panda15.star = true
+        panda15.star = false
         panda15.title = "【18级熊孩子成长记】曾经两只小帅熊！如今挖煤好员工~"
         panda15.releaseTime = 1640756101
         panda15.period = PeriodType.ALL.ordinal
@@ -5193,7 +5193,7 @@ object PetSinglePandaData {
         panda16.fileName = "panda_all_panda16"
         panda16.code = 1261
         panda16.duration = 204
-        panda16.star = true
+        panda16.star = false
         panda16.title = "熊猫频道记录：我们超可爱的胖花花呀"
         panda16.releaseTime = 1640298390
         panda16.period = PeriodType.ALL.ordinal
@@ -5210,7 +5210,7 @@ object PetSinglePandaData {
         panda17.fileName = "panda_all_panda17"
         panda17.code = 1262
         panda17.duration = 185
-        panda17.star = true
+        panda17.star = false
         panda17.title = "大熊猫“绩笑”的成长日常，有多好笑你自己看！"
         panda17.releaseTime = 1582119058
         panda17.period = PeriodType.ALL.ordinal
@@ -5227,7 +5227,7 @@ object PetSinglePandaData {
         panda18.fileName = "panda_all_panda18"
         panda18.code = 1263
         panda18.duration = 253
-        panda18.star = true
+        panda18.star = false
         panda18.title = "【成家三姐妹】成浪、成风、绩笑超萌混剪 01"
         panda18.releaseTime = 1581275493
         panda18.period = PeriodType.ALL.ordinal
@@ -5244,7 +5244,7 @@ object PetSinglePandaData {
         panda19.fileName = "panda_all_panda19"
         panda19.code = 1264
         panda19.duration = 259
-        panda19.star = true
+        panda19.star = false
         panda19.title = "【18级熊孩子成长记】虽然出生“少点墨”，调皮捣蛋可不输任何熊"
         panda19.releaseTime = 1640151301
         panda19.period = PeriodType.ALL.ordinal
@@ -5890,7 +5890,7 @@ object PetSinglePandaData {
         panda57.fileName = "panda_all_panda57"
         panda57.code = 1857
         panda57.duration = 218
-        panda57.star = true
+        panda57.star = false
         panda57.title = "【熊孩子成长记】熊猫界猪猪女孩养成记，雅竹雅韵"
         panda57.releaseTime = 1529487752
         panda57.period = PeriodType.ALL.ordinal

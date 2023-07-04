@@ -2376,7 +2376,7 @@ object PetBirdData {
         bird140.code = 1016
         bird140.duration = 159
         bird140.star = true
-        bird140.title = "今天让你们见识一下鸟类的真正天籁���音，听完先收藏起来"
+        bird140.title = "今天让你们见识一下鸟类的真正天籁音，听完先收藏起来"
         bird140.releaseTime = 1553592746
         bird140.originalUrl = "https://www.bilibili.com/video/BV1Vb411t7Sy"
         bird140.tags = "鸟,萌宠"

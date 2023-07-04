@@ -1,12 +1,16 @@
 package com.example.pandas.ui.adapter
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import com.example.pandas.app.AppInfos
 import com.example.pandas.ui.fragment.main.face.FaceFragment
 import com.example.pandas.ui.fragment.main.home.HomeFragment
 import com.example.pandas.ui.fragment.main.live.LiveFragment
 import com.example.pandas.ui.fragment.main.mine.SelfFragment
+import com.example.pandas.ui.fragment.main.mine.SelfSettingFragment
 import com.example.pandas.ui.fragment.main.pet.CutePetFragment
 import com.example.pandas.ui.fragment.main.short.ShortVideoFragment
+import com.example.pandas.utils.SPUtils
 
 /**
  * @description: 创建home界面的4个fragment
@@ -26,7 +30,7 @@ public class FragmentFactory {
 
         var fragments = HashMap<Int, Fragment>()
 
-        fun buildFragment(page: Int): Fragment {
+        fun buildFragment(page: Int,fragmentActivity: FragmentActivity): Fragment {
 
             var mFragment = fragments[page]
 
@@ -37,7 +41,14 @@ public class FragmentFactory {
                     PAGE_THREE -> mFragment = FaceFragment()
 //                    PAGE_FOUR -> mFragment = CutePetFragment()
                     PAGE_FOUR -> mFragment = ShortVideoFragment()
-                    PAGE_FIVE -> mFragment = SelfFragment()
+                    PAGE_FIVE -> {
+                        val type = SPUtils.getInt(fragmentActivity,AppInfos.MINE_STYLE_KEY)
+                        if (type == 1) {
+                            mFragment = SelfFragment()
+                        } else {
+                            mFragment = SelfSettingFragment()
+                        }
+                    }
                 }
                 fragments[page] = mFragment!!
             }

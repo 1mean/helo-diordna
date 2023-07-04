@@ -120,7 +120,7 @@ public class LoveActivity : BaseActivity<HistoryViewModeL, ActivityLoveBinding>(
         appViewModel.appColorType.value?.let {
             binding.clayoutLaterTop.setBackgroundResource(AppInfos.bgColors[it])
             if (it == 0) {
-                binding.ibnLaterBack.setImageResource(R.mipmap.img_topview_back)
+                binding.ibnLaterBack.setImageResource(R.mipmap.img_top_leave)
                 binding.txtLaterTitle.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -134,7 +134,7 @@ public class LoveActivity : BaseActivity<HistoryViewModeL, ActivityLoveBinding>(
                     )
                 )
             } else {
-                binding.ibnLaterBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.ibnLaterBack.setImageResource(R.mipmap.img_top_leave_white)
                 binding.txtLaterTitle.setTextColor(
                     ContextCompat.getColor(
                         this,

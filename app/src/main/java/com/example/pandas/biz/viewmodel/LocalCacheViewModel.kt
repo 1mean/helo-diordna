@@ -73,6 +73,7 @@ public class LocalCacheViewModel : BaseViewModel() {
                         mp4List.clear()
                     }
                     mp4List = File(localPath).listFiles()!!.toMutableList()
+                    Log.e("2mean", "mp4List size : ${mp4List.size}")
                 }
                 val videoList = mutableListOf<VideoAndUser>()
                 val pageList =
@@ -87,26 +88,30 @@ public class LocalCacheViewModel : BaseViewModel() {
                             (times + 1) * counts + 1
                         )
                     }
+                Log.e("2mean", "pageList size : ${pageList.size}")
                 //每次取21条数据
                 pageList.forEach { file ->
                     Log.e("1mean", "file: ${file.name}")
                     val fileName = file.name.split(".")[0]
+                    Log.e("2mean","fileName:  $fileName")
                     val data = PetManagerCoroutine.getVideoByFileName(fileName)
+                    Log.e("2mean","data:  $data")
                     if (data != null) {//会存在为null的情况
                         videoList.add(data)
                     }
                 }
-                Log.e("1mean", "videoList: $videoList")
                 videoList
             }
         },
             {
                 //请求数据成功
                 times += 1
+                Log.e("2mean", "it.size=${it.size}, counts:$counts")
                 val hasMore = it.size > counts
                 if (hasMore) {
                     it.removeLast()
                 }
+                Log.e("2mean", "hasmore: $hasMore")
                 val dataList = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = isRefresh,

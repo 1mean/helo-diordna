@@ -221,7 +221,7 @@ class PetManager {
                 }
                 recommendData.itemList = list
             } else {
-                val list = petDao.queryStarByPage(startIndex, counts)
+                val list = petDao.queryStarByPage1(startIndex, counts)
                 if (list.isNotEmpty()) {
                     list.forEach {
                         it.user = petDao.queryUserByCode(it.authorId)

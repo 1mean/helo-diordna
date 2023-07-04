@@ -1,6 +1,7 @@
 package com.example.pandas.biz.viewmodel
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -75,8 +76,10 @@ public class SelfViewModel : BaseViewModel() {
                                     cacheItem.title = getUiName(file.name)
                                     val secondFiles = file.listFiles()
                                     secondFiles?.forEach { secondFile ->
+                                        Log.e("1mean","secondFile: $secondFile")
                                         if (secondFile.isDirectory) {//过滤隐藏文件
                                             val item = CachaListItem()
+                                            //TODO:切记删除文件夹里的.DS_Store文件，不然数目总是不对，无法进行加载更多
                                             secondFile.listFiles()?.let {
                                                 item.counts = it.size
                                             }
@@ -84,6 +87,7 @@ public class SelfViewModel : BaseViewModel() {
                                             item.url = getFileCover(secondFile.name)
                                             item.localFilePath =
                                                 getVideoLocalPath(context, secondFile.name)
+                                            Log.e("1mean","item: $item")
                                             cacheItemList.add(item)
                                         }
                                     }

@@ -62,7 +62,9 @@
                 android:launchMode="singleTask" />
         <activity android:name=".ui.activity.BehaviorActivity" />
         <activity android:name=".ui.activity.AboutActivity" />
+        <activity android:name=".ui.activity.SettingConfigActivity" />
         <activity android:name=".ui.activity.WebActivity" />
+        <activity android:name=".ui.activity.DownLoadActivity" />
         <activity android:name=".ui.activity.BackGroundActivity" />
         <activity android:name=".ui.activity.ShortVideoActivity2" />
         <activity android:name=".ui.activity.SearchActivity" />

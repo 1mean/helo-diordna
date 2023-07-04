@@ -57,7 +57,7 @@
     <color name="color_bg_item_panda">#ffffff</color>
     <color name="color_txt_title_item_panda">#171a1c</color>
     <color name="color_tablayout_unselect_panda">#757575</color>
-    <color name="color_bg_panda_list">#F0F3F3</color>
+    <color name="color_bg_panda_list">#ffffff</color>
     <color name="color_txt_panda_list_item">#999999</color>
 
     <!--home/hot-->
@@ -198,6 +198,7 @@
     <color name="color_self_tab_indicator">#00BBFF</color>
     <color name="color_self_cache_title">#d0effc</color>
     <color name="color_self_total_integral">#252525</color>
+    <color name="color_txt_top">#99ffffff</color>
 
     <!--eye-->
     <color name="color_eye_view_bg">#ededed</color>

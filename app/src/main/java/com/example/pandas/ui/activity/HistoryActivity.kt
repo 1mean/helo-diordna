@@ -131,7 +131,7 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
         appViewModel.appColorType.value?.let {
             binding.clayoutHistoryTop.setBackgroundResource(AppInfos.bgColors[it])
             if (it == 0) {
-                binding.ibnHistoryBack.setImageResource(R.mipmap.img_topview_back)
+                binding.ibnHistoryBack.setImageResource(R.mipmap.img_top_leave)
                 binding.txtHistoryTitle.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -145,7 +145,7 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
                     )
                 )
             } else {
-                binding.ibnHistoryBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.ibnHistoryBack.setImageResource(R.mipmap.img_top_leave_white)
                 binding.txtHistoryTitle.setTextColor(
                     ContextCompat.getColor(
                         this,

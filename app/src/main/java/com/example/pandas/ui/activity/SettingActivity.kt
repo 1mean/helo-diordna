@@ -1,5 +1,6 @@
 package com.example.pandas.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
@@ -15,6 +16,7 @@ import com.example.pandas.databinding.ActivitySettingBinding
 import com.example.pandas.ui.view.dialog.DeletePopuWindow
 import com.example.pandas.ui.view.dialog.StyleSettingPopuWindow
 import com.example.pandas.utils.DarkModeUtils
+import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
@@ -56,9 +58,25 @@ public class SettingActivity : BaseActivity<BaseViewModel, ActivitySettingBindin
             val popWindow = StyleSettingPopuWindow(this, object : OnSureListener {
                 override fun onSure(type: Int) {
                     appViewModel.recommendType.value = type
+                    if (type == 0) {
+                        binding.txtRecoSetting.text = "经典"
+                    } else {
+                        binding.txtRecoSetting.text = "满铺"
+                    }
                 }
             })
             popWindow.setBackDark().onShow(binding.clayoutSetLayout)
+        }
+
+        val status = SPUtils.getInt(this, AppInfos.RECO_STATUS_KEY)
+        if (status == 1) {
+            binding.txtRecoSetting.text = "满铺"
+        }
+
+        binding.clayoutSettingStyle.setOnClickListener {
+
+            val intent = Intent(this, SettingConfigActivity::class.java).putExtra("name", "我的界面样式")
+            startActivity(intent)
         }
     }
 

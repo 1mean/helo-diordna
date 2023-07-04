@@ -17,7 +17,7 @@
                 android:layout_height="match_parent"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_later_top"
                 android:background="@null"
-                android:src="@mipmap/img_back_1" />
+                android:src="@mipmap/img_top_leave" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_later_title"
@@ -25,8 +25,8 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/clayout_later_top"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_later_top"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_later_top"
-                app:layout_constraintRight_toRightOf="@id/clayout_later_top"
+                app:layout_constraintLeft_toRightOf="@id/ibn_later_back"
+                android:layout_marginStart="4dp"
                 android:includeFontPadding="false"
                 android:textSize="16sp"
                 android:text="我喜欢"

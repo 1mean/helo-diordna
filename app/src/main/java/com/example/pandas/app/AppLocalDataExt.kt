@@ -1,10 +1,6 @@
 package com.example.pandas.app;
 
 import com.example.pandas.bean.pet.VideoType
-import com.example.pandas.data.sql.PetBabyPandaData2
-import com.example.pandas.data.sql.PetGroupPandaData
-import com.example.pandas.data.sql.PetGroupPandaData2
-import com.example.pandas.data.sql.PetMomPandaData2
 import com.example.pandas.sql.entity.PeriodType
 import com.example.pandas.sql.entity.PetVideo
 
@@ -30,7 +26,11 @@ val fileDesc = mapOf(
     "monkey" to "https://i2.hdslb.com/bfs/archive/8553500fb6b7b8281b19231e3c71e643267e5c40.jpg",
     "penguin" to "https://i0.hdslb.com/bfs/archive/8f526c9802ddc0bdc52b514751a984fe0a68633e.jpg",
     "red_panda" to "https://i1.hdslb.com/bfs/archive/e773e153f7fa7f8d1e18023139589e9d0f956772.png",
-    "football" to "https://i0.hdslb.com/bfs/archive/56101cc1a83c3eb4ed72968761c096204a9f6299.jpg"
+    "football" to "https://i0.hdslb.com/bfs/archive/56101cc1a83c3eb4ed72968761c096204a9f6299.jpg",
+    "hamster" to "https://i2.hdslb.com/bfs/archive/a8d3c2a940d19308df4fad3fa10e54c6911f65e8.jpg",
+    "rabbit" to "https://i2.hdslb.com/bfs/archive/2ac141479631186ba89a4cc27221b2f63c5f6ef9.jpg",
+    "tiger" to "https://i1.hdslb.com/bfs/archive/da0ec0f4b52e1ca967442d32ead4093bc7eacaea.jpg",
+    "short" to "https://p3-pc-sign.douyinpic.com/tos-cn-p-0015/okAhNkWBei5DAQ89IvICtHACXcgb0AeZPamEEn~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=2003414400&x-signature=nshUsqhLUfFjiD23%2BMG74TbU3vw%3D",
 )
 
 public enum class FileExtName(private var fileName: String, private var uiName: String) {
@@ -83,14 +83,23 @@ public enum class FileExtName(private var fileName: String, private var uiName: 
     FOX("fox", "狐狸") {
         override fun getFileName() = "animal/fox"
     },
+    HAMSTER("hamster", "仓鼠") {
+        override fun getFileName() = "animal/hamster"
+    },
     MONKEY("monkey", "金丝猴") {
         override fun getFileName() = "animal/monkey"
     },
     PENGUIN("penguin", "企鹅") {
         override fun getFileName() = "animal/penguin"
     },
+    RABBIT("rabbit", "兔兔") {
+        override fun getFileName() = "animal/rabbit"
+    },
     RED_PANDA("red_panda", "小熊猫") {
         override fun getFileName() = "animal/red_panda"
+    },
+    TIGER("tiger", "老虎") {
+        override fun getFileName() = "animal/tiger"
     },
     FOOTBALL("football", "足球") {
         override fun getFileName() = "sports/football"
@@ -103,6 +112,12 @@ public enum class FileExtName(private var fileName: String, private var uiName: 
     },
     ANIMAL("animal", "动物") {
         override fun getFileName() = "animal"
+    },
+    SHORT("short", "短视频") {
+        override fun getFileName() = "other/short"
+    },
+    OTHER("other", "其他") {
+        override fun getFileName() = "other"
     },
     SPORTS("sports", "体育") {
         override fun getFileName() = "sports"
@@ -129,7 +144,7 @@ public enum class FileExtName(private var fileName: String, private var uiName: 
             return ""
         }
 
-        fun getFileName(fileName: String):String{
+        fun getFileName(fileName: String): String {
             values().forEach {
                 if (it.fileName == fileName) {
                     return it.getFileName()
@@ -215,7 +230,7 @@ val descMap = mapOf(
     "football" to "艺术的本质是一种精神"
 )
 
-fun getHehuaBanner():MutableList<PetVideo>{
+fun getHehuaBanner(): MutableList<PetVideo> {
 
     val list = mutableListOf<PetVideo>()
     val panda385 = PetVideo()
