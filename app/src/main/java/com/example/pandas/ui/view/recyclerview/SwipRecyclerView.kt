@@ -246,12 +246,14 @@ open class SwipRecyclerView : RecyclerView {
                     parent.requestDisallowInterceptTouchEvent(true)
                 }
                 MotionEvent.ACTION_MOVE -> {
-
                     val deltaX = x - downX
                     val deltaY = y - downY
                     if (abs(deltaX) > abs(deltaY)) {
-                        parent.requestDisallowInterceptTouchEvent(false)
+                        Log.e("1mean","recyclerVIew  move  111")
+//                        parent.requestDisallowInterceptTouchEvent(false)
+                        parent.requestDisallowInterceptTouchEvent(true)
                     } else {
+                        Log.e("1mean","recyclerVIew  move  222")
                         parent.requestDisallowInterceptTouchEvent(true)
                     }
                 }

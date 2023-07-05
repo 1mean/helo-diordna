@@ -30,14 +30,16 @@ import com.lxj.xpopup.util.SmartGlideImageLoader
  * @date: 7/12/22 3:34 下午
  * @version: v1.0
  */
-public class SelfSettingFragment : BaseFragment<SelfViewModel, FragmentSettingBinding>() {
+public class MineFragment : BaseFragment<SelfViewModel, FragmentSettingBinding>() {
 
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
 
     override fun initView(savedInstanceState: Bundle?) {
 
         //loadCircleImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
-        loadImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
+        binding.imgMineHeader.post {
+            loadImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
+        }
 
         binding.imgMineHeader.setOnClickListener { showHeader() }
 

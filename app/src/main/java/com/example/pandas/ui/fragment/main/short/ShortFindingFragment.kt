@@ -2,7 +2,6 @@ package com.example.pandas.ui.fragment.main.short
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -12,7 +11,6 @@ import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.databinding.FragmentListShortVideoBinding
-import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.FallsShortVideoAdapter
@@ -22,12 +20,12 @@ import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
- * @description: 关注
+ * @description: PetChildFragment
  * @author: dongyiming
  * @date: 2021/12/11 3:54 下午
  * @version: v1.0
  */
-public class ShortVideoAttentionFragment() :
+public class ShortFindingFragment() :
     BaseLazyFragment<ShortVideoViewModel, FragmentListShortVideoBinding>(),
     FallsShortVideoAdapter.ItemListener {
 
@@ -45,7 +43,7 @@ public class ShortVideoAttentionFragment() :
             layoutManager,
             listener = object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
-                    mViewModel.getAttentionFallVideos(false)
+                    mViewModel.getFallsShortVideos(false)
                 }
             })
 
@@ -55,7 +53,7 @@ public class ShortVideoAttentionFragment() :
             setRefreshColor()
             setOnRefreshListener {
                 binding.recyclerLayout.isRefreshing(true)
-                mViewModel.getAttentionFallVideos(true)
+                mViewModel.getFallsShortVideos(true)
             }
         }
 
@@ -71,7 +69,6 @@ public class ShortVideoAttentionFragment() :
                 }
             }
         })
-
         appViewModel.appColorType.value?.let {
             binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
         }
@@ -79,7 +76,11 @@ public class ShortVideoAttentionFragment() :
 
     override fun createObserver() {
 
-        mViewModel.attentionShortVideos.observe(viewLifecycleOwner) {
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+        }
+
+        mViewModel.fallsShortVideos.observe(viewLifecycleOwner) {
 
             if (it.isSuccess) {
                 binding.recyclerLayout.visibility = View.VISIBLE
@@ -97,20 +98,16 @@ public class ShortVideoAttentionFragment() :
             binding.swipLayout.visibility = View.VISIBLE
             binding.swipLayout.isRefreshing = false
         }
-
-        appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
-        }
     }
 
     override fun firstOnResume() {
-        mViewModel.getAttentionFallVideos(true)
+        mViewModel.getFallsShortVideos(true)
         binding.swipLayout.isRefreshing = true
     }
 
     override fun refresh() {
         super.refresh()
-        mViewModel.getAttentionFallVideos(true)
+        mViewModel.getFallsShortVideos(true)
         binding.swipLayout.isRefreshing = true
         binding.recyclerLayout.smoothScrollToPosition(0)
     }
@@ -120,5 +117,6 @@ public class ShortVideoAttentionFragment() :
     }
 
     override fun updatePetVideo(video: PetVideo) {
+        mViewModel.updatePetVideo(video)
     }
 }

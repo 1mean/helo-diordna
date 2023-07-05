@@ -554,8 +554,7 @@ interface PetVideoDao {
         count: Int
     ): MutableList<PetVideo>
 
-    @Transaction
-    @Query("select * from pet_video where star=1 order by releaseTime desc limit 30,35")
+    @Query("select * from pet_video where star=1 order by random() desc limit 30,35")
     suspend fun queryMaxPlayedVideos(): MutableList<PetVideo>
 
     @Transaction

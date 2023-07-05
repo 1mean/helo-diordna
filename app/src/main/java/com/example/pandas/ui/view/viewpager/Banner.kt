@@ -3,6 +3,7 @@ package com.example.pandas.ui.view.viewpager
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.example.pandas.R
 import com.example.pandas.biz.interaction.PagerChangedListener
 import kotlin.math.abs
 
@@ -77,14 +79,19 @@ class Banner : RelativeLayout, LifecycleObserver {
         scaledTouchSlop = ViewConfiguration.get(context).scaledTouchSlop shr 1
         compositePageTransformer = CompositePageTransformer()
 
-        _mViewPager = ViewPager2(context)
+        val view = LayoutInflater.from(context).inflate(R.layout.view_banner, null)
+        view.layoutParams =
+            ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+        _mViewPager = view.findViewById(R.id.vp2_banner)
+
+        //_mViewPager = ViewPager2(context)
         mViewPager.run {
-            layoutParams =
-                ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+//            layoutParams =
+//                ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
             setPageTransformer(compositePageTransformer)
             registerOnPageChangeCallback(MyOnPageChangeCallback())
         }
-        addView(_mViewPager)
+        addView(view)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
@@ -133,6 +140,27 @@ class Banner : RelativeLayout, LifecycleObserver {
         return super.dispatchTouchEvent(ev)
     }
 
+    //1. 注意
+    //      1。执行完DOWN里的requestDisallowInterceptTouchEvent后，当前move就不会回调
+    //      2。会继续执行子view里的onInterceptTouchEvent的move后续方法
+    //      3。即banner里面BannerNestedScrollableHost
+    //2。 上下滑动时执行顺序  内部不消费
+    //      1。recyclerVIew  down
+    //      2。banner down 111
+    //      3。host down 111
+    //      4。host move 222
+    //      5。host move 222
+    //      6。host requestDisallowInterceptTouchEvent false
+    //      7。recyclerVIew  move  222
+    //      8。recyclerVIew  move  222
+    //3。 左右滑动时执行顺序  内部必须强制消费
+    //      1。recyclerVIew  down  111
+    //      2。banner down 111
+    //      3。host down 111
+    //      4。host move 222
+    //      5。host move 222
+    //      6。host move 222
+    //      7。requestDisallowInterceptTouchEvent(true)消耗掉
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
 
         val doNotNeedIntercept = (!mViewPager.isUserInputEnabled
@@ -144,12 +172,17 @@ class Banner : RelativeLayout, LifecycleObserver {
 
         val action = ev.action
         if (action == MotionEvent.ACTION_DOWN) {
+
+            Log.e("1mean", "banner down 111")
             startX = ev.rawX
             startY = ev.rawY
             lastX = ev.rawX
             lastY = ev.rawY
+            //1。执行完requestDisallowInterceptTouchEvent后，当前move就不会回调
+            //2。会继续执行子view里的onInterceptTouchEvent的move后续方法
             parent.requestDisallowInterceptTouchEvent(true)
         } else if (action == MotionEvent.ACTION_MOVE) {
+            Log.e("1mean", "banner move 222")
             lastX = ev.rawX
             lastY = ev.rawY
             if (mViewPager.isUserInputEnabled) {
@@ -164,7 +197,6 @@ class Banner : RelativeLayout, LifecycleObserver {
                 parent.requestDisallowInterceptTouchEvent(disallowIntercept)
             }
         } else if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
-//            return abs(lastX - startX) > scaledTouchSlop || abs(lastY - startY) > scaledTouchSlop
             parent.requestDisallowInterceptTouchEvent(false)
         }
         return super.onInterceptTouchEvent(ev)

@@ -214,11 +214,11 @@ public class LiveVideoAdapter(
             val user = video.user
             val videoData = video.videoData ?: VideoData(videoCode = video.code)
 
-            if (video.vertical) {
-                tagView.visibility = View.VISIBLE
-            } else {
-                tagView.visibility = View.GONE
-            }
+//            if (video.vertical) {
+//                tagView.visibility = View.VISIBLE
+//            } else {
+//                tagView.visibility = View.GONE
+//            }
 
             user?.let {
                 it.headUrl?.let { url ->

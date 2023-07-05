@@ -32,11 +32,12 @@ public class LiveHistoryAdapter(list: MutableList<PetVideo>) : BaseCommonAdapter
             loadCenterImage(context, it, header)
         }
         val type = data.type
-        if (type != VideoType.PANDA.ordinal && type != VideoType.BEAUTY.ordinal) {
-            title.text = data.tags
-        } else {
-            title.text = data.title
-        }
+        title.text = data.title
+//        if (type != VideoType.PANDA.ordinal && type != VideoType.BEAUTY.ordinal) {
+//            title.text = data.tags
+//        } else {
+//            title.text = data.title
+//        }
 
         name.text = data.user?.userName
 

@@ -31,7 +31,7 @@ public class SettingConfigActivity : BaseActivity<BaseViewModel, ActivitySetting
         appViewModel.appColorType.value?.let {
             binding.clayoutConfigTop.setBackgroundResource(AppInfos.bgColors[it])
             if (it == 0) {
-                binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back)
+                binding.ibnSettingBack.setImageResource(R.mipmap.img_top_leave)
                 binding.txtConfigTitle.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -39,7 +39,7 @@ public class SettingConfigActivity : BaseActivity<BaseViewModel, ActivitySetting
                     )
                 )
             } else {
-                binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.ibnSettingBack.setImageResource(R.mipmap.img_top_leave_white)
                 binding.txtConfigTitle.setTextColor(
                     ContextCompat.getColor(
                         this,

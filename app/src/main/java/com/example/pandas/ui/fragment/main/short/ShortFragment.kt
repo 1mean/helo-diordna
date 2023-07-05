@@ -1,316 +1,290 @@
 package com.example.pandas.ui.fragment.main.short
 
-import ShortManager
-import android.annotation.SuppressLint
-import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
-import android.view.*
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
-import androidx.viewpager2.widget.ViewPager2
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.base.fragment.BaseLazyFragment
-import com.example.pandas.biz.interaction.ExoPlayerListener
-import com.example.pandas.biz.manager.VerticalPlayManager
-import com.example.pandas.biz.viewmodel.ShortVideoViewModel
-import com.example.pandas.databinding.FragmentVerticalVideoplayBinding
-import com.example.pandas.sql.entity.User
-import com.example.pandas.sql.entity.VideoData
-import com.example.pandas.ui.activity.UserInfoActivity
-import com.example.pandas.ui.adapter.VideoPagerAdapter
-import com.example.pandas.ui.ext.startUserInfoActivity
-import com.example.pandas.ui.view.dialog.ShortRightPopuWindow
-import com.google.android.exoplayer2.util.Util
-import com.lxj.xpopup.XPopup
-import com.lxj.xpopup.core.BasePopupView
-import com.lxj.xpopup.interfaces.XPopupCallback
-
+import com.example.pandas.biz.viewmodel.MainFragmentViewModel
+import com.example.pandas.databinding.FragmentShortVideoBinding
+import com.example.pandas.utils.DarkModeUtils
+import com.example.pandas.utils.StatusBarUtils
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.GRAVITY_CENTER
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.google.android.material.tabs.TabLayoutMediator
+import java.util.*
 
 /**
- * @description: 竖屏视频,使用Viewpager2来实现
+ * @description: PetChildFragment
  * @author: dongyiming
- * @date: 2/23/22 10:20 下午
+ * @date: 2021/12/11 3:54 下午
  * @version: v1.0
  */
-public class ShortFragment :
-    BaseFragment<ShortVideoViewModel, FragmentVerticalVideoplayBinding>(), ExoPlayerListener,
-    VideoPagerAdapter.VerticalVideoListener {
+public class ShortFragment() :
+    BaseFragment<MainFragmentViewModel, FragmentShortVideoBinding>() {
 
-    private var hasMore = false
-    private var startActivity = false
-    private val mAdapter: VideoPagerAdapter by lazy { VideoPagerAdapter(listener = this) }
+    private val tabTitles = arrayListOf("关注", "发现", "推荐")
 
-    private var manager: ShortManager? = null
-    var popupView: ShortRightPopuWindow? = null
+    var isUpdate = true
 
+    private val tabTitleColors
+        get() = arrayOf(
+            ContextCompat.getColor(mActivity, R.color.color_vertical_played),
+            ContextCompat.getColor(mActivity, R.color.color_txt_short_tab_unselected),
+            ContextCompat.getColor(mActivity, R.color.color_txt_short_tab_selected),
+            ContextCompat.getColor(mActivity, R.color.white)
+        )
 
-    //onStart -> 返回数据后 -> 然后执行onResume()
-    private val requestLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-
-            manager?.continuePlayer()
-        }
-
-    @SuppressLint("Recycle")
     override fun initView(savedInstanceState: Bundle?) {
 
-        manager = ShortManager(mActivity, this)
-        binding.vp2VideoVertical.run {
-            orientation = ViewPager2.ORIENTATION_VERTICAL
-            adapter = mAdapter
-            offscreenPageLimit = 1
-            registerOnPageChangeCallback(pageChangeCallback)
+        binding.vp2Short.run {
+            offscreenPageLimit = tabTitles.size
+            isSaveEnabled = false
+            setCurrentItem(1, false)
+            adapter = object : FragmentStateAdapter(this@ShortFragment) {
+                override fun getItemCount(): Int = 3
+
+                override fun createFragment(position: Int): Fragment {
+                    return when (position) {
+                        0 -> {
+                            ShortAttentionFragment()
+                        }
+                        1 -> {
+                            ShortFindingFragment()
+                        }
+                        else -> {
+                            ShortRecommendFragment()
+                        }
+                    }
+                }
+            }
+        }
+        TabLayoutMediator(
+            binding.tbShort, binding.vp2Short, false
+        ) { tab, position ->
+            tab.text = tabTitles[position]
+        }.attach()
+
+        binding.tbShort.getTabAt(1)?.select()
+
+        //获取TabLayout设置的字体颜色,包含tabTextColor及tabSelectedTextColor
+        for (i in 0 until binding.tbShort.tabCount) {
+            val tab: TabLayout.Tab = binding.tbShort.getTabAt(i)!!
+            if (tab.customView == null || tab.customView !is TextView) {
+                val tv = TextView(binding.tbShort.context)
+                val tabStr = Objects.requireNonNull(tab.text).toString()
+                tv.text = tabStr
+                tv.gravity = GRAVITY_CENTER
+                tv.textSize =
+                    if (tab.isSelected) resources.getDimension(R.dimen.common_sz_6_dimens) else
+                        resources.getDimension(R.dimen.common_sz_5_7_dimens)
+                tv.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
+                if (tab.isSelected) {
+                    tv.setTextColor(tabTitleColors[2])
+                } else {
+                    tv.setTextColor(tabTitleColors[1])
+                }
+                tab.customView = tv
+            }
+        }
+
+        binding.tbShort.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                val selectedIndex = binding.tbShort.selectedTabPosition
+                val tv = (tab.customView as TextView?)!!
+
+                if (selectedIndex == 2) {
+                    StatusBarUtils.updataStatus(
+                        mActivity,
+                        false,
+                        true,
+                        R.color.color_white_lucency
+                    )
+                    tv.setTextColor(tabTitleColors[3])
+                    binding.tbShort.setSelectedTabIndicatorColor(tabTitleColors[3])
+
+                    for (index in 0 until (tabTitles.size - 1)) {
+                        val tabView = binding.tbShort.getTabAt(index)!!
+                        val title = (tabView.customView as TextView?)!!
+                        title.setTextColor(tabTitleColors[0])
+                        title.textSize = resources.getDimension(R.dimen.common_sz_5_7_dimens)
+                    }
+                    mViewModel.updateBottomBackground(3)
+                    binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
+                } else {
+
+                    for (index in 0 until tabTitles.size) {
+                        if (index == selectedIndex) {
+                            val status = appViewModel.appColorType.value
+                            if (status == null || status == 0) {
+                                tv.setTextColor(tabTitleColors[2])
+                            } else {
+                                tv.setTextColor(tabTitleColors[3])
+                            }
+                        } else {
+                            val tabView = binding.tbShort.getTabAt(index)!!
+                            val title = (tabView.customView as TextView?)!!
+                            val status = appViewModel.appColorType.value
+                            if (status == null || status == 0) {
+                                title.setTextColor(tabTitleColors[1])
+                            } else {
+                                title.setTextColor(tabTitleColors[3])
+                            }
+                            title.textSize = resources.getDimension(R.dimen.common_sz_5_7_dimens)
+                        }
+                    }
+                    if (appViewModel.appColorType.value == null) {
+                        binding.tbShort.setSelectedTabIndicatorColor(tabTitleColors[2])
+                        StatusBarUtils.updataStatus(
+                            mActivity,
+                            true,
+                            true,
+                            R.color.color_white_lucency
+                        )
+                    } else {
+                        val status = appViewModel.appColorType.value!!
+                        if (status == 0) {
+                            StatusBarUtils.updataStatus(
+                                mActivity,
+                                true,
+                                true,
+                                R.color.color_white_lucency
+                            )
+                            binding.tbShort.setSelectedTabIndicatorColor(tabTitleColors[2])
+                        } else {
+                            StatusBarUtils.updataStatus(
+                                mActivity,
+                                false,
+                                true,
+                                AppInfos.bgColors[status]
+                            )
+                            binding.tbShort.setSelectedTabIndicatorColor(tabTitleColors[3])
+                        }
+                        binding.clayoutShortTab.setBackgroundResource(AppInfos.bgColors[status])
+                    }
+                    mViewModel.updateBottomBackground(1)
+                }
+                tv.textSize = resources.getDimension(R.dimen.common_sz_6_dimens)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+
+        appViewModel.appColorType.value?.let {
+            updateTop(it)
+        }
+    }
+
+    private fun updateTop(status: Int) {
+        val selectIndex = binding.tbShort.selectedTabPosition
+        if (selectIndex == 2) {
+            binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
+        } else {
+            binding.clayoutShortTab.setBackgroundResource(AppInfos.bgColors[status])
+        }
+        if (status == 0) {
+            binding.tbShort.setSelectedTabIndicatorColor(tabTitleColors[2])
+            for (index in 0 until tabTitles.size) {
+                val tabView = binding.tbShort.getTabAt(index)!!
+                val title = (tabView.customView as TextView?)!!
+                if (index == selectIndex) {
+                    title.setTextColor(tabTitleColors[2])
+                } else {
+                    title.setTextColor(tabTitleColors[1])
+                }
+            }
+        } else {
+            binding.tbShort.setSelectedTabIndicatorColor(tabTitleColors[3])
+
+            for (index in 0 until tabTitles.size) {
+                val tabView = binding.tbShort.getTabAt(index)!!
+                val title = (tabView.customView as TextView?)!!
+                title.setTextColor(tabTitleColors[3])
+            }
         }
     }
 
     override fun createObserver() {
-        mViewModel.verticalVideos.observe(this) {
-            if (it.isSuccess) {
-                when {
-                    it.isRefresh -> {
-                        Log.e("222aaa", "isRefresh")
-                        mAdapter.refreshAdapter(it.listData)
-                        manager?.addMediaItems(it.listData)
-                    }
-                    it.hasMore -> {
-                        mAdapter.loadMore(it.listData)
-                        manager?.addMediaItems(it.listData)
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
+            updateTop(it)
+        }
+
+        mViewModel.refreshPosition.observe(viewLifecycleOwner){
+            if (it == 3) {
+                val currentItem = binding.vp2Short.currentItem
+                val fragments = childFragmentManager.fragments
+                fragments.forEach {
+                    when(currentItem){
+                        0->{
+                            if (it is ShortAttentionFragment) {
+                                (it as ShortAttentionFragment).refresh()
+                            }
+                        }
+                        1->{
+                            if (it is ShortFindingFragment) {
+                                (it as ShortFindingFragment).refresh()
+                            }
+                        }
                     }
                 }
-                hasMore = it.hasMore
-            }
-        }
-    }
 
-    override fun onStart() {
-        super.onStart()
-        if (Util.SDK_INT > 23) {
-            manager?.initPlayer()
+            }
         }
     }
 
     override fun firstOnResume() {
-        mViewModel.getVerticalVideos(true)
-    }
-
-    /**
-     * 第一次进入会触发onPageSelected position=0
-     * 只有手动滑动时，才会触发onPageScrollStateChanged回调，执行顺序如下
-     *   --翻页时回调
-     *      --SCROLL_STATE_DRAGGING
-     *      --SCROLL_STATE_SETTLING
-     *      --onPageSelected : 1
-     *      --SCROLL_STATE_IDLE
-     *
-     *   --滑动后，仍然在当前页面，不会回调 onPageSelected
-     *      --SCROLL_STATE_DRAGGING
-     *      --SCROLL_STATE_SETTLING
-     *      --SCROLL_STATE_IDLE
-     *
-     */
-    private var currentPosition: Int = 0
-    private val pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
-
-        override fun onPageScrollStateChanged(state: Int) {
-            when (state) {
-                ViewPager2.SCROLL_STATE_IDLE -> {
-                    mAdapter.startAnimation(currentPosition)
-                }
-                ViewPager2.SCROLL_STATE_DRAGGING -> {
-                    mAdapter.pauseAnimation(currentPosition)
-                }
-                ViewPager2.SCROLL_STATE_SETTLING -> {
-                }
-            }
-        }
-
-        //界面初始化，第一次注册时也会被调用，所以要注意为null的判断,而且肯定是在加载完数据，界面显示后才回调的
-        override fun onPageSelected(position: Int) {
-            super.onPageSelected(position)
-
-            Log.e("222aaa", "onPageSelected")
-            currentPosition = position
-            //开启右下角的旋转动画
-
-            popupView = null //切换到新页面时，不保存右侧评论弹出窗
-            vh = null
-            binding.vp2VideoVertical.post {
-
-                val count = mAdapter.itemCount
-                if (position == (count - 1) && hasMore) {
-                    mViewModel.getVerticalVideos(false)
-                }
-
-                mAdapter.recyclerView?.let {
-                    val viewHolder =
-                        it.findViewHolderForAdapterPosition(position) as? VideoPagerAdapter.MyViewHolder
-                    viewHolder?.let { vh ->
-                        vh.init()
-                        manager?.seekTo(position, vh.playerView)
-                    }
-                }
-            }
-        }
-    }
-
-    override fun isPlayingChanged(isPlaying: Boolean) {
-        super.isPlayingChanged(isPlaying)
-        if (isPlaying) {
-            mAdapter.startAnimation(currentPosition)
-        } else {
-            mAdapter.pauseAnimation(currentPosition)
-        }
-    }
-
-    override fun onDoubleTap() {
 
     }
 
-    override fun onSingleTap() {
-        if (manager!!.isPlaying()) {
-            manager?.pause()
-        } else {
-            manager?.continuePlayer()
-        }
-    }
-
-    override fun updataVideoData(videoData: VideoData) {
-        mViewModel.addOrUpdateVideoData(videoData)
-    }
-
-    override fun collect(isAdd: Boolean, videoCode: Int) {
-        mViewModel.updateCollect(isAdd, videoCode)
-    }
-
-    override fun updateUserAttention(userCode: Int) {
-        mViewModel.updateAttention(userCode)
-    }
-
-    override fun startUserActivity(user: User) {
-
-        val fragment = parentFragment
-        if (fragment != null && fragment is ShortVideoFragment) {
-            (fragment as ShortVideoFragment).isUpdate = false
-        }
-
-        if (manager!!.isPlaying()) {
-            manager?.pause()
-        }
-        val intent = Intent(context, UserInfoActivity::class.java).apply {
-            putExtra("user", user)
-        }
-        requestLauncher.launch(intent)
-        startActivity = true
-    }
-
-    private var vh: VideoPagerAdapter.MyViewHolder? = null
-    override fun showComments(videoCode: Int, commentCounts: Int) {
-
-        if (popupView == null) {
-            popupView = ShortRightPopuWindow(mActivity, videoCode, commentCounts)
-        }
-        XPopup.setShadowBgColor(ContextCompat.getColor(mActivity, R.color.color_white_lucency))
-        XPopup.Builder(mActivity).setPopupCallback(object : XPopupCallback {
-            override fun onCreated(popupView: BasePopupView?) {
-            }
-
-            override fun beforeShow(popupView: BasePopupView?) {
-                binding.clayoutVerticalTop.visibility = View.GONE
-                if (vh == null) {
-                    mAdapter.recyclerView?.let {
-                        vh =
-                            it.findViewHolderForAdapterPosition(currentPosition) as VideoPagerAdapter.MyViewHolder
-                    }
-                }
-                vh?.hidePlayerView()
-            }
-
-            override fun onShow(popupView: BasePopupView?) {
-            }
-
-            override fun onDismiss(popupView: BasePopupView?) {
-                binding.clayoutVerticalTop.visibility = View.VISIBLE
-            }
-
-            override fun beforeDismiss(popupView: BasePopupView?) {
-
-            }
-
-            override fun onBackPressed(popupView: BasePopupView?): Boolean {
-                return false
-            }
-
-            override fun onKeyBoardStateChanged(popupView: BasePopupView?, height: Int) {
-            }
-
-            override fun onDrag(
-                popupView: BasePopupView?,
-                value: Int,
-                percent: Float,
-                upOrLeft: Boolean
-            ) {
-                if (vh == null) {
-                    mAdapter.recyclerView?.let {
-                        vh =
-                            it.findViewHolderForAdapterPosition(currentPosition) as VideoPagerAdapter.MyViewHolder
-                    }
-                }
-                vh?.playerChanged(value, percent, upOrLeft)
-            }
-
-            override fun onClickOutside(popupView: BasePopupView?) {
-            }
-
-        })
-            .moveUpToKeyboard(false) //如果不加这个，评论弹窗会移动到软键盘上面
-            .animationDuration(600)
-            .asCustom(popupView)
-            .show()
-        popupView!!.setOnDragListener { v, event ->
-
-            val dialogHeight = popupView!!.height
-
-            true
-        }
-    }
-
-    override fun addAttention(userCode: Int) {
-        mViewModel.updateAttention(userCode)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mAdapter.clearAnimation()
-    }
+    override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
 
     override fun onPause() {
         super.onPause()
-        if (!startActivity) {
-            manager?.release()
+        if (isUpdate) {
+            if (binding.tbShort.selectedTabPosition == 2) {
+                val nightMode = DarkModeUtils.getNightModel(mActivity)
+                if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
+                    StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
+                } else {
+                    val status = appViewModel.appColorType.value
+                    if (status == null || status == 0) {
+                        StatusBarUtils.updataStatus(
+                            mActivity,
+                            true,
+                            true,
+                            R.color.color_white_lucency
+                        )
+                    } else {
+                        StatusBarUtils.updataStatus(
+                            mActivity,
+                            false,
+                            true,
+                            AppInfos.bgColors[status]
+                        )
+                    }
+                }
+            }
+            mViewModel.updateBottomBackground(1)
         }
     }
 
     override fun againOnResume() {
         super.againOnResume()
-
-        val fragment = parentFragment
-        if (fragment != null && fragment is ShortVideoFragment) {
-            (fragment as ShortVideoFragment).isUpdate = true
-        }
-
-        startActivity = false
-        mAdapter.recyclerView?.let {
-            val viewHolder =
-                it.findViewHolderForAdapterPosition(binding.vp2VideoVertical.currentItem) as? VideoPagerAdapter.MyViewHolder
-            viewHolder?.let { vh ->
-                vh.hidePlerView()
-                manager?.againOnResume(vh.playerView,currentPosition)
+        if (isUpdate) {
+            if (binding.tbShort.selectedTabPosition == 2) {
+                StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
+                mViewModel.updateBottomBackground(3)
+            } else {
+                //mViewModel.updateBottomBackground(1)
             }
         }
     }

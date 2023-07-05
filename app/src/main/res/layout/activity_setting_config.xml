@@ -17,7 +17,7 @@
                 android:layout_height="match_parent"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_config_top"
                 android:background="@null"
-                android:src="@mipmap/img_topview_back" />
+                android:src="@mipmap/img_top_leave" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_config_title"
@@ -46,7 +46,7 @@
         <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="设置效果重启app后才会生效"
+                android:text="重启app后，设置效果才会生效"
                 android:textSize="11sp"
                 android:textColor="@color/black_33"
                 app:layout_constraintTop_toTopOf="@id/clayout_mine_style_top"

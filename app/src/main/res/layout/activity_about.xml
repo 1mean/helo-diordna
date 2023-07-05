@@ -187,7 +187,7 @@
     <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="250dp"
             android:layout_gravity="center_horizontal"
             android:text="Copyright 2022-2023 IPANDA-Inc.All Rights Reserved"
             android:textSize="10sp"
