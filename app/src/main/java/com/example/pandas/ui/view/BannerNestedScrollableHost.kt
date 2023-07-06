@@ -83,12 +83,11 @@ public class BannerNestedScrollableHost : FrameLayout {
 
         if (e.action == MotionEvent.ACTION_DOWN) {
 
-            Log.e("1mean","host down 111")
+            Log.e("1mean", "host down 111")
             initialX = e.x
             initialY = e.y
             parent.requestDisallowInterceptTouchEvent(true)
         } else if (e.action == MotionEvent.ACTION_MOVE) {
-            Log.e("1mean","host move 222")
             val dx = e.x - initialX
             val dy = e.y - initialY
             val isVpHorizontal = orientation == ViewPager2.ORIENTATION_HORIZONTAL
@@ -107,9 +106,12 @@ public class BannerNestedScrollableHost : FrameLayout {
             if (scaledDx > touchSlop || scaledDy > touchSlop) {
 
                 if (isVpHorizontal == (scaledDy > scaledDx)) {//横屏viewpager，上下滑动，不拦截
+                    Log.e("2mean","host move 1111")
                     parent.requestDisallowInterceptTouchEvent(false)
                 } else {
+                    Log.e("1mean","host move 2222")
                     // Gesture is parallel, query child if movement in that direction is possible
+                    //内部只能是一个viewpager2。getChildAt(0)做处理
                     val canChildScroll = if (isVpHorizontal) {
                         canChildScroll(orientation, dx)
                     } else {

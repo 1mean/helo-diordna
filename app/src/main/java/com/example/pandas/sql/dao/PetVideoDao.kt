@@ -361,6 +361,13 @@ interface PetVideoDao {
     ): MutableList<VideoAndUser>
 
     @Transaction
+    @Query("select * from pet_video where star=1 order by random() desc limit (:startIndex),(:counts)")
+    suspend fun queryRandomList(
+        startIndex: Int,
+        counts: Int
+    ): MutableList<VideoAndUser>
+
+    @Transaction
     @Query("select * from pet_video where title like (:words) limit (:startIndex),(:counts)")
     suspend fun queryWordsByPage(
         words: String,
@@ -558,6 +565,6 @@ interface PetVideoDao {
     suspend fun queryMaxPlayedVideos(): MutableList<PetVideo>
 
     @Transaction
-    @Query("select * from pet_video order by releaseTime desc limit (:startIndex),(:count)")
+    @Query("select * from pet_video order by random() desc limit (:startIndex),(:count)")
     suspend fun queryVideosByReleaseTime(startIndex: Int, count: Int): MutableList<VideoAndUser>
 }

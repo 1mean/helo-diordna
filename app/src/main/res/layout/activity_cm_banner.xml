@@ -26,7 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-            <com.example.pandas.ui.view.viewpager.Banner
+            <com.example.pandas.ui.view.viewpager.CommonBanner
                     android:id="@+id/banner_cm_top"
                     android:layout_width="match_parent"
                     android:layout_height="165dp"

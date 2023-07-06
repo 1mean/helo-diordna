@@ -16,7 +16,9 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
+import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.interaction.PagerChangedListener
+import com.example.pandas.ui.adapter.CommentListAdapter
 import kotlin.math.abs
 
 /**
@@ -35,7 +37,7 @@ import kotlin.math.abs
  * @date: 2021/12/24 10:55 上午
  * @version: v1.0
  */
-class Banner : RelativeLayout, LifecycleObserver {
+class ConflictBanner : RelativeLayout, LifecycleObserver {
 
     private var scaledTouchSlop: Int = 0
     private var _mViewPager: ViewPager2? = null
@@ -379,12 +381,12 @@ class Banner : RelativeLayout, LifecycleObserver {
     private fun getRealCount(): Int = wrapAdapter!!.getRealCount()
 
 
-    private fun addPageTransformer(transformer: ViewPager2.PageTransformer): Banner {
+    private fun addPageTransformer(transformer: ViewPager2.PageTransformer): ConflictBanner {
         compositePageTransformer?.addTransformer(transformer)
         return this
     }
 
-    fun setLifecycleRegistry(lifecycleRegistry: Lifecycle): Banner {
+    fun setLifecycleRegistry(lifecycleRegistry: Lifecycle): ConflictBanner {
         lifecycleRegistry.addObserver(this)
         return this
     }
@@ -414,7 +416,11 @@ class Banner : RelativeLayout, LifecycleObserver {
      * @param nextPageWidth    右边页面露出来的宽度
      * @param itemPadding    item与item之间的宽度
      */
-    public fun setPagePadding(lastPageWidth: Int, nextPageWidth: Int, itemPadding: Int): Banner {
+    public fun setPagePadding(
+        lastPageWidth: Int,
+        nextPageWidth: Int,
+        itemPadding: Int
+    ): ConflictBanner {
 
         addPageTransformer(MarginPageTransformer(itemPadding))
         val recyclerView = mViewPager.getChildAt(0) as RecyclerView
@@ -436,7 +442,7 @@ class Banner : RelativeLayout, LifecycleObserver {
     }
 
     //设置轮播指示器
-    fun setIndicator(mIndicator: Indicator, attachToBanner: Boolean): Banner {
+    fun setIndicator(mIndicator: Indicator, attachToBanner: Boolean): ConflictBanner {
 
         if (indicator != null) {
             removeView(indicator?.getView())
@@ -455,7 +461,9 @@ class Banner : RelativeLayout, LifecycleObserver {
      * @date: 1/24/22 3:13 下午
      * @version: v1.0
      */
-    fun setAdapter(adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>): Banner {
+    fun setAdapter(
+        adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>
+    ): ConflictBanner {
 
         wrapAdapter = BannerAdapterWrapper()
         wrapAdapter!!.registerAdapter(adapter as RecyclerView.Adapter<RecyclerView.ViewHolder>)
@@ -468,7 +476,7 @@ class Banner : RelativeLayout, LifecycleObserver {
     }
 
     private var pageChangeListener: PagerChangedListener? = null
-    fun addPageChangeListener(pageChangeListener: PagerChangedListener): Banner {
+    fun addPageChangeListener(pageChangeListener: PagerChangedListener): ConflictBanner {
         this.pageChangeListener = pageChangeListener
         return this
     }
@@ -477,7 +485,7 @@ class Banner : RelativeLayout, LifecycleObserver {
      * 设置自由轮播
      * @date: 2021/12/24 12:39 下午
      */
-    fun setAutoPlayed(autoPlay: Boolean): Banner {
+    fun setAutoPlayed(autoPlay: Boolean): ConflictBanner {
         isAutoPlay = autoPlay
         if (isAutoPlay && getRealCount() > 1) {
             //onAttachedToWindow里执行了开始轮播

@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <com.example.pandas.ui.view.viewpager.Banner
+    <com.example.pandas.ui.view.viewpager.ConflictBanner
             android:id="@+id/vp_eye"
             android:layout_width="match_parent"
             android:layout_height="190dp"

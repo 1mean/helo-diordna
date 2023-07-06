@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
-import com.example.pandas.ui.view.viewpager.Banner
+import com.example.pandas.ui.view.viewpager.ConflictBanner
 
 /**
  * @description: BannerCardView
@@ -45,7 +45,7 @@ public class BannerCardView : CardView {
     }
 
     private fun initBanner() {
-        val banner = Banner(context)
+        val banner = ConflictBanner(context)
         banner.setAdapter(MyAdapter())
         val lp = banner.layoutParams
         lp.width = bannerWidth.toInt()

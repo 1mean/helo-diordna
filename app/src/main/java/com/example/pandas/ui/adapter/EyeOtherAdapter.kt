@@ -16,7 +16,7 @@ import com.example.pandas.databinding.ItemVpEyeBinding
 import com.example.pandas.ui.activity.EyePlayingActivity
 import com.example.pandas.ui.activity.VerticalVideoActivity
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
-import com.example.pandas.ui.view.viewpager.Banner
+import com.example.pandas.ui.view.viewpager.ConflictBanner
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -120,7 +120,7 @@ public class EyeOtherAdapter(private val list: MutableList<EyepetozerItem>) :
     }
 
     class ViewPagerHolder(binding: ItemVpEyeBinding) : BaseEmptyViewHolder(binding.root) {
-        val viewPager: Banner = binding.vpEye
+        val viewPager: ConflictBanner = binding.vpEye
     }
 
     inner class VideoHolder(binding: AdapterOtherFragmentBinding) :

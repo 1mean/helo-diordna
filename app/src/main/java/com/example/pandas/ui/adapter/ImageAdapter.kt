@@ -6,6 +6,7 @@ import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.BannerItem
 import com.example.pandas.biz.ext.loadImage
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 
 /**
  * @description: ImageAdapter
@@ -21,6 +22,9 @@ public class ImageAdapter(list: MutableList<BannerItem>) : BaseCommonAdapter<Ban
         val context = holder.itemView.context
         val cover = holder.getWidget<AppCompatImageView>(R.id.img_cm_cover)
         loadImage(context, data.cover, cover)
+        holder.itemView.setOnClickListener {
+            //startVideoPlayingActivity(context,data.)
+        }
     }
 
 }

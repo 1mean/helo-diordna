@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/clayout_banner_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <!--注意技巧-->
+    <!--1，如果只有AppBarLayout，没有CollapsingToolbarLayout，就不会有折叠效果，-->
+    <!--      AppBarLayout是LinearLayout，切记子view设置了app:layout_scrollFlags="scroll"的才会上下滑动，否则不会动，固定在原位-->
+    <!--      只能实现一种效果：上下机械滑动，直到最后一个没有设置scroll的子view固定在顶部-->
+    <!--2，AppBarLayout + CollapsingToolbarLayout，制造折叠效果，-->
+    <!--      -->
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/bar_cm_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:elevation="0dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <!--android:layout_height="223dp"-->
+        <!--app:titleEnabled="false" 解决Toolbar中文字无法居中问题，左侧会为折叠预留的空间，导致文字右移-->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collaps_cm_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:titleEnabled="false">
+
+            <com.example.pandas.ui.view.viewpager.CommonBanner
+                    android:id="@+id/banner_cm_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="165dp"
+                    android:layout_marginTop="45.66dp" />
+
+            <!--  bug:如果用NestedScrollView包裹Recyclerview，在上拉加载更多时，childCount会出现问题，导致无法执行加载更多的回调判断 -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/shape_bg_banner_list"
+                    android:layout_marginTop="237.66dp"
+                    android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clayout_banner_top"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/img_banner_list_header"
+                            android:layout_width="66dp"
+                            android:layout_height="66dp"
+                            app:layout_constraintTop_toTopOf="@id/clayout_banner_top"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_banner_top"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="10dp"
+                            app:civ_border_width="1dp"
+                            android:src="@mipmap/liuyifei"
+                            app:civ_border_color="@color/white" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_banner_list_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="@id/img_banner_list_header"
+                            app:layout_constraintLeft_toRightOf="@id/clayout_banner_top"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginStart="4dp"
+                            android:textSize="20dp"
+                            android:text="播放榜"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!--Toolbar左侧控件一直有空白，无法放置在最左侧，设置四个contentInset值解决-->
+            <!--android:layout_height="44dp"
+                    android:layout_marginTop="32.66dp"-->
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tb_banner_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="76.66dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetStart="0dp"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetRight="0dp"
+                    app:layout_collapseMode="pin"
+                    android:visibility="gone"
+                    android:background="@color/color_bg_banner_top">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clayout_banner_tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="32.66dp">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/btn_cm_banner_left"
+                            android:layout_width="44dp"
+                            android:layout_height="match_parent"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_banner_tab"
+                            android:src="@mipmap/img_topview_back_white"
+                            android:background="@null" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_cm_banner_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_banner_tab"
+                            app:layout_constraintRight_toRightOf="@id/clayout_banner_tab"
+                            app:layout_constraintTop_toTopOf="@id/clayout_banner_tab"
+                            app:layout_constraintBottom_toBottomOf="@id/clayout_banner_tab"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
+            android:id="@+id/rv_banner_list"
+            android:layout_width="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_height="match_parent" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

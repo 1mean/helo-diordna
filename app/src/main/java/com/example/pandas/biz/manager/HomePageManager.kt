@@ -612,6 +612,31 @@ class PetManager {
         }
     }
 
+    suspend fun getCMBannerList(
+        startIndex: Int,
+        counts: Int
+    ): BannerListBean {
+
+        return withContext(Dispatchers.Default) {
+
+            val bannerListBean = BannerListBean()
+            val list = petDao.queryRandomList(startIndex, counts)
+            Log.e("1mean","banner list : ${list.size}")
+            if (startIndex == 0 && list.isNotEmpty() && list.size > 5) {
+                list.forEachIndexed { index, videoAndUser ->
+                    if (index < 5) {
+                        bannerListBean.bannerList.add(videoAndUser.video)
+                    } else {
+                        bannerListBean.itemList.add(videoAndUser)
+                    }
+                }
+            } else {
+                bannerListBean.itemList.addAll(list)
+            }
+            bannerListBean
+        }
+    }
+
     suspend fun getPandas(
         name: String,
         startIndex: Int,
@@ -782,7 +807,7 @@ class PetManager {
                 throw NullPointerException("no video by videoCode=${petVideo.code}")
             } else {
                 petVideo.id = video.id
-                Log.e("1mean","petvideo:$petVideo")
+                Log.e("1mean", "petvideo:$petVideo")
                 petDao.updatePetVideo(petVideo)
             }
         }

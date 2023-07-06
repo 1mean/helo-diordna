@@ -40,7 +40,7 @@
                 <!--parallax：在内容滚动时，CollapsingToolbarLayout中的View（比如ImageView)也可以同时滚动
                 ，实现视差滚动效果，通常和layout_collapseParallaxMultiplier(设置视差因子)搭配使用-->
                 <!--layout_collapseParallaxMultiplier(视差因子) - 设置视差滚动因子，值为：0~1-->
-                <com.example.pandas.ui.view.viewpager.Banner
+                <com.example.pandas.ui.view.viewpager.ConflictBanner
                         android:id="@+id/banner_pet"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

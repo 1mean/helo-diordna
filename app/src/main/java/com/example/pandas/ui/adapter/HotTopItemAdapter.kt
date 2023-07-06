@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
+import com.example.pandas.ui.activity.BannerListActivity
 import com.example.pandas.ui.activity.RankingActivity
 import com.example.pandas.ui.ext.startAnyActivity
 
@@ -37,7 +38,8 @@ public class HotTopItemAdapter(list: MutableList<String>) : BaseCommonAdapter<St
         title.text = data
 
         item.setOnClickListener {
-            val intent = Intent(context, RankingActivity::class.java).putExtra("title", data)
+//            val intent = Intent(context, RankingActivity::class.java).putExtra("title", data)
+            val intent = Intent(context, BannerListActivity::class.java).putExtra("title", data)
             context.startActivity(intent)
         }
     }

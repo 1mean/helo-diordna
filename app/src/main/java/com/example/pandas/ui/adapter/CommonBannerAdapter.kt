@@ -3,9 +3,11 @@ package com.example.pandas.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.databinding.ViewpagerCmBannerBinding
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 
 /**
  * @description: RecoViewPagerAdapter
@@ -40,7 +42,10 @@ public class CommonBannerAdapter(private val list: MutableList<PetVideo>) :
         fun handle(position: Int) {
             val data = list[position]
             data.cover?.let {
-                loadCenterRoundedCornerImage(itemView.context, 20, it, cover)
+                loadCenterImage(itemView.context, it, cover)
+            }
+            itemView.setOnClickListener {
+                startVideoPlayingActivity(itemView.context, data)
             }
         }
     }

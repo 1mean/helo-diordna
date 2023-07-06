@@ -32,4 +32,5 @@ data class UIDataWrapper<T>(
     //山水数据
     val landscapeData: LandscapeData = LandscapeData(),
     val liveVides: LiveVideoData = LiveVideoData(),
+    val bannerList: BannerListBean = BannerListBean()
 )

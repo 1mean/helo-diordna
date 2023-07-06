@@ -270,11 +270,139 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                            android:layout_width="163dp"
+                            android:layout_height="60dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_gravity="center_vertical"
+                            app:cardElevation="5dp"
+                            app:cardCornerRadius="15dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="10dp"
+                                android:src="@mipmap/img_self_down_new" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/str_mine_download"
+                                android:textSize="12sp"
+                                android:textColor="@color/color_txt_download_self"
+                                android:layout_gravity="center_vertical|right"
+                                android:layout_marginEnd="10dp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                            android:layout_width="163dp"
+                            android:layout_height="60dp"
+                            android:layout_marginStart="10dp"
+                            app:cardElevation="5dp"
+                            android:layout_gravity="center_vertical"
+                            app:cardCornerRadius="15dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="10dp"
+                                android:src="@mipmap/img_self_history_new" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/str_mine_history"
+                                android:textSize="12sp"
+                                android:textColor="@color/color_txt_download_self"
+                                android:layout_gravity="center_vertical|right"
+                                android:layout_marginEnd="10dp" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+
+                    <androidx.cardview.widget.CardView
+                            android:layout_width="163dp"
+                            android:layout_height="60dp"
+                            android:layout_marginStart="12dp"
+                            app:cardElevation="5dp"
+                            android:layout_gravity="center_vertical"
+                            app:cardCornerRadius="15dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="10dp"
+                                android:src="@mipmap/img_self_collect_new" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/str_mine_collect"
+                                android:textSize="12sp"
+                                android:textColor="@color/color_txt_download_self"
+                                android:layout_gravity="center_vertical|right"
+                                android:layout_marginEnd="10dp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                            android:layout_width="163dp"
+                            android:layout_height="60dp"
+                            android:layout_marginStart="10dp"
+                            app:cardElevation="5dp"
+                            android:layout_gravity="center_vertical"
+                            app:cardCornerRadius="15dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="10dp"
+                                android:src="@mipmap/img_self_later_new" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/str_mine_later"
+                                android:textSize="12sp"
+                                android:textColor="@color/color_txt_download_self"
+                                android:layout_gravity="center_vertical|right"
+                                android:layout_marginEnd="10dp" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
             <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     app:cardBackgroundColor="@color/color_bg_cardview_self"
                     app:cardElevation="0dp"
+                    android:visibility="gone"
                     app:cardCornerRadius="15dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"

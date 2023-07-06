@@ -1940,7 +1940,7 @@ object PetGroupPandaData {
         panda114.fileName = "panda_group_panda114"
         panda114.code = 589
         panda114.duration = 15
-        panda114.star = true
+        panda114.star = false
         panda114.title = "大熊猫奇一：抱紧我的小来来，福顺：我也要抱抱"
         panda114.releaseTime = 1622345053
         panda114.period = PeriodType.GROUP.ordinal

@@ -9,6 +9,7 @@ import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.databinding.ViewpagerRecommendBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 
 /**
  * @description: LandViewPagerAdapter
@@ -46,6 +47,9 @@ public class LandViewPagerAdapter(private val list: MutableList<PetVideo>) :
                 loadCenterImage(itemView.context, it, cover)
             }
             title.text = data.title
+            itemView.setOnClickListener {
+                startVideoPlayingActivity(itemView.context, data)
+            }
         }
     }
 }

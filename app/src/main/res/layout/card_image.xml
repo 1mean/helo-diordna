@@ -8,7 +8,7 @@
         app:cardElevation="0dp"
         app:cardCornerRadius="15dp">
 
-    <com.example.pandas.ui.view.viewpager.Banner
+    <com.example.pandas.ui.view.viewpager.ConflictBanner
             android:id="@+id/banner_love"
             android:layout_width="240dp"
             android:layout_height="match_parent" />

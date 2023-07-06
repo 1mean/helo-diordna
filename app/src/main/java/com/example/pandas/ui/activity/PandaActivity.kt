@@ -10,6 +10,7 @@ import com.example.pandas.app.appViewModel
 import com.example.pandas.app.getHehuaBanner
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.ext.loadLayoutBackGround
+import com.example.pandas.biz.ext.loadPandaBackGround
 import com.example.pandas.biz.interaction.PagerChangedListener
 import com.example.pandas.biz.viewmodel.PandaViewModel
 import com.example.pandas.databinding.ActivityCmBannerBinding
@@ -104,7 +105,7 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
             .addPageChangeListener(object : PagerChangedListener {
                 override fun onChange(position: Int) {
                     list[position].cover?.let {
-                        loadLayoutBackGround(this@PandaActivity, it, binding.imgBgBanner)
+                        loadPandaBackGround(this@PandaActivity, it, binding.imgBgBanner)
                     }
                 }
             }).setAdapter(adapter)

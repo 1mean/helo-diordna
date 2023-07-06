@@ -9,6 +9,7 @@ import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.databinding.ViewpagerRecommendBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 
 /**
  * @description: RecoViewPagerAdapter
@@ -35,7 +36,8 @@ public class RecoViewPagerAdapter(private val list: MutableList<PetVideo>) :
 
     override fun getItemCount(): Int = list.size
 
-    inner class MyHolder(binding: ViewpagerRecommendBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyHolder(binding: ViewpagerRecommendBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         val cover = binding.imgRecommendBg
         val title = binding.txtRecommendTitle
@@ -46,6 +48,9 @@ public class RecoViewPagerAdapter(private val list: MutableList<PetVideo>) :
                 loadCenterImage(itemView.context, it, cover)
             }
             title.text = data.title
+            itemView.setOnClickListener {
+                startVideoPlayingActivity(itemView.context, data)
+            }
         }
     }
 }
