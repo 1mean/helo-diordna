@@ -1,5 +1,6 @@
 package com.example.pandas.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -63,8 +64,10 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
             )
             if (verticalOffset < 0 && verticalOffset < -157) {
                 binding.tbBannerList.visibility = View.VISIBLE
+                binding.txtBannerListTitle.visibility = View.GONE
             } else {
                 binding.tbBannerList.visibility = View.GONE
+                binding.txtBannerListTitle.visibility = View.VISIBLE
             }
 //            if (verticalOffset == 0) {
 //                binding.txtCmBannerTitle.visibility = View.GONE
@@ -97,6 +100,14 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
                     mViewModel.getBannerList(false)
                 }
             })
+
+        binding.llayoutBannerItemBest.setOnClickListener {
+            val intent = Intent(
+                this@BannerListActivity,
+                BannerChildListActivity::class.java
+            ).putExtra("title", "最优质")
+            startActivity(intent)
+        }
     }
 
     override fun createObserver() {

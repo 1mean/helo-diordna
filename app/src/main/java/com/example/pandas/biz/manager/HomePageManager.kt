@@ -621,7 +621,7 @@ class PetManager {
 
             val bannerListBean = BannerListBean()
             val list = petDao.queryRandomList(startIndex, counts)
-            Log.e("1mean","banner list : ${list.size}")
+            Log.e("1mean", "banner list : ${list.size}")
             if (startIndex == 0 && list.isNotEmpty() && list.size > 5) {
                 list.forEachIndexed { index, videoAndUser ->
                     if (index < 5) {
@@ -691,6 +691,22 @@ class PetManager {
                 }
             }
             historyList
+        }
+    }
+
+    suspend fun getSelectedVideo(selects: MutableList<Int>): MutableList<PetVideo> {
+
+        return withContext(Dispatchers.Default) {
+            val list = mutableListOf<PetVideo>()
+            if (selects.isNotEmpty()) {
+                selects.forEach {
+                    val videoUser = petDao.queryVideoUserByCode(it)
+                    val video = videoUser.video
+                    video.user = videoUser.user
+                    list.add(video)
+                }
+            }
+            list
         }
     }
 

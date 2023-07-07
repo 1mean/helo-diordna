@@ -43,7 +43,7 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSettingBinding>(
 
         binding.imgMineHeader.setOnClickListener { showHeader() }
 
-        binding.clayoutHistory.setOnClickListener {
+        binding.cardMineHistory.setOnClickListener {
             startAnyActivity(mActivity, HistoryActivity::class.java)
         }
         binding.clayoutSetting.setOnClickListener {
@@ -75,11 +75,11 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSettingBinding>(
             startAnyActivity(mActivity, SelfInfoActivity::class.java)
         }
 
-        binding.clayoutLater.setOnClickListener {
+        binding.cardMineLater.setOnClickListener {
             startAnyActivity(mActivity, LaterActivity::class.java)
         }
 
-        binding.clayoutCollect.setOnClickListener {
+        binding.cardMineCollect.setOnClickListener {
             startAnyActivity(mActivity, CollectActivity::class.java)
         }
         binding.clayoutSettingLove.setOnClickListener {
@@ -94,7 +94,7 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSettingBinding>(
             startAnyActivity(mActivity, AboutActivity::class.java)
         }
 
-        binding.clayoutDownload.setOnClickListener {
+        binding.cardMineDownload.setOnClickListener {
             startAnyActivity(mActivity, DownLoadActivity::class.java)
         }
 

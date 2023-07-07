@@ -37,7 +37,7 @@
             <!--  bug:如果用NestedScrollView包裹Recyclerview，在上拉加载更多时，childCount会出现问题，导致无法执行加载更多的回调判断 -->
             <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="210dp"
                     android:background="@drawable/shape_bg_banner_list"
                     android:layout_marginTop="237.66dp"
                     android:orientation="vertical">
@@ -59,19 +59,89 @@
                             android:src="@mipmap/liuyifei"
                             app:civ_border_color="@color/white" />
 
+                    <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/img_banner_list_header"
+                            app:layout_constraintLeft_toLeftOf="@id/img_banner_list_header"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="12dp"
+                            android:background="@null"
+                            android:textSize="12sp"
+                            android:textColor="@color/white"
+                            android:text="退出" />
+
                     <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/txt_banner_list_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toTopOf="@id/img_banner_list_header"
-                            app:layout_constraintLeft_toRightOf="@id/clayout_banner_top"
-                            android:layout_marginTop="18dp"
-                            android:layout_marginStart="4dp"
+                            app:layout_constraintLeft_toRightOf="@id/img_banner_list_header"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="12dp"
                             android:textSize="20dp"
                             android:text="播放榜"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="88dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/shape_banner_list_type"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/llayout_banner_item_best"
+                            style="@style/style_banner_activity_layout">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                                style="@style/style_banner_activity_image"
+                                android:src="@mipmap/liuyifei" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:text="最优质"
+                                style="@style/style_banner_activity_text" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat style="@style/style_banner_activity_layout">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                                style="@style/style_banner_activity_image"
+                                android:src="@mipmap/liuyifei" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:text="最可爱"
+                                style="@style/style_banner_activity_text" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat style="@style/style_banner_activity_layout">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                                style="@style/style_banner_activity_image"
+                                android:src="@mipmap/liuyifei" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:text="最优质"
+                                style="@style/style_banner_activity_text" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat style="@style/style_banner_activity_layout">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                                style="@style/style_banner_activity_image"
+                                android:src="@mipmap/liuyifei" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:text="最优质"
+                                style="@style/style_banner_activity_text" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <!--Toolbar左侧控件一直有空白，无法放置在最左侧，设置四个contentInset值解决-->

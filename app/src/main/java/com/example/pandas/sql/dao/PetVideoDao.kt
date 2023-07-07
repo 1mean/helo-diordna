@@ -567,4 +567,5 @@ interface PetVideoDao {
     @Transaction
     @Query("select * from pet_video order by random() desc limit (:startIndex),(:count)")
     suspend fun queryVideosByReleaseTime(startIndex: Int, count: Int): MutableList<VideoAndUser>
+
 }

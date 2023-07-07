@@ -61,6 +61,7 @@
                 android:name=".ui.activity.MainActivity"
                 android:launchMode="singleTask" />
         <activity android:name=".ui.activity.BehaviorActivity" />
+        <activity android:name=".ui.activity.BannerChildListActivity" />
         <activity android:name=".ui.activity.AboutActivity" />
         <activity android:name=".ui.activity.SettingConfigActivity" />
         <activity android:name=".ui.activity.BannerListActivity" />
