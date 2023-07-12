@@ -6,18 +6,14 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
-import android.graphics.Typeface
-import android.view.Gravity
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.view.animation.OvershootInterpolator
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.pandas.R
 import com.example.pandas.biz.interaction.AnimationListener
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
@@ -115,10 +111,14 @@ fun startMusicActivity(context: Context, fileName: String, position: Int = 0) {
 }
 
 fun startVideoPlayingActivity(context: Context, video: PetVideo) {
-    val intent = Intent(context, VideoPlayingActivity::class.java).apply {
-        putExtra("petVideo", video)
+    if (video.vertical) {
+        startShortVideoActivity(context, video.code)
+    } else {
+        val intent = Intent(context, VideoPlayingActivity::class.java).apply {
+            putExtra("petVideo", video)
+        }
+        context.startActivity(intent)
     }
-    context.startActivity(intent)
 }
 
 fun startShortVideoActivity(context: Context, videoCode: Int) {
@@ -293,4 +293,15 @@ fun shortToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
+var lastClickTime: Long = 0
+fun intervalClick(view: View, listener: View.OnClickListener) {
+    view.setOnClickListener {
+        if (System.currentTimeMillis() - lastClickTime < 1000) {
+            return@setOnClickListener
+        } else {
+            listener.onClick(view)
+            lastClickTime = System.currentTimeMillis()
+        }
+    }
+}
 //-------------------<辅助功能 结束>-----------------------------------------------------------------

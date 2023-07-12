@@ -13,9 +13,11 @@ import com.example.pandas.biz.interaction.ShortCommentListener
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.AdapterShortCommentBinding
 import com.example.pandas.sql.entity.CommentAndUser
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.ext.addScaleAnimation
+import com.example.pandas.ui.ext.startUserInfoActivity
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -73,6 +75,30 @@ public class ShortCommentAdapter1(
         //notifyItemRangeChanged(0, data.size)
     }
 
+    fun addOneMessage(videoComment: CommentAndUser, replyPosition: Int = 0) {
+
+        val commentType = videoComment.comment.type
+        if (commentType == 1) {//一级评论，直接放在第一个位置
+            data.add(0, videoComment)
+            notifyItemInserted(0)
+        } else {//二级弹幕和三级弹幕需要先找准topcomment
+            //1，先找到topComment
+            var currentPos = replyPosition
+            var topCommentUser = data[replyPosition]
+            if (topCommentUser.comment.id != videoComment.comment.topCommentId) {
+                data.forEachIndexed { index, commentAndUser ->
+                    val comment = commentAndUser.comment
+                    if (comment.type == 1 && comment.id == videoComment.comment.topCommentId) {
+                        topCommentUser = commentAndUser
+                        currentPos = index
+                    }
+                }
+            }
+            //2，将新评论添加到topComment中
+
+
+        }
+    }
 
     //RecyclerView的adapter会出现复用的情况，RecyclerView从展开变为收起，RecyclerView对象完全变了，adapter也同样变化
     override fun getItemViewType(position: Int): Int {
@@ -154,7 +180,7 @@ public class ShortCommentAdapter1(
                                     curPos = index
                                 }
                             }
-                            listener.reply(commentUser, curPos)
+                            //listener.reply(commentUser, curPos)
                         }
                     })
                 }
@@ -196,14 +222,9 @@ public class ShortCommentAdapter1(
                     adapter = ShortReplyCommentAdapter(replies, object :
                         ShortReplyCommentAdapter.ReplyItemClickListener {
                         override fun reply(commentUser: CommentAndUser) {
-                            var curPos = 0
-                            data.forEachIndexed { index, commentAndUser ->
-
-                                if (commentAndUser.comment.id == commentUser.comment.topCommentId) {
-                                    curPos = index
-                                }
-                            }
-                            listener.reply(commentUser, curPos)
+                            val curPos = comparePosition(position, commentUser.comment)
+                            Log.e("1mean111", "item click position: $position")
+                            listener.showInputToReply(commentUser, curPos, false)
                         }
                     })
                 }
@@ -226,10 +247,6 @@ public class ShortCommentAdapter1(
 
         fun handle(position: Int) {
 
-            Log.e(
-                "1mean111",
-                "position: $position, replyRecyclerView.adapter=${replyRecyclerView.adapter}"
-            )
             val comment = data[position].comment
             val user = data[position].user
             val replyCounts = comment.replyCounts
@@ -260,11 +277,13 @@ public class ShortCommentAdapter1(
                     comments.text = "收起"
                 }
             }
+            header.setOnClickListener {
+                startUserInfoActivity(mContext, user)
+            }
 
-            Log.e(
-                "lidandan",
-                "position=$position--------recyclerView:$replyRecyclerView, adapter:${replyRecyclerView.adapter}"
-            )
+            name.setOnClickListener {
+                startUserInfoActivity(mContext, user)
+            }
 
             //点开回复 或 加载更多 或 收起
             replyCountsLayout.setOnClickListener {
@@ -313,14 +332,9 @@ public class ShortCommentAdapter1(
                             adapter = ShortReplyCommentAdapter(currentPageList, object :
                                 ShortReplyCommentAdapter.ReplyItemClickListener {
                                 override fun reply(commentUser: CommentAndUser) {
-                                    var curPos = 0
-                                    data.forEachIndexed { index, commentAndUser ->
-
-                                        if (commentAndUser.comment.id == commentUser.comment.topCommentId) {
-                                            curPos = index
-                                        }
-                                    }
-                                    listener.reply(commentUser, curPos)
+                                    val curPos = comparePosition(position, commentUser.comment)
+                                    Log.e("1mean111", "item click position: $position")
+                                    listener.showInputToReply(commentUser, curPos, false)
                                 }
                             })
                         }
@@ -360,14 +374,9 @@ public class ShortCommentAdapter1(
             }
 
             reply.setOnClickListener {
-                var curPos = 0
-                data.forEachIndexed { index, commentAndUser ->
-
-                    if (commentAndUser.comment.id == comment.id) {
-                        curPos = index
-                    }
-                }
-                listener.reply(
+                val curPos = comparePosition(position, comment)
+                Log.e("1mean111", "item click position: $position")
+                listener.showInputToReply(
                     convertCommentAndUser(
                         comment.videoCode,
                         comment.id,
@@ -375,22 +384,15 @@ public class ShortCommentAdapter1(
                         user.userName!!,
                         2,
                         comment.content
-                    ), curPos
+                    ), curPos, false
                 )
             }
 
             //避免使用itemview的点击，导致点击空余地方也会触发item的渐变和点击效果
             itemContentView.setOnClickListener {
-
+                val curPos = comparePosition(position, comment)
                 Log.e("1mean111", "item click position: $position")
-                var curPos = 0
-                data.forEachIndexed { index, commentAndUser ->
-
-                    if (commentAndUser.comment.id == comment.id) {
-                        curPos = index
-                    }
-                }
-                listener.reply(
+                listener.showInputToReply(
                     convertCommentAndUser(
                         comment.videoCode,
                         comment.id,
@@ -398,7 +400,7 @@ public class ShortCommentAdapter1(
                         user.userName!!,
                         2,
                         comment.content
-                    ), curPos
+                    ), curPos, false
                 )
             }
         }
@@ -504,5 +506,23 @@ public class ShortCommentAdapter1(
             ipAddress = "湖北"
         )
         return CommentAndUser(comment, user)
+    }
+
+    /**
+     * 添加了一个新消息后，当面界面位置会发生改变，刷新几次后就会好
+     */
+    private fun comparePosition(position: Int, currentComment: VideoComment): Int {
+
+        val commentInList = data[position].comment
+        if (commentInList.id == currentComment.topCommentId) {
+            return position
+        } else {
+            data.forEachIndexed { index, commentAndUser ->
+                if (commentAndUser.comment.id == currentComment.topCommentId) {
+                    return index
+                }
+            }
+        }
+        return -1
     }
 }

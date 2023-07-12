@@ -199,4 +199,7 @@ dependencies {
 
     //web
     implementation 'com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx'
+
+    /*utils*/
+    implementation 'com.blankj:utilcodex:1.30.1'
 }

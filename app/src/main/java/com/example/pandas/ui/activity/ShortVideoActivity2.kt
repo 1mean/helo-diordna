@@ -25,6 +25,7 @@ import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoPagerAdapter
 import com.example.pandas.ui.dialog.ShortBottomDialog
 import com.example.pandas.ui.ext.addRefreshAnimation
+import com.example.pandas.ui.ext.intervalClick
 import com.example.pandas.ui.ext.startUserInfoActivity
 import com.example.pandas.ui.view.dialog.ShortRightPopuWindow
 import com.example.pandas.utils.StatusBarUtils
@@ -66,6 +67,7 @@ public class ShortVideoActivity2 :
     private var keyBoardManager: SoftInputManager? = null
 
     var popupView: ShortRightPopuWindow? = null
+    var lastClickTime: Long = 0
 
     private val mHandler: Handler = Handler(Looper.getMainLooper())
 
@@ -109,8 +111,17 @@ public class ShortVideoActivity2 :
 //            val y = location[1]
         }
 
+        //intervalClick(binding.editVertical) { showBottomCommentWindow(false, false) }
+
         binding.editVertical.setOnClickListener {
-            showBottomCommentWindow(false, false)
+            if (System.currentTimeMillis() - lastClickTime < 1000) {
+                Log.e("4mean", "111")
+                return@setOnClickListener
+            } else {
+                Log.e("4mean", "222")
+                showBottomCommentWindow(false, false)
+                lastClickTime = System.currentTimeMillis()
+            }
         }
 
         binding.btnVerticalInputSend.setOnClickListener {
@@ -331,7 +342,7 @@ public class ShortVideoActivity2 :
                         sendVideoComment(comment)
                     }
 
-                    override fun dissmiss(comment: String) {
+                    override fun dissmiss(comment: String, isSending: Boolean) {
                         if (comment.isNotEmpty()) {
                             mHandler.post {
                                 val message =

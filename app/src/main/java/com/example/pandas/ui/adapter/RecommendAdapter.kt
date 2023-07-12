@@ -190,25 +190,10 @@ public class RecommendAdapter(
             //把http图片换成https就能加载出来
             //val url = petVideo.cover.replace("http", "https")
             //Glide.with(context).load(petVideo.cover).into(cover)
-            loadCenterImage(context,petVideo.cover,cover)
+            loadCenterImage(context, petVideo.cover, cover)
             this.duration.text = duration
             petVideo.user?.let {
                 name.text = it.userName
-                if (it.attention) {
-                    follow.visibility = View.VISIBLE
-                    up.visibility = View.GONE
-                    follow.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            R.color.color_txt_reco_followed
-                        )
-                    )
-                    follow.setBackgroundResource(R.drawable.shape_bg_reco_followed)
-                    follow.text = context.resources.getString(R.string.str_followed)
-                } else {
-                    follow.visibility = View.GONE
-                    up.visibility = View.VISIBLE
-                }
             }
 
             val counts = (1..num).random()
@@ -223,7 +208,39 @@ public class RecommendAdapter(
                 follow.setTextColor(ContextCompat.getColor(context, R.color.color_bg_reco_type))
                 follow.setBackgroundResource(R.drawable.shape_bg_reco_type)
                 follow.text = context.resources.getString(R.string.str_hl)
+            } else {
+                if (petVideo.vertical) {//是竖屏
+                    follow.visibility = View.VISIBLE
+                    up.visibility = View.GONE
+                    follow.setTextColor(
+                        ContextCompat.getColor(
+                            context,
+                            R.color.color_txt_reco_followed
+                        )
+                    )
+                    follow.setBackgroundResource(R.drawable.shape_bg_reco_followed)
+                    follow.text = context.resources.getString(R.string.str_vertical)
+                } else {
+                    petVideo.user?.let {
+                        if (it.attention) {
+                            follow.visibility = View.VISIBLE
+                            up.visibility = View.GONE
+                            follow.setTextColor(
+                                ContextCompat.getColor(
+                                    context,
+                                    R.color.color_txt_reco_followed
+                                )
+                            )
+                            follow.setBackgroundResource(R.drawable.shape_bg_reco_followed)
+                            follow.text = context.resources.getString(R.string.str_followed)
+                        } else {
+                            follow.visibility = View.GONE
+                            up.visibility = View.VISIBLE
+                        }
+                    }
+                }
             }
+
             itemView.setOnLongClickListener {
                 showDialog(petVideo.code)
                 VibrateUtils.vibrate(context, 2000)
@@ -368,7 +385,7 @@ public class RecommendAdapter(
 
     public interface RecoViewListener {
 
-        fun onClick(video:PetVideo)
+        fun onClick(video: PetVideo)
 
         fun updatePlayerVoice(isOpen: Boolean)
 

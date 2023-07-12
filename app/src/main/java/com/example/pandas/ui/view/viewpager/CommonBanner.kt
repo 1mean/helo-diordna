@@ -212,7 +212,6 @@ class CommonBanner : RelativeLayout, LifecycleObserver {
         }
 
         override fun getItemCount(): Int {
-
             return if (mAdapter.itemCount > 1) getRealCount() + addPage else getRealCount()
         }
 

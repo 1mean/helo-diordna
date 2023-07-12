@@ -19,7 +19,10 @@ interface ShortCommentListener {
         commentId: Int
     )
 
-    fun reply(commentUser: CommentAndUser, position: Int)
+    /**
+     * 点击评论后，弹出软键盘输入框，开始进行输入和回复
+     */
+    fun showInputToReply(commentUser: CommentAndUser?, position: Int, showEmotion: Boolean)
 
     fun updateComment(comment: VideoComment)
 }

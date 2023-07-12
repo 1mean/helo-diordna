@@ -7,6 +7,7 @@ import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.databinding.ViewpagerCmBannerBinding
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.ui.ext.startShortVideoActivity
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 
 /**
@@ -44,6 +45,7 @@ public class CommonBannerAdapter(private val list: MutableList<PetVideo>) :
             data.cover?.let {
                 loadCenterImage(itemView.context, it, cover)
             }
+
             itemView.setOnClickListener {
                 startVideoPlayingActivity(itemView.context, data)
             }

@@ -1,6 +1,7 @@
 package com.lxj.xpopup.core;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,7 @@ public class PositionPopupView extends BasePopupView {
 
     @Override
     protected void doMeasure() {
+        Log.e("4mean","positionview doMeasure");
         super.doMeasure();
         XPopupUtils.applyPopupSize((ViewGroup) getPopupContentView(), getMaxWidth(), getMaxHeight(),
                 getPopupWidth(), getPopupHeight(),new Runnable() {

@@ -1095,6 +1095,28 @@ class PetManager {
         }
     }
 
+    /**
+     * 发送一条弹幕，同时videodata列表应该+1
+     */
+    suspend fun sendComment(comment: VideoComment): VideoComment {
+        return withContext(Dispatchers.Default) {
+            val commentId = petDao.insertComment(comment)
+            val videoComment = petDao.queryCommentById(commentId.toInt())
+            if (videoComment != null) {//消息个数+1
+                val videoData = petDao.queryVideoDataByCode(comment.videoCode)
+                if (videoData == null) {
+                    val vd = VideoData(videoCode = comment.videoCode, comments = 1)
+                    petDao.insertVideoData(vd)
+                } else {
+                    videoData.comments += 1
+                    petDao.updateVideoData(videoData)
+                }
+            }
+            videoComment
+        }
+    }
+
+
     suspend fun saveComment(
         replyInfo: ReplyInfo?,
         content: String,

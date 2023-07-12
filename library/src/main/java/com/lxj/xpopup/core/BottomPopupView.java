@@ -94,6 +94,7 @@ public class BottomPopupView extends BasePopupView {
 
     @Override
     protected void doMeasure() {
+        Log.e("4mean","bottomview doMeasure");
         super.doMeasure();
         XPopupUtils.applyPopupSize((ViewGroup) getPopupContentView(), getMaxWidth(), getMaxHeight()
                 , getPopupWidth(), getPopupHeight(), null);
@@ -149,6 +150,7 @@ public class BottomPopupView extends BasePopupView {
 
     @Override
     public void dismiss() {
+        Log.e("1mean","bottom dismiss");
         if(popupInfo==null) return;
         if(popupInfo.enableDrag){
             if (popupStatus == PopupStatus.Dismissing) return;

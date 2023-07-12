@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +71,7 @@ public abstract class AttachPopupView extends BasePopupView {
 
     @Override
     protected void doMeasure() {
+        Log.e("4mean","attachview doMeasure");
         super.doMeasure();
         XPopupUtils.applyPopupSize((ViewGroup) getPopupContentView(), getMaxWidth(), getMaxHeight(),
                 getPopupWidth(),getPopupHeight(), new Runnable() {

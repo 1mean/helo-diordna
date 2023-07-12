@@ -6,6 +6,7 @@ import com.example.pandas.bean.HeaderDownLoad
 import com.example.pandas.bean.SearchInfo
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.sql.entity.*
+import com.google.common.graph.MutableNetwork
 
 /**
  * @description:
@@ -49,7 +50,7 @@ interface PetVideoDao {
     fun insertGroupInfo(groupInfo: Group)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertComment(comment: VideoComment)
+    suspend fun insertComment(comment: VideoComment): Long
 
     /* -----------删------------------------------------- */
 
@@ -152,6 +153,12 @@ interface PetVideoDao {
     @Query("select * from comment where commentId=(:commentId) and videoCode=(:videoCode)")
     fun queryCommentById(videoCode: Int, commentId: Int): VideoComment
 
+    @Query("select * from comment where id=(:commentId)")
+    suspend fun queryCommentById(commentId: Int): VideoComment
+
+    @Query("select * from comment where videoCode=(:videoCode)")
+    fun queryCommentByVideoCode(videoCode: Int): MutableList<VideoComment>
+
     /**
      *  这里编译一直失败，记录一下，下面四条为stack overflow上的普遍解决办法
      *    - 报错 Room "Not sure how to convert a Cursor to this method's return type"
@@ -188,6 +195,9 @@ interface PetVideoDao {
 
     @Query("select * from pet_video where type=(:type) and videoType=0 order by releaseTime desc limit (:startIndex),(:count)")
     suspend fun queryPageType(type: Int, startIndex: Int, count: Int): MutableList<PetVideo>
+
+    @Query("select * from pet_video where type=(:type) order by releaseTime desc")
+    fun queryAllTypeVideos(type: Int): MutableList<PetVideo>
 
     @Query("select * from pet_video where videoType = (:type)")
     suspend fun queryByVideoType(type: Int): MutableList<PetVideo>
@@ -303,7 +313,7 @@ interface PetVideoDao {
     @Query("select count(*) from music")
     suspend fun queryMusicCounts(): Int
 
-    @Query("select count(*) from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode)")
+    @Query("select count(*) from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode) and type != 1")
     suspend fun queryCommentReplyCounts(videoCode: Int, topCommentCode: Int): Int
 
     @Query("select * from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode)")
@@ -427,7 +437,7 @@ interface PetVideoDao {
     ): MutableList<PetVideo>
 
     @Transaction
-    @Query("select * from comment where videoCode=(:videoCode) and type=(:type) order by commitTime asc limit (:startIndex),(:page)")
+    @Query("select * from comment where videoCode=(:videoCode) and type=(:type) order by commitTime desc limit (:startIndex),(:page)")
     suspend fun queryPageCommentsByType(
         videoCode: Int,
         startIndex: Int,
@@ -436,7 +446,7 @@ interface PetVideoDao {
     ): MutableList<CommentAndUser>
 
     @Transaction
-    @Query("select * from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode) order by commitTime asc limit (:startIndex),(:page)")
+    @Query("select * from comment where videoCode=(:videoCode) and topCommentId=(:topCommentCode) and type != 1 order by commitTime asc limit (:startIndex),(:page)")
     suspend fun queryReplyComments(
         videoCode: Int,
         topCommentCode: Int,

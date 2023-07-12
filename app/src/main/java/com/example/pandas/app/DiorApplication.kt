@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.viewmodel.EventViewModel
 import com.example.pandas.data.simulate.ShortCommentData
 import com.example.pandas.data.sql.AppData
@@ -83,6 +84,15 @@ class DiorApplication : Application(), ViewModelStoreOwner {
 
         Thread {
             val petDao = AppDataBase.getInstance().petVideoDao()
+
+//            val musicArray = mutableListOf<Int>()
+//            val musics = petDao.queryAllTypeVideos(VideoType.ART.ordinal)
+//            musics.forEachIndexed { index, petVideo ->
+//                musicArray.add(petVideo.code)
+//            }
+//
+//            Log.e("1mean","musicArray:$musicArray")
+
 
 //            val videos = petDao.queryVerticalVideos()
 //            videos.forEach {

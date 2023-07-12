@@ -32,7 +32,6 @@ data class VideoComment(
     var toUserCode: Int = 0,
     @ColumnInfo
     var toUserName: String = "",
-
     @ColumnInfo
     var type: Int = 0,//弹幕类型，1是一级弹幕，2是二级弹幕，3是三级弹幕
     @ColumnInfo

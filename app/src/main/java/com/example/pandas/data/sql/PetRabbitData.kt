@@ -22,7 +22,7 @@ object PetRabbitData {
         rabbit1.title = "放我下来，我要生气了"
         rabbit1.releaseTime = 1624951194
         rabbit1.originalUrl = "https://www.bilibili.com/video/BV1E64y1Q7vK"
-        rabbit1.tags = "兔兔"
+        rabbit1.tags = "猫咪"
         rabbit1.authorId = 404598860
         rabbit1.cover =
             "https://i2.hdslb.com/bfs/archive/2ac141479631186ba89a4cc27221b2f63c5f6ef9.jpg"

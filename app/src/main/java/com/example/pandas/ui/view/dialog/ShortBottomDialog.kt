@@ -41,6 +41,7 @@ public class ShortBottomDialog(
 ) : BottomPopupView(context) {
 
     private var input_flag = false
+    private var isSending = false
     private var emojiView: MyVerticalRecyclerView? = null
     private var _editText: AppCompatEditText? = null
     private val editText get() = _editText!!
@@ -72,7 +73,12 @@ public class ShortBottomDialog(
         }
 
         btnSend.setOnClickListener {
+            isSending = true
+            Log.e("1mean", "isSending1: $isSending")
             listener.sendComment(editText.text.toString())
+            btnSend.post {
+
+            }
             dismiss()
         }
 
@@ -189,15 +195,14 @@ public class ShortBottomDialog(
                 }, 300)
             }
         }
-
-
     }
 
     override fun onKeyboardHeightChange(height: Int) {
         super.onKeyboardHeightChange(height)
         if (height == 0) {
             if (isOpen && !isFaceOpen) {
-                dismiss()
+                Log.e("1mean", "onKeyboardHeightChange dismiss")
+                //dismiss()
                 isOpen = false
             }
         } else {
@@ -207,6 +212,7 @@ public class ShortBottomDialog(
 
     fun clear() {
         editText.text = null
+        editText.hint = resources.getString(R.string.str_hint_edit_short)
     }
 
     fun showEmotion() {
@@ -237,7 +243,13 @@ public class ShortBottomDialog(
         super.dismiss()
         isFaceOpen = false
         emojiView?.visibility = View.GONE
-        listener.dissmiss(editText.text.toString())
+        if (isSending) {
+            editText.text = null
+            editText.hint = resources.getString(R.string.str_hint_edit_short)
+        }
+        listener.dissmiss(editText.text.toString(), isSending)
+
+        isSending = false
     }
 
     interface ShortPopuListener {
@@ -246,6 +258,6 @@ public class ShortBottomDialog(
 
         fun sendComment(comment: String)
 
-        fun dissmiss(comment: String)
+        fun dissmiss(comment: String, isSending: Boolean)
     }
 }

@@ -131,7 +131,6 @@ object ShortCommentData {
         comment1.type = 1
         comment1.fromUserCode = 348483302
         comment1.commitTime = 1671622520
-        comment1.topCommentId = 33
         comment1.likeNum = (0..100).random()
         comment1.upLike = true
         comment1.commentId = 34

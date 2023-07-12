@@ -7,7 +7,7 @@
         app:cardElevation="0dp"
         android:background="@color/white">
 
-    <com.example.pandas.ui.view.viewpager.CommonBanner
+    <com.example.pandas.ui.view.viewpager.ConflictBanner
             android:id="@+id/banner"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

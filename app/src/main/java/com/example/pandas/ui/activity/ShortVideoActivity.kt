@@ -13,6 +13,7 @@ import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.manager.SoftInputManager
@@ -21,11 +22,13 @@ import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.ActivityVerticalVideoplayBinding
 import com.example.pandas.sql.entity.User
+import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoPagerAdapter
 import com.example.pandas.ui.dialog.ShortBottomDialog
 import com.example.pandas.ui.ext.addRefreshAnimation
 import com.example.pandas.ui.ext.startUserInfoActivity
+import com.example.pandas.ui.ext.toastTopShow
 import com.example.pandas.ui.view.dialog.ShortRightPopuWindow
 import com.example.pandas.utils.StatusBarUtils
 import com.example.pandas.utils.VibrateUtils
@@ -65,9 +68,11 @@ public class ShortVideoActivity :
     private var manager: VerticalPlayManager? = null
     private var keyBoardManager: SoftInputManager? = null
 
-    var popupView: ShortRightPopuWindow? = null
+    var rightPopupView: ShortRightPopuWindow? = null
 
     var videoCode: Int = -1
+
+    var lastClickTime: Long = 0
 
     private val mHandler: Handler = Handler(Looper.getMainLooper())
 
@@ -118,6 +123,13 @@ public class ShortVideoActivity :
 
         binding.btnVerticalInputSend.setOnClickListener {
             sendVideoComment(binding.editVertical.text.toString())
+            binding.btnVerticalInputSend.post {
+                binding.editVertical.text = null
+                binding.editVertical.hint =
+                    resources.getString(R.string.str_hint_edit_short)
+                binding.btnVerticalInputSend.visibility = View.GONE
+                shortBottomDialog?.clear()
+            }
         }
 
         binding.btnShortEmotion.setOnClickListener {
@@ -150,6 +162,19 @@ public class ShortVideoActivity :
                     }
                 }
                 hasMore = it.hasMore
+            }
+        }
+
+        mViewModel.commentResult.observe(this) {
+
+            if (it != null) {
+                toastTopShow(this, "评论成功")
+                mAdapter.recyclerView?.let { rv ->
+                    val viewHolder =
+                        rv.findViewHolderForAdapterPosition(currentPosition) as? VideoPagerAdapter.MyViewHolder
+                    viewHolder?.updateComments(currentPosition, it)
+                }
+                rightPopupView?.addComment(it)
             }
         }
     }
@@ -334,23 +359,33 @@ public class ShortVideoActivity :
                         sendVideoComment(comment)
                     }
 
-                    override fun dissmiss(comment: String) {
-                        if (comment.isNotEmpty()) {
-                            mHandler.post {
-                                val message =
-                                    QqEmoticons.parseAndShowEmotion(
-                                        this@ShortVideoActivity,
-                                        comment
-                                    )
-                                binding.editVertical.text =
-                                    Editable.Factory.getInstance().newEditable(message)
-                                binding.btnVerticalInputSend.visibility = View.VISIBLE
+                    override fun dissmiss(comment: String, isSending: Boolean) {
+                        Log.e("1mean", "isSending:$isSending")
+                        if (isSending) {
+                            binding.btnVerticalInputSend.post {
+                                binding.editVertical.text = null
+                                binding.editVertical.hint =
+                                    resources.getString(R.string.str_hint_edit_short)
+                                binding.btnVerticalInputSend.visibility = View.GONE
                             }
                         } else {
-                            binding.editVertical.text = null
-                            binding.editVertical.hint =
-                                resources.getString(R.string.str_hint_edit_short)
-                            binding.btnVerticalInputSend.visibility = View.GONE
+                            if (comment.isNotEmpty()) {
+                                mHandler.post {
+                                    val message =
+                                        QqEmoticons.parseAndShowEmotion(
+                                            this@ShortVideoActivity,
+                                            comment
+                                        )
+                                    binding.editVertical.text =
+                                        Editable.Factory.getInstance().newEditable(message)
+                                    binding.btnVerticalInputSend.visibility = View.VISIBLE
+                                }
+                            } else {
+                                binding.editVertical.text = null
+                                binding.editVertical.hint =
+                                    resources.getString(R.string.str_hint_edit_short)
+                                binding.btnVerticalInputSend.visibility = View.GONE
+                            }
                         }
                     }
 
@@ -428,7 +463,7 @@ public class ShortVideoActivity :
             currentPosition = position
             //开启右下角的旋转动画
 
-            popupView = null //切换到新页面时，不保存右侧评论弹出窗
+            rightPopupView = null //切换到新页面时，不保存右侧评论弹出窗
             vh = null
             val hasEdit = binding.editVertical.text?.isNotEmpty()
             if (hasEdit == true) {
@@ -492,25 +527,31 @@ public class ShortVideoActivity :
         mViewModel.updateAttention(userCode)
     }
 
-    override fun startUserActivity(user: User) {
-
-        if (manager!!.isPlaying()) {
-            manager?.pause()
-        } else {
-            mAdapter.recyclerView?.let {
-                val viewHolder =
-                    it.findViewHolderForAdapterPosition(binding.vp2VideoVertical.currentItem) as? VideoPagerAdapter.MyViewHolder
-                viewHolder?.init()
+    override fun onPause() {
+        super.onPause()
+        Log.e("1mean", "shortVideoActivity onPause")
+        if (manager != null) {
+            if (manager!!.isPlaying()) {
+                manager?.pause()
+            } else {
+                mAdapter.recyclerView?.let {
+                    val viewHolder =
+                        it.findViewHolderForAdapterPosition(binding.vp2VideoVertical.currentItem) as? VideoPagerAdapter.MyViewHolder
+                    viewHolder?.init()
+                }
             }
         }
+    }
+
+    override fun startUserActivity(user: User) {
         startUserInfoActivity(this, user)
     }
 
     private var vh: VideoPagerAdapter.MyViewHolder? = null
     override fun showComments(videoCode: Int, commentCounts: Int) {
 
-        if (popupView == null) {
-            popupView = ShortRightPopuWindow(this, videoCode, commentCounts)
+        if (rightPopupView == null) {
+            rightPopupView = ShortRightPopuWindow(this, videoCode, commentCounts)
         }
         XPopup.setShadowBgColor(ContextCompat.getColor(this, R.color.color_white_lucency))
         XPopup.Builder(this).setPopupCallback(object : XPopupCallback {
@@ -533,6 +574,7 @@ public class ShortVideoActivity :
 
             override fun onDismiss(popupView: BasePopupView?) {
                 binding.clayoutVerticalTop.visibility = View.VISIBLE
+
             }
 
             override fun beforeDismiss(popupView: BasePopupView?) {
@@ -567,18 +609,8 @@ public class ShortVideoActivity :
         })
             .moveUpToKeyboard(false) //如果不加这个，评论弹窗会移动到软键盘上面
             .animationDuration(600)
-            .asCustom(popupView)
+            .asCustom(rightPopupView)
             .show()
-
-
-
-        popupView!!.setOnDragListener { v, event ->
-
-            val dialogHeight = popupView!!.height
-            Log.e("1mean", "start drah: $dialogHeight")
-
-            true
-        }
     }
 
     override fun addAttention(userCode: Int) {
@@ -592,8 +624,22 @@ public class ShortVideoActivity :
         super.onkeyBack()
     }
 
-    private fun sendVideoComment(comment: String) {
-
+    private fun sendVideoComment(content: String) {
+        Log.e("1mean", "editStr: $content")
+        val code = manager?.getCurrentVideoCode()
+        if (code == null || code == -1) {
+            throw RuntimeException("videoCode = -1 is wrong")
+        }
+        val comment = VideoComment(
+            fromUserName = AppInfos.AUTHOR_NAME,
+            fromUserCode = AppInfos.AUTHOR_ID,
+            type = 1,
+            commitTime = System.currentTimeMillis(),
+            content = content,
+            commentType = 0,
+            videoCode = code
+        )
+        mViewModel.sendComment(comment)
     }
 
     override fun onDestroy() {

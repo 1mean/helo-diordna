@@ -344,7 +344,7 @@ public class XPopupUtils {
 //        animationSet.play(transY).with(transAlpha);
 //        animationSet.start();
 
-        Log.e("xpopu", "translationY1111");
+        Log.e("4mean", "dy=" + dy);
         pv.getPopupContentView().animate().translationY(-dy)
                 .setDuration(350)
                 .setInterpolator(new LinearOutSlowInInterpolator())

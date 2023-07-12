@@ -32,7 +32,6 @@ public class ShortCommentManage(val context: Context, val commentScope: Coroutin
         pageCount: Int,
         listener: ICommentCallback
     ) {
-
         commentScope.launch {
             val list = PetManagerCoroutine.getPageComments(
                 true,
@@ -99,6 +98,13 @@ public class ShortCommentManage(val context: Context, val commentScope: Coroutin
                 commentId,
             )
             listener.getPageReply(topCommentPosition, list)
+        }
+    }
+
+    fun sendComment(comment: VideoComment, listener: ICommentCallback) {
+        commentScope.launch {
+            val videoComment = PetManagerCoroutine.sendComment(comment)
+            listener.sendCommentResult(videoComment)
         }
     }
 }

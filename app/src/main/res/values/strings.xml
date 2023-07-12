@@ -118,6 +118,7 @@
     <string name="str_group_divide">设置分组</string>
     <string name="str_attention_cancel">取消关注</string>
     <string name="str_followed">已关注</string>
+    <string name="str_vertical">竖屏</string>
     <string name="str_coin">积分</string>
     <string name="str_mine_zone">个人中心</string>
     <string name="str_hot_comments">热门评论</string>

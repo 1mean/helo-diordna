@@ -52,10 +52,9 @@ import com.lxj.xpopup.core.BottomPopupView
 @SuppressLint("ViewConstructor")
 public class ShortReplyPopuWindow(
     context: Context,
-    private val fromName: String,
+    private val toUserName: String,
     private val listener: CommentInputListener
 ) : BottomPopupView(context) {
-
 
     private var _binding: DialogBottomCommentBinding? = null
     val binding: DialogBottomCommentBinding get() = _binding!!
@@ -84,6 +83,13 @@ public class ShortReplyPopuWindow(
         btnSend = findViewById(R.id.btn_short_send)
 
         initEmoji()
+
+        if (toUserName.isNotEmpty()) {
+            editInput.post {
+                editInput.text = null
+                editInput.hint = "回复 @$toUserName :"
+            }
+        }
 
         btnFace.setOnClickListener {
             if (emojiView != null && emojiView.isVisible) {
@@ -116,12 +122,6 @@ public class ShortReplyPopuWindow(
             if (emojiView.isVisible) {
                 emojiView.visibility = View.GONE
             }
-        }
-
-        if (fromName.isEmpty()) {
-            editInput.hint = resources.getString(R.string.str_hint_edit_short)
-        } else {
-            editInput.hint = "回复 @$fromName :"
         }
 
         editInput.addTextChangedListener { input ->
@@ -174,9 +174,12 @@ public class ShortReplyPopuWindow(
     }
 
     fun updateHint(toUserName: String) {
+
         if (toUserName.isNotEmpty()) {
-            editInput.text = null
-            editInput.hint = "回复 @$toUserName :"
+            editInput.post {
+                editInput.text = null
+                editInput.hint = "回复 @$toUserName :"
+            }
         }
     }
 
@@ -236,9 +239,11 @@ public class ShortReplyPopuWindow(
     }
 
     fun clearInput() {
-        editInput.text = null
-        editInput.hint = resources.getString(R.string.str_hint_edit_short)
-        btnSend.visibility = View.GONE
+        editInput.post {
+            editInput.text = null
+            editInput.hint = resources.getString(R.string.str_hint_edit_short)
+            btnSend.visibility = View.GONE
+        }
     }
 
     override fun dismiss() {

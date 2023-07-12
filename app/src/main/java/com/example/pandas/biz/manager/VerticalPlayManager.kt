@@ -247,6 +247,16 @@ public class VerticalPlayManager(
 
     fun isPlaying(): Boolean = mPlayer.isPlaying
 
+    fun getCurrentVideoCode(): Int {
+        val mediaItem = mPlayer.currentMediaItem
+        mediaItem?.let {
+            if (it.mediaId.isNotEmpty()) {
+                return it.mediaId.toInt()
+            }
+        }
+        return -1
+    }
+
     fun pause() {
         mPlayer.pause()
     }

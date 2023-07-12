@@ -2,6 +2,8 @@ package com.lxj.xpopup.core;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
+
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +54,7 @@ public class CenterPopupView extends BasePopupView {
 
     @Override
     protected void doMeasure() {
+        Log.e("4mean","centerview doMeasure");
         super.doMeasure();
         XPopupUtils.applyPopupSize((ViewGroup) getPopupContentView(), getMaxWidth(), getMaxHeight(),
                 getPopupWidth(), getPopupHeight(),null);

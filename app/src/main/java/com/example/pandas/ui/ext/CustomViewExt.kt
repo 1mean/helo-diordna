@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
-import android.os.Build
 import android.view.Gravity
 import android.view.View
 import android.view.animation.LinearInterpolator
@@ -13,10 +12,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.blankj.utilcode.util.ToastUtils
 import com.example.pandas.R
 import com.example.pandas.ui.adapter.SleepVideoItemAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
@@ -148,18 +149,9 @@ fun setTextType(isBold: Boolean, value: TextView) {
 }
 
 fun toastTopShow(activity: Activity, content: String) {
-
-    val height: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        val metrics = activity.windowManager.currentWindowMetrics
-        metrics.bounds.height()
-    } else {
-        @Suppress("DEPRECATION")
-        activity.windowManager.defaultDisplay.height
-    }
-    val toast = Toast.makeText(activity, content, Toast.LENGTH_SHORT)
-    //setGravity已经在30以后的版本不生效了，setview的方式官方也不推荐了，使用常规toast或SnakeBar吧
-    toast.setGravity(Gravity.CENTER, 0, height / 3)
-    toast.show()
+    ToastUtils.make().setGravity(Gravity.CENTER, 0, 100)
+        .setBgResource(R.drawable.shape_bg_toast)
+        .setTextColor(ContextCompat.getColor(activity, R.color.white)).show(content)
 }
 
 fun toast(context: Context, value: String) {

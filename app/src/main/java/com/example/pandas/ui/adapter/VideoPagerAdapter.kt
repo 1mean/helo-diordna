@@ -18,6 +18,7 @@ import com.example.pandas.biz.interaction.PlayerDoubleTapListener
 import com.example.pandas.databinding.AdapterVideoVerticalBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.User
+import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.ext.addShortEndAnimation
 import com.example.pandas.ui.ext.addShortStartAnimation
@@ -204,9 +205,23 @@ public class VideoPagerAdapter(
             playerView.layoutParams = params
         }
 
-        fun hidePlerView(){
+        fun hidePlerView() {
             if (play.isVisible) {
                 play.visibility = View.GONE
+            }
+        }
+
+        fun updateComments(currentPosition: Int, videoComment: VideoComment) {
+            val petVideo = list[currentPosition]
+            if (petVideo.code == videoComment.videoCode) {
+                val videoData = list[currentPosition].videoData
+                if (videoData == null) {
+                    petVideo.videoData = VideoData(videoCode = petVideo.code, comments = 1)
+                    comments.text = "1"
+                } else {
+                    videoData.comments += 1
+                    comments.text = videoData.comments.toString()
+                }
             }
         }
 

@@ -1,20 +1,20 @@
 package com.example.pandas.ui.activity
 
+import BestFragment
 import android.os.Bundle
-import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.BannerViewModel
 import com.example.pandas.databinding.ActivityBannerChildBinding
-import com.example.pandas.ui.adapter.BannerChildAdapter
-import com.example.pandas.ui.adapter.decoration.RecommendDecoration2
-import com.example.pandas.ui.ext.init
-import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 /**
@@ -25,25 +25,28 @@ import com.example.pandas.utils.StatusBarUtils
  */
 public class BannerChildListActivity : BaseActivity<BannerViewModel, ActivityBannerChildBinding>() {
 
-
-    private val mAdapter: BannerChildAdapter by lazy { BannerChildAdapter(lifecycle) }
+    private val tabTitles = arrayListOf("大熊猫", "萌宠", "影视剧", "小鸟")
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        binding.vp2BannerList.apply {
+            adapter = BannerPagerAdapter(this@BannerChildListActivity)
+            offscreenPageLimit = tabTitles.size
+            currentItem = 0
+            isSaveEnabled = false
+        }
+
+        binding.tabBannerList.addOnTabSelectedListener(listener)
+
+        //tabLayout和androidx的联动工具类,绑定前viewpager2必须先设定adapter
+        TabLayoutMediator(
+            binding.tabBannerList, binding.vp2BannerList, true
+        ) { tab, position ->
+            tab.text = tabTitles[position]
+        }.attach()
+
         val title = intent.getStringExtra("title")
         binding.txtHistoryTitle.text = title
-
-        val padding: Int = resources.getDimension(R.dimen.common_lh_5_dimens).toInt()
-        binding.recyclerLayout.init(
-            RecommendDecoration2(padding, padding, padding, padding, padding),
-            mAdapter,
-            GridLayoutManager(this, 2),
-            listener = object : SwipRecyclerView.ILoadMoreListener {
-                override fun onLoadMore() {
-                    mViewModel.getBest(false)
-                }
-            })
-
 
         binding.ibnHistoryBack.setOnClickListener {
             finish()
@@ -74,28 +77,37 @@ public class BannerChildListActivity : BaseActivity<BannerViewModel, ActivityBan
 
     override fun firstOnResume() {
         super.firstOnResume()
-        mViewModel.getBest(true)
     }
 
     override fun createObserver() {
 
-        mViewModel.bestList.observe(this) {
+    }
 
-            if (it.isSuccess) {
-                binding.recyclerLayout.visibility = View.VISIBLE
-                when {
-                    it.isRefresh -> {
-                        mAdapter.refreshData(it.listData)
-                        binding.recyclerLayout.isRefreshing(false)
-                    }
-                    else -> {
-                        mAdapter.loadMore(it.listData)
-                    }
-                }
-                binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
-            }
-            binding.swipLayout.visibility = View.VISIBLE
-            binding.swipLayout.isRefreshing = false
+    private val listener = object : TabLayout.OnTabSelectedListener {
+        override fun onTabSelected(tab: TabLayout.Tab) {
+            //使用setCurrentItem(tab.position, false)会出现滑动tab错乱
+            binding.vp2BannerList.currentItem = tab.position
         }
+
+        override fun onTabUnselected(tab: TabLayout.Tab) {
+        }
+
+        override fun onTabReselected(tab: TabLayout.Tab) {
+        }
+    }
+
+    private inner class BannerPagerAdapter(activity: FragmentActivity) :
+        FragmentStateAdapter(activity) {
+
+        override fun getItemCount(): Int = tabTitles.size
+
+        private val pageIds = tabTitles.map { it.hashCode().toLong() }
+
+        override fun createFragment(position: Int): Fragment =
+            BestFragment.newInstance(position)
+
+        override fun getItemId(position: Int): Long = pageIds[position]
+
+        override fun containsItem(itemId: Long): Boolean = pageIds.contains(itemId)
     }
 }

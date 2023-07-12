@@ -170,6 +170,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
 
     override fun createObserver() {
         appViewModel.appColorType.observe(viewLifecycleOwner) {
+            Log.e("1mean","9999")
             updateTopView(it)
         }
         loadImage(mActivity, AppInfos.HEAD_URL, binding.imgHead)

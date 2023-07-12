@@ -26,6 +26,7 @@ import com.example.pandas.ui.adapter.decoration.RecommendDecoration
 import com.example.pandas.ui.adapter.decoration.RecommendDecoration2
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.startShortVideoActivity
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.ScreenUtil
@@ -185,7 +186,11 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
     }
 
     override fun onClick(video: PetVideo) {
-        startVideoPlayingActivity(mActivity, video)
+        if (video.vertical) {
+            startShortVideoActivity(mActivity, video.code)
+        } else {
+            startVideoPlayingActivity(mActivity, video)
+        }
         startActivity = true
     }
 

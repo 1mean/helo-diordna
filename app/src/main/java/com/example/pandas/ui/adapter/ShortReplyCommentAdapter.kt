@@ -17,6 +17,7 @@ import com.example.pandas.sql.entity.CommentAndUser
 import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.ext.addScaleAnimation
+import com.example.pandas.ui.ext.startUserInfoActivity
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -214,6 +215,14 @@ public class ShortReplyCommentAdapter(
                         comment.content
                     )
                 )
+            }
+
+            fromName.setOnClickListener {
+                startUserInfoActivity(context, user)
+            }
+
+            toName.setOnClickListener {
+                startUserInfoActivity(context, user)
             }
         }
     }

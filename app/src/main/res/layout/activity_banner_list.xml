@@ -94,26 +94,39 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginEnd="12dp">
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
+                    <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/llayout_banner_item_best"
                             style="@style/style_banner_activity_layout">
 
                         <de.hdodenhof.circleimageview.CircleImageView
-                                style="@style/style_banner_activity_image"
-                                android:src="@mipmap/liuyifei" />
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                app:layout_constraintLeft_toLeftOf="@id/llayout_banner_item_best"
+                                app:layout_constraintRight_toRightOf="@id/llayout_banner_item_best"
+                                app:layout_constraintTop_toTopOf="@id/llayout_banner_item_best"
+                                android:layout_marginTop="10dp"
+                                android:src="@mipmap/img_banner_top1" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <com.example.pandas.ui.view.MyCircleView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                app:layout_constraintLeft_toLeftOf="@id/llayout_banner_item_best"
+                                app:layout_constraintRight_toRightOf="@id/llayout_banner_item_best"
+                                app:layout_constraintTop_toTopOf="@id/llayout_banner_item_best"
+                                android:layout_marginTop="10dp" />
+
+                        <!--<androidx.appcompat.widget.AppCompatTextView
                                 android:text="最优质"
-                                style="@style/style_banner_activity_text" />
+                                style="@style/style_banner_activity_text" />-->
 
 
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.appcompat.widget.LinearLayoutCompat style="@style/style_banner_activity_layout">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                                 style="@style/style_banner_activity_image"
-                                android:src="@mipmap/liuyifei" />
+                                android:src="@mipmap/img_banner_top2" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                                 android:text="最可爱"
@@ -124,7 +137,7 @@
 
                         <de.hdodenhof.circleimageview.CircleImageView
                                 style="@style/style_banner_activity_image"
-                                android:src="@mipmap/liuyifei" />
+                                android:src="@mipmap/img_banner_top3" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                                 android:text="最优质"
@@ -135,7 +148,7 @@
 
                         <de.hdodenhof.circleimageview.CircleImageView
                                 style="@style/style_banner_activity_image"
-                                android:src="@mipmap/liuyifei" />
+                                android:src="@mipmap/img_banner_top4" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                                 android:text="最优质"

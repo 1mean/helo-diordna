@@ -49,6 +49,7 @@ public abstract class DrawerPopupView extends BasePopupView {
 
     @Override
     protected void doMeasure() {
+        Log.e("4mean","drawview doMeasure");
         super.doMeasure();
         View contentView = drawerContentContainer.getChildAt(0);
         if(contentView==null) return;

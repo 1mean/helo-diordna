@@ -14,6 +14,8 @@ import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.AdapterItemBannerChildBinding
 import com.example.pandas.databinding.ItemBannerBannerListBinding
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.ui.ext.startShortVideoActivity
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.dialog.MoreBottomSheetDialog
 import com.example.pandas.ui.view.viewpager.Indicator
 import com.example.pandas.utils.NumUtils
@@ -60,7 +62,7 @@ public class BannerChildAdapter(
             if (size <= 3) {
                 notifyDataSetChanged()
             } else {
-                notifyItemRangeInserted((size - 3), list.size)
+                notifyItemRangeInserted((size - 2), list.size)
             }
         }
     }
@@ -142,21 +144,6 @@ public class BannerChildAdapter(
             this.duration.text = duration
             petVideo.user?.let {
                 name.text = it.userName
-                if (it.attention) {
-                    follow.visibility = View.VISIBLE
-                    up.visibility = View.GONE
-                    follow.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            R.color.color_txt_reco_followed
-                        )
-                    )
-                    follow.setBackgroundResource(R.drawable.shape_bg_reco_followed)
-                    follow.text = context.resources.getString(R.string.str_followed)
-                } else {
-                    follow.visibility = View.GONE
-                    up.visibility = View.VISIBLE
-                }
             }
 
             val counts = (1..num).random()
@@ -171,7 +158,39 @@ public class BannerChildAdapter(
                 follow.setTextColor(ContextCompat.getColor(context, R.color.color_bg_reco_type))
                 follow.setBackgroundResource(R.drawable.shape_bg_reco_type)
                 follow.text = context.resources.getString(R.string.str_hl)
+            } else {
+                if (petVideo.vertical) {//是竖屏
+                    follow.visibility = View.VISIBLE
+                    up.visibility = View.GONE
+                    follow.setTextColor(
+                        ContextCompat.getColor(
+                            context,
+                            R.color.color_txt_reco_followed
+                        )
+                    )
+                    follow.setBackgroundResource(R.drawable.shape_bg_reco_followed)
+                    follow.text = context.resources.getString(R.string.str_vertical)
+                } else {
+                    petVideo.user?.let {
+                        if (it.attention) {
+                            follow.visibility = View.VISIBLE
+                            up.visibility = View.GONE
+                            follow.setTextColor(
+                                ContextCompat.getColor(
+                                    context,
+                                    R.color.color_txt_reco_followed
+                                )
+                            )
+                            follow.setBackgroundResource(R.drawable.shape_bg_reco_followed)
+                            follow.text = context.resources.getString(R.string.str_followed)
+                        } else {
+                            follow.visibility = View.GONE
+                            up.visibility = View.VISIBLE
+                        }
+                    }
+                }
             }
+
             itemView.setOnLongClickListener {
                 showDialog(petVideo.code)
                 VibrateUtils.vibrate(context, 2000)
@@ -181,8 +200,11 @@ public class BannerChildAdapter(
             moreView.setOnClickListener {
                 showDialog(petVideo.code)
             }
-
             title.text = petVideo.title
+
+            itemView.setOnClickListener {
+                startVideoPlayingActivity(context, petVideo)
+            }
         }
 
         private fun showDialog(videoCode: Int) {
@@ -207,7 +229,14 @@ public class BannerChildAdapter(
 
             if (isBannerFresh) {//避免重复刷新
                 //轮播图数据
-                val list = data.subList(0, 3)
+                val list = mutableListOf<PetVideo>()
+                if (data.isNotEmpty()) {
+                    data.forEachIndexed { index, petVideo ->
+                        if (index < 3) {
+                            list.add(petVideo)
+                        }
+                    }
+                }
                 //避免重复创建，刷新banner位置到起始位
                 val indicator = Indicator(itemView.context)
                 indicator.initIndicator(
