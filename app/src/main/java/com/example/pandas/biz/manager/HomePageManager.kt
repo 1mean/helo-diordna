@@ -1116,6 +1116,11 @@ class PetManager {
         }
     }
 
+    suspend fun updateVideoComment(comment: VideoComment) {
+        return withContext(Dispatchers.Default) {
+            petDao.updateVideoComment(comment)
+        }
+    }
 
     suspend fun saveComment(
         replyInfo: ReplyInfo?,

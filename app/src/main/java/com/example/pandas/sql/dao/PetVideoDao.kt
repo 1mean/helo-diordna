@@ -109,6 +109,9 @@ interface PetVideoDao {
     fun updateHistory(history: History)
 
     @Update(onConflict = OnConflictStrategy.ABORT) //发生冲突解决办法：终止操作，抛出异常
+    suspend fun updateVideoComment(videoComment: VideoComment)
+
+    @Update(onConflict = OnConflictStrategy.ABORT) //发生冲突解决办法：终止操作，抛出异常
     fun updateVideoData(data: VideoData)
 
     @Update(onConflict = OnConflictStrategy.ABORT) //发生冲突解决办法：终止操作，抛出异常

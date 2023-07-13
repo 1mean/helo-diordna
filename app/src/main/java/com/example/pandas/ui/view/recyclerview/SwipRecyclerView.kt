@@ -242,7 +242,7 @@ open class SwipRecyclerView : RecyclerView {
                 MotionEvent.ACTION_DOWN -> {
                     initialX = ev.x
                     initialY = ev.y
-                    Log.e("1mean","recyclerview down 111")
+                    Log.e("vp2vp2","recyclerview down 111")
                     parent.requestDisallowInterceptTouchEvent(true)
                 }
                 MotionEvent.ACTION_MOVE -> {

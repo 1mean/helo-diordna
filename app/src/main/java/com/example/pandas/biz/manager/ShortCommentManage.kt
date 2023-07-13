@@ -107,4 +107,10 @@ public class ShortCommentManage(val context: Context, val commentScope: Coroutin
             listener.sendCommentResult(videoComment)
         }
     }
+
+    fun updateComment(videoComment: VideoComment) {
+        commentScope.launch {
+            PetManagerCoroutine.updateVideoComment(videoComment)
+        }
+    }
 }

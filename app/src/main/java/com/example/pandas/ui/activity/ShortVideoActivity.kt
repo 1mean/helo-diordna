@@ -608,6 +608,7 @@ public class ShortVideoActivity :
 
         })
             .moveUpToKeyboard(false) //如果不加这个，评论弹窗会移动到软键盘上面
+            .dismissOnTouchOutside(true)
             .animationDuration(600)
             .asCustom(rightPopupView)
             .show()
