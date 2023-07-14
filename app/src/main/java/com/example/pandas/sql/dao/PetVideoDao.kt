@@ -226,6 +226,9 @@ interface PetVideoDao {
     @Query("select * from music where type=(:type) limit (:startIndex),(:count)")
     suspend fun queryMusicByPage(type: Int, startIndex: Int, count: Int): MutableList<MusicVo>
 
+    @Query("select * from music where type=(:type) order by random()")
+    suspend fun queryRandomMusic(type: Int): MusicVo
+
     @Query("select code,title,cover,authorId,duration,videoType from pet_video where star=1 limit 0,(:counts)")
     suspend fun queryByCounts(counts: Int): MutableList<PetViewData>
 

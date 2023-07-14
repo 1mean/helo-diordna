@@ -18,11 +18,13 @@ import com.example.pandas.ui.ext.startMusicActivity
  * @date: 6/28/22 11:57 下午
  * @version: v1.0
  */
-public class MusicChildAdapter(private val list: MutableList<MusicVo>) :
+public class MusicChildAdapter(private val list: MutableList<MusicVo>, private val bgType: Int) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_TOP = 1
     private val TYPE_MUSIC_ITEM = 2
+
+    val backgroundColors = arrayOf(R.drawable.ripple_music_item, R.drawable.ripple_music_item2)
 
 //    override fun getItemViewType(position: Int): Int {
 //        return if (position == 0) {
@@ -114,6 +116,8 @@ public class MusicChildAdapter(private val list: MutableList<MusicVo>) :
             }
             name.text = data.audioName
             singer.text = data.singerName
+
+            itemView.setBackgroundResource(backgroundColors[bgType])
 
             if (data.booleanFlag) {
                 likeView.setImageResource(R.mipmap.img_music_item_liked1)

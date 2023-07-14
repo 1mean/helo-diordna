@@ -314,6 +314,47 @@ class PetManager {
         }
     }
 
+    suspend fun getMusic(): MusicBean {
+
+        return withContext(Dispatchers.Default) {
+            val musicBean = MusicBean()
+
+            for (i in 0 until 6) {
+                val musicVo = petDao.queryRandomMusic(0)
+                musicBean.musicBanners.add(musicVo)
+            }
+
+            for (i in 0..2) {
+                val musicVo = petDao.queryRandomMusic(0)
+                musicBean.musicItem1.add(musicVo)
+            }
+
+            for (i in 0..2) {
+                val musicVo = petDao.queryRandomMusic(0)
+                musicBean.musicItem2.add(musicVo)
+            }
+
+            for (i in 0..2) {
+                val musicVo = petDao.queryRandomMusic(0)
+                musicBean.musicItem3.add(musicVo)
+            }
+
+            for (i in 0..2) {
+                val musicVo = petDao.queryRandomMusic(0)
+                musicBean.musicItem4.add(musicVo)
+            }
+
+            for (i in 0..2) {
+                val musicVo = petDao.queryRandomMusic(0)
+                musicBean.musicItem5.add(musicVo)
+            }
+
+            musicBean.musicVideos = petDao.queryVideosByVideoType(VideoType.MUSIC.ordinal, 0, 4)
+
+            musicBean
+        }
+    }
+
     suspend fun getLandscapeData(startIndex: Int, counts: Int): LandscapeData {
 
         return withContext(Dispatchers.Default) {

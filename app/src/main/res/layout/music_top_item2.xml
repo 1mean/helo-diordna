@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="270dp"
+        android:layout_height="134dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0.5dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_music_top_child1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_music_top_mv"
+            android:layout_width="38dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_bg_music_mv">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="影视"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toTopOf="@id/clayout_music_top_mv"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_music_top_mv"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_music_top_mv"
+                app:layout_constraintRight_toRightOf="@id/clayout_music_top_mv"
+                tools:ignore="SmallSp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--定义圆角-->
+    <corners
+            android:topRightRadius="15dp"
+            android:bottomRightRadius="15dp" />
+    <!--内部填充色-->
+    <solid android:color="#99f46844" />
+
+</shape>

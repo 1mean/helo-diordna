@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.bean.LandscapeData
+import com.example.pandas.bean.MusicBean
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.bean.pet.RecommendData
@@ -60,6 +61,8 @@ class HomePageViewModel : BaseViewModel() {
     val musicData: MutableLiveData<MutableList<VideoAndUser>> by lazy { MutableLiveData() }
 
     val songDataWrapper: MutableLiveData<UIDataWrapper<MusicVo>> by lazy { MutableLiveData() }
+
+    val musicData2: MutableLiveData<UIDataWrapper<MusicBean>> by lazy { MutableLiveData() }
 
     fun getPagePet(isRefresh: Boolean) {
 
@@ -272,6 +275,32 @@ class HomePageViewModel : BaseViewModel() {
         viewModelScope.launch {
             musicData.value =
                 PetManagerCoroutine.getVideosByVideoType(VideoType.MUSIC.ordinal, 0, 2)
+        }
+    }
+
+    fun getMusic() {
+
+        viewModelScope.launch {
+            kotlin.runCatching {
+                PetManagerCoroutine.getMusic()
+            }.onSuccess {
+                val musicBean = UIDataWrapper<MusicBean>(
+                    isSuccess = true,
+                    musicBean = it
+                )
+                musicData2.value = musicBean
+            }.onFailure {
+
+                it.message?.loge()
+                it.printStackTrace()
+                val exception = ExceptionHandle.handleException(it)
+                val musicBean = UIDataWrapper<MusicBean>(
+                    isSuccess = false,
+                    errMessage = exception.errorMsg,
+                    musicBean = MusicBean()
+                )
+                musicData2.value = musicBean
+            }
         }
     }
 

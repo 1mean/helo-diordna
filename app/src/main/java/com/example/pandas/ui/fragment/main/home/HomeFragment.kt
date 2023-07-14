@@ -52,7 +52,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.viewpager.run {
-            adapter = HomePagerAdapter(tabTitles, childFragmentManager, lifecycle)
+            adapter = HomePagerAdapter(mActivity,tabTitles, childFragmentManager, lifecycle)
             offscreenPageLimit = tabTitles.size
             setCurrentItem(1, false)
         }

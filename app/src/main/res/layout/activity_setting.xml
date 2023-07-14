@@ -74,6 +74,29 @@
                 android:background="@color/color_bg_setting_item_drivider" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_music_setting_style"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/style_setting_item_name_text"
+                    app:layout_constraintTop_toTopOf="@id/clayout_music_setting_style"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_music_setting_style"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_music_setting_style"
+                    android:text="音乐界面样式" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    style="@style/style_self_setting_arrow"
+                    app:layout_constraintTop_toTopOf="@id/clayout_music_setting_style"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_music_setting_style"
+                    app:layout_constraintRight_toRightOf="@id/clayout_music_setting_style" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+                style="@style/style_setting_activity_item_drivider"
+                android:background="@color/color_bg_setting_item_drivider" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_setting_style"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">

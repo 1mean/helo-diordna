@@ -168,6 +168,22 @@ fun loadPandaBackGround(context: Context, url: String, view: View) {
         })
 }
 
+fun loadMusicBackGround(context: Context, url: String, view: View) {
+
+    /*设置高斯模糊效果,服务器请求的图片失真严重 sampling值越大颜色值会越浓*/
+    /*设置背景 glide3.7的为Bitmap,兼容高斯模糊的glide是GlideDrawable,getCurrent()再转换成drawable*/
+    Glide.with(context).asBitmap().load(url)
+        .apply(RequestOptions.bitmapTransform(BlurTransformation(30, 10)))
+        .into(object : CustomTarget<Bitmap>() {
+            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                view.background = BitmapDrawable(context.resources, resource)
+            }
+
+            override fun onLoadCleared(placeholder: Drawable?) {
+            }
+        })
+}
+
 fun clearMemoryCache(context: Context) {
     Glide.get(context).clearMemory()
 }

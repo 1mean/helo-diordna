@@ -20,7 +20,6 @@ import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.ext.addScaleAnimation
 import com.example.pandas.ui.ext.startUserInfoActivity
-import com.example.pandas.ui.view.NestedScrollableHost
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -175,6 +174,7 @@ public class ShortCommentAdapter(
                 mRecyclerView.layoutParams =
                     LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
                 replyLayout.addView(mRecyclerView)
+                replyLayout.visibility = View.VISIBLE
                 mRecyclerView.run {
                     layoutManager = LinearLayoutManager(mContext)
                     isNestedScrollingEnabled = false
@@ -244,6 +244,7 @@ public class ShortCommentAdapter(
                 mRecyclerView.layoutParams =
                     LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
                 replyLayout.addView(mRecyclerView)
+                replyLayout.visibility = View.VISIBLE
                 mRecyclerView.run {
                     layoutManager = LinearLayoutManager(mContext)
                     isNestedScrollingEnabled = false
@@ -297,17 +298,17 @@ public class ShortCommentAdapter(
             } else {
                 val adapter = (rv as RecyclerView).adapter
                 Log.e("1mean", "position:$position, recyclerView: $rv, adapter: $adapter")
-                replyLayout.removeViewAt(0)
+                replyLayout.removeAllViews()
             }
 
-            val cacheRecyclerView = replyRecyclerViews.get(comment.id)
-            Log.e("1mean", "position:$position, cacheRecyclerView: $cacheRecyclerView")
+            Log.e("1mean", "position: $position, state: ${comment.state}")
             if (comment.replyCounts == 0 && comment.state == 0) {//默认常规评论，没有回复
                 replyLayout.visibility = View.GONE
                 replyCountsLayout.visibility = View.GONE  //不显示加载更多
             } else if (comment.state == 1) {//没有原始评论，有作者回复的单一评论
                 replyLayout.visibility = View.VISIBLE
                 replyCountsLayout.visibility = View.GONE  //不显示加载更多
+                val cacheRecyclerView = replyRecyclerViews[comment.id]
                 replyLayout.addView(cacheRecyclerView)
             } else if (comment.state == 2) {//有评论，但是未点开
                 replyLayout.visibility = View.GONE
@@ -316,6 +317,7 @@ public class ShortCommentAdapter(
                 comments.text = "展开$replyCounts 条回复"
             } else if (comment.state == 3) {//有原始评论，但未展开，只是我回复的几条评论
                 replyLayout.visibility = View.VISIBLE
+                val cacheRecyclerView = replyRecyclerViews[comment.id]
                 replyLayout.addView(cacheRecyclerView)
                 cacheRecyclerView?.adapter?.let { mAdapter ->
                     val visibleCounts = mAdapter.itemCount
@@ -323,9 +325,12 @@ public class ShortCommentAdapter(
                 }
             } else if (comment.state == 4) {//有评论，也展开了
                 replyLayout.visibility = View.VISIBLE
+                replyCountsLayout.visibility = View.VISIBLE
+                val cacheRecyclerView = replyRecyclerViews[comment.id]
                 replyLayout.addView(cacheRecyclerView)
                 cacheRecyclerView?.adapter?.let { mAdapter ->
                     val visibleCounts = mAdapter.itemCount
+                    Log.e("1mean", "visibleCounts:$visibleCounts, replyCounts:$replyCounts")
                     if (visibleCounts < replyCounts) {
                         comments.text = "展开更多回复"
                     } else {
@@ -343,59 +348,77 @@ public class ShortCommentAdapter(
 
             //点开回复 或 加载更多 或 收起
             replyCountsLayout.setOnClickListener {
-
-//                when (comment.state) {
-//                    2 -> {//默认有评论的常规评论，未点开
-//                        val mRecyclerView = replyRecyclerViews[comment.id]
-//                        if (mRecyclerView != null) {//说明
-//
-//                        }
-//                    }
-//                    3 -> {//有评论，但未展开，只是我回复的几条评论
-//
-//                    }
-//                    4 -> {//有评论，也展开了
-//
-//                    }
-//                }
-
                 val replySize = comment.replyCounts
-
                 val mRecyclerView = replyRecyclerViews[comment.id]
                 if (mRecyclerView == null || mRecyclerView.adapter == null) {//还没有展开，直接加载数据
+                    Log.e("1mean", "---1111")
                     //2，当有缓存数据时，优先加载缓存数据
                     if (comment.replyComments.size > 0) {
                         //bug:这里直接对comment.replyComments进行subList方法，会导致多次操作后，原始comment的replyComments进行叠加
                         //这里只对同样数据的新list做处理，不涉及原始对象
                         val replyList = comment.replyComments.toMutableList()
-                        val currentPageList = replyList.subList(0, 3)
-                        val recyclerView = RecyclerView(mContext)
-                        recyclerView.layoutParams =
-                            LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-                        replyLayout.addView(recyclerView)
-                        recyclerView.run {
-                            layoutManager = LinearLayoutManager(mContext)
-                            isNestedScrollingEnabled = false
-                            adapter = ShortReplyCommentAdapter(currentPageList, object :
-                                ShortReplyCommentAdapter.ReplyItemClickListener {
-                                override fun reply(commentUser: CommentAndUser) {
-                                    val curPos = comparePosition(position, commentUser.comment)
-                                    Log.e("1mean", "item click position: $position")
-                                    listener.showInputToReply(commentUser, curPos, false)
-                                }
-                            })
+                        val currentPageList = if (data[position].comment.replyCounts >= 3) {
+                            replyList.subList(0, 3)
+                        } else {
+                            replyList.subList(0, data[position].comment.replyCounts)
                         }
-                        replyRecyclerViews[comment.id] = recyclerView
-                        recyclerView.post {
-                            if (recyclerView.adapter!!.itemCount == comment.replyCounts) {
-                                comments.text = "收起"
-                                arrows.setImageResource(R.mipmap.img_short_comment_up)
-                            } else {
-                                comments.text = "展开更多回复"
-                                arrows.setImageResource(R.mipmap.img_short_comment_down)
+
+                        Log.e("1mean", "---3333  currentPageList:$currentPageList")
+                        if (mRecyclerView == null) {
+                            val recyclerView = RecyclerView(mContext)
+                            recyclerView.layoutParams =
+                                LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+                            replyLayout.addView(recyclerView)
+                            replyLayout.visibility = View.VISIBLE
+                            recyclerView.run {
+                                layoutManager = LinearLayoutManager(mContext)
+                                isNestedScrollingEnabled = false
+                                adapter = ShortReplyCommentAdapter(currentPageList, object :
+                                    ShortReplyCommentAdapter.ReplyItemClickListener {
+                                    override fun reply(commentUser: CommentAndUser) {
+                                        val curPos = comparePosition(position, commentUser.comment)
+                                        Log.e("1mean", "item click position: $position")
+                                        listener.showInputToReply(commentUser, curPos, false)
+                                    }
+                                })
+                            }
+                            replyRecyclerViews[comment.id] = recyclerView
+
+                            recyclerView.post {
+                                if (recyclerView.adapter!!.itemCount == comment.replyCounts) {
+                                    comments.text = "收起"
+                                    arrows.setImageResource(R.mipmap.img_short_comment_up)
+                                } else {
+                                    comments.text = "展开更多回复"
+                                    arrows.setImageResource(R.mipmap.img_short_comment_down)
+                                }
+                            }
+                        } else {
+                            mRecyclerView.run {
+                                adapter = ShortReplyCommentAdapter(currentPageList, object :
+                                    ShortReplyCommentAdapter.ReplyItemClickListener {
+                                    override fun reply(commentUser: CommentAndUser) {
+                                        val curPos = comparePosition(position, commentUser.comment)
+                                        Log.e("1mean", "item click position: $position")
+                                        listener.showInputToReply(commentUser, curPos, false)
+                                    }
+                                })
+                            }
+                            replyLayout.addView(mRecyclerView)
+                            replyLayout.visibility = View.VISIBLE
+                            replyRecyclerViews[comment.id] = mRecyclerView
+
+                            mRecyclerView.post {
+                                if (mRecyclerView.adapter!!.itemCount == comment.replyCounts) {
+                                    comments.text = "收起"
+                                    arrows.setImageResource(R.mipmap.img_short_comment_up)
+                                } else {
+                                    comments.text = "展开更多回复"
+                                    arrows.setImageResource(R.mipmap.img_short_comment_down)
+                                }
                             }
                         }
-                        data[position].comment.state = 4
+                        comment.state = 4
                     } else {
                         val curPos = comparePosition(position, comment)
                         //3，缓存数据加载完成了后，从网络加载数据
@@ -411,10 +434,13 @@ public class ShortCommentAdapter(
                 } else {//缓存里有该RecyclerView，并且adapter不为null，就一定有数据正在界面展示
                     val mAdapter = mRecyclerView.adapter
                     val visibleSize = mAdapter?.itemCount ?: 0
+                    Log.e("1mean", "---222 visibleSize:$visibleSize, replySize:$replySize")
                     if (visibleSize == replySize) {//评论已全部展示，点击收起
                         Log.e("1mean", "replyRecyclerView.adapter=null")
                         mRecyclerView.adapter = null
                         replyRecyclerViews[comment.id] = mRecyclerView
+                        replyLayout.removeAllViews()
+
                         replyLayout.visibility = View.GONE
                         comments.text = "展开$replySize 条回复"
                         arrows.setImageResource(R.mipmap.img_short_comment_down)

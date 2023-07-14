@@ -17,7 +17,7 @@ import com.example.pandas.R
 public class MyCircleView : View {
 
     private var paint: Paint? = null
-    private var radius: Float = 58f
+    private var radius: Float = 75f
     private var max = 2000f
     private var centerX: Float = 0f
     private var centerY: Float = 0f

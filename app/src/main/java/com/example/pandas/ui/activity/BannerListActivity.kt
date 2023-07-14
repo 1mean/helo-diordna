@@ -101,7 +101,7 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
                 }
             })
 
-        binding.llayoutBannerItemBest.setOnClickListener {
+        binding.llayoutBannerBest.setOnClickListener {
             val intent = Intent(
                 this@BannerListActivity,
                 BannerChildListActivity::class.java

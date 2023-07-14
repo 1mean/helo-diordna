@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+        android:color="@color/color_bg_music_item_press">
+    <item>
+        <!--ripple里是展示颜色 item是背景颜色，两个item分为三层颜色-->
+        <selector>
+            <item
+                    android:drawable="@color/color_bg_panda_fragment"
+                    android:state_pressed="true">
+            </item>
+            <item
+                    android:drawable="@color/color_bg_panda_fragment"
+                    android:state_pressed="false">
+            </item>
+        </selector>
+    </item>
+</ripple >

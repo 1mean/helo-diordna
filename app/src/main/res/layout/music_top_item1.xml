@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="99.5dp"
+        android:layout_height="134dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0.5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_music"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_music_top_child1"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_music"
+                app:layout_constraintRight_toRightOf="@id/clayout_music"
+                app:layout_constraintTop_toTopOf="@id/clayout_music"
+                android:layout_marginTop="10dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_music_top_child1"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_music"
+                app:layout_constraintRight_toRightOf="@id/clayout_music"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_music"
+                android:background="@drawable/shape_music_top_child1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_music_top_child1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    app:layout_constraintTop_toTopOf="@id/clayout_music_top_child1"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_music_top_child1"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_music_top_child1"
+                    app:layout_constraintRight_toRightOf="@id/clayout_music_top_child1"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

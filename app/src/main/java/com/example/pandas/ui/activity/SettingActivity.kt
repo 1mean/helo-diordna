@@ -78,6 +78,11 @@ public class SettingActivity : BaseActivity<BaseViewModel, ActivitySettingBindin
             val intent = Intent(this, SettingConfigActivity::class.java).putExtra("name", "我的界面样式")
             startActivity(intent)
         }
+
+        binding.clayoutMusicSettingStyle.setOnClickListener {
+            val intent = Intent(this, MusicConfigActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun createObserver() {

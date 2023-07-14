@@ -21,7 +21,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView2
  */
 public class MusicChildFragment : BaseFragment<HomePageViewModel, LayoutOnlyLoadmoreBinding>() {
 
-    private val mAdapter: MusicChildAdapter by lazy { MusicChildAdapter(mutableListOf()) }
+    private val mAdapter: MusicChildAdapter by lazy { MusicChildAdapter(mutableListOf(), 0) }
 
     override fun lazyLoadTime(): Long = 0
 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="153dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="1dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_music_item_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_music_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:layout_gravity="right|bottom"
+                android:layout_marginBottom="7dp"
+                android:layout_marginEnd="7dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:background="@drawable/shape_hot_duration" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_music_item3_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_marginTop="5dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="@color/color_txt_mine_name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_music_item3_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:textColor="#868b96"
+            android:layout_marginTop="5dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            tools:ignore="SmallSp" />
+</androidx.appcompat.widget.LinearLayoutCompat>
