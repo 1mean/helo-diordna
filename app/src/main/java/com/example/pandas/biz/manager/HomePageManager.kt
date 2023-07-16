@@ -751,6 +751,20 @@ class PetManager {
         }
     }
 
+    suspend fun getSelectedVideoUser(selects: MutableList<Int>): MutableList<VideoAndUser> {
+
+        return withContext(Dispatchers.Default) {
+            val list = mutableListOf<VideoAndUser>()
+            if (selects.isNotEmpty()) {
+                selects.forEach {
+                    val videoUser = petDao.queryVideoUserByCode(it)
+                    list.add(videoUser)
+                }
+            }
+            list
+        }
+    }
+
     suspend fun getLater(startIndex: Int, counts: Int): MutableList<PetVideo> {
 
         return withContext(Dispatchers.Default) {

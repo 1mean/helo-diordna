@@ -1,6 +1,7 @@
 package com.example.pandas.ui.activity
 
 import BestFragment
+import android.content.Intent
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -62,6 +63,7 @@ public class BannerChildListActivity : BaseActivity<BannerViewModel, ActivityBan
                         R.color.color_history_title
                     )
                 )
+                binding.imgTopSearch.setImageResource(R.mipmap.img_topview_search)
             } else {
                 binding.ibnHistoryBack.setImageResource(R.mipmap.img_top_leave_white)
                 binding.txtHistoryTitle.setTextColor(
@@ -70,8 +72,13 @@ public class BannerChildListActivity : BaseActivity<BannerViewModel, ActivityBan
                         R.color.white
                     )
                 )
+                binding.imgTopSearch.setImageResource(R.mipmap.img_topview_search_white)
                 StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
             }
+        }
+
+        binding.clayoutTopSearch.setOnClickListener {
+            startActivity(Intent(this, NewSearchActivity::class.java))
         }
     }
 

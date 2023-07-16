@@ -6,8 +6,7 @@ import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.ui.activity.BannerListActivity
-import com.example.pandas.ui.activity.RankingActivity
-import com.example.pandas.ui.ext.startAnyActivity
+import com.example.pandas.ui.activity.OneVerticalListActivity
 
 /**
  * @description: HotTopItemAdapter
@@ -31,16 +30,24 @@ public class HotTopItemAdapter(list: MutableList<String>) : BaseCommonAdapter<St
         } else if (data == "创作榜") {
             image.setImageResource(R.mipmap.img_hot_top2)
             item.setBackgroundResource(R.drawable.shape_bg_top_hot2)
-        } else {
+        } else if (data == "热搜榜") {
             image.setImageResource(R.mipmap.img_hot_top3)
             item.setBackgroundResource(R.drawable.shape_bg_top_hot3)
+        } else {
+            image.setImageResource(R.mipmap.img_hot_top4)
+            item.setBackgroundResource(R.drawable.shape_bg_top_hot4)
         }
         title.text = data
 
         item.setOnClickListener {
-//            val intent = Intent(context, RankingActivity::class.java).putExtra("title", data)
-            val intent = Intent(context, BannerListActivity::class.java).putExtra("title", data)
-            context.startActivity(intent)
+            if (data == "每周必看") {
+                val intent =
+                    Intent(context, OneVerticalListActivity::class.java).putExtra("title", data)
+                context.startActivity(intent)
+            } else {
+                val intent = Intent(context, BannerListActivity::class.java).putExtra("title", data)
+                context.startActivity(intent)
+            }
         }
     }
 

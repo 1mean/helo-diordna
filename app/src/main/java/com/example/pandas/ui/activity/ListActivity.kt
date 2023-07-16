@@ -74,7 +74,7 @@ public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBindin
 
         appViewModel.appColorType.value?.let {
             binding.refreshList.setColorSchemeResources(AppInfos.viewColors[it])
-            StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+            StatusBarUtils.setStatusBarMode(this, false, AppInfos.viewColors[it])
             binding.viewListTop.setBackgroundResource(AppInfos.bgColors[it])
             binding.txtPandaTitle.setTextColor(ContextCompat.getColor(this, AppInfos.bgColors[0]))
             binding.ibnPandaBack.setImageResource(R.mipmap.img_topview_back_white)

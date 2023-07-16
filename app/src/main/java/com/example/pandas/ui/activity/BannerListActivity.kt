@@ -4,32 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.example.pandas.app.getHehuaBanner
 import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.biz.ext.loadLayoutBackGround
 import com.example.pandas.biz.ext.loadPandaBackGround
 import com.example.pandas.biz.interaction.PagerChangedListener
 import com.example.pandas.biz.viewmodel.BannerListViewModel
-import com.example.pandas.biz.viewmodel.PandaViewModel
 import com.example.pandas.databinding.ActivityBannerListBinding
-import com.example.pandas.databinding.ActivityCmBannerBinding
-import com.example.pandas.ui.adapter.ActivityPandaAdapter
 import com.example.pandas.ui.adapter.CommonBannerAdapter
 import com.example.pandas.ui.adapter.PandaListAdapter
 import com.example.pandas.ui.adapter.decoration.CommonBannerItemDecoration
 import com.example.pandas.ui.ext.init
-import com.example.pandas.ui.ext.initRv
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
-import kotlin.math.abs
 
 /**
  * @description: BannerListActivity
@@ -49,6 +38,7 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
 
         val title = intent.getStringExtra("title")
         binding.txtCmBannerTitle.text = title
+        binding.txtBannerListTitle.text = title
 
         val status = appViewModel.appColorType.value
         if (status == null) {
@@ -58,10 +48,6 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
         }
 
         binding.barCmBanner.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-            Log.e(
-                "2mean",
-                "abs(verticalOffset)=$verticalOffset, appBarLayout.totalScrollRange=${appBarLayout.totalScrollRange}"
-            )
             if (verticalOffset < 0 && verticalOffset < -157) {
                 binding.tbBannerList.visibility = View.VISIBLE
                 binding.txtBannerListTitle.visibility = View.GONE
@@ -107,6 +93,10 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
                 BannerChildListActivity::class.java
             ).putExtra("title", "最优质")
             startActivity(intent)
+        }
+
+        binding.clayoutBannerTopSearch.setOnClickListener {
+            startActivity(Intent(this, NewSearchActivity::class.java))
         }
     }
 

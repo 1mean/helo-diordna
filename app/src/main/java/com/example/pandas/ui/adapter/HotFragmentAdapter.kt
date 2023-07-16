@@ -91,7 +91,7 @@ public class HotFragmentAdapter(val list: MutableList<PetVideo>) : Adapter<ViewH
     class TopViewHolder(binding: AdapterTopHotFragmentBinding) : ViewHolder(binding.root) {
 
         val recyclerView = binding.rvTopHotFragment
-        private val topList = mutableListOf("播放榜", "创作榜", "热搜榜")
+        private val topList = mutableListOf("播放榜", "每周必看", "创作榜", "热搜榜")
 
         var mAdapter: HotTopItemAdapter? = null
 

@@ -32,6 +32,25 @@
                 android:text="@string/str_history"
                 android:textColor="@color/color_history_title" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_top_search"
+                android:layout_width="56dp"
+                app:layout_constraintRight_toRightOf="@id/clayout_history_top"
+                android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_top_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_top_search"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_top_search"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_top_search"
+                    app:layout_constraintRight_toRightOf="@id/clayout_top_search"
+                    android:src="@mipmap/img_topview_search" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
