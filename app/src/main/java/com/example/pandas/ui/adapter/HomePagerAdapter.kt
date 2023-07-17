@@ -41,7 +41,7 @@ public class HomePagerAdapter(
                     HotFragment()
                 }
                 "娱乐" -> {
-                    MyLoveFragment()
+                    EntertainmentFragment()
                 }
                 "风景" -> {
                     LandscapeFragment()

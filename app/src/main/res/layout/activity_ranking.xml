@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_play_top"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="40dp">
 
         <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/ibn_play_back"
@@ -17,58 +17,29 @@
                 android:layout_height="match_parent"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_play_top"
                 android:background="@null"
-                android:src="@mipmap/img_top_leave" />
+                android:src="@mipmap/img_topview_back" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_play_title"
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_ranking"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@id/ibn_play_back"
-                android:layout_marginStart="4dp"
-                app:layout_constraintTop_toTopOf="@id/clayout_play_top"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_play_top"
-                android:includeFontPadding="false"
-                android:textSize="16sp"
-                android:text="播放榜"
-                android:textColor="@color/color_history_title" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_ranking_search"
-                android:layout_width="56dp"
                 android:layout_height="match_parent"
-                app:layout_constraintRight_toRightOf="@id/clayout_play_top"
-                android:src="@mipmap/img_topview_search"
-                android:background="@null" />
+                app:tabMaxWidth="0dp"
+                app:layout_constraintLeft_toRightOf="@id/ibn_play_back"
+                android:layout_marginStart="5dp"
+                android:background="@null"
+                app:tabRippleColor="@android:color/transparent"
+                app:tabTextColor="@color/color_tablayout_unselect_panda"
+                app:tabIndicatorColor="@color/color_txt_panda_selected"
+                app:tabSelectedTextColor="@color/color_txt_panda_selected"
+                app:tabTextAppearance="@style/RankingTabLayoutTextStyle"
+                app:tabIndicator="@drawable/shape_tab_ranking"
+                android:paddingBottom="3dp"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
+    <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp2_ranking"
             android:layout_width="match_parent"
-            android:layout_height="0.33dp"
-            android:background="@color/color_bg_divider_self" />
+            android:layout_height="match_parent"/>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swip_layout_rank"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-            <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
-                    android:id="@+id/recycler_layout_rank"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="gone" />
-
-            <include
-                    android:id="@+id/layout_error"
-                    layout="@layout/layout_error" />
-
-            <include
-                    android:id="@+id/layout_empty"
-                    layout="@layout/layout_empty" />
-        </FrameLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

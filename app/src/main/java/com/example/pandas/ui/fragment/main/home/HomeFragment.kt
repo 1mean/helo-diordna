@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.helo_base.magic.ViewPagerHelper
@@ -199,8 +198,8 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
                             }
                         }
                         3 -> {
-                            if (it is MyLoveFragment) {
-                                (it as MyLoveFragment).refresh()
+                            if (it is EntertainmentFragment) {
+                                (it as EntertainmentFragment).refresh()
                             }
                         }
                         4 -> {

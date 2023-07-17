@@ -1,10 +1,14 @@
 package com.example.pandas.ui.activity
 
+import RankingChildFragment
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
@@ -16,6 +20,8 @@ import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.lxj.xpopup.impl.LoadingPopupView
 
 /**
@@ -26,76 +32,90 @@ import com.lxj.xpopup.impl.LoadingPopupView
  */
 public class RankingActivity : BaseActivity<RankViewModel, ActivityRankingBinding>() {
 
-    private val mAdapter: VideoListAdapter by lazy { VideoListAdapter(mutableListOf()) }
-
-    private var loadingPopup: LoadingPopupView? = null
+    private val tabTitles = arrayListOf("全部")
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        val title = intent.getStringExtra("title")
-        binding.txtPlayTitle.text = title
-
-        binding.recyclerLayoutRank.init(
-            null, mAdapter, LinearLayoutManager(this),
-            object : SwipRecyclerView.ILoadMoreListener {
-                override fun onLoadMore() {
-                    mViewModel.getRanks(false)
-                }
-            })
-
-        binding.swipLayoutRank.run {
-            isRefreshing = true
-            setRefreshColor()
-            setOnRefreshListener {
-                binding.swipLayoutRank.isRefreshing = true
-                mViewModel.getRanks(true)
+        appViewModel.appColorType.value?.let {
+            if (it == 0) {
+                StatusBarUtils.setStatusBarMode(this, true, R.color.color_white_lucency)
+                binding.clayoutPlayTop.setBackgroundResource(R.color.white)
+                binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back)
+                binding.tabRanking.setTabTextColors(
+                    ContextCompat.getColor(this, R.color.color_tablayout_unselect_panda),
+                    ContextCompat.getColor(this, R.color.color_txt_panda_selected)
+                )
+                binding.tabRanking.setSelectedTabIndicatorColor(
+                    ContextCompat.getColor(this, R.color.color_txt_panda_selected)
+                )
+            } else {
+                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                binding.clayoutPlayTop.setBackgroundResource(AppInfos.viewColors[it])
+                binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.tabRanking.setTabTextColors(
+                    ContextCompat.getColor(this, R.color.color_vertical_played),
+                    ContextCompat.getColor(this, R.color.white)
+                )
+                binding.tabRanking.setSelectedTabIndicatorColor(
+                    ContextCompat.getColor(this, R.color.white)
+                )
             }
         }
 
-        appViewModel.appColorType.value?.let {
-            binding.swipLayoutRank.setColorSchemeResources(AppInfos.viewColors[it])
-            binding.clayoutPlayTop.setBackgroundResource(AppInfos.bgColors[it])
-            binding.ibnPlayBack.setImageResource(R.mipmap.img_top_leave_white)
-            binding.txtPlayTitle.setTextColor(
-                ContextCompat.getColor(
-                    this,
-                    R.color.white
-                )
-            )
-            binding.btnRankingSearch.setImageResource(R.mipmap.img_topview_search_white)
-            StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+        binding.vp2Ranking.apply {
+            adapter = RankingPagerAdapter(this@RankingActivity)
+            offscreenPageLimit = tabTitles.size
+            currentItem = 0
+            isSaveEnabled = false
         }
 
-        binding.btnRankingSearch.setOnClickListener {
-            startActivity(Intent(this, NewSearchActivity::class.java))
+        binding.tabRanking.addOnTabSelectedListener(listener)
+
+        //tabLayout和androidx的联动工具类,绑定前viewpager2必须先设定adapter
+        TabLayoutMediator(
+            binding.tabRanking, binding.vp2Ranking, true
+        ) { tab, position ->
+            tab.text = tabTitles[position]
+        }.attach()
+
+        binding.ibnPlayBack.setOnClickListener {
+            finish()
         }
     }
 
     override fun firstOnResume() {
         super.firstOnResume()
-        mViewModel.getRanks(true)
+
     }
 
     override fun createObserver() {
+    }
 
-        mViewModel.ranks.observe(this) {
-
-            if (it.isSuccess) {
-
-                binding.recyclerLayoutRank.visibility = View.VISIBLE
-                when {
-                    it.isRefresh -> {
-                        mAdapter.refreshAdapter(it.listData)
-                        binding.recyclerLayoutRank.isRefreshing(false)
-                    }
-                    else -> {
-                        mAdapter.loadMore(it.listData)
-                    }
-                }
-                binding.recyclerLayoutRank.loadMoreFinished(it.isEmpty, it.hasMore)
-            }
-            binding.swipLayoutRank.visibility = View.VISIBLE
-            binding.swipLayoutRank.isRefreshing = false
+    private val listener = object : TabLayout.OnTabSelectedListener {
+        override fun onTabSelected(tab: TabLayout.Tab) {
+            //使用setCurrentItem(tab.position, false)会出现滑动tab错乱
+            binding.vp2Ranking.currentItem = tab.position
         }
+
+        override fun onTabUnselected(tab: TabLayout.Tab) {
+        }
+
+        override fun onTabReselected(tab: TabLayout.Tab) {
+        }
+    }
+
+    private inner class RankingPagerAdapter(activity: FragmentActivity) :
+        FragmentStateAdapter(activity) {
+
+        override fun getItemCount(): Int = tabTitles.size
+
+        private val pageIds = tabTitles.map { it.hashCode().toLong() }
+
+        override fun createFragment(position: Int): Fragment =
+            RankingChildFragment.newInstance(position)
+
+        override fun getItemId(position: Int): Long = pageIds[position]
+
+        override fun containsItem(itemId: Long): Boolean = pageIds.contains(itemId)
     }
 }

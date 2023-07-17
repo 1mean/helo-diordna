@@ -2,14 +2,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_bg_yellow">
+        android:layout_height="match_parent">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/color_bg_yellow">
+            android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
@@ -42,6 +39,7 @@
                         android:textSize="35dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_top_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintLeft_toLeftOf="@id/clayout_one_title"
@@ -78,6 +76,7 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llayout_top_one_vertical"
             android:layout_width="match_parent"
             android:background="@color/color_bg_yellow"
             android:layout_height="88.66dp"

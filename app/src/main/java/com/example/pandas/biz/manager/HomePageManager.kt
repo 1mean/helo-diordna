@@ -285,10 +285,7 @@ class PetManager {
             if (isFresh) {
                 data.run {
                     bannerList = getBannerList()
-                    movieModel = petDao.queryByTypeAndPage(VideoType.MUSIC.ordinal, 0, 4)
-                    songs = petDao.queryMusicByPage(0, 0, 5)
                     footBallModel = petDao.queryByTypeAndPage(VideoType.FOOTBALL.ordinal, 0, 4)
-                    talkAudios = petDao.queryMusicByPage(0, 0, 5)
                     artList = petDao.queryVideoByType(VideoType.ART.ordinal, 0, 4)
                     babyList = petDao.queryVideoByType(VideoType.BABY.ordinal, 0, 4)
                     honglouList = petDao.queryVideoByType(VideoType.HONGLOU.ordinal, 0, 4)

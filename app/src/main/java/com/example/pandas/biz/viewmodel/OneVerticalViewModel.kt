@@ -17,8 +17,10 @@ import com.example.pandas.sql.entity.VideoAndUser
 public class OneVerticalViewModel : BaseViewModel() {
 
     val bestList: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
+    val itemListResult: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
 
     private var startIndex = 0
+    private var videoStartIndex = 0
     private var pages = 10
     private var videoCodes: MutableList<Int> = mutableListOf()
 
@@ -69,6 +71,39 @@ public class OneVerticalViewModel : BaseViewModel() {
                     listData = mutableListOf<VideoAndUser>()
                 )
                 bestList.value = dataList
+            })
+    }
+
+    fun getListResult(isRefresh: Boolean, currentType: Int) {
+
+        if (isRefresh) {
+            videoStartIndex = 0
+        }
+        request({ PetManagerCoroutine.getVideosByVideoType(currentType, videoStartIndex, 21) },
+            {
+
+                val hasMoreData = it.size >= 21
+                if (hasMoreData) {
+                    it.removeLast()
+                }
+                val dataList = UIDataWrapper(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    hasMore = hasMoreData,
+                    isEmpty = it.isEmpty(),
+                    listData = it
+                )
+                videoStartIndex += 20
+                itemListResult.value = dataList
+            },
+            {
+                val dataList = UIDataWrapper(
+                    isSuccess = false,
+                    isRefresh = isRefresh,
+                    errMessage = it.errorMsg,
+                    listData = mutableListOf<VideoAndUser>()
+                )
+                itemListResult.value = dataList
             })
     }
 }

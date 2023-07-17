@@ -8,10 +8,7 @@ data class PageCommonData(
 
     var topUrl: String = "",
     var bannerList: MutableList<BannerItem> = mutableListOf(),
-    var movieModel: MutableList<PetVideo> = mutableListOf(),
-    var songs: MutableList<MusicVo> = mutableListOf(),
     var footBallModel: MutableList<PetVideo> = mutableListOf(),
-    var talkAudios: MutableList<MusicVo> = mutableListOf(),
     var videoList: MutableList<PetVideo> = mutableListOf(),
     var artList: MutableList<PetVideo> = mutableListOf(),
     var babyList: MutableList<PetVideo> = mutableListOf(),

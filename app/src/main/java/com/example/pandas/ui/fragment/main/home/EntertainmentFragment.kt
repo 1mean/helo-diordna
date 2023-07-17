@@ -10,21 +10,21 @@ import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.bean.pet.PageCommonData
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
-import com.example.pandas.ui.adapter.MyLoveFragmentAdapter
+import com.example.pandas.ui.adapter.EntertainmentFragmentAdapter
 import com.example.pandas.ui.adapter.decoration.MyLoveItemDecoration
 import com.example.pandas.ui.ext.initNoFooter
 import com.example.pandas.ui.ext.setRefreshColor
 
 /**
- * @description: 首页-最爱
+ * @description: 首页-娱乐
  * @author: dongyiming
  * @date: 1/28/22 8:51 下午
  * @version: v1.0
  */
-public class MyLoveFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
+public class EntertainmentFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
 
-    private val mAdapter: MyLoveFragmentAdapter by lazy {
-        MyLoveFragmentAdapter(lifecycle, PageCommonData())
+    private val mAdapter: EntertainmentFragmentAdapter by lazy {
+        EntertainmentFragmentAdapter(lifecycle, PageCommonData())
     }
 
     override fun initView(savedInstanceState: Bundle?) {

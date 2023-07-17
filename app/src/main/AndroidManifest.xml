@@ -62,6 +62,7 @@
                 android:launchMode="singleTask" />
         <activity android:name=".ui.activity.BehaviorActivity" />
         <activity android:name=".ui.activity.BannerChildListActivity" />
+        <activity android:name=".ui.activity.OneVerticalList2Activity" />
         <activity android:name=".ui.activity.MusicConfigActivity" />
         <activity android:name=".ui.activity.OneVerticalListActivity" />
         <activity android:name=".ui.activity.AboutActivity" />

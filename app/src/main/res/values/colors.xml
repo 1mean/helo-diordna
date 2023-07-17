@@ -422,5 +422,6 @@
     <color name="color_bg_grey">#8bc24b</color>
     <color name="color_bg_blue">#2095f4</color>
     <color name="color_bg_purple">#9b27b0</color>
+    <color name="color_divider_one_vertical2">#e7e7e7</color>
 
 </resources>

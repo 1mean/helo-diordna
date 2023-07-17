@@ -389,5 +389,6 @@
     <color name="color_txt_name_short">#4f5359</color>
     <color name="color_txt_short_tab_unselected">#161a21</color>
     <color name="color_txt_short_tab_selected">#1e1e1e</color>
+    <color name="color_divider_one_vertical2">#2f3232</color>
 
 </resources>

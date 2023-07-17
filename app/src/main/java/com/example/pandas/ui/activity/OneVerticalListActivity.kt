@@ -22,7 +22,8 @@ import com.example.pandas.utils.StatusBarUtils
 public class OneVerticalListActivity :
     BaseActivity<OneVerticalViewModel, ActivityOneVerticalListBinding>() {
 
-    private val mAdapter: OneVerticalAdapter by lazy { OneVerticalAdapter(mutableListOf()) }
+    private var title: String = ""
+    private val mAdapter: OneVerticalAdapter by lazy { OneVerticalAdapter(mutableListOf(), title) }
 
     override fun initStatusView() {
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
@@ -30,10 +31,19 @@ public class OneVerticalListActivity :
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        val title = intent.getStringExtra("title")
+        title = intent.getStringExtra("title").toString()
         binding.txtOneTopTitle.text = title
 
-        binding.txtOneHugeTitle.text = StringBuilder("ipanda").append("每周必看").toString()
+        binding.txtOneHugeTitle.text = StringBuilder("ipanda").append(title).toString()
+
+        if (title == "每周必看") {
+            binding.root.setBackgroundResource(R.color.color_bg_purple)
+            binding.llayoutTopOneVertical.setBackgroundResource(R.color.color_bg_purple)
+        } else {
+            binding.root.setBackgroundResource(R.color.color_bg_yellow)
+            binding.llayoutTopOneVertical.setBackgroundResource(R.color.color_bg_yellow)
+        }
+        binding.txtTopDesc.text = "$title 已暂停更新！！"
 
         binding.rvOne.init(
             null,

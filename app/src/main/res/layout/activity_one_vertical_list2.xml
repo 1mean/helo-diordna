@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/coll_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:contentScrim="@color/black"
+                app:titleEnabled="false">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clayout_two_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_two_huge_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="@id/clayout_two_title"
+                        app:layout_constraintRight_toRightOf="@id/clayout_two_title"
+                        app:layout_constraintTop_toTopOf="@id/clayout_two_title"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/pglh"
+                        android:letterSpacing="0.06"
+                        android:textStyle="bold"
+                        android:layout_marginTop="80dp"
+                        android:textSize="30dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_top_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="@id/clayout_two_title"
+                        app:layout_constraintRight_toRightOf="@id/clayout_two_title"
+                        app:layout_constraintTop_toBottomOf="@id/txt_two_huge_title"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:text="最娱乐 · 最流行 · 最好看" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar_one_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="32.66dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetStart="0dp"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetRight="0dp"
+                    app:layout_collapseMode="pin">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clayout_one_top"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ibn_one_back"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            app:layout_constraintBottom_toBottomOf="@id/clayout_one_top"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_one_top"
+                            android:background="@null"
+                            android:src="@mipmap/img_topview_back_white" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_one_top_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="@id/clayout_one_top"
+                            app:layout_constraintBottom_toBottomOf="@id/clayout_one_top"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_one_top"
+                            app:layout_constraintRight_toRightOf="@id/clayout_one_top"
+                            android:includeFontPadding="false"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clayout_one_search"
+                            android:layout_width="45dp"
+                            app:layout_constraintRight_toRightOf="@id/clayout_one_top"
+                            android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/img_top_search"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toTopOf="@id/clayout_one_search"
+                                app:layout_constraintBottom_toBottomOf="@id/clayout_one_search"
+                                app:layout_constraintLeft_toLeftOf="@id/clayout_one_search"
+                                app:layout_constraintRight_toRightOf="@id/clayout_one_search"
+                                android:src="@mipmap/img_topview_search_white" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
+            android:id="@+id/rv_one"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
