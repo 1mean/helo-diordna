@@ -78,8 +78,8 @@
         <activity android:name=".ui.activity.VerticalVideoActivity" />
         <activity android:name=".ui.activity.MoreDataListActivity" />
         <activity android:name=".ui.activity.AudioPlayActivity" />
-        <activity android:name=".ui.activity.LocalCacheActivity" />
         <activity android:name=".ui.activity.HistoryActivity" />
+        <activity android:name=".ui.activity.TwoVerticalActivity" />
         <activity android:name=".ui.activity.LoveActivity" />
         <activity android:name=".ui.activity.MessageActivity" />
         <activity android:name=".ui.activity.ErrorActivity" />

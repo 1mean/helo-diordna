@@ -74,7 +74,7 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
             binding.tabCmBanner.setTabTextColors(
                 ContextCompat.getColor(
                     this,
-                    R.color.color_tablayout_unselect_panda
+                    R.color.white
                 ), ContextCompat.getColor(this, bgColors[0])
             )
             binding.tabCmBanner.setSelectedTabIndicatorColor(
@@ -87,7 +87,7 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
             binding.tabCmBanner.setTabTextColors(
                 ContextCompat.getColor(
                     this,
-                    R.color.color_tablayout_unselect_panda
+                    R.color.white
                 ), ContextCompat.getColor(this, bgColors[status])
             )
             binding.tabCmBanner.setSelectedTabIndicatorColor(
@@ -105,7 +105,7 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
             .addPageChangeListener(object : PagerChangedListener {
                 override fun onChange(position: Int) {
                     list[position].cover?.let {
-                        loadPandaBackGround(this@PandaActivity, it, binding.imgBgBanner)
+                        loadPandaBackGround(this@PandaActivity, it, binding.root)
                     }
                 }
             }).setAdapter(adapter)
@@ -140,17 +140,10 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
 
     override fun createObserver() {
 
-//        mViewModel.banner.observe(this) {
-//            if (it.isNotEmpty()) {
-//                //避免重复创建，刷新banner位置到起始位
-//
-//            }
-//        }
     }
 
     override fun firstOnResume() {
         super.firstOnResume()
-//        mViewModel.getBanner("和花")
     }
 
     private val listener = object : TabLayout.OnTabSelectedListener {

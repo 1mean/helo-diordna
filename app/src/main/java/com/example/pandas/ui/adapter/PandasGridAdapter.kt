@@ -10,6 +10,7 @@ import com.example.pandas.bean.GridItem
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.ui.activity.ListActivity
 import com.example.pandas.ui.activity.PandaActivity
+import com.example.pandas.ui.activity.TwoVerticalActivity
 import de.hdodenhof.circleimageview.CircleImageView
 
 /**
@@ -44,10 +45,8 @@ public class PandasGridAdapter(list: MutableList<GridItem>) : BaseCommonAdapter<
                 intent.putExtra("title", data.item1)
                 context.startActivity(intent)
             } else {
-//                val intent = Intent(context, VideoItemListActivity::class.java)
-                val intent = Intent(context, ListActivity::class.java)
+                val intent = Intent(context, TwoVerticalActivity::class.java)
                 intent.putExtra("title", data.item1)
-                intent.putExtra("list_type", 1)
                 context.startActivity(intent)
             }
         }

@@ -1228,7 +1228,7 @@ object DouyinData {
         short76.width = 323
         short76.height = 430
         short76.cover =
-            "https://p3-pc-sign.douyinpic.com/tos-cn-p-0015/7f78b321095c4ec5a2b92c99a3caf783_1687091750~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=2003461200&x-signature=Jgc1w48ldze06UwuI%2BIbZIlckc4%3D"
+            "https://p3-pc-sign.douyinpic.com/tos-cn-p-0015/7f78b321095c4ec5a2b92c99a3caf783_1687091750~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_FAVORITE&sc=cover&se=true&sh=323_430&x-expires=2004958800&x-signature=0uUzKtxrC0NCDSKibL2eExA7HAw%3D"
         list.add(short76)
 
         val short77 = PetVideo()

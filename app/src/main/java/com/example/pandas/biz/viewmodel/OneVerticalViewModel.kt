@@ -18,7 +18,9 @@ public class OneVerticalViewModel : BaseViewModel() {
 
     val bestList: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
     val itemListResult: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
+    val pandaResult: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
 
+    private var counts = 0
     private var startIndex = 0
     private var videoStartIndex = 0
     private var pages = 10
@@ -105,5 +107,44 @@ public class OneVerticalViewModel : BaseViewModel() {
                 )
                 itemListResult.value = dataList
             })
+    }
+
+    fun getPandas(isRefresh: Boolean, title: String) {
+
+        if (isRefresh) {
+            startIndex = 0
+            counts = 26
+        } else {
+            counts = 21
+        }
+
+        request({
+            PetManagerCoroutine.getPandas(title, startIndex, counts)
+        }, {
+
+            val hasMore = if (it.isNotEmpty() && it.size > counts) {
+                it.removeLast()
+                true
+            } else {
+                false
+            }
+            val dataList = UIDataWrapper(
+                isSuccess = true,
+                isRefresh = isRefresh,
+                hasMore = hasMore,
+                isFirstEmpty = isRefresh && it.isEmpty(),
+                listData = it
+            )
+            startIndex += counts
+            pandaResult.value = dataList
+        }, {
+            val dataList = UIDataWrapper(
+                isSuccess = false,
+                errMessage = it.errorMsg,
+                isRefresh = isRefresh,
+                listData = mutableListOf<VideoAndUser>()
+            )
+            pandaResult.value = dataList
+        })
     }
 }
