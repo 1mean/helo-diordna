@@ -29,8 +29,8 @@ public class LandscapeFragment :
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        val paddingTop = mActivity.resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
-        val paddingHorizontal = mActivity.resources.getDimension(R.dimen.common_lh_5_dimens).toInt()
+        val paddingTop = mActivity.resources.getDimension(R.dimen.item_home_padding).toInt()
+        val paddingHorizontal = mActivity.resources.getDimension(R.dimen.item_home_padding).toInt()
 
         binding.recyclerLayout.init(
             LandScapeItemDecoration(paddingTop,paddingHorizontal),

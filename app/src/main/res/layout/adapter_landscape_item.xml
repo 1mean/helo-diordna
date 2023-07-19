@@ -8,40 +8,47 @@
         android:focusable="true"
         android:background="@drawable/ripple_landscape_item">
 
-    <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_landscape"
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_cover_landscape"
             android:layout_width="128dp"
             android:layout_height="72dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginStart="8dp" />
+            android:layout_marginStart="8dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0.5dp">
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_landscape_duration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@id/img_landscape"
-            app:layout_constraintRight_toRightOf="@id/img_landscape"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="5dp"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:background="@drawable/shape_video_item_duration"
-            tools:ignore="SmallSp" />
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_landscape"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_landscape_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:layout_gravity="right|bottom"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:background="@drawable/shape_video_item_duration"
+                tools:ignore="SmallSp" />
+    </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_landscape_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/img_landscape"
-            app:layout_constraintLeft_toRightOf="@id/img_landscape"
+            app:layout_constraintTop_toTopOf="@id/card_cover_landscape"
+            app:layout_constraintLeft_toRightOf="@id/card_cover_landscape"
             android:layout_marginStart="11dp"
             android:textColor="@color/color_txt_item_title_land"
             android:textSize="14sp"
@@ -53,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="16dp"
             app:layout_constraintLeft_toLeftOf="@id/txt_landscape_name"
-            app:layout_constraintBottom_toBottomOf="@id/img_landscape"
+            app:layout_constraintBottom_toBottomOf="@id/card_cover_landscape"
             android:layout_marginBottom="17dp"
             android:src="@mipmap/img_up1" />
 
@@ -74,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="16dp"
             app:layout_constraintLeft_toLeftOf="@id/txt_landscape_name"
-            app:layout_constraintBottom_toBottomOf="@id/img_landscape"
+            app:layout_constraintBottom_toBottomOf="@id/card_cover_landscape"
             android:src="@mipmap/img_video_play_times" />
 
     <androidx.appcompat.widget.AppCompatTextView

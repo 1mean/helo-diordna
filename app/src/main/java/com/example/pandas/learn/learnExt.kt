@@ -16,6 +16,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import com.example.pandas.ui.activity.MainActivity
+import com.google.gson.JsonParseException
+import kotlinx.coroutines.CancellationException
+import java.net.SocketTimeoutException
 
 fun ViewGroup.circularClose(button: ImageButton, action: () -> Unit = {}) {
     ViewAnimationUtils.createCircularReveal(
@@ -118,4 +121,31 @@ fun MainActivity.test(text: TextView) {
         Log.e("1mean", "test")
     }
 }
+
+//sealed class Result<out T : Any> {
+//    data class Success<out T : Any>(val data: T? = null) : Result<T>()
+//    data class Error(val code: Int, val error: String) : Result<Nothing>()
+//
+//    override fun toString(): String {
+//        return when (this) {
+//            is Success<*> -> "请求成功 -  data: $data"
+//            is Error -> "请求失败 - code:$code, error: $error"
+//        }
+//    }
+//}
+//suspend fun <T : Any> executeCal(call: suspend () -> Result<T>): Result<T> {
+//    return kotlin.runCatching { call() }.getOrElse { handleException(it) }
+//}
+//private fun handleException(e: Throwable): Result.Error {
+//    val error = when (e) {
+//        is CancellationException -> "请求取消"
+//        is SocketTimeoutException -> "连接超时"
+//        is JsonParseException -> "数据解析错误"
+//        is NumberFormatException -> "数据类型转换错误"
+//        else -> "请求失败，请稍后再试"
+//    }
+//    e.printStackTrace()
+//    return Result.Error(-1, error)
+//}
+
 

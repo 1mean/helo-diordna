@@ -28,6 +28,9 @@ object AppInfos {
     // "https://i2.hdslb.com/bfs/face/7974f1f6c031d305a30ea3ecd7aedadacb3921a4.jpg@150w_150h.jpg"
     const val TYPE_MP3 = 999 //音乐类型
 
+    //头像存储名
+    const val HEAD_AUTHOR = "img_header_author"
+
     const val headImgUrl = "https://i0.hdslb.com/bfs/face/member/noface.jpg@240w_240h_1c_1s.webp"
 
     //const val appKey = "62e9ec5305844627b50de961"

@@ -545,7 +545,7 @@ object PetGroupPandaData2 {
         panda272.fileName = "panda_group_panda272"
         panda272.code = 1519
         panda272.duration = 33
-        panda272.star = true
+        panda272.star = false
         panda272.title = "【大熊猫和花】不得不服，花爷泥这是在旱蒸么"
         panda272.releaseTime = 1645949361
         panda272.period = PeriodType.GROUP.ordinal

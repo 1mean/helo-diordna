@@ -133,8 +133,10 @@ public class HistoryAdapter(
             }
         } else {
             list.forEachIndexed { index, historyItem ->
-                historyItem.selected = true
-                selectMaps[index] = historyItem.history!!
+                if (historyItem.type == 0) {
+                    historyItem.selected = true
+                    selectMaps[index] = historyItem.history!!
+                }
             }
         }
 

@@ -4,8 +4,8 @@
     <!--<item android:drawable="@mipmap/img_tab_pet_selected" android:state_pressed="true"/>
     <item android:drawable="@mipmap/img_tab_pet_selected" android:state_checked="true"/>
     <item android:drawable="@mipmap/img_tab_pet"/>-->
-    <item android:drawable="@mipmap/img_bottom_item2_pressed" android:state_pressed="true"/>
-    <item android:drawable="@mipmap/img_bottom_item2_pressed" android:state_checked="true"/>
-    <item android:drawable="@mipmap/img_bottom_item2"/>
+    <item android:drawable="@mipmap/img2_bottom_item2_pressed" android:state_pressed="true"/>
+    <item android:drawable="@mipmap/img2_bottom_item2_pressed" android:state_checked="true"/>
+    <item android:drawable="@mipmap/img2_bottom_item2"/>
 
 </selector>

@@ -1595,7 +1595,7 @@ object PetBabyPandaData {
         panda95.fileName = "panda_baby_95"
         panda95.code = 133
         panda95.duration = 141
-        panda95.star = true
+        panda95.star = false
         panda95.title = "【大熊猫宝新&雅颂】奶爸，我就看看妹妹，不动手，你别扒拉我~"
         panda95.releaseTime = 1636380131
         panda95.originalUrl = "https://www.bilibili.com/video/BV12q4y1r7MZ?share_source=copy_web"
@@ -2938,7 +2938,7 @@ object PetBabyPandaData {
         panda174.fileName = "panda_baby_panda174"
         panda174.code = 321
         panda174.duration = 236
-        panda174.star = true
+        panda174.star = false
         panda174.title = "【熊猫圆圆圆仔】偷偷爬出来乱跑，但妈妈一出现让人笑翻！萌出血"
         panda174.releaseTime = 1562565410
         panda174.originalUrl = "https://www.bilibili.com/video/BV1J4411F7b8"
@@ -2972,7 +2972,7 @@ object PetBabyPandaData {
         panda176.fileName = "panda_baby_panda176"
         panda176.code = 323
         panda176.duration = 53
-        panda176.star = true
+        panda176.star = false
         panda176.title = "【看啥视频】国宝熊猫生气暴走的样子，差点把我的少女心吓坏了"
         panda176.releaseTime = 1502189275
         panda176.originalUrl = "https://www.bilibili.com/video/BV15x411n7Hv"
@@ -3023,7 +3023,7 @@ object PetBabyPandaData {
         panda179.fileName = "panda_baby_panda179"
         panda179.code = 326
         panda179.duration = 191
-        panda179.star = true
+        panda179.star = false
         panda179.title = "“又到了丰收大熊猫的日子了！”"
         panda179.releaseTime = 1641260897
         panda179.originalUrl = "https://www.bilibili.com/video/BV1o44y1L7Ro"
@@ -3703,7 +3703,7 @@ object PetBabyPandaData {
         panda219.fileName = "panda_baby_panda219"
         panda219.code = 385
         panda219.duration = 119
-        panda219.star = true
+        panda219.star = false
         panda219.title = "庆小小抱着么么儿睡觉觉~（20170316）"
         panda219.releaseTime = 1490011118
         panda219.originalUrl = "https://www.bilibili.com/video/BV1ox411r7vH"
@@ -4536,7 +4536,7 @@ object PetBabyPandaData {
         panda268.fileName = "panda_baby_panda268"
         panda268.code = 697
         panda268.duration = 14
-        panda268.star = true
+        panda268.star = false
         panda268.title = "当大熊猫已经知道他是国宝的身份后～"
         panda268.releaseTime = 1641268476
         panda268.originalUrl = "https://www.bilibili.com/video/BV1Y3411e7Qe"
@@ -5777,7 +5777,7 @@ object PetBabyPandaData {
         panda341.fileName = "panda_baby_panda341"
         panda341.code = 770
         panda341.duration = 107
-        panda341.star = true
+        panda341.star = false
         panda341.title = "【园月绩美星光】独得三位小主恩宠的小凳子"
         panda341.releaseTime = 1479729656
         panda341.originalUrl = "https://www.bilibili.com/video/BV1is411W7Me"
@@ -5981,7 +5981,7 @@ object PetBabyPandaData {
         panda353.fileName = "panda_baby_panda353"
         panda353.code = 782
         panda353.duration = 68
-        panda353.star = true
+        panda353.star = false
         panda353.title = "嘟嘟嘴小成实"
         panda353.releaseTime = 1481709262
         panda353.originalUrl = "https://www.bilibili.com/video/BV1Es411e7xY"

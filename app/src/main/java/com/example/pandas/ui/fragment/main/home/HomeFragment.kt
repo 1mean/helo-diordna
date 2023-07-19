@@ -8,6 +8,7 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.lifecycleScope
 import com.example.helo_base.magic.ViewPagerHelper
 import com.example.helo_base.magic.commonnavigator.CommonNavigator
 import com.example.helo_base.magic.commonnavigator.abs.CommonNavigatorAdapter
@@ -19,8 +20,7 @@ import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.biz.ext.loadImage
-import com.example.pandas.biz.ext.loadLocalCircleImage
+import com.example.pandas.biz.ext.*
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
 import com.example.pandas.ui.activity.BannerListActivity
@@ -33,6 +33,7 @@ import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.appbar.AppBarLayout
+import kotlinx.coroutines.launch
 
 
 /**
@@ -53,7 +54,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.viewpager.run {
-            adapter = HomePagerAdapter(mActivity,tabTitles, childFragmentManager, lifecycle)
+            adapter = HomePagerAdapter(mActivity, tabTitles, childFragmentManager, lifecycle)
             offscreenPageLimit = tabTitles.size
             setCurrentItem(1, false)
         }
@@ -162,7 +163,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
         }
 
         binding.rlayoutHomeTopMore.setOnClickListener {
-            startAnyActivity(mActivity,BannerListActivity::class.java)
+            startAnyActivity(mActivity, BannerListActivity::class.java)
         }
     }
 
@@ -171,11 +172,21 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
     }
 
     override fun createObserver() {
+
+        appViewModel.headerUpdate.observe(viewLifecycleOwner){
+            if (it) {
+                lifecycleScope.launch {
+                    val bitmap = getUserHeader(mActivity)
+                    if (bitmap != null) {
+                        loadCircleBitmap(mActivity, bitmap, binding.imgHead)
+                    }
+                }
+            }
+        }
+
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            Log.e("1mean","9999")
             updateTopView(it)
         }
-        loadImage(mActivity, AppInfos.HEAD_URL, binding.imgHead)
 
         mViewModel.refreshPosition.observe(viewLifecycleOwner) { position ->
             Log.e("doubleCilik", "HomeFragment: $position")
@@ -221,6 +232,15 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
     }
 
     override fun firstOnResume() {
+
+        lifecycleScope.launch {
+            val bitmap = getUserHeader(mActivity)
+            if (bitmap == null) {
+                loadCenterImage(mActivity, AppInfos.HEAD_URL, binding.imgHead)
+            } else {
+                loadCircleBitmap(mActivity, bitmap, binding.imgHead)
+            }
+        }
     }
 
     override fun againOnResume() {

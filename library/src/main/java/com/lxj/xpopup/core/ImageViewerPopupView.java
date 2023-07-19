@@ -18,6 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.transition.ChangeBounds;
@@ -29,6 +30,7 @@ import androidx.transition.TransitionManager;
 import androidx.transition.TransitionSet;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
 import com.lxj.xpopup.R;
 import com.lxj.xpopup.enums.PopupStatus;
 import com.lxj.xpopup.interfaces.OnDragChangeListener;
@@ -42,6 +44,7 @@ import com.lxj.xpopup.util.XPopupUtils;
 import com.lxj.xpopup.widget.BlankView;
 import com.lxj.xpopup.widget.HackyViewPager;
 import com.lxj.xpopup.widget.PhotoViewContainer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -156,7 +159,8 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
         int realPosition = getRealPosition();
         snapshotView.setTag(realPosition);
         setupPlaceholder();
-        if(imageLoader!=null) imageLoader.loadSnapshot(urls.get(realPosition), snapshotView, srcView);
+        if (imageLoader != null)
+            imageLoader.loadSnapshot(urls.get(realPosition), snapshotView, srcView);
     }
 
     @Override
@@ -257,6 +261,7 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
                                 super.onTransitionStart(transition);
                                 doAfterDismiss();
                             }
+
                             @Override
                             public void onTransitionEnd(@NonNull Transition transition) {
                                 pager.setScaleX(1f);
@@ -374,7 +379,7 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
         return this;
     }
 
-    public ImageViewerPopupView setLongPressListener(OnImageViewerLongPressListener longPressListener){
+    public ImageViewerPopupView setLongPressListener(OnImageViewerLongPressListener longPressListener) {
         this.longPressListener = longPressListener;
         return this;
     }
@@ -391,6 +396,7 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
         }
         urls.clear();
         urls.add(url);
+        Log.e("1mean", "urls=" + urls);
         setSrcView(srcView, 0);
         return this;
     }
@@ -402,10 +408,10 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
             int[] locations = new int[2];
             this.srcView.getLocationInWindow(locations);
             int left = locations[0] /*- getActivityContentLeft()*/;
-            if(XPopupUtils.isLayoutRtl(getContext())){
+            if (XPopupUtils.isLayoutRtl(getContext())) {
                 left = -(XPopupUtils.getAppWidth(getContext()) - locations[0] - srcView.getWidth());
                 rect = new Rect(left, locations[1], left + srcView.getWidth(), locations[1] + srcView.getHeight());
-            }else {
+            } else {
                 rect = new Rect(left, locations[1], left + srcView.getWidth(), locations[1] + srcView.getHeight());
             }
         }
@@ -449,7 +455,7 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
         imageLoader = null;
     }
 
-    protected int getRealPosition(){
+    protected int getRealPosition() {
         return isInfinite ? position % urls.size() : position;
     }
 
@@ -463,8 +469,10 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
                     public void onGranted() {
                         XPopupUtils.saveBmpToAlbum(getContext(), imageLoader, urls.get(getRealPosition()));
                     }
+
                     @Override
-                    public void onDenied() { }
+                    public void onDenied() {
+                    }
                 })
                 .request();
     }
@@ -483,15 +491,18 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
         @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, final int position) {
-            final int realPosition = isInfinite? position % urls.size() : position;
+            final int realPosition = isInfinite ? position % urls.size() : position;
             //1. build container
             FrameLayout fl = buildContainer(container.getContext());
             ProgressBar progressBar = buildProgressBar(container.getContext());
 
+            Log.e("1mean","urls1:" + urls);
+            Log.e("1mean","realPosition:" + realPosition);
             //2. add ImageView，maybe PhotoView or SubsamplingScaleImageView
             View view = imageLoader.loadImage(realPosition, urls.get(realPosition), ImageViewerPopupView.this, snapshotView
                     , progressBar);
 
+            Log.e("1mean","view:" + view);
             //3. add View
             fl.addView(view, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
@@ -502,13 +513,13 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
             return fl;
         }
 
-        private FrameLayout buildContainer(Context context){
+        private FrameLayout buildContainer(Context context) {
             FrameLayout fl = new FrameLayout(context);
             fl.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             return fl;
         }
 
-        private ProgressBar buildProgressBar(Context context){
+        private ProgressBar buildProgressBar(Context context) {
             ProgressBar progressBar = new ProgressBar(context);
             progressBar.setIndeterminate(true);
             int size = XPopupUtils.dp2px(container.getContext(), 40f);
@@ -525,7 +536,9 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
         }
 
         @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        }
+
         @Override
         public void onPageSelected(int i) {
             position = i;
@@ -537,7 +550,8 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
         }
 
         @Override
-        public void onPageScrollStateChanged(int state) { }
+        public void onPageScrollStateChanged(int state) {
+        }
     }
 
 }

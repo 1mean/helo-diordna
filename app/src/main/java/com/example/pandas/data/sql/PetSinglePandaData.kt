@@ -4602,7 +4602,7 @@ object PetSinglePandaData {
         panda279.code = 2262
         panda279.duration = 53
         panda279.period = PeriodType.SINGLE.ordinal
-        panda279.star = true
+        panda279.star = false
         panda279.title = "小和花的帅爸爸美兰来喽，又帅又奶，可可爱爱"
         panda279.releaseTime = 1634391015
         panda279.originalUrl = "https://www.bilibili.com/video/BV1tv411g7PF"

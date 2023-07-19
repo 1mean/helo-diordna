@@ -125,7 +125,7 @@
 
     <!--UserInfoActivity-->
     <color name="color_txt_name_userinfo">#2E333A</color>
-    <color name="color_bg_divider_userinfo">#E2E6E5</color>
+    <color name="color_bg_divider_userinfo">#e5e5e6</color>
     <color name="color_unselected_tab_userinfo">#60696C</color>
     <color name="color_bg_user_daily">#F1F2F4</color>
     <color name="color_bg_user_top">#ffffff</color>
@@ -313,7 +313,7 @@
     <color name="color_cache_item_name">#969AA0</color>
     <color name="color_txt_history_time">#909A9A</color>
     <color name="color_text_setting">#02091D</color>
-    <color name="color_text_setting_info">#ADB4BE</color>
+    <color name="color_text_setting_info">#92999f</color>
     <color name="color_audio_menu_singer">#808892</color>
     <color name="color_player_controller_bg">#99000000</color>
 

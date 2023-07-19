@@ -2773,7 +2773,7 @@ object PetGroupPandaData {
         panda164.fileName = "panda_group_panda164"
         panda164.code = 639
         panda164.duration = 55
-        panda164.star = true
+        panda164.star = false
         panda164.title = "大熊猫肉肉头套被踩变松狮"
         panda164.releaseTime = 1567422310
         panda164.period = PeriodType.GROUP.ordinal

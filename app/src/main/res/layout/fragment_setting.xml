@@ -286,7 +286,7 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                                 style="@style/style_mine_fragment_card_image"
-                                android:layout_marginStart="10dp"
+                                android:layout_marginStart="15dp"
                                 android:src="@mipmap/img_self_down_new" />
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -301,7 +301,7 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                                 style="@style/style_mine_fragment_card_image"
-                                android:layout_marginStart="10dp"
+                                android:layout_marginStart="15dp"
                                 android:src="@mipmap/img_self_history_new" />
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -319,7 +319,7 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                                 style="@style/style_mine_fragment_card_image"
-                                android:layout_marginStart="10dp"
+                                android:layout_marginStart="15dp"
                                 android:src="@mipmap/img_self_collect_new" />
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -334,7 +334,7 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                                 style="@style/style_mine_fragment_card_image"
-                                android:layout_marginStart="10dp"
+                                android:layout_marginStart="15dp"
                                 android:src="@mipmap/img_self_later_new" />
 
                         <androidx.appcompat.widget.AppCompatTextView

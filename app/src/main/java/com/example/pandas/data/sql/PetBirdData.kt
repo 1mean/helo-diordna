@@ -199,7 +199,7 @@ object PetBirdData {
         bird12.fileName = "bird12"
         bird12.code = 888
         bird12.duration = 19
-        bird12.star = true
+        bird12.star = false
         bird12.title = "孔雀飞起来真的好美"
         bird12.releaseTime = 1581780831
         bird12.originalUrl = "https://www.bilibili.com/video/BV1S7411J7mE"

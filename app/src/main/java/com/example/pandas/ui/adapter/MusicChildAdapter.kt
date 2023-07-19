@@ -76,8 +76,8 @@ public class MusicChildAdapter(private val list: MutableList<MusicVo>, private v
         fun handle(position: Int) {
             val data = list[position]
             data.cover?.let {
-                loadCenterRoundedCornerImage(context, 30, it, cover)
-                //loadCenterImage(context,it,cover)
+//                loadCenterRoundedCornerImage(context, 30, it, cover)
+                loadCenterImage(context, it, cover)
             }
             name.text = data.audioName
             singer.text = data.singerName

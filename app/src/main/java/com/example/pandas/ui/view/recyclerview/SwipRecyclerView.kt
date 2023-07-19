@@ -153,7 +153,6 @@ open class SwipRecyclerView : RecyclerView {
 
     private fun dispatchLoadMore() {
 
-        Log.e("1mean","dispatchLoadMore mListener:$mListener")
         isLoadingData = true
         loadMoreView?.onLoading()//显示正在加载中
         mListener?.onLoadMore()

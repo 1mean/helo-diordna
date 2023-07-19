@@ -2716,7 +2716,7 @@ object PetMomPandaData {
         panda160.fileName = "panda_mom_panda160"
         panda160.code = 395
         panda160.duration = 127
-        panda160.star = true
+        panda160.star = false
         panda160.title = "【大熊猫淼淼&金双&金喜】想拍个母慈子孝，然而，淼淼你为啥画风突变……"
         panda160.releaseTime = 1636366266
         panda160.period = PeriodType.MOM.ordinal

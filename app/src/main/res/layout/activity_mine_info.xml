@@ -4,12 +4,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/color_bg_home">
+        android:background="@color/color_bg_recommend">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_info_top"
             android:layout_width="match_parent"
-            android:layout_height="54dp">
+            android:layout_height="54dp"
+            android:background="@color/color_bg_home">
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_self_info"
@@ -21,24 +22,27 @@
                 app:layout_constraintRight_toRightOf="@id/clayout_info_top"
                 android:text="@string/str_txt_mine_info"
                 android:textColor="@color/color_txt_mylove_self"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+                android:textSize="17sp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btn_self_back"
                 android:layout_width="54dp"
                 android:layout_height="match_parent"
-                android:src="@mipmap/img_more_back"
+                android:src="@mipmap/img_topview_back"
                 app:layout_constraintTop_toTopOf="@id/clayout_info_top"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_info_top"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_info_top"
                 android:background="@null" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <View
+            style="@style/style_user_info_drivider"
+            android:background="@color/color_bg_recommend" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_info_head"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="76dp"
             android:clickable="true"
             android:focusable="true"
             android:background="@drawable/selector_mine_info">
@@ -56,12 +60,12 @@
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_mine_info_header"
-                android:layout_width="33dp"
-                android:layout_height="33dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 app:layout_constraintTop_toTopOf="@id/clayout_info_head"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_info_head"
                 app:layout_constraintRight_toRightOf="@id/clayout_info_head"
-                android:layout_marginEnd="30dp" />
+                android:layout_marginEnd="40dp" />
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
@@ -74,17 +78,16 @@
 
         <View
                 android:layout_width="match_parent"
-                android:layout_height="0.3dp"
-                android:background="@color/color_bg_message_divider"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_info_head"
-                app:layout_constraintRight_toRightOf="@id/clayout_info_head"
+                android:layout_height="0.66dp"
+                android:background="@color/color_bg_divider_userinfo"
+                android:layout_marginStart="12dp"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_info_head" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_info_name"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:clickable="true"
             android:focusable="true"
             android:background="@drawable/selector_mine_info">
@@ -108,9 +111,9 @@
                 app:layout_constraintBottom_toBottomOf="@id/clayout_info_name"
                 app:layout_constraintRight_toRightOf="@id/clayout_info_name"
                 android:textColor="@color/color_text_setting_info"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:includeFontPadding="false"
-                android:layout_marginEnd="26dp" />
+                android:layout_marginEnd="36dp" />
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
@@ -123,17 +126,16 @@
 
         <View
                 android:layout_width="match_parent"
-                android:layout_height="0.3dp"
-                android:background="@color/color_bg_message_divider"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_info_name"
-                app:layout_constraintRight_toRightOf="@id/clayout_info_name"
+                android:layout_height="0.66dp"
+                android:background="@color/color_bg_divider_userinfo"
+                android:layout_marginStart="12dp"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_info_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_info_sex"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:clickable="true"
             android:focusable="true"
             android:background="@drawable/selector_mine_info">
@@ -157,9 +159,9 @@
                 app:layout_constraintBottom_toBottomOf="@id/clayout_info_sex"
                 app:layout_constraintRight_toRightOf="@id/clayout_info_sex"
                 android:textColor="@color/color_text_setting_info"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:includeFontPadding="false"
-                android:layout_marginEnd="26dp" />
+                android:layout_marginEnd="36dp" />
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
@@ -172,66 +174,16 @@
 
         <View
                 android:layout_width="match_parent"
-                android:layout_height="0.3dp"
-                android:background="@color/color_bg_message_divider"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_info_sex"
-                app:layout_constraintRight_toRightOf="@id/clayout_info_sex"
+                android:layout_height="0.66dp"
+                android:background="@color/color_bg_divider_userinfo"
+                android:layout_marginStart="12dp"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_info_sex" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clayout_info_num"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@drawable/selector_mine_info">
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/color_txt_mylove_self"
-                android:textSize="14sp"
-                android:text="@string/str_NO"
-                app:layout_constraintTop_toTopOf="@id/clayout_info_num"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_info_num"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_info_num"
-                android:layout_marginStart="15dp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_mine_info_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/clayout_info_num"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_info_num"
-                app:layout_constraintRight_toRightOf="@id/clayout_info_num"
-                android:textColor="@color/color_text_setting_info"
-                android:textSize="13sp"
-                android:includeFontPadding="false"
-                android:layout_marginEnd="26dp" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/img_self_arrow_right"
-                app:layout_constraintTop_toTopOf="@id/clayout_info_num"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_info_num"
-                app:layout_constraintRight_toRightOf="@id/clayout_info_num"
-                android:layout_marginEnd="12dp" />
-
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="0.3dp"
-                android:background="@color/color_bg_message_divider"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_info_num"
-                app:layout_constraintRight_toRightOf="@id/clayout_info_num"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_info_num" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_info_sign"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:clickable="true"
             android:focusable="true"
             android:background="@drawable/selector_mine_info">
@@ -255,10 +207,10 @@
                 app:layout_constraintBottom_toBottomOf="@id/clayout_info_sign"
                 app:layout_constraintRight_toRightOf="@id/clayout_info_sign"
                 android:textColor="@color/color_text_setting_info"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:text="这个人很神秘，什么都没有写"
                 android:includeFontPadding="false"
-                android:layout_marginEnd="26dp" />
+                android:layout_marginEnd="36dp" />
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
@@ -269,12 +221,76 @@
                 app:layout_constraintRight_toRightOf="@id/clayout_info_sign"
                 android:layout_marginEnd="12dp" />
 
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="0.3dp"
-                android:background="@color/color_bg_message_divider"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_info_sign"
-                app:layout_constraintRight_toRightOf="@id/clayout_info_sign"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_info_sign" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            style="@style/style_user_info_drivider"
+            android:background="@color/color_bg_recommend" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_info_num"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/selector_mine_info">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_txt_mylove_self"
+                android:textSize="14sp"
+                android:text="@string/str_NO"
+                app:layout_constraintTop_toTopOf="@id/clayout_info_num"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_info_num"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_info_num"
+                android:layout_marginStart="15dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_mine_info_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_info_num"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_info_num"
+                app:layout_constraintRight_toRightOf="@id/clayout_info_num"
+                android:textColor="@color/color_text_setting_info"
+                android:textSize="14sp"
+                android:includeFontPadding="false"
+                android:layout_marginEnd="12dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            style="@style/style_user_info_drivider"
+            android:background="@color/color_bg_recommend" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_header_wraper"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/selector_mine_info">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_txt_mylove_self"
+                android:textSize="14sp"
+                android:text="头像挂件"
+                app:layout_constraintTop_toTopOf="@id/clayout_header_wraper"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_header_wraper"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_header_wraper"
+                android:layout_marginStart="15dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/img_self_arrow_right"
+                app:layout_constraintTop_toTopOf="@id/clayout_header_wraper"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_header_wraper"
+                app:layout_constraintRight_toRightOf="@id/clayout_header_wraper"
+                android:layout_marginEnd="12dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

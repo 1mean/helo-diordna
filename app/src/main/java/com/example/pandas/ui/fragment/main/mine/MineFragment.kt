@@ -3,14 +3,19 @@ package com.example.pandas.ui.fragment.main.mine
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.lifecycleScope
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
+import com.example.pandas.biz.ext.getUserHeader
+import com.example.pandas.biz.ext.loadCenterImage
+import com.example.pandas.biz.ext.loadCircleBitmap
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
@@ -18,11 +23,17 @@ import com.example.pandas.databinding.FragmentSettingBinding
 import com.example.pandas.ui.activity.*
 import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.ui.ext.startToActivity
+import com.example.pandas.ui.ext.toastTopShow
 import com.example.pandas.ui.view.dialog.TimingBottomSheetDialog
 import com.example.pandas.utils.DarkModeUtils
+import com.example.pandas.utils.FileUtils
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.util.SmartGlideImageLoader
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.File
 
 /**
  * @description: 我的-设置
@@ -37,9 +48,6 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSettingBinding>(
     override fun initView(savedInstanceState: Bundle?) {
 
         //loadCircleImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
-        binding.imgMineHeader.post {
-            loadImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
-        }
 
         binding.imgMineHeader.setOnClickListener { showHeader() }
 
@@ -130,51 +138,106 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSettingBinding>(
         appViewModel.appColorType.observe(viewLifecycleOwner) {
         }
 
-        appViewModel.appColorType.observe(this) {
+        appViewModel.appColorType.observe(viewLifecycleOwner) {
             updateTop(it)
+        }
+
+        appViewModel.headerUpdate.observe(viewLifecycleOwner) {
+            if (it) {
+                lifecycleScope.launch {
+                    val bitmap = getUserHeader(mActivity)
+                    if (bitmap != null) {
+                        loadCircleBitmap(mActivity, bitmap, binding.imgMineHeader)
+                    }
+                }
+            }
         }
     }
 
     override fun firstOnResume() {
         mViewModel.getCurrentFollows(mActivity)
+
+        lifecycleScope.launch {
+            val bitmap = getUserHeader(mActivity)
+            if (bitmap == null) {
+                loadCenterImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
+            } else {
+                loadCircleBitmap(mActivity, bitmap, binding.imgMineHeader)
+            }
+        }
     }
 
     private fun showHeader() {
-        XPopup.Builder(context)
-            .isDestroyOnDismiss(true)
-            .asImageViewer(
-                binding.imgMineHeader,
-                AppInfos.HEAD_URL,
-                true,
-                Color.parseColor("#f1f1f1"),
-                -1,
-                0,
-                true,
-                Color.BLACK,
-                SmartGlideImageLoader(R.mipmap.liuyifei)
-            ) { popupView, position ->
-                Toast.makeText(
-                    requireContext(),
-                    "点击右下角保存",
-                    Toast.LENGTH_SHORT
-                ).show()
+
+        lifecycleScope.launch(Dispatchers.Default) {
+            val faceDir = FileUtils.getExternalFilePath(mActivity, "face")
+            val faceFile = File(faceDir, "${AppInfos.HEAD_AUTHOR}.jpg")
+            val url = if (faceFile.exists()) {
+                faceFile.absolutePath
+            } else {
+                AppInfos.HEAD_URL
             }
-            .show()
+            withContext(Dispatchers.Main) {
+                XPopup.Builder(context).isDestroyOnDismiss(true).asImageViewer(
+                    binding.imgMineHeader,
+                    url,
+                    true,
+                    Color.parseColor("#f1f1f1"),
+                    -1,
+                    0,
+                    true,
+                    Color.BLACK,
+                    SmartGlideImageLoader(R.mipmap.liuyifei)
+                ) { _, _ ->
+                    toastTopShow(mActivity, "点击右下角保存")
+                }.show()
+            }
+        }
     }
 
     private fun updateTop(status: Int) {
         if (status == 0) {
             binding.layoutMineTop.setBackgroundResource(R.color.color_bg_self)
             binding.clayoutTopInfo.setBackgroundResource(R.color.color_bg_self)
-            binding.txtMineName.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_mine_name))
-            binding.txtCoins.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_tab))
-            binding.txtSelfZone.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_tab))
-            binding.txtFan.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_tab))
-            binding.txtAttention.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_tab))
-            binding.txtZone.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_tab))
-            binding.txtMineZone.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_fans_self))
-            binding.txtMineFollow.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_fans_self))
-            binding.txtMineFans.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_fans_self))
+            binding.txtMineName.setTextColor(
+                ContextCompat.getColor(
+                    mActivity,
+                    R.color.color_txt_mine_name
+                )
+            )
+            binding.txtCoins.setTextColor(ContextCompat.getColor(mActivity, R.color.color_txt_tab))
+            binding.txtSelfZone.setTextColor(
+                ContextCompat.getColor(
+                    mActivity,
+                    R.color.color_txt_tab
+                )
+            )
+            binding.txtFan.setTextColor(ContextCompat.getColor(mActivity, R.color.color_txt_tab))
+            binding.txtAttention.setTextColor(
+                ContextCompat.getColor(
+                    mActivity,
+                    R.color.color_txt_tab
+                )
+            )
+            binding.txtZone.setTextColor(ContextCompat.getColor(mActivity, R.color.color_txt_tab))
+            binding.txtMineZone.setTextColor(
+                ContextCompat.getColor(
+                    mActivity,
+                    R.color.color_txt_fans_self
+                )
+            )
+            binding.txtMineFollow.setTextColor(
+                ContextCompat.getColor(
+                    mActivity,
+                    R.color.color_txt_fans_self
+                )
+            )
+            binding.txtMineFans.setTextColor(
+                ContextCompat.getColor(
+                    mActivity,
+                    R.color.color_txt_fans_self
+                )
+            )
             binding.imgZoneTo.setImageResource(R.mipmap.img_setting_top_arror)
 
 
@@ -183,15 +246,25 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSettingBinding>(
         } else {
             binding.layoutMineTop.setBackgroundResource(AppInfos.bgColors[status])
             binding.clayoutTopInfo.setBackgroundResource(AppInfos.bgColors[status])
-            binding.txtMineName.setTextColor(ContextCompat.getColor(mActivity,R.color.white))
-            binding.txtCoins.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_top))
-            binding.txtSelfZone.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_top))
-            binding.txtFan.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_top))
-            binding.txtAttention.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_top))
-            binding.txtZone.setTextColor(ContextCompat.getColor(mActivity,R.color.color_txt_top))
-            binding.txtMineZone.setTextColor(ContextCompat.getColor(mActivity,R.color.white))
-            binding.txtMineFollow.setTextColor(ContextCompat.getColor(mActivity,R.color.white))
-            binding.txtMineFans.setTextColor(ContextCompat.getColor(mActivity,R.color.white))
+            binding.txtMineName.setTextColor(ContextCompat.getColor(mActivity, R.color.white))
+            binding.txtCoins.setTextColor(ContextCompat.getColor(mActivity, R.color.color_txt_top))
+            binding.txtSelfZone.setTextColor(
+                ContextCompat.getColor(
+                    mActivity,
+                    R.color.color_txt_top
+                )
+            )
+            binding.txtFan.setTextColor(ContextCompat.getColor(mActivity, R.color.color_txt_top))
+            binding.txtAttention.setTextColor(
+                ContextCompat.getColor(
+                    mActivity,
+                    R.color.color_txt_top
+                )
+            )
+            binding.txtZone.setTextColor(ContextCompat.getColor(mActivity, R.color.color_txt_top))
+            binding.txtMineZone.setTextColor(ContextCompat.getColor(mActivity, R.color.white))
+            binding.txtMineFollow.setTextColor(ContextCompat.getColor(mActivity, R.color.white))
+            binding.txtMineFans.setTextColor(ContextCompat.getColor(mActivity, R.color.white))
             binding.imgZoneTo.setImageResource(R.mipmap.img_setting_top_arror_white)
 
 

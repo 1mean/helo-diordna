@@ -1548,7 +1548,7 @@ object PetMomPandaData2 {
         panda395.fileName = "panda_mom_panda395"
         panda395.code = 1481
         panda395.duration = 292
-        panda395.star = true
+        panda395.star = false
         panda395.title = "【绩笑】和妈妈排排坐，吃笋笋"
         panda395.releaseTime = 1592381158
         panda395.period = PeriodType.MOM.ordinal

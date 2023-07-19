@@ -76,7 +76,7 @@ fun loadCenterImage(context: Context, url: String?, view: ImageView) {
             target: Target<Bitmap>?,
             isFirstResource: Boolean
         ): Boolean {
-            Log.e("1mean","exception:$exception")
+            Log.e("1mean", "exception:$exception, thread:${Thread.currentThread()}")
             return false
         }
 

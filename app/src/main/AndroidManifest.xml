@@ -136,20 +136,9 @@
 
                 android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <!--分享7.1.7SDK适配微信官方的v6.8.0版本，需要在工程AndroidManifest.xml清单文件中增加-->
-        <!--        <provider-->
-        <!--                android:name="androidx.core.content.FileProvider"-->
-        <!--                android:authorities="${applicationId}.fileprovider"-->
-        <!--                android:exported="false"-->
-        <!--                android:grantUriPermissions="true">-->
-        <!--            <meta-data-->
-        <!--                    android:name="android.support.FILE_PROVIDER_PATHS"-->
-        <!--                    android:resource="@xml/filepaths" />-->
-        <!--        </provider>-->
-
         <provider
                 android:name="androidx.core.content.FileProvider"
-                android:authorities="com.example.hello_diordna.fileprovider"
+                android:authorities="${applicationId}.fileProvider"
                 android:exported="false"
                 android:grantUriPermissions="true">
             <meta-data
