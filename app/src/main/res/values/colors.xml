@@ -224,7 +224,7 @@
     <color name="color_bg_music_item_press">#eaedf6</color>
     <color name="color_bg_music_top">#F1F2F4</color>
     <color name="color_bg_music_notice">#ffffff</color>
-    <color name="color_txt_music_notice">#505050</color>
+    <color name="color_txt_music_notice">#98a4ad</color>
 
 
     <!--video-->

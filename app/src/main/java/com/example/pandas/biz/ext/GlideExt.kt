@@ -64,19 +64,34 @@ fun loadCenterRoundedCornerImage(context: Context, radius: Int, url: String?, vi
 }
 
 /**
- * 常规居中
+ * 常规居中 url == null也行
  */
 fun loadCenterImage(context: Context, url: String?, view: ImageView) {
     val options =
         RequestOptions.bitmapTransform(MultiTransformation(CenterCrop()))
-    Glide.with(context).load(url).apply(options).placeholder(R.color.color_bg_video_item)
+    Glide.with(context).asBitmap().load(url).listener(object : RequestListener<Bitmap> {
+        override fun onLoadFailed(
+            exception: GlideException?,
+            model: Any?,
+            target: Target<Bitmap>?,
+            isFirstResource: Boolean
+        ): Boolean {
+            Log.e("1mean","exception:$exception")
+            return false
+        }
+
+        override fun onResourceReady(
+            resource: Bitmap?,
+            model: Any?,
+            target: Target<Bitmap>?,
+            dataSource: DataSource?,
+            isFirstResource: Boolean
+        ): Boolean {
+            return false
+        }
+
+    }).apply(options).placeholder(R.color.color_bg_video_item)
         .into(view)
-//    if (url == null) {
-//        Glide.with(context).load(R.mipmap.img_null_01).apply(options).into(view)
-//    } else {
-//        Glide.with(context).load(url).apply(options).placeholder(R.color.color_bg_video_item)
-//            .into(view)
-//    }
 }
 
 /**

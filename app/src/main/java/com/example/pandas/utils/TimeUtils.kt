@@ -119,12 +119,23 @@ object TimeUtils {
         }
     }
 
-    fun isYesterday(time: Long): Boolean {
-        val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
-        val calendar = Calendar.getInstance()
-        calendar[Calendar.HOUR_OF_DAY] = -24 //用小时来判断，不能用day来判断，会出现6月1号前一天是5月30号
-        val yesterdayDate: String = dateFormat.format(calendar.time)
-        return true
+    fun getSpaceOfTime(parseTime: Long): Int {
+        val inputTime = if (parseTime.toString().length == 10) {
+            parseTime * 1000
+        } else {
+            parseTime
+        }
+        //当前时间
+        val currentTime = Calendar.getInstance()
+        //要转换的时间
+        val time = Calendar.getInstance()
+        time.timeInMillis = inputTime
+        //年相同
+        if (currentTime[Calendar.YEAR] == time[Calendar.YEAR]) {
+            return currentTime[Calendar.DAY_OF_YEAR] - time[Calendar.DAY_OF_YEAR]
+        } else {
+            return 9999
+        }
     }
 
     /**

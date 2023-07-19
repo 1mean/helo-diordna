@@ -2734,22 +2734,22 @@ object PetGroupPandaData {
         panda161.vertical = false
         list.add(panda161)
 
-        val panda162 = PetVideo()
-        panda162.type = VideoType.PANDA.ordinal
-        panda162.fileName = "panda_group_panda162"
-        panda162.code = 637
-        panda162.duration = 738
-        panda162.star = false
-        panda162.title = "和叶弟弟欺负姐姐和花"
-        panda162.releaseTime = 1639946732
-        panda162.period = PeriodType.GROUP.ordinal
-        panda162.originalUrl = "https://www.bilibili.com/video/BV1pb4y1q7Kh"
-        panda162.tags = "月亮四熊,和花，和叶，润玥，艾玖"
-        panda162.authorId = 526448310
-        panda162.cover =
-            "https://i2.hdslb.com/bfs/archive/eecee607a67d46d8f0ccb20fd0bb3b74c56ad5b8.jpg"
-        panda162.vertical = true
-        list.add(panda162)
+//        val panda162 = PetVideo()
+//        panda162.type = VideoType.PANDA.ordinal
+//        panda162.fileName = "panda_group_panda162"
+//        panda162.code = 637
+//        panda162.duration = 738
+//        panda162.star = false
+//        panda162.title = "和叶弟弟欺负姐姐和花"
+//        panda162.releaseTime = 1639946732
+//        panda162.period = PeriodType.GROUP.ordinal
+//        panda162.originalUrl = "https://www.bilibili.com/video/BV1pb4y1q7Kh"
+//        panda162.tags = "月亮四熊,和花，和叶，润玥，艾玖"
+//        panda162.authorId = 526448310
+//        panda162.cover =
+//            "https://i2.hdslb.com/bfs/archive/eecee607a67d46d8f0ccb20fd0bb3b74c56ad5b8.jpg"
+//        panda162.vertical = true
+//        list.add(panda162)
 
         val panda163 = PetVideo()
         panda163.type = VideoType.PANDA.ordinal

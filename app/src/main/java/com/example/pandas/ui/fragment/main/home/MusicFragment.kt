@@ -1,5 +1,6 @@
 package com.example.pandas.ui.fragment.main.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelStoreOwner
@@ -12,6 +13,7 @@ import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.FragmentMusicBinding
 import com.example.pandas.ui.activity.MoreDataListActivity
+import com.example.pandas.ui.activity.OneVerticalList2Activity
 import com.example.pandas.ui.adapter.MusicTopAdapter
 import com.example.pandas.ui.adapter.MusicVPAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
@@ -113,7 +115,11 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
         })
 
         binding.clayoutMusicNotice.setOnClickListener {
-            MoreDataListActivity.startMoreDataActivity(mActivity, VideoType.MUSIC.ordinal)
+            val intent =
+                Intent(mActivity, OneVerticalList2Activity::class.java)
+                    .putExtra("title", "音乐视频")
+                    .putExtra("type", VideoType.MUSIC.ordinal)
+            mActivity.startActivity(intent)
         }
 
         appViewModel.appColorType.value?.let {

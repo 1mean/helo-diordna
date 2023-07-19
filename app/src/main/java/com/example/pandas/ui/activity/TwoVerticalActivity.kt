@@ -67,32 +67,14 @@ public class TwoVerticalActivity :
             isShowMore = !isShowMore
         }
 
-
-
-
         binding.barCmBanner.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             if (verticalOffset < 0 && verticalOffset < -157) {
                 binding.tbBannerList.visibility = View.VISIBLE
-                binding.txtBannerListTitle.visibility = View.GONE
+                binding.txtBannerListTitle.alpha = 0f
             } else {
                 binding.tbBannerList.visibility = View.GONE
-                binding.txtBannerListTitle.visibility = View.VISIBLE
+                binding.txtBannerListTitle.alpha = 1.0f
             }
-//            if (verticalOffset == 0) {
-//                binding.txtCmBannerTitle.visibility = View.GONE
-//                binding.btnCmBannerLeft.visibility = View.GONE
-//
-//            } else if (abs(verticalOffset) >= 0.5 * appBarLayout.totalScrollRange) {
-//                binding.tbBannerList.visibility = View.VISIBLE
-//                if (!binding.txtCmBannerTitle.isVisible) {
-//                    binding.txtCmBannerTitle.visibility = View.VISIBLE
-//                    binding.btnCmBannerLeft.visibility = View.VISIBLE
-//                    binding.txtCmBannerTitle.text = title
-//                }
-//            } else {
-//                binding.txtCmBannerTitle.visibility = View.GONE
-//                binding.btnCmBannerLeft.visibility = View.GONE
-//            }
         })
 
         binding.rvBannerList.init(

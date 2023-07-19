@@ -2,6 +2,7 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.pandas.app.AppInfos
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.bean.LandscapeData
 import com.example.pandas.bean.MusicBean
@@ -34,6 +35,7 @@ class HomePageViewModel : BaseViewModel() {
     var hasMore = true//是否有更多
     var hotHasMore = true//是否有更多
     var pandaHasMore = true//是否有更多
+    private var videoCodes: MutableList<Int> = mutableListOf()
 
     /***********************************************************************************
      * LiveData是不可变的，MutableLiveData是可变的
@@ -67,17 +69,24 @@ class HomePageViewModel : BaseViewModel() {
     fun getPagePet(isRefresh: Boolean) {
 
         if (isRefresh) {
-            petIndex = 0
+            videoCodes.clear()
+            videoCodes.addAll(AppInfos.bestPandaVideoCodes)
         }
-        request({ PetManagerCoroutine.getPetByPage(petIndex, 21, isRefresh) },
+        val selects = mutableListOf<Int>()
+        for (i in 0 until 20) {
+            if (videoCodes.isEmpty()) {
+                break
+            }
+            val selected = videoCodes.random()
+            selects.add(selected)
+            videoCodes.remove(selected)
+        }
+
+        request({ PetManagerCoroutine.getSelectedVideo(selects) },
             {
                 //请求数据成功
-                pandaHasMore = if (it.size > 20) {
-                    it.removeLast()
-                    true
-                } else {
-                    false
-                }
+                pandaHasMore = videoCodes.isNotEmpty()
+
                 val dataList = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = isRefresh,
@@ -86,7 +95,6 @@ class HomePageViewModel : BaseViewModel() {
                     isFirstEmpty = isRefresh && it.isEmpty(),
                     listData = it
                 )
-                petIndex += 20
                 petDataWrapper.value = dataList
             },
             {

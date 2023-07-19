@@ -27,6 +27,7 @@ public class HistoryViewModeL : BaseViewModel() {
     val groupListResult: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
     val createResult: MutableLiveData<Boolean> by lazy { MutableLiveData() }
     val removeResult: MutableLiveData<Boolean> by lazy { MutableLiveData() }
+    val removeHistoryResult: MutableLiveData<UIDataWrapper<HistoryItem>> by lazy { MutableLiveData() }
 
     private var startIndex = 0
     private var groupStartIndex = 0
@@ -187,9 +188,32 @@ public class HistoryViewModeL : BaseViewModel() {
 
     fun removeHistory(list: MutableList<History>, removeAll: Boolean) {
 
-        viewModelScope.launch {
-            PetManagerCoroutine.removeHistory(list, removeAll)
-        }
+        request({ PetManagerCoroutine.removeHistory(list, removeAll) },
+            {
+                var hasmore = false
+                if (!removeAll) {
+                    if (it.size >= 21) {
+                        hasmore = true
+                        it.removeLast()
+                    }
+                    startIndex = it.size
+                }
+                val dataList = UIDataWrapper(
+                    isSuccess = true,
+                    isEmpty = it.isEmpty(),
+                    hasMore = hasmore,
+                    listData = it
+                )
+                removeHistoryResult.value = dataList
+            },
+            {
+                val dataList = UIDataWrapper(
+                    isSuccess = false,
+                    errMessage = it.errorMsg,
+                    listData = mutableListOf<HistoryItem>()
+                )
+                removeHistoryResult.value = dataList
+            })
     }
 
     fun removeLaters(list: MutableList<PetVideo>, removeAll: Boolean) {

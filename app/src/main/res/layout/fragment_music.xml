@@ -97,6 +97,7 @@
                                 app:layout_constraintRight_toRightOf="@id/clayout_music_notice"
                                 android:layout_marginEnd="30dp"
                                 android:textSize="12sp"
+                                android:includeFontPadding="false"
                                 android:text="更多音乐视频"
                                 android:textColor="@color/color_txt_music_notice" />
 
@@ -107,15 +108,25 @@
                                 app:layout_constraintBottom_toBottomOf="@id/clayout_music_notice"
                                 app:layout_constraintLeft_toLeftOf="@id/clayout_music_notice"
                                 android:layout_marginStart="10dp"
-                                android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:text="歌曲"
-                                android:textColor="@color/color_txt_music_notice" />
+                                android:textSize="17sp"
+                                android:includeFontPadding="false"
+                                android:text="@string/string_love_music"
+                                android:textColor="@color/color_txt_music_item_name" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/img_music_forward"
+                                app:layout_constraintTop_toTopOf="@id/clayout_music_notice"
+                                app:layout_constraintBottom_toBottomOf="@id/clayout_music_notice"
+                                app:layout_constraintLeft_toLeftOf="@id/clayout_music_notice"
+                                android:layout_marginStart="40dp"
+                                android:visibility="gone"
+                                android:src="@mipmap/img_music_notice" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/img_music_right2"
                                 app:layout_constraintTop_toTopOf="@id/clayout_music_notice"
                                 app:layout_constraintBottom_toBottomOf="@id/clayout_music_notice"
                                 app:layout_constraintRight_toRightOf="@id/clayout_music_notice"
@@ -168,8 +179,10 @@
                     app:tabTextColor="@color/color_home_music_text_unselected"
                     app:tabTextAppearance="@style/MusicTabLayoutTextStyle"
                     app:tabIndicator="@drawable/layer_music_indicator"
-                    app:tabIndicatorColor="@color/color_home_music_indicator"
+                    app:tabIndicatorColor="@color/color_self_cache_title"
                     app:tabRippleColor="@android:color/transparent" />
+
+            <!--app:tabIndicatorColor="@color/color_home_music_indicator"-->
             <!--
                         <com.example.pandas.ui.view.MyTabLayout
                                 android:id="@+id/tab_music"

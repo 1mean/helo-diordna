@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
+import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.databinding.AdapterMusicChildBinding
 import com.example.pandas.databinding.LayoutTopMusicBinding
@@ -21,18 +22,7 @@ import com.example.pandas.ui.ext.startMusicActivity
 public class MusicChildAdapter(private val list: MutableList<MusicVo>, private val bgType: Int) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val TYPE_TOP = 1
-    private val TYPE_MUSIC_ITEM = 2
-
     val backgroundColors = arrayOf(R.drawable.ripple_music_item, R.drawable.ripple_music_item2)
-
-//    override fun getItemViewType(position: Int): Int {
-//        return if (position == 0) {
-//            TYPE_TOP
-//        } else {
-//            TYPE_MUSIC_ITEM
-//        }
-//    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun refreshAdapter(data: MutableList<MusicVo>) {
@@ -51,31 +41,12 @@ public class MusicChildAdapter(private val list: MutableList<MusicVo>, private v
         if (data.isNotEmpty()) {
             val size = list.size
             list.addAll(data)
-//            notifyItemRangeInserted(size + 1, data.size)
             notifyItemRangeInserted(size, data.size)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-//        when (viewType) {
-//            TYPE_MUSIC_ITEM -> {
-//                val binding = AdapterMusicChildBinding.inflate(
-//                    LayoutInflater.from(parent.context),
-//                    parent,
-//                    false
-//                )
-//                return MusicItemViewHolder(binding)
-//            }
-//            else -> {
-//                val binding = LayoutTopMusicBinding.inflate(
-//                    LayoutInflater.from(parent.context),
-//                    parent,
-//                    false
-//                )
-//                return MusicTopViewHolder(binding)
-//            }
-//        }
         val binding = AdapterMusicChildBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -86,15 +57,9 @@ public class MusicChildAdapter(private val list: MutableList<MusicVo>, private v
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-//        if (getItemViewType(position) == TYPE_MUSIC_ITEM) {
-//            (holder as MusicItemViewHolder).handle(position)
-//        } else if (getItemViewType(position) == TYPE_TOP) {
-//            (holder as MusicTopViewHolder).handle()
-//        }
         (holder as MusicItemViewHolder).handle(position)
     }
 
-    //    override fun getItemCount(): Int = list.size + 1
     override fun getItemCount(): Int = list.size
 
 
@@ -109,10 +74,10 @@ public class MusicChildAdapter(private val list: MutableList<MusicVo>, private v
         val likeView = binding.imgMusicItemLike
 
         fun handle(position: Int) {
-//            val data = list[position - 1]
             val data = list[position]
             data.cover?.let {
                 loadCenterRoundedCornerImage(context, 30, it, cover)
+                //loadCenterImage(context,it,cover)
             }
             name.text = data.audioName
             singer.text = data.singerName

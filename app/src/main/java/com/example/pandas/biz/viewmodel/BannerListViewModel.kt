@@ -3,6 +3,7 @@ package com.example.pandas.biz.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.pandas.app.AppInfos
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.bean.BannerListBean
 import com.example.pandas.bean.LandscapeData
@@ -23,48 +24,58 @@ import kotlinx.coroutines.launch
 public class BannerListViewModel : BaseViewModel() {
 
     val bannerList: MutableLiveData<UIDataWrapper<BannerListBean>> by lazy { MutableLiveData() }
+    val bestList: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
 
-    private var startIndex = 0
-    private var counts = 0
-    private var hasMore = false
+    private var pages = 10
+    private var videoCodes: MutableList<Int> = mutableListOf()
 
-    fun getBannerList(isRefresh: Boolean) {
+    fun getBest(isRefresh: Boolean) {
+
         if (isRefresh) {
-            startIndex = 0
-            counts = 26
+            pages = 25
+            videoCodes.clear()
+            videoCodes.addAll(AppInfos.bestPandaVideoCodes + AppInfos.bestBeautyVideoCodes + AppInfos.bestAnimalVideoCodes)
         } else {
-            counts = 21
+            pages = 20
         }
-        viewModelScope.launch {
-            runCatching {
-                PetManagerCoroutine.getCMBannerList(startIndex, counts)
-            }.onSuccess {
-                val itemList = it.itemList
-                Log.e("1mean","itemList: ${itemList.size}")
-                hasMore = if (itemList.isNotEmpty() && itemList.size > 20) {
-                    itemList.removeLast()
-                    true
-                } else {
-                    false
+
+        val selects = mutableListOf<Int>()
+        for (i in 0 until pages) {
+            if (videoCodes.isEmpty()) {
+                break
+            }
+            val selected = videoCodes.random()
+            selects.add(selected)
+            videoCodes.remove(selected)
+        }
+
+        Log.e("1mean","selects size: ${selects.size}")
+        request({
+            PetManagerCoroutine.getSelectedVideoUser(selects)
+        },
+            {
+                var hasMore = false
+                if (videoCodes.isNotEmpty()) {
+                    hasMore = true
                 }
-                val dataList = UIDataWrapper<BannerListBean>(
+
+                val dataList = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = isRefresh,
+                    isEmpty = it.isEmpty(),
                     hasMore = hasMore,
-                    isFirstEmpty = isRefresh && it.bannerList.isEmpty(),
-                    bannerList = it
+                    listData = it
                 )
-                startIndex += counts
-                bannerList.value = dataList
-            }.onFailure {
-                val dataList = UIDataWrapper<BannerListBean>(
+                bestList.value = dataList
+            },
+            {
+                val dataList = UIDataWrapper(
                     isSuccess = false,
-                    errMessage = it.message.toString(),
+                    errMessage = it.errorMsg,
                     isRefresh = isRefresh,
-                    bannerList = BannerListBean()
+                    listData = mutableListOf<VideoAndUser>()
                 )
-                bannerList.value = dataList
-            }
-        }
+                bestList.value = dataList
+            })
     }
 }

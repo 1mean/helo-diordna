@@ -10,6 +10,7 @@ import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.sql.dao.PetVideoDao
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.sql.entity.*
+import com.example.pandas.utils.TimeUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -430,12 +431,17 @@ class PetManager {
         }
     }
 
-    suspend fun removeHistory(list: MutableList<History>, isAll: Boolean) {
-        withContext(Dispatchers.Default) {
+    suspend fun removeHistory(
+        list: MutableList<History>,
+        isAll: Boolean
+    ): MutableList<HistoryItem> {
+        return withContext(Dispatchers.Default) {
             if (isAll) {
                 petDao.deleteAllHistory()
+                mutableListOf<HistoryItem>()
             } else {
                 petDao.deleteAllHistory(list)
+                getHistory(0, 21)
             }
         }
     }
@@ -717,15 +723,44 @@ class PetManager {
 
         return withContext(Dispatchers.Default) {
 
+            var hasToday = false
+            var hasYesterday = false
+            var hasolder = false
             val historyList = mutableListOf<HistoryItem>()
-            val history = petDao.queryHistoryByPage(startIndex, counts)
-            history.forEach {
-                val videoUser = petDao.queryVideoUserByCode(it.code)
-                if (videoUser != null) {
-                    videoUser.video.user = videoUser.user
-                    videoUser.video.videoData = petDao.queryVideoDataByCode(it.code)
-                    val historyItem = HistoryItem(it, videoUser.video)
-                    historyList.add(historyItem)
+            val history = if (startIndex != 0) {//防止下一次的第一条后，又添加一次title，导致title重复了
+                petDao.queryHistoryByPage(startIndex - 1, counts)
+            } else {
+                petDao.queryHistoryByPage(startIndex, counts)
+            }
+            history.forEachIndexed { index, his ->
+                val parseTime = his.lastTime
+                val spaceTime = TimeUtils.getSpaceOfTime(parseTime)
+                if (startIndex != 0 && index == 0) {//避免重复显示title，拿上一批数据的最后一个来判断
+                    if (spaceTime == 0) {
+                        hasToday = true
+                    } else if (spaceTime == 1) {
+                        hasYesterday = true
+                    } else if (spaceTime > 1) {
+                        hasolder = true
+                    }
+                } else {
+                    if (!hasToday && spaceTime == 0) {
+                        historyList.add(0, HistoryItem(type = 1, title = "今天"))
+                        hasToday = true
+                    } else if (!hasYesterday && spaceTime == 1) {
+                        historyList.add(HistoryItem(type = 1, title = "昨天"))
+                        hasYesterday = true
+                    } else if (!hasolder && spaceTime > 1) {
+                        historyList.add(HistoryItem(type = 1, title = "更早"))
+                        hasolder = true
+                    }
+                    val videoUser = petDao.queryVideoUserByCode(his.code)
+                    if (videoUser != null) {
+                        videoUser.video.user = videoUser.user
+                        videoUser.video.videoData = petDao.queryVideoDataByCode(his.code)
+                        val historyItem = HistoryItem(his, videoUser.video)
+                        historyList.add(historyItem)
+                    }
                 }
             }
             historyList

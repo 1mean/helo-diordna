@@ -2,14 +2,20 @@ package com.example.pandas.ui.adapter
 
 import android.annotation.SuppressLint
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.bean.HistoryItem
+import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
+import com.example.pandas.databinding.AdapterHistoryItemBinding
+import com.example.pandas.databinding.AdapterItemTitleHistoryBinding
 import com.example.pandas.sql.entity.History
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.utils.TimeUtils
@@ -23,15 +29,16 @@ import com.example.pandas.utils.TimeUtils
 public class HistoryAdapter(
     private var list: MutableList<HistoryItem> = mutableListOf(),
     private val listener: HistoryListener
-) :
-    BaseCommonAdapter<HistoryItem>(list) {
+) : Adapter<ViewHolder>() {
 
+    private val TYPE_ITEM = 0
+    private val TYPE_TITLE = 1
+
+    //今天，昨天，更早
     private var isShow: Boolean = false
     private var isSelectAll: Boolean = false
 
     private var selectMaps: MutableMap<Int, History> = mutableMapOf()
-
-    override fun getLayoutId(): Int = R.layout.adapter_history_item
 
     interface HistoryListener {
         fun onLongClick()
@@ -47,29 +54,31 @@ public class HistoryAdapter(
     }
 
 
-    fun delete(){
-        if (isSelectAll) {
-            list.clear()
-            selectMaps.clear()
-        } else {
-            //解决ConcurrentModificationException异常，调用list.remove()方法导致modCount和expectedModCount的值不一致。
-            // 注意，像使用for-each进行迭代实际上也会出现这种问题
-            val iterator = list.iterator()
-            while (iterator.hasNext()) {
-                val next = iterator.next()
-                if (next.selected) {
-                    iterator.remove()
-                }
-            }
-            selectMaps.clear()
-        }
-        notifyAdapter()
-    }
+//    fun delete() {
+//        if (isSelectAll) {
+//            list.clear()
+//            selectMaps.clear()
+//        } else {
+//            //解决ConcurrentModificationException异常，调用list.remove()方法导致modCount和expectedModCount的值不一致。
+//            // 注意，像使用for-each进行迭代实际上也会出现这种问题
+//            val iterator = list.iterator()
+//            while (iterator.hasNext()) {
+//                val next = iterator.next()
+//                if (next.selected) {
+//                    iterator.remove()
+//                }
+//            }
+//            selectMaps.clear()
+//        }
+//        notifyDataSetChanged()
+//    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun onRefreshAdapter(newList: MutableList<HistoryItem>) {
 
         if (newList.isNotEmpty() && newList != list) {
+            isShow = false
+            selectMaps.clear()
             list.clear()
             list.addAll(newList)
             notifyDataSetChanged()
@@ -83,7 +92,7 @@ public class HistoryAdapter(
             if (isSelectAll) {
                 newList.forEachIndexed { index, historyItem ->
                     historyItem.selected = true
-                    historyItem.history?.let { selectMaps.put(size + index, it) }
+                    historyItem.history?.let { selectMaps[size + index] = it }
                 }
             }
             list.addAll(newList)
@@ -128,6 +137,7 @@ public class HistoryAdapter(
                 selectMaps[index] = historyItem.history!!
             }
         }
+
         notifyDataSetChanged()
     }
 
@@ -136,83 +146,130 @@ public class HistoryAdapter(
         notifyDataSetChanged()
     }
 
-    override fun convert(holder: BaseViewHolder, data: HistoryItem, position: Int) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val context = holder.itemView.context
-        val cover = holder.getWidget<AppCompatImageView>(R.id.img_history_cover)
-        val duration = holder.getWidget<AppCompatTextView>(R.id.txt_history_duration)
-        val title = holder.getWidget<AppCompatTextView>(R.id.txt_history_name)
-        val time = holder.getWidget<AppCompatTextView>(R.id.txt_history_time)
-        val name = holder.getWidget<AppCompatTextView>(R.id.txt_history_up)
-        val select = holder.getWidget<AppCompatImageView>(R.id.ibn_history_item_select)
-
-        val history = data.history
-        val video = data.video
-        val user = data.video?.user
-
-        user?.let {
-            name.text = it.userName
-        }
-
-        if (isShow) {
-            select.visibility = View.VISIBLE
+        return if (viewType == TYPE_TITLE) {
+            val binding = AdapterItemTitleHistoryBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+            TitleViewHolder(binding)
         } else {
-            select.visibility = View.GONE
+            val binding = AdapterHistoryItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+            ItemViewHolder(binding)
         }
+    }
 
-        if (data.selected) {
-            select.setImageResource(R.mipmap.img_history_selected)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        if (getItemViewType(position) == TYPE_TITLE) {
+            (holder as TitleViewHolder).handle(position)
         } else {
-            select.setImageResource(R.mipmap.img_history_unselect)
+            (holder as ItemViewHolder).handle(position)
         }
+    }
 
-        video?.let {
-            loadCenterRoundedCornerImage(context, 15, it.cover, cover)
-            title.text = it.title
+    override fun getItemCount(): Int = list.size
 
-            val videoDuration = TimeUtils.getMMDuration(it.duration.toLong())
-            history?.let { his ->
-                his.playPosition?.let { pos ->
-                    duration.text =
-                        StringBuilder(pos).append(" / ").append(videoDuration).toString()
-                }
+    override fun getItemViewType(position: Int): Int = list[position].type
+
+    inner class ItemViewHolder(binding: AdapterHistoryItemBinding) : ViewHolder(binding.root) {
+
+        val context = itemView.context
+        val cover = binding.imgHistoryCover
+        val duration = binding.txtHistoryDuration
+        val title = binding.txtHistoryName
+        val time = binding.txtHistoryTime
+        val name = binding.txtHistoryUp
+        val select = binding.ibnHistoryItemSelect
+
+        fun handle(position: Int) {
+
+            val historyItem = list[position]
+            val history = historyItem.history
+            val video = historyItem.video
+            val user = historyItem.video?.user
+
+            user?.let {
+                name.text = it.userName
             }
 
-            holder.itemView.setOnLongClickListener {
-                if (!isShow) {
-                    data.selected = true
-                    data.history?.let { it1 -> selectMaps.put(position, it1) }
-                    isShow = true
-                    listener.onLongClick()
-                    notifyAdapter()
-                }
-                true
+            if (isShow) {
+                select.visibility = View.VISIBLE
+            } else {
+                select.visibility = View.GONE
             }
 
-            holder.itemView.setOnClickListener { _ ->
-                if (isShow) {
-                    if (isSelectAll) {
-                        isSelectAll = false
-                        listener.cancelAllSelected()
+            if (historyItem.selected) {
+                select.setImageResource(R.mipmap.img_history_selected)
+            } else {
+                select.setImageResource(R.mipmap.img_history_unselect)
+            }
+
+            video?.let {
+                loadCenterImage(context, it.cover, cover)
+//                loadCenterRoundedCornerImage(context, 15, it.cover, cover)
+                title.text = it.title
+
+                val videoDuration = TimeUtils.getMMDuration(it.duration.toLong())
+                history?.let { his ->
+                    his.playPosition?.let { pos ->
+                        duration.text =
+                            StringBuilder(pos).append(" / ").append(videoDuration).toString()
                     }
-                    if (data.selected) {
-                        if (selectMaps.containsKey(position)) {
-                            selectMaps.remove(position)
+                }
+
+                itemView.setOnLongClickListener {
+                    if (!isShow) {
+                        historyItem.selected = true
+                        historyItem.history?.let { it1 -> selectMaps.put(position, it1) }
+                        isShow = true
+                        listener.onLongClick()
+                        notifyAdapter()
+                    }
+                    true
+                }
+
+                itemView.setOnClickListener { _ ->
+                    if (isShow) {
+                        if (isSelectAll) {
+                            isSelectAll = false
+                            listener.cancelAllSelected()
                         }
-                        select.setImageResource(R.mipmap.img_history_unselect)
+                        if (historyItem.selected) {
+                            if (selectMaps.containsKey(position)) {
+                                selectMaps.remove(position)
+                            }
+                            select.setImageResource(R.mipmap.img_history_unselect)
+                        } else {
+                            historyItem.history?.let { it1 -> selectMaps.put(position, it1) }
+                            select.setImageResource(R.mipmap.img_history_selected)
+                        }
+                        historyItem.selected = !historyItem.selected
                     } else {
-                        data.history?.let { it1 -> selectMaps.put(position, it1) }
-                        select.setImageResource(R.mipmap.img_history_selected)
+                        startVideoPlayingActivity(context, it)
                     }
-                    data.selected = !data.selected
-                } else {
-                    startVideoPlayingActivity(context, it)
                 }
             }
-        }
 
-        history?.let {
-            time.text = TimeUtils.getTime(it.lastTime)
+            history?.let {
+                time.text = TimeUtils.getTime(it.lastTime)
+            }
+        }
+    }
+
+    inner class TitleViewHolder(binding: AdapterItemTitleHistoryBinding) :
+        ViewHolder(binding.root) {
+
+        val title = binding.txtTitleHistory
+        fun handle(position: Int) {
+            val titleStr = list[position].title
+            title.text = titleStr
         }
     }
 

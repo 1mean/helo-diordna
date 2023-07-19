@@ -1,11 +1,11 @@
 package com.example.pandas.biz.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.pandas.app.AppInfos
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoAndUser
 
 /**
@@ -122,7 +122,7 @@ public class OneVerticalViewModel : BaseViewModel() {
             PetManagerCoroutine.getPandas(title, startIndex, counts)
         }, {
 
-            val hasMore = if (it.isNotEmpty() && it.size > counts) {
+            val hasMore = if (it.isNotEmpty() && it.size >= counts) {
                 it.removeLast()
                 true
             } else {

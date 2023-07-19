@@ -88,13 +88,13 @@ interface PetVideoDao {
     suspend fun deleteHistory(history: History)
 
     @Query("delete from history")
-    fun deleteAllHistory()
+    suspend fun deleteAllHistory()
 
     @Query("delete from group_item where groupCode=(:groupCode)")
     fun deleteGroupItems(groupCode: Int)
 
     @Delete
-    fun deleteAllHistory(list: MutableList<History>)
+    suspend fun deleteAllHistory(list: MutableList<History>)
 
 
     /* -----------更新------------------------------------- */

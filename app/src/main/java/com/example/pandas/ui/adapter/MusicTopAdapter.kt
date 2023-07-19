@@ -25,7 +25,6 @@ public class MusicTopAdapter(list: MutableList<VideoAndUser>) :
 
         val context = holder.itemView.context
         val cover = holder.getWidget<AppCompatImageView>(R.id.img_music_top_cover)
-        val title = holder.getWidget<AppCompatTextView>(R.id.txt_music_top_title)
 
         val video = data.video
 
@@ -33,8 +32,6 @@ public class MusicTopAdapter(list: MutableList<VideoAndUser>) :
 //            loadCenterImage(context, it, cover)
             loadCenterRoundedCornerImage(context, 20, it, cover)
         }
-
-        title.text = video.title
 
         holder.itemView.setOnClickListener {
             startVideoPlayingActivity(context, video)

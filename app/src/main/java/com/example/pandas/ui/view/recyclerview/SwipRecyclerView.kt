@@ -137,8 +137,11 @@ open class SwipRecyclerView : RecyclerView {
                 layoutManager?.let {
                     val childCount =
                         layoutManager!!.childCount // 未隐藏的数目 childCount = count - hiddenCount
+                    Log.e(
+                        "SwipInfo",
+                        "childCount:$childCount,lastVisibleItemPosition:$lastVisibleItemPosition, total:$total, isRefreshing:$isRefreshing, hasMore:$hasMore"
+                    )
                     if (childCount > 0 && lastVisibleItemPosition >= total - 1 && total > childCount
-
                         && !isRefreshing && hasMore
                     ) {
                         dispatchLoadMore()
@@ -150,6 +153,7 @@ open class SwipRecyclerView : RecyclerView {
 
     private fun dispatchLoadMore() {
 
+        Log.e("1mean","dispatchLoadMore mListener:$mListener")
         isLoadingData = true
         loadMoreView?.onLoading()//显示正在加载中
         mListener?.onLoadMore()
@@ -242,7 +246,7 @@ open class SwipRecyclerView : RecyclerView {
                 MotionEvent.ACTION_DOWN -> {
                     initialX = ev.x
                     initialY = ev.y
-                    Log.e("vp2vp2","recyclerview down 111")
+                    Log.e("vp2vp2", "recyclerview down 111")
                     parent.requestDisallowInterceptTouchEvent(true)
                 }
                 MotionEvent.ACTION_MOVE -> {
@@ -252,16 +256,16 @@ open class SwipRecyclerView : RecyclerView {
                     val deltaX = abs(dx)
                     val deltaY = abs(dy)
 
-                    Log.e("vp2vp2","deltaX: $deltaX, deltaY: $deltaY")
+                    Log.e("vp2vp2", "deltaX: $deltaX, deltaY: $deltaY")
                     //bug:这里如果不设置两个.5f的话，左右滑动会比较吃力
                     if (deltaX > mScaleTouchSlop * .5f || deltaY > mScaleTouchSlop) {
                         if (deltaX > deltaY) {
                             //bug:还有个问题未解决：下拉刷新时，再继续上下滑动，容易触发往左右滑动
-                            Log.e("vp2vp2","recyclerview down 222")
+                            Log.e("vp2vp2", "recyclerview down 222")
                             Log.d("vp2vp2", "recyclerVIew  move  111")
                             parent.requestDisallowInterceptTouchEvent(false)
                         } else {
-                            Log.e("vp2vp2","recyclerview down 333")
+                            Log.e("vp2vp2", "recyclerview down 333")
                             Log.d("vp2vp2", "recyclerVIew  move  222")
                             parent.requestDisallowInterceptTouchEvent(true)
                         }

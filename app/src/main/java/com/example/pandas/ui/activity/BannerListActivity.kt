@@ -11,7 +11,10 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.ext.loadPandaBackGround
 import com.example.pandas.biz.interaction.PagerChangedListener
 import com.example.pandas.biz.viewmodel.BannerListViewModel
+import com.example.pandas.biz.viewmodel.OneVerticalViewModel
 import com.example.pandas.databinding.ActivityBannerListBinding
+import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.sql.entity.VideoAndUser
 import com.example.pandas.ui.adapter.CommonBannerAdapter
 import com.example.pandas.ui.adapter.PandaListAdapter
 import com.example.pandas.ui.adapter.decoration.CommonBannerItemDecoration
@@ -82,8 +85,8 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
             GridLayoutManager(this, 2),
             object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
-                    Log.e("1mean", "123123")
-                    mViewModel.getBannerList(false)
+                    Log.e("1mean","onLoadMore")
+                    mViewModel.getBest(false)
                 }
             })
 
@@ -102,20 +105,27 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
 
     override fun createObserver() {
 
-        mViewModel.bannerList.observe(this) {
-            Log.e("1mean", "list: ${it.bannerList.itemList.size}")
+        mViewModel.bestList.observe(this) {
             if (it.isSuccess) {
-                binding.rvBannerList.visibility = View.VISIBLE
+                Log.e("1mean","hasmore: ${it.hasMore}")
                 when {
                     it.isRefresh -> {
-                        val banners = it.bannerList.bannerList
-                        if (banners.isNotEmpty()) {
-                            val adapter = CommonBannerAdapter(banners)
+                        val bannerList = mutableListOf<PetVideo>()
+                        val itemList = mutableListOf<VideoAndUser>()
+                        it.listData.forEachIndexed { index, videoAndUser ->
+                            if (index < 5) {
+                                bannerList.add(videoAndUser.video)
+                            } else {
+                                itemList.add(videoAndUser)
+                            }
+                        }
+                        if (bannerList.isNotEmpty()) {
+                            val adapter = CommonBannerAdapter(bannerList)
                             binding.bannerCmTop.setLifecycleRegistry(lifecycle)
                                 .setPagePadding(60, 60, 36)
                                 .addPageChangeListener(object : PagerChangedListener {
                                     override fun onChange(position: Int) {
-                                        banners[position].cover?.let {
+                                        bannerList[position].cover?.let {
                                             loadPandaBackGround(
                                                 this@BannerListActivity,
                                                 it,
@@ -126,14 +136,13 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
                                 }).setAdapter(adapter)
                                 .setAutoPlayed(true)
                         }
+                        mAdapter.refreshAdapter(itemList)
                         binding.rvBannerList.isRefreshing(false)
-                        mAdapter.refreshAdapter(it.bannerList.itemList)
                     }
                     else -> {
-                        mAdapter.loadMore(it.bannerList.itemList)
+                        mAdapter.loadMore(it.listData)
                     }
                 }
-                Log.e("1mean", "isEmpty:${it.isEmpty}, hasMore: ${it.hasMore}")
                 binding.rvBannerList.loadMoreFinished(it.isEmpty, it.hasMore)
             }
         }
@@ -141,6 +150,6 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
 
     override fun firstOnResume() {
         super.firstOnResume()
-        mViewModel.getBannerList(true)
+        mViewModel.getBest(true)
     }
 }

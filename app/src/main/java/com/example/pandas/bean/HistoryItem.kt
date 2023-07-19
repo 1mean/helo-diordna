@@ -11,5 +11,7 @@ import com.example.pandas.sql.entity.User
 data class HistoryItem(
     val history: History? = null,
     val video: PetVideo? = null,
-    var selected: Boolean = false
+    var selected: Boolean = false,
+    var title: String = "",
+    var type: Int = 0, //1是title
 )

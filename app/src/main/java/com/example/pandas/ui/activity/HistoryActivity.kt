@@ -1,6 +1,8 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -32,7 +34,9 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
     HistoryAdapter.HistoryListener {
 
     private var selectAll: Boolean = false
+    private var popWindow: PopupWindow? = null
 
+    private val mHandler: Handler = Handler(Looper.getMainLooper())
     private val mAdapter: HistoryAdapter by lazy { HistoryAdapter(listener = this) }
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -82,17 +86,11 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
 
             val selectList = mAdapter.getSelectList()
             if (selectList.isNotEmpty()) {
-//                val popuView =
-//                    XPopup.Builder(this).isDestroyOnDismiss(true)
-//                        .asConfirm("删除", "对当前视频不感兴趣，删除视频", "取消", "确定", {
-//                            mAdapter.delete()
-//                        }, null, false)
-//                popuView.show()
                 val popuView = layoutInflater.inflate(R.layout.dialog_history_delete_layout, null)
                 val sure = popuView.findViewById<AppCompatButton>(R.id.txt_history_dialog_yes)
                 val cancel = popuView.findViewById<AppCompatButton>(R.id.txt_history_dialog_no)
-                val popWindow = PopupWindow(popuView, 972, 330, true)
-                popWindow.isOutsideTouchable = true
+                popWindow = PopupWindow(popuView, 972, 330, true)
+                popWindow!!.isOutsideTouchable = true
 
                 //设置背景变暗
                 val lp = window.attributes
@@ -100,10 +98,10 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
                 window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
                 window.attributes = lp
 
-                popWindow.showAtLocation(binding.clayoutSelectAll, Gravity.CENTER, 0, 0)
+                popWindow!!.showAtLocation(binding.clayoutSelectAll, Gravity.CENTER, 0, 0)
 
 
-                popWindow.setOnDismissListener {
+                popWindow!!.setOnDismissListener {
                     lp.alpha = 1.0f
                     window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
                     window.attributes = lp
@@ -116,14 +114,10 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
                     } else {
                         mViewModel.removeHistory(selectList, false)
                     }
-                    mAdapter.delete()
-                    popWindow.dismiss()
-                    binding.clayoutHistoryBottom.visibility = View.GONE
-                    binding.txtHistoryManager.text = resources.getString(R.string.str_manager)
                 }
 
                 cancel.setOnClickListener {
-                    popWindow.dismiss()
+                    popWindow!!.dismiss()
                 }
             }
         }
@@ -180,6 +174,21 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
                 }
                 binding.rvHistory.loadMoreFinished(it.isEmpty, it.hasMore)
             }
+        }
+
+        mViewModel.removeHistoryResult.observe(this) {
+            if (it.isSuccess) {
+                mAdapter.onRefreshAdapter(it.listData)
+                //binding.rvHistory.isRefreshing(false)
+                binding.rvHistory.loadMoreFinished(it.isEmpty, it.hasMore)
+
+                //mAdapter.delete()
+                mHandler.post {
+                    binding.clayoutHistoryBottom.visibility = View.GONE
+                    binding.txtHistoryManager.text = resources.getString(R.string.str_manager)
+                }
+            }
+            popWindow?.dismiss()
         }
     }
 

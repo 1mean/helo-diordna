@@ -23,10 +23,12 @@ import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.ext.loadLocalCircleImage
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
+import com.example.pandas.ui.activity.BannerListActivity
 import com.example.pandas.ui.activity.MessageActivity
 import com.example.pandas.ui.activity.NewSearchActivity
 import com.example.pandas.ui.activity.ShortVideoActivity2
 import com.example.pandas.ui.adapter.HomePagerAdapter
+import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
@@ -149,9 +151,6 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
             mActivity.startActivity(Intent(mActivity, MessageActivity::class.java))
         }
 
-        binding.ibMusic.setOnClickListener {
-
-        }
         binding.bar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
 
             this.verticalOffset = verticalOffset
@@ -160,6 +159,10 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
 
         appViewModel.appColorType.value?.let {
             updateTopView(it)
+        }
+
+        binding.rlayoutHomeTopMore.setOnClickListener {
+            startAnyActivity(mActivity,BannerListActivity::class.java)
         }
     }
 
@@ -173,7 +176,6 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
             updateTopView(it)
         }
         loadImage(mActivity, AppInfos.HEAD_URL, binding.imgHead)
-        loadLocalCircleImage(mActivity, R.mipmap.img_dota, binding.imgDark)
 
         mViewModel.refreshPosition.observe(viewLifecycleOwner) { position ->
             Log.e("doubleCilik", "HomeFragment: $position")
