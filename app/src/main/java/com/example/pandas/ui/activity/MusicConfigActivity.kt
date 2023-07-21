@@ -19,7 +19,8 @@ import com.example.pandas.utils.StatusBarUtils
  * @date: 8/20/22 12:28 上午
  * @version: v1.0
  */
-public class MusicConfigActivity : BaseActivity<BaseViewModel, ActivityMusicSettingConfigBinding>() {
+public class MusicConfigActivity :
+    BaseActivity<BaseViewModel, ActivityMusicSettingConfigBinding>() {
 
     private val imgResource
         get() = arrayOf(
@@ -74,6 +75,10 @@ public class MusicConfigActivity : BaseActivity<BaseViewModel, ActivityMusicSett
             binding.btnMineNormal.setImageResource(imgResource[1])
             binding.btnMineVp.setImageResource(imgResource[0])
             SPUtils.putInt(this, AppInfos.MUSIC_STYLE_KEY, 1)
+        }
+
+        binding.ibnSettingBack.setOnClickListener {
+            finish()
         }
     }
 

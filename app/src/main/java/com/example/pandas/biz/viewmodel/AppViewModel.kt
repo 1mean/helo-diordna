@@ -34,6 +34,10 @@ public class AppViewModel : ViewModel() {
 
     val headerUpdate by lazy { UnPeekLiveData<Boolean>() }
 
+    val nameUpdate by lazy { UnPeekLiveData<String>() }
+
+    val sexUpdate by lazy { UnPeekLiveData<Int>() }
+
     /**
      * 下载项目所有的封面图片到本地，防止远程项目被删除
      * DiskCacheStrategy.DATA： /data/user/0/com.example.hello_diordna/cache/image_manager_disk_cache/74a05aa0349bb3bb72622d1ca50e52882ba535458555fd9ff23993c4b98ef39a.0
@@ -53,7 +57,7 @@ public class AppViewModel : ViewModel() {
         lifecycleOwner.lifecycleScope.launch {
 
             val covers = PetManagerCoroutine.getAllPetCoverUrl() //获取视频封面
-            Log.e("helo-download","cover size: ${covers.size}")
+            Log.e("helo-download", "cover size: ${covers.size}")
             covers.forEach {
 
                 withContext(Dispatchers.IO) {
@@ -98,7 +102,7 @@ public class AppViewModel : ViewModel() {
         lifecycleOwner.lifecycleScope.launch {
 
             val covers = PetManagerCoroutine.getAllUserCovers() //获取用户头像
-            Log.e("helo-download","cover size: ${covers.size}")
+            Log.e("helo-download", "cover size: ${covers.size}")
             covers.forEach {
 
                 withContext(Dispatchers.IO) {

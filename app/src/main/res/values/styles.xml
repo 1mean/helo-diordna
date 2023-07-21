@@ -506,6 +506,17 @@
         <!--<item name="android:windowExitAnimation">@anim/animate_short_input_out</item>-->
     </style>
 
+    <style name="style_header_dialog_animation">
+        <item name="android:windowEnterAnimation">@anim/animate_header_dialog_in</item>
+        <!--设置了没效果-->
+    </style>
+
+    <style name="style_header_dialog_animation1">
+        <item name="android:windowEnterAnimation">@anim/animate_header_dialog_out</item>
+        <!--设置了没效果-->
+        <item name="android:windowExitAnimation">@anim/animate_header_dialog_out</item>
+    </style>
+
     <style name="style_short_comment_animation">
         <item name="android:windowEnterAnimation">@anim/animate_short_comment_in</item>
         <!--设置了没效果-->
@@ -568,6 +579,22 @@
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:textSize">11sp</item>
         <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- HeaderDialog ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <style name="style_dialog_item_layout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:layout_marginStart">40dp</item>
+        <item name="android:layout_marginEnd">40dp</item>
+        <item name="android:background">@drawable/shape_bg_header_dialog</item>
+    </style>
+
+    <style name="style_dialog_item_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
 </resources>

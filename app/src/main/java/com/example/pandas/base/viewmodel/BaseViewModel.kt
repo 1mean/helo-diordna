@@ -10,6 +10,7 @@ import com.example.pandas.biz.http.exception.AppException
 import com.example.pandas.biz.http.exception.ExceptionHandle
 import com.example.pandas.biz.manager.PetManagerCoroutine
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.utils.SPUtils
@@ -29,6 +30,7 @@ open class BaseViewModel : ViewModel() {
     private var int_flag = 0
     val intFlag: MutableLiveData<Int> by lazy { MutableLiveData() }
     val commentResult: MutableLiveData<VideoComment> by lazy { MutableLiveData() }
+    val updateUserResult: MutableLiveData<User> by lazy { MutableLiveData() }
 
     fun IntUpdate() {
         int_flag++
@@ -124,6 +126,12 @@ open class BaseViewModel : ViewModel() {
     fun sendComment(comment: VideoComment) {
         viewModelScope.launch {
             commentResult.value = PetManagerCoroutine.sendComment(comment)
+        }
+    }
+
+    fun updateUser(user: User){
+        viewModelScope.launch {
+            updateUserResult.value = PetManagerCoroutine.updateUser(user)
         }
     }
 }

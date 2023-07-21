@@ -184,6 +184,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
             }
         }
 
+
         appViewModel.appColorType.observe(viewLifecycleOwner) {
             updateTopView(it)
         }

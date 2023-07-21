@@ -1764,7 +1764,7 @@ object PetMomPandaData {
         panda104.fileName = "panda_mom_panda104"
         panda104.code = 283
         panda104.duration = 49
-        panda104.star = true
+        panda104.star = false
         panda104.title = "【大熊猫圆润/和花】无效吃笋VS有效吃笋"
         panda104.releaseTime = 1633158009
         panda104.period = PeriodType.MOM.ordinal

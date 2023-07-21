@@ -69,28 +69,31 @@ fun loadCenterRoundedCornerImage(context: Context, radius: Int, url: String?, vi
 fun loadCenterImage(context: Context, url: String?, view: ImageView) {
     val options =
         RequestOptions.bitmapTransform(MultiTransformation(CenterCrop()))
-    Glide.with(context).asBitmap().load(url).listener(object : RequestListener<Bitmap> {
-        override fun onLoadFailed(
-            exception: GlideException?,
-            model: Any?,
-            target: Target<Bitmap>?,
-            isFirstResource: Boolean
-        ): Boolean {
-            Log.e("1mean", "exception:$exception, thread:${Thread.currentThread()}")
-            return false
-        }
+    Glide.with(context).asBitmap()
+        //.diskCacheStrategy(DiskCacheStrategy.NONE)//不要在disk硬盘中缓存
+        //.skipMemoryCache(true)//跳过内存缓存，本项目不建议
+        .load(url).listener(object : RequestListener<Bitmap> {
+            override fun onLoadFailed(
+                exception: GlideException?,
+                model: Any?,
+                target: Target<Bitmap>?,
+                isFirstResource: Boolean
+            ): Boolean {
+                Log.e("1mean", "exception:$exception, thread:${Thread.currentThread()}")
+                return false
+            }
 
-        override fun onResourceReady(
-            resource: Bitmap?,
-            model: Any?,
-            target: Target<Bitmap>?,
-            dataSource: DataSource?,
-            isFirstResource: Boolean
-        ): Boolean {
-            return false
-        }
+            override fun onResourceReady(
+                resource: Bitmap?,
+                model: Any?,
+                target: Target<Bitmap>?,
+                dataSource: DataSource?,
+                isFirstResource: Boolean
+            ): Boolean {
+                return false
+            }
 
-    }).apply(options).placeholder(R.color.color_bg_video_item)
+        }).apply(options).placeholder(R.color.color_bg_video_item)
         .into(view)
 }
 

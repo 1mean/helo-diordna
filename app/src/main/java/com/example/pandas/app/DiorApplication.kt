@@ -85,7 +85,7 @@ class DiorApplication : Application(), ViewModelStoreOwner {
         Thread {
             val petDao = AppDataBase.getInstance().petVideoDao()
 
-            val codes = arrayOf(326, 385, 770, 782, 1264, 321, 697, 1260, 2262, 1519, 888,1263)
+            val codes = arrayOf(708)
             for (code in codes) {
                 val video = petDao.queryVideoByCode1(code)
                 video.star = false

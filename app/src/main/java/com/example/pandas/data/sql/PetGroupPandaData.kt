@@ -1209,7 +1209,7 @@ object PetGroupPandaData {
         panda71.fileName = "panda_group_panda71"
         panda71.code = 546
         panda71.duration = 40
-        panda71.star = true
+        panda71.star = false
         panda71.title = "【大熊猫七巧七喜】姐妹俩靠在一起睡觉 躺着也对着睡"
         panda71.releaseTime = 1578665404
         panda71.period = PeriodType.GROUP.ordinal

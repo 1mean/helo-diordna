@@ -77,6 +77,10 @@ public class SettingConfigActivity : BaseActivity<BaseViewModel, ActivitySetting
             binding.btnMineVp.setImageResource(imgResource[0])
             SPUtils.putInt(this, AppInfos.MINE_STYLE_KEY, 1)
         }
+
+        binding.ibnSettingBack.setOnClickListener {
+            finish()
+        }
     }
 
     override fun createObserver() {

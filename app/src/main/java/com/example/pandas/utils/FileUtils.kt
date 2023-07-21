@@ -1,9 +1,7 @@
 package com.example.pandas.utils
 
 import android.annotation.SuppressLint
-import android.content.ContentUris
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.database.Cursor
 import android.net.Uri
 import android.os.Build
@@ -11,10 +9,7 @@ import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import androidx.core.content.FileProvider
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.IOException
+import java.io.*
 import java.util.*
 
 
@@ -404,5 +399,31 @@ object FileUtils {
         return intent
     }
 
+    fun writeFileFromIS(fos: OutputStream, `is`: InputStream): Boolean {
+        var os: OutputStream? = null
+        return try {
+            os = BufferedOutputStream(fos)
+            val data = ByteArray(8192)
+            var len: Int
+            while (`is`.read(data, 0, 8192).also { len = it } != -1) {
+                os.write(data, 0, len)
+            }
+            true
+        } catch (e: IOException) {
+            e.printStackTrace()
+            false
+        } finally {
+            try {
+                `is`.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            try {
+                os?.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+    }
 
 }

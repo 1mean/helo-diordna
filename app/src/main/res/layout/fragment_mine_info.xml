@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true">
+    <!--bug:防止能点击到底下activity的控件-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_update_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="@color/color_bg_recommend">
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_update_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/color_bg_pink"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_update_name"
+                app:layout_constraintRight_toRightOf="@id/clayout_update_name"
+                app:layout_constraintTop_toTopOf="@id/clayout_update_name"
+                android:layout_marginEnd="55dp"
+                android:layout_marginStart="12dp"
+                android:hint="请输入新昵称"
+                android:textColorHint="@color/color_comment_item_name"
+                android:textColor="@color/color_txt_title_item_panda"
+                android:textCursorDrawable="@drawable/shape_edit_comment"
+                android:textSize="14sp"
+                android:ellipsize="start"
+                android:layout_marginTop="20dp"
+                android:singleLine="true" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_delete_name_input"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:layout_constraintRight_toRightOf="@id/clayout_update_name"
+                app:layout_constraintTop_toTopOf="@id/clayout_update_name"
+                android:layout_marginTop="20dp"
+                android:background="@null"
+                android:layout_marginEnd="5dp"
+                android:src="@mipmap/img_video_list_delete" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/edit_update_name"
+                app:layout_constraintTop_toBottomOf="@id/edit_update_name"
+                android:layout_marginTop="5dp"
+                android:textSize="12sp"
+                android:textColor="@color/color_video_item_name"
+                android:text="修改昵称需要消耗6个积分" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llayout_info_sex"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="@color/color_bg_recommend"
+            android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_sex_type1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/style_setting_item_name_text"
+                    app:layout_constraintTop_toTopOf="@id/clayout_sex_type1"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_sex_type1"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_sex_type1"
+                    android:text="男" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_sex_type1"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_sex_type1"
+                    app:layout_constraintRight_toRightOf="@id/clayout_sex_type1"
+                    android:src="@mipmap/img_mine_unselected"
+                    android:layout_marginEnd="12dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+                style="@style/style_setting_activity_item_drivider"
+                android:background="@color/color_bg_setting_item_drivider" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_sex_type2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/style_setting_item_name_text"
+                    app:layout_constraintTop_toTopOf="@id/clayout_sex_type2"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_sex_type2"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_sex_type2"
+                    android:text="女" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_sex_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_sex_type2"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_sex_type2"
+                    app:layout_constraintRight_toRightOf="@id/clayout_sex_type2"
+                    android:src="@mipmap/img_mine_unselected"
+                    android:layout_marginEnd="12dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+                style="@style/style_setting_activity_item_drivider"
+                android:background="@color/color_bg_setting_item_drivider" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_sex_type3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/style_setting_item_name_text"
+                    app:layout_constraintTop_toTopOf="@id/clayout_sex_type3"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_sex_type3"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_sex_type3"
+                    android:text="保密" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_sex_secret"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/clayout_sex_type3"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_sex_type3"
+                    app:layout_constraintRight_toRightOf="@id/clayout_sex_type3"
+                    android:src="@mipmap/img_mine_unselected"
+                    android:layout_marginEnd="12dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

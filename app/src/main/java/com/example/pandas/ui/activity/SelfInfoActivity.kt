@@ -1,5 +1,6 @@
 package com.example.pandas.ui.activity
 
+import MineInfoFragment
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -10,6 +11,7 @@ import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -26,6 +28,7 @@ import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivityMineInfoBinding
 import com.example.pandas.ui.ext.toastTopShow
+import com.example.pandas.ui.fragment.search.SearchListFragment
 import com.example.pandas.ui.view.dialog.FaceAddSheetDialog
 import com.example.pandas.utils.BitmapUtils
 import com.example.pandas.utils.FileUtils
@@ -47,7 +50,9 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
     private var mDialog: FaceAddSheetDialog? = null
     private var loadingPopup: LoadingPopupView? = null
     private var tempCameraPicName: String = ""
-    private var hasHeader:Boolean = false
+    private var hasHeader: Boolean = false
+    val TAG_INFO = "fragment_mine_info"
+    private var type: Int = -1
 
     private val mHandler = Handler(Looper.getMainLooper())
 
@@ -106,7 +111,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
         appViewModel.appColorType.value?.let {
             binding.clayoutInfoTop.setBackgroundResource(AppInfos.bgColors[it])
             if (it == 0) {
-                binding.btnSelfBack.setImageResource(R.mipmap.img_topview_back)
+                binding.btnSelfBack.setImageResource(R.mipmap.img_top_leave)
                 binding.txtSelfInfo.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -114,7 +119,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
                     )
                 )
             } else {
-                binding.btnSelfBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.btnSelfBack.setImageResource(R.mipmap.img_top_leave_white)
                 binding.txtSelfInfo.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -127,6 +132,40 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
 
         binding.clayoutInfoHead.setOnClickListener {
             showDialog()
+        }
+
+        binding.clayoutInfoName.setOnClickListener {
+            type = 1
+            turnToFragment("修改昵称")
+        }
+
+        binding.clayoutInfoSex.setOnClickListener {
+            type = 2
+            turnToFragment("修改性别")
+        }
+
+        binding.txtMineTopSave.setOnClickListener {
+            Log.e("1mean","type: $type")
+            when (type) {
+                1 -> mViewModel.updateName.value = true
+                2 -> mViewModel.updateSex.value = true
+
+            }
+        }
+    }
+
+    override fun onkeyBack() {
+
+        val fragment = supportFragmentManager.findFragmentByTag(TAG_INFO)
+        if (fragment == null) {
+            finish()
+        } else {
+            //bug:关闭fragment的操作只能在activity里执行，在fragment里执行后下次无法再次点击进入fragment
+            supportFragmentManager.popBackStack()
+            binding.txtMineTopSave.visibility = View.GONE
+            binding.txtSelfInfo.post {
+                binding.txtSelfInfo.text = "个人信息"
+            }
         }
     }
 
@@ -190,6 +229,17 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
                 binding.txtMineInfoNum.text = user.userCode.toString()
                 user.signature?.let {
                     binding.txtMineInfoSign.text = it
+                }
+            }
+        }
+
+        mViewModel.closeFragment.observe(this) {
+            val fragment = supportFragmentManager.findFragmentByTag(TAG_INFO)
+            if (fragment != null) {
+                supportFragmentManager.popBackStack()
+                binding.txtMineTopSave.visibility = View.GONE
+                binding.txtSelfInfo.post {
+                    binding.txtSelfInfo.text = "个人信息"
                 }
             }
         }
@@ -273,6 +323,20 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
                     }
                 }
             }
+        }
+    }
+
+    private fun turnToFragment(name: String) {
+        val transaction = supportFragmentManager.beginTransaction()
+        val fragment = supportFragmentManager.findFragmentByTag(TAG_INFO)
+        if (fragment == null) {
+            val newFragment = MineInfoFragment.newInstance(name)
+            transaction.add(R.id.flayout_mine_info, newFragment, TAG_INFO)
+                .addToBackStack(null).commit()
+            binding.txtMineTopSave.visibility = View.VISIBLE
+        }
+        binding.txtSelfInfo.post {
+            binding.txtSelfInfo.text = name
         }
     }
 }

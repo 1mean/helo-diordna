@@ -1203,6 +1203,18 @@ class PetManager {
         }
     }
 
+    suspend fun updateUser(newUser: User): User {
+
+        return withContext(Dispatchers.Default) {
+            val user = petDao.queryUserByCode(newUser.userCode)
+            if (user != null) {
+                newUser.id = user.id
+                petDao.updateUser(newUser)
+            }
+            petDao.queryUserByCode(newUser.userCode)
+        }
+    }
+
     suspend fun updateVideoComment(comment: VideoComment) {
         return withContext(Dispatchers.Default) {
             petDao.updateVideoComment(comment)

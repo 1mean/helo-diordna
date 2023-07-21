@@ -2241,7 +2241,7 @@ object PetBabyPandaData {
         panda133.fileName = "panda_baby_panda133"
         panda133.code = 171
         panda133.duration = 60
-        panda133.star = true
+        panda133.star = false
         panda133.title = "淼淼仔金喜：和花姐姐挤到我了 打你屁屁哼~"
         panda133.releaseTime = 1607245570
         panda133.originalUrl = "https://www.bilibili.com/video/BV1Hf4y1i7sM/"
@@ -3839,7 +3839,7 @@ object PetBabyPandaData {
         panda227.fileName = "panda_baby_panda227"
         panda227.code = 656
         panda227.duration = 74
-        panda227.star = true
+        panda227.star = false
         panda227.title = "雅颂～睡觉不老实，奶爸忙盖被"
         panda227.releaseTime = 1642323403
         panda227.originalUrl = "https://www.bilibili.com/video/BV1YT4y1171Z"
@@ -4723,7 +4723,7 @@ object PetBabyPandaData {
         panda279.fileName = "panda_baby_panda279"
         panda279.code = 708
         panda279.duration = 36
-        panda279.star = true
+        panda279.star = false
         panda279.title = "【大熊猫茱萸】这只小熊熊好可爱哦，屁桃头妹妹"
         panda279.releaseTime = 1617528651
         panda279.originalUrl = "https://www.bilibili.com/video/BV1d64y1U7st"
