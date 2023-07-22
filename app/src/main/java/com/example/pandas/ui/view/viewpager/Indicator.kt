@@ -26,7 +26,7 @@ public class Indicator : View, Iindicator {
 
     //距离参数，选中和未选中一样大小
     private val indicatorItemPadding: Int = ScreenUtil.dip2px(4f).toInt() //间隔
-    private val indicatorRadius: Int = ScreenUtil.dip2px(2.7f).toInt() //半径
+    private val indicatorRadius: Int = ScreenUtil.dip2px(2.4f).toInt() //半径
 
     private var mPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var selectColor: Int? = null

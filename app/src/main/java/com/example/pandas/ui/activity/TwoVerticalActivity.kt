@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
-import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadPandaBackGround
@@ -35,7 +34,7 @@ public class TwoVerticalActivity :
     private val mAdapter: TwoVerticalAdapter by lazy { TwoVerticalAdapter(mutableListOf()) }
 
     private var title: String = ""
-    private var isShowMore: Boolean = false
+    private var isShowMore: Boolean = true
 
     override fun initStatusView() {
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)

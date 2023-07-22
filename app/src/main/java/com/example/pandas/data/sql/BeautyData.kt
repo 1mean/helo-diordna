@@ -20,6 +20,7 @@ object BeautyData {
         beauty1.originalUrl = "https://www.bilibili.com/video/BV1hZ4y1G7fL"
         beauty1.tags = "美女"
         beauty1.authorId = 445048708
+        beauty1.videoType = 0
         beauty1.cover =
             "https://i1.hdslb.com/bfs/archive/9b90018d3acfe1a1c6a66e42fd658eb45dd8df03.jpg"
         beauty1.hot = false
@@ -49,6 +50,7 @@ object BeautyData {
         beauty3.code = 1386
         beauty3.duration = 133
         beauty3.star = true
+        beauty3.videoType = 0
         beauty3.title = "这才是言情女主的正确打开方式！【刘亦菲】"
         beauty3.releaseTime = 1606049723
         beauty3.originalUrl = "https://www.bilibili.com/video/BV1VV411a7CK"
@@ -117,6 +119,7 @@ object BeautyData {
         beauty7.code = 1946
         beauty7.duration = 68
         beauty7.star = true
+        beauty7.videoType = 0
         beauty7.title = "江玉燕问一个能打的都没有吗？于是她！她站出来了！！"
         beauty7.releaseTime = 1624617563
         beauty7.originalUrl = "https://www.bilibili.com/video/BV1Jq4y1s7ob"
@@ -168,6 +171,7 @@ object BeautyData {
         beauty10.code = 1949
         beauty10.duration = 133
         beauty10.star = true
+        beauty10.videoType = 0
         beauty10.title = "【全员美人|天龙八部】你可曾见过人均绝色的电视剧【第十五期】"
         beauty10.releaseTime = 1590487839
         beauty10.originalUrl = "https://www.bilibili.com/video/BV1sf4y127j5"
@@ -202,6 +206,7 @@ object BeautyData {
         beauty12.code = 1951
         beauty12.duration = 164
         beauty12.star = true
+        beauty12.videoType = 0
         beauty12.title = "仙 侠 女 主 的 巅 峰！！！这才是古偶剧该有的颜值"
         beauty12.releaseTime = 1600390819
         beauty12.originalUrl = "https://www.bilibili.com/video/BV1pv411C7jh"

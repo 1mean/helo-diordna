@@ -307,6 +307,7 @@ fun getHehuaBanner(): MutableList<PetVideo> {
     panda188.code = 1127
     panda188.duration = 11
     panda188.star = true
+    panda188.videoType = 1
     panda188.title = "【大熊猫和花】冰墩墩本墩"
     panda188.releaseTime = 1644155101
     panda188.period = PeriodType.GROUP.ordinal

@@ -1,21 +1,19 @@
 package com.example.pandas.ui.activity
 
-import MineInfoFragment
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
+import com.blankj.utilcode.util.KeyboardUtils
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
@@ -23,12 +21,12 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.ext.getUserHeader
 import com.example.pandas.biz.ext.loadCircleBitmap
 import com.example.pandas.biz.ext.loadCircleImage
-import com.example.pandas.biz.ext.loadLocalCircleImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivityMineInfoBinding
 import com.example.pandas.ui.ext.toastTopShow
-import com.example.pandas.ui.fragment.search.SearchListFragment
+import com.example.pandas.ui.fragment.main.mine.NameSettingFragment
+import com.example.pandas.ui.fragment.main.mine.SexSettingFragment
 import com.example.pandas.ui.view.dialog.FaceAddSheetDialog
 import com.example.pandas.utils.BitmapUtils
 import com.example.pandas.utils.FileUtils
@@ -37,7 +35,6 @@ import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
 import kotlinx.coroutines.*
 import java.io.File
-import kotlin.concurrent.thread
 
 /**
  * @description: 个人信息
@@ -106,7 +103,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.btnSelfBack.setOnClickListener {
-            finish()
+            backFinish()
         }
         appViewModel.appColorType.value?.let {
             binding.clayoutInfoTop.setBackgroundResource(AppInfos.bgColors[it])
@@ -144,29 +141,17 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
             turnToFragment("修改性别")
         }
 
-        binding.txtMineTopSave.setOnClickListener {
-            Log.e("1mean","type: $type")
-            when (type) {
-                1 -> mViewModel.updateName.value = true
-                2 -> mViewModel.updateSex.value = true
-
-            }
-        }
+//        binding.txtMineTopSave.setOnClickListener {
+//            Log.e("1mean", "type: $type")
+//            when (type) {
+//                1 -> mViewModel.updateName.value = true
+//                2 -> mViewModel.updateSex.value = true
+//            }
+//        }
     }
 
     override fun onkeyBack() {
-
-        val fragment = supportFragmentManager.findFragmentByTag(TAG_INFO)
-        if (fragment == null) {
-            finish()
-        } else {
-            //bug:关闭fragment的操作只能在activity里执行，在fragment里执行后下次无法再次点击进入fragment
-            supportFragmentManager.popBackStack()
-            binding.txtMineTopSave.visibility = View.GONE
-            binding.txtSelfInfo.post {
-                binding.txtSelfInfo.text = "个人信息"
-            }
-        }
+        backFinish()
     }
 
     private fun showDialog() {
@@ -234,10 +219,10 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
         }
 
         mViewModel.closeFragment.observe(this) {
+            Log.e("1mean", "closeFragment observe")
             val fragment = supportFragmentManager.findFragmentByTag(TAG_INFO)
             if (fragment != null) {
                 supportFragmentManager.popBackStack()
-                binding.txtMineTopSave.visibility = View.GONE
                 binding.txtSelfInfo.post {
                     binding.txtSelfInfo.text = "个人信息"
                 }
@@ -330,13 +315,34 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = supportFragmentManager.findFragmentByTag(TAG_INFO)
         if (fragment == null) {
-            val newFragment = MineInfoFragment.newInstance(name)
+            val newFragment = when (name) {
+                "修改昵称" -> NameSettingFragment()
+                "修改性别" -> SexSettingFragment()
+                else -> {
+                    SexSettingFragment()
+                }
+            }
             transaction.add(R.id.flayout_mine_info, newFragment, TAG_INFO)
                 .addToBackStack(null).commit()
-            binding.txtMineTopSave.visibility = View.VISIBLE
         }
         binding.txtSelfInfo.post {
             binding.txtSelfInfo.text = name
+        }
+    }
+
+    private fun backFinish() {
+        val fragment = supportFragmentManager.findFragmentByTag(TAG_INFO)
+        if (fragment == null) {
+            finish()
+        } else {
+            if (fragment is NameSettingFragment) {
+                (fragment as NameSettingFragment).hideSoft()
+            }
+            //bug:关闭fragment的操作只能在activity里执行，在fragment里执行后下次无法再次点击进入fragment
+            supportFragmentManager.popBackStack()
+            binding.txtSelfInfo.post {
+                binding.txtSelfInfo.text = "个人信息"
+            }
         }
     }
 }

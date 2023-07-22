@@ -49,6 +49,7 @@ object FootballData {
         football3.code = 2000
         football3.duration = 234
         football3.star = true
+        football3.videoType = 0
         football3.title = "“荷兰三棍客”是什么梗？每天生活小目标：吃饭睡觉，打亨特拉尔"
         football3.releaseTime = 1642336092
         football3.originalUrl = "https://www.bilibili.com/video/BV1kr4y1Y7QE"
@@ -83,6 +84,7 @@ object FootballData {
         football5.code = 2002
         football5.duration = 191
         football5.star = true
+        football5.videoType = 0
         football5.title = "“双逆足球员”是什么梗？快如马，奈何傻，逆足前锋莫拉塔"
         football5.releaseTime = 1638011202
         football5.originalUrl = "https://www.bilibili.com/video/BV15Y411s7G9"
@@ -134,6 +136,7 @@ object FootballData {
         football8.code = 2005
         football8.duration = 479
         football8.star = true
+        football8.videoType = 0
         football8.title = "【回顾】还记得那年飞翔的荷兰人吗？14年世界杯荷兰三棍客齐发威 荷兰5-1大胜西班牙"
         football8.releaseTime = 1644933504
         football8.originalUrl = "https://www.bilibili.com/video/BV1QL4y137Gx"
@@ -389,6 +392,7 @@ object FootballData {
         football23.code = 2020
         football23.duration = 138
         football23.star = true
+        football23.videoType = 1
         football23.title = "暴力美学！只有德罗巴才能打进的球"
         football23.releaseTime = 1645182556
         football23.originalUrl = "https://www.bilibili.com/video/BV1BP4y1F7Zg"
@@ -746,6 +750,7 @@ object FootballData {
         football44.code = 2041
         football44.duration = 145
         football44.star = true
+        football44.videoType = 0
         football44.title = "不同年代阿森纳的地位"
         football44.releaseTime = 1631274611
         football44.originalUrl = "https://www.bilibili.com/video/BV1JA411F7HV"

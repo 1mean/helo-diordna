@@ -3,7 +3,6 @@ package com.example.pandas.ui.adapter
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +10,13 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.blankj.utilcode.util.VibrateUtils
 import com.example.pandas.R
 import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.ext.loadCenterImage
+import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.interaction.ItemClickListener
-import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.databinding.CardItemLayoutBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.databinding.ItemRecommendVideoBinding
@@ -25,9 +24,7 @@ import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.view.dialog.MoreBottomSheetDialog
 import com.example.pandas.ui.view.viewpager.Indicator
 import com.example.pandas.utils.NumUtils
-import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.TimeUtils
-import com.example.pandas.utils.VibrateUtils
 
 /**
  * @description: 首页-推荐
@@ -179,6 +176,7 @@ public class RecommendAdapter(
         private val videoCounts = binding.txtRecoVideoCounts
         private val comments = binding.txtRecoVideoComments
         private val moreView = binding.clayoutRecoItemMore
+        private val header = binding.imgRecoHeader
         private val num = 1 * 1000 * 100
         private val commentNum = 1 * 100
 
@@ -205,6 +203,7 @@ public class RecommendAdapter(
             if (type == VideoType.HONGLOU.ordinal) {
                 follow.visibility = View.VISIBLE
                 up.visibility = View.GONE
+                header.visibility = View.GONE
                 follow.setTextColor(ContextCompat.getColor(context, R.color.color_bg_reco_type))
                 follow.setBackgroundResource(R.drawable.shape_bg_reco_type)
                 follow.text = context.resources.getString(R.string.str_hl)
@@ -212,6 +211,7 @@ public class RecommendAdapter(
                 if (petVideo.vertical) {//是竖屏
                     follow.visibility = View.VISIBLE
                     up.visibility = View.GONE
+                    header.visibility = View.GONE
                     follow.setTextColor(
                         ContextCompat.getColor(
                             context,
@@ -225,6 +225,7 @@ public class RecommendAdapter(
                         if (it.attention) {
                             follow.visibility = View.VISIBLE
                             up.visibility = View.GONE
+                            header.visibility = View.GONE
                             follow.setTextColor(
                                 ContextCompat.getColor(
                                     context,
@@ -234,8 +235,18 @@ public class RecommendAdapter(
                             follow.setBackgroundResource(R.drawable.shape_bg_reco_followed)
                             follow.text = context.resources.getString(R.string.str_followed)
                         } else {
-                            follow.visibility = View.GONE
-                            up.visibility = View.VISIBLE
+                            if (petVideo.type != VideoType.PANDA.ordinal) {
+                                follow.visibility = View.GONE
+                                up.visibility = View.GONE
+                                header.visibility = View.VISIBLE
+                                it.headUrl?.let { url ->
+                                    loadImage(context, url, header)
+                                }
+                            } else {
+                                follow.visibility = View.GONE
+                                up.visibility = View.VISIBLE
+                                header.visibility = View.GONE
+                            }
                         }
                     }
                 }
@@ -243,7 +254,8 @@ public class RecommendAdapter(
 
             itemView.setOnLongClickListener {
                 showDialog(petVideo.code)
-                VibrateUtils.vibrate(context, 2000)
+                VibrateUtils.vibrate(2000)
+                //VibrateUtils.vibrate(context, 500)
                 true
             }
 

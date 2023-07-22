@@ -30,7 +30,7 @@ open class BaseViewModel : ViewModel() {
     private var int_flag = 0
     val intFlag: MutableLiveData<Int> by lazy { MutableLiveData() }
     val commentResult: MutableLiveData<VideoComment> by lazy { MutableLiveData() }
-    val updateUserResult: MutableLiveData<User> by lazy { MutableLiveData() }
+    val updateUserResult: SingleLiveData<User> by lazy { SingleLiveData() }
 
     fun IntUpdate() {
         int_flag++

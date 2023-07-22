@@ -69,6 +69,7 @@ object HongLouData {
         honglou4.code = 1799
         honglou4.duration = 1208
         honglou4.star = true
+        honglou4.videoType = 0
         honglou4.title = "如果谐音梗扣钱，那曹雪芹岂不是要“贷款写作”？"
         honglou4.releaseTime = 1639902967
         honglou4.originalUrl = "https://www.bilibili.com/video/BV1xa411k7EA"
@@ -213,6 +214,7 @@ object HongLouData {
         honglou13.code = 1808
         honglou13.duration = 410
         honglou13.star = true
+        honglou13.videoType = 1
         honglou13.title = "林黛玉的家产去哪了？-红楼梦系列2"
         honglou13.releaseTime = 1598788833
         honglou13.originalUrl = "https://www.bilibili.com/video/BV1Uf4y1Q7ou"
@@ -229,6 +231,7 @@ object HongLouData {
         honglou14.code = 1809
         honglou14.duration = 210
         honglou14.star = true
+        honglou14.videoType = 0
         honglou14.title = "宝钗参加选秀是想当贵妃？NONONO，清代选秀制度了解一下-红楼梦系列3"
         honglou14.releaseTime = 1599130845
         honglou14.originalUrl = "https://www.bilibili.com/video/BV1pf4y1X7bc"
@@ -245,6 +248,7 @@ object HongLouData {
         honglou15.code = 1810
         honglou15.duration = 393
         honglou15.star = true
+        honglou15.videoType = 0
         honglou15.title = "贾府的“月钱”制度是怎么样的？谁的工资最高？-红楼梦系列1"
         honglou15.releaseTime = 1598144523
         honglou15.originalUrl = "https://www.bilibili.com/video/BV1Di4y1g7Ro"

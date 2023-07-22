@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/llayout_info_sex"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_bg_recommend"
+        android:clickable="true"
+        android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_sex_type1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/style_setting_item_name_text"
+                app:layout_constraintTop_toTopOf="@id/clayout_sex_type1"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_sex_type1"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_sex_type1"
+                android:text="男" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_sex_type1"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_sex_type1"
+                app:layout_constraintRight_toRightOf="@id/clayout_sex_type1"
+                android:src="@mipmap/img_mine_unselected"
+                android:layout_marginEnd="12dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            style="@style/style_setting_activity_item_drivider"
+            android:background="@color/color_bg_setting_item_drivider" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_sex_type2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/style_setting_item_name_text"
+                app:layout_constraintTop_toTopOf="@id/clayout_sex_type2"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_sex_type2"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_sex_type2"
+                android:text="女" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_sex_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_sex_type2"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_sex_type2"
+                app:layout_constraintRight_toRightOf="@id/clayout_sex_type2"
+                android:src="@mipmap/img_mine_unselected"
+                android:layout_marginEnd="12dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            style="@style/style_setting_activity_item_drivider"
+            android:background="@color/color_bg_setting_item_drivider" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_sex_type3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/style_setting_item_name_text"
+                app:layout_constraintTop_toTopOf="@id/clayout_sex_type3"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_sex_type3"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_sex_type3"
+                android:text="保密" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_sex_secret"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_sex_type3"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_sex_type3"
+                app:layout_constraintRight_toRightOf="@id/clayout_sex_type3"
+                android:src="@mipmap/img_mine_unselected"
+                android:layout_marginEnd="12dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_sex_sure"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shape_name_sure"
+            android:textColor="@color/color_txt_mylove_self"
+            android:textSize="14sp"
+            android:text="@string/str_sure" />
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,24 +1,27 @@
+package com.example.pandas.ui.fragment.main.mine
+
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.ViewModelStoreOwner
-import com.blankj.utilcode.util.KeyboardUtils
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentMineInfoBinding
-import com.example.pandas.ui.ext.toastTopShow
+import com.example.pandas.databinding.FragmentSexBinding
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
 
 /**
- * @description: SelfInfoActivity-MineInfoFragment
+ * @description: SexSettingFragment
  * @author: dongyiming
- * @date: 7/21/23 12:37 PM
+ * @date: 7/22/23 1:22 PM
  * @version: v1.0
  */
-public class MineInfoFragment : BaseLazyFragment<SelfViewModel, FragmentMineInfoBinding>() {
+public class SexSettingFragment : BaseLazyFragment<SelfViewModel, FragmentSexBinding>() {
+
+    private var sexIndex = 0
+    private var curSexIndex = 0
 
     private val imgResource
         get() = arrayOf(
@@ -26,44 +29,9 @@ public class MineInfoFragment : BaseLazyFragment<SelfViewModel, FragmentMineInfo
             R.mipmap.img_mine_unselected
         )
 
-    private var sexIndex = 0
-    private var curSexIndex = 0
-    private var name: String? = null
-
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
 
-    companion object {
-        fun newInstance(name: String): MineInfoFragment {
-            val args = Bundle().apply { putString("name", name) }
-            val fragment = MineInfoFragment()
-            fragment.arguments = args
-            return fragment
-        }
-    }
-
     override fun initView(savedInstanceState: Bundle?) {
-
-        name = arguments?.getString("name")
-        when (name) {
-            "修改昵称" -> {
-                binding.clayoutUpdateName.visibility = View.VISIBLE
-                binding.editUpdateName.requestFocus()
-                binding.editUpdateName.post {
-                    KeyboardUtils.showSoftInput(binding.editUpdateName)
-                }
-            }
-            "修改性别" -> {
-                binding.llayoutInfoSex.visibility = View.VISIBLE
-            }
-        }
-
-        binding.btnDeleteNameInput.setOnClickListener {
-            if (binding.editUpdateName.text != null) {
-                binding.editUpdateName.text = null
-                binding.editUpdateName.hint = "请输入新昵称"
-                binding.editUpdateName.requestFocus()
-            }
-        }
 
         mViewModel.userInfo.value?.let {
             when (it.sex) {
@@ -103,36 +71,12 @@ public class MineInfoFragment : BaseLazyFragment<SelfViewModel, FragmentMineInfo
             binding.imgSexFemale.setImageResource(imgResource[1])
             binding.imgSexSecret.setImageResource(imgResource[0])
         }
-    }
 
-    override fun createObserver() {
-
-        mViewModel.updateName.observe(viewLifecycleOwner) {
-            if (it) {
-                val newName = binding.editUpdateName.text.toString()
-                if (newName.isNotEmpty()) {
-                    if (newName.length > 7) {
-                        toastTopShow(mActivity, "昵称超过最大长度")
-                        return@observe
-                    }
-                    showLoading()
-                    val user = mViewModel.userInfo.value
-                    user?.let { curUser ->
-                        curUser.userName = newName
-                        mViewModel.updateUser(curUser)
-                    }
-                } else {
-                    //bug:直接使用fragmentManager或调用activity来进行关闭fragment，都能成功关闭，但是下一次无法继续点击进来
-                    mViewModel.closeFragment.value = true
-                }
-            }
-        }
-
-        mViewModel.updateSex.observe(viewLifecycleOwner) {
-            Log.e("1mean", "updateSex")
+        binding.btnSexSure.setOnClickListener {
             if (curSexIndex == sexIndex) {
                 mViewModel.closeFragment.value = true
             } else {
+                Log.e("1mean", "11111")
                 showLoading()
                 val user = mViewModel.userInfo.value
                 user?.let { curUser ->
@@ -142,22 +86,17 @@ public class MineInfoFragment : BaseLazyFragment<SelfViewModel, FragmentMineInfo
                 }
             }
         }
+    }
+
+    override fun createObserver() {
 
         mViewModel.updateUserResult.observe(viewLifecycleOwner) {
 
-            binding.editUpdateName.postDelayed({
+            binding.llayoutInfoSex.postDelayed({
                 mViewModel.userInfo.value = it
                 loadingPopup?.dismiss()
+                appViewModel.sexUpdate.value = it.sex
                 mViewModel.closeFragment.value = true
-
-                when (name) {
-                    "修改昵称" -> {
-                        appViewModel.nameUpdate.value = it.userName
-                    }
-                    "修改性别" -> {
-                        appViewModel.sexUpdate.value = it.sex
-                    }
-                }
             }, 500)
         }
     }

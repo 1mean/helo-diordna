@@ -28,8 +28,6 @@ import java.io.File
 public class SelfViewModel : BaseViewModel() {
 
     val userInfo: MutableLiveData<User> by lazy { MutableLiveData() }
-    val updateName: MutableLiveData<Boolean> by lazy { MutableLiveData() }
-    val updateSex: MutableLiveData<Boolean> by lazy { MutableLiveData() }
     val closeFragment: MutableLiveData<Boolean> by lazy { MutableLiveData() }
 
     private val _follows: MutableLiveData<Int> by lazy { MutableLiveData() }

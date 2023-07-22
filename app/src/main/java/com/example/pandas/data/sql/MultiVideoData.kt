@@ -38,7 +38,7 @@ object MultiVideoData {
         panda1.originalUrl = "https://www.bilibili.com/video/BV1bL4y1E7L8"
         panda1.tags = "熊猫,冰雪"
         panda1.authorId = 565388139
-        panda1.videoType = 1
+        panda1.videoType = 0
         panda1.cover =
             "https://i1.hdslb.com/bfs/archive/8c551b4ec8aad66ddafc523dbef16b180b85d27d.jpg"
         panda1.hot = false
@@ -50,7 +50,7 @@ object MultiVideoData {
         panda2.fileName = "video_banner2"
         panda2.code = 424
         panda2.duration = 59
-        panda2.videoType = 1
+        panda2.videoType = 0
         panda2.star = false
         panda2.period = PeriodType.BABY.ordinal
         panda2.title = "今天，雪中的橘子洲头"
@@ -69,7 +69,7 @@ object MultiVideoData {
         panda3.fileName = "video_banner3"
         panda3.code = 425
         panda3.duration = 86
-        panda3.videoType = 1
+        panda3.videoType = 0
         panda3.star = false
         panda3.period = PeriodType.BABY.ordinal
         panda3.title = "冬奥味儿的神仙年画：如果关公会滑雪"
@@ -86,10 +86,10 @@ object MultiVideoData {
         val panda4 = PetVideo()
         panda4.type = VideoType.BEAUTY.ordinal
         panda4.fileName = "video_banner4"
-        panda4.videoType = 1
+        panda4.videoType = 0
         panda4.code = 426
         panda4.duration = 62
-        panda4.star = false
+        panda4.star = true
         panda4.period = PeriodType.BABY.ordinal
         panda4.title = "飞天的四月，无人机视角"
         panda4.releaseTime = 1638335982
@@ -535,7 +535,7 @@ object MultiVideoData {
         landscape1.cover =
             "https://i1.hdslb.com/bfs/archive/022e4b497e5834502daf5f3d117ffefe3345b680.jpg"
         landscape1.vertical = false
-        landscape1.videoType = 1
+        landscape1.videoType = 0
         list.add(landscape1)
 
         val landscape2 = PetVideo()
@@ -552,7 +552,7 @@ object MultiVideoData {
         landscape2.cover =
             "https://i0.hdslb.com/bfs/archive/12f804f213b250289c5954a71fefa0596ff88725.jpg"
         landscape2.vertical = false
-        landscape2.videoType = 1
+        landscape2.videoType = 0
         list.add(landscape2)
 
         val landscape3 = PetVideo()
@@ -569,7 +569,7 @@ object MultiVideoData {
         landscape3.cover =
             "https://i1.hdslb.com/bfs/archive/25986a6f2f742fa145be75df46469af4d547f30d.jpg"
         landscape3.vertical = false
-        landscape3.videoType = 1
+        landscape3.videoType = 0
         list.add(landscape3)
 
         val landscape4 = PetVideo()
@@ -586,7 +586,7 @@ object MultiVideoData {
         landscape4.cover =
             "https://i2.hdslb.com/bfs/archive/78d0190e621962220f3e9f54be250f7b4f21e82b.jpg"
         landscape4.vertical = false
-        landscape4.videoType = 1
+        landscape4.videoType = 0
         list.add(landscape4)
 
         val landscape5 = PetVideo()
@@ -790,7 +790,7 @@ object MultiVideoData {
         landscape16.cover =
             "https://i0.hdslb.com/bfs/archive/25ea548501010818a4a519fc97bf9a150f2b9d57.jpg"
         landscape16.vertical = false
-        landscape16.videoType = 0
+        landscape16.videoType = 1
         list.add(landscape16)
 
         val landscape17 = PetVideo()
@@ -875,7 +875,7 @@ object MultiVideoData {
         landscape21.cover =
             "https://i2.hdslb.com/bfs/archive/82efe75222378076fc327b10fe782190931efdd6.jpg"
         landscape21.vertical = false
-        landscape21.videoType = 0
+        landscape21.videoType = 1
         list.add(landscape21)
 
         val landscape22 = PetVideo()
@@ -926,7 +926,7 @@ object MultiVideoData {
         landscape24.cover =
             "https://i1.hdslb.com/bfs/archive/9b896cd9cadf2f8fc93421c3750ca629adf9d223.jpg"
         landscape24.vertical = false
-        landscape24.videoType = 0
+        landscape24.videoType = 1
         list.add(landscape24)
 
         val landscape25 = PetVideo()
@@ -1028,7 +1028,7 @@ object MultiVideoData {
         landscape30.cover =
             "https://i0.hdslb.com/bfs/archive/0e92a6c0a92e24b4973a520cd48a70cb9c3c0372.jpg"
         landscape30.vertical = false
-        landscape30.videoType = 0
+        landscape30.videoType = 1
         list.add(landscape30)
 
         val landscape31 = PetVideo()
@@ -1249,7 +1249,7 @@ object MultiVideoData {
         landscape43.cover =
             "https://i2.hdslb.com/bfs/archive/1044cd84bcd188bbc1ad7f76ad4b60103c749cb8.jpg"
         landscape43.vertical = false
-        landscape43.videoType = 0
+        landscape43.videoType = 1
         list.add(landscape43)
 
         val landscape44 = PetVideo()
@@ -1326,6 +1326,7 @@ object MultiVideoData {
         landscape48.code = 1368
         landscape48.duration = 64
         landscape48.star = true
+        landscape48.videoType = 1
         landscape48.title = "仲夏武汉：遇到超级魔幻的云"
         landscape48.releaseTime = 1565182674
         landscape48.originalUrl = "https://www.bilibili.com/video/BV1tt411T7WY"
@@ -1368,7 +1369,7 @@ object MultiVideoData {
         landscape50.cover =
             "https://i2.hdslb.com/bfs/archive/54f765f94edb18d72c56902917977a48890564f2.jpg"
         landscape50.vertical = false
-        landscape50.videoType = 0
+        landscape50.videoType = 1
         list.add(landscape50)
 
         val landscape51 = PetVideo()
@@ -2201,7 +2202,7 @@ object MultiVideoData {
         penguin4.fileName = "penguin4"
         penguin4.code = 1050
         penguin4.duration = 128
-        penguin4.star = true
+        penguin4.star = false
         penguin4.title = "【BBC纪录片】摄影组为救出被困企鹅，放弃原则出手干涉"
         penguin4.releaseTime = 1542881772
         penguin4.originalUrl = "https://www.bilibili.com/video/BV1ct411y7Em"

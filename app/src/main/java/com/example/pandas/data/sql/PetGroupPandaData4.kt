@@ -2557,6 +2557,7 @@ object PetGroupPandaData4 {
         panda903.duration = 32
         panda903.period = PeriodType.GROUP.ordinal
         panda903.star = false
+        panda903.videoType = 0
         panda903.title = "【大熊猫和花】这个动作太乖了"
         panda903.releaseTime = 1653393600
         panda903.originalUrl = "https://www.bilibili.com/video/BV1Q54y1Z7aJ"
@@ -2959,6 +2960,7 @@ object PetGroupPandaData4 {
         panda928.duration = 87
         panda928.period = PeriodType.GROUP.ordinal
         panda928.star = false
+        panda928.videoType = 1
         panda928.title = "【大熊猫】假如和花来演王家卫电影的女主"
         panda928.releaseTime = 1647000312
         panda928.originalUrl = "https://www.bilibili.com/video/BV1dS4y1S7Sd"

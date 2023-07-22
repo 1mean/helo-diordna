@@ -10,5 +10,5 @@
     <!--            android:color="#ffbfcb"-->
     <stroke
             android:color="@color/color_bg_yellow"
-            android:width="2dp" />
+            android:width="0.5dp" />
 </shape>

@@ -644,6 +644,7 @@ object PetBabyPandaData {
         panda39.code = 77
         panda39.duration = 40
         panda39.star = true
+        panda39.videoType = 1
         panda39.title = "可爱三连击系列之“和花”"
         panda39.releaseTime = 1611063009
         panda39.originalUrl = "https://www.bilibili.com/video/BV1mt4y1z7VQ?share_source=copy_web"

@@ -205,7 +205,7 @@ interface PetVideoDao {
     @Query("select * from pet_video where videoType = (:type)")
     suspend fun queryByVideoType(type: Int): MutableList<PetVideo>
 
-    @Query("select * from pet_video where videoType = (:type) limit 0,4")
+    @Query("select * from pet_video where videoType = (:type) and type!=14 order by random() limit 0,4")
     suspend fun queryRecoBanner(type: Int): MutableList<PetVideo>
 
     @Query("select * from pet_video where star=1 and videoType=0 order by releaseTime desc limit (:startIndex),(:count)")
@@ -258,7 +258,7 @@ interface PetVideoDao {
     suspend fun queryVideoUserByCode(videoCode: Int): VideoAndUser
 
     @Transaction
-    @Query("select * from pet_video where type=(:type) and videoType=0 limit (:startIndex),(:count)")
+    @Query("select * from pet_video where type=(:type) limit (:startIndex),(:count)")
     suspend fun queryVideosByVideoType(
         type: Int,
         startIndex: Int,

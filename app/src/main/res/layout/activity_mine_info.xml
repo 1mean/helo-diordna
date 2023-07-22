@@ -33,17 +33,6 @@
                 android:textColor="@color/color_txt_mylove_self"
                 android:textSize="17sp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_mine_top_save"
-                android:layout_width="54dp"
-                android:layout_height="match_parent"
-                app:layout_constraintRight_toRightOf="@id/clayout_info_top"
-                android:text="@string/str_save"
-                android:textColor="@color/color_txt_mylove_self"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:visibility="gone" />
-
         <View
                 android:layout_width="match_parent"
                 android:layout_height="0.33dp"
