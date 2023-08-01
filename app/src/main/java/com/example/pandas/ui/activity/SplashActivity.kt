@@ -13,6 +13,10 @@ import com.example.pandas.databinding.ActivitySplashBinding
 import com.example.pandas.ui.ext.addAlphaAnimation
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
+import kotlin.coroutines.*
 
 /**
  * @description: 启动界面
@@ -20,7 +24,7 @@ import com.example.pandas.utils.StatusBarUtils
  * @date: 6/19/23 8:09 PM
  * @version: v1.0
  */
-public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>() {
+public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>(){
 
     override fun initStatusView() {
         super.initStatusView()
@@ -59,7 +63,7 @@ public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>
             appViewModel.appColorType.value = status
         }
 
-        val type = SPUtils.getInt(this,AppInfos.RECO_STATUS_KEY)
+        val type = SPUtils.getInt(this, AppInfos.RECO_STATUS_KEY)
         if (type != 0) {
             appViewModel.recommendType.value = type
         }
@@ -67,5 +71,4 @@ public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>
 
     override fun createObserver() {
     }
-
 }
