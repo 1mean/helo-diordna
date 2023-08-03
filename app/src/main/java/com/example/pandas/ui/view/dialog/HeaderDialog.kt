@@ -1,9 +1,11 @@
+import android.R.attr.duration
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Bitmap
+import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.Gravity
 import android.view.MotionEvent
@@ -30,6 +32,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 
+
 /**
  * @description: 我的，点开头像
  * @author: dongyiming
@@ -45,7 +48,6 @@ public class HeaderDialog(
     PopupWindow() {
 
     var headerImg: AppCompatImageView? = null
-    private val mHandler: Handler = Handler(Looper.getMainLooper())
 
     init {
 
@@ -63,8 +65,9 @@ public class HeaderDialog(
 
         isFocusable = true
 
-        //bug:写在onshow里，在退出时也会显示一次进入动画
-        animationStyle = R.style.style_header_dialog_animation
+        contentView.post {
+            animationStyle = R.style.style_header_dialog_animation
+        }
 
         coroutineScope.launch(Dispatchers.Default) {
 
@@ -109,20 +112,55 @@ public class HeaderDialog(
             listener.onItemClick(2)
         }
 
-//        setTouchInterceptor { v, event ->
-//
-//            when(event.action){
-//                MotionEvent.ACTION_DOWN->{
-//
-//                }
-//            }
-//            false
-//        }
+        setTouchInterceptor { v, event ->
+
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+
+                    val rects = mutableListOf<Rect>()
+                    val views = arrayListOf<View>(download, capture, picture)
+                    views.forEach {
+                        val rect = Rect()
+                        val coordinates = IntArray(2)
+                        it.getLocationOnScreen(coordinates)
+                        rect.set(
+                            0,
+                            coordinates[1],
+                            it.width,
+                            coordinates[1] + it.height
+                        )
+                        rects.add(rect)
+                    }
+                    val x = event.x.toInt()
+                    val y = event.y.toInt()
+                    var isInside = false
+                    rects.forEach {
+                        if (it.contains(x, y)) {
+                            isInside = true
+                        }
+                    }
+                    if (!isInside) {
+                        animationStyle = R.style.style_header_dialog_animation
+                        dismiss()
+                    }
+                }
+            }
+            false
+        }
     }
 
     fun onShow(parent: View) {
         isOutsideTouchable = true
         showAtLocation(parent, Gravity.CENTER, 0, 0)
+    }
+
+    override fun showAtLocation(parent: View?, gravity: Int, x: Int, y: Int) {
+        super.showAtLocation(parent, gravity, x, y)
+//bug:写在onshow里，在退出时也会显示一次进入动画
+//        contentView.post{
+//            animationStyle = R.style.style_header_dialog_animation
+//        }
+        //contentView.postDelayed({ animationStyle = R.style.style_header_dialog_animation }, 1)
     }
 
     private var loadingPopup: LoadingPopupView? = null
@@ -145,7 +183,7 @@ public class HeaderDialog(
 
     fun downLoadHeader(isSuccess: Boolean) {
 
-        mHandler.postDelayed({
+        contentView.postDelayed({
             loadingPopup?.dismiss()
             if (isSuccess) {
                 Toast.makeText(activity, "已保存到相册", Toast.LENGTH_SHORT).show()
@@ -185,5 +223,17 @@ public class HeaderDialog(
         headerImg?.layoutParams = params
 
         headerImg?.setImageBitmap(resource)
+    }
+
+    override fun dismiss() {
+        val height = contentView.height
+        contentView.animate().translationY(height.toFloat())
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+
+                }
+            }).setDuration(500).start()
+
+        contentView.postDelayed({super.dismiss()},550)
     }
 }

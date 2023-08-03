@@ -313,6 +313,17 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
                 }
             }
         }
+
+        mViewModel.createComment.observe(this) {
+
+            val childView = binding.tabView.getChildAt(0)
+            if (childView != null && childView is CommonNavigator) {
+                val view = (childView as CommonNavigator).getPagerTitleView(1)
+                if (view != null && view is VideoTabView) {
+                    (view as VideoTabView).updateComments()
+                }
+            }
+        }
     }
 
     override fun isPlayingChanged(isPlaying: Boolean) {

@@ -13,6 +13,10 @@ import com.example.pandas.sql.entity.*
 import com.example.pandas.utils.TimeUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.forEach
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.transform
 import kotlinx.coroutines.withContext
 
 /**
@@ -74,7 +78,7 @@ class PetManager {
         counts: Int
     ): MutableList<PetVideo> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             val petVideos = mutableListOf<PetVideo>()
             val list = petDao.queryRandomVerticalVideos(startIndex, counts)
             list.forEach {
@@ -103,7 +107,7 @@ class PetManager {
         videoCode: Int
     ): MutableList<PetVideo> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             val petVideos = mutableListOf<PetVideo>()
             val list = if (startIndex == 0) {
                 val list = petDao.queryRandomVerticalVideos1(0, 20, videoCode)
@@ -138,7 +142,7 @@ class PetManager {
         counts: Int
     ): MutableList<PetVideo> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             delay(delayTime)
             val petVideos = mutableListOf<PetVideo>()
             val list = petDao.queryVerticalVideos1(startIndex, counts)
@@ -156,7 +160,7 @@ class PetManager {
         startIndex: Int,
         counts: Int
     ): MutableList<PetVideo> {
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             delay(delayTime)
             val userCodes = petDao.queryLiveAttentionUserCodes()
             if (userCodes.isEmpty()) {
@@ -279,7 +283,7 @@ class PetManager {
      */
     suspend fun getLoveData(isFresh: Boolean, startIndex: Int): PageCommonData {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
 
             delay(delayTime)
             val data = PageCommonData()
@@ -302,7 +306,7 @@ class PetManager {
      */
     suspend fun getPageMusic(type: Int, startIndex: Int, counts: Int): MutableList<MusicVo> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             if (type != 0) {
                 val startDex = (8 - type) * 10
                 petDao.queryMusicByPage(0, startDex, 10)
@@ -314,7 +318,7 @@ class PetManager {
 
     suspend fun getMusic(): MusicBean {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             val musicBean = MusicBean()
 
             for (i in 0 until 6) {
@@ -355,7 +359,7 @@ class PetManager {
 
     suspend fun getLandscapeData(startIndex: Int, counts: Int): LandscapeData {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
 
             delay(delayTime)
             val itemList = petDao.queryVideoByType1(VideoType.LANDSCAPE.ordinal, startIndex, counts)
@@ -380,7 +384,8 @@ class PetManager {
         return withContext(Dispatchers.IO) {
 
             delay(delayTime)
-            val list = petDao.queryHotVideo1(startIndex, counts)
+            val list = petDao.queryHotVideo(startIndex, counts)
+
             list.forEach {
                 val code = it.authorId
                 if (code != 0) {
@@ -397,7 +402,7 @@ class PetManager {
         counts: Int
     ): MutableList<VideoAndData> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             val list = petDao.queryUserVideos(code)
             val user = petDao.queryUserByCode(code)
             petDao.quertUserVideos(code, startIndex, counts)
@@ -406,20 +411,20 @@ class PetManager {
 
     suspend fun getAllPetCoverUrl(): MutableList<CoverDownLoad> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             petDao.queryAllPetCovers()
         }
     }
 
     suspend fun getAllUserCovers(): MutableList<HeaderDownLoad> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             petDao.queryAllUserCovers()
         }
     }
 
     suspend fun saveHistory(history: History) {
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
             val localHistory = petDao.queryHistoryByCode(history.code)
             if (localHistory == null) {//不存在的，一定为null
                 petDao.insertHistory(history)
@@ -435,7 +440,7 @@ class PetManager {
         list: MutableList<History>,
         isAll: Boolean
     ): MutableList<HistoryItem> {
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             if (isAll) {
                 petDao.deleteAllHistory()
                 mutableListOf<HistoryItem>()
@@ -447,7 +452,7 @@ class PetManager {
     }
 
     suspend fun removeLaters(list: MutableList<PetVideo>, isAll: Boolean) {
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
             if (isAll) {
                 val laters = petDao.queryAllLaters()
                 laters.forEach {
@@ -466,7 +471,7 @@ class PetManager {
     }
 
     suspend fun removeLoves(list: MutableList<PetVideo>, isAll: Boolean) {
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
             if (isAll) {
                 val laters = petDao.queryAllLoves()
                 laters.forEach {
@@ -492,7 +497,7 @@ class PetManager {
 
     suspend fun addLater(videoCode: Int) {
 
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
 
             val videoData = petDao.queryVideoDataByCode(videoCode)
             if (videoData == null) {
@@ -512,7 +517,7 @@ class PetManager {
 
     suspend fun createGroup(groupName: String, groupDesc: String, isOpen: Boolean): Boolean {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
 
             val maxCode = petDao.queryMaxGroupCode()
             val currentGroupCode = if (maxCode.isNullOrEmpty()) {
@@ -537,7 +542,7 @@ class PetManager {
 
     suspend fun removeGroup(groupCode: Int): Boolean {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
 
             val group = petDao.queryGroupByCode(groupCode)
             group?.let {
@@ -554,7 +559,7 @@ class PetManager {
      */
     suspend fun getVideoInfo(code: Int, counts: Int): VideoInfo {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             val startTime = System.currentTimeMillis()
             val videoUser = petDao.queryVideoUserByCode(code)
             val user = videoUser.user
@@ -591,7 +596,7 @@ class PetManager {
      */
     suspend fun getVideoInfoData(code: Int): PetVideo {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             val video = petDao.queryVideoByCode(code)
             val videoData = petDao.queryVideoDataByCode(code)
             if (videoData == null) {
@@ -620,13 +625,13 @@ class PetManager {
 
     suspend fun search(words: String): MutableList<SearchInfo> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             petDao.queryByKeyWords("%$words%", 10)
         }
     }
 
     suspend fun getPetVideoByKeys(keys: String, counts: Int): MutableList<PetVideo> {
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             petDao.queryVideosByKeyWords("%$keys%", counts)
         }
     }
@@ -638,7 +643,7 @@ class PetManager {
         counts: Int
     ): MutableList<VideoAndUser> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
 
             if (startIndex == 0) {
                 delay(500)
@@ -661,7 +666,7 @@ class PetManager {
         counts: Int
     ): BannerListBean {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
 
             val bannerListBean = BannerListBean()
             val list = petDao.queryRandomList(startIndex, counts)
@@ -687,7 +692,7 @@ class PetManager {
         counts: Int
     ): MutableList<VideoAndUser> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
 
             when (name) {
                 "熊猫宝宝" -> {
@@ -714,14 +719,14 @@ class PetManager {
 
     suspend fun searchByPage(words: String, startIndex: Int): MutableList<VideoAndUser> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             petDao.queryWordsByPage("%$words%", startIndex, 10)
         }
     }
 
     suspend fun getHistory(startIndex: Int, counts: Int): MutableList<HistoryItem> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
 
             var hasToday = false
             var hasYesterday = false
@@ -769,7 +774,7 @@ class PetManager {
 
     suspend fun getSelectedVideo(selects: MutableList<Int>): MutableList<PetVideo> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             val list = mutableListOf<PetVideo>()
             if (selects.isNotEmpty()) {
                 selects.forEach {
@@ -785,7 +790,7 @@ class PetManager {
 
     suspend fun getSelectedVideoUser(selects: MutableList<Int>): MutableList<VideoAndUser> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             val list = mutableListOf<VideoAndUser>()
             if (selects.isNotEmpty()) {
                 selects.forEach {
@@ -799,7 +804,7 @@ class PetManager {
 
     suspend fun getLater(startIndex: Int, counts: Int): MutableList<PetVideo> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
 
             val laters = mutableListOf<PetVideo>()
             val videoDatas = petDao.queryLaterByPage(startIndex, counts)
@@ -817,7 +822,7 @@ class PetManager {
 
     suspend fun getLove(startIndex: Int, counts: Int): MutableList<PetVideo> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
 
             val laters = mutableListOf<PetVideo>()
             val videoDatas = petDao.queryLoveByPage(startIndex, counts)
@@ -836,7 +841,7 @@ class PetManager {
 
     suspend fun getCollects(): MutableList<Group> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
 
             val groupInfos = petDao.queryGroupNoType(99)
             val group = petDao.queryGroupByType(99)
@@ -864,7 +869,7 @@ class PetManager {
         counts: Int
     ): MutableList<PetVideo> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             val list = mutableListOf<PetVideo>()
             val items = petDao.queryGroupItemsAndVideos(groupCode, startIndex, counts)
             if (items.isNotEmpty()) {
@@ -891,7 +896,7 @@ class PetManager {
      */
     suspend fun addOrUpdateVideoData(videoData: VideoData) {
 
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
             val data = petDao.queryVideoDataByCode(videoData.videoCode)
             if (data == null) {
                 petDao.insertVideoData(videoData)
@@ -904,7 +909,7 @@ class PetManager {
 
     suspend fun updatePetVideo(petVideo: PetVideo) {
 
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
             val video = petDao.queryVideoByCode(petVideo.code)
             if (video == null) {
                 throw NullPointerException("no video by videoCode=${petVideo.code}")
@@ -918,7 +923,7 @@ class PetManager {
 
     suspend fun addOrUpdateVideoData(videoCode: Int, isLike: Boolean) {
 
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
             val data = petDao.queryVideoDataByCode(videoCode)
             data?.let {
                 it.like = isLike
@@ -942,7 +947,7 @@ class PetManager {
 
     suspend fun updateIsCollect(videoCode: Int, isCollect: Boolean) {
 
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
             val data = petDao.queryVideoDataByCode(videoCode)
             data?.let {
                 it.collect = isCollect
@@ -958,7 +963,7 @@ class PetManager {
 
     suspend fun updateLove(videoCode: Int, isLove: Boolean) {
 
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
             val data = petDao.queryVideoDataByCode(videoCode)
             data?.let {
                 it.love = isLove
@@ -969,7 +974,7 @@ class PetManager {
 
     suspend fun updateAttention(userCode: Int) {
 
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
             val user = petDao.queryUserByCode(userCode)
             user.attention = !user.attention
             petDao.updateUser(user)
@@ -978,7 +983,7 @@ class PetManager {
 
     suspend fun addCollection(groupName: String, videoCode: Int) {
 
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
 
             val group = petDao.queryGroupByName(groupName)
 
@@ -1026,7 +1031,7 @@ class PetManager {
 
     suspend fun deleteCollection(groupName: String, videoCode: Int) {
 
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
 
             val group = petDao.queryGroupByName(groupName)
             group?.let {
@@ -1043,7 +1048,7 @@ class PetManager {
 
     suspend fun addOrUpdateVideoData(videoCode: Int, playPos: Long) {
 
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
 
             val data = petDao.queryVideoDataByCode(videoCode)
             if (data == null) {
@@ -1060,14 +1065,14 @@ class PetManager {
 
     suspend fun getAllFollowUsers(): MutableList<User> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             delay(delayTime)
             petDao.queryAllAttentionUsers()
         }
     }
 
     suspend fun getAllFollowCounts(): Int {
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             petDao.queryAllAttentionCounts()
         }
     }
@@ -1080,7 +1085,7 @@ class PetManager {
         counts: Int
     ): MutableList<CommentAndUser> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
 
             delay(500)
             //先获取一级弹幕
@@ -1110,7 +1115,7 @@ class PetManager {
         counts: Int
     ): MutableList<CommentAndUser> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             //先获取一级弹幕
             val list = if (isOrderByTime) {//获取时间顺序的数据
                 petDao.queryPageCommentsByType(videoCode, startIndex, counts, 1)
@@ -1137,7 +1142,7 @@ class PetManager {
         counts: Int
     ): MutableList<VideoAndUser> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             petDao.queryVideosByReleaseTime(startIndex, counts)
         }
     }
@@ -1149,7 +1154,7 @@ class PetManager {
         topCommentId: Int
     ): MutableList<CommentAndUser> {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             delay(200)
             petDao.queryReplyComments(videoCode, topCommentId, startIndex, pageCounts)
         }
@@ -1186,7 +1191,7 @@ class PetManager {
      * 发送一条弹幕，同时videodata列表应该+1
      */
     suspend fun sendComment(comment: VideoComment): VideoComment {
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             val commentId = petDao.insertComment(comment)
             val videoComment = petDao.queryCommentById(commentId.toInt())
             if (videoComment != null) {//消息个数+1
@@ -1205,7 +1210,7 @@ class PetManager {
 
     suspend fun updateUser(newUser: User): User {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             val user = petDao.queryUserByCode(newUser.userCode)
             if (user != null) {
                 newUser.id = user.id
@@ -1216,7 +1221,7 @@ class PetManager {
     }
 
     suspend fun updateVideoComment(comment: VideoComment) {
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             petDao.updateVideoComment(comment)
         }
     }
@@ -1226,7 +1231,7 @@ class PetManager {
         content: String,
         videoCode: Int
     ): CommentAndUser {
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             val comment = VideoComment()
             //当没有评论时，获取到的id是null，以String类型返回
             //不使用id是因为可能每一次调整数据库，该数据的id会不同，不能保证唯一性
@@ -1264,7 +1269,7 @@ class PetManager {
         replyInfo: ReplyInfo,
         content: String
     ): CommentAndUser {
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
             val comment = VideoComment()
             //当没有评论时，获取到的id是null，以String类型返回
             var maxCommentId = petDao.queryMaxCommentId(replyInfo.videoCode)
@@ -1290,7 +1295,7 @@ class PetManager {
 
     suspend fun getLiveVides(isRefresh: Boolean, startIndex: Int, counts: Int): LiveVideoData {
 
-        return withContext(Dispatchers.Default) {
+        return withContext(Dispatchers.IO) {
 
             val startTime = System.currentTimeMillis()
             val data = LiveVideoData()

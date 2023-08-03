@@ -25,13 +25,13 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  */
 public class UserVideosFragment : BaseFragment<UserInfoViewModel, FragmentUserVideosBinding>() {
 
-    private var user: User? = null
+    private var userCode: Int = -1
 
     private val mAdapter: UserVideosAdapter by lazy { UserVideosAdapter(mutableListOf()) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        user = mActivity.intent.getParcelableExtra("user")
+        userCode = mActivity.intent.getIntExtra("userCode", -1)
         binding.recyclerLayout.setIntercept(false)
         binding.recyclerLayout.init(
             null,
@@ -39,9 +39,7 @@ public class UserVideosFragment : BaseFragment<UserInfoViewModel, FragmentUserVi
             LinearLayoutManager(context),
             object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
-                    user?.let {
-                        mViewModel.getUserVideos(it.userCode, false)
-                    }
+                    mViewModel.getUserVideos(userCode, false)
                 }
             })
     }
@@ -66,9 +64,6 @@ public class UserVideosFragment : BaseFragment<UserInfoViewModel, FragmentUserVi
     }
 
     override fun firstOnResume() {
-
-        user?.let {
-            mViewModel.getUserVideos(it.userCode, true)
-        }
+        mViewModel.getUserVideos(userCode, true)
     }
 }

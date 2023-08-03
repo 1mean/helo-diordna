@@ -339,11 +339,11 @@ public class ShortCommentAdapter(
                 }
             }
             header.setOnClickListener {
-                startUserInfoActivity(mContext, user)
+                startUserInfoActivity(mContext, user.userCode)
             }
 
             name.setOnClickListener {
-                startUserInfoActivity(mContext, user)
+                startUserInfoActivity(mContext, user.userCode)
             }
 
             //点开回复 或 加载更多 或 收起

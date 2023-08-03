@@ -31,7 +31,6 @@ object SPUtils {
     }
 
     fun getString(context: Context, key: String): String {
-
         return getInstanse(context).getString(key, "").toString()
     }
 

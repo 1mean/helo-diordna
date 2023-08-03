@@ -37,6 +37,13 @@ public class VideoTabView(context: Context) : LinearLayoutCompat(context), IPage
         num.text = count.toString()
     }
 
+    fun updateComments() {
+
+        var nums = num.text.toString().toInt()
+        nums += 1
+        num.text = nums.toString()
+    }
+
     fun hideNum() {
         num.visibility = View.GONE
     }

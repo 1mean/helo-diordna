@@ -190,7 +190,7 @@ public class CommentAdapter(
                 user,
                 object : SpanClickListener<Int> {
                     override fun spanClick(t: Int) {
-                        startUserInfoActivity(context, user)
+                        startUserInfoActivity(context, user.userCode)
                     }
                 })
         }
@@ -338,11 +338,11 @@ public class CommentAdapter(
             }
 
             name.setOnClickListener {
-                startUserInfoActivity(context, user)
+                startUserInfoActivity(context, user.userCode)
             }
 
             header.setOnClickListener {
-                startUserInfoActivity(context, user)
+                startUserInfoActivity(context, user.userCode)
             }
         }
     }

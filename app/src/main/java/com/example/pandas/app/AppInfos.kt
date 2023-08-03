@@ -22,6 +22,7 @@ object AppInfos {
     const val RECO_STATUS_KEY = "reco_type" //设置推荐页面的排布类型
     const val MINE_STYLE_KEY = "mine_type" //我的界面的样式
     const val MUSIC_STYLE_KEY = "music_type" //音乐界面的样式
+    const val LOCAL_DATA_KEY = "local_data_type" //音乐界面的样式
     const val HEAD_URL =
         "https://i2.hdslb.com/bfs/face/7974f1f6c031d305a30ea3ecd7aedadacb3921a4.jpg"
 

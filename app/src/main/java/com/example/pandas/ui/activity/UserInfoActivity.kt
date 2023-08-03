@@ -1,7 +1,10 @@
 package com.example.pandas.ui.activity
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateInterpolator
@@ -9,6 +12,7 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import com.example.helo_base.magic.ViewPagerHelper
 import com.example.helo_base.magic.commonnavigator.CommonNavigator
 import com.example.helo_base.magic.commonnavigator.abs.CommonNavigatorAdapter
@@ -41,9 +45,9 @@ import kotlin.math.abs
  */
 public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>() {
 
-    private var user: User? = null
+    private var userCode: Int = -1
 
-    private var toolbarUpdate: Boolean = false
+    private var attentionUpdateCounts = 0
 
     private val tabList = listOf("作品", "其他")
 
@@ -52,7 +56,8 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
     override fun initView(savedInstanceState: Bundle?) {
 
         StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
-        user = intent.getParcelableExtra("user")
+        userCode = intent.getIntExtra("userCode", -1)
+
 
         binding.vpUser.run {
             offscreenPageLimit = tabList.size
@@ -120,7 +125,6 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                             )
                         )
                     }
-
                 }
                 return linePagerIndicator
             }
@@ -128,7 +132,6 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
         binding.tbUser.setNavigator(commonNavigator)
         ViewPagerHelper.bind(binding.tbUser, binding.vpUser)
 
-        initView()
         binding.barUser.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
 
             if (verticalOffset == 0) {
@@ -141,7 +144,7 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
             } else if (abs(verticalOffset) >= 0.6 * appBarLayout.totalScrollRange) {
                 if (!binding.txtUserBarName.isVisible) {
                     binding.txtUserBarName.visibility = View.VISIBLE
-                    user?.let {
+                    mViewModel.user.value?.let {
                         binding.txtUserBarName.text = it.userName
                     }
                 }
@@ -175,25 +178,33 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
             }
         })
         binding.ibUserVideo.setOnClickListener {
+            if (attentionUpdateCounts % 2 != 0) {
+                val intent = Intent().putExtra("userCode", userCode)
+                setResult(RESULT_OK, intent)
+            }
             finish()
         }
         binding.ibUserMore.setOnClickListener {
             Toast.makeText(this, "更多", Toast.LENGTH_SHORT).show()
         }
 
+        lifecycleScope.launchWhenStarted {
+            if (userCode > 0) {
+                mViewModel.getUserByCode(userCode)
+            }
+        }
     }
 
-    fun initView() {
-        user?.let {
-//            if (it.vip == 1) {
-//                //binding.txtUserName.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
-//                binding.txtUserName.setTextColor(
-//                    ContextCompat.getColor(
-//                        this,
-//                        R.color.color_name_txt
-//                    )
-//                )
-//            }
+    override fun onkeyBack() {
+        if (attentionUpdateCounts % 2 != 0) {
+            val intent = Intent().putExtra("userCode", userCode)
+            setResult(RESULT_OK, intent)
+        }
+        super.onkeyBack()
+    }
+
+    override fun createObserver() {
+        mViewModel.user.observe(this) {
             setLevelImageResourse(it.level, binding.imgUserLevel)
             binding.txtUserName.text = it.userName
             binding.txtUserDesc.text = it.signature
@@ -221,6 +232,7 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
             binding.clayoutUserFollow.setOnClickListener { _ ->
 
                 if (!it.attention) {
+                    attentionUpdateCounts += 1
                     mViewModel.updateAttention(it.userCode)
                     binding.clayoutUserFollow.setBackgroundResource(R.drawable.shape_user_unattention)
                     binding.clayoutUserAttention.visibility = View.GONE
@@ -241,6 +253,7 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                     }
                     dBinding.rlayoutCancel.setOnClickListener { _ ->
                         mViewModel.updateAttention(it.userCode)
+                        attentionUpdateCounts += 1
                         val status1 = appViewModel.appColorType.value
                         if (status1 == null) {
                             binding.clayoutUserFollow.setBackgroundResource(AppInfos.drawables[0])
@@ -264,9 +277,4 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
             }
         }
     }
-
-    override fun createObserver() {
-
-    }
-
 }

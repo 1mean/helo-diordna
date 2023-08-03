@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -91,7 +92,7 @@ public class VideoPagerAdapter(
     private var animationList: MutableMap<Int, ObjectAnimator> = mutableMapOf()
     fun startAnimation(position: Int) {
 
-        val animatom = animationList.get(position)
+        val animatom = animationList[position]
         if (animatom == null) {
             val vh = recyclerView?.findViewHolderForAdapterPosition(position)
             vh?.let {
@@ -211,6 +212,22 @@ public class VideoPagerAdapter(
             }
         }
 
+        fun updateCommentCounts(currentPosition: Int, count: Int) {
+            val petVideo = list[currentPosition]
+            val vd = petVideo.videoData
+            if (vd == null) {
+                val videoData = VideoData(videoCode = petVideo.code, comments = count)
+                petVideo.videoData = videoData
+            } else {
+                vd.comments = count
+            }
+            if (count > 0) {
+                comments.text = count.toString()
+            } else {
+                comments.text = "抢首评"
+            }
+        }
+
         fun updateComments(currentPosition: Int, videoComment: VideoComment) {
             val petVideo = list[currentPosition]
             if (petVideo.code == videoComment.videoCode) {
@@ -225,8 +242,25 @@ public class VideoPagerAdapter(
             }
         }
 
+        fun updateAttention(position: Int, userCode: Int) {
+            val video = list[position]
+            val user = video.user
+            user?.let {
+                if (it.userCode == userCode) {
+                    if (it.attention) {
+                        attentionView.setBackgroundResource(R.drawable.shape_bg_vertical_attention)
+                        attentionView.setImageResource(R.mipmap.img_vertical_attention_add)
+                        attentionView.visibility = View.VISIBLE
+                    } else {
+                        attentionView.visibility = View.GONE
+                    }
+                    it.attention = !it.attention
+                }
+            }
+        }
+
         fun init() {
-            playerCover.visibility = View.GONE
+            //playerCover.visibility = View.GONE
             play.visibility = View.GONE
             playerView.showController()
 //            timebar.setPlayedColor(
@@ -376,14 +410,20 @@ public class VideoPagerAdapter(
                 dialog.addData().onShow()
             }
 
+            musicImg.setOnClickListener {
+                user?.let {
+                    listener.startUserActivity(it.userCode)
+                }
+            }
+
             header.setOnClickListener {
                 user?.let {
-                    listener.startUserActivity(it)
+                    listener.startUserActivity(it.userCode)
                 }
             }
             name.setOnClickListener {
                 user?.let {
-                    listener.startUserActivity(it)
+                    listener.startUserActivity(it.userCode)
                 }
             }
 
@@ -563,7 +603,7 @@ public class VideoPagerAdapter(
 
         fun updateUserAttention(userCode: Int)
 
-        fun startUserActivity(user: User)
+        fun startUserActivity(userCode: Int)
 
         fun showComments(videoCode: Int, commentCounts: Int)
 

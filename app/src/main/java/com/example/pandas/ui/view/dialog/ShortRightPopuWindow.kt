@@ -16,6 +16,7 @@ import androidx.core.view.isVisible
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.UIDataWrapper
+import com.example.pandas.biz.interaction.CommentWindowListener
 import com.example.pandas.biz.interaction.ICommentCallback
 import com.example.pandas.biz.interaction.ShortCommentListener
 import com.example.pandas.biz.manager.ShortCommentManage
@@ -68,6 +69,7 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
     val binding: DialogBottomCommentBinding get() = _binding!!
 
     private var commentManage: ShortCommentManage? = null
+    private var mListener: CommentWindowListener? = null
 
     private lateinit var txtShortComments: AppCompatTextView
     private lateinit var txtCommentIn: AppCompatTextView
@@ -83,7 +85,6 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
     private var clickPosition: Int = -1
     private val mHandler: Handler = Handler(Looper.getMainLooper())
 
-
     private var currentVideoComment: VideoComment? = null
     private val commentScope = CoroutineScope(Job() + Dispatchers.Main)
     private val mAdapter: ShortCommentAdapter by lazy {
@@ -93,18 +94,22 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
         )
     }
 
-    constructor(context: Context, videoCode: Int, commentCounts: Int) : this(context) {
+    constructor(
+        context: Context,
+        videoCode: Int,
+        commentCounts: Int,
+        mListener: CommentWindowListener
+    ) : this(context) {
         this.videoCode = videoCode
         this.commentCounts = commentCounts
         this.commentManage = ShortCommentManage(context, commentScope)
+        this.mListener = mListener
     }
 
     override fun getImplLayoutId(): Int = R.layout.dialog_bottom_comment
 
     override fun onCreate() {
         super.onCreate()
-
-        Log.e("1mean", "onCreate")
 
         txtShortComments = findViewById(R.id.txt_short_comments)
         txtCommentIn = findViewById(R.id.txt_short_comment_in)
@@ -131,7 +136,6 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
     override fun onShow() {
         super.onShow()
         if (isFirst) {//防止每次都重新加载数据
-            Log.e("1mean", "onshow")
             commentManage!!.getPageComment(videoCode, startIndex, pageCount, this)
             isFirst = false
         }
@@ -300,6 +304,8 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
         commentCounts += 1
         this.clickPosition = -1
 
+        Log.e("2mean","mListener:$mListener, commentCounts:$commentCounts")
+        mListener?.updateComments(commentCounts)
         mHandler.post {
             txtShortComments.text = "${commentCounts}条评论"
         }

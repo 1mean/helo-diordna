@@ -245,7 +245,6 @@ class HomePageViewModel : BaseViewModel() {
             kotlin.runCatching {
                 PetManagerCoroutine.getHotData(hotIndex, 11)
             }.onSuccess {
-
                 hotHasMore = if (it.size > 10) {
                     it.removeLast()
                     true

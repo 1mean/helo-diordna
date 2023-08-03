@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
+import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.sql.entity.PetVideo
@@ -41,7 +42,8 @@ public class VideoRecoListAdapter(
 
         data.cover?.let {
             //loadRoundedCornerImage(context, 15, it, cover)
-            loadCenterRoundedCornerImage(context, 15, it, cover)
+            //loadCenterRoundedCornerImage(context, 15, it, cover)
+            loadCenterImage(context, it, cover)
         }
         duration.text = TimeUtils.getDuration(data.duration.toLong())
         title.text = data.title

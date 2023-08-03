@@ -6,6 +6,13 @@ plugins {
     //id 'com.chaquo.python'
 }
 
+//版本编译时间
+static def releaseTime() {
+    return new Date().format("yyyy_MM_dd_HH_mm_ss", TimeZone.getDefault())
+}
+
+ext.appName = "ipanda"
+
 android {
     compileSdkVersion 32
     defaultConfig {
@@ -18,7 +25,7 @@ android {
 
         multiDexEnabled true
 
-        manifestPlaceholders = [qqappid:"db-oz8v5apet3arcdy"]
+        manifestPlaceholders = [qqappid: "db-oz8v5apet3arcdy"]
 
         externalNativeBuild {
             cmake {
@@ -29,7 +36,7 @@ android {
         }
 
         ndk {
-            abiFilters "arm64-v8a", "armeabi-v7a", "x86", "x86_64","armeabi"
+            abiFilters "arm64-v8a", "armeabi-v7a", "x86", "x86_64", "armeabi"
         }
 
 //        python {
@@ -42,12 +49,47 @@ android {
 //            }
 //        }
     }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    signingConfigs {
+        release {
+            keyAlias 'ipandasign'
+            keyPassword '123456'
+            storeFile file('/Users/dongyiming/android/androidsign/ipandasign.jks')
+            storePassword '123456'
+        }
+
+//        debug {
+//            keyAlias 'ipandasign'
+//            keyPassword '123456'
+//            storeFile file('/Users/dongyiming/android/androidsign/ipandasign.jks')
+//            storePassword '123456'
+//        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def fileName
+                if (variant.buildType.name == 'release') {
+                    fileName = "${appName}_${defaultConfig.versionName}_${releaseTime()}_release.apk"
+                } else if (variant.buildType.name == 'debug') {
+                    fileName = "${appName}_${defaultConfig.versionName}_${releaseTime()}_debug.apk"
+                } else {
+                    fileName = "${appName}_${defaultConfig.versionName}_${releaseTime()}_other.apk"
+                }
+                outputFileName = fileName
+            }
+        }
+    }
+
     //使用viewbinding取代kotlin-android-extensions插件
     buildFeatures {
         viewBinding true
@@ -188,14 +230,14 @@ dependencies {
     /*刷型*/
     implementation 'androidx.appcompat:appcompat:1.4.2'                 //必须 1.0.0 以上
 
-    implementation  'io.github.scwang90:refresh-layout-kernel:2.0.5'      //核心必须依赖
-    implementation  'io.github.scwang90:refresh-header-classics:2.0.5'    //经典刷新头
-    implementation  'io.github.scwang90:refresh-header-radar:2.0.5'       //雷达刷新头
-    implementation  'io.github.scwang90:refresh-header-falsify:2.0.5'     //虚拟刷新头
-    implementation  'io.github.scwang90:refresh-header-material:2.0.5'    //谷歌刷新头
-    implementation  'io.github.scwang90:refresh-header-two-level:2.0.5'   //二级刷新头
-    implementation  'io.github.scwang90:refresh-footer-ball:2.0.5'        //球脉冲加载
-    implementation  'io.github.scwang90:refresh-footer-classics:2.0.5'    //经典加载
+    implementation 'io.github.scwang90:refresh-layout-kernel:2.0.5'      //核心必须依赖
+    implementation 'io.github.scwang90:refresh-header-classics:2.0.5'    //经典刷新头
+    implementation 'io.github.scwang90:refresh-header-radar:2.0.5'       //雷达刷新头
+    implementation 'io.github.scwang90:refresh-header-falsify:2.0.5'     //虚拟刷新头
+    implementation 'io.github.scwang90:refresh-header-material:2.0.5'    //谷歌刷新头
+    implementation 'io.github.scwang90:refresh-header-two-level:2.0.5'   //二级刷新头
+    implementation 'io.github.scwang90:refresh-footer-ball:2.0.5'        //球脉冲加载
+    implementation 'io.github.scwang90:refresh-footer-classics:2.0.5'    //经典加载
 
     //web
     implementation 'com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx'

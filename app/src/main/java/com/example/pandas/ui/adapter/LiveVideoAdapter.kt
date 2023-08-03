@@ -316,13 +316,13 @@ public class LiveVideoAdapter(
 
             userName.setOnClickListener {
                 user?.let {
-                    startUserInfoActivity(context, it)
+                    startUserInfoActivity(context, it.userCode)
                 }
             }
 
             userIcon.setOnClickListener {
                 user?.let {
-                    startUserInfoActivity(context, it)
+                    startUserInfoActivity(context, it.userCode)
                 }
             }
 

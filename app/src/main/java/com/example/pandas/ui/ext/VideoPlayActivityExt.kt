@@ -183,7 +183,7 @@ fun VideoInfosFragment.initUser(user: User) {
         StringBuilder(user.videoCounts.toString()).append("视频").toString()
 
     binding.imgVideoInfoHead.setOnClickListener {
-        startUserInfoActivity(mActivity, user)
+        startUserInfoActivity(mActivity, user.userCode)
     }
 }
 

@@ -42,7 +42,7 @@ public class LiveVisitorAdapter(list: MutableList<User>) : BaseCommonAdapter<Use
         holder.itemView.setOnClickListener {
             data.booleanFlag = true
             updateView.visibility = View.GONE
-            startUserInfoActivity(context, data)
+            startUserInfoActivity(context, data.userCode)
         }
     }
 

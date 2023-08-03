@@ -3,6 +3,7 @@ package com.example.pandas.ui.activity
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,10 +11,13 @@ import android.text.Editable
 import android.util.Log
 import android.view.*
 import android.view.animation.LinearInterpolator
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
+import com.example.pandas.biz.interaction.CommentWindowListener
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.manager.SoftInputManager
 import com.example.pandas.biz.manager.VerticalPlayManager
@@ -500,7 +504,23 @@ public class ShortVideoActivity2 :
         mViewModel.updateAttention(userCode)
     }
 
-    override fun startUserActivity(user: User) {
+    private val requestLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                result.data?.let {
+                    val userCode = it.getIntExtra("userCode", -1)
+                    if (userCode > 0) {
+                        mAdapter.recyclerView?.let {
+                            val viewHolder =
+                                it.findViewHolderForAdapterPosition(currentPosition) as? VideoPagerAdapter.MyViewHolder
+                            viewHolder?.updateAttention(currentPosition, userCode)
+                        }
+                    }
+                }
+            }
+        }
+
+    override fun startUserActivity(userCode: Int) {
 
         if (manager!!.isPlaying()) {
             manager?.pause()
@@ -511,14 +531,24 @@ public class ShortVideoActivity2 :
                 viewHolder?.init()
             }
         }
-        startUserInfoActivity(this, user)
+        val intent = Intent(this, UserInfoActivity::class.java).apply {
+            putExtra("userCode", userCode)
+        }
+        requestLauncher.launch(intent)
     }
 
     private var vh: VideoPagerAdapter.MyViewHolder? = null
     override fun showComments(videoCode: Int, commentCounts: Int) {
 
         if (popupView == null) {
-            popupView = ShortRightPopuWindow(this, videoCode, commentCounts)
+            popupView = ShortRightPopuWindow(
+                this,
+                videoCode,
+                commentCounts,
+                object : CommentWindowListener {
+                    override fun updateComments(commentCount: Int) {
+                    }
+                })
         }
         XPopup.setShadowBgColor(ContextCompat.getColor(this, R.color.color_white_lucency))
         XPopup.Builder(this).setPopupCallback(object : XPopupCallback {

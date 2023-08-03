@@ -4,13 +4,17 @@ import ShortManager
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.*
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
+import com.example.pandas.biz.interaction.CommentWindowListener
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.databinding.FragmentVerticalVideoplayBinding
@@ -41,13 +45,27 @@ public class ShortRecommendFragment :
 
     private var manager: ShortManager? = null
     var popupView: ShortRightPopuWindow? = null
+    private val mHandler: Handler = Handler(Looper.getMainLooper())
 
 
     //onStart -> 返回数据后 -> 然后执行onResume()
     private val requestLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-
-            manager?.continuePlayer()
+            Log.e("2mean","result…$result")
+            if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                result.data?.let {
+                    val userCode = it.getIntExtra("userCode", -1)
+                    Log.e("2mean","userCode: $userCode")
+                    if (userCode > 0) {
+                        mAdapter.recyclerView?.let {
+                            val viewHolder =
+                                it.findViewHolderForAdapterPosition(currentPosition) as? VideoPagerAdapter.MyViewHolder
+                            viewHolder?.updateAttention(currentPosition, userCode)
+                        }
+                    }
+                }
+                manager?.continuePlayer()
+            }
         }
 
     @SuppressLint("Recycle")
@@ -67,7 +85,6 @@ public class ShortRecommendFragment :
             if (it.isSuccess) {
                 when {
                     it.isRefresh -> {
-                        Log.e("222aaa", "isRefresh")
                         mAdapter.refreshAdapter(it.listData)
                         manager?.addMediaItems(it.listData)
                     }
@@ -185,7 +202,7 @@ public class ShortRecommendFragment :
         mViewModel.updateAttention(userCode)
     }
 
-    override fun startUserActivity(user: User) {
+    override fun startUserActivity(userCode: Int) {
 
         val fragment = parentFragment
         if (fragment != null && fragment is ShortFragment) {
@@ -196,7 +213,7 @@ public class ShortRecommendFragment :
             manager?.pause()
         }
         val intent = Intent(context, UserInfoActivity::class.java).apply {
-            putExtra("user", user)
+            putExtra("userCode", userCode)
         }
         requestLauncher.launch(intent)
         startActivity = true
@@ -206,7 +223,18 @@ public class ShortRecommendFragment :
     override fun showComments(videoCode: Int, commentCounts: Int) {
 
         if (popupView == null) {
-            popupView = ShortRightPopuWindow(mActivity, videoCode, commentCounts)
+            popupView = ShortRightPopuWindow(mActivity, videoCode, commentCounts, object :
+                CommentWindowListener {
+                override fun updateComments(commentCount: Int) {
+                    mHandler.post {
+                        mAdapter.recyclerView?.let {
+                            vh =
+                                it.findViewHolderForAdapterPosition(currentPosition) as VideoPagerAdapter.MyViewHolder
+                            vh?.updateCommentCounts(currentPosition, commentCount)
+                        }
+                    }
+                }
+            })
         }
         XPopup.setShadowBgColor(ContextCompat.getColor(mActivity, R.color.color_white_lucency))
         XPopup.Builder(mActivity).setPopupCallback(object : XPopupCallback {
@@ -291,7 +319,6 @@ public class ShortRecommendFragment :
 
     override fun againOnResume() {
         super.againOnResume()
-
         val fragment = parentFragment
         if (fragment != null && fragment is ShortFragment) {
             (fragment as ShortFragment).isUpdate = true
@@ -303,7 +330,7 @@ public class ShortRecommendFragment :
                 it.findViewHolderForAdapterPosition(binding.vp2VideoVertical.currentItem) as? VideoPagerAdapter.MyViewHolder
             viewHolder?.let { vh ->
                 vh.hidePlerView()
-                manager?.againOnResume(vh.playerView,currentPosition)
+                manager?.againOnResume(vh.playerView, currentPosition)
             }
         }
     }

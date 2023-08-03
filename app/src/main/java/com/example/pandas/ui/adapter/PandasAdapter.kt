@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.blankj.utilcode.util.VibrateUtils
 import com.bumptech.glide.Glide
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.data.network.getGridItems
@@ -20,7 +21,7 @@ import com.example.pandas.utils.TimeUtils
 import com.lxj.xpopup.XPopup
 
 /**
- * @description: PandasAdapter
+ * @description: 首页-熊猫-adapter
  * @author: dongyiming
  * @date: 1/12/22 7:53 下午
  * @version: v1.0
@@ -124,7 +125,7 @@ public class PandasAdapter(private val list: MutableList<PetVideo>) :
 
             //把http图片换成https就能加载出来
             //Glide.with(itemView).load(petVideo.cover).into(cover)
-            loadCenterImage(itemView.context,petVideo.cover,cover)
+            loadCenterImage(itemView.context, petVideo.cover, cover)
             this.duration.text = duration
             petVideo.user?.let {
                 name.text = it.userName
@@ -132,11 +133,14 @@ public class PandasAdapter(private val list: MutableList<PetVideo>) :
             typeName.text = getHomePandaDesc(petVideo.period, petVideo.title!!)
             title.text = petVideo.title
 
+            itemView.setOnLongClickListener {
+                VibrateUtils.vibrate(2000)
+                true
+            }
             itemView.setOnClickListener {
                 startVideoPlayingActivity(itemView.context, petVideo)
             }
             deleteView.setOnClickListener {
-
                 val popuView =
                     XPopup.Builder(itemView.context).isDestroyOnDismiss(true)
                         .asConfirm("删除", "对当前视频不感兴趣，删除视频", "取消", "确定", {

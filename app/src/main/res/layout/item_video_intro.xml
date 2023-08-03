@@ -9,14 +9,22 @@
         android:focusable="true"
         tools:viewBindingIgnore="true">
 
-    <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_video_reco_cover"
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_video_intro"
             android:layout_width="128dp"
             android:layout_height="72dp"
+            app:cardElevation="0.5dp"
+            app:cardCornerRadius="5dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginStart="12dp"/>
+            android:layout_marginStart="12dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_video_reco_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+    </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_video_reco_duration"
@@ -24,8 +32,8 @@
             android:layout_height="15dp"
             android:textSize="10sp"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@id/img_video_reco_cover"
-            app:layout_constraintRight_toRightOf="@id/img_video_reco_cover"
+            app:layout_constraintBottom_toBottomOf="@id/card_video_intro"
+            app:layout_constraintRight_toRightOf="@id/card_video_intro"
             android:layout_marginBottom="4dp"
             android:layout_marginEnd="4dp"
             android:paddingLeft="4dp"
@@ -41,19 +49,19 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_txt_video_reco_title"
             android:textSize="14sp"
-            app:layout_constraintLeft_toRightOf="@id/img_video_reco_cover"
+            app:layout_constraintLeft_toRightOf="@id/card_video_intro"
             android:layout_marginStart="11dp"
             android:maxEms="12"
             android:lines="2"
             android:ellipsize="end"
-            app:layout_constraintTop_toTopOf="@id/img_video_reco_cover" />
+            app:layout_constraintTop_toTopOf="@id/card_video_intro" />
 
     <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_video_reco_author"
             android:layout_width="wrap_content"
             android:layout_height="16dp"
             app:layout_constraintLeft_toLeftOf="@id/txt_video_reco_title"
-            app:layout_constraintBottom_toBottomOf="@id/img_video_reco_cover"
+            app:layout_constraintBottom_toBottomOf="@id/card_video_intro"
             android:layout_marginBottom="17dp"
             android:src="@mipmap/img_up1" />
 
@@ -74,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="16dp"
             app:layout_constraintLeft_toLeftOf="@id/txt_video_reco_title"
-            app:layout_constraintBottom_toBottomOf="@id/img_video_reco_cover"
+            app:layout_constraintBottom_toBottomOf="@id/card_video_intro"
             android:src="@mipmap/img_video_play_times" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -94,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="16dp"
             app:layout_constraintLeft_toLeftOf="@id/txt_video_reco_title"
-            app:layout_constraintBottom_toBottomOf="@id/img_video_reco_cover"
+            app:layout_constraintBottom_toBottomOf="@id/card_video_intro"
             android:layout_marginStart="77dp"
             android:src="@mipmap/img_video_comment" />
 

@@ -218,11 +218,11 @@ public class ShortReplyCommentAdapter(
             }
 
             fromName.setOnClickListener {
-                startUserInfoActivity(context, user)
+                startUserInfoActivity(context, user.userCode)
             }
 
             toName.setOnClickListener {
-                startUserInfoActivity(context, user)
+                startUserInfoActivity(context, user.userCode)
             }
         }
     }

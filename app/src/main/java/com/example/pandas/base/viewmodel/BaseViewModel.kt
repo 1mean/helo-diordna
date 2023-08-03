@@ -1,6 +1,7 @@
 package com.example.pandas.base.viewmodel
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,6 +32,7 @@ open class BaseViewModel : ViewModel() {
     val intFlag: MutableLiveData<Int> by lazy { MutableLiveData() }
     val commentResult: MutableLiveData<VideoComment> by lazy { MutableLiveData() }
     val updateUserResult: SingleLiveData<User> by lazy { SingleLiveData() }
+    val user: MutableLiveData<User> by lazy { MutableLiveData() }
 
     fun IntUpdate() {
         int_flag++
@@ -129,9 +131,15 @@ open class BaseViewModel : ViewModel() {
         }
     }
 
-    fun updateUser(user: User){
+    fun updateUser(user: User) {
         viewModelScope.launch {
             updateUserResult.value = PetManagerCoroutine.updateUser(user)
+        }
+    }
+
+    fun getUserByCode(userCode: Int) {
+        viewModelScope.launch {
+            user.value = PetManagerCoroutine.getUser(userCode)
         }
     }
 }

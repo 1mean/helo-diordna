@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
+import com.blankj.utilcode.util.VibrateUtils
 import com.example.pandas.R
 import com.example.pandas.bean.LandscapeData
 import com.example.pandas.biz.ext.loadCenterImage
@@ -168,6 +169,16 @@ public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data
                         }
                     })
                 dialog.addData().onShow()
+            }
+            itemView.setOnLongClickListener {
+                val dialog =
+                    ShareBottomSheetDialog(itemView.context, object : ItemClickListener<String> {
+                        override fun onItemClick(t: String) {
+                        }
+                    })
+                dialog.addData().onShow()
+                VibrateUtils.vibrate(2000)
+                true
             }
             itemView.setOnClickListener {
                 startVideoPlayingActivity(itemView.context, video)

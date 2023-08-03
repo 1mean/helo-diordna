@@ -6,7 +6,7 @@ import com.example.pandas.bean.HeaderDownLoad
 import com.example.pandas.bean.SearchInfo
 import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.sql.entity.*
-import com.google.common.graph.MutableNetwork
+import kotlinx.coroutines.flow.Flow
 
 /**
  * @description:
@@ -217,11 +217,8 @@ interface PetVideoDao {
     @Query("select * from pet_video where videoType = (:videoType)")
     suspend fun queryVideoType(videoType: Int): MutableList<PetVideo>
 
-    @Query("select * from pet_video where videoType=0 and star=1 order by releaseTime desc limit (:startIndex),(:count)")
-    suspend fun queryHotVideo(startIndex: Int, count: Int): MutableList<PetVideo>
-
     @Query("select * from pet_video where videoType=0 and star=1 order by random() desc limit (:startIndex),(:count)")
-    suspend fun queryHotVideo1(startIndex: Int, count: Int): MutableList<PetVideo>
+    suspend fun queryHotVideo(startIndex: Int, count: Int): MutableList<PetVideo>
 
     @Query("select * from music where type=(:type) limit (:startIndex),(:count)")
     suspend fun queryMusicByPage(type: Int, startIndex: Int, count: Int): MutableList<MusicVo>

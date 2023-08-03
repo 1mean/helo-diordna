@@ -11,7 +11,6 @@ import com.google.android.exoplayer2.source.MediaLoadData
 import com.google.android.exoplayer2.trackselection.TrackSelectionParameters
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import java.io.IOException
-import java.lang.Exception
 
 /**
  * @description: TODO
@@ -202,6 +201,7 @@ public class ShortManager(
     }
 
     fun seekTo(position: Int, playerView: StyledPlayerView) {
+        mPlayer.repeatMode = Player.REPEAT_MODE_ONE
         StyledPlayerView.switchTargetView(mPlayer, oldPlayerView, playerView)
         this.oldPlayerView = playerView
         mPlayer.seekTo(position, 0)
@@ -221,7 +221,7 @@ public class ShortManager(
         }
     }
 
-    fun againOnResume(playerView: StyledPlayerView,currentPosition:Int) {
+    fun againOnResume(playerView: StyledPlayerView, currentPosition: Int) {
 
         if (_mPlayer != null && mPlayer.playWhenReady) return
 
@@ -239,9 +239,11 @@ public class ShortManager(
     }
 
     fun release() {
-        mPlayer.removeListener(mListener)
-        mPlayer.release()
-        oldPlayerView = null
-        _mPlayer = null
+        if (_mPlayer != null) {
+            _mPlayer!!.removeListener(mListener)
+            _mPlayer!!.release()
+            oldPlayerView = null
+            _mPlayer = null
+        }
     }
 }

@@ -102,6 +102,13 @@ fun startUserInfoActivity(context: Context, user: User) {
     context.startActivity(intent)
 }
 
+fun startUserInfoActivity(context: Context, userCode: Int) {
+    val intent = Intent(context, UserInfoActivity::class.java).apply {
+        putExtra("userCode", userCode)
+    }
+    context.startActivity(intent)
+}
+
 fun startMusicActivity(context: Context, fileName: String, position: Int = 0) {
     val intent = Intent(context, AudioPlayActivity::class.java).apply {
         putExtra("fileName", fileName)

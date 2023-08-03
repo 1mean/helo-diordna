@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.blankj.utilcode.util.VibrateUtils
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.AdapterHotFragmentBinding
@@ -148,6 +149,17 @@ public class HotFragmentAdapter(val list: MutableList<PetVideo>) : Adapter<ViewH
 
             itemView.setOnClickListener {
                 startVideoPlayingActivity(context, data)
+            }
+
+            itemView.setOnLongClickListener {
+                val dialog =
+                    ShareBottomSheetDialog(context, object : ItemClickListener<String> {
+                        override fun onItemClick(t: String) {
+                        }
+                    })
+                dialog.addData().onShow()
+                VibrateUtils.vibrate(2000)
+                true
             }
 
             more.setOnClickListener {

@@ -22,14 +22,13 @@
             android:layout_marginTop="32.66dp"
             android:layout_height="44dp">
 
-        <com.google.android.material.tabs.TabLayout
+        <!--<com.google.android.material.tabs.TabLayout
                 android:id="@+id/tb_short"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_short_tab"
                 app:layout_constraintRight_toRightOf="@id/clayout_short_tab"
                 android:layout_gravity="center_horizontal"
-                android:paddingBottom="5dp"
                 app:tabMinWidth="70dp"
                 android:background="@color/color_white_lucency"
                 app:tabRippleColor="@android:color/transparent"
@@ -37,7 +36,25 @@
                 app:tabIndicatorColor="@color/color_txt_short_tab_selected"
                 app:tabSelectedTextColor="@color/color_txt_short_tab_selected"
                 app:tabTextAppearance="@style/ShortTabLayoutTextStyle"
-                app:tabIndicator="@drawable/layer_short_indicator" />
+                app:tabIndicator="@drawable/layer_short_indicator" />-->
+
+        <com.flyco.tablayout.CommonTabLayout
+                android:id="@+id/tb_short"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:tl_textBold="BOTH"
+                app:tl_iconVisible="false"
+                app:tl_tab_width="70dp"
+                app:tl_textSelectColor="@color/color_txt_short_tab_selected"
+                app:tl_textUnselectColor="@color/color_txt_short_tab_unselected"
+                app:tl_indicator_color="@color/color_txt_short_tab_selected"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_short_tab"
+                app:layout_constraintRight_toRightOf="@id/clayout_short_tab"
+                app:tl_indicator_width="22dp"
+                app:tl_indicator_height="2dp"
+                app:tl_indicator_margin_bottom="5dp"
+                android:paddingBottom="3dp"
+                app:tl_textsize="17sp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

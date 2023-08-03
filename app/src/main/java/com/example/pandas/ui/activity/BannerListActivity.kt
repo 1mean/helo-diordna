@@ -15,10 +15,12 @@ import com.example.pandas.biz.viewmodel.OneVerticalViewModel
 import com.example.pandas.databinding.ActivityBannerListBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoAndUser
+import com.example.pandas.ui.adapter.BannerListAdapter
 import com.example.pandas.ui.adapter.CommonBannerAdapter
 import com.example.pandas.ui.adapter.PandaListAdapter
 import com.example.pandas.ui.adapter.decoration.CommonBannerItemDecoration
 import com.example.pandas.ui.ext.init
+import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.appbar.AppBarLayout
@@ -31,7 +33,7 @@ import com.google.android.material.appbar.AppBarLayout
  */
 public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBannerListBinding>() {
 
-    private val mAdapter: PandaListAdapter by lazy { PandaListAdapter(mutableListOf()) }
+    private val mAdapter: BannerListAdapter by lazy { BannerListAdapter(mutableListOf()) }
 
     override fun initStatusView() {
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
@@ -43,12 +45,19 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
         binding.txtCmBannerTitle.text = title
         binding.txtBannerListTitle.text = title
 
-        val status = appViewModel.appColorType.value
-        if (status == null) {
-
-        } else {
-
+        binding.refreshBannerList.apply {
+            setProgressViewEndTarget(true, 300)
+            setRefreshColor()
+            setOnRefreshListener {
+                mViewModel.getBest(true)
+            }
         }
+
+        //解决AppBarLayout和SwipeRefreshLayout的滑动冲突问题,同时也解决了SwipeRefreshLayout和Recyclerview的滑动冲突问题
+        binding.barCmBanner.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+            //像上滑动时，verticalOffset为负值，完全展示时为0
+            binding.refreshBannerList.isEnabled = verticalOffset >= 0
+        })
 
         binding.barCmBanner.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             if (verticalOffset < 0 && verticalOffset < -157) {
@@ -85,7 +94,7 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
             GridLayoutManager(this, 2),
             object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
-                    Log.e("1mean","onLoadMore")
+                    Log.e("1mean", "onLoadMore")
                     mViewModel.getBest(false)
                 }
             })
@@ -101,13 +110,15 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
         binding.clayoutBannerTopSearch.setOnClickListener {
             startActivity(Intent(this, NewSearchActivity::class.java))
         }
+
+        mViewModel.getBest(true)
     }
 
     override fun createObserver() {
 
         mViewModel.bestList.observe(this) {
             if (it.isSuccess) {
-                Log.e("1mean","hasmore: ${it.hasMore}")
+                Log.e("1mean", "hasmore: ${it.hasMore}")
                 when {
                     it.isRefresh -> {
                         val bannerList = mutableListOf<PetVideo>()
@@ -145,11 +156,11 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
                 }
                 binding.rvBannerList.loadMoreFinished(it.isEmpty, it.hasMore)
             }
+            binding.refreshBannerList.isRefreshing = false
         }
     }
 
     override fun firstOnResume() {
         super.firstOnResume()
-        mViewModel.getBest(true)
     }
 }

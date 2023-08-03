@@ -162,6 +162,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
 
         mViewModel.createComment.observe(viewLifecycleOwner) {
 
+
             if (it.comment.type == 1) {
                 binding.rvComment.smoothScrollToPosition(0)
             }

@@ -141,7 +141,7 @@ public class CommentListAdapter(
                 val builder = SpannableStringUtils.replyOneBuilder(clickableColor, comment, object :
                     SpanClickListener<Int> {
                     override fun spanClick(t: Int) {
-                        startUserInfoActivity(context, user)
+                        startUserInfoActivity(context, user.userCode)
                     }
                 })
                 content.text = builder
@@ -235,10 +235,10 @@ public class CommentListAdapter(
             }
 
             name.setOnClickListener {
-                startUserInfoActivity(context, user)
+                startUserInfoActivity(context, user.userCode)
             }
             header.setOnClickListener {
-                startUserInfoActivity(context, user)
+                startUserInfoActivity(context, user.userCode)
             }
             content.setOnClickListener {
                 val type = if (position == 0) {

@@ -7,9 +7,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.biz.viewmodel.EventViewModel
+import com.example.pandas.data.sql.AppData
 import com.example.pandas.sql.database.AppDataBase
 import com.example.pandas.um.UmInitConfig
 import com.example.pandas.utils.DarkModeUtils
+import com.example.pandas.utils.SPUtils
 import com.umeng.commonsdk.UMConfigure
 
 
@@ -54,7 +56,7 @@ class DiorApplication : Application(), ViewModelStoreOwner {
             DarkModeUtils.applyNightMode(this)
         }
 
-        initdata()
+        //initdata()
     }
 
     /**
@@ -86,18 +88,18 @@ class DiorApplication : Application(), ViewModelStoreOwner {
 //                petDao.update(video)
 //            }
 
-            val codes = arrayOf(77, 1946, 2815, 2000, 1809, 1810,1799)
-            val codes2 = arrayOf(1808,1127)
-            for (code in codes) {
-                val video = petDao.queryVideoByCode1(code)
-                video.videoType = 0
-                petDao.update(video)
-            }
-            for (code in codes2) {
-                val video = petDao.queryVideoByCode1(code)
-                video.videoType = 1
-                petDao.update(video)
-            }
+//            val codes = arrayOf(77, 1946, 2815, 2000, 1809, 1810,1799)
+//            val codes2 = arrayOf(1808,1127)
+//            for (code in codes) {
+//                val video = petDao.queryVideoByCode1(code)
+//                video.videoType = 0
+//                petDao.update(video)
+//            }
+//            for (code in codes2) {
+//                val video = petDao.queryVideoByCode1(code)
+//                video.videoType = 1
+//                petDao.update(video)
+//            }
 
 
 //            val musicArray = mutableListOf<Int>()
@@ -155,17 +157,20 @@ class DiorApplication : Application(), ViewModelStoreOwner {
 
 
             /* add data */
-//            val list = AppData.getPetVideoData()
-//            petDao.insertAll(list)
-//            val list1 = AppData.getMusicData()
-//            petDao.insertMusics(list1)
-//            val list2 = AppData.getUser()
-//            petDao.insertUsers(list2)
-//            val list3 = AppData.getComment()
-//            petDao.insertComment(list3)
-//            val list4 = AppData.getShortComment()
-//            petDao.insertComment(list4)
-
+//            val key = SPUtils.getString(this, AppInfos.LOCAL_DATA_KEY)
+//            if (key.isEmpty()) {
+//                SPUtils.putString(this, AppInfos.LOCAL_DATA_KEY, "local")
+//                val list = AppData.getPetVideoData()
+//                petDao.insertAll(list)
+//                val list1 = AppData.getMusicData()
+//                petDao.insertMusics(list1)
+//                val list2 = AppData.getUser()
+//                petDao.insertUsers(list2)
+//                val list3 = AppData.getComment()
+//                petDao.insertComment(list3)
+//                val list4 = AppData.getShortComment()
+//                petDao.insertComment(list4)
+//            }
         }.start()
     }
 
