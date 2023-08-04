@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.*
 import android.provider.MediaStore
+import android.view.Gravity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -169,11 +170,11 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSettingBinding>(
         }
 
         appViewModel.sexUpdate.observe(this) {
-            when(it){
-                0->{
+            when (it) {
+                0 -> {
                     binding.imgMineSex.setImageResource(R.mipmap.img_mine_male)
                 }
-                1->{
+                1 -> {
                     binding.imgMineSex.setImageResource(R.mipmap.img_mine_female)
                 }
             }

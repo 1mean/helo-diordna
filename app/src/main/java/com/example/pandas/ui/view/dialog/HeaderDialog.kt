@@ -1,6 +1,8 @@
 import android.R.attr.duration
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Bitmap
@@ -11,6 +13,8 @@ import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
+import android.view.animation.OvershootInterpolator
 import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
@@ -65,9 +69,8 @@ public class HeaderDialog(
 
         isFocusable = true
 
-        contentView.post {
-            animationStyle = R.style.style_header_dialog_animation
-        }
+        //去掉默认的动画效果，因为showAsDropDown会自带默认动画
+        animationStyle = R.style.style_header_dialog_animation
 
         coroutineScope.launch(Dispatchers.Default) {
 
@@ -156,11 +159,10 @@ public class HeaderDialog(
 
     override fun showAtLocation(parent: View?, gravity: Int, x: Int, y: Int) {
         super.showAtLocation(parent, gravity, x, y)
-//bug:写在onshow里，在退出时也会显示一次进入动画
-//        contentView.post{
-//            animationStyle = R.style.style_header_dialog_animation
-//        }
-        //contentView.postDelayed({ animationStyle = R.style.style_header_dialog_animation }, 1)
+        parent?.postDelayed({
+            val animation = AnimationUtils.loadAnimation(activity, R.anim.animate_header_dialog_in)
+            contentView.startAnimation(animation)
+        }, 1)
     }
 
     private var loadingPopup: LoadingPopupView? = null
@@ -226,14 +228,9 @@ public class HeaderDialog(
     }
 
     override fun dismiss() {
-        val height = contentView.height
-        contentView.animate().translationY(height.toFloat())
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator?) {
 
-                }
-            }).setDuration(500).start()
-
-        contentView.postDelayed({super.dismiss()},550)
+        val animation = AnimationUtils.loadAnimation(activity, R.anim.animate_header_dialog_out)
+        contentView.startAnimation(animation)
+        contentView.postDelayed({ super.dismiss() }, 500)
     }
 }
