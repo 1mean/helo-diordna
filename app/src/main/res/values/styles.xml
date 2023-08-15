@@ -539,6 +539,7 @@
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="cardCornerRadius">15dp</item>
+        <item name="cardBackgroundColor">@color/color_bg_cardview_self</item>
     </style>
 
     <style name="style_mine_fragment_card_image">

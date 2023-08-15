@@ -80,7 +80,7 @@ object AppInfos {
     )
 
     val bgColors = arrayOf(
-        R.color.color_bg_white,
+        R.color.color_bg_home,
         R.color.color_bg_pink,
         R.color.color_bg_black,
         R.color.color_bg_red,

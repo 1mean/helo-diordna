@@ -1,5 +1,6 @@
 package com.example.pandas.app
 
+import AppInstance
 import AppViewModel
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
@@ -46,7 +47,6 @@ class DiorApplication : Application(), ViewModelStoreOwner {
 
         //友盟初始化
         UMConfigure.preInit(applicationContext, AppInfos.appKey, AppInfos.channel)
-
         val initConfig = UmInitConfig()
         initConfig.UMinit(applicationContext)
 
@@ -54,8 +54,8 @@ class DiorApplication : Application(), ViewModelStoreOwner {
         val nightMode = DarkModeUtils.getNightModel(this)
         if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
             DarkModeUtils.applyNightMode(this)
+            AppInstance.isNightMode = true
         }
-
         //initdata()
     }
 

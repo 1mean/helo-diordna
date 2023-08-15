@@ -7,7 +7,7 @@
         app:cardCornerRadius="3dp"
         android:focusable="true"
         android:clickable="true"
-        app:cardBackgroundColor="@color/color_bg_cute_item"
+        app:cardBackgroundColor="@color/color_bg_item_short_find"
         app:cardElevation="0dp"
         tools:viewBindingIgnore="true"
         android:foreground="?android:attr/selectableItemBackground">

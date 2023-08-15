@@ -41,10 +41,6 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        val title = intent.getStringExtra("title")
-        binding.txtCmBannerTitle.text = title
-        binding.txtBannerListTitle.text = title
-
         binding.refreshBannerList.apply {
             setProgressViewEndTarget(true, 300)
             setRefreshColor()
@@ -99,11 +95,32 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
                 }
             })
 
-        binding.llayoutBannerBest.setOnClickListener {
+        binding.llayoutBannerBestItem1.setOnClickListener {
             val intent = Intent(
                 this@BannerListActivity,
                 BannerChildListActivity::class.java
-            ).putExtra("title", "最优质")
+            ).putExtra("title", "新")
+            startActivity(intent)
+        }
+        binding.llayoutBannerBestItem2.setOnClickListener {
+            val intent = Intent(
+                this@BannerListActivity,
+                BannerChildListActivity::class.java
+            ).putExtra("title", "年")
+            startActivity(intent)
+        }
+        binding.llayoutBannerBestItem3.setOnClickListener {
+            val intent = Intent(
+                this@BannerListActivity,
+                BannerChildListActivity::class.java
+            ).putExtra("title", "快")
+            startActivity(intent)
+        }
+        binding.llayoutBannerBestItem4.setOnClickListener {
+            val intent = Intent(
+                this@BannerListActivity,
+                BannerChildListActivity::class.java
+            ).putExtra("title", "乐")
             startActivity(intent)
         }
 

@@ -64,29 +64,18 @@
                                 android:src="@mipmap/img_banner_type1_header"
                                 app:civ_border_color="@color/white" />
 
-                        <androidx.appcompat.widget.AppCompatButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintTop_toBottomOf="@id/img_banner_list_header"
-                                app:layout_constraintLeft_toLeftOf="@id/img_banner_list_header"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginStart="20dp"
-                                android:background="@null"
-                                android:textSize="12sp"
-                                android:textColor="@color/white"
-                                android:text="退出" />
-
                         <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/txt_banner_list_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 app:layout_constraintTop_toTopOf="@id/img_banner_list_header"
                                 app:layout_constraintLeft_toRightOf="@id/img_banner_list_header"
-                                android:layout_marginTop="10dp"
                                 android:layout_marginStart="20dp"
+                                android:layout_marginTop="20dp"
                                 android:textSize="20dp"
-                                android:text="播放榜"
-                                android:textColor="@color/white" />
+                                android:text="新年快乐"
+                                android:fontFamily="@font/fzpty"
+                                android:textColor="#99ffffff" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -99,7 +88,7 @@
                             android:layout_marginEnd="12dp">
 
                         <androidx.appcompat.widget.LinearLayoutCompat
-                                android:id="@+id/llayout_banner_best"
+                                android:id="@+id/llayout_banner_best_item1"
                                 style="@style/style_banner_activity_layout">
 
                             <de.hdodenhof.circleimageview.CircleImageView
@@ -107,42 +96,48 @@
                                     android:src="@mipmap/img_banner_top1" />
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                    android:text="最优质"
+                                    android:text="新"
                                     style="@style/style_banner_activity_text" />
 
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
-                        <androidx.appcompat.widget.LinearLayoutCompat style="@style/style_banner_activity_layout">
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/llayout_banner_best_item2"
+                                style="@style/style_banner_activity_layout">
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                     style="@style/style_banner_activity_image"
                                     android:src="@mipmap/img_banner_top2" />
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                    android:text="最可爱"
+                                    android:text="年"
                                     style="@style/style_banner_activity_text" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
-                        <androidx.appcompat.widget.LinearLayoutCompat style="@style/style_banner_activity_layout">
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/llayout_banner_best_item3"
+                                style="@style/style_banner_activity_layout">
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                     style="@style/style_banner_activity_image"
                                     android:src="@mipmap/img_banner_top3" />
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                    android:text="最优质"
+                                    android:text="快"
                                     style="@style/style_banner_activity_text" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
-                        <androidx.appcompat.widget.LinearLayoutCompat style="@style/style_banner_activity_layout">
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/llayout_banner_best_item4"
+                                style="@style/style_banner_activity_layout">
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                     style="@style/style_banner_activity_image"
                                     android:src="@mipmap/img_banner_top4" />
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                    android:text="最优质"
+                                    android:text="乐"
                                     style="@style/style_banner_activity_text" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
                     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -187,6 +182,7 @@
                                 app:layout_constraintBottom_toBottomOf="@id/clayout_banner_tab"
                                 android:textSize="17sp"
                                 android:textStyle="bold"
+                                android:text="新年快乐"
                                 android:textColor="@color/white" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -203,9 +199,7 @@
                                     app:layout_constraintLeft_toLeftOf="@id/clayout_banner_top_search"
                                     app:layout_constraintRight_toRightOf="@id/clayout_banner_top_search"
                                     android:src="@mipmap/img_topview_search_white" />
-
                         </androidx.constraintlayout.widget.ConstraintLayout>
-
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.appcompat.widget.Toolbar>
             </com.google.android.material.appbar.CollapsingToolbarLayout>

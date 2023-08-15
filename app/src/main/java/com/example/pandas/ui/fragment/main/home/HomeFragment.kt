@@ -35,7 +35,6 @@ import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.coroutines.launch
 
-
 /**
  * @description: 首页
  * @author: dongyiming
@@ -173,7 +172,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
 
     override fun createObserver() {
 
-        appViewModel.headerUpdate.observe(viewLifecycleOwner){
+        appViewModel.headerUpdate.observe(viewLifecycleOwner) {
             if (it) {
                 lifecycleScope.launch {
                     val bitmap = getUserHeader(mActivity)

@@ -26,7 +26,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  */
 public class BannerChildListActivity : BaseActivity<BannerViewModel, ActivityBannerChildBinding>() {
 
-    private val tabTitles = arrayListOf("大熊猫", "萌宠", "影视剧", "小鸟")
+    private val tabTitles = arrayListOf("大熊猫", "萌宠", "娱乐", "飞鸟")
 
     override fun initView(savedInstanceState: Bundle?) {
 

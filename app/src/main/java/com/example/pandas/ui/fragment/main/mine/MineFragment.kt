@@ -1,5 +1,6 @@
 package com.example.pandas.ui.fragment.main.mine
 
+import AppInstance
 import HeaderDialog
 import android.content.ContentValues
 import android.content.Intent
@@ -29,6 +30,7 @@ import com.example.pandas.databinding.FragmentSettingBinding
 import com.example.pandas.ui.activity.*
 import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.ui.ext.startToActivity
+import com.example.pandas.ui.ext.toastTopShow
 import com.example.pandas.ui.view.dialog.TimingBottomSheetDialog
 import com.example.pandas.utils.BitmapUtils
 import com.example.pandas.utils.DarkModeUtils
@@ -121,13 +123,20 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSettingBinding>(
         //2。如果不想要重建，可在activity中设置android:configChanges="uiMode"，使模式的改变对其无效
         //3。在MainActivity的onConfigurationChanged方法里，自己处理界面的改变
         binding.itemModeDark.setOnClickListener {
-            val nightMode = DarkModeUtils.getNightModel(mActivity)
-            if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
-                DarkModeUtils.applyDayMode(mActivity)
-                StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
+            val status = appViewModel.appColorType.value
+            if (status == null || status == 0) {
+                val nightMode = DarkModeUtils.getNightModel(mActivity)
+                if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
+                    DarkModeUtils.applyDayMode(mActivity)
+                    StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
+                    AppInstance.isNightMode = true
+                } else {
+                    DarkModeUtils.applyNightMode(mActivity)
+                    StatusBarUtils.updataStatus(mActivity, true, true, R.color.color_white_lucency)
+                    AppInstance.isNightMode = false
+                }
             } else {
-                DarkModeUtils.applyNightMode(mActivity)
-                StatusBarUtils.updataStatus(mActivity, true, true, R.color.color_white_lucency)
+                toastTopShow(mActivity, "当前不支持暗黑模式设置～")
             }
         }
 

@@ -4,16 +4,12 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.MultiTransformation
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -24,13 +20,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.example.pandas.R
-import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.utils.FileUtils
 import jp.wasabeef.glide.transformations.BlurTransformation
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.io.File
 
 
 /**
@@ -121,7 +111,7 @@ fun loadLocalCircleImage(context: Context, urlRes: Int, view: ImageView) {
 }
 
 fun loadImage(context: Context, url: String, view: ImageView) {
-    Glide.with(context).load(url).placeholder(R.mipmap.img_holder).into(view)
+    Glide.with(context).load(url).placeholder(R.color.color_bg_video_item).into(view)
 }
 
 fun loadEmptyCircleImage(context: Context, view: ImageView) {

@@ -31,6 +31,7 @@ public class MessageActivity : BaseActivity<MessageViewModel, ActivityMessageBin
                         R.color.color_history_title
                     )
                 )
+                binding.imgMessageRelation.setImageResource(R.mipmap.img_message_top_relation)
             } else {
                 binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back_white)
                 binding.txtPlayTitle.setTextColor(
@@ -39,6 +40,7 @@ public class MessageActivity : BaseActivity<MessageViewModel, ActivityMessageBin
                         R.color.white
                     )
                 )
+                binding.imgMessageRelation.setImageResource(R.mipmap.img_message_top_relation_white)
                 StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
             }
         }

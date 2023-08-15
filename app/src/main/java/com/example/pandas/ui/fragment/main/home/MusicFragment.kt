@@ -12,7 +12,6 @@ import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.FragmentMusicBinding
-import com.example.pandas.ui.activity.MoreDataListActivity
 import com.example.pandas.ui.activity.OneVerticalList2Activity
 import com.example.pandas.ui.adapter.MusicTopAdapter
 import com.example.pandas.ui.adapter.MusicVPAdapter

@@ -9,7 +9,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_play_top"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+            android:outlineSpotShadowColor="#44000000"
+            android:outlineAmbientShadowColor="#44000000"
+            android:background="@color/color_bg_home"
+            android:elevation="15dp">
 
         <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/ibn_play_back"
@@ -39,6 +43,7 @@
                 app:layout_constraintRight_toRightOf="@id/clayout_play_top">
 
             <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_message_relation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="@id/clayout_message_relation"
@@ -52,23 +57,25 @@
 
     <View
             android:layout_width="match_parent"
-            android:layout_height="0.6dp"
-            android:background="@color/color_bg_message_divider" />
+            android:layout_height="0.3dp"
+            android:background="@color/color_bg_friend_divider"
+            android:outlineSpotShadowColor="@color/color_music_divider_shadow"
+            android:outlineAmbientShadowColor="@color/color_music_divider_shadow"
+            android:elevation="2dp" />
 
     <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/img_new_notice_empty"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/img_load_result_empty"
             android:layout_marginTop="100dp"
-            android:visibility="gone"
             android:layout_gravity="center_horizontal" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="暂时没有任何消息"
-            android:layout_marginTop="13dp"
+            android:text="没有任何消息~"
+            android:layout_marginTop="30dp"
             android:textSize="15sp"
             android:textColor="@color/color_landscape_item_author" />
 </androidx.appcompat.widget.LinearLayoutCompat>

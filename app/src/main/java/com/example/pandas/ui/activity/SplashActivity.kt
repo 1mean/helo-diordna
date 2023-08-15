@@ -1,6 +1,7 @@
 package com.example.pandas.ui.activity
 
 import android.animation.Animator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -24,19 +25,18 @@ import kotlin.coroutines.*
  * @date: 6/19/23 8:09 PM
  * @version: v1.0
  */
+@SuppressLint("CustomSplashScreen")
 public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>(){
 
     override fun initStatusView() {
-        super.initStatusView()
         StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
 
         binding.imgSplash.post {
-            addAlphaAnimation(binding.imgSplash, 200, object : Animator.AnimatorListener {
+            addAlphaAnimation(binding.imgSplash, 5000, object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator?) {
                 }
 
                 override fun onAnimationEnd(animation: Animator?) {
-
                     val intent = Intent(this@SplashActivity, MainActivity::class.java)
                     startActivity(intent)
                     overridePendingTransition(

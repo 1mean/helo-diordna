@@ -187,7 +187,6 @@ fun addScaleAnimation(view: View) {
     animationSet.start()
 }
 
-//一个普通的放大动画1-1.3f
 fun addAlphaAnimation(view: View, duration: Long, listener: AnimatorListener) {
     val alphaAnimator = ObjectAnimator.ofFloat(view, "alpha", 0f, 1f)
     alphaAnimator.duration = duration

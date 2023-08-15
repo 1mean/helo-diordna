@@ -4,7 +4,7 @@
     <color name="colorPrimary">@color/color_white_lucency</color>
     <color name="colorPrimaryDark">@color/color_white_lucency</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="color_bg_video_item">#e8eaef</color>
+    <color name="color_bg_video_item">#232531</color>
 
     <!-- 首页底部  -->
     <color name="color_bg_home_bottomview">#17181A</color>
@@ -37,6 +37,7 @@
     <color name="color_txt_later_dialog_title">#d0d0d0</color>
     <color name="color_bg_setting">#000000</color>
     <color name="color_txt_setting_item_name">#d0d4d8</color>
+    <color name="color_music_setting_notice">#ffffff</color>
 
     <!--recommend-->
     <color name="color_bg_recommend">#000000</color>
@@ -99,6 +100,7 @@
     <color name="color_bg_cute_fragment">#000000</color>
     <color name="color_txt_cute_tablayout_selected">#e7eaea</color>
     <color name="color_bg_cute_item">#1e2121</color>
+    <color name="color_bg_item_short_find">#1d202a</color>
     <color name="color_txt_cute_item_title">#e7eaea</color>
     <color name="color_txt_cute_item_name">#b7bec1</color>
 
@@ -181,7 +183,7 @@
     <color name="color_self_txt_coin">#262626</color>
     <color name="color_self_txt_log">#818892</color>
     <color name="color_self_tab_indicator">#00BBFF</color>
-    <color name="color_self_cache_title">#d0effc</color>
+    <color name="color_self_cache_title">#1e2121</color>
     <color name="color_self_total_integral">#999A97</color>
 
     <!--eye-->
@@ -344,6 +346,7 @@
     <color name="color_txt_setting_item_desc">#838790</color>
     <color name="color_bg_setting_button_checked">#00A8FF</color>
     <color name="color_bg_setting_button_unchecked">#DBDBDB</color>
+    <color name="color_bg_setting_drivider2">#2f3234</color>
 
     <!--live-->
     <color name="color_live_tab_select">#FF679A</color>
@@ -372,7 +375,7 @@
     <!--ShortVideoActivity-->
     <color name="color_bg1">#1e2121</color>
     <color name="color_txt_short_item_name">#B0B0B1</color>
-    <color name="color_txt_content_item_short_comment">#e1e1e1</color>
+    <color name="color_txt_content_item_short_comment">#e9e9e9</color>
     <color name="color_txt_reply_short_comment">#74737C</color>
     <color name="color_bg_short_right_dialog">#141414</color>
     <color name="color_bg_right_dialig_divider">#2a2a2a</color>
@@ -386,9 +389,9 @@
     <color name="color_bg_bottom_dialog">#7F000000</color>
     <color name="color_text_input_short">#161a21</color>
     <color name="color_bg_falls_short">#1e1e1e</color>
-    <color name="color_txt_name_short">#4f5359</color>
-    <color name="color_txt_short_tab_unselected">#161a21</color>
-    <color name="color_txt_short_tab_selected">#1e1e1e</color>
+    <color name="color_txt_name_short">#c5c8ca</color>
+    <color name="color_txt_short_tab_unselected">#cfd2d2</color>
+    <color name="color_txt_short_tab_selected">#ffffff</color>
     <color name="color_divider_one_vertical2">#2f3232</color>
 
 </resources>

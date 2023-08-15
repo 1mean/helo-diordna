@@ -41,6 +41,7 @@
     <color name="color_txt_later_dialog_title">#333333</color>
     <color name="color_bg_setting">#ffffff</color>
     <color name="color_txt_setting_item_name">#000000</color>
+    <color name="color_music_setting_notice">#333333</color>
 
     <!--home/recommend-->
     <color name="color_bg_recommend">#F1F2F4</color>
@@ -96,6 +97,7 @@
     <color name="color_bg_cute_fragment">#ffffff</color>
     <color name="color_txt_cute_tablayout_selected">#333333</color>
     <color name="color_bg_cute_item">#ffffff</color>
+    <color name="color_bg_item_short_find">#ffffff</color>
     <color name="color_txt_cute_item_title">#171a1c</color>
     <color name="color_txt_cute_item_name">#666666</color>
 

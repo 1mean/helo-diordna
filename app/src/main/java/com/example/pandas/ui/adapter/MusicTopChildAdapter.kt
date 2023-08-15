@@ -22,36 +22,51 @@ import com.example.pandas.ui.ext.startVideoPlayingActivity
 public class MusicTopChildAdapter(private val list: MutableList<MusicVo>) :
     RecyclerView.Adapter<ViewHolder>() {
 
-    private val TYPE_1 = 1
-    private val TYPE_2 = 2
-
-    override fun getItemViewType(position: Int): Int {
-
-        if (position == 3) {
-            return TYPE_2
-        } else {
-            return TYPE_1
-        }
-    }
+    override fun getItemViewType(position: Int): Int = position
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return if (viewType == TYPE_1) {
-            val binding =
-                MusicTopItem1Binding.inflate(LayoutInflater.from(parent.context), parent, false)
-            ViewHolder1(binding)
-        } else {
-            val binding =
-                MusicTopItem2Binding.inflate(LayoutInflater.from(parent.context), parent, false)
-            ViewHolder2(binding)
+        when (viewType) {
+            0 -> {
+                val binding =
+                    MusicTopItem1Binding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return ViewHolder1(binding)
+            }
+            1 -> {
+                val binding =
+                    MusicTopItem1Binding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return ViewHolder2(binding)
+            }
+            2 -> {
+                val binding =
+                    MusicTopItem1Binding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return ViewHolder3(binding)
+            }
+            3 -> {
+                val binding =
+                    MusicTopItem2Binding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return ViewHolder4(binding)
+            }
+            4 -> {
+                val binding =
+                    MusicTopItem1Binding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return ViewHolder5(binding)
+            }
+            else -> {
+                val binding =
+                    MusicTopItem1Binding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return ViewHolder6(binding)
+            }
         }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val type = getItemViewType(position)
-        return if (type == TYPE_1) {
-            (holder as ViewHolder1).handle(position)
-        } else {
-            (holder as ViewHolder2).handle(position)
+        when (getItemViewType(position)) {
+            0 -> (holder as ViewHolder1).handle(position)
+            1 -> (holder as ViewHolder2).handle(position)
+            2 -> (holder as ViewHolder3).handle(position)
+            3 -> (holder as ViewHolder4).handle(position)
+            4 -> (holder as ViewHolder5).handle(position)
+            else -> (holder as ViewHolder6).handle(position)
         }
     }
 
@@ -90,7 +105,53 @@ public class MusicTopChildAdapter(private val list: MutableList<MusicVo>) :
         }
     }
 
-    inner class ViewHolder2(binding: MusicTopItem2Binding) : ViewHolder(binding.root) {
+    inner class ViewHolder2(binding: MusicTopItem1Binding) : ViewHolder(binding.root) {
+
+        val mContext = itemView.context
+        val fullView = binding.clayoutMusic
+        val image = binding.imgMusicTopChild1
+        val name = binding.txtMusicTopChild1
+
+        fun handle(position: Int) {
+            val musicVo = list[position]
+            musicVo.cover?.let {
+                loadMusicBackGround(mContext, covers[position], fullView)
+                loadCenterRoundedCornerImage(mContext, 25, it, image)
+            }
+            name.text = musicVo.audioName
+
+            itemView.setOnClickListener {
+                musicVo.fileName?.let {
+                    startMusicActivity(mContext, it)
+                }
+            }
+        }
+    }
+
+    inner class ViewHolder3(binding: MusicTopItem1Binding) : ViewHolder(binding.root) {
+
+        val mContext = itemView.context
+        val fullView = binding.clayoutMusic
+        val image = binding.imgMusicTopChild1
+        val name = binding.txtMusicTopChild1
+
+        fun handle(position: Int) {
+            val musicVo = list[position]
+            musicVo.cover?.let {
+                loadMusicBackGround(mContext, covers[position], fullView)
+                loadCenterRoundedCornerImage(mContext, 25, it, image)
+            }
+            name.text = musicVo.audioName
+
+            itemView.setOnClickListener {
+                musicVo.fileName?.let {
+                    startMusicActivity(mContext, it)
+                }
+            }
+        }
+    }
+
+    inner class ViewHolder4(binding: MusicTopItem2Binding) : ViewHolder(binding.root) {
 
         val image = binding.imgMusicTopChild1
 
@@ -99,6 +160,10 @@ public class MusicTopChildAdapter(private val list: MutableList<MusicVo>) :
             musicVo.cover?.let {
                 loadCenterImage(itemView.context, covers[position], image)
             }
+
+            val lp = itemView.layoutParams
+            lp.width = 35
+            itemView.layoutParams = lp
 
             itemView.setOnClickListener {
 
@@ -116,6 +181,60 @@ public class MusicTopChildAdapter(private val list: MutableList<MusicVo>) :
                 music19.vertical = false
 
                 startVideoPlayingActivity(itemView.context, music19)
+            }
+        }
+    }
+
+    inner class ViewHolder5(binding: MusicTopItem1Binding) : ViewHolder(binding.root) {
+
+        val mContext = itemView.context
+        val fullView = binding.clayoutMusic
+        val image = binding.imgMusicTopChild1
+        val name = binding.txtMusicTopChild1
+
+        fun handle(position: Int) {
+            val musicVo = list[position]
+            musicVo.cover?.let {
+                loadMusicBackGround(mContext, covers[position], fullView)
+                loadCenterRoundedCornerImage(mContext, 25, it, image)
+            }
+            name.text = musicVo.audioName
+
+            val lp = itemView.layoutParams
+            lp.width = 35
+            itemView.layoutParams = lp
+
+            itemView.setOnClickListener {
+                musicVo.fileName?.let {
+                    startMusicActivity(mContext, it)
+                }
+            }
+        }
+    }
+
+    inner class ViewHolder6(binding: MusicTopItem1Binding) : ViewHolder(binding.root) {
+
+        val mContext = itemView.context
+        val fullView = binding.clayoutMusic
+        val image = binding.imgMusicTopChild1
+        val name = binding.txtMusicTopChild1
+
+        fun handle(position: Int) {
+            val musicVo = list[position]
+            musicVo.cover?.let {
+                loadMusicBackGround(mContext, covers[position], fullView)
+                loadCenterRoundedCornerImage(mContext, 25, it, image)
+            }
+            name.text = musicVo.audioName
+
+            val lp = itemView.layoutParams
+            lp.width = 35
+            itemView.layoutParams = lp
+
+            itemView.setOnClickListener {
+                musicVo.fileName?.let {
+                    startMusicActivity(mContext, it)
+                }
             }
         }
     }
