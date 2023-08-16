@@ -77,8 +77,8 @@
                 app:cardCornerRadius="5dp"
                 app:cardElevation="0dp">
 
-            <!-- app:keep_content_on_player_reset="true"
-                    app:shutter_background_color="@color/color_white_lucency" 暂时没看出来作用，解决黑屏-->
+            <!-- app:keep_content_on_player_reset="true" 暂时没看出来作用，解决黑屏
+                    app:shutter_background_color="@color/color_white_lucency" 删除后解决了一个bug-->
             <!--show_timeout="0" 才能保证永远显示controller-->
             <com.google.android.exoplayer2.ui.StyledPlayerView
                     android:id="@+id/player_live"
@@ -88,8 +88,6 @@
                     app:show_timeout="0"
                     app:hide_on_touch="false"
                     android:background="@color/black"
-                    app:keep_content_on_player_reset="true"
-                    app:shutter_background_color="@color/color_white_lucency"
                     app:controller_layout_id="@layout/item_reco_player" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -100,8 +98,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/img_video"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitXY" />
+                        android:layout_height="match_parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/clayout_live_item"

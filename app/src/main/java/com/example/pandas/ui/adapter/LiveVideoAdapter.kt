@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.example.pandas.R
 import com.example.pandas.bean.LiveVideoData
-import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.interaction.AnimationListener
 import com.example.pandas.biz.interaction.ItemClickListener
@@ -269,7 +270,13 @@ public class LiveVideoAdapter(
             time.text = StringBuilder(r_time).append(" · 投稿了视频").toString()
 
             video.cover?.let {
-                loadImage(context, it, cover)
+                if (video.vertical) {//竖屏
+                    Log.e("6mean","111")
+                    loadImage(context, it, cover)
+                } else {
+                    Log.e("6mean","222")
+                    loadCenterImage(context, it, cover)
+                }
             }
 
             shareView.setOnClickListener {

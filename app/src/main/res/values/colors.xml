@@ -5,6 +5,8 @@
     <color name="colorPrimaryDark">@color/color_white_lucency</color>
     <color name="colorAccent">#D81B60</color>
     <color name="color_bg_video_item">#e8eaef</color>
+    <color name="color_bg_image_holder">#e8eaef</color>
+    <color name="color_bg_image_holder_night">#232531</color>
 
     <!-- 首页  -->
     <color name="color_bg_home_bottomview">#ffffff</color>
@@ -138,19 +140,6 @@
     <color name="color_bg_search_history">#f0f3f3</color>
     <color name="color_txt_edit_hint_search">#ACB4BB</color>
     <color name="color_bg_message_divider">#E5E6E6</color>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <color name="color_btn_homepage_normal">#717474</color>

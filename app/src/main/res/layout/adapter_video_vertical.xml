@@ -15,7 +15,6 @@
             app:show_timeout="0"
             app:resize_mode="zoom"
             app:show_buffering="never"
-            app:shutter_background_color="@color/color_white_lucency"
             android:layout_gravity="center_horizontal"
             app:controller_layout_id="@layout/controller_vertical_player" />
 

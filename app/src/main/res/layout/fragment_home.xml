@@ -81,8 +81,8 @@
                         android:layout_gravity="center_vertical|right"
                         tools:ignore="RtlHardcoded" />
 
-                <RelativeLayout
-                        android:id="@+id/rlayout_home_top_more"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clayout_home_top_more"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
                         android:layout_gravity="center_vertical|right"
@@ -95,9 +95,22 @@
                             android:background="@null"
                             app:civ_border_width="1dp"
                             app:civ_border_color="@color/white"
-                            android:layout_centerInParent="true"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_home_top_more"
+                            app:layout_constraintRight_toRightOf="@id/clayout_home_top_more"
+                            app:layout_constraintTop_toTopOf="@id/clayout_home_top_more"
+                            app:layout_constraintBottom_toBottomOf="@id/clayout_home_top_more"
                             android:src="@mipmap/img_home_top" />
-                </RelativeLayout>
+
+                    <View
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            app:layout_constraintRight_toRightOf="@id/clayout_home_top_more"
+                            app:layout_constraintTop_toTopOf="@id/clayout_home_top_more"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:background="@drawable/shape_bg_home_notice" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.Toolbar>
 
             <!--

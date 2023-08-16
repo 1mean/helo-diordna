@@ -9,7 +9,7 @@
             android:layout_width="35dp"
             android:layout_height="28dp"
             android:layout_marginTop="3dp"
-            android:background="@drawable/shape_bottom_publish"
+            android:background="@drawable/shape_bottom_publish_pink"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -23,7 +23,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/clayout_bottom_publish"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_bottom_publish"
                 app:layout_constraintRight_toRightOf="@id/clayout_bottom_publish"
-                android:src="@mipmap/img_bottom_publish" />
+                android:src="@mipmap/img_bottom_publish_pink" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

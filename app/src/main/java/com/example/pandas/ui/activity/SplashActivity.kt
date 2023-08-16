@@ -5,11 +5,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import com.blankj.utilcode.util.ScreenUtils
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
+import com.example.pandas.databinding.ActivityPreSplashBinding
 import com.example.pandas.databinding.ActivitySplashBinding
 import com.example.pandas.ui.ext.addAlphaAnimation
 import com.example.pandas.utils.SPUtils
@@ -30,9 +32,8 @@ public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>
 
     override fun initStatusView() {
         StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
-
         binding.imgSplash.post {
-            addAlphaAnimation(binding.imgSplash, 5000, object : Animator.AnimatorListener {
+            addAlphaAnimation(binding.imgSplash, 600, object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator?) {
                 }
 

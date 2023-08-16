@@ -161,7 +161,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
             updateTopView(it)
         }
 
-        binding.rlayoutHomeTopMore.setOnClickListener {
+        binding.clayoutHomeTopMore.setOnClickListener {
             startAnyActivity(mActivity, BannerListActivity::class.java)
         }
     }

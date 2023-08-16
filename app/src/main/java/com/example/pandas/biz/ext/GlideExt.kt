@@ -1,5 +1,6 @@
 package com.example.pandas.biz.ext
 
+import AppInstance
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -22,6 +23,11 @@ import com.bumptech.glide.request.transition.Transition
 import com.example.pandas.R
 import jp.wasabeef.glide.transformations.BlurTransformation
 
+private fun getResoureId(): Int = if (AppInstance.isNightMode) {
+    R.color.color_bg_image_holder_night
+} else {
+    R.color.color_bg_image_holder
+}
 
 /**
  * 加载圆角图片
@@ -43,7 +49,7 @@ fun loadCenterRoundedCornerImage(context: Context, radius: Int, url: String?, vi
     val options =
         RequestOptions.bitmapTransform(MultiTransformation(CenterCrop(), RoundedCorners(radius)))
     //url是可以为null的
-    Glide.with(context).load(url).apply(options).placeholder(R.color.color_bg_video_item)
+    Glide.with(context).load(url).apply(options).placeholder(getResoureId())
         .into(view)
     //}
 //    if (url == null) {
@@ -83,7 +89,7 @@ fun loadCenterImage(context: Context, url: String?, view: ImageView) {
                 return false
             }
 
-        }).apply(options).placeholder(R.color.color_bg_video_item)
+        }).apply(options).placeholder(getResoureId())
         .into(view)
 }
 
@@ -101,17 +107,17 @@ fun loadCircleBitmap(context: Context, bitmap: Bitmap, view: ImageView) {
  */
 fun loadCircleImage(context: Context, url: String, view: ImageView) {
     val options = RequestOptions.bitmapTransform(CircleCrop())
-    Glide.with(context).load(url).apply(options).placeholder(R.color.color_bg_video_item).into(view)
+    Glide.with(context).load(url).apply(options).placeholder(getResoureId()).into(view)
 }
 
 fun loadLocalCircleImage(context: Context, urlRes: Int, view: ImageView) {
     val options = RequestOptions.bitmapTransform(CircleCrop())
-    Glide.with(context).load(urlRes).apply(options).placeholder(R.color.color_bg_video_item)
+    Glide.with(context).load(urlRes).apply(options).placeholder(getResoureId())
         .into(view)
 }
 
 fun loadImage(context: Context, url: String, view: ImageView) {
-    Glide.with(context).load(url).placeholder(R.color.color_bg_video_item).into(view)
+    Glide.with(context).load(url).placeholder(getResoureId()).into(view)
 }
 
 fun loadEmptyCircleImage(context: Context, view: ImageView) {

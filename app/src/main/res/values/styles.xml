@@ -16,6 +16,7 @@
 
         <!--给项目里的所有BottomSheetDialog设置圆角，如果不用全部圆角可屏蔽，然后在构造方法里自行设置style-->
         <!--<item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>-->
+        <item name="android:windowBackground">@drawable/layer_bg_splash</item>
     </style>
 
     <!-- common gravity   -->

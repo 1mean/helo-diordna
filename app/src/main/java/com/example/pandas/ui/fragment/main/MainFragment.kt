@@ -38,9 +38,9 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
 
     private val publishDrawable
         get() = arrayOf(
-            R.drawable.shape_bottom_publish,
             R.drawable.shape_bottom_publish_pink,
-            R.drawable.shape_bottom_publish,
+            R.drawable.shape_bottom_publish_pink,
+            R.drawable.shape_bottom_publish_pink,
             R.drawable.shape_bottom_publish_red,
             R.drawable.shape_bottom_publish_yellow,
             R.drawable.shape_bottom_publish_grey,
@@ -95,9 +95,9 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
 
     private val publishImages
         get() = arrayOf(
-            R.mipmap.img_bottom_publish,
             R.mipmap.img_bottom_publish_pink,
-            R.mipmap.img_bottom_publish,
+            R.mipmap.img_bottom_publish_pink,
+            R.mipmap.img_bottom_publish_pink,
             R.mipmap.img_bottom_publish_red,
             R.mipmap.img_bottom_publish_yellow,
             R.mipmap.img_bottom_publish_grey,
@@ -142,7 +142,7 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
             maxCharacterCount = 3 //101显示99+
             number = 23
             badgeTextColor = Color.WHITE
-            verticalOffset = 10
+            verticalOffset = 15
         }
 
         binding.bnvMain.run {
