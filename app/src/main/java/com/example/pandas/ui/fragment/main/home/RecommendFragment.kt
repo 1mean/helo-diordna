@@ -66,7 +66,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
 
         val type = appViewModel.recommendType.value
         if (type != null && type == 1) {
-            val padding: Int = resources.getDimension(R.dimen.common_lh_5_dimens).toInt()
+            val padding: Int = resources.getDimension(R.dimen.common_lh_5_3_dimens).toInt()
             binding.recyclerLayout.init(
                 RecommendDecoration2(padding, padding, padding, padding, padding), mAdapter,
                 GridLayoutManager(activity, 2),

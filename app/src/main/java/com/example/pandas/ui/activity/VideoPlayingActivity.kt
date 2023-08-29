@@ -3,6 +3,7 @@ package com.example.pandas.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
+import android.graphics.drawable.BitmapDrawable
 import android.os.*
 import android.util.Log
 import android.view.KeyEvent
@@ -92,6 +93,8 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+
+        window.decorView.setBackgroundResource(R.color.white)//弹出软键盘背景会出现处理冷启动白屏的windowBackground
 
         video = intent.getParcelableExtra("petVideo")
         val index = intent.getIntExtra("index", 0)

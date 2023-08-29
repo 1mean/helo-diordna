@@ -16,7 +16,7 @@ public class MainFragmentViewModel : BaseViewModel() {
 
     val refreshPosition: MutableLiveData<Int> by lazy { MutableLiveData() }
 
-    fun updateBottomBackground(status: Int) {
+    fun updateBottomBackground(status: Int) {//0为常规底部，1为短视频底部
         bottomState.value = status
     }
 

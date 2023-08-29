@@ -13,10 +13,6 @@ import com.example.pandas.sql.entity.*
 import com.example.pandas.utils.TimeUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.forEach
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.transform
 import kotlinx.coroutines.withContext
 
 /**
@@ -212,7 +208,6 @@ class PetManager {
     suspend fun getRecommendByPage(startIndex: Int, counts: Int): RecommendData<PetVideo> {
 
         return withContext(Dispatchers.IO) {
-            delay(delayTime)
             val recommendData = RecommendData<PetVideo>()
             if (startIndex == 0) {//首页
                 recommendData.bannerList = petDao.queryRecoBanner(1)
@@ -226,6 +221,7 @@ class PetManager {
                 }
                 recommendData.itemList = list
             } else {
+                delay(delayTime)
                 val list = petDao.queryStarByPage1(startIndex, counts)
                 if (list.isNotEmpty()) {
                     list.forEach {

@@ -195,7 +195,7 @@ public class ShortFragment() :
                     }
                 }
             }
-            mViewModel.updateBottomBackground(1)
+            mViewModel.updateBottomBackground(0)
         }
     }
 
@@ -204,7 +204,7 @@ public class ShortFragment() :
         if (isUpdate) {
             if (binding.tbShort.currentTab == 2) {
                 StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
-                mViewModel.updateBottomBackground(3)
+                mViewModel.updateBottomBackground(1)
             } else {
                 //mViewModel.updateBottomBackground(1)
             }
@@ -228,7 +228,7 @@ public class ShortFragment() :
             binding.tbShort.textSelectColor = tabTitleColors[3]
             binding.tbShort.textUnselectColor = tabTitleColors[0]
 
-            mViewModel.updateBottomBackground(3)
+            mViewModel.updateBottomBackground(1)
             binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
         } else {
             needUpadate = false
@@ -260,7 +260,7 @@ public class ShortFragment() :
                 )
                 binding.clayoutShortTab.setBackgroundResource(AppInfos.bgColors[status])
             }
-            mViewModel.updateBottomBackground(1)
+            mViewModel.updateBottomBackground(0)
         }
     }
 }

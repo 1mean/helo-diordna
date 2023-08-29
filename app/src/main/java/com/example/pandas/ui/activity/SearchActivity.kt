@@ -49,6 +49,8 @@ public class SearchActivity : BaseExActivity<SearchViewModel, ActivitySearchBind
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
 
+        window.decorView.setBackgroundResource(R.color.white)
+
         lifecycleScope.launch {
 
             binding.rvSearch.run {

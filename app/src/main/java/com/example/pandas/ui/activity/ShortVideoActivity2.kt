@@ -437,6 +437,14 @@ public class ShortVideoActivity2 :
         //界面初始化，第一次注册时也会被调用，所以要注意为null的判断
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
+
+            mAdapter.recyclerView?.let {
+
+                val viewHolder =
+                    it.findViewHolderForAdapterPosition(currentPosition) as? VideoPagerAdapter.MyViewHolder
+                viewHolder?.coverShow(false, currentPosition)
+            }
+
             currentPosition = position
             //开启右下角的旋转动画
 
@@ -474,6 +482,12 @@ public class ShortVideoActivity2 :
     override fun isPlayingChanged(isPlaying: Boolean) {
         super.isPlayingChanged(isPlaying)
         if (isPlaying) {
+            mAdapter.recyclerView?.let {
+
+                val viewHolder =
+                    it.findViewHolderForAdapterPosition(currentPosition) as? VideoPagerAdapter.MyViewHolder
+                viewHolder?.coverShow(false, currentPosition)
+            }
             mAdapter.startAnimation(currentPosition)
         } else {
             mAdapter.pauseAnimation(currentPosition)

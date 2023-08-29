@@ -38,6 +38,8 @@ public class AppViewModel : ViewModel() {
 
     val sexUpdate by lazy { UnPeekLiveData<Int>() }
 
+
+
     /**
      * 下载项目所有的封面图片到本地，防止远程项目被删除
      * DiskCacheStrategy.DATA： /data/user/0/com.example.hello_diordna/cache/image_manager_disk_cache/74a05aa0349bb3bb72622d1ca50e52882ba535458555fd9ff23993c4b98ef39a.0

@@ -1,9 +1,11 @@
+import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.util.Log
 import com.example.pandas.biz.ext.getLocalFilePath
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.ui.ext.toastTopShow
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.analytics.AnalyticsListener
 import com.google.android.exoplayer2.source.LoadEventInfo
@@ -163,8 +165,10 @@ public class ShortManager(
         override fun onPlaybackStateChanged(playbackState: Int) {
             when (playbackState) {
                 Player.STATE_BUFFERING -> {//可以通过isPlaying和seek动作来处理界面相关
+                    Log.e("RecoPlayManager", "STATE_BUFFERING")
                 }
                 Player.STATE_READY -> {//视频已经准备好，此时isPlaying=true
+                    Log.e("RecoPlayManager", "STATE_READY")
                 }
                 Player.STATE_IDLE -> {//暂停不会触发
                     Log.e("RecoPlayManager", "STATE_IDLE")
@@ -201,12 +205,22 @@ public class ShortManager(
     }
 
     fun seekTo(position: Int, playerView: StyledPlayerView) {
-        mPlayer.repeatMode = Player.REPEAT_MODE_ONE
-        StyledPlayerView.switchTargetView(mPlayer, oldPlayerView, playerView)
-        this.oldPlayerView = playerView
-        mPlayer.seekTo(position, 0)
-        mPlayer.playWhenReady = true
-        mPlayer.prepare()
+        //bug:exoplayer2.IllegalSeekPositionException:跳转到一个不存在的position
+        val mediaItemCount = mPlayer.mediaItemCount
+        if (position + 1 > mediaItemCount) {//当前position没有
+            Log.e(
+                "ShortManager",
+                "Out of the bounds of the mediaItems with position=$position and mediaItemCount=$mediaItemCount "
+            )
+            toastTopShow(context as Activity, "需要加载新数据了！！")
+        } else {
+            mPlayer.repeatMode = Player.REPEAT_MODE_ONE
+            StyledPlayerView.switchTargetView(mPlayer, oldPlayerView, playerView)
+            this.oldPlayerView = playerView
+            mPlayer.seekTo(position, 0)
+            mPlayer.playWhenReady = true
+            mPlayer.prepare()
+        }
     }
 
     fun isPlaying(): Boolean = mPlayer.isPlaying

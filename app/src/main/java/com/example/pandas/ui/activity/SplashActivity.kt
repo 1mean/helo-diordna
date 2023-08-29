@@ -3,22 +3,20 @@ package com.example.pandas.ui.activity
 import android.animation.Animator
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.util.Log
-import com.blankj.utilcode.util.ScreenUtils
+import androidx.lifecycle.lifecycleScope
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.databinding.ActivityPreSplashBinding
 import com.example.pandas.databinding.ActivitySplashBinding
 import com.example.pandas.ui.ext.addAlphaAnimation
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.coroutines.*
 
 /**
@@ -28,12 +26,13 @@ import kotlin.coroutines.*
  * @version: v1.0
  */
 @SuppressLint("CustomSplashScreen")
-public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>(){
+public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>() {
 
     override fun initStatusView() {
-        StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
+
+        StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
         binding.imgSplash.post {
-            addAlphaAnimation(binding.imgSplash, 600, object : Animator.AnimatorListener {
+            addAlphaAnimation(binding.imgSplash, 1500, object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator?) {
                 }
 

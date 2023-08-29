@@ -4,13 +4,19 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
-import android.util.Log
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadImage
@@ -18,13 +24,13 @@ import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.interaction.PlayerDoubleTapListener
 import com.example.pandas.databinding.AdapterVideoVerticalBinding
 import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.ext.addShortEndAnimation
 import com.example.pandas.ui.ext.addShortStartAnimation
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.utils.TimeUtils
+import jp.wasabeef.glide.transformations.BlurTransformation
 import java.util.*
 
 /**
@@ -162,7 +168,8 @@ public class VideoPagerAdapter(
         //val clear = binding.ibnVerticalEmpty
         //val reduce = binding.ibnVerticalReduce
         val playerView = binding.playerVertical
-        val playerCover = binding.playerCover
+        val coverImage = binding.imgShortVideoCover
+        val coverLayout = binding.clayoutShortVideoCover
         //val timebar = playerView.findViewById<DefaultTimeBar>(R.id.exo_progress)
         //val music = binding.txtVerticalMusic
 
@@ -273,6 +280,18 @@ public class VideoPagerAdapter(
             bottomView.visibility = View.VISIBLE
         }
 
+        fun coverShow(isCoverShow: Boolean, position: Int) {
+            if (isCoverShow) {
+                if (!coverLayout.isVisible) {
+                    coverLayout.visibility = View.VISIBLE
+                }
+            } else {
+                if (coverLayout.isVisible) {
+                    coverLayout.visibility = View.GONE
+                }
+            }
+        }
+
         fun handle(position: Int) {
             val video = list[position]
             val user = video.user
@@ -283,11 +302,26 @@ public class VideoPagerAdapter(
             time.text = TimeUtils.getStringDate2(video.releaseTime * 1000)
             title.text = video.title
 
-//            video.cover?.let {
-//                loadImage(context, it, playerCover)
-//            }
+            list[position].cover?.let {
+                loadImage(context, it, coverImage)
+                Glide.with(context).asBitmap().load(it)
+                    .apply(RequestOptions.bitmapTransform(BlurTransformation(50, 10)))
+                    .into(object : CustomTarget<Bitmap>() {
+                        override fun onResourceReady(
+                            resource: Bitmap,
+                            transition: Transition<in Bitmap>?
+                        ) {
+                            coverLayout.background =
+                                BitmapDrawable(context.resources, resource)
+                        }
 
-            //playerView.show
+                        override fun onLoadCleared(placeholder: Drawable?) {
+                        }
+                    })
+            }
+
+            coverShow(true, position)
+
             user?.let {
                 name.text = "@" + it.userName
                 loadCircleImage(context, it.headUrl!!, header)

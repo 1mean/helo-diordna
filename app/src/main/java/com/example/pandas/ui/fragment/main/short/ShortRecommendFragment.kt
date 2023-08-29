@@ -18,7 +18,6 @@ import com.example.pandas.biz.interaction.CommentWindowListener
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.databinding.FragmentVerticalVideoplayBinding
-import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.activity.UserInfoActivity
 import com.example.pandas.ui.adapter.VideoPagerAdapter
@@ -51,11 +50,11 @@ public class ShortRecommendFragment :
     //onStart -> 返回数据后 -> 然后执行onResume()
     private val requestLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            Log.e("2mean","result…$result")
+            Log.e("2mean", "result…$result")
             if (result.resultCode == AppCompatActivity.RESULT_OK) {
                 result.data?.let {
                     val userCode = it.getIntExtra("userCode", -1)
-                    Log.e("2mean","userCode: $userCode")
+                    Log.e("2mean", "userCode: $userCode")
                     if (userCode > 0) {
                         mAdapter.recyclerView?.let {
                             val viewHolder =
@@ -70,7 +69,6 @@ public class ShortRecommendFragment :
 
     @SuppressLint("Recycle")
     override fun initView(savedInstanceState: Bundle?) {
-
         manager = ShortManager(mActivity, this)
         binding.vp2VideoVertical.run {
             orientation = ViewPager2.ORIENTATION_VERTICAL
@@ -144,7 +142,13 @@ public class ShortRecommendFragment :
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
 
-            Log.e("222aaa", "onPageSelected")
+            if (currentPosition != position) {
+                mAdapter.recyclerView?.let {
+                    val viewHolder =
+                        it.findViewHolderForAdapterPosition(currentPosition) as? VideoPagerAdapter.MyViewHolder
+                    viewHolder?.coverShow(true, currentPosition)
+                }
+            }
             currentPosition = position
             //开启右下角的旋转动画
 
@@ -172,6 +176,11 @@ public class ShortRecommendFragment :
     override fun isPlayingChanged(isPlaying: Boolean) {
         super.isPlayingChanged(isPlaying)
         if (isPlaying) {
+            mAdapter.recyclerView?.let {
+                val viewHolder =
+                    it.findViewHolderForAdapterPosition(currentPosition) as? VideoPagerAdapter.MyViewHolder
+                viewHolder?.coverShow(false, currentPosition)
+            }
             mAdapter.startAnimation(currentPosition)
         } else {
             mAdapter.pauseAnimation(currentPosition)
@@ -293,12 +302,10 @@ public class ShortRecommendFragment :
             .animationDuration(600)
             .asCustom(popupView)
             .show()
-        popupView!!.setOnDragListener { v, event ->
-
-            val dialogHeight = popupView!!.height
-
-            true
-        }
+//        popupView!!.setOnDragListener { v, event ->
+//            val dialogHeight = popupView!!.height
+//            true
+//        }
     }
 
     override fun addAttention(userCode: Int) {
@@ -314,6 +321,11 @@ public class ShortRecommendFragment :
         super.onPause()
         if (!startActivity) {
             manager?.release()
+        }
+        mAdapter.recyclerView?.let {
+            val viewHolder =
+                it.findViewHolderForAdapterPosition(currentPosition) as? VideoPagerAdapter.MyViewHolder
+            viewHolder?.coverShow(true, currentPosition)
         }
     }
 

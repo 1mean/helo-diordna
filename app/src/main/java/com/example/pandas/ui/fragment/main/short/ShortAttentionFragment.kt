@@ -33,7 +33,7 @@ public class ShortAttentionFragment() :
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        val padding = mActivity.resources.getDimension(R.dimen.common_lh_4_dimens).toInt()
+        val padding = mActivity.resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         //1,条目闪动
         layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE

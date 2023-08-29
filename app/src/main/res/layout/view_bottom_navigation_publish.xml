@@ -23,7 +23,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/clayout_bottom_publish"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_bottom_publish"
                 app:layout_constraintRight_toRightOf="@id/clayout_bottom_publish"
-                android:src="@mipmap/img_bottom_publish_pink" />
+                android:src="@mipmap/img_bottom_publish_white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

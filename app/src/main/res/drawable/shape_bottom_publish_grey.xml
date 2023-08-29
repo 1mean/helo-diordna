@@ -6,6 +6,8 @@
             android:width="2dp"
             android:color="@color/color_bg_grey" />
 
+    <solid android:color="@color/color_bg_grey"/>
+
     <!-- 设置一下边距,让空间大一点 -->
     <corners android:radius="10dp" />
 </shape>
