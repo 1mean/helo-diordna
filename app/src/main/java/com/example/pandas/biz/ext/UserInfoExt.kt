@@ -10,7 +10,7 @@ import java.io.File
 
 
 suspend fun getUserHeader(context: Context): Bitmap? {
-    return withContext(Dispatchers.Default) {
+    return withContext(Dispatchers.IO) {
         val faceDir = FileUtils.getExternalFilePath(context, "face")
         val faceFile = File(faceDir, "${AppInfos.HEAD_AUTHOR}.jpg")
         if (!faceFile.exists()) {

@@ -253,8 +253,12 @@ fun MainFragment.bottomStateObserver(indexArray: Array<Int>, status: Int) {
                         item.findViewById<AppCompatImageView>(R.id.img_bottom_publish)
                     when (status) {
                         0 -> {//常规底部
-                            appViewModel.appColorType.value?.let {//type为null选择默认的
-                                publishView.setBackgroundResource(publishDrawable[it])
+                            val type = appViewModel.appColorType.value
+                            if (type == null) {
+                                publishView.setBackgroundResource(publishDrawable[0])
+                                publishImg.setImageResource(publishImages[0])
+                            } else {
+                                publishView.setBackgroundResource(publishDrawable[type])
                                 publishImg.setImageResource(publishImages[0])
                             }
                         }

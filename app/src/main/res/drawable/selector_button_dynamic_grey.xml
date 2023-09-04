@@ -4,8 +4,8 @@
     <!--<item android:drawable="@mipmap/img_tab_mine_selected" android:state_pressed="true"/>
     <item android:drawable="@mipmap/img_tab_mine_selected" android:state_checked="true"/>
     <item android:drawable="@mipmap/img_tab_mine"/>-->
-    <item android:drawable="@mipmap/img2_bottom_item2_pressed_gree" android:state_pressed="true" />
-    <item android:drawable="@mipmap/img2_bottom_item2_pressed_gree" android:state_checked="true" />
-    <item android:drawable="@mipmap/img2_bottom_item2" />
+    <item android:drawable="@mipmap/img2_bottom_item2_green2" android:state_pressed="true" />
+    <item android:drawable="@mipmap/img2_bottom_item2_green2" android:state_checked="true" />
+    <item android:drawable="@mipmap/img2_bottom_item2_2" />
 
 </selector>

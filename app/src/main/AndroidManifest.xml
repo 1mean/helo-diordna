@@ -3,6 +3,20 @@
         xmlns:tools="http://schemas.android.com/tools"
         package="com.example.pandas">
 
+    <!--<uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />-->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!--Android 13版本适配，细化存储权限-->
+    <!--    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />-->
+    <!--    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />-->
+    <!--    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />-->
+
     <!--从Android 11开始，必须要在AndroidManifest.xml清单文件中加入query权限申请，才能检测到手机上安装的三方应用包安装状态-->
     <queries>
         <package android:name="com.instagram.android" />
@@ -20,6 +34,15 @@
         <package android:name="com.yinxiang" />
         <package android:name="com.facebook.katana" />
         <package android:name="com.linkedin.android" />
+    </queries>
+
+    <queries package="${applicationId}">
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
+        </intent>
     </queries>
 
     <application
@@ -80,6 +103,7 @@
         <activity android:name=".ui.activity.HistoryActivity" />
         <activity android:name=".ui.activity.TwoVerticalActivity" />
         <activity android:name=".ui.activity.LoveActivity" />
+        <activity android:name=".ui.activity.PublishActivity" />
         <activity android:name=".ui.activity.MessageActivity" />
         <activity android:name=".ui.activity.ErrorActivity" />
         <activity android:name=".ui.activity.PandaActivity" />
@@ -158,13 +182,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
 
     <!--友盟单独需要的权限-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
-
-    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>

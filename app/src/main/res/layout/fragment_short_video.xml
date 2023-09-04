@@ -63,16 +63,39 @@
             android:layout_height="45dp"
             android:layout_marginTop="32.66dp"
             android:layout_gravity="right"
-            android:visibility="gone"
+            android:layout_marginEnd="10dp"
             tools:ignore="RtlHardcoded">
 
         <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_short_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/img_short_search"
-                android:layout_marginTop="7dp"
+                android:src="@mipmap/img_short_search1"
                 app:layout_constraintTop_toTopOf="@id/clayout_short_search"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_short_search"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_short_search"
                 app:layout_constraintRight_toRightOf="@id/clayout_short_search" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_short_video"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="32.66dp"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="left"
+            tools:ignore="RtlHardcoded">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_short_header"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_short_video"
+                app:layout_constraintRight_toRightOf="@id/clayout_short_video"
+                app:layout_constraintTop_toTopOf="@id/clayout_short_video"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_short_video"
+                app:civ_border_width="1dp"
+                app:civ_border_color="@color/white" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

@@ -105,18 +105,18 @@ public class MyBehavior() : CoordinatorLayout.Behavior<View>() {
             view.animate().translationY(view.height.toFloat()).setInterpolator(INTERPOLATOR)
                 .setDuration(200)
         animator.setListener(object : Animator.AnimatorListener {
-            override fun onAnimationStart(animation: Animator?) {
+            override fun onAnimationStart(animation: Animator) {
             }
 
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 view.visibility = View.GONE
             }
 
-            override fun onAnimationCancel(animation: Animator?) {
+            override fun onAnimationCancel(animation: Animator) {
                 show(view)
             }
 
-            override fun onAnimationRepeat(animation: Animator?) {
+            override fun onAnimationRepeat(animation: Animator) {
             }
         })
         animator.start()
@@ -127,18 +127,18 @@ public class MyBehavior() : CoordinatorLayout.Behavior<View>() {
             view.animate().translationY(0F).setInterpolator(INTERPOLATOR).setDuration(200)
         animator.setListener(object : Animator.AnimatorListener {
 
-            override fun onAnimationStart(animation: Animator?) {
+            override fun onAnimationStart(animation: Animator) {
             }
 
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 view.visibility = View.VISIBLE
             }
 
-            override fun onAnimationCancel(animation: Animator?) {
+            override fun onAnimationCancel(animation: Animator) {
                 hide(view)
             }
 
-            override fun onAnimationRepeat(animation: Animator?) {
+            override fun onAnimationRepeat(animation: Animator) {
             }
         })
         animator.start();

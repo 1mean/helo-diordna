@@ -4,10 +4,12 @@ import android.Manifest
 import android.content.Context
 import android.content.IntentFilter
 import android.graphics.Rect
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.MotionEvent
+import android.view.WindowInsets
+import android.view.WindowInsetsController
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,7 +26,6 @@ import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.databinding.ActivityMainBinding
 import com.example.pandas.ui.broadcast.TimingBroadCast
 import com.example.pandas.utils.DarkModeUtils
-import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils
 
 class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {

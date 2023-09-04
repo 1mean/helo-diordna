@@ -87,7 +87,7 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
         return binding.root
     }
 
-    //BUG:软键盘弹出来后，点击返回不会回调onKeyDown和backpressed方法
+    //bug:软键盘弹出来后，点击返回不会回调onKeyDown()和onBackPressed()方法
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -96,6 +96,10 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
         } else {
             return super.onKeyDown(keyCode, event);
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 
     private fun initViewModel() {

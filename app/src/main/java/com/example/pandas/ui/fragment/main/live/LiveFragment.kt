@@ -11,16 +11,12 @@ import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.base.fragment.BaseLazyFragment
-import com.example.pandas.biz.viewmodel.LiveViewModel
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentLivingBinding
-import com.example.pandas.ui.fragment.main.eyepetozer.EyeOtherFragment
 import com.example.pandas.ui.fragment.main.eyepetozer.EyepetozerFragment
 import com.example.pandas.ui.view.TabEntity
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
-import java.util.ArrayList
 
 /**
  * @description: 动态
@@ -88,13 +84,13 @@ public class LiveFragment : BaseFragment<MainFragmentViewModel, FragmentLivingBi
                 val currentItem = binding.vp2Living.currentItem
                 val fragments = childFragmentManager.fragments
                 fragments.forEach {
-                    when(currentItem){
-                        0->{
+                    when (currentItem) {
+                        0 -> {
                             if (it is LiveVideoFragment) {
                                 (it as LiveVideoFragment).refresh()
                             }
                         }
-                        1->{
+                        1 -> {
                             if (it is EyepetozerFragment) {
                                 (it as EyepetozerFragment).refresh()
                             }

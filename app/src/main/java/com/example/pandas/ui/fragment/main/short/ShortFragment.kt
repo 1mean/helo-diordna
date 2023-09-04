@@ -1,28 +1,32 @@
 package com.example.pandas.ui.fragment.main.short
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
+import com.example.pandas.biz.ext.getUserHeader
+import com.example.pandas.biz.ext.loadCenterImage
+import com.example.pandas.biz.ext.loadCircleBitmap
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentShortVideoBinding
+import com.example.pandas.ui.activity.NewSearchActivity
+import com.example.pandas.ui.activity.ShortVideoActivity2
 import com.example.pandas.ui.view.TabEntity
 import com.example.pandas.utils.DarkModeUtils
-import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
-import com.flyco.tablayout.utils.UnreadMsgUtils
-import com.flyco.tablayout.widget.MsgView
-import java.util.*
+import kotlinx.coroutines.launch
 
 /**
  * @description: PetChildFragment
@@ -107,6 +111,14 @@ public class ShortFragment() :
         appViewModel.appColorType.value?.let {
             updateTop(it)
         }
+
+        binding.clayoutShortSearch.setOnClickListener {
+            startActivity(Intent(mActivity, NewSearchActivity::class.java))
+        }
+
+        binding.clayoutShortVideo.setOnClickListener {
+            mActivity.startActivity(Intent(mActivity, ShortVideoActivity2::class.java))
+        }
     }
 
     private fun updateTop(status: Int) {
@@ -117,18 +129,20 @@ public class ShortFragment() :
             binding.tbShort.indicatorColor = tabTitleColors[3]
             binding.tbShort.textSelectColor = tabTitleColors[3]
             binding.tbShort.textUnselectColor = tabTitleColors[0]
+            binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1_white)
 
         } else {
-
             if (status == 0) {
                 binding.tbShort.indicatorColor = tabTitleColors[2]
                 binding.tbShort.textSelectColor = tabTitleColors[2]
                 binding.tbShort.textUnselectColor = tabTitleColors[1]
+                binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1)
             } else {
                 binding.tbShort.indicatorColor = tabTitleColors[3]
 
                 binding.tbShort.textSelectColor = tabTitleColors[3]
                 binding.tbShort.textUnselectColor = tabTitleColors[3]
+                binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1_white)
             }
 
             binding.clayoutShortTab.setBackgroundResource(AppInfos.bgColors[status])
@@ -136,6 +150,18 @@ public class ShortFragment() :
     }
 
     override fun createObserver() {
+
+        appViewModel.headerUpdate.observe(viewLifecycleOwner) {
+            if (it) {
+                lifecycleScope.launch {
+                    val bitmap = getUserHeader(mActivity)
+                    if (bitmap != null) {
+                        loadCircleBitmap(mActivity, bitmap, binding.imgShortHeader)
+                    }
+                }
+            }
+        }
+
         appViewModel.appColorType.observe(viewLifecycleOwner) {
             updateTop(it)
         }
@@ -164,7 +190,14 @@ public class ShortFragment() :
     }
 
     override fun firstOnResume() {
-
+        lifecycleScope.launch {
+            val bitmap = getUserHeader(mActivity)
+            if (bitmap == null) {
+                loadCenterImage(mActivity, AppInfos.HEAD_URL, binding.imgShortHeader)
+            } else {
+                loadCircleBitmap(mActivity, bitmap, binding.imgShortHeader)
+            }
+        }
     }
 
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
@@ -227,6 +260,7 @@ public class ShortFragment() :
             binding.tbShort.indicatorColor = tabTitleColors[3]
             binding.tbShort.textSelectColor = tabTitleColors[3]
             binding.tbShort.textUnselectColor = tabTitleColors[0]
+            binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1_white)
 
             mViewModel.updateBottomBackground(1)
             binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
@@ -245,6 +279,7 @@ public class ShortFragment() :
                     true,
                     R.color.color_white_lucency
                 )
+                binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1)
                 binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
             } else {
                 binding.tbShort.textSelectColor = tabTitleColors[3]
@@ -258,6 +293,7 @@ public class ShortFragment() :
                     true,
                     AppInfos.bgColors[status]
                 )
+                binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1_white)
                 binding.clayoutShortTab.setBackgroundResource(AppInfos.bgColors[status])
             }
             mViewModel.updateBottomBackground(0)

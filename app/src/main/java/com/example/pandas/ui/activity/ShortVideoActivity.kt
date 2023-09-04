@@ -288,10 +288,10 @@ public class ShortVideoActivity :
                     }
                     addRefreshAnimation(binding.clayoutVerticalTop, totalOffset.toFloat(), object :
                         Animator.AnimatorListener {
-                        override fun onAnimationStart(animation: Animator?) {
+                        override fun onAnimationStart(animation: Animator) {
                         }
 
-                        override fun onAnimationEnd(animation: Animator?) {
+                        override fun onAnimationEnd(animation: Animator) {
                             binding.ibnVerticalTopClose.alpha = 1f
                             binding.ibnVerticalTopMore.alpha = 1f
                             if (totalOffset >= 100) {
@@ -301,12 +301,11 @@ public class ShortVideoActivity :
                             }
                         }
 
-                        override fun onAnimationCancel(animation: Animator?) {
+                        override fun onAnimationCancel(animation: Animator) {
                         }
 
-                        override fun onAnimationRepeat(animation: Animator?) {
+                        override fun onAnimationRepeat(animation: Animator) {
                         }
-
                     })
                     quickFlag = false
                 }

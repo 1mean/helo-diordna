@@ -10,10 +10,12 @@ import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentMainBinding
+import com.example.pandas.ui.activity.PublishActivity
 import com.example.pandas.ui.adapter.HomeAdapter
 import com.example.pandas.ui.ext.appColorObserver
 import com.example.pandas.ui.ext.bottomStateObserver
 import com.example.pandas.ui.ext.initBottom
+import com.example.pandas.ui.ext.startAnyActivity
 import com.google.android.material.badge.BadgeDrawable
 
 
@@ -68,7 +70,17 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
                     }
                     R.id.menu_add -> {
                         curPosition = 2
-                        binding.vpHome.setCurrentItem(2, false)
+//                        binding.vpHome.setCurrentItem(2, false)
+//                        mActivity.supportFragmentManager.fragments.forEach {
+//                            if (it is PublishFragment) {
+//                                it.startPublishActivity()
+//                            }
+//                        }
+                        startAnyActivity(mActivity, PublishActivity::class.java)
+                        mActivity.overridePendingTransition(
+                            R.anim.animate_short_comment_in,
+                            R.anim.animate_activity_out
+                        )
                     }
                     R.id.menu_more -> {
                         curPosition = 3

@@ -14,7 +14,6 @@ import com.example.pandas.ui.activity.BackGroundActivity
 import com.example.pandas.ui.adapter.SelfViewPagerAdapter
 import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.utils.DarkModeUtils
-import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils
 
 

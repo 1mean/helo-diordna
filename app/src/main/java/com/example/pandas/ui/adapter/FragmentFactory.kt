@@ -6,8 +6,8 @@ import com.example.pandas.app.AppInfos
 import com.example.pandas.ui.fragment.main.face.FaceFragment
 import com.example.pandas.ui.fragment.main.home.HomeFragment
 import com.example.pandas.ui.fragment.main.live.LiveFragment
-import com.example.pandas.ui.fragment.main.mine.SelfFragment
 import com.example.pandas.ui.fragment.main.mine.MineFragment
+import com.example.pandas.ui.fragment.main.mine.SelfFragment
 import com.example.pandas.ui.fragment.main.short.ShortFragment
 import com.example.pandas.utils.SPUtils
 
@@ -29,7 +29,7 @@ public class FragmentFactory {
 
         var fragments = HashMap<Int, Fragment>()
 
-        fun buildFragment(page: Int,fragmentActivity: FragmentActivity): Fragment {
+        fun buildFragment(page: Int, fragmentActivity: FragmentActivity): Fragment {
 
             var mFragment = fragments[page]
 
@@ -37,11 +37,12 @@ public class FragmentFactory {
                 when (page) {
                     PAGE_ONE -> mFragment = HomeFragment()
                     PAGE_TWO -> mFragment = LiveFragment()
+//                    PAGE_THREE -> mFragment = FaceFragment()
                     PAGE_THREE -> mFragment = FaceFragment()
 //                    PAGE_FOUR -> mFragment = CutePetFragment()
                     PAGE_FOUR -> mFragment = ShortFragment()
                     PAGE_FIVE -> {
-                        val type = SPUtils.getInt(fragmentActivity,AppInfos.MINE_STYLE_KEY)
+                        val type = SPUtils.getInt(fragmentActivity, AppInfos.MINE_STYLE_KEY)
                         if (type == 1) {
                             mFragment = SelfFragment()
                         } else {

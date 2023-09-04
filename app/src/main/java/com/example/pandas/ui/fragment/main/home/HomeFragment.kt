@@ -20,7 +20,9 @@ import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.biz.ext.*
+import com.example.pandas.biz.ext.getUserHeader
+import com.example.pandas.biz.ext.loadCenterImage
+import com.example.pandas.biz.ext.loadCircleBitmap
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
 import com.example.pandas.ui.activity.BannerListActivity
@@ -152,9 +154,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
         }
 
         binding.bar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-
             this.verticalOffset = verticalOffset
-
         })
 
         appViewModel.appColorType.value?.let {

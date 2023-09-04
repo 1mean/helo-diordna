@@ -531,10 +531,10 @@ public class VideoPagerAdapter(
                 val alphaAnimation = ObjectAnimator.ofFloat(attentionView, "alpha", 1f, 0f)
                 alphaAnimation.duration = 200
                 alphaAnimation.addListener(object : Animator.AnimatorListener {
-                    override fun onAnimationStart(animation: Animator?) {
+                    override fun onAnimationStart(animation: Animator) {
                     }
 
-                    override fun onAnimationEnd(animation: Animator?) {
+                    override fun onAnimationEnd(animation: Animator) {
 
                         attentionView.setBackgroundResource(R.drawable.shape_bg_vertical_attentioned)
                         attentionView.setImageResource(R.mipmap.img_short_attentioned)
@@ -558,25 +558,25 @@ public class VideoPagerAdapter(
                         alphaAnimation2.start()
 
                         alphaAnimation2.addListener(object : Animator.AnimatorListener {
-                            override fun onAnimationStart(animation: Animator?) {
+                            override fun onAnimationStart(animation: Animator) {
                             }
 
-                            override fun onAnimationEnd(animation: Animator?) {
+                            override fun onAnimationEnd(animation: Animator) {
                                 attentionView.visibility = View.GONE
                             }
 
-                            override fun onAnimationCancel(animation: Animator?) {
+                            override fun onAnimationCancel(animation: Animator) {
                             }
 
-                            override fun onAnimationRepeat(animation: Animator?) {
+                            override fun onAnimationRepeat(animation: Animator) {
                             }
                         })
                     }
 
-                    override fun onAnimationCancel(animation: Animator?) {
+                    override fun onAnimationCancel(animation: Animator) {
                     }
 
-                    override fun onAnimationRepeat(animation: Animator?) {
+                    override fun onAnimationRepeat(animation: Animator) {
                     }
                 })
                 alphaAnimation.start()

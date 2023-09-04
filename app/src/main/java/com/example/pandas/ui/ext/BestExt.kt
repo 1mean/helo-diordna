@@ -91,7 +91,6 @@ fun AppCompatActivity.popBack(tag: String) {
 //-------------------<Activity相关 开始>-------------------------------------------------------------
 
 fun startAnyActivity(context: Context, cls: Class<*>) {
-
     context.startActivity(Intent(context, cls))
 }
 
@@ -266,17 +265,17 @@ fun setLikeAnimation(view: View, listener: AnimationListener) {
     set.play(starScaleXAnimator).with(starScaleYAnimator)
     set.duration = 400
     set.addListener(object : Animator.AnimatorListener {
-        override fun onAnimationStart(animation: Animator?) {
+        override fun onAnimationStart(animation: Animator) {
         }
 
-        override fun onAnimationEnd(animation: Animator?) {
+        override fun onAnimationEnd(animation: Animator) {
             listener.onAnimationEnd(animation)
         }
 
-        override fun onAnimationCancel(animation: Animator?) {
+        override fun onAnimationCancel(animation: Animator) {
         }
 
-        override fun onAnimationRepeat(animation: Animator?) {
+        override fun onAnimationRepeat(animation: Animator) {
         }
     })
     set.start()

@@ -5,6 +5,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.view.View
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
@@ -33,10 +37,10 @@ public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
         binding.imgSplash.post {
             addAlphaAnimation(binding.imgSplash, 1500, object : Animator.AnimatorListener {
-                override fun onAnimationStart(animation: Animator?) {
+                override fun onAnimationStart(animation: Animator) {
                 }
 
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     val intent = Intent(this@SplashActivity, MainActivity::class.java)
                     startActivity(intent)
                     overridePendingTransition(
@@ -46,10 +50,10 @@ public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>
                     finish()
                 }
 
-                override fun onAnimationCancel(animation: Animator?) {
+                override fun onAnimationCancel(animation: Animator) {
                 }
 
-                override fun onAnimationRepeat(animation: Animator?) {
+                override fun onAnimationRepeat(animation: Animator) {
                 }
 
             })

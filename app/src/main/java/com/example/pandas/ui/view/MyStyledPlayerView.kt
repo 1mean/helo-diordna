@@ -186,8 +186,8 @@ public class MyStyledPlayerView : StyledPlayerView {
 
         //右滑时，distanceX < 0
         override fun onScroll(
-            e1: MotionEvent?,//The first down motion event that started the scrolling
-            e2: MotionEvent?,//The move motion event that triggered the current onScroll
+            e1: MotionEvent,//The first down motion event that started the scrolling
+            e2: MotionEvent,//The move motion event that triggered the current onScroll
             distanceX: Float,
             distanceY: Float
         ): Boolean {

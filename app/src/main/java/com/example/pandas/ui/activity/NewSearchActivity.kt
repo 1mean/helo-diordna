@@ -9,6 +9,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.blankj.utilcode.util.KeyboardUtils
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
@@ -179,6 +180,7 @@ public class NewSearchActivity : BaseExActivity<SearchViewModel, ActivitySearchB
         }
     }
 
+    //当软键盘存在时，从左侧/右侧滑动屏幕时，不会关闭activity，只是会关闭软键盘，因为onkeyBack()根本不会触发，软键盘关闭后再滑动屏幕时，才会触发
     override fun onkeyBack() {
 
         val fragment = supportFragmentManager.findFragmentByTag(TAG_SEARCH)
@@ -186,7 +188,6 @@ public class NewSearchActivity : BaseExActivity<SearchViewModel, ActivitySearchB
             finish()
         } else {
             supportFragmentManager.popBackStack()
-
             mViewModel.getSrachHistory(this)
         }
         binding.editSearch.text = null
