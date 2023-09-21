@@ -32,4 +32,5 @@ enum class VideoType {
     RABBIT,//兔兔
     HAMSTER,//仓鼠
     SHORT,//短视频
+    MOVE,//文字+图片
 }

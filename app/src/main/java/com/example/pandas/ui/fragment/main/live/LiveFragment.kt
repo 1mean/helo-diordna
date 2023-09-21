@@ -110,11 +110,11 @@ public class LiveFragment : BaseFragment<MainFragmentViewModel, FragmentLivingBi
             binding.ibnPublish.setImageResource(R.mipmap.img_live_publish_gray)
 
             binding.tabLiving.textSelectColor =
-                ContextCompat.getColor(mActivity, R.color.color_live_tab_select)
+                ContextCompat.getColor(mActivity, R.color.color_bg_grey)
             binding.tabLiving.textUnselectColor =
                 ContextCompat.getColor(mActivity, R.color.color_text_eye_unselect)
             binding.tabLiving.indicatorColor =
-                ContextCompat.getColor(mActivity, R.color.color_live_tab_select)
+                ContextCompat.getColor(mActivity, R.color.color_bg_grey)
         } else {
 
             binding.clayoutOtherTop.setBackgroundResource(AppInfos.bgColors[status])

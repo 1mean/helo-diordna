@@ -91,7 +91,7 @@ object AppInfos {
     )
 
     val viewColors = arrayOf(
-        R.color.color_bg_pink,
+        R.color.color_bg_grey,
         R.color.color_bg_pink,
         R.color.color_bg_black,
         R.color.color_bg_red,

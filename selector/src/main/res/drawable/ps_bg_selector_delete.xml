@@ -2,7 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--定义圆角-->
-    <corners android:radius="40dp" />
+    <corners android:bottomLeftRadius="10dp" />
     <!--内部填充色-->
-    <solid android:color="@color/color_bg_grey" />
+    <solid android:color="#65000000" />
+
 </shape>

@@ -22,9 +22,9 @@
                 android:layout_height="match_parent"
 
                 tl:tl_iconVisible="false"
-                tl:tl_textSelectColor="@color/color_live_tab_select"
+                tl:tl_textSelectColor="@color/color_bg_grey"
                 tl:tl_textUnselectColor="@color/color_text_eye_unselect"
-                tl:tl_indicator_color="@color/color_live_tab_select"
+                tl:tl_indicator_color="@color/color_bg_grey"
                 tl:tl_textBold="SELECT"
                 tl:layout_constraintLeft_toLeftOf="@id/clayout_other_top"
                 tl:layout_constraintRight_toRightOf="@id/clayout_other_top"

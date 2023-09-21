@@ -2,14 +2,13 @@ package com.luck.picture.lib;
 
 import android.annotation.SuppressLint;
 import android.app.Service;
-import android.graphics.Bitmap;
-import android.graphics.PointF;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
@@ -20,10 +19,13 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.luck.picture.lib.adapter.PictureImageGridAdapter;
+import com.luck.picture.lib.adapter.PictuteSelectedAdapter;
+import com.luck.picture.lib.adapter.SelectorItemDecoration;
 import com.luck.picture.lib.animators.AlphaInAnimationAdapter;
 import com.luck.picture.lib.animators.AnimationType;
 import com.luck.picture.lib.animators.SlideInBottomAnimationAdapter;
@@ -40,6 +42,7 @@ import com.luck.picture.lib.decoration.GridSpacingItemDecoration;
 import com.luck.picture.lib.dialog.AlbumListPopWindow;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.entity.LocalMediaFolder;
+import com.luck.picture.lib.interfaces.CloseListener;
 import com.luck.picture.lib.interfaces.OnAlbumItemClickListener;
 import com.luck.picture.lib.interfaces.OnQueryAlbumListener;
 import com.luck.picture.lib.interfaces.OnQueryAllAlbumListener;
@@ -63,7 +66,6 @@ import com.luck.picture.lib.utils.AnimUtils;
 import com.luck.picture.lib.utils.DateUtils;
 import com.luck.picture.lib.utils.DensityUtil;
 import com.luck.picture.lib.utils.DoubleUtils;
-import com.luck.picture.lib.utils.MediaUtils;
 import com.luck.picture.lib.utils.StyleUtils;
 import com.luck.picture.lib.utils.ToastUtils;
 import com.luck.picture.lib.utils.ValueOf;
@@ -86,7 +88,7 @@ import java.util.List;
  * @describe：PictureSelectorFragment
  */
 public class PictureSelectorFragment extends PictureCommonFragment
-        implements OnRecyclerViewPreloadMoreListener, IPictureSelectorEvent {
+        implements OnRecyclerViewPreloadMoreListener, IPictureSelectorEvent, PictuteSelectedAdapter.PictureDeleteListener {
     public static final String TAG = PictureSelectorFragment.class.getSimpleName();
     private static final Object LOCK = new Object();
     /**
@@ -116,15 +118,22 @@ public class PictureSelectorFragment extends PictureCommonFragment
     private boolean isDisplayCamera;
 
     private PictureImageGridAdapter mAdapter;
+    private PictuteSelectedAdapter selectorAdapter;
 
     private AlbumListPopWindow albumListPopWindow;
 
     private SlideSelectTouchListener mDragSelectTouchListener;
 
+    private CloseListener cListener;
+
     public static PictureSelectorFragment newInstance() {
         PictureSelectorFragment fragment = new PictureSelectorFragment();
         fragment.setArguments(new Bundle());
         return fragment;
+    }
+
+    public void addCloseListener(CloseListener cListener) {
+        this.cListener = cListener;
     }
 
     @Override
@@ -144,6 +153,7 @@ public class PictureSelectorFragment extends PictureCommonFragment
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onSelectedChange(boolean isAddRemove, LocalMedia currentMedia) {
+        Log.e("1mean", "onSelectedChange: isAddRemove= " + isAddRemove);
         bottomNarBar.setSelectedChange();
         completeSelectView.setSelectedChange(false);
         // 刷新列表数据
@@ -160,6 +170,32 @@ public class PictureSelectorFragment extends PictureCommonFragment
         }
         if (!isAddRemove) {
             sendChangeSubSelectPositionEvent(true);
+        }
+
+        if (isAddRemove) {//勾选
+            if (selectLayout.getVisibility() == View.GONE) {
+                AlphaAnimation alphaAnimation = new AlphaAnimation(0f, 1f);
+                alphaAnimation.setDuration(400);
+                selectLayout.startAnimation(alphaAnimation);
+                selectLayout.setVisibility(View.VISIBLE);
+            }
+            if (selectorAdapter == null) {
+                selectorAdapter = new PictuteSelectedAdapter();
+                selectorAdapter.setOnPictureDeleteListener(this);
+                selectRecycler.setAdapter(selectorAdapter);
+                selectorAdapter.addOne(currentMedia);
+            } else {
+                int counts = selectorAdapter.addOne(currentMedia);
+                selectRecycler.smoothScrollToPosition(counts);
+            }
+        } else {//取消勾选
+            int size = selectorAdapter.removeOne(currentMedia);
+            if (size == 0) {
+                AlphaAnimation alphaAnimation = new AlphaAnimation(1f, 0f);
+                alphaAnimation.setDuration(400);
+                selectLayout.startAnimation(alphaAnimation);
+                selectLayout.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -263,6 +299,12 @@ public class PictureSelectorFragment extends PictureCommonFragment
         } else {
             requestLoadData();
         }
+        selectRecycler.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        selectRecycler.addItemDecoration(new SelectorItemDecoration());
+
+        nextView.setOnClickListener(v -> {
+            onStartPreview(0, false, true);
+        });
     }
 
 
@@ -603,7 +645,7 @@ public class PictureSelectorFragment extends PictureCommonFragment
         bottomNarBar.setOnBottomNavBarListener(new BottomNavBar.OnBottomNavBarListener() {
             @Override
             public void onPreview() {
-                onStartPreview(0, true);
+                onStartPreview(0, true, false);
             }
 
             @Override
@@ -840,46 +882,17 @@ public class PictureSelectorFragment extends PictureCommonFragment
             @Override
             public int onSelected(View selectedView, int position, LocalMedia media) {
 
-//                Glide.with(itemView.getContext())
-//                        .asBitmap()
-//                        .load(media.getAvailablePath())
-//                        .into(new CustomTarget<Bitmap>() {
-//
-//                            @Override
-//                            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-//                                if (MediaUtils.isLongImage(resource.getWidth(), resource.getHeight())) {
-//                                    subsamplingScaleImageView.setVisibility(View.VISIBLE);
-//                                    float scale = Math.max(screenWidth / (float) resource.getWidth(),
-//                                            screenHeight / (float) resource.getHeight());
-//                                    subsamplingScaleImageView.setImage(ImageSource.cachedBitmap(resource),
-//                                            new ImageViewState(scale, new PointF(0, 0), 0));
-//                                } else {
-//                                    subsamplingScaleImageView.setVisibility(View.GONE);
-//                                    coverImageView.setImageBitmap(resource);
-//                                }
-//                            }
-//
-//                            @Override
-//                            public void onLoadFailed(@Nullable Drawable errorDrawable) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onLoadCleared(@Nullable Drawable placeholder) {
-//
-//                            }
-//
-//                        });
-
                 Log.e("1mean", "onSelected:" + position);
                 int selectResultCode = confirmSelect(media, selectedView.isSelected());
                 if (selectResultCode == SelectedManager.ADD_SUCCESS) {
+                    Log.e("1mean", "1111");
                     if (selectorConfig.onSelectAnimListener != null) {
                         long duration = selectorConfig.onSelectAnimListener.onSelectAnim(selectedView);
                         if (duration > 0) {
                             SELECT_ANIM_DURATION = (int) duration;
                         }
                     } else {
+                        Log.e("1mean", "2222");
                         Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.ps_anim_modal_in);
                         SELECT_ANIM_DURATION = (int) animation.getDuration();
                         selectedView.startAnimation(animation);
@@ -900,7 +913,7 @@ public class PictureSelectorFragment extends PictureCommonFragment
                     if (DoubleUtils.isFastDoubleClick()) {
                         return;
                     }
-                    onStartPreview(position, false);
+                    onStartPreview(position, false, false);
                 }
             }
 
@@ -1017,7 +1030,8 @@ public class PictureSelectorFragment extends PictureCommonFragment
      * @param position        预览图片下标
      * @param isBottomPreview true 底部预览模式 false列表预览模式
      */
-    private void onStartPreview(int position, boolean isBottomPreview) {
+    private void onStartPreview(int position, boolean isBottomPreview, boolean isSelectorNext) {
+        Log.e("1mean", "onStartPreview");
         if (ActivityCompatHelper.checkFragmentNonExits(getActivity(), PictureSelectorPreviewFragment.TAG)) {
             ArrayList<LocalMedia> data;
             int totalNum;
@@ -1041,14 +1055,26 @@ public class PictureSelectorFragment extends PictureCommonFragment
                         selectorConfig.isPreviewFullScreenMode ? 0 : DensityUtil.getStatusBarHeight(getContext()));
             }
             if (selectorConfig.onPreviewInterceptListener != null) {
+                Log.e("1mean", "11111111");
                 selectorConfig.onPreviewInterceptListener
                         .onPreview(getContext(), position, totalNum, mPage, currentBucketId, titleBar.getTitleText(),
                                 mAdapter.isDisplayCamera(), data, isBottomPreview);
             } else {
                 if (ActivityCompatHelper.checkFragmentNonExits(getActivity(), PictureSelectorPreviewFragment.TAG)) {
                     PictureSelectorPreviewFragment previewFragment = PictureSelectorPreviewFragment.newInstance();
-                    previewFragment.setInternalPreviewData(isBottomPreview, titleBar.getTitleText(), mAdapter.isDisplayCamera(),
-                            position, totalNum, mPage, currentBucketId, data);
+                    previewFragment.addCloseListener(cListener);
+                    Log.e("1mean", "isSelectorNext=" + isSelectorNext + ", isBottomPreview=" + isBottomPreview);
+                    if (isSelectorNext) {
+                        if (selectorAdapter != null && selectorAdapter.getData() != null) {
+                            ArrayList<LocalMedia> medias = selectorAdapter.getData();
+                            Log.e("1mean", "totalNum:" + medias.size() + ", currentBucketId= " + currentBucketId);
+                            previewFragment.setInternalPreviewData(false, titleBar.getTitleText(), mAdapter.isDisplayCamera(),
+                                    position, medias.size(), mPage, currentBucketId, medias);
+                        }
+                    } else {
+                        previewFragment.setInternalPreviewData(true, titleBar.getTitleText(), mAdapter.isDisplayCamera(),
+                                position, totalNum, mPage, currentBucketId, data);
+                    }
                     FragmentInjectManager.injectFragment(getActivity(), PictureSelectorPreviewFragment.TAG, previewFragment);
                 }
             }
@@ -1073,6 +1099,7 @@ public class PictureSelectorFragment extends PictureCommonFragment
     }
 
     private void setAdapterDataComplete(ArrayList<LocalMedia> result) {
+        Log.e("1mean", "setAdapterDataComplete result size:" + result.size());
         setEnterAnimationDuration(0);
         sendChangeSubSelectPositionEvent(false);
         mAdapter.setDataAndDataSetChanged(result);
@@ -1131,6 +1158,7 @@ public class PictureSelectorFragment extends PictureCommonFragment
     }
 
     private void handleMoreMediaData(List<LocalMedia> result, boolean isHasMore) {
+        Log.e("1mean", "handleMoreMediaData result size:" + result.size());
         if (ActivityCompatHelper.isDestroy(getActivity())) {
             return;
         }
@@ -1327,6 +1355,14 @@ public class PictureSelectorFragment extends PictureCommonFragment
     private void hideDataNull() {
         if (tvDataEmpty.getVisibility() == View.VISIBLE) {
             tvDataEmpty.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void delete(int position, LocalMedia localMedia) {
+
+        if (selectorAdapter != null) {
+            confirmSelect(localMedia, true);
         }
     }
 }

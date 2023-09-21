@@ -4,12 +4,12 @@
     <item
             android:id="@+id/menu_home"
             android:checked="true"
-            android:icon="@drawable/selector_button_home"
+            android:icon="@drawable/selector_button_home_grey"
             android:title="@string/home_button1" />
 
     <item
             android:id="@+id/menu_news"
-            android:icon="@drawable/selector_button_dynamic"
+            android:icon="@drawable/selector_button_dynamic_grey"
             android:title="@string/home_button2" />
 
     <item
@@ -19,12 +19,12 @@
 
     <item
             android:id="@+id/menu_more"
-            android:icon="@drawable/selector_button_video"
+            android:icon="@drawable/selector_button_video_grey"
             android:title="@string/home_button4" />
 
     <item
             android:id="@+id/menu_mine"
-            android:icon="@drawable/selector_button_mine"
+            android:icon="@drawable/selector_button_mine_grey"
             android:title="@string/home_button5" />
 
 </menu>

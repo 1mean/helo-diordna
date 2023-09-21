@@ -41,6 +41,7 @@ import com.luck.picture.lib.adapter.PicturePreviewAdapter;
 import com.luck.picture.lib.adapter.holder.BasePreviewHolder;
 import com.luck.picture.lib.adapter.holder.PreviewGalleryAdapter;
 import com.luck.picture.lib.adapter.holder.PreviewVideoHolder;
+import com.luck.picture.lib.basic.FragmentInjectManager;
 import com.luck.picture.lib.basic.PictureCommonFragment;
 import com.luck.picture.lib.basic.PictureMediaScannerConnection;
 import com.luck.picture.lib.config.Crop;
@@ -54,6 +55,7 @@ import com.luck.picture.lib.decoration.WrapContentLinearLayoutManager;
 import com.luck.picture.lib.dialog.PictureCommonDialog;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.entity.MediaExtraInfo;
+import com.luck.picture.lib.interfaces.CloseListener;
 import com.luck.picture.lib.interfaces.OnCallbackListener;
 import com.luck.picture.lib.interfaces.OnQueryDataResultListener;
 import com.luck.picture.lib.loader.IBridgeMediaLoader;
@@ -147,6 +149,10 @@ public class PictureSelectorPreviewFragment extends PictureCommonFragment {
 
     protected TextView tvSelectedWord;
 
+    protected ConstraintLayout nextLayout;
+
+    protected ConstraintLayout nextView;
+
     protected View selectClickArea;
 
     protected CompleteSelectView completeSelectView;
@@ -154,6 +160,8 @@ public class PictureSelectorPreviewFragment extends PictureCommonFragment {
     protected boolean needScaleBig = true;
 
     protected boolean needScaleSmall = false;
+
+    protected boolean canLoadMore = false;//不允许自动加载更多，给几个就展示几个
 
     protected RecyclerView mGalleryRecycle;
 
@@ -178,7 +186,7 @@ public class PictureSelectorPreviewFragment extends PictureCommonFragment {
     /**
      * 内部预览
      *
-     * @param isBottomPreview 是否顶部预览进来的
+     * @param isItemPreview   是否是在列表里点击item进来预览的
      * @param currentAlbum    当前预览的目录
      * @param isShowCamera    是否有显示拍照图标
      * @param position        预览下标
@@ -187,9 +195,10 @@ public class PictureSelectorPreviewFragment extends PictureCommonFragment {
      * @param currentBucketId 当前相册目录id
      * @param data            预览数据源
      */
-    public void setInternalPreviewData(boolean isBottomPreview, String currentAlbumName, boolean isShowCamera,
+    public void setInternalPreviewData(boolean isItemPreview, String currentAlbumName, boolean isShowCamera,
                                        int position, int totalNum, int page, long currentBucketId,
                                        ArrayList<LocalMedia> data) {
+        canLoadMore = isItemPreview;
         this.mPage = page;
         this.mBucketId = currentBucketId;
         this.mData = data;
@@ -197,7 +206,13 @@ public class PictureSelectorPreviewFragment extends PictureCommonFragment {
         this.curPosition = position;
         this.currentAlbum = currentAlbumName;
         this.isShowCamera = isShowCamera;
-        this.isInternalBottomPreview = isBottomPreview;
+        this.isInternalBottomPreview = isItemPreview;
+    }
+
+    private CloseListener cListener;
+
+    public void addCloseListener(CloseListener cListener) {
+        this.cListener = cListener;
     }
 
     /**
@@ -251,6 +266,8 @@ public class PictureSelectorPreviewFragment extends PictureCommonFragment {
         titleBar = view.findViewById(R.id.title_bar);
         tvSelected = view.findViewById(R.id.ps_tv_selected);
         tvSelectedWord = view.findViewById(R.id.ps_tv_selected_word);
+        nextView = view.findViewById(R.id.clayout_preview_next);
+        nextLayout = view.findViewById(R.id.clayout_pre_next);
         selectClickArea = view.findViewById(R.id.select_click_area);
         completeSelectView = view.findViewById(R.id.ps_complete_select);
         magicalView = view.findViewById(R.id.magical);
@@ -271,6 +288,21 @@ public class PictureSelectorPreviewFragment extends PictureCommonFragment {
             initComplete();
         }
         iniMagicalView();
+
+        if (!canLoadMore) {
+            nextLayout.setVisibility(View.VISIBLE);
+            tvSelected.setVisibility(View.GONE);
+        } else {
+            nextLayout.setVisibility(View.GONE);
+            tvSelected.setVisibility(View.VISIBLE);
+        }
+
+        nextView.setOnClickListener(v -> {
+            PicturePublishFragment publishFragment = PicturePublishFragment.newInstance();
+            publishFragment.addSelectedData(mData);
+            publishFragment.addCloseListener(cListener);
+            FragmentInjectManager.injectFragment(getActivity(), PicturePublishFragment.TAG, publishFragment);
+        });
     }
 
     /**
@@ -1459,7 +1491,7 @@ public class PictureSelectorPreviewFragment extends PictureCommonFragment {
                         || PictureMimeType.isHasAudio(currentMedia.getMimeType()));
                 if (!isExternalPreview && !isInternalBottomPreview && !selectorConfig.isOnlySandboxDir) {
                     if (selectorConfig.isPageStrategy) {
-                        if (isHasMore) {
+                        if (isHasMore && canLoadMore) {
                             if (position == (viewPageAdapter.getItemCount() - 1) - PictureConfig.MIN_PAGE_SIZE
                                     || position == viewPageAdapter.getItemCount() - 1) {
                                 loadMoreData();

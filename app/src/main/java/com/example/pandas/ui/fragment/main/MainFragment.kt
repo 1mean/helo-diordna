@@ -105,6 +105,7 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
     override fun createObserver() {
 
         appViewModel.appColorType.observe(this) { type ->
+            Log.e("1mean", "appColorType: type:$type")
             appColorObserver(indexArray, type)
         }
 

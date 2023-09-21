@@ -22,7 +22,7 @@ import com.google.android.material.internal.BaselineLayout
 
 private val publishDrawable
     get() = arrayOf(
-        R.drawable.shape_bottom_publish_pink,
+        R.drawable.shape_bottom_publish_grey,
         R.drawable.shape_bottom_publish_pink,
         R.drawable.shape_bottom_publish_pink,
         R.drawable.shape_bottom_publish_red,
@@ -34,7 +34,7 @@ private val publishDrawable
 
 private val homeDrawable
     get() = arrayOf(
-        R.drawable.selector_button_home,
+        R.drawable.selector_button_home_grey,
         R.drawable.selector_button_home,
         R.drawable.selector_button_home,
         R.drawable.selector_button_home_red,
@@ -45,7 +45,7 @@ private val homeDrawable
     )
 private val dynamicDrawable
     get() = arrayOf(
-        R.drawable.selector_button_dynamic,
+        R.drawable.selector_button_dynamic_grey,
         R.drawable.selector_button_dynamic,
         R.drawable.selector_button_dynamic,
         R.drawable.selector_button_dynamic_red,
@@ -56,7 +56,7 @@ private val dynamicDrawable
     )
 private val videoDrawable
     get() = arrayOf(
-        R.drawable.selector_button_video,
+        R.drawable.selector_button_video_grey,
         R.drawable.selector_button_video,
         R.drawable.selector_button_video,
         R.drawable.selector_button_video_red,
@@ -67,7 +67,7 @@ private val videoDrawable
     )
 private val mineDrawable
     get() = arrayOf(
-        R.drawable.selector_button_mine,
+        R.drawable.selector_button_mine_grey,
         R.drawable.selector_button_mine,
         R.drawable.selector_button_mine,
         R.drawable.selector_button_mine_red,
@@ -114,11 +114,11 @@ private val publishImages1
 fun MainFragment.initBottom(indexArray: Array<Int>) {
     val status = appViewModel.appColorType.value
     if (status != null) {
-        Log.e("1mean","111")
+        Log.e("1mean", "111")
         if (binding.bnvMain[0] is BottomNavigationMenuView) {
             for (i in indexArray) {
                 if (i == 2) {
-                    Log.e("1mean","222")
+                    Log.e("1mean", "222")
                     val item = (binding.bnvMain[0] as BottomNavigationMenuView)[2]
                     if (item is BottomNavigationItemView) {
                         item.children.forEach { childView -> //就两个子view，默认的AppCompatImageView(图标) + BaselineLayout(文字)
@@ -133,12 +133,12 @@ fun MainFragment.initBottom(indexArray: Array<Int>) {
                         item.addView(publishLayout) //添加自己需要的带 + 的图标
                     }
                 } else {
-                    Log.e("1mean","3333")
+                    Log.e("1mean", "3333")
                     val item = (binding.bnvMain[0] as BottomNavigationMenuView)[i]
                     if (item is BottomNavigationItemView) {
                         item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
                             if (childView is ImageView) {
-                                Log.e("1mean","4444")
+                                Log.e("1mean", "4444")
                                 childView.setImageDrawable(
                                     ContextCompat.getDrawable(
                                         mActivity, bottomImages[i][status]
@@ -146,7 +146,7 @@ fun MainFragment.initBottom(indexArray: Array<Int>) {
                                 )
                             } else if (childView is BaselineLayout) {
 
-                                Log.e("1mean","5555")
+                                Log.e("1mean", "5555")
                                 val text1 = childView[0] as TextView
                                 val text2 = childView[1] as TextView
                                 Log.e("1mean", "status:$status")
@@ -166,12 +166,12 @@ fun MainFragment.initBottom(indexArray: Array<Int>) {
             }
         }
     } else {
-        Log.e("1mean","6666")
+        Log.e("1mean", "6666")
         //修改第2个item的样式为自定义样式
         if (binding.bnvMain[0] is BottomNavigationMenuView) {
             val item = (binding.bnvMain[0] as BottomNavigationMenuView)[2]
             if (item is BottomNavigationItemView) {
-                Log.e("1mean","7777")
+                Log.e("1mean", "7777")
                 item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
                     childView.visibility = View.GONE
                 }

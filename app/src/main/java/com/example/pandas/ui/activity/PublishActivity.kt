@@ -8,9 +8,11 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Canvas
+import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.animation.LinearInterpolator
@@ -107,30 +109,30 @@ public class PublishActivity : BaseActivity<BaseViewModel, ActivityPublishBindin
 
         mAdapter.selectMax = maxSelectNum + maxSelectVideoNum
 
-        binding.recyclerPublish.run {
-            itemAnimator?.let {
-                (it as SimpleItemAnimator).supportsChangeAnimations = false
-            }
-            layoutManager = FullyGridLayoutManager(
-                this@PublishActivity,
-                4, GridLayoutManager.VERTICAL, false
-            )
-            addItemDecoration(
-                GridSpacingItemDecoration(
-                    4,
-                    DensityUtil.dip2px(this@PublishActivity, 8f),
-                    false
-                )
-            )
-            adapter = mAdapter
-        }
+//        binding.recyclerPublish.run {
+//            itemAnimator?.let {
+//                (it as SimpleItemAnimator).supportsChangeAnimations = false
+//            }
+//            layoutManager = FullyGridLayoutManager(
+//                this@PublishActivity,
+//                4, GridLayoutManager.VERTICAL, false
+//            )
+//            addItemDecoration(
+//                GridSpacingItemDecoration(
+//                    4,
+//                    DensityUtil.dip2px(this@PublishActivity, 8f),
+//                    false
+//                )
+//            )
+//            adapter = mAdapter
+//        }
 
         // 注册需要写在onCreate或Fragment onAttach里，否则会报java.lang.IllegalStateException异常
         launcherResult = createActivityResultLauncher()
         val imageEngine = GlideEngine.createGlideEngine()
         val videoPlayerEngine = ExoPlayerEngine()
         val language = LanguageConfig.UNKNOWN_LANGUAGE
-        val chooseMode = SelectMimeType.ofAll()
+        val chooseMode = SelectMimeType.ofImage()
 
 
         // 进入相册
@@ -239,7 +241,7 @@ public class PublishActivity : BaseActivity<BaseViewModel, ActivityPublishBindin
                 .setRecyclerAnimationMode(animationMode)
                 .isGif(true)//是否显示Gif图片
         //.setSelectedData(mAdapter.getData())
-        forSelectResult(selectionModel)
+        forSelectResult(selectionModel)//进入图片预览的Activity。PictureSelectorSupporterActivity
 
         if (p_flag) {
             mAdapter.setOnItemClickListener(object : GridImageAdapter.OnItemClickListener {
@@ -276,7 +278,6 @@ public class PublishActivity : BaseActivity<BaseViewModel, ActivityPublishBindin
                             else
                                 InjectResourceSource.DEFAULT_LAYOUT_RESOURCE
                         }
-                        .setExternalPreviewEventListener(MyExternalPreviewEventListener())
                         //.setInjectActivityPreviewFragment({ if (cb_custom_preview.isChecked()) CustomPreviewFragment.newInstance() else null })
                         .startActivityPreview(position, true, mAdapter.getData())
                 }
@@ -463,17 +464,17 @@ public class PublishActivity : BaseActivity<BaseViewModel, ActivityPublishBindin
                 }
             })
         }
-        mAdapter.setItemLongClickListener(object : OnItemLongClickListener {
-            override fun onItemLongClick(holder: RecyclerView.ViewHolder, position: Int, v: View) {
-                val itemViewType = holder.itemViewType
-                if (itemViewType != GridImageAdapter.TYPE_CAMERA) {
-                    mItemTouchHelper.startDrag(holder)
-                }
-            }
-        })
+//        mAdapter.setItemLongClickListener(object : OnItemLongClickListener {
+//            override fun onItemLongClick(holder: RecyclerView.ViewHolder, position: Int, v: View) {
+//                val itemViewType = holder.itemViewType
+//                if (itemViewType != GridImageAdapter.TYPE_CAMERA) {
+//                    mItemTouchHelper.startDrag(holder)
+//                }
+//            }
+//        })
         // 绑定拖拽事件
         // 绑定拖拽事件
-        mItemTouchHelper.attachToRecyclerView(binding.recyclerPublish)
+        // mItemTouchHelper.attachToRecyclerView(binding.recyclerPublish)
 
         initLayout()
     }
@@ -688,20 +689,6 @@ public class PublishActivity : BaseActivity<BaseViewModel, ActivityPublishBindin
     }
 
     /**
-     * 外部预览监听事件
-     */
-    private inner class MyExternalPreviewEventListener : OnExternalPreviewEventListener {
-        override fun onPreviewDelete(position: Int) {
-            mAdapter.remove(position)
-            mAdapter.notifyItemRemoved(position)
-        }
-
-        override fun onLongPressDownload(context: Context, media: LocalMedia): Boolean {
-            return false
-        }
-    }
-
-    /**
      * 拦截自定义提示
      */
     private val meOnSelectLimitTipsListener = object : OnSelectLimitTipsListener {
@@ -807,14 +794,6 @@ public class PublishActivity : BaseActivity<BaseViewModel, ActivityPublishBindin
             )
             Log.i("PictureSelectorTag", "文件时长: " + media.duration)
         }
-        runOnUiThread {
-            val isMaxSize = result.size == mAdapter.selectMax
-            val oldSize: Int = mAdapter.getData().size
-            mAdapter.notifyItemRangeRemoved(0, if (isMaxSize) oldSize + 1 else oldSize)
-            mAdapter.getData().clear()
-            mAdapter.getData().addAll(result)
-            mAdapter.notifyItemRangeInserted(0, result.size)
-        }
     }
 
     /**
@@ -828,10 +807,24 @@ public class PublishActivity : BaseActivity<BaseViewModel, ActivityPublishBindin
         ) { result ->
             val resultCode = result.resultCode
             if (resultCode == Activity.RESULT_OK) {
-                val selectList = PictureSelector.obtainSelectorList(result.data)
-                analyticalSelectResults(selectList)
+
+                result.data?.let {
+                    if (SDK_INT >= 33) {
+                        val list = it.extras?.getParcelableArrayList("data", LocalMedia::class.java)
+                        Log.e("1mean", "1 list size: ${list?.size}")
+                    } else {
+                        @Suppress("DEPRECATION")
+                        val list = it.extras?.getParcelableArrayList<LocalMedia>("data")
+                        Log.e("1mean", "2 list size: ${list?.size}")
+                    }
+                }
+                finish()
+//                val selectList = PictureSelector.obtainSelectorList(result.data)
+//                analyticalSelectResults(selectList)
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 Log.i("PictureSelectorTag", "onActivityResult PictureSelector Cancel")
+            } else if (resultCode == 5) {//PictureSelectorSupporterActivity左滑屏幕退出
+                finish()
             }
         }
     }
@@ -941,6 +934,7 @@ public class PublishActivity : BaseActivity<BaseViewModel, ActivityPublishBindin
         }
     }
 
+
     private fun forSelectResult(model: PictureSelectionModel) {
         when (resultMode) {
             ACTIVITY_RESULT -> model.forResult(PictureConfig.CHOOSE_REQUEST)
@@ -974,20 +968,6 @@ public class PublishActivity : BaseActivity<BaseViewModel, ActivityPublishBindin
             analyticalSelectResults(selectorResult)
         } else if (result.mResultCode == Activity.RESULT_CANCELED) {
             Log.i(TAG, "onSelectFinish PictureSelector Cancel")
-        }
-    }
-
-    override fun onkeyBack() {
-        super.onkeyBack()
-        supportFragmentManager.fragments.forEach {
-            Log.e("1mean", "fragment1:$it")
-        }
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        supportFragmentManager.fragments.forEach {
-            Log.e("1mean", "fragment2:$it")
         }
     }
 }

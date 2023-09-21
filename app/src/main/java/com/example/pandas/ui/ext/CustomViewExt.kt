@@ -61,7 +61,8 @@ fun LoadMoreRecyclerView.initPanda(
 }
 
 fun SwipeRefreshLayout.setRefreshColor(): SwipeRefreshLayout {
-    this.setColorSchemeResources(R.color.color_tab_indicator)
+//    this.setColorSchemeResources(R.color.color_tab_indicator)
+    this.setColorSchemeResources(R.color.color_bg_grey)
     return this
 }
 

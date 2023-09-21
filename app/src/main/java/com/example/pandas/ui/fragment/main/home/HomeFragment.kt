@@ -67,7 +67,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
             override fun getCount(): Int = tabTitles.size
             private var indiColors = ContextCompat.getColor(
                 context!!,
-                R.color.color_home_tab_text_selected
+                R.color.color_bg_grey
             )
 
             private var titleColors = intArrayOf(
@@ -76,7 +76,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
                     R.color.color_home_tab_text
                 ), ContextCompat.getColor(
                     context!!,
-                    R.color.color_home_tab_text_selected
+                    R.color.color_bg_grey
                 )
             )
 
@@ -266,11 +266,11 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
                                 R.color.color_home_tab_text
                             ), ContextCompat.getColor(
                                 context!!,
-                                AppInfos.bgColors[1]
+                                AppInfos.bgColors[5]
                             )
                         )
                     )
-                    adapter.updateIndicatorColors(AppInfos.bgColors[1])
+                    adapter.updateIndicatorColors(AppInfos.bgColors[5])
                 }
                 binding.ibMessage.setImageResource(R.mipmap.img_home_message)
                 binding.edit.setBackgroundResource(R.drawable.shape_home_search)
