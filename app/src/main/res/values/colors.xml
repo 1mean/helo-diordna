@@ -18,6 +18,7 @@
     <color name="color_txt_bottom_unselected">#8c8c8c</color>
     <color name="color_txt_short_bottom_selected">#454651</color>
     <color name="color_txtshort_bottom_unselected">#666a71</color>
+    <color name="color_bg_top_live">#F1F0F6</color>
 
     <!--self-->
     <color name="color_txt_mine_name">#000000</color>
@@ -88,7 +89,7 @@
     <color name="color_bg_live_video_item">#ffffff</color>
     <color name="color_bg_live_top_divider">#E5E5E5</color>
     <color name="color_txt_live_top_title">#161A1C</color>
-    <color name="color_txt_live_top_name">#4A4C54</color>
+    <color name="color_txt_live_top_name">#666666</color>
     <color name="color_txt_live_mid_title">#161A1C</color>
     <color name="color_txt_live_mid_name">#161A1A</color>
     <color name="color_txt_live_item_name">#161A1A</color>

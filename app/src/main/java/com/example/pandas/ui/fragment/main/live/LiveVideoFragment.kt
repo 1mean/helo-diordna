@@ -9,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
@@ -53,11 +54,10 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        val padding = mActivity.resources.getDimension(R.dimen.common_lh_10_dimens).toInt()
         binding.recyclerLayout.run {
 
             init(
-                CommonItemDecoration(paddingBottom = padding),
+                null,
                 mAdapter,
                 LinearLayoutManager(context),
                 object : SwipRecyclerView.ILoadMoreListener {
@@ -85,7 +85,7 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
         }
 
         binding.swipLayout.run {
-            setBackgroundResource(R.color.color_bg_live_video)
+            setBackgroundResource(R.color.color_white_lucency)
             setRefreshColor()
             setOnRefreshListener {
                 mViewModel.getLiveVideo(true)
@@ -266,9 +266,8 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
                 val itemView = mRecyclerView.getChildAt(index - firstPos) ?: return
                 //15 21 27 playerView 相同   5  29  17
                 val playerView =
-                    (((itemView as LinearLayoutCompat).getChildAt(1) as LinearLayoutCompat).getChildAt(
-                        0
-                    ) as CardView).getChildAt(0) ?: return
+                    ((itemView as ConstraintLayout).getChildAt(6) as CardView).getChildAt(0)
+                        ?: return
                 //val playerView = itemView.findViewById<StyledPlayerView>(R.id.player_live)
                 if (playerManager == null) return
                 val playPos = playerManager!!.getCurPosition()

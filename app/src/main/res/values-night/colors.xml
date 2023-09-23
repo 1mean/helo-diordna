@@ -12,6 +12,7 @@
     <color name="color_txt_unselected_home">#e7eaea</color>
     <color name="color_edit_bg_search_home">#1e2121</color>
     <color name="color_bg_divider_home">#2f3232</color>
+    <color name="color_bg_top_live">#17181A</color>
 
     <!-- 我的->设置界面 -->
     <color name="color_txt_mine_name">#e7eaea</color>

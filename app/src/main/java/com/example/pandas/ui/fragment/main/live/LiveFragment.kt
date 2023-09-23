@@ -36,38 +36,25 @@ public class LiveFragment : BaseFragment<MainFragmentViewModel, FragmentLivingBi
                 override fun getItemCount(): Int = 2
 
                 override fun createFragment(position: Int): Fragment {
-                    if (position == 0) {
-                        return LiveVideoFragment()
+                    return if (position == 0) {
+                        LiveVideoFragment()
                     } else {
-                        return EyepetozerFragment()
+                        EyepetozerFragment()
                     }
                 }
             }
+            //解决bug：java.lang.IllegalStateException: Fragment no longer exists for key f0: unique id
+            isSaveEnabled = false
             offscreenPageLimit = ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    binding.tabLiving.currentTab = position
+                    binding.slideTabSetting.currentTab = position
                 }
             })
         }
 
-        val mTabEntities = ArrayList<CustomTabEntity>()
-        for (i in tabTitles.indices) {
-            mTabEntities.add(TabEntity(tabTitles[i]))
-        }
-        binding.tabLiving.run {
-            setTabData(mTabEntities)
-            currentTab = 0
-            setOnTabSelectListener(object : OnTabSelectListener {
-                override fun onTabSelect(position: Int) {
-                    binding.vp2Living.setCurrentItem(position, false)
-                }
-
-                override fun onTabReselect(position: Int) {
-                }
-            })
-        }
+        binding.slideTabSetting.setViewPager(binding.vp2Living, tabTitles)
 
         appViewModel.appColorType.value?.let {
             updateTop(it)
@@ -106,24 +93,18 @@ public class LiveFragment : BaseFragment<MainFragmentViewModel, FragmentLivingBi
 
     private fun updateTop(status: Int) {
         if (status == 0) {
-            binding.clayoutOtherTop.setBackgroundResource(AppInfos.bgColors[status])
-            binding.ibnPublish.setImageResource(R.mipmap.img_live_publish_gray)
-
-            binding.tabLiving.textSelectColor =
+            binding.slideTabSetting.textSelectColor =
                 ContextCompat.getColor(mActivity, R.color.color_bg_grey)
-            binding.tabLiving.textUnselectColor =
+            binding.slideTabSetting.textUnselectColor =
                 ContextCompat.getColor(mActivity, R.color.color_text_eye_unselect)
-            binding.tabLiving.indicatorColor =
+            binding.slideTabSetting.indicatorColor =
                 ContextCompat.getColor(mActivity, R.color.color_bg_grey)
         } else {
 
-            binding.clayoutOtherTop.setBackgroundResource(AppInfos.bgColors[status])
-            binding.ibnPublish.setImageResource(R.mipmap.img_live_publish_white)
-
-            binding.tabLiving.textSelectColor = ContextCompat.getColor(mActivity, R.color.white)
-            binding.tabLiving.textUnselectColor =
-                ContextCompat.getColor(mActivity, R.color.snow)
-            binding.tabLiving.indicatorColor = ContextCompat.getColor(mActivity, R.color.white)
+            binding.slideTabSetting.textSelectColor = ContextCompat.getColor(mActivity, AppInfos.viewColors[status])
+            binding.slideTabSetting.textUnselectColor =
+                ContextCompat.getColor(mActivity, R.color.color_text_eye_unselect)
+            binding.slideTabSetting.indicatorColor = ContextCompat.getColor(mActivity, AppInfos.viewColors[status])
         }
     }
 

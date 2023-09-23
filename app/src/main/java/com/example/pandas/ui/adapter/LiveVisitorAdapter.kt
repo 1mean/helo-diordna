@@ -1,10 +1,12 @@
 package com.example.pandas.ui.adapter
 
 import android.view.View
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
+import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.ext.startUserInfoActivity
@@ -23,7 +25,7 @@ public class LiveVisitorAdapter(list: MutableList<User>) : BaseCommonAdapter<Use
     override fun convert(holder: BaseViewHolder, data: User, position: Int) {
 
         val context = holder.itemView.context
-        val header = holder.getWidget<CircleImageView>(R.id.img_visitor)
+        val header = holder.getWidget<AppCompatImageView>(R.id.img_visitor)
         val name = holder.getWidget<AppCompatTextView>(R.id.txt_visitor_name)
         val updateView = holder.getWidget<View>(R.id.view_update)
 
@@ -34,7 +36,7 @@ public class LiveVisitorAdapter(list: MutableList<User>) : BaseCommonAdapter<Use
         }
 
         data.headUrl?.let {
-            loadImage(context, it, header)
+            loadCenterRoundedCornerImage(context, 40, it, header)
         }
 
         name.text = data.userName

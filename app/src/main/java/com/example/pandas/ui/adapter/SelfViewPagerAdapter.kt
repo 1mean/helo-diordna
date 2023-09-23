@@ -20,12 +20,16 @@ public class SelfViewPagerAdapter(
     override fun getItemCount(): Int = 3
 
     override fun createFragment(position: Int): Fragment {
-        return if (position == 0) {
-            SelfChildSettingFragment()
-        } else if(position == 1) {
-            SelfChildCacheFragment()
-        } else {
-            NullFragment()
+        return when (position) {
+            0 -> {
+                SelfChildSettingFragment()
+            }
+            1 -> {
+                SelfChildCacheFragment()
+            }
+            else -> {
+                NullFragment()
+            }
         }
     }
 }

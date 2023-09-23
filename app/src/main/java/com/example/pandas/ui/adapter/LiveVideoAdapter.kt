@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.example.pandas.R
 import com.example.pandas.bean.LiveVideoData
 import com.example.pandas.biz.ext.loadCenterImage
+import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.interaction.AnimationListener
 import com.example.pandas.biz.interaction.ItemClickListener
@@ -57,17 +58,16 @@ public class LiveVideoAdapter(
     fun loadMore(liveData: LiveVideoData) {
 
         if (liveData.lives.isNotEmpty()) {
-            val startIndex = data.lives.size + 2
+            val startIndex = data.lives.size + 1
             data.lives.addAll(liveData.lives)
             notifyItemRangeInserted(startIndex, liveData.lives.size)
         }
     }
 
-    fun getItemData(position: Int): PetVideo = data.lives[position - 2]
+    fun getItemData(position: Int): PetVideo = data.lives[position - 1]
 
     override fun getItemViewType(position: Int): Int = when (position) {
         0 -> 1
-        1 -> 2
         else -> 3
     }
 
@@ -120,7 +120,7 @@ public class LiveVideoAdapter(
         if (data.visitors.isEmpty()) {
             return 0
         }
-        return data.lives.size + 2
+        return data.lives.size + 1
     }
 
     inner class VisitorViewHolder(binding: Item1AdapterLiveVideoBinding) :
@@ -132,9 +132,9 @@ public class LiveVideoAdapter(
 
         fun handle() {
             val paddingSide =
-                itemView.context.resources.getDimension(R.dimen.common_lh_12_dimens).toInt()
+                itemView.context.resources.getDimension(R.dimen.common_lh_16_dimens).toInt()
             val paddingMide =
-                itemView.context.resources.getDimension(R.dimen.common_lh_14_dimens).toInt()
+                itemView.context.resources.getDimension(R.dimen.common_lh_12_dimens).toInt()
 
             if (mAdapter == null) {
                 mAdapter = LiveVisitorAdapter(data.visitors)
@@ -185,18 +185,18 @@ public class LiveVideoAdapter(
         val cover = binding.imgVideo
         val userIcon = binding.imgUser
         val descripetion = binding.txtDescripetion
+        val title = binding.txtTitle
         val time = binding.txtLiveTime
         val userName = binding.txtUser
         val duration = binding.txtLiveItemDuration
-        val shareView = binding.llayoutLiveItemShare
-        val commentView = binding.llayoutLiveItemComments
-        val likeView = binding.llayoutLiveItemLike
+        val bottomImg = binding.imgLiveItemBottom
+        val commentView = binding.clayoutItem2
+        val likeView = binding.clayoutItem3
         val likeImg = binding.imgLiveItemLike
         val likeTxt = binding.txtLiveItemLike
         val comments = binding.txtLiveItemComments
         val playshelter = binding.clayoutLiveShelter
         val player = binding.playerLive
-        var tagView = binding.llayoutLiveTag
         var moreView = binding.clayoutLiveMore
         var dialog: ShareBottomSheetDialog? = null
 
@@ -211,15 +211,9 @@ public class LiveVideoAdapter(
 
         fun handle(position: Int) {
 
-            val video = data.lives[position - 2]
+            val video = data.lives[position - 1]
             val user = video.user
             val videoData = video.videoData ?: VideoData(videoCode = video.code)
-
-//            if (video.vertical) {
-//                tagView.visibility = View.VISIBLE
-//            } else {
-//                tagView.visibility = View.GONE
-//            }
 
             user?.let {
                 it.headUrl?.let { url ->
@@ -234,6 +228,8 @@ public class LiveVideoAdapter(
                 }
             }
 
+            loadCenterRoundedCornerImage(context, 20, video.cover, bottomImg)
+
             if (video.booleanFlag) {
                 //player.visibility = View.VISIBLE
                 playshelter.visibility = View.GONE
@@ -245,9 +241,9 @@ public class LiveVideoAdapter(
             }
 
             if (videoData.like) {
-                likeImg.setImageResource(R.mipmap.img_eye_item_liked1)
+                likeImg.setImageResource(R.mipmap.img_live_liked2)
             } else {
-                likeImg.setImageResource(R.mipmap.img_eye_item_like1)
+                likeImg.setImageResource(R.mipmap.img_live_like2)
             }
 
             if (videoData.likes == 0) {
@@ -262,40 +258,32 @@ public class LiveVideoAdapter(
                 comments.text = videoData.comments.toString()
             }
 
-            descripetion.text = video.title
+            title.text = video.title
+            if (video.description != null) {
+                descripetion.text = video.description
+            } else {
+                descripetion.text = "${user?.userName}发布了视频"
+            }
             duration.text = TimeUtils.getMMDuration(video.duration.toLong())
 
 
-            val r_time = TimeUtils.parseTime(video.releaseTime * 1000)
-            time.text = StringBuilder(r_time).append(" · 投稿了视频").toString()
+            time.text = TimeUtils.parseTime(video.releaseTime * 1000).toString()
 
             video.cover?.let {
                 if (video.vertical) {//竖屏
-                    Log.e("6mean","111")
+                    Log.e("6mean", "111")
                     loadImage(context, it, cover)
                 } else {
-                    Log.e("6mean","222")
+                    Log.e("6mean", "222")
                     loadCenterImage(context, it, cover)
                 }
-            }
-
-            shareView.setOnClickListener {
-                if (dialog == null) {
-                    dialog =
-                        ShareBottomSheetDialog(context, object : ItemClickListener<String> {
-                            override fun onItemClick(t: String) {
-                            }
-                        })
-                    dialog!!.addData()
-                }
-                dialog!!.onShow()
             }
 
             likeView.setOnClickListener {
 
                 addScaleAnimation(likeImg, 1.4f)
                 if (videoData.like) {
-                    likeImg.setImageResource(R.mipmap.img_eye_item_like1)
+                    likeImg.setImageResource(R.mipmap.img_live_like2)
                     videoData.likes -= 1
                     if (videoData.likes > 0) {
                         likeTxt.text = videoData.likes.toString()
@@ -317,7 +305,7 @@ public class LiveVideoAdapter(
                             listener.updateVideoData(videoData)
                         }
                     })
-                    likeImg.setImageResource(R.mipmap.img_eye_item_liked1)
+                    likeImg.setImageResource(R.mipmap.img_live_liked2)
                 }
             }
 
@@ -337,9 +325,9 @@ public class LiveVideoAdapter(
                 listener.startVideoCommentActivity(video)
             }
 
-            player.setOnClickListener {
-                listener.startVideoPLayActivity(video)
-            }
+//            player.setOnClickListener {
+//                listener.startVideoPLayActivity(video)
+//            }
 
             moreView.setOnClickListener {
                 val dialog = LiveBottomSheetDialog(context, object : ItemClickListener<Int> {
