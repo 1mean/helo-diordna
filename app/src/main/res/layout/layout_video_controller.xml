@@ -126,12 +126,12 @@
                     app:bar_height="2dp"
                     android:layout_marginStart="3dp"
                     app:layout_constraintLeft_toRightOf="@id/exo_position"
-                    app:scrubber_color="@color/color_tab_indicator"
+                    app:scrubber_color="@color/color_bg_grey"
                     app:scrubber_drawable="@mipmap/img_scrubber"
                     app:layout_constraintBottom_toBottomOf="@id/view_bottom"
                     android:layout_marginBottom="13dp"
                     app:unplayed_color="@color/color_video_timebar_unplayed"
-                    app:played_color="@color/color_tab_indicator"
+                    app:played_color="@color/color_bg_grey"
                     app:buffered_color="@color/color_video_timebar_buffered" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -215,10 +215,10 @@
                     android:layout_marginEnd="66dp"
                     android:layout_marginBottom="48dp"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_video_vertical_bottom"
-                    app:scrubber_color="@color/color_tab_indicator"
+                    app:scrubber_color="@color/color_bg_grey"
                     app:scrubber_drawable="@mipmap/img_scrubber"
                     app:unplayed_color="@color/color_video_timebar_unplayed"
-                    app:played_color="@color/color_tab_indicator"
+                    app:played_color="@color/color_bg_grey"
                     app:buffered_color="@color/color_video_timebar_buffered" />
 
             <androidx.appcompat.widget.AppCompatTextView

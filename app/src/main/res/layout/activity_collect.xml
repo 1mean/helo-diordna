@@ -17,19 +17,19 @@
                 android:layout_height="match_parent"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_collect_top"
                 android:background="@null"
-                android:src="@mipmap/img_top_leave" />
+                android:src="@mipmap/img_setting_top_back_black33" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_collect_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@id/ibn_collect_back"
-                android:layout_marginStart="4dp"
                 app:layout_constraintTop_toTopOf="@id/clayout_collect_top"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_collect_top"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_collect_top"
+                app:layout_constraintRight_toRightOf="@id/clayout_collect_top"
                 android:includeFontPadding="false"
-                android:text="@string/str_mine_collect"
                 android:textSize="16sp"
+                android:text="@string/str_mine_collect"
                 android:textColor="@color/color_history_title" />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -42,6 +42,7 @@
                 android:layout_marginEnd="8dp"
                 android:background="@null"
                 android:src="@mipmap/img_topview_add_black" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View

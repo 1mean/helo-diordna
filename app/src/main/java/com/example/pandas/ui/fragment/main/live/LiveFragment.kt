@@ -1,5 +1,6 @@
 package com.example.pandas.ui.fragment.main.live
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.core.content.ContextCompat
@@ -13,6 +14,7 @@ import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentLivingBinding
+import com.example.pandas.ui.activity.NewSearchActivity
 import com.example.pandas.ui.fragment.main.eyepetozer.EyepetozerFragment
 import com.example.pandas.ui.view.TabEntity
 import com.flyco.tablayout.listener.CustomTabEntity
@@ -59,6 +61,10 @@ public class LiveFragment : BaseFragment<MainFragmentViewModel, FragmentLivingBi
         appViewModel.appColorType.value?.let {
             updateTop(it)
         }
+
+        binding.clayoutLiveSearch.setOnClickListener {
+            startActivity(Intent(mActivity, NewSearchActivity::class.java))
+        }
     }
 
     override fun createObserver() {
@@ -101,10 +107,12 @@ public class LiveFragment : BaseFragment<MainFragmentViewModel, FragmentLivingBi
                 ContextCompat.getColor(mActivity, R.color.color_bg_grey)
         } else {
 
-            binding.slideTabSetting.textSelectColor = ContextCompat.getColor(mActivity, AppInfos.viewColors[status])
+            binding.slideTabSetting.textSelectColor =
+                ContextCompat.getColor(mActivity, AppInfos.viewColors[status])
             binding.slideTabSetting.textUnselectColor =
                 ContextCompat.getColor(mActivity, R.color.color_text_eye_unselect)
-            binding.slideTabSetting.indicatorColor = ContextCompat.getColor(mActivity, AppInfos.viewColors[status])
+            binding.slideTabSetting.indicatorColor =
+                ContextCompat.getColor(mActivity, AppInfos.viewColors[status])
         }
     }
 

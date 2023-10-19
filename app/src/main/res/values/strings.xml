@@ -115,6 +115,7 @@
     <string name="str_sign">个性签名</string>
     <string name="str_footer_nomore">无更多内容</string>
     <string name="str_attention_add">加入特别关注</string>
+    <string name="str_attention">关注</string>
     <string name="str_group_divide">设置分组</string>
     <string name="str_attention_cancel">取消关注</string>
     <string name="str_followed">已关注</string>
@@ -127,6 +128,8 @@
     <string name="str_up_like">UP主觉得很赞</string>
     <string name="str_publish">发布</string>
     <string name="str_sending">发送中...</string>
+    <string name="str_loginin">登录中</string>
+    <string name="str_loginout">正在退出</string>
     <string name="str_send">发送</string>
     <string name="str_comment_list">评论详情</string>
     <string name="str_face_reco">人脸识别</string>

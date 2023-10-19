@@ -43,16 +43,16 @@ public class DownLoadActivity : BaseActivity<SelfViewModel, ActivityDownloadBind
         appViewModel.appColorType.value?.let {
             binding.clayoutDownloadTop.setBackgroundResource(AppInfos.bgColors[it])
             if (it == 0) {
-                binding.ibnHistoryBack.setImageResource(R.mipmap.img_top_leave)
-                binding.txtHistoryTitle.setTextColor(
+                binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_black33)
+                binding.txtSettingTitle.setTextColor(
                     ContextCompat.getColor(
                         this,
                         R.color.color_history_title
                     )
                 )
             } else {
-                binding.ibnHistoryBack.setImageResource(R.mipmap.img_top_leave_white)
-                binding.txtHistoryTitle.setTextColor(
+                binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_white)
+                binding.txtSettingTitle.setTextColor(
                     ContextCompat.getColor(
                         this,
                         R.color.white

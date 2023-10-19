@@ -33,6 +33,7 @@ public class RecoPlayManager(
 
     private var playPos = -1
 
+
     private val mediaIndexs = MediaIndexMap()//存储资源文件信息,目前只用于推荐界面
 
     fun initPlayer() {

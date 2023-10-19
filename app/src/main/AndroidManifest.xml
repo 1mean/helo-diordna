@@ -11,6 +11,10 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission
+            android:name="android.permission.PACKAGE_USAGE_STATS"
+            tools:ignore="ProtectedPermissions" />
+
 
     <!--Android 13版本适配，细化存储权限-->
     <!--    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />-->
@@ -83,6 +87,13 @@
                 android:name=".ui.activity.MainActivity"
                 android:launchMode="singleTask" />
         <activity android:name=".ui.activity.BehaviorActivity" />
+        <!--android:windowSoftInputMode="adjustResize" : 当软键盘弹出时，Activity 的大小会被调整，
+        以保证软键盘不会覆盖布局。这种方式适用于 Activity 中只有一个可编辑的 EditText 控件，或者多个 EditText 控件都位于同一个 ScrollView 中。
+        android:windowSoftInputMode="adjustPan" : 仅仅将当前 EditText 控件顶上去，其他的布局不会受到影响。
+        这种方式通常在多个 EditText 控件位于不同位置时使用，或者在普通的 View 中使用-->
+        <activity
+                android:name=".ui.activity.LoginActivity"
+                android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity android:name=".ui.activity.BannerChildListActivity" />
         <activity android:name=".ui.activity.OneVerticalList2Activity" />
         <activity android:name=".ui.activity.MusicConfigActivity" />
@@ -117,6 +128,16 @@
         <activity android:name=".ui.activity.CollectActivity" />
         <activity android:name=".ui.activity.GroupCreateActivity" />
         <activity android:name=".ui.activity.ListActivity" />
+        <activity
+                android:name=".ui.activity.AuthenticationActivity"
+                android:windowSoftInputMode="adjustResize|adjustPan" />
+        <activity
+                android:name=".ui.activity.YoungerActivity"
+                android:windowSoftInputMode="adjustResize|adjustPan" />
+        <activity
+                android:name=".ui.activity.SafeActivity"
+                android:windowSoftInputMode="adjustResize|adjustPan" />
+        <activity android:name=".ui.activity.GroupChatActivity" />
         <activity android:name=".ui.activity.CollectListActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
         <activity android:name=".ui.activity.FaceLoginActivity" />

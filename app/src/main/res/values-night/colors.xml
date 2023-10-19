@@ -170,6 +170,7 @@
     <color name="color_black_80">#80000000</color>
     <color name="color_black_20">#20000000</color>
     <color name="color_txt_tab">#999999</color>
+    <color name="color_loging_desc_txt">#999999</color>
     <color name="color_txt_tab_select">#333333</color>
     <color name="color_bg_divider">#333333</color>
     <color name="color_mine_txt_name">#151B1C</color>

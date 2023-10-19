@@ -15,6 +15,7 @@ object AppInfos {
     const val AUTHOR_NAME = "和叶小可怜" //作者ID
     const val DEBUG_LOG_TAG = "pandas_log" //debug版本的默认删除日志tag
     const val SEARCH_KEY = "history" //搜索历史记录存入sp的key
+    const val LOGIN_KEY = "login" //搜索登录信息存入sp的key  0为未登录，1为登录成功
     const val THEME_COLOR = "theme_color" //主题颜色
     const val ATTENTION_KEY = "attention" //搜索关注列表的key
     const val VIDEO_PLAY_KEY = "code" //视频播放界面需要传递的key
@@ -87,18 +88,20 @@ object AppInfos {
         R.color.color_bg_yellow,
         R.color.color_bg_grey,
         R.color.color_bg_blue,
-        R.color.color_bg_purple
+        R.color.color_bg_purple,
+        R.color.color_bg_sky
     )
 
     val viewColors = arrayOf(
-        R.color.color_bg_grey,
+        R.color.color_bg_sky,
         R.color.color_bg_pink,
         R.color.color_bg_black,
         R.color.color_bg_red,
         R.color.color_bg_yellow,
         R.color.color_bg_grey,
         R.color.color_bg_blue,
-        R.color.color_bg_purple
+        R.color.color_bg_purple,
+        R.color.color_bg_sky
     )
 
     val drawables
@@ -110,7 +113,8 @@ object AppInfos {
             R.drawable.shape_user_attention_yellow,
             R.drawable.shape_user_attention_grey,
             R.drawable.shape_user_attention_blue,
-            R.drawable.shape_user_attention_purple
+            R.drawable.shape_user_attention_purple,
+            R.drawable.shape_user_attention_sky
         )
 
     val bestAnimalVideoCodes = arrayOf(

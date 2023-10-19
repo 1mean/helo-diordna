@@ -19,62 +19,66 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.internal.BaselineLayout
 
-
 private val publishDrawable
     get() = arrayOf(
-        R.drawable.shape_bottom_publish_grey,
+        R.drawable.shape_bottom_publish_sky,
         R.drawable.shape_bottom_publish_pink,
         R.drawable.shape_bottom_publish_pink,
         R.drawable.shape_bottom_publish_red,
         R.drawable.shape_bottom_publish_yellow,
         R.drawable.shape_bottom_publish_grey,
         R.drawable.shape_bottom_publish_blue,
-        R.drawable.shape_bottom_publish_purple
+        R.drawable.shape_bottom_publish_purple,
+        R.drawable.shape_bottom_publish_sky
     )
 
 private val homeDrawable
     get() = arrayOf(
-        R.drawable.selector_button_home_grey,
+        R.drawable.selector_button_home_sky,
         R.drawable.selector_button_home,
         R.drawable.selector_button_home,
         R.drawable.selector_button_home_red,
         R.drawable.selector_button_home_yellow,
-        R.drawable.selector_button_home_grey,
+        R.drawable.selector_button_home_green,
         R.drawable.selector_button_home_blue,
-        R.drawable.selector_button_home_purple
+        R.drawable.selector_button_home_purple,
+        R.drawable.selector_button_home_sky,
     )
 private val dynamicDrawable
     get() = arrayOf(
-        R.drawable.selector_button_dynamic_grey,
+        R.drawable.selector_button_dynamic_sky,
         R.drawable.selector_button_dynamic,
         R.drawable.selector_button_dynamic,
         R.drawable.selector_button_dynamic_red,
         R.drawable.selector_button_dynamic_yellow,
-        R.drawable.selector_button_dynamic_grey,
+        R.drawable.selector_button_dynamic_green,
         R.drawable.selector_button_dynamic_blue,
-        R.drawable.selector_button_dynamic_purple
+        R.drawable.selector_button_dynamic_purple,
+        R.drawable.selector_button_dynamic_sky
     )
 private val videoDrawable
     get() = arrayOf(
-        R.drawable.selector_button_video_grey,
+        R.drawable.selector_button_video_sky,
         R.drawable.selector_button_video,
         R.drawable.selector_button_video,
         R.drawable.selector_button_video_red,
         R.drawable.selector_button_video_yellow,
-        R.drawable.selector_button_video_grey,
+        R.drawable.selector_button_video_green,
         R.drawable.selector_button_video_blue,
-        R.drawable.selector_button_video_purple
+        R.drawable.selector_button_video_purple,
+        R.drawable.selector_button_video_sky
     )
 private val mineDrawable
     get() = arrayOf(
-        R.drawable.selector_button_mine_grey,
+        R.drawable.selector_button_mine_sky,
         R.drawable.selector_button_mine,
         R.drawable.selector_button_mine,
         R.drawable.selector_button_mine_red,
         R.drawable.selector_button_mine_yellow,
-        R.drawable.selector_button_mine_grey,
+        R.drawable.selector_button_mine_green,
         R.drawable.selector_button_mine_blue,
-        R.drawable.selector_button_mine_purple
+        R.drawable.selector_button_mine_purple,
+        R.drawable.selector_button_mine_sky
     )
 
 private val bottomImages: Array<Array<Int>>
@@ -96,6 +100,7 @@ private val publishImages
         R.mipmap.img_bottom_publish_white,
         R.mipmap.img_bottom_publish_white,
         R.mipmap.img_bottom_publish_white,
+        R.mipmap.img_bottom_publish_white
     )
 
 private val publishImages1
@@ -107,7 +112,7 @@ private val publishImages1
         R.mipmap.img_bottom_publish_yellow,
         R.mipmap.img_bottom_publish_grey,
         R.mipmap.img_bottom_publish_blue,
-        R.mipmap.img_bottom_publish_purple,
+        R.mipmap.img_bottom_publish_purple
     )
 
 

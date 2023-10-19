@@ -9,7 +9,7 @@
             android:layout_width="35dp"
             android:layout_height="28dp"
             android:layout_marginTop="3dp"
-            android:background="@drawable/shape_bottom_publish_grey"
+            android:background="@drawable/shape_bottom_publish_sky"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -36,6 +36,7 @@
                         android:layout_width="44dp"
                         android:layout_height="44dp"
                         android:layout_gravity="center_vertical"
+                        android:visibility="gone"
                         android:layout_marginStart="10dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -55,22 +56,38 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!-- 144dp -->
-                <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edit"
-                        android:layout_width="190dp"
-                        android:layout_height="30dp"
-                        android:drawableStart="@mipmap/img_home_edit_search"
-                        android:background="@drawable/shape_home_search"
-                        android:textSize="13sp"
-                        android:drawablePadding="9dp"
-                        android:paddingStart="12dp"
-                        android:focusable="false"
-                        android:textColor="@color/color_search_text"
-                        android:textColorHint="@color/color_search_text"
-                        android:layout_gravity="center_vertical"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clayout_home_search"
+                        android:layout_width="240dp"
+                        android:layout_height="34dp"
                         android:layout_marginStart="17dp"
-                        android:hint="大熊猫和花"
-                        tools:ignore="RtlSymmetry" />
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/shape_home_search">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_home_search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_home_search"
+                            app:layout_constraintTop_toTopOf="@id/clayout_home_search"
+                            app:layout_constraintBottom_toBottomOf="@id/clayout_home_search"
+                            android:layout_marginStart="12dp"
+                            android:src="@mipmap/img_top_search" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_home_search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            app:layout_constraintLeft_toRightOf="@id/img_home_search"
+                            app:layout_constraintTop_toTopOf="@id/clayout_home_search"
+                            app:layout_constraintBottom_toBottomOf="@id/clayout_home_search"
+                            android:includeFontPadding="false"
+                            android:layout_marginStart="9dp"
+                            android:textColor="@color/color_search_text"
+                            android:text="大熊猫和花" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/ib_message"
@@ -108,6 +125,7 @@
                             app:layout_constraintTop_toTopOf="@id/clayout_home_top_more"
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="5dp"
+                            android:visibility="gone"
                             android:background="@drawable/shape_bg_home_notice" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

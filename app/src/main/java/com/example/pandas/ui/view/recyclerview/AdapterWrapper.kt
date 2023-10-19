@@ -41,12 +41,12 @@ public class AdapterWrapper(private val mAdapter: RecyclerView.Adapter<RecyclerV
 
     override fun getItemCount(): Int {
         val count = mAdapter.itemCount
-        if (count == 0) {
-            return 0
+        return if (count == 0) {
+            0
         } else if (footer == null) {
-            return count
+            count
         } else
-            return count + 1
+            count + 1
     }
 
     override fun getItemViewType(position: Int): Int {

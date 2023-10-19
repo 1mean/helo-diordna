@@ -42,15 +42,15 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
             isUserInputEnabled = false //禁止滑动
         }
 
-        binding.bnvMain.getOrCreateBadge(R.id.menu_news).run {
-            badgeGravity = BadgeDrawable.TOP_END
-            backgroundColor =
-                ContextCompat.getColor(mActivity, R.color.color_groupbutton_text_selected)
-            maxCharacterCount = 3 //101显示99+
-            number = 23
-            badgeTextColor = Color.WHITE
-            verticalOffset = 15
-        }
+//        binding.bnvMain.getOrCreateBadge(R.id.menu_news).run {
+//            badgeGravity = BadgeDrawable.TOP_END
+//            backgroundColor =
+//                ContextCompat.getColor(mActivity, R.color.color_groupbutton_text_selected)
+//            maxCharacterCount = 3 //101显示99+
+//            number = 23
+//            badgeTextColor = Color.WHITE
+//            verticalOffset = 15
+//        }
 
         binding.bnvMain.run {
             itemIconTintList = null //必须代码设置，点击后变化的图片才能显示

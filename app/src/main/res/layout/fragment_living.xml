@@ -61,7 +61,7 @@
                     app:layout_constraintTop_toTopOf="@id/clayout_live_search"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_live_search"
                     app:layout_constraintLeft_toRightOf="@id/img_live_search"
-                    android:layout_marginStart="9dp"
+                    android:layout_marginStart="8dp"
                     android:text="全局内容搜索"
                     android:textSize="12sp"
                     android:textColor="@color/color_txt_bottom_selected" />

@@ -7,9 +7,12 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.viewmodel.EventViewModel
 import com.example.pandas.data.sql.AppData
+import com.example.pandas.data.sql.MusicVideoData
 import com.example.pandas.sql.database.AppDataBase
+import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.um.UmInitConfig
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.SPUtils
@@ -80,6 +83,7 @@ class DiorApplication : Application(), ViewModelStoreOwner {
 
         Thread {
             val petDao = AppDataBase.getInstance().petVideoDao()
+
 
 //            val codes = arrayOf(708,1050)
 //            for (code in codes) {

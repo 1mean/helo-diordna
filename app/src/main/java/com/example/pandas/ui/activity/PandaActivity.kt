@@ -32,7 +32,7 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
     private val tabTitles = arrayListOf("成和花", "幼年花", "月亮花", "小二班")
 
     val bgColors = arrayOf(
-        R.color.color_bg_pink,
+        R.color.color_bg_grey,
         R.color.color_bg_pink,
         R.color.color_bg_black,
         R.color.color_bg_red,

@@ -25,7 +25,7 @@ import com.example.pandas.utils.StatusBarUtils
 public class BackGroundActivity : BaseActivity<BaseViewModel, ActivityBgBinding>(),
     BgSelectAdapter.ItemClickListener {
 
-    private val names = mutableListOf("简洁白", "少女粉", "主题黑", "高能红", "咸蛋黄", "早苗绿", "宝石蓝", "罗兰紫")
+    private val names = mutableListOf("简洁白", "少女粉", "主题黑", "高能红", "咸蛋黄", "早苗绿", "宝石蓝", "罗兰紫","天然蓝")
     private val colors = arrayOf(
         R.color.color_bg_white,
         R.color.color_bg_pink,
@@ -34,7 +34,8 @@ public class BackGroundActivity : BaseActivity<BaseViewModel, ActivityBgBinding>
         R.color.color_bg_yellow,
         R.color.color_bg_grey,
         R.color.color_bg_blue,
-        R.color.color_bg_purple
+        R.color.color_bg_purple,
+        R.color.color_bg_sky,
     )
 
     private val mAdapter by lazy { BgSelectAdapter(listener = this) }

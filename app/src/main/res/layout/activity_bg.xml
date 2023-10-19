@@ -47,7 +47,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/clayout_bg_select"
             android:layout_width="match_parent"
-            android:layout_height="256dp"
+            android:layout_height="400dp"
             android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView

@@ -150,10 +150,27 @@
 
     <!-- UserInfoActivity ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <style name="style_user_top_info">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">75dp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
         <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/shape_bg_item_function</item>
+    </style>
+
+    <style name="style_function_top">
+        <item name="android:layout_width">21dp</item>
+        <item name="android:layout_height">21dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">9dp</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="style_function_bottom">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="style_user_top_value">
@@ -309,7 +326,8 @@
     <!-- SettingActivity ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <style name="style_setting_activity_drivider">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">10dp</item>
+        <item name="android:layout_height">8dp</item>
+        <item name="android:background">@color/color_bg_divider_setting</item>
     </style>
 
     <style name="style_user_info_drivider">
@@ -333,7 +351,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">15dp</item>
         <item name="android:textColor">@color/color_txt_setting_item_name</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="style_setting_item_desc_text">
@@ -356,10 +374,8 @@
 
     <!-- VideoInfosFragment ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <style name="style_video_llayout_item">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:background">@drawable/ripple_video_item_like</item>
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">42dp</item>
         <item name="android:orientation">vertical</item>
     </style>
 
@@ -376,7 +392,7 @@
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:textSize">10sp</item>
-        <item name="android:textColor">@color/color_video_comment_txt</item>
+        <item name="android:textColor">@color/color_loging_desc_txt</item>
     </style>
 
     <!-- VideoPlayActivity ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -540,7 +556,7 @@
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="cardCornerRadius">15dp</item>
-        <item name="cardBackgroundColor">@color/color_bg_cardview_self</item>
+        <item name="cardBackgroundColor">#eff8ff</item>
     </style>
 
     <style name="style_mine_fragment_card_image">
@@ -597,6 +613,35 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="myEditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:textColorHighlight">@color/color_bg_grey</item>
+        <item name="android:textSelectHandle">@color/color_bg_grey</item>
+        <item name="android:textSelectHandleLeft">@color/color_bg_grey</item>
+        <item name="android:textSelectHandleRight">@color/color_bg_grey</item>
+    </style>
+
+    <style name="commonEditStyle" parent="@android:style/Widget.Button">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="style_mine_setting_fans">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/color_txt_mine_fans</item>
+    </style>
+
+    <style name="style_txt_mine_collect">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
     </style>
 </resources>

@@ -34,7 +34,7 @@ public class HomePagerAdapter(
                 "推荐" -> {
                     RecommendFragment()
                 }
-                "熊猫" -> {
+                "大熊猫" -> {
                     PandaFragment()
                 }
                 "热门" -> {
@@ -48,7 +48,7 @@ public class HomePagerAdapter(
                 }
                 "音乐" -> {
                     val type = SPUtils.getInt(context, AppInfos.MUSIC_STYLE_KEY)
-                    if (type == 0) {
+                    if (type == 1) {
                         MusicFragment2()
                     } else {
                         MusicFragment()

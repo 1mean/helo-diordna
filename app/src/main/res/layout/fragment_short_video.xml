@@ -1,9 +1,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/flayout_short"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_bg_home">
+        android:layout_height="match_parent">
 
     <View
             android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:id="@+id/clayout_short_tab"
             android:layout_width="match_parent"
             android:layout_marginTop="32.66dp"
-            android:layout_height="44dp">
+            android:layout_height="52dp">
 
         <!--<com.google.android.material.tabs.TabLayout
                 android:id="@+id/tb_short"
@@ -64,6 +64,7 @@
             android:layout_marginTop="32.66dp"
             android:layout_gravity="right"
             android:layout_marginEnd="10dp"
+            android:visibility="gone"
             tools:ignore="RtlHardcoded">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -76,26 +77,4 @@
                 app:layout_constraintLeft_toLeftOf="@id/clayout_short_search"
                 app:layout_constraintRight_toRightOf="@id/clayout_short_search" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clayout_short_video"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="32.66dp"
-            android:layout_marginStart="10dp"
-            android:layout_gravity="left"
-            tools:ignore="RtlHardcoded">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/img_short_header"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_short_video"
-                app:layout_constraintRight_toRightOf="@id/clayout_short_video"
-                app:layout_constraintTop_toTopOf="@id/clayout_short_video"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_short_video"
-                app:civ_border_width="1dp"
-                app:civ_border_color="@color/white" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
 </FrameLayout>

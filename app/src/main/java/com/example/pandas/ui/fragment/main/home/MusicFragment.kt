@@ -74,7 +74,7 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
         }
 
         binding.swipMusic.run {
-            setColorSchemeResources(R.color.color_bg_grey)
+            setColorSchemeResources(R.color.color_bg_sky)
             setOnRefreshListener {
                 mViewModel.getMusicTopData()
             }

@@ -38,6 +38,7 @@ public class AppViewModel : ViewModel() {
 
     val sexUpdate by lazy { UnPeekLiveData<Int>() }
 
+    val loginStatus by lazy { UnPeekLiveData<Int>() }
 
 
     /**

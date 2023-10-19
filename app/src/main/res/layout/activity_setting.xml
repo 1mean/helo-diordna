@@ -18,7 +18,7 @@
                 android:layout_height="match_parent"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_setting_top"
                 android:background="@null"
-                android:src="@mipmap/img_topview_back" />
+                android:src="@mipmap/img_setting_top_back_black33" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_setting_title"
@@ -29,7 +29,8 @@
                 app:layout_constraintLeft_toLeftOf="@id/clayout_setting_top"
                 app:layout_constraintRight_toRightOf="@id/clayout_setting_top"
                 android:includeFontPadding="false"
-                android:textSize="17sp"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:text="@string/str_setting"
                 android:textColor="@color/color_history_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -92,9 +93,7 @@
                     app:layout_constraintRight_toRightOf="@id/clayout_music_setting_style" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-                style="@style/style_setting_activity_item_drivider"
-                android:background="@color/color_bg_setting_item_drivider" />
+        <View style="@style/style_setting_activity_item_drivider" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_setting_style"
@@ -115,9 +114,7 @@
                     app:layout_constraintRight_toRightOf="@id/clayout_setting_style" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-                style="@style/style_setting_activity_item_drivider"
-                android:background="@color/color_bg_setting_item_drivider" />
+        <View style="@style/style_setting_activity_item_drivider" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_set_home"
@@ -139,9 +136,7 @@
                     android:text="双列" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-                style="@style/style_setting_activity_item_drivider"
-                android:background="@color/color_bg_setting_item_drivider" />
+        <View style="@style/style_setting_activity_item_drivider" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_set_dark"
@@ -165,9 +160,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <View
-            style="@style/style_setting_activity_drivider"
-            android:background="@color/color_bg_setting_drivider" />
+    <View style="@style/style_setting_activity_drivider" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -205,9 +198,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <View
-            style="@style/style_setting_activity_drivider"
-            android:background="@color/color_bg_setting_drivider" />
+    <View style="@style/style_setting_activity_drivider" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -229,9 +220,10 @@
                     app:layout_constraintTop_toTopOf="@id/clayout_set_storage"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_set_storage"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_set_storage"
-                    android:text="清理存储空间" />
+                    android:text="清除缓存" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_setting_cache"
                     style="@style/style_setting_item_desc_text"
                     app:layout_constraintTop_toTopOf="@id/clayout_set_storage"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_set_storage"
@@ -239,5 +231,7 @@
                     android:text="去清理" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View style="@style/style_setting_activity_drivider" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

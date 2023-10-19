@@ -52,7 +52,8 @@ public class BgSelectAdapter(
                 R.drawable.shape_bg_yellow,
                 R.drawable.shape_bg_grey,
                 R.drawable.shape_bg_blue,
-                R.drawable.shape_bg_purple
+                R.drawable.shape_bg_purple,
+                R.drawable.shape_bg_sky,
             )
         name.text = data
         bgView.setBackgroundResource(bgRes[position])

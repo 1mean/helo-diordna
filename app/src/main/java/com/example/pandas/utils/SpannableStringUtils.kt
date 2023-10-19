@@ -56,10 +56,25 @@ object SpannableStringUtils {
     ): SpannableStringBuilder {
         val colorSpan1 = ForegroundColorSpan(color)
         val colorSpan2 = ForegroundColorSpan(color)
+
+        val clickSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                //listener.spanClick(user.userCode)
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = color//设置颜色
+                ds.isUnderlineText = true//去掉下划线
+            }
+        }
+
         spanString.run {
+            clear()
+            clearSpans()
             append(content)
-            setSpan(colorSpan1, startIndex1, endIndex1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            setSpan(colorSpan2, startIndex2, endIndex2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            setSpan(clickSpan, 0, 3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            //setSpan(clickSpan, startIndex2, endIndex2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
         return spanString
     }

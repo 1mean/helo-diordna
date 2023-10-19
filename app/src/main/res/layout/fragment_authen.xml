@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_auth_image"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/shape_bg_auth_image">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_auth_image"
+                android:layout_marginTop="39dp"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_auth_image"
+                app:layout_constraintRight_toRightOf="@id/clayout_auth_image"
+                android:src="@mipmap/img_authidentify" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_auth_image"
+                app:layout_constraintRight_toRightOf="@id/clayout_auth_image"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_auth_image"
+                android:layout_marginBottom="35dp"
+                android:text="您已完成实名认证，该信息仅自己可见" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_authentication_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="真实姓名"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/clayout_auth_image"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black_33"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_auth_image" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_authentication_name2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_authentication_name"
+            android:layout_marginTop="12dp"
+            android:paddingStart="8dp"
+            android:textSize="15sp"
+            android:textColor="@color/black_33"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/shape_name_bg_authentication"
+            android:text="董**" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_authentication_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="身份证号"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/txt_authentication_name2"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/black_33"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_auth_image" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_authentication_card2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_authentication_card"
+            android:layout_marginTop="12dp"
+            android:paddingStart="8dp"
+            android:gravity="left|center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/black_33"
+            android:maxLength="18"
+            android:background="@drawable/shape_name_bg_authentication"
+            android:text="4****************8" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_authen_update"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="修改实名信息"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/shape_bg_auth_update" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

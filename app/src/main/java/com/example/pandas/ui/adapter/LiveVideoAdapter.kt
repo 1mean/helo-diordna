@@ -325,9 +325,9 @@ public class LiveVideoAdapter(
                 listener.startVideoCommentActivity(video)
             }
 
-//            player.setOnClickListener {
-//                listener.startVideoPLayActivity(video)
-//            }
+            itemView.setOnClickListener {
+                listener.startVideoPLayActivity(video)
+            }
 
             moreView.setOnClickListener {
                 val dialog = LiveBottomSheetDialog(context, object : ItemClickListener<Int> {

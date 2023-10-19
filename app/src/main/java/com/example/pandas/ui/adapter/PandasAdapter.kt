@@ -170,5 +170,6 @@ public class PandasAdapter(private val list: MutableList<PetVideo>) :
     inner class TitleViewHolder(binding: ItemTitleAdapterPandaBinding) :
         BaseEmptyViewHolder(binding.root) {
 
+            val image = binding.imgPandaVideo
     }
 }

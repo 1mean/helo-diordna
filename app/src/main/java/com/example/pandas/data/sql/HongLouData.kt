@@ -214,7 +214,6 @@ object HongLouData {
         honglou13.code = 1808
         honglou13.duration = 410
         honglou13.star = true
-        honglou13.videoType = 1
         honglou13.title = "林黛玉的家产去哪了？-红楼梦系列2"
         honglou13.releaseTime = 1598788833
         honglou13.originalUrl = "https://www.bilibili.com/video/BV1Uf4y1Q7ou"

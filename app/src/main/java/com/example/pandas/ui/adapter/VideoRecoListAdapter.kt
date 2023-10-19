@@ -1,5 +1,6 @@
 package com.example.pandas.ui.adapter
 
+import android.util.Log
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -66,15 +67,15 @@ public class VideoRecoListAdapter(
 
         val videoData = data.videoData
         if (videoData == null) {
-            playCounts.text = "0"
-            comments.text = " - "
+            playCounts.text = "播放 0"
+            comments.text = " - 评论 0"
         } else {
-            playCounts.text = videoData.plays.toString()
+            playCounts.text = "播放 ${videoData.plays.toString()}"
             val counts = videoData.comments
             if (counts == 0) {
-                comments.text = " - "
+                comments.text = " - 评论 0"
             } else {
-                comments.text = counts.toString()
+                comments.text = " - 评论 ${counts.toString()}"
             }
         }
     }

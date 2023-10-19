@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
+import com.example.pandas.app.LoginInfo
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
@@ -71,6 +72,9 @@ public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>
         if (type != 0) {
             appViewModel.recommendType.value = type
         }
+
+        val loginStatus = SPUtils.getInt(this, AppInfos.LOGIN_KEY)
+        LoginInfo.instance.setLoginStatus(loginStatus)
     }
 
     override fun createObserver() {

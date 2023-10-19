@@ -12,7 +12,7 @@
     <color name="color_bg_home_bottomview">#ffffff</color>
     <color name="color_bg_home">#ffffff</color>
     <color name="color_txt_unselected_home">#60696C</color>
-    <color name="color_edit_bg_search_home">#f0f3f3</color>
+    <color name="color_edit_bg_search_home">#f2f4f9</color>
     <color name="color_bg_divider_home">#E2E6E6</color>
     <color name="color_txt_bottom_selected">#cccccc</color>
     <color name="color_txt_bottom_unselected">#8c8c8c</color>
@@ -251,7 +251,7 @@
     <color name="color_vertical_unplay">#33ffffff</color>
 
     <!--home fragment-->
-    <color name="color_search_text">#ACB4BB</color>
+    <color name="color_search_text">#666666</color>
     <color name="color_home_tab_text">#60696C</color>
     <color name="color_home_tab_text_selected">#FF569A</color>
     <color name="color_viewpager_bg">#F1F2F4</color>
@@ -355,8 +355,10 @@
     <color name="color_bg_setting_drivider2">#f2f5f5</color>
     <color name="color_bg_setting_item_drivider">#F3F4F8</color>
     <color name="color_txt_setting_item_desc">#838790</color>
+    <color name="color_bg_divider_setting">#f5f5f5</color>
     <color name="color_bg_setting_button_checked">#00A8FF</color>
     <color name="color_bg_setting_button_unchecked">#DBDBDB</color>
+    <color name="color_loging_desc_txt">#999999</color>
 
     <!--live-->
     <color name="color_live_tab_select">#FF679A</color>
@@ -403,6 +405,11 @@
     <color name="color_txt_name_short">#4f5359</color>
     <color name="color_txt_short_tab_unselected">#7c7c7c</color>
     <color name="color_txt_short_tab_selected">#222222</color>
+    <color name="color_bg_yuanchuang">#e9f6ff</color>
+
+
+    <color name="color_txt_mine_fans">#4c3700</color>
+
 
 
     <!--主题相关-->
@@ -412,8 +419,9 @@
     <color name="color_bg_red">#f44435</color>
     <color name="color_bg_yellow">#fec107</color>
     <color name="color_bg_grey">#8bc24b</color>
-    <color name="color_bg_blue">#2095f4</color>
+    <color name="color_bg_blue">#0d8eee</color>
     <color name="color_bg_purple">#9b27b0</color>
+    <color name="color_bg_sky">#7558fe</color>
     <color name="color_divider_one_vertical2">#e7e7e7</color>
 
 </resources>

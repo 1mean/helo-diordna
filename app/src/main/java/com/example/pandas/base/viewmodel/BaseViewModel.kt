@@ -15,10 +15,9 @@ import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.utils.SPUtils
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
+import java.util.concurrent.Flow
 
 /**
  * @description: BaseViewModel
@@ -32,7 +31,7 @@ open class BaseViewModel : ViewModel() {
     val intFlag: MutableLiveData<Int> by lazy { MutableLiveData() }
     val commentResult: MutableLiveData<VideoComment> by lazy { MutableLiveData() }
     val updateUserResult: SingleLiveData<User> by lazy { SingleLiveData() }
-    val user: MutableLiveData<User> by lazy { MutableLiveData() }
+    val user: SingleLiveData<User> by lazy { SingleLiveData() }
 
     fun IntUpdate() {
         int_flag++

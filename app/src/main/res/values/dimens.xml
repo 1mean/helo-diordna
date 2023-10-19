@@ -9,6 +9,7 @@
     <dimen name="common_sz_5_dimens">5sp</dimen>
     <dimen name="common_sz_5_7_dimens">5.7sp</dimen>
     <dimen name="common_sz_6_dimens">6sp</dimen>
+    <dimen name="common_sz_6_5_dimens">6.7sp</dimen>
     <dimen name="common_sz_7_dimens">7sp</dimen>
     <dimen name="common_sz_8_dimens">8sp</dimen>
     <dimen name="common_sz_9_dimens">9sp</dimen>
@@ -96,5 +97,5 @@
     <dimen name="dimen_comment_item_padding_bottom">10dp</dimen>
     <dimen name="dimen_comment_content_margin_left">59dp</dimen>
     <dimen name="dimen_comment_content_margin_right">12dp</dimen>
-    <dimen name="dimen_video_tabitem_margin">25dp</dimen>
+    <dimen name="dimen_video_tabitem_margin">70dp</dimen>
 </resources>

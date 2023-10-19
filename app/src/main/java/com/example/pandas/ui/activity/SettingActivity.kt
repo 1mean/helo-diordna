@@ -2,8 +2,13 @@ package com.example.pandas.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import com.blankj.utilcode.util.CacheDiskUtils
+import com.blankj.utilcode.util.CacheMemoryUtils
+import com.bumptech.glide.util.ByteBufferUtil
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
@@ -15,11 +20,13 @@ import com.example.pandas.databinding.ActivityMineInfoBinding
 import com.example.pandas.databinding.ActivitySettingBinding
 import com.example.pandas.ui.view.dialog.DeletePopuWindow
 import com.example.pandas.ui.view.dialog.StyleSettingPopuWindow
+import com.example.pandas.utils.AppUtils
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
+import kotlinx.coroutines.launch
 
 /**
  * @description: SettingActivity
@@ -34,7 +41,7 @@ public class SettingActivity : BaseActivity<BaseViewModel, ActivitySettingBindin
         appViewModel.appColorType.value?.let {
             binding.clayoutSettingTop.setBackgroundResource(AppInfos.bgColors[it])
             if (it == 0) {
-                binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back)
+                binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_black33)
                 binding.txtSettingTitle.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -42,7 +49,7 @@ public class SettingActivity : BaseActivity<BaseViewModel, ActivitySettingBindin
                     )
                 )
             } else {
-                binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_white)
                 binding.txtSettingTitle.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -86,6 +93,14 @@ public class SettingActivity : BaseActivity<BaseViewModel, ActivitySettingBindin
     }
 
     override fun createObserver() {
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        lifecycleScope.launch {
+            binding.txtSettingCache.text = AppUtils.getAppCache(this@SettingActivity)
+        }
     }
 
 }

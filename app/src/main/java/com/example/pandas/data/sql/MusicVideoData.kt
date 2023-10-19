@@ -958,6 +958,21 @@ object MusicVideoData {
             "https://i2.hdslb.com/bfs/archive/397a6ca57d13433f4b6892506d77c212d28efe2e.jpg"
         list.add(music60)
 
+        val music61 = PetVideo()
+        music61.type = VideoType.MUSIC.ordinal
+        music61.fileName = "music61"
+        music61.code = 3958
+        music61.duration = 220
+        music61.videoType = 1
+        music61.star = true
+        music61.title = "“这首歌感觉让手机音质都变好了”《Some Days》"
+        music61.releaseTime = 1688131834
+        music61.originalUrl = "https://www.bilibili.com/video/BV1f94y1W79n"
+        music61.tags = "音乐,歌曲,MV"
+        music61.authorId = 560320560
+        music61.cover =
+            "https://i0.hdslb.com/bfs/archive/d2f00480cfa32095c97984db853e814c6ff8cea3.jpg"
+        list.add(music61)
 
 
         return list

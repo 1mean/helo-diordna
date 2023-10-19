@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
@@ -42,7 +43,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
     private var isAttention = false
     private val drawables
         get() = arrayOf(
-            R.drawable.shape_user_attention,
+            R.drawable.shape_user_attention2,
             R.drawable.shape_user_attention_pink,
             R.drawable.shape_user_attention_pink,
             R.drawable.shape_user_attention_red,
@@ -71,13 +72,9 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
             adapter = mAdapter
         }
 
-        binding.clayoutVideoInfoFollow.setOnClickListener {
-
-        }
-
         binding.itemLike.setOnClickListener(this)
-        binding.itemDislike.setOnClickListener(this)
-        binding.itemLove.setOnClickListener(this)
+        //binding.itemDislike.setOnClickListener(this)
+        //binding.itemLove.setOnClickListener(this)
         binding.itemShare.setOnClickListener(this)
         binding.itemCollect.setOnClickListener(this)
 
@@ -129,13 +126,23 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
 
                 if (author.attention) {//已关注
                     isAttention = true
-                    binding.llayoutInfoAttention.visibility = View.GONE
-                    binding.llayoutInfoAttentioned.visibility = View.VISIBLE
+                    binding.txtVideoAttention.text = "已关注"
+                    binding.txtVideoAttention.setTextColor(
+                        ContextCompat.getColor(
+                            mActivity,
+                            R.color.color_txt_panda_list_item
+                        )
+                    )
                     binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_unattention)
                 } else {
                     val status = appViewModel.appColorType.value
-                    binding.llayoutInfoAttention.visibility = View.VISIBLE
-                    binding.llayoutInfoAttentioned.visibility = View.GONE
+                    binding.txtVideoAttention.text = "关注"
+                    binding.txtVideoAttention.setTextColor(
+                        ContextCompat.getColor(
+                            mActivity,
+                            R.color.color_bg_grey
+                        )
+                    )
                     if (status == null) {
                         binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[0])
                     } else {
@@ -148,8 +155,13 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                         bottomSheetDialog.onShow()
                     } else {
                         mViewModel.updateAttention(userCode)
-                        binding.llayoutInfoAttention.visibility = View.GONE
-                        binding.llayoutInfoAttentioned.visibility = View.VISIBLE
+                        binding.txtVideoAttention.text = "已关注"
+                        binding.txtVideoAttention.setTextColor(
+                            ContextCompat.getColor(
+                                mActivity,
+                                R.color.color_txt_panda_list_item
+                            )
+                        )
                         binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_unattention)
                         Toast.makeText(mActivity, "已关注", Toast.LENGTH_SHORT).show()
                         author.attention = !author.attention
@@ -177,8 +189,13 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     mViewModel.updateAttention(userCode)
 
                     val status = appViewModel.appColorType.value
-                    binding.llayoutInfoAttention.visibility = View.VISIBLE
-                    binding.llayoutInfoAttentioned.visibility = View.GONE
+                    binding.txtVideoAttention.text = "关注"
+                    binding.txtVideoAttention.setTextColor(
+                        ContextCompat.getColor(
+                            mActivity,
+                            R.color.color_bg_grey
+                        )
+                    )
                     if (status == null) {
                         binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[0])
                     } else {
@@ -211,12 +228,12 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
             R.id.item_like -> {
                 addScaleAnimation(binding.imgLike, 1.3f)
                 if (videoData.like) {
-                    binding.imgLike.setImageResource(R.mipmap.img_video_like)
+                    binding.imgLike.setImageResource(R.mipmap.img_video_new_like)
                     videoData.likes -= 1
                 } else {
-                    binding.imgLike.setImageResource(R.mipmap.img_video_liked)
+                    binding.imgLike.setImageResource(R.mipmap.img_video_new_liked)
                     if (videoData.hate) {
-                        binding.imgDislike.setImageResource(R.mipmap.img_video_dislike)
+                        //binding.imgDislike.setImageResource(R.mipmap.img_video_dislike)
                         videoData.hate = false
                     }
                     videoData.likes += 1
@@ -229,55 +246,55 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                 videoData.like = !videoData.like
                 mViewModel.addOrUpdateVideoData(videoData)
             }
-            R.id.item_dislike -> {
-                addScaleAnimation(binding.imgDislike, 1.3f)
-                if (videoData.hate) {
-                    binding.imgDislike.setImageResource(R.mipmap.img_video_dislike)
-                } else {
-                    binding.imgDislike.setImageResource(R.mipmap.img_video_disliked)
-                    if (videoData.like) {
-                        binding.imgLike.setImageResource(R.mipmap.img_video_like)
-                        videoData.like = false
-                        videoData.likes -= 1
-                        if (videoData.likes > 0) {
-                            binding.txtVideoLike.text = videoData.likes.toString()
-                        } else {
-                            binding.txtVideoLike.text = "点赞"
-                        }
-                    }
-                }
-                videoData.hate = !videoData.hate
-                mViewModel.addOrUpdateVideoData(videoData)
-            }
-            R.id.item_love -> {
-                addScaleAnimation(binding.imgLove, 1.3f)
-                if (videoData.love) {
-                    binding.imgLove.setImageResource(R.mipmap.img_love_unpress)
-                    videoData.loves -= 1
-                    videoData.shareTime = 0
-                } else {
-                    videoData.loves += 1
-                    binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
-                    videoData.shareTime = System.currentTimeMillis() //暂时当喜欢时间用
-                }
-                if (videoData.loves > 0) {
-                    binding.txtVideoLoves.text = videoData.loves.toString()
-                } else {
-                    binding.txtVideoLoves.text = "喜欢"
-                    videoData.loves = 0
-                }
-                videoData.love = !videoData.love
-                mViewModel.addOrUpdateVideoData(videoData)
-            }
+//            R.id.item_dislike -> {
+//                addScaleAnimation(binding.imgDislike, 1.3f)
+//                if (videoData.hate) {
+//                    binding.imgDislike.setImageResource(R.mipmap.img_video_dislike)
+//                } else {
+//                    binding.imgDislike.setImageResource(R.mipmap.img_video_disliked)
+//                    if (videoData.like) {
+//                        binding.imgLike.setImageResource(R.mipmap.img_video_like)
+//                        videoData.like = false
+//                        videoData.likes -= 1
+//                        if (videoData.likes > 0) {
+//                            binding.txtVideoLike.text = videoData.likes.toString()
+//                        } else {
+//                            binding.txtVideoLike.text = "点赞"
+//                        }
+//                    }
+//                }
+//                videoData.hate = !videoData.hate
+//                mViewModel.addOrUpdateVideoData(videoData)
+//            }
+//            R.id.item_love -> {
+//                addScaleAnimation(binding.imgLove, 1.3f)
+//                if (videoData.love) {
+//                    binding.imgLove.setImageResource(R.mipmap.img_love_unpress)
+//                    videoData.loves -= 1
+//                    videoData.shareTime = 0
+//                } else {
+//                    videoData.loves += 1
+//                    binding.imgLove.setImageResource(R.mipmap.img_love_pressed)
+//                    videoData.shareTime = System.currentTimeMillis() //暂时当喜欢时间用
+//                }
+//                if (videoData.loves > 0) {
+//                    binding.txtVideoLoves.text = videoData.loves.toString()
+//                } else {
+//                    binding.txtVideoLoves.text = "喜欢"
+//                    videoData.loves = 0
+//                }
+//                videoData.love = !videoData.love
+//                mViewModel.addOrUpdateVideoData(videoData)
+//            }
             R.id.item_collect -> {
                 addScaleAnimation(binding.imgCollect, 1.3f)
                 if (videoData.collect) {
                     videoData.collects -= 1
-                    binding.imgCollect.setImageResource(R.mipmap.img_collect_unpress)
-                    binding.txtVideoLike.text = videoData.likes.toString()
+                    binding.imgCollect.setImageResource(R.mipmap.img_video_new_collect)
+                    binding.txtVideoCollect.text = videoData.collects.toString()
                 } else {
                     videoData.collects += 1
-                    binding.imgCollect.setImageResource(R.mipmap.img_collect_pressed)
+                    binding.imgCollect.setImageResource(R.mipmap.img_video_new_collected)
                 }
                 if (videoData.collects > 0) {
                     binding.txtVideoCollect.text = videoData.collects.toString()

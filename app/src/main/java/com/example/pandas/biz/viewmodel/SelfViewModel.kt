@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.pandas.app.getFileCover
 import com.example.pandas.app.getUiName
 import com.example.pandas.base.viewmodel.BaseViewModel
+import com.example.pandas.base.viewmodel.SingleLiveData
 import com.example.pandas.bean.CachaListItem
 import com.example.pandas.bean.CacheListItemData
 import com.example.pandas.biz.ext.getVideoLocalPath
@@ -27,7 +28,7 @@ import java.io.File
  */
 public class SelfViewModel : BaseViewModel() {
 
-    val userInfo: MutableLiveData<User> by lazy { MutableLiveData() }
+    val userInfo: SingleLiveData<User> by lazy { SingleLiveData() }
     val closeFragment: MutableLiveData<Boolean> by lazy { MutableLiveData() }
 
     private val _follows: MutableLiveData<Int> by lazy { MutableLiveData() }
