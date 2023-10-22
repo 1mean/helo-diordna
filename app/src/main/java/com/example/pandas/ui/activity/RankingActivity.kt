@@ -36,30 +36,29 @@ public class RankingActivity : BaseActivity<RankViewModel, ActivityRankingBindin
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        appViewModel.appColorType.value?.let {
-            if (it == 0) {
-                StatusBarUtils.setStatusBarMode(this, true, R.color.color_white_lucency)
-                binding.clayoutPlayTop.setBackgroundResource(R.color.white)
-                binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back)
-                binding.tabRanking.setTabTextColors(
-                    ContextCompat.getColor(this, R.color.color_tablayout_unselect_panda),
-                    ContextCompat.getColor(this, R.color.color_txt_panda_selected)
-                )
-                binding.tabRanking.setSelectedTabIndicatorColor(
-                    ContextCompat.getColor(this, R.color.color_txt_panda_selected)
-                )
-            } else {
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
-                binding.clayoutPlayTop.setBackgroundResource(AppInfos.viewColors[it])
-                binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back_white)
-                binding.tabRanking.setTabTextColors(
-                    ContextCompat.getColor(this, R.color.color_vertical_played),
-                    ContextCompat.getColor(this, R.color.white)
-                )
-                binding.tabRanking.setSelectedTabIndicatorColor(
-                    ContextCompat.getColor(this, R.color.white)
-                )
-            }
+        val status = appViewModel.appColorType.value
+        if (status == null || status == 0) {
+            StatusBarUtils.setStatusBarMode(this, true, R.color.color_white_lucency)
+            binding.clayoutPlayTop.setBackgroundResource(R.color.white)
+            binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back)
+            binding.tabRanking.setTabTextColors(
+                ContextCompat.getColor(this, R.color.color_tablayout_unselect_panda),
+                ContextCompat.getColor(this, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
+            )
+            binding.tabRanking.setSelectedTabIndicatorColor(
+                ContextCompat.getColor(this, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
+            )
+        } else {
+            StatusBarUtils.setStatusBarMode(this, false, AppInfos.viewColors[status])
+            binding.clayoutPlayTop.setBackgroundResource(AppInfos.viewColors[status])
+            binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back_white)
+            binding.tabRanking.setTabTextColors(
+                ContextCompat.getColor(this, R.color.color_vertical_played),
+                ContextCompat.getColor(this, R.color.white)
+            )
+            binding.tabRanking.setSelectedTabIndicatorColor(
+                ContextCompat.getColor(this, R.color.white)
+            )
         }
 
         binding.vp2Ranking.apply {

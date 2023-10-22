@@ -246,7 +246,7 @@
                     app:layout_constraintLeft_toLeftOf="@id/clayout_item2"
                     app:layout_constraintRight_toRightOf="@id/clayout_item2"
                     app:layout_constraintHorizontal_bias="0.4"
-                    android:src="@mipmap/img_live_comment1" />
+                    android:src="@mipmap/img_live_comment" />
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_live_item_comments"
@@ -256,7 +256,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/clayout_item2"
                     app:layout_constraintLeft_toRightOf="@id/img_live_item_comment"
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/color_txt_tab"
+                    android:textColor="@color/color_txt_mine_name"
                     android:text="评论"
                     android:textSize="11sp" />
 
@@ -279,7 +279,7 @@
                     app:layout_constraintLeft_toLeftOf="@id/clayout_item3"
                     app:layout_constraintRight_toRightOf="@id/clayout_item3"
                     app:layout_constraintHorizontal_bias="0.2"
-                    android:src="@mipmap/img_live_like2" />
+                    android:src="@mipmap/img_live_like" />
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_live_item_like"
@@ -288,7 +288,7 @@
                     app:layout_constraintTop_toTopOf="@id/clayout_item3"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_item3"
                     app:layout_constraintLeft_toRightOf="@id/img_live_item_Like"
-                    android:textColor="@color/color_txt_tab"
+                    android:textColor="@color/color_txt_mine_name"
                     android:layout_marginStart="5dp"
                     android:text="点赞"
                     android:textSize="11sp" />

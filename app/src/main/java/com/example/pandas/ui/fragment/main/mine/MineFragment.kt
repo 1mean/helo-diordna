@@ -195,7 +195,7 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
             }
         }
 
-        binding.txtMineLoginout.setOnClickListener {
+        binding.llayoutSettingLoginout.setOnClickListener {
 
             XPopup.Builder(mActivity).asConfirm("退出登录", "退出账号很多功能将无法使用，确定退出吗？", "取消", "确定退出",
                 {
@@ -243,9 +243,7 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
             startAnyActivity(mActivity, GroupChatActivity::class.java)
         }
 
-        appViewModel.appColorType.value?.let {
-            updateTop(it)
-        }
+        updateTop(appViewModel.appColorType.value)
 
     }
 
@@ -257,7 +255,7 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
                 loginStatus = 1
                 binding.groupMine.visibility = View.VISIBLE
                 binding.txtMineLogin.visibility = View.GONE
-                binding.txtMineLoginout.visibility = View.VISIBLE
+                binding.llayoutSettingLoginout.visibility = View.VISIBLE
                 loadViewData()
             } else {
                 loginStatus = 0
@@ -265,7 +263,7 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
                 binding.groupMine.visibility = View.GONE
                 binding.txtMineLogin.visibility = View.VISIBLE
                 binding.imgMineHeader.setImageResource(R.mipmap.img_icon_seadog)
-                binding.txtMineLoginout.visibility = View.GONE
+                binding.llayoutSettingLoginout.visibility = View.GONE
                 SPUtils.putInt(mActivity, AppInfos.LOGIN_KEY, 0)
                 loadingPopup?.dismiss()
             }
@@ -440,81 +438,40 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
         }
     }
 
-    private fun updateTop(status: Int) {
-        if (status == 0) {
-            binding.layoutMineTop.setBackgroundResource(R.color.color_bg_self)
-            binding.clayoutTopInfo.setBackgroundResource(R.color.color_bg_self)
+    private fun updateTop(status: Int?) {
+        if (status == null || status == 0) {
+            binding.layoutMineTop.setBackgroundResource(R.color.color_bg_home)
+            binding.clayoutTopInfo.setBackgroundResource(R.color.color_bg_home)
             binding.txtMineName.setTextColor(
                 ContextCompat.getColor(
                     mActivity,
                     R.color.color_txt_mine_name
                 )
             )
-            binding.txtCoins.setTextColor(ContextCompat.getColor(mActivity, R.color.color_txt_tab))
             binding.txtSelfZone.setTextColor(
                 ContextCompat.getColor(
                     mActivity,
                     R.color.color_txt_tab
                 )
             )
-            //binding.txtFan.setTextColor(ContextCompat.getColor(mActivity, R.color.color_txt_tab))
-//            binding.txtAttention.setTextColor(
-//                ContextCompat.getColor(
-//                    mActivity,
-//                    R.color.color_txt_tab
-//                )
-//            )
-//            binding.txtZone.setTextColor(ContextCompat.getColor(mActivity, R.color.color_txt_tab))
-//            binding.txtMineZone.setTextColor(
-//                ContextCompat.getColor(
-//                    mActivity,
-//                    R.color.color_txt_fans_self
-//                )
-//            )
-//            binding.txtMineFollow.setTextColor(
-//                ContextCompat.getColor(
-//                    mActivity,
-//                    R.color.color_txt_fans_self
-//                )
-//            )
-//            binding.txtMineFans.setTextColor(
-//                ContextCompat.getColor(
-//                    mActivity,
-//                    R.color.color_txt_fans_self
-//                )
-//            )
-            binding.imgZoneTo.setImageResource(R.mipmap.img_setting_top_arror)
-
-
-            binding.imgUpdateDark.setImageResource(R.mipmap.img_clothes_white)
-            binding.imgUpdateBackground.setImageResource(R.mipmap.img_clothes_white)
+            binding.imgUpdateDark.setImageResource(R.mipmap.img_dark_new_black)
+            binding.imgUpdateBackground.setImageResource(R.mipmap.img_clothes_new_black)
+            binding.imgUpdateSearch.setImageResource(R.mipmap.img_search_new_black)
         } else {
             binding.layoutMineTop.setBackgroundResource(AppInfos.bgColors[status])
-            binding.clayoutTopInfo.setBackgroundResource(AppInfos.bgColors[status])
-            binding.txtMineName.setTextColor(ContextCompat.getColor(mActivity, R.color.white))
-            binding.txtCoins.setTextColor(ContextCompat.getColor(mActivity, R.color.color_txt_top))
-            binding.txtSelfZone.setTextColor(
-                ContextCompat.getColor(
-                    mActivity,
-                    R.color.color_txt_top
-                )
-            )
-            //binding.txtFan.setTextColor(ContextCompat.getColor(mActivity, R.color.color_txt_top))
-//            binding.txtAttention.setTextColor(
+            //binding.clayoutTopInfo.setBackgroundResource(AppInfos.bgColors[status])
+//            binding.txtMineName.setTextColor(ContextCompat.getColor(mActivity, R.color.white))
+//            binding.txtSelfZone.setTextColor(
 //                ContextCompat.getColor(
 //                    mActivity,
 //                    R.color.color_txt_top
 //                )
 //            )
-//            binding.txtZone.setTextColor(ContextCompat.getColor(mActivity, R.color.color_txt_top))
-//            binding.txtMineZone.setTextColor(ContextCompat.getColor(mActivity, R.color.white))
-//            binding.txtMineFollow.setTextColor(ContextCompat.getColor(mActivity, R.color.white))
-            //binding.txtMineFans.setTextColor(ContextCompat.getColor(mActivity, R.color.white))
-            binding.imgZoneTo.setImageResource(R.mipmap.img_setting_top_arror_white)
-
-
-            binding.imgUpdateDark.setImageResource(R.mipmap.img_mine_dark_white)
-            binding.imgUpdateBackground.setImageResource(R.mipmap.img_clothes_white)
+//            binding.imgZoneTo.setImageResource(R.mipmap.img_setting_top_arror_white)
+//
+            binding.imgUpdateDark.setImageResource(R.mipmap.img_dark_new_white)
+            binding.imgUpdateBackground.setImageResource(R.mipmap.img_clothes_new_white)
+            binding.imgUpdateSearch.setImageResource(R.mipmap.img_search_new_white)
         }
     }
 

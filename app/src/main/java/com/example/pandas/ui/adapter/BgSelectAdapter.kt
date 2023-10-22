@@ -47,7 +47,6 @@ public class BgSelectAdapter(
             arrayOf(
                 R.drawable.shape_bg_white,
                 R.drawable.shape_bg_pink,
-                R.drawable.shape_bg_black,
                 R.drawable.shape_bg_red,
                 R.drawable.shape_bg_yellow,
                 R.drawable.shape_bg_grey,

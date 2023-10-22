@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.app.getHehuaBanner
 import com.example.pandas.base.activity.BaseActivity
@@ -30,17 +31,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBinding>() {
 
     private val tabTitles = arrayListOf("成和花", "幼年花", "月亮花", "小二班")
-
-    val bgColors = arrayOf(
-        R.color.color_bg_grey,
-        R.color.color_bg_pink,
-        R.color.color_bg_black,
-        R.color.color_bg_red,
-        R.color.color_bg_yellow,
-        R.color.color_bg_grey,
-        R.color.color_bg_blue,
-        R.color.color_bg_purple
-    )
 
     override fun initStatusView() {
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
@@ -70,17 +60,17 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
         }.attach()
 
         val status = appViewModel.appColorType.value
-        if (status == null) {
+        if (status == null || status == 0) {
             binding.tabCmBanner.setTabTextColors(
                 ContextCompat.getColor(
                     this,
                     R.color.white
-                ), ContextCompat.getColor(this, bgColors[0])
+                ), ContextCompat.getColor(this, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
             )
             binding.tabCmBanner.setSelectedTabIndicatorColor(
                 ContextCompat.getColor(
                     this,
-                    bgColors[0]
+                    AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
                 )
             )
         } else {
@@ -88,12 +78,12 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
                 ContextCompat.getColor(
                     this,
                     R.color.white
-                ), ContextCompat.getColor(this, bgColors[status])
+                ), ContextCompat.getColor(this, AppInfos.viewColors[status])
             )
             binding.tabCmBanner.setSelectedTabIndicatorColor(
                 ContextCompat.getColor(
                     this,
-                    bgColors[status]
+                    AppInfos.viewColors[status]
                 )
             )
         }

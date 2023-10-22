@@ -46,7 +46,7 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
 
     private val delayTime = 500L
 
-    private val mAdapter: LiveVideoAdapter by lazy { LiveVideoAdapter(listener = this) }
+    private var mAdapter: LiveVideoAdapter? = null
 
     private var playerManager: LivePlayManager? = null
 
@@ -54,11 +54,16 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        val status = appViewModel.appColorType.value
+        if (status != null) {
+            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[status])
+        }
+        mAdapter = LiveVideoAdapter(status, listener = this)
         binding.recyclerLayout.run {
 
             init(
                 null,
-                mAdapter,
+                mAdapter!!,
                 LinearLayoutManager(context),
                 object : SwipRecyclerView.ILoadMoreListener {
                     override fun onLoadMore() {
@@ -95,9 +100,6 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
 
         playerManager = LivePlayManager(mActivity, this)
 
-        appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
-        }
     }
 
     private var isNews = false
@@ -105,6 +107,7 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
             binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            mAdapter?.updateStatus(it)
         }
 
         mViewModel.liveVideos.observe(viewLifecycleOwner) {
@@ -116,7 +119,7 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
                         if (playerManager!!.isPlaying()) {
                             playerManager?.stopPlayer()
                         }
-                        mAdapter.refresh(it.liveVides)
+                        mAdapter?.refresh(it.liveVides)
                         binding.recyclerLayout.isRefreshing(false)
 
                         if (!isNews) {
@@ -127,7 +130,7 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
                         //binding.recyclerLayout.postDelayed({ startPlay() }, delayTime)
                     }
                     else -> {
-                        mAdapter.loadMore(it.liveVides)
+                        mAdapter?.loadMore(it.liveVides)
                     }
                 }
                 binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
@@ -261,8 +264,8 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
         if (firstPos < 0 || lastPos < 0) return
         for (index in firstPos..lastPos) {
 
-            if (mAdapter.getItemViewType(index) == 3) {
-                val petVideo = mAdapter.getItemData(index)
+            if (mAdapter?.getItemViewType(index) == 3) {
+                val petVideo = mAdapter!!.getItemData(index)
                 val itemView = mRecyclerView.getChildAt(index - firstPos) ?: return
                 //15 21 27 playerView 相同   5  29  17
                 val playerView =

@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.interaction.ItemClickListener
@@ -45,13 +46,39 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
         get() = arrayOf(
             R.drawable.shape_user_attention2,
             R.drawable.shape_user_attention_pink,
-            R.drawable.shape_user_attention_pink,
             R.drawable.shape_user_attention_red,
             R.drawable.shape_user_attention_yellow,
             R.drawable.shape_user_attention_grey,
             R.drawable.shape_user_attention_blue,
-            R.drawable.shape_user_attention_purple
+            R.drawable.shape_user_attention_purple,
+            R.drawable.shape_user_attention2
         )
+
+    val likeRes
+        get() = arrayOf(
+            R.mipmap.img_video_new_like,
+            R.mipmap.img_video_new_liked_pink,
+            R.mipmap.img_video_new_liked_red,
+            R.mipmap.img_video_new_liked_yellow,
+            R.mipmap.img_video_new_liked_green,
+            R.mipmap.img_video_new_liked_blue,
+            R.mipmap.img_video_new_liked_purple,
+            R.mipmap.img_video_new_liked_sky
+        )
+
+    val collectRes
+        get() = arrayOf(
+            R.mipmap.img_video_new_collect,
+            R.mipmap.img_video_new_collect_pink,
+            R.mipmap.img_video_new_collect_red,
+            R.mipmap.img_video_new_collect_yellow,
+            R.mipmap.img_video_new_collect_green,
+            R.mipmap.img_video_new_collect_blue,
+            R.mipmap.img_video_new_collect_purple,
+            R.mipmap.img_video_new_collect_sky
+        )
+
+    var status: Int = 0
 
     override fun lazyLoadTime(): Long = 0
 
@@ -92,6 +119,8 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
             }
             isTitleShow = !isTitleShow
         }
+
+        status = appViewModel.appColorType.value ?: AppInfos.APP_COLOR_STATUS
     }
 
     private val shareItemListener = object : ItemClickListener<String> {
@@ -137,16 +166,20 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                 } else {
                     val status = appViewModel.appColorType.value
                     binding.txtVideoAttention.text = "关注"
-                    binding.txtVideoAttention.setTextColor(
-                        ContextCompat.getColor(
-                            mActivity,
-                            R.color.color_bg_grey
+                    if (status == null || status == 0) {
+                        binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[AppInfos.APP_COLOR_STATUS])
+                        binding.txtVideoAttention.setTextColor(
+                            ContextCompat.getColor(
+                                mActivity, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
+                            )
                         )
-                    )
-                    if (status == null) {
-                        binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[0])
                     } else {
                         binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[status])
+                        binding.txtVideoAttention.setTextColor(
+                            ContextCompat.getColor(
+                                mActivity, AppInfos.viewColors[status]
+                            )
+                        )
                     }
                 }
 
@@ -190,16 +223,20 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
 
                     val status = appViewModel.appColorType.value
                     binding.txtVideoAttention.text = "关注"
-                    binding.txtVideoAttention.setTextColor(
-                        ContextCompat.getColor(
-                            mActivity,
-                            R.color.color_bg_grey
+                    if (status == null || status == 0) {
+                        binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[AppInfos.APP_COLOR_STATUS])
+                        binding.txtVideoAttention.setTextColor(
+                            ContextCompat.getColor(
+                                mActivity, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
+                            )
                         )
-                    )
-                    if (status == null) {
-                        binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[0])
                     } else {
                         binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[status])
+                        binding.txtVideoAttention.setTextColor(
+                            ContextCompat.getColor(
+                                mActivity, AppInfos.viewColors[status]
+                            )
+                        )
                     }
 
                     Toast.makeText(mActivity, "已取消关注", Toast.LENGTH_SHORT).show()
@@ -231,7 +268,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     binding.imgLike.setImageResource(R.mipmap.img_video_new_like)
                     videoData.likes -= 1
                 } else {
-                    binding.imgLike.setImageResource(R.mipmap.img_video_new_liked)
+                    binding.imgLike.setImageResource(likeRes[status])
                     if (videoData.hate) {
                         //binding.imgDislike.setImageResource(R.mipmap.img_video_dislike)
                         videoData.hate = false
@@ -294,7 +331,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     binding.txtVideoCollect.text = videoData.collects.toString()
                 } else {
                     videoData.collects += 1
-                    binding.imgCollect.setImageResource(R.mipmap.img_video_new_collected)
+                    binding.imgCollect.setImageResource(collectRes[status])
                 }
                 if (videoData.collects > 0) {
                     binding.txtVideoCollect.text = videoData.collects.toString()

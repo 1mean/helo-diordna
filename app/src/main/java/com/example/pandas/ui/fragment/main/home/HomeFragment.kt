@@ -12,11 +12,9 @@ import android.os.Looper
 import android.util.Log
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
-import android.view.animation.OvershootInterpolator
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
-import com.example.helo_base.magic.UIUtil
 import com.example.helo_base.magic.ViewPagerHelper
 import com.example.helo_base.magic.commonnavigator.CommonNavigator
 import com.example.helo_base.magic.commonnavigator.abs.CommonNavigatorAdapter
@@ -29,7 +27,6 @@ import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.getUserHeader
-import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCircleBitmap
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
@@ -38,10 +35,8 @@ import com.example.pandas.ui.activity.MessageActivity
 import com.example.pandas.ui.activity.NewSearchActivity
 import com.example.pandas.ui.activity.ShortVideoActivity2
 import com.example.pandas.ui.adapter.HomePagerAdapter
-import com.example.pandas.ui.ext.addAlphaAnimation
 import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.ui.view.ScaleTransitionPagerTitleView
-import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.appbar.AppBarLayout
@@ -74,6 +69,9 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
     private var verticalOffset: Int = 0 //Appbar偏移
     override fun lazyLoadTime(): Long = 0
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
+
+    private var indicatorColor: Int? = null
+
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.viewpager.run {
@@ -82,91 +80,32 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
             setCurrentItem(1, false)
         }
 
-//        commonNavigator = CommonNavigator(mActivity)
-//        commonNavigator!!.isAdjustMode = true
-//        commonNavigator!!.adapter = object : CommonNavigatorAdapter() {
-//
-//            override fun getCount(): Int = tabTitles.size
-//            private var indiColors = ContextCompat.getColor(
-//                context!!,
-//                R.color.color_bg_grey
-//            )
-//
-//            private var titleColors = intArrayOf(
-//                ContextCompat.getColor(
-//                    context!!,
-//                    R.color.color_home_tab_text
-//                ), ContextCompat.getColor(
-//                    context!!,
-//                    R.color.color_bg_grey
-//                )
-//            )
-//
-//            override fun updateIndicatorColors(color: Int) {
-//                indiColors = ContextCompat.getColor(context!!, color)
-//                notifyDataSetChanged()
-//            }
-//
-//            override fun updateTextViewColors(colors: IntArray) {
-//                this.titleColors = colors
-//                notifyDataSetChanged()
-//            }
-//
-//            override fun getTitleView(context: Context?, index: Int): IPagerTitleView {
-//
-//                val simplePagerTitleView = ColorFlipPagerTitleView(context)
-//                simplePagerTitleView.run {
-//                    text = tabTitles[index]
-//                    textSize = resources.getDimension(R.dimen.common_sz_5_dimens)
-//                    normalColor = titleColors[0]
-//                    selectedColor = titleColors[1]
-//                    setOnClickListener {
-//                        binding.viewpager.currentItem = index
-//                    }
-//                }
-//                return simplePagerTitleView
-//            }
-//
-//            override fun getIndicator(context: Context?): IPagerIndicator {
-//                val linePagerIndicator = LinePagerIndicator(context)
-//                linePagerIndicator.run {
-//                    mode = LinePagerIndicator.MODE_WRAP_CONTENT
-//                    lineHeight = ScreenUtil.dip2px(3f)
-//                    //lineWidth = ScreenUtil.dip2px(6f)
-//                    //roundRadius = ScreenUtil.dip2px(3f)
-//                    startInterpolator = AccelerateInterpolator()
-//                    endInterpolator = DecelerateInterpolator(0.9f)
-//                    setColors(indiColors)
-//                }
-//                return linePagerIndicator
-//            }
-//        }
-//        binding.tab.run {
-//            setNavigator(commonNavigator!!)
-//            onPageSelected(1)
-//        }
-//        ViewPagerHelper.bind(binding.tab, binding.viewpager)
+        val status = appViewModel.appColorType.value
+        Log.e("1mean", "status;$status")
+        indicatorColor =
+            if (status == null) AppInfos.viewColors[AppInfos.APP_COLOR_STATUS] else AppInfos.viewColors[status]
 
         binding.tab.setBackgroundColor(Color.WHITE)
-        val commonNavigator = CommonNavigator(mActivity)
-        commonNavigator.isAdjustMode = false
-        commonNavigator.isSkimOver = false
-        commonNavigator.adapter = object : CommonNavigatorAdapter() {
+        commonNavigator = CommonNavigator(mActivity)
+        commonNavigator!!.isAdjustMode = false
+        commonNavigator!!.isSkimOver = false
+        commonNavigator!!.adapter = object : CommonNavigatorAdapter() {
 
-            private var indiColors = ContextCompat.getColor(
-                context!!,
-                R.color.color_bg_sky
-            )
-
-            private var titleColors = intArrayOf(
+            private var tabTitleColors = intArrayOf(
                 ContextCompat.getColor(
-                    context!!,
-                    R.color.color_home_tab_text
+                    mActivity,
+                    R.color.color_txt_home_tab_normal
                 ), ContextCompat.getColor(
-                    context!!,
-                    R.color.color_bg_sky
+                    mActivity,
+                    R.color.color_txt_home_tab_selected
                 )
             )
+
+            override fun updateIndicatorColors(color: Int) {
+                indicatorColor = color
+                Log.e("1mean", "indicatorColorindicatorColorindicatorColorindicatorColor")
+                notifyDataSetChanged()
+            }
 
             override fun getCount(): Int {
                 return tabTitles.size
@@ -177,8 +116,9 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
                     ScaleTransitionPagerTitleView(context)//textSize为选中大小，mMinScale为未选中的缩放比例
                 simplePagerTitleView.text = tabTitles[index]
                 simplePagerTitleView.textSize = resources.getDimension(R.dimen.common_sz_6_dimens)
-                simplePagerTitleView.normalColor = titleColors[0]
-                simplePagerTitleView.selectedColor = titleColors[1]
+                simplePagerTitleView.normalColor = tabTitleColors[0]
+                simplePagerTitleView.selectedColor = tabTitleColors[1]
+
                 simplePagerTitleView.setOnClickListener {
                     binding.viewpager.currentItem = index
                 }
@@ -189,52 +129,34 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
 
                 val linePagerIndicator = LinePagerIndicator(context)
                 linePagerIndicator.run {
-                    mode = LinePagerIndicator.MODE_EXACTLY
-                    lineHeight = ScreenUtil.dip2px(2f)
-                    lineWidth = ScreenUtil.dip2px(20f)
-                    roundRadius = ScreenUtil.dip2px(3f)
+                    mode = LinePagerIndicator.MODE_WRAP_CONTENT
+                    //mode = LinePagerIndicator.MODE_EXACTLY //设置具体值
+                    //lineWidth = ScreenUtil.dip2px(20f)
+                    lineHeight = ScreenUtil.dip2px(3f)
+                    //roundRadius = ScreenUtil.dip2px(3f)
                     startInterpolator = AccelerateInterpolator()
                     endInterpolator = DecelerateInterpolator(0.9f)
-                    setColors(indiColors)
+                }
+                indicatorColor?.let {
+                    linePagerIndicator.setColors(
+                        ContextCompat.getColor(
+                            context!!,
+                            indicatorColor!!
+                        )
+                    )
                 }
                 return linePagerIndicator
-
-//                val indicator = LinePagerIndicator(context)
-//                indicator.startInterpolator = AccelerateInterpolator()
-//                indicator.endInterpolator = DecelerateInterpolator(1.6f)
-//                indicator.yOffset = UIUtil.dip2px(mActivity, 39.0).toFloat()
-//                indicator.lineHeight = UIUtil.dip2px(mActivity, 1.0).toFloat()
-//                indicator.setColors(Color.parseColor("#f57c00"))
-//                return indicator
             }
 
             override fun getTitleWeight(context: Context?, index: Int): Float {
                 return 0f
             }
         }
-        //binding.tab.setNavigator(commonNavigator)
         binding.tab.run {
-            setNavigator(commonNavigator)
+            setNavigator(commonNavigator!!)
             onPageSelected(1)
         }
         ViewPagerHelper.bind(binding.tab, binding.viewpager)
-
-//        val mTabEntities = ArrayList<CustomTabEntity>()
-//        for (i in tabTitles.indices) {
-//            mTabEntities.add(TabEntity(tabTitles[i]))
-//        }
-//        binding.tab.run {
-//            setTabData(mTabEntities)
-//            currentTab = 1
-//            setOnTabSelectListener(object : OnTabSelectListener {
-//                override fun onTabSelect(position: Int) {
-//                    binding.viewpager.setCurrentItem(position, false)
-//                }
-//
-//                override fun onTabReselect(position: Int) {
-//                }
-//            })
-//        }
 
         binding.clayoutHomeSearch.setOnClickListener {
             val intent = Intent(mActivity, NewSearchActivity::class.java)
@@ -260,10 +182,6 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
         binding.clayoutHomeTopMore.setOnClickListener {
             startAnyActivity(mActivity, BannerListActivity::class.java)
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
     }
 
     override fun createObserver() {
@@ -329,8 +247,6 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
 
     override fun onPause() {
         super.onPause()
-        Log.e("1mean", "HomeFragment onPause()")
-
         if (alphaAnimator1 != null && alphaAnimator1!!.isRunning) {
             alphaAnimator1!!.cancel()
             alphaAnimator1 = null
@@ -346,7 +262,6 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
         binding.txtHomeSearch.alpha = 1.0f
         binding.txtHomeSearch.scaleX = 1.0f
         binding.txtHomeSearch.scaleY = 1.0f
-        //binding.txtHomeSearch.clearAnimation()
     }
 
     private fun coroutineAnimation(
@@ -369,14 +284,14 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
 
     override fun firstOnResume() {
 
-        lifecycleScope.launch {
-            val bitmap = getUserHeader(mActivity)
-            if (bitmap == null) {
-                loadCenterImage(mActivity, AppInfos.HEAD_URL, binding.imgHead)
-            } else {
-                loadCircleBitmap(mActivity, bitmap, binding.imgHead)
-            }
-        }
+//        lifecycleScope.launch {
+//            val bitmap = getUserHeader(mActivity)
+//            if (bitmap == null) {
+//                loadCenterImage(mActivity, AppInfos.HEAD_URL, binding.imgHead)
+//            } else {
+//                loadCircleBitmap(mActivity, bitmap, binding.imgHead)
+//            }
+//        }
 
 
         val jon2 = coroutineAnimation(0, lifecycleScope,
@@ -453,78 +368,26 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
 
     override fun againOnResume() {
         super.againOnResume()
-        if (AppInfos.APP_FLAG) {
-            val color = SPUtils.getString(mActivity, AppInfos.THEME_COLOR)
-            binding.tbHome.setBackgroundResource(R.color.red)
-            StatusBarUtils.updataStatus(mActivity, false, true, R.color.red)
-        }
         mHandler.postDelayed(animationTask, search_interval)
     }
 
     private fun updateTopView(it: Int) {
-        binding.bar.setBackgroundResource(AppInfos.bgColors[it])
-        binding.clayoutTopHeader.setBackgroundResource(AppInfos.bgColors[it])
-        when (it) {
-            0 -> {
-                commonNavigator?.let { navigator ->
-                    val adapter = navigator.adapter as CommonNavigatorAdapter
-                    adapter.updateTextViewColors(
-                        intArrayOf(
-                            ContextCompat.getColor(
-                                context!!,
-                                R.color.color_home_tab_text
-                            ), ContextCompat.getColor(
-                                context!!,
-                                AppInfos.bgColors[5]
-                            )
-                        )
-                    )
-                    adapter.updateIndicatorColors(AppInfos.bgColors[5])
-                }
-                binding.ibMessage.setImageResource(R.mipmap.img_home_message)
-                binding.clayoutHomeSearch.setBackgroundResource(R.drawable.shape_home_search)
+
+        binding.bar.setBackgroundResource(AppInfos.viewColors[it])
+        binding.clayoutTopHeader.setBackgroundResource(AppInfos.viewColors[it])
+        if (it == 0) {
+            commonNavigator?.let { navigator ->
+                val adapter = navigator.adapter as CommonNavigatorAdapter
+                adapter.updateIndicatorColors(AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
             }
-            1 -> {
-                commonNavigator?.let { navigator ->
-                    val adapter = navigator.adapter as CommonNavigatorAdapter
-                    adapter.updateTextViewColors(
-                        intArrayOf(
-                            ContextCompat.getColor(
-                                context!!,
-                                R.color.color_home_tab_text
-                            ), ContextCompat.getColor(
-                                context!!,
-                                AppInfos.bgColors[it]
-                            )
-                        )
-                    )
-                    adapter.updateIndicatorColors(AppInfos.bgColors[it])
-                }
-                binding.ibMessage.setImageResource(R.mipmap.img_home_message_white)
-                binding.clayoutHomeSearch.setBackgroundResource(R.drawable.shape_home_search_white)
-            }
-            2 -> {//黑色
-                binding.ibMessage.setImageResource(R.mipmap.img_home_message_gray)
-                binding.clayoutHomeSearch.setBackgroundResource(R.drawable.shape_home_search_white)
-            }
-            else -> {
-                binding.ibMessage.setImageResource(R.mipmap.img_home_message_white)
-                binding.clayoutHomeSearch.setBackgroundResource(R.drawable.shape_home_search_white)
-                commonNavigator?.let { navigator ->
-                    val adapter = navigator.adapter as CommonNavigatorAdapter
-                    adapter.updateTextViewColors(
-                        intArrayOf(
-                            ContextCompat.getColor(
-                                context!!,
-                                R.color.color_home_tab_text
-                            ), ContextCompat.getColor(
-                                context!!,
-                                AppInfos.bgColors[it]
-                            )
-                        )
-                    )
-                    adapter.updateIndicatorColors(AppInfos.bgColors[it])
-                }
+            binding.ibMessage.setImageResource(R.mipmap.img_home_message)
+            binding.clayoutHomeSearch.setBackgroundResource(R.drawable.shape_home_search)
+        } else {
+            binding.ibMessage.setImageResource(R.mipmap.img_home_message_white)
+            binding.clayoutHomeSearch.setBackgroundResource(R.drawable.shape_home_search_white)
+            commonNavigator?.let { navigator ->
+                val adapter = navigator.adapter as CommonNavigatorAdapter
+                adapter.updateIndicatorColors(AppInfos.viewColors[it])
             }
         }
     }

@@ -96,7 +96,7 @@ public class ShortFragment() :
         }
         binding.tbShort.run {
             setTabData(mTabEntities)
-            currentTab = 1
+            currentTab = 2
             setOnTabSelectListener(object : OnTabSelectListener {
                 override fun onTabSelect(position: Int) {
                     Log.e("1mean", "onTabSelect: $position")
@@ -114,7 +114,7 @@ public class ShortFragment() :
 //        if (rtv_2_2 != null) {
 //            UnreadMsgUtils.setSize(rtv_2_2, ScreenUtil.dip2px(7.5f).toInt())
 //        }
-        binding.vp2Short.currentItem = 1
+        binding.vp2Short.currentItem = 2
 
         appViewModel.appColorType.value?.let {
             updateTop(it)

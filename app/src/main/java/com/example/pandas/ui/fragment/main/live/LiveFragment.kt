@@ -58,9 +58,7 @@ public class LiveFragment : BaseFragment<MainFragmentViewModel, FragmentLivingBi
 
         binding.slideTabSetting.setViewPager(binding.vp2Living, tabTitles)
 
-        appViewModel.appColorType.value?.let {
-            updateTop(it)
-        }
+        updateTop(appViewModel.appColorType.value)
 
         binding.clayoutLiveSearch.setOnClickListener {
             startActivity(Intent(mActivity, NewSearchActivity::class.java))
@@ -97,22 +95,25 @@ public class LiveFragment : BaseFragment<MainFragmentViewModel, FragmentLivingBi
     override fun firstOnResume() {
     }
 
-    private fun updateTop(status: Int) {
-        if (status == 0) {
+    private fun updateTop(status: Int?) {
+        if (status == null || status == 0) {
             binding.slideTabSetting.textSelectColor =
-                ContextCompat.getColor(mActivity, R.color.color_bg_grey)
+                ContextCompat.getColor(mActivity, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
             binding.slideTabSetting.textUnselectColor =
                 ContextCompat.getColor(mActivity, R.color.color_text_eye_unselect)
             binding.slideTabSetting.indicatorColor =
-                ContextCompat.getColor(mActivity, R.color.color_bg_grey)
+                ContextCompat.getColor(mActivity, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
+            binding.clayoutLiveTop.setBackgroundResource(R.color.color_white_lucency)
+            binding.root.setBackgroundResource(R.drawable.shape_bg_living)
         } else {
 
             binding.slideTabSetting.textSelectColor =
-                ContextCompat.getColor(mActivity, AppInfos.viewColors[status])
+                ContextCompat.getColor(mActivity, R.color.white)
             binding.slideTabSetting.textUnselectColor =
-                ContextCompat.getColor(mActivity, R.color.color_text_eye_unselect)
+                ContextCompat.getColor(mActivity, R.color.color_vertical_played)
             binding.slideTabSetting.indicatorColor =
-                ContextCompat.getColor(mActivity, AppInfos.viewColors[status])
+                ContextCompat.getColor(mActivity, R.color.white)
+            binding.clayoutLiveTop.setBackgroundResource(AppInfos.viewColors[status])
         }
     }
 

@@ -55,19 +55,20 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/item_mine_scan"
+                android:id="@+id/item_mine_search"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="@id/layout_mine_top"
                 app:layout_constraintRight_toLeftOf="@id/item_character">
 
             <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_update_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@id/item_mine_scan"
-                    app:layout_constraintBottom_toBottomOf="@id/item_mine_scan"
-                    app:layout_constraintRight_toRightOf="@id/item_mine_scan"
-                    app:layout_constraintLeft_toLeftOf="@id/item_mine_scan"
+                    app:layout_constraintTop_toTopOf="@id/item_mine_search"
+                    app:layout_constraintBottom_toBottomOf="@id/item_mine_search"
+                    app:layout_constraintRight_toRightOf="@id/item_mine_search"
+                    app:layout_constraintLeft_toLeftOf="@id/item_mine_search"
                     android:src="@mipmap/img_search_new_black" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -86,7 +87,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clayout_top_info"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp">
+                    android:layout_height="110dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/clayout_top_header"
@@ -140,8 +141,7 @@
                         app:layout_constraintLeft_toRightOf="@id/clayout_top_header"
                         android:layout_marginTop="26dp"
                         android:layout_marginStart="10dp"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="19sp"
                         android:textColor="@color/color_txt_mine_name" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -162,9 +162,9 @@
                         android:textSize="9sp"
                         android:textColor="#818891"
                         android:background="@drawable/shape_bg_level"
-                        app:layout_constraintLeft_toRightOf="@id/img_mine_sex"
-                        app:layout_constraintTop_toTopOf="@id/img_mine_sex"
-                        app:layout_constraintBottom_toBottomOf="@id/img_mine_sex"
+                        app:layout_constraintLeft_toRightOf="@id/txt_mine_name"
+                        app:layout_constraintTop_toTopOf="@id/txt_mine_name"
+                        app:layout_constraintBottom_toBottomOf="@id/txt_mine_name"
                         android:layout_marginStart="10dp"
                         tools:ignore="SmallSp" />
 
@@ -596,7 +596,7 @@
                         android:textColor="@color/color_txt_morefunc_self"
                         android:textSize="15sp"
                         android:gravity="center_vertical"
-                        android:drawableStart="@mipmap/img_mine_function"
+                        android:drawableStart="@mipmap/img_mine_function2"
                         android:drawablePadding="7dp"
                         app:layout_constraintTop_toTopOf="@id/clayout_mine_setting"
                         app:layout_constraintLeft_toLeftOf="@id/clayout_mine_setting"
@@ -642,26 +642,30 @@
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/llayout_setting_loginout"
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:background="@drawable/shape_bg_item_function"
+                            android:layout_marginStart="7dp">
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                                style="@style/style_function_top"
+                                android:src="@mipmap/img_mine_loginout" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/style_function_bottom"
+                                android:text="退出登录" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_mine_loginout"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/shape_bg_logout"
-                    android:text="退出登录"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:gravity="center"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:includeFontPadding="false" />
-
             <View
                     android:layout_width="match_parent"
-                    android:layout_height="100dp" />
+                    android:layout_height="200dp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>

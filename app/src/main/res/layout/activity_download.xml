@@ -13,25 +13,19 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/ibn_setting_back"
-                android:layout_width="56dp"
-                android:layout_height="match_parent"
+                style="@style/style_img_top_collect"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_download_top"
-                android:background="@null"
-                android:src="@mipmap/img_setting_top_back_black33" />
+                app:layout_constraintTop_toTopOf="@id/clayout_download_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_download_top" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_setting_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/style_txt_top_collect"
                 app:layout_constraintRight_toRightOf="@id/clayout_download_top"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_download_top"
                 app:layout_constraintTop_toTopOf="@id/clayout_download_top"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_download_top"
-                android:includeFontPadding="false"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:text="离线缓存"
-                android:textColor="@color/color_history_title" />
+                android:text="离线缓存" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View

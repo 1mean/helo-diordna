@@ -3,6 +3,7 @@ package com.example.pandas.ui.fragment.main.home
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
@@ -48,6 +49,30 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
         "全部", "流行", "国风", "民谣", "动漫", "爵士", "摇滚", "校园"
     )
 
+    private val tabRes
+        get() = arrayOf(
+            R.color.color_bg_light_pink,
+            R.color.color_bg_light_pink,
+            R.color.color_bg_light_red,
+            R.color.color_bg_light_yellow,
+            R.color.color_bg_light_green,
+            R.color.color_bg_light_blue,
+            R.color.color_bg_light_purple,
+            R.color.color_bg_light_sky
+        )
+
+    private val imgRes
+        get() = arrayOf(
+            R.mipmap.img_music_music,
+            R.mipmap.img_music_pink,
+            R.mipmap.img_music_red,
+            R.mipmap.img_music_yellow,
+            R.mipmap.img_music_green,
+            R.mipmap.img_music_blue,
+            R.mipmap.img_music_purple,
+            R.mipmap.img_music_sky,
+        )
+
     private var verticalOffset: Int = 0//AppBarLayout的滑动偏移
 
     private var isEnable = true
@@ -74,7 +99,7 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
         }
 
         binding.swipMusic.run {
-            setColorSchemeResources(R.color.color_bg_sky)
+            setColorSchemeResources(AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
             setOnRefreshListener {
                 mViewModel.getMusicTopData()
             }
@@ -121,8 +146,16 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
             mActivity.startActivity(intent)
         }
 
-        appViewModel.appColorType.value?.let {
-            binding.swipMusic.setColorSchemeResources(AppInfos.viewColors[it])
+        val status = appViewModel.appColorType.value
+        if (status == null || status == 0) {
+            val color = ContextCompat.getColor(mActivity, tabRes[AppInfos.APP_COLOR_STATUS])
+            binding.tabMusic.setSelectedTabIndicatorColor(color)
+            binding.imgMusicNotice.setImageResource(imgRes[AppInfos.APP_COLOR_STATUS])
+        } else {
+            val color = ContextCompat.getColor(mActivity, tabRes[status])
+            binding.tabMusic.setSelectedTabIndicatorColor(color)
+            binding.swipMusic.setColorSchemeResources(AppInfos.viewColors[status])
+            binding.imgMusicNotice.setImageResource(imgRes[status])
         }
     }
 
@@ -136,10 +169,12 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
             binding.swipMusic.setColorSchemeResources(AppInfos.viewColors[it])
+            val color = ContextCompat.getColor(mActivity, tabRes[it])
+            binding.tabMusic.setSelectedTabIndicatorColor(color)
+            binding.imgMusicNotice.setImageResource(imgRes[it])
         }
 
         mViewModel.musicData.observe(viewLifecycleOwner) {
-
             topAdapter.refreshAdapter(it)
             binding.clayoutMusic.visibility = View.VISIBLE
             binding.swipMusic.isRefreshing = false

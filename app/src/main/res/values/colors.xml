@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--new-->
+    <color name="color_txt_home_tab_selected">#000000</color>
+    <color name="color_txt_home_tab_normal">#494c4c</color>
+
+    <color name="color_bg_light_pink">#33fa7298</color>
+    <color name="color_bg_light_red">#33f44435</color>
+    <color name="color_bg_light_yellow">#33fec107</color>
+    <color name="color_bg_light_green">#338bc24b</color>
+    <color name="color_bg_light_blue">#330d8eee</color>
+    <color name="color_bg_light_purple">#339b27b0</color>
+    <color name="color_bg_light_sky">#337558fe</color>
+
+    <color name="color_bg_mid_pink">#88fa7298</color>
+    <color name="color_bg_mid_red">#88f44435</color>
+    <color name="color_bg_mid_yellow">#88fec107</color>
+    <color name="color_bg_mid_green">#888bc24b</color>
+    <color name="color_bg_mid_blue">#880d8eee</color>
+    <color name="color_bg_mid_purple">#889b27b0</color>
+    <color name="color_bg_mid_sky">#887558fe</color>
+
+
+
+
+
+    <!--=====================-->
     <color name="colorPrimary">@color/color_white_lucency</color>
     <color name="colorPrimaryDark">@color/color_white_lucency</color>
     <color name="colorAccent">#D81B60</color>

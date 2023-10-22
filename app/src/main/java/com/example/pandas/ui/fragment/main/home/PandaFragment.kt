@@ -23,7 +23,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  */
 public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
 
-    private val pandasAdapter: PandasAdapter by lazy { PandasAdapter(arrayListOf()) }
+    private val pandasAdapter: PandasAdapter by lazy { PandasAdapter(arrayListOf(), 0) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -51,6 +51,7 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefre
 
         appViewModel.appColorType.value?.let {
             binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            pandasAdapter.updateStatue(it)
         }
     }
 
@@ -64,6 +65,7 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefre
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
             binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            pandasAdapter.updateStatue(it)
         }
 
         mViewModel.petDataWrapper.observe(viewLifecycleOwner) {

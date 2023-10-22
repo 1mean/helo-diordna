@@ -2,6 +2,7 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_bg_home"
         android:orientation="vertical">
@@ -13,22 +14,19 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/ibn_collect_list_back"
-                android:layout_width="56dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_collect_list_top"
                 android:background="@null"
-                android:src="@mipmap/img_back_1" />
+                android:src="@mipmap/img_setting_top_back_black33" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_collect_list_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@id/ibn_collect_list_back"
-                android:layout_marginStart="4dp"
+                style="@style/style_txt_top_collect"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_collect_list_top"
                 app:layout_constraintTop_toTopOf="@id/clayout_collect_list_top"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_collect_list_top"
-                android:includeFontPadding="false"
-                android:textSize="16sp"
+                app:layout_constraintRight_toRightOf="@id/clayout_collect_list_top"
                 android:textColor="@color/color_history_title" />
 
         <androidx.appcompat.widget.AppCompatTextView

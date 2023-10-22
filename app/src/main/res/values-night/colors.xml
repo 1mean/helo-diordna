@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--new-->
+    <color name="color_txt_home_tab_selected">#000000</color>
+    <color name="color_txt_home_tab_normal">#494c4c</color>
+
+
+
+
+
+
+    <!--=====================-->
+
     <color name="colorPrimary">@color/color_white_lucency</color>
     <color name="colorPrimaryDark">@color/color_white_lucency</color>
     <color name="colorAccent">#D81B60</color>

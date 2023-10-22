@@ -95,7 +95,7 @@
                                 app:layout_constraintTop_toTopOf="@id/clayout_music_notice"
                                 app:layout_constraintBottom_toBottomOf="@id/clayout_music_notice"
                                 app:layout_constraintRight_toRightOf="@id/clayout_music_notice"
-                                android:layout_marginEnd="30dp"
+                                android:layout_marginEnd="25dp"
                                 android:textSize="12sp"
                                 android:includeFontPadding="false"
                                 android:text="更多音乐视频"
@@ -107,21 +107,21 @@
                                 app:layout_constraintTop_toTopOf="@id/clayout_music_notice"
                                 app:layout_constraintBottom_toBottomOf="@id/clayout_music_notice"
                                 app:layout_constraintLeft_toLeftOf="@id/clayout_music_notice"
-                                android:layout_marginStart="10dp"
-                                android:textSize="17sp"
+                                android:layout_marginStart="30dp"
+                                android:textSize="15sp"
                                 android:includeFontPadding="false"
                                 android:text="@string/string_love_music"
                                 android:textColor="@color/color_txt_music_item_name" />
 
                         <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/img_music_notice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 app:layout_constraintTop_toTopOf="@id/clayout_music_notice"
                                 app:layout_constraintBottom_toBottomOf="@id/clayout_music_notice"
                                 app:layout_constraintLeft_toLeftOf="@id/clayout_music_notice"
-                                android:layout_marginStart="40dp"
-                                android:visibility="gone"
-                                android:src="@mipmap/img_music_notice" />
+                                android:layout_marginStart="10dp"
+                                android:src="@mipmap/img_music_yellow" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="wrap_content"
@@ -133,19 +133,6 @@
                                 android:layout_marginEnd="10dp" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:text="@string/string_love_music"
-                            android:textColor="@color/color_txt_mylove_self"
-                            android:textSize="15sp"
-                            android:paddingStart="15dp"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center_vertical"
-                            android:textStyle="bold"
-                            android:visibility="gone"
-                            tools:ignore="RtlSymmetry" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -175,7 +162,7 @@
                     android:paddingBottom="10dp"
                     android:overScrollMode="never"
                     app:tabIndicatorFullWidth="true"
-                    app:tabSelectedTextColor="@color/color_home_music_text_selected"
+                    app:tabSelectedTextColor="@color/black"
                     app:tabTextColor="@color/color_home_music_text_unselected"
                     app:tabTextAppearance="@style/MusicTabLayoutTextStyle"
                     app:tabIndicator="@drawable/layer_music_indicator"

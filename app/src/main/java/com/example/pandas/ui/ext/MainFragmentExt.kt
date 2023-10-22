@@ -23,7 +23,6 @@ private val publishDrawable
     get() = arrayOf(
         R.drawable.shape_bottom_publish_sky,
         R.drawable.shape_bottom_publish_pink,
-        R.drawable.shape_bottom_publish_pink,
         R.drawable.shape_bottom_publish_red,
         R.drawable.shape_bottom_publish_yellow,
         R.drawable.shape_bottom_publish_grey,
@@ -36,7 +35,6 @@ private val homeDrawable
     get() = arrayOf(
         R.drawable.selector_button_home_sky,
         R.drawable.selector_button_home,
-        R.drawable.selector_button_home,
         R.drawable.selector_button_home_red,
         R.drawable.selector_button_home_yellow,
         R.drawable.selector_button_home_green,
@@ -47,7 +45,6 @@ private val homeDrawable
 private val dynamicDrawable
     get() = arrayOf(
         R.drawable.selector_button_dynamic_sky,
-        R.drawable.selector_button_dynamic,
         R.drawable.selector_button_dynamic,
         R.drawable.selector_button_dynamic_red,
         R.drawable.selector_button_dynamic_yellow,
@@ -60,7 +57,6 @@ private val videoDrawable
     get() = arrayOf(
         R.drawable.selector_button_video_sky,
         R.drawable.selector_button_video,
-        R.drawable.selector_button_video,
         R.drawable.selector_button_video_red,
         R.drawable.selector_button_video_yellow,
         R.drawable.selector_button_video_green,
@@ -71,7 +67,6 @@ private val videoDrawable
 private val mineDrawable
     get() = arrayOf(
         R.drawable.selector_button_mine_sky,
-        R.drawable.selector_button_mine,
         R.drawable.selector_button_mine,
         R.drawable.selector_button_mine_red,
         R.drawable.selector_button_mine_yellow,
@@ -99,22 +94,8 @@ private val publishImages
         R.mipmap.img_bottom_publish_white,
         R.mipmap.img_bottom_publish_white,
         R.mipmap.img_bottom_publish_white,
-        R.mipmap.img_bottom_publish_white,
         R.mipmap.img_bottom_publish_white
     )
-
-private val publishImages1
-    get() = arrayOf(
-        R.mipmap.img_bottom_publish_pink,
-        R.mipmap.img_bottom_publish_pink,
-        R.mipmap.img_bottom_publish_pink,
-        R.mipmap.img_bottom_publish_red,
-        R.mipmap.img_bottom_publish_yellow,
-        R.mipmap.img_bottom_publish_grey,
-        R.mipmap.img_bottom_publish_blue,
-        R.mipmap.img_bottom_publish_purple
-    )
-
 
 fun MainFragment.initBottom(indexArray: Array<Int>) {
     val status = appViewModel.appColorType.value
@@ -131,8 +112,13 @@ fun MainFragment.initBottom(indexArray: Array<Int>) {
                         }
                         val publishLayout = LayoutInflater.from(mActivity)
                             .inflate(R.layout.view_bottom_navigation_publish, null)
-                        publishLayout.findViewById<ConstraintLayout>(R.id.clayout_bottom_publish)
-                            .setBackgroundResource(publishDrawable[status])
+                        if (status == 0) {
+                            publishLayout.findViewById<ConstraintLayout>(R.id.clayout_bottom_publish)
+                                .setBackgroundResource(publishDrawable[AppInfos.APP_COLOR_STATUS])
+                        } else {
+                            publishLayout.findViewById<ConstraintLayout>(R.id.clayout_bottom_publish)
+                                .setBackgroundResource(publishDrawable[status])
+                        }
                         publishLayout.findViewById<AppCompatImageView>(R.id.img_bottom_publish)
                             .setImageResource(publishImages[status])
                         item.addView(publishLayout) //添加自己需要的带 + 的图标
@@ -155,13 +141,25 @@ fun MainFragment.initBottom(indexArray: Array<Int>) {
                                 val text1 = childView[0] as TextView
                                 val text2 = childView[1] as TextView
                                 Log.e("1mean", "status:$status")
-                                text2.setTextColor(
-                                    ContextCompat.getColor(mActivity, AppInfos.viewColors[status])
-                                )
+                                if (status == 0) {
+                                    text2.setTextColor(
+                                        ContextCompat.getColor(
+                                            mActivity,
+                                            AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
+                                        )
+                                    )
+                                } else {
+                                    text2.setTextColor(
+                                        ContextCompat.getColor(
+                                            mActivity,
+                                            AppInfos.viewColors[status]
+                                        )
+                                    )
+                                }
                                 text1.setTextColor(
                                     ContextCompat.getColor(
                                         mActivity,
-                                        R.color.color_groupbutton_text
+                                        R.color.black
                                     )
                                 )
                             }
@@ -212,16 +210,26 @@ fun MainFragment.appColorObserver(indexArray: Array<Int>, type: Int) {
 
                             val text1 = childView[0] as TextView
                             val text2 = childView[1] as TextView
-                            text2.setTextColor(
-                                ContextCompat.getColor(
-                                    mActivity,
-                                    AppInfos.viewColors[type]
+                            if (type == 0) {
+                                text2.setTextColor(
+                                    ContextCompat.getColor(
+                                        mActivity,
+                                        AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
+                                    )
                                 )
-                            )
+                            } else {
+                                text2.setTextColor(
+                                    ContextCompat.getColor(
+                                        mActivity,
+                                        AppInfos.viewColors[type]
+                                    )
+                                )
+                            }
+
                             text1.setTextColor(
                                 ContextCompat.getColor(
                                     mActivity,
-                                    R.color.color_groupbutton_text
+                                    R.color.black
                                 )
                             )
                         }
@@ -260,7 +268,7 @@ fun MainFragment.bottomStateObserver(indexArray: Array<Int>, status: Int) {
                         0 -> {//常规底部
                             val type = appViewModel.appColorType.value
                             if (type == null) {
-                                publishView.setBackgroundResource(publishDrawable[0])
+                                publishView.setBackgroundResource(publishDrawable[AppInfos.APP_COLOR_STATUS])
                                 publishImg.setImageResource(publishImages[0])
                             } else {
                                 publishView.setBackgroundResource(publishDrawable[type])

@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.VibrateUtils
 import com.bumptech.glide.Glide
+import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.data.network.getGridItems
 import com.example.pandas.databinding.AdapterPandansTopBinding
@@ -26,7 +28,7 @@ import com.lxj.xpopup.XPopup
  * @date: 1/12/22 7:53 下午
  * @version: v1.0
  */
-public class PandasAdapter(private val list: MutableList<PetVideo>) :
+public class PandasAdapter(private val list: MutableList<PetVideo>, private var status: Int) :
     RecyclerView.Adapter<BaseEmptyViewHolder>() {
 
     private val TYPE_TOP = 1
@@ -39,6 +41,11 @@ public class PandasAdapter(private val list: MutableList<PetVideo>) :
         } else {
             return list.size + 2
         }
+    }
+
+    fun updateStatue(status: Int) {
+        this.status = status
+        notifyItemChanged(1)
     }
 
     /**
@@ -103,6 +110,8 @@ public class PandasAdapter(private val list: MutableList<PetVideo>) :
             (holder as PandasTopViewHolder).handle()
         } else if (getItemViewType(position) == TYPE_ITEM) {
             (holder as MyViewHolder).handle(position)
+        } else {
+            (holder as TitleViewHolder).handle()
         }
     }
 
@@ -167,9 +176,28 @@ public class PandasAdapter(private val list: MutableList<PetVideo>) :
         }
     }
 
+    private val imageRes
+        get() = arrayOf(
+            R.mipmap.img_panda_title,
+            R.mipmap.img_panda_title_pink,
+            R.mipmap.img_panda_title_red,
+            R.mipmap.img_panda_title_yellow,
+            R.mipmap.img_panda_title_green,
+            R.mipmap.img_panda_title_blue,
+            R.mipmap.img_panda_title_purple,
+            R.mipmap.img_panda_title_sky
+        )
+
     inner class TitleViewHolder(binding: ItemTitleAdapterPandaBinding) :
         BaseEmptyViewHolder(binding.root) {
 
-            val image = binding.imgPandaVideo
+        val image = binding.imgPandaVideo
+        fun handle() {
+            if (status == 0) {
+                image.setImageResource(imageRes[AppInfos.APP_COLOR_STATUS])
+            } else {
+                image.setImageResource(imageRes[status])
+            }
+        }
     }
 }

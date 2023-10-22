@@ -130,37 +130,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.Toolbar>
-
-            <!--
-                TODO:
-                    Tablayout为了滑动字体加粗功能，左滑时，左边item会闪烁一下，目前无法解决
-            -->
-            <!--            <com.google.android.material.tabs.TabLayout-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="36dp"-->
-            <!--                    app:tabMaxWidth="0dp"-->
-            <!--                    app:tabTextColor="@color/color_home_tab_text"-->
-            <!--                    app:tabSelectedTextColor="@color/color_tab_text_selected"-->
-            <!--                    app:tabTextAppearance="@style/HomeTabTextStyle"-->
-            <!--                    app:tabRippleColor="@android:color/transparent"-->
-            <!--                    app:tabIndicatorColor="@color/color_tab_indicator"-->
-            <!--                    app:tabIndicator="@drawable/layer_video_indicator" />-->
-
         </com.google.android.material.appbar.AppBarLayout>
-
-        <!--<com.flyco.tablayout.CommonTabLayout
-                android:id="@+id/tab"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                tl:tl_iconVisible="false"
-                tl:tl_textSelectColor="@color/color_home_tab_text_selected"
-                tl:tl_textUnselectColor="@color/color_home_tab_text"
-                tl:tl_indicator_color="@color/color_home_tab_text_selected"
-                tl:tl_textBold="SELECT"
-                tl:tl_indicator_width="34dp"
-                tl:tl_indicator_height="3dp"
-                tl:tl_textsize="15dp"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
 
         <com.example.helo_base.magic.MagicIndicator
                 android:id="@+id/tab"

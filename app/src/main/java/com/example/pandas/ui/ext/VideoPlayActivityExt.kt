@@ -24,6 +24,7 @@ import com.example.helo_base.magic.commonnavigator.abs.IPagerIndicator
 import com.example.helo_base.magic.commonnavigator.abs.IPagerTitleView
 import com.example.helo_base.magic.commonnavigator.indicators.LinePagerIndicator
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.bean.VideoInfo
 import com.example.pandas.biz.ext.loadImage
@@ -63,18 +64,18 @@ fun VideoPlayingActivity.initViewPager(index: Int = 0) {
             )
 
             val status = appViewModel.appColorType.value
-            if (status == null) {
+            if (status == null || status == 0) {
                 tabView.setSelectedColor(
                     ContextCompat.getColor(
                         this@initViewPager,
-                        bgColors[0]
+                        AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
                     )
                 )
             } else {
                 tabView.setSelectedColor(
                     ContextCompat.getColor(
                         this@initViewPager,
-                        bgColors[status]
+                        AppInfos.viewColors[status]
                     )
                 )
             }
@@ -93,18 +94,18 @@ fun VideoPlayingActivity.initViewPager(index: Int = 0) {
             linePagerIndicator.mode = LinePagerIndicator.MODE_WRAP_CONTENT
 
             val status = appViewModel.appColorType.value
-            if (status == null) {
+            if (status == null || status ==0) {
                 linePagerIndicator.setColors(
                     ContextCompat.getColor(
                         this@initViewPager,
-                        bgColors[0]
+                        AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
                     )
                 )
             } else {
                 linePagerIndicator.setColors(
                     ContextCompat.getColor(
                         this@initViewPager,
-                        bgColors[status]
+                        AppInfos.viewColors[status]
                     )
                 )
             }
@@ -136,7 +137,7 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
 
     videoData?.let {
         if (it.like) {
-            binding.imgLike.setImageResource(R.mipmap.img_video_new_liked)
+            binding.imgLike.setImageResource(likeRes[status])
         } else {
             binding.imgLike.setImageResource(R.mipmap.img_video_new_like)
         }
@@ -163,7 +164,7 @@ fun VideoInfosFragment.initLikeContainer(videoInfo: VideoInfo) {
 
         if (it.collect) {
             binding.txtVideoCollect.text = "1"
-            binding.imgCollect.setImageResource(R.mipmap.img_video_new_collected)
+            binding.imgCollect.setImageResource(collectRes[status])
         } else {
             binding.txtVideoCollect.text = "收藏"
             binding.imgCollect.setImageResource(R.mipmap.img_video_new_collect)
@@ -224,7 +225,7 @@ fun VideoInfosFragment.initVideo(video: PetVideo) {
 
     binding.txtInfoTime.text = TimeUtils.getStringDate3(video.releaseTime * 1000)
 
-    //binding.txtVideoInfoFans.text = "1粉丝"
+    binding.txtVideoInfoFans.text = "1粉丝"
     //binding.txtInfoComment.text = "0"
 
     val playCounts: Int

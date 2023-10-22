@@ -73,17 +73,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     private var fullPos: AppCompatTextView? = null
     private var video: PetVideo? = null
 
-    val bgColors = arrayOf(
-        R.color.color_bg_grey,
-        R.color.color_bg_pink,
-        R.color.color_bg_black,
-        R.color.color_bg_red,
-        R.color.color_bg_yellow,
-        R.color.color_bg_grey,
-        R.color.color_bg_blue,
-        R.color.color_bg_purple
-    )
-
     private val moreDialog by lazy { VideoMoreBottomSheetDialog(this, this) }
 
     val videoManager: VideoPlayManager by lazy { VideoPlayManager(this, this) }
@@ -125,6 +114,20 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             setResult(RESULT_OK, intent)
             finish()
         }
+
+        val status = appViewModel.appColorType.value
+        Log.e("1mean", "==============$status")
+        val r_color = if (status == null || status == 0) {
+            ContextCompat.getColor(this, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
+        } else {
+            ContextCompat.getColor(this, AppInfos.viewColors[status])
+        }
+        fullTime.setScrubberColor(r_color)
+        exoProgress!!.setScrubberColor(r_color)
+        fullTime.setPlayedColor(r_color)
+        exoProgress!!.setPlayedColor(r_color)
+        binding.exoTime.setPlayedColor(r_color)
+
 
         exit.setOnClickListener {
             isFullScreen = false

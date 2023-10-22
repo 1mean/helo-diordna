@@ -10,6 +10,9 @@ import com.example.pandas.R
  */
 object AppInfos {
 
+    //默认选择的颜色
+    const val APP_COLOR_STATUS = 7 //天空色
+
     const val APP_FLAG = false
     const val AUTHOR_ID = 1074309089 //作者ID
     const val AUTHOR_NAME = "和叶小可怜" //作者ID
@@ -83,7 +86,6 @@ object AppInfos {
     val bgColors = arrayOf(
         R.color.color_bg_home,
         R.color.color_bg_pink,
-        R.color.color_bg_black,
         R.color.color_bg_red,
         R.color.color_bg_yellow,
         R.color.color_bg_grey,
@@ -93,15 +95,25 @@ object AppInfos {
     )
 
     val viewColors = arrayOf(
-        R.color.color_bg_sky,
+        R.color.color_bg_home,
         R.color.color_bg_pink,
-        R.color.color_bg_black,
         R.color.color_bg_red,
         R.color.color_bg_yellow,
         R.color.color_bg_grey,
         R.color.color_bg_blue,
         R.color.color_bg_purple,
         R.color.color_bg_sky
+    )
+
+    val lightViewColors = arrayOf(
+        R.color.color_bg_home,
+        R.color.color_bg_light_pink,
+        R.color.color_bg_light_red,
+        R.color.color_bg_light_yellow,
+        R.color.color_bg_light_green,
+        R.color.color_bg_light_blue,
+        R.color.color_bg_light_purple,
+        R.color.color_bg_light_sky
     )
 
     val drawables

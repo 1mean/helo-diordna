@@ -23,7 +23,7 @@ public class HotFragmentTopDecoration : RecyclerView.ItemDecoration() {
 
         val position = parent.getChildAdapterPosition(view)
         if (position == 0) {
-            outRect.set(36, 0, 0, 0)
+            outRect.set(60, 0, 0, 0)
         } else {
             outRect.set(90, 0, 0, 0)
         }

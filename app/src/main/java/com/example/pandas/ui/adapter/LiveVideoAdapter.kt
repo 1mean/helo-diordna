@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.example.pandas.R
+import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.LiveVideoData
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
@@ -42,6 +43,7 @@ import com.example.pandas.utils.TimeUtils
  * @version: v1.0
  */
 public class LiveVideoAdapter(
+    var status: Int?,
     private var data: LiveVideoData = LiveVideoData(),
     private val listener: LiveVideoListener
 ) :
@@ -49,9 +51,26 @@ public class LiveVideoAdapter(
 
     private val mHandler: Handler = Handler(Looper.getMainLooper())
 
+    private val likeRes
+        get() = arrayOf(
+            R.mipmap.img_live_like,
+            R.mipmap.img_live_liked_pink,
+            R.mipmap.img_live_liked_red,
+            R.mipmap.img_live_liked_yellow,
+            R.mipmap.img_live_liked_green,
+            R.mipmap.img_live_liked_blue,
+            R.mipmap.img_live_liked_purple,
+            R.mipmap.img_live_liked_sky
+        )
+
     @SuppressLint("NotifyDataSetChanged")
     fun refresh(liveData: LiveVideoData) {
         this.data = liveData
+        notifyDataSetChanged()
+    }
+
+    fun updateStatus(status: Int) {
+        this.status = status
         notifyDataSetChanged()
     }
 
@@ -241,9 +260,13 @@ public class LiveVideoAdapter(
             }
 
             if (videoData.like) {
-                likeImg.setImageResource(R.mipmap.img_live_liked2)
+                if (status == null || status == 0) {
+                    likeImg.setImageResource(likeRes[AppInfos.APP_COLOR_STATUS])
+                } else {
+                    likeImg.setImageResource(likeRes[status!!])
+                }
             } else {
-                likeImg.setImageResource(R.mipmap.img_live_like2)
+                likeImg.setImageResource(R.mipmap.img_live_like)
             }
 
             if (videoData.likes == 0) {
@@ -283,7 +306,7 @@ public class LiveVideoAdapter(
 
                 addScaleAnimation(likeImg, 1.4f)
                 if (videoData.like) {
-                    likeImg.setImageResource(R.mipmap.img_live_like2)
+                    likeImg.setImageResource(R.mipmap.img_live_like)
                     videoData.likes -= 1
                     if (videoData.likes > 0) {
                         likeTxt.text = videoData.likes.toString()
@@ -305,7 +328,11 @@ public class LiveVideoAdapter(
                             listener.updateVideoData(videoData)
                         }
                     })
-                    likeImg.setImageResource(R.mipmap.img_live_liked2)
+                    if (status == null || status == 0) {
+                        likeImg.setImageResource(likeRes[AppInfos.APP_COLOR_STATUS])
+                    } else {
+                        likeImg.setImageResource(likeRes[status!!])
+                    }
                 }
             }
 

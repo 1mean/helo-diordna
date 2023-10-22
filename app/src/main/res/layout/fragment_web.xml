@@ -13,24 +13,19 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/ibn_setting_back"
-                android:layout_width="56dp"
-                android:layout_height="match_parent"
+                style="@style/style_img_top_collect"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_setting_top"
-                android:background="@null"
-                android:src="@mipmap/img_back_1" />
+                app:layout_constraintTop_toTopOf="@id/clayout_setting_top"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_setting_top" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_setting_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/style_txt_top_collect"
                 app:layout_constraintTop_toTopOf="@id/clayout_setting_top"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_setting_top"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_setting_top"
                 app:layout_constraintRight_toRightOf="@id/clayout_setting_top"
-                android:includeFontPadding="false"
-                android:textSize="17sp"
-                android:text="项目源码"
-                android:textColor="@color/color_history_title" />
+                android:text="项目源码" />
 
         <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_web_refresh"
@@ -42,7 +37,7 @@
                 android:background="@null"
                 android:text="刷新"
                 android:textColor="@color/color_history_title"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View

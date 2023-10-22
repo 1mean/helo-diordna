@@ -640,8 +640,24 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="style_txt_top_collect">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/color_history_title</item>
+    </style>
+
+    <style name="style_img_top_collect">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:src">@mipmap/img_setting_top_back_black33</item>
     </style>
 </resources>
