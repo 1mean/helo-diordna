@@ -22,6 +22,7 @@ import com.example.pandas.ui.adapter.HotSearchAdapter
 import com.example.pandas.ui.ext.backPressed
 import com.example.pandas.ui.ext.clearEditText
 import com.example.pandas.ui.ext.turnToSearchResultFragment
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.fragment.search.SearchListFragment
 import com.example.pandas.utils.SoftInputUtils
 import com.example.pandas.utils.StatusBarUtils
@@ -114,7 +115,7 @@ public class NewSearchActivity : BaseExActivity<SearchViewModel, ActivitySearchB
         }
 
         appViewModel.appColorType.value?.let {
-            binding.clayoutSearchTitle.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutSearchTitle.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.txtSearchCancel.setTextColor(
                     ContextCompat.getColor(
@@ -131,7 +132,7 @@ public class NewSearchActivity : BaseExActivity<SearchViewModel, ActivitySearchB
                     )
                 )
                 binding.editSearch.setBackgroundResource(R.drawable.shape_home_search_white)
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
     }

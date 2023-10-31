@@ -3,7 +3,7 @@
 
     <!--定义圆角-->
     <corners android:radius="5dp" />
-    <stroke android:color="@color/color_bg_grey" android:width="1dp"/>
+    <stroke android:color="@color/color_bg_green" android:width="1dp"/>
     <!--内部填充色-->
     <solid android:color="#e9f6ff" />
 

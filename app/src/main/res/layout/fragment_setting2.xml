@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_mine_top"
             android:layout_width="match_parent"
-            android:layout_height="45dp">
+            android:layout_height="56dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/item_mode_dark"
@@ -495,7 +495,7 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                             android:id="@+id/llayout_mine_authentication"
                             android:layout_marginStart="15dp"
-                            style="@style/style_user_top_info">
+                            style="@style/style_mine_fragment_function">
 
                         <androidx.appcompat.widget.AppCompatImageButton
                                 style="@style/style_function_top"
@@ -508,7 +508,7 @@
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                             android:id="@+id/llayout_mine_younger"
-                            style="@style/style_user_top_info"
+                            style="@style/style_mine_fragment_function"
                             android:layout_marginStart="7dp">
 
                         <androidx.appcompat.widget.AppCompatImageButton
@@ -523,7 +523,7 @@
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                             android:id="@+id/llayout_mine_safe"
-                            style="@style/style_user_top_info"
+                            style="@style/style_mine_fragment_function"
                             android:layout_marginStart="7dp">
 
                         <androidx.appcompat.widget.AppCompatImageButton
@@ -538,7 +538,7 @@
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                             android:id="@+id/llayout_mine_chat"
-                            style="@style/style_user_top_info"
+                            style="@style/style_mine_fragment_function"
                             android:layout_marginStart="7dp">
 
                         <androidx.appcompat.widget.AppCompatImageButton
@@ -564,7 +564,7 @@
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                             android:id="@+id/clayout_setting_timing"
-                            style="@style/style_user_top_info"
+                            style="@style/style_mine_fragment_function"
                             android:layout_marginStart="15dp">
 
                         <androidx.appcompat.widget.AppCompatImageButton
@@ -616,7 +616,7 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                             android:id="@+id/llayout_setting"
                             android:layout_marginStart="15dp"
-                            style="@style/style_user_top_info">
+                            style="@style/style_mine_fragment_function">
 
                         <androidx.appcompat.widget.AppCompatImageButton
                                 style="@style/style_function_top"
@@ -629,7 +629,7 @@
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                             android:id="@+id/llayout_setting_about"
-                            style="@style/style_user_top_info"
+                            style="@style/style_mine_fragment_function"
                             android:layout_marginStart="7dp">
 
                         <androidx.appcompat.widget.AppCompatImageButton

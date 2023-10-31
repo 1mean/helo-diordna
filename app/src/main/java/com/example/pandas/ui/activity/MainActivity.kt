@@ -25,6 +25,7 @@ import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.databinding.ActivityMainBinding
 import com.example.pandas.ui.broadcast.TimingBroadCast
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
@@ -103,7 +104,7 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
 
         appViewModel.appColorType.value?.let {
             if (it != 0) {
-                StatusBarUtils.updataStatus(this, false, true, AppInfos.bgColors[it])
+                StatusBarUtils.updataStatus(this, false, true, viewColors[it])
             }
         }
 
@@ -116,7 +117,7 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
             if (it == 0) {
                 StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
             } else {
-                StatusBarUtils.updataStatus(this, false, true, AppInfos.bgColors[it])
+                StatusBarUtils.updataStatus(this, false, true, viewColors[it])
             }
         }
     }

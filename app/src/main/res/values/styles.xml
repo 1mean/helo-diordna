@@ -150,10 +150,9 @@
 
     <!-- UserInfoActivity ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <style name="style_user_top_info">
-        <item name="android:layout_width">75dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:orientation">vertical</item>
-        <item name="android:background">@drawable/shape_bg_item_function</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 
     <style name="style_function_top">
@@ -162,6 +161,8 @@
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:layout_marginTop">9dp</item>
         <item name="android:background">@null</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">false</item>
     </style>
 
     <style name="style_function_bottom">
@@ -176,17 +177,19 @@
     <style name="style_user_top_value">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_gravity">center_vertical</item>
         <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/color_txt_user_top_name</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="style_user_top_name">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_gravity">center_vertical</item>
         <item name="android:textSize">11sp</item>
-        <item name="android:textColor">@color/color_video_item_name</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginStart">5dp</item>
     </style>
 
     <style name="style_user_dialog_relative">
@@ -617,10 +620,10 @@
     </style>
 
     <style name="myEditTextStyle" parent="Widget.AppCompat.EditText">
-        <item name="android:textColorHighlight">@color/color_bg_grey</item>
-        <item name="android:textSelectHandle">@color/color_bg_grey</item>
-        <item name="android:textSelectHandleLeft">@color/color_bg_grey</item>
-        <item name="android:textSelectHandleRight">@color/color_bg_grey</item>
+        <item name="android:textColorHighlight">@color/color_bg_green</item>
+        <item name="android:textSelectHandle">@color/color_bg_green</item>
+        <item name="android:textSelectHandleLeft">@color/color_bg_green</item>
+        <item name="android:textSelectHandleRight">@color/color_bg_green</item>
     </style>
 
     <style name="commonEditStyle" parent="@android:style/Widget.Button">
@@ -659,5 +662,12 @@
         <item name="android:layout_height">0dp</item>
         <item name="android:background">@null</item>
         <item name="android:src">@mipmap/img_setting_top_back_black33</item>
+    </style>
+
+    <style name="style_mine_fragment_function">
+        <item name="android:layout_width">75dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/shape_bg_item_function</item>
     </style>
 </resources>

@@ -64,9 +64,7 @@ public class SplashActivity : BaseActivity<BaseViewModel, ActivitySplashBinding>
     override fun initView(savedInstanceState: Bundle?) {
 
         val status = SPUtils.getInt(this, AppInfos.BG_STATUS_KEY)
-        if (status != 0) {
-            appViewModel.appColorType.value = status
-        }
+        appViewModel.appColorType.value = status
 
         val type = SPUtils.getInt(this, AppInfos.RECO_STATUS_KEY)
         if (type != 0) {

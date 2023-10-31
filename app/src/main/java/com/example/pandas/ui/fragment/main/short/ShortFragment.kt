@@ -1,40 +1,27 @@
 package com.example.pandas.ui.fragment.main.short
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelStoreOwner
-import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.biz.ext.getUserHeader
-import com.example.pandas.biz.ext.loadCenterImage
-import com.example.pandas.biz.ext.loadCircleBitmap
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentShortVideoBinding
 import com.example.pandas.ui.activity.NewSearchActivity
-import com.example.pandas.ui.activity.ShortVideoActivity2
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.TabEntity
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
-import jp.wasabeef.glide.transformations.BlurTransformation
-import kotlinx.coroutines.launch
 
 /**
  * @description: PetChildFragment
@@ -47,11 +34,14 @@ public class ShortFragment() :
 
     private val tabTitles = arrayListOf("关注", "发现", "推荐")
 
+    override fun lazyLoadTime(): Long = 0
+
     var isUpdate = true
+    var isOnResume = false
 
     private val tabTitleColors
         get() = arrayOf(
-            ContextCompat.getColor(mActivity, R.color.color_vertical_played),
+            ContextCompat.getColor(mActivity, R.color.color_tab_unselected_short),
             ContextCompat.getColor(mActivity, R.color.color_txt_short_tab_unselected),
             ContextCompat.getColor(mActivity, R.color.color_txt_short_tab_selected),
             ContextCompat.getColor(mActivity, R.color.white)
@@ -81,9 +71,8 @@ public class ShortFragment() :
                 }
             }
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
+                override fun onPageSelected(position: Int) {//app加载时就会触发
                     super.onPageSelected(position)
-                    Log.e("1mean", "onPageSelected: $position")
                     binding.tbShort.currentTab = position
                     updateTabLayout(position)
                 }
@@ -99,7 +88,6 @@ public class ShortFragment() :
             currentTab = 2
             setOnTabSelectListener(object : OnTabSelectListener {
                 override fun onTabSelect(position: Int) {
-                    Log.e("1mean", "onTabSelect: $position")
                     binding.vp2Short.setCurrentItem(position, false)
                     updateTabLayout(position)
                 }
@@ -108,12 +96,6 @@ public class ShortFragment() :
                 }
             })
         }
-
-//        binding.tbShort.showDot(1)
-//        val rtv_2_2: MsgView = binding.tbShort.getMsgView(1)
-//        if (rtv_2_2 != null) {
-//            UnreadMsgUtils.setSize(rtv_2_2, ScreenUtil.dip2px(7.5f).toInt())
-//        }
         binding.vp2Short.currentItem = 2
 
         appViewModel.appColorType.value?.let {
@@ -123,25 +105,12 @@ public class ShortFragment() :
         binding.clayoutShortSearch.setOnClickListener {
             startActivity(Intent(mActivity, NewSearchActivity::class.java))
         }
-
-//        Glide.with(mActivity).asBitmap().load(R.mipmap.img_tieba_top)
-//            .apply(RequestOptions.bitmapTransform(BlurTransformation(20, 5)))//40,7
-//            .into(object : CustomTarget<Bitmap>() {
-//                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-//                    Log.e("1mean","resource:$resource")
-//                    binding.flayoutShort.background = BitmapDrawable(mActivity.resources, resource)
-//                    //binding.flayoutShort.setBackgroundColor(R.color.color_bg_grey)
-//                }
-//
-//                override fun onLoadCleared(placeholder: Drawable?) {
-//                }
-//            })
     }
 
     private fun updateTop(status: Int) {
         val selectIndex = binding.tbShort.currentTab
         if (selectIndex == 2) {
-            //binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
+            binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
 
             binding.tbShort.indicatorColor = tabTitleColors[3]
             binding.tbShort.textSelectColor = tabTitleColors[3]
@@ -161,8 +130,7 @@ public class ShortFragment() :
                 binding.tbShort.textUnselectColor = tabTitleColors[3]
                 binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1_white)
             }
-
-            //binding.clayoutShortTab.setBackgroundResource(AppInfos.bgColors[status])
+            binding.clayoutShortTab.setBackgroundResource(viewColors[status])
         }
     }
 
@@ -190,18 +158,20 @@ public class ShortFragment() :
                         }
                     }
                 }
-
             }
         }
     }
 
     override fun firstOnResume() {
+        isOnResume = true
+        updateTabLayout(2)
     }
 
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
 
     override fun onPause() {
         super.onPause()
+        isOnResume = false
         if (isUpdate) {
             if (binding.tbShort.currentTab == 2) {
                 val nightMode = DarkModeUtils.getNightModel(mActivity)
@@ -221,7 +191,7 @@ public class ShortFragment() :
                             mActivity,
                             false,
                             true,
-                            AppInfos.bgColors[status]
+                            viewColors[status]
                         )
                     }
                 }
@@ -232,6 +202,7 @@ public class ShortFragment() :
 
     override fun againOnResume() {
         super.againOnResume()
+        isOnResume = true
         if (isUpdate) {
             if (binding.tbShort.currentTab == 2) {
                 StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
@@ -244,7 +215,7 @@ public class ShortFragment() :
 
     private var needUpadate = false
     private fun updateTabLayout(position: Int) {
-        if (position != 2 && !needUpadate) {
+        if (!isOnResume || (position != 2 && !needUpadate)) {
             return
         }
         if (position == 2) {
@@ -261,7 +232,7 @@ public class ShortFragment() :
             binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1_white)
 
             mViewModel.updateBottomBackground(1)
-            //binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
+            binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
         } else {
             needUpadate = false
             val status = appViewModel.appColorType.value
@@ -278,7 +249,7 @@ public class ShortFragment() :
                     R.color.color_white_lucency
                 )
                 binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1)
-                //binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
+                binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
             } else {
                 binding.tbShort.textSelectColor = tabTitleColors[3]
                 binding.tbShort.textUnselectColor = tabTitleColors[3]
@@ -289,10 +260,10 @@ public class ShortFragment() :
                     mActivity,
                     false,
                     true,
-                    AppInfos.bgColors[status]
+                    viewColors[status]
                 )
                 binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1_white)
-                //binding.clayoutShortTab.setBackgroundResource(AppInfos.bgColors[status])
+                binding.clayoutShortTab.setBackgroundResource(viewColors[status])
             }
             mViewModel.updateBottomBackground(0)
         }

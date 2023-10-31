@@ -61,7 +61,7 @@
                 android:textSize="13sp"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textColor="@color/color_txt_mylove_self" />
+                android:textColor="@color/black" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_singer_name"
@@ -70,8 +70,46 @@
                 app:layout_constraintLeft_toLeftOf="@id/clayout_music_item_name"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_music_item_name"
                 android:layout_marginBottom="2dp"
-                android:textSize="11sp"
+                android:textSize="12sp"
+                android:includeFontPadding="false"
                 android:textColor="@color/color_txt_singer" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_singer_free"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/txt_singer_name"
+                app:layout_constraintTop_toTopOf="@id/txt_singer_name"
+                app:layout_constraintBottom_toBottomOf="@id/txt_singer_name"
+                android:layout_marginStart="5dp"
+                android:text="限免"
+                android:textSize="8sp"
+                android:textColor="#38e69a"
+                android:includeFontPadding="false"
+                android:background="@drawable/shape_free"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_singer_song"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/txt_singer_free"
+                app:layout_constraintTop_toTopOf="@id/txt_singer_free"
+                app:layout_constraintBottom_toBottomOf="@id/txt_singer_free"
+                android:layout_marginStart="5dp"
+                android:text="全景声"
+                android:textSize="8sp"
+                android:drawableLeft="@mipmap/img_music_v"
+                android:textColor="#da9a4d"
+                android:includeFontPadding="false"
+                android:background="@drawable/shape_allvoice"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

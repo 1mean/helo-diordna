@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.pandas.R
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
+import com.example.pandas.ui.ext.shape_5_drawables
 
 /**
  * @description: BgSelectAdapter
@@ -43,19 +44,8 @@ public class BgSelectAdapter(
         val bgView = holder.getWidget<View>(R.id.view_selected)
         val outerView = holder.getWidget<ConstraintLayout>(R.id.clayout_bg_outer)
 
-        val bgRes =
-            arrayOf(
-                R.drawable.shape_bg_white,
-                R.drawable.shape_bg_pink,
-                R.drawable.shape_bg_red,
-                R.drawable.shape_bg_yellow,
-                R.drawable.shape_bg_grey,
-                R.drawable.shape_bg_blue,
-                R.drawable.shape_bg_purple,
-                R.drawable.shape_bg_sky,
-            )
         name.text = data
-        bgView.setBackgroundResource(bgRes[position])
+        bgView.setBackgroundResource(shape_5_drawables[position])
 
         if (status == position) {
             selectedView.visibility = View.VISIBLE

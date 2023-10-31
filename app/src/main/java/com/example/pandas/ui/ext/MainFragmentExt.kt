@@ -19,62 +19,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.internal.BaselineLayout
 
-private val publishDrawable
-    get() = arrayOf(
-        R.drawable.shape_bottom_publish_sky,
-        R.drawable.shape_bottom_publish_pink,
-        R.drawable.shape_bottom_publish_red,
-        R.drawable.shape_bottom_publish_yellow,
-        R.drawable.shape_bottom_publish_grey,
-        R.drawable.shape_bottom_publish_blue,
-        R.drawable.shape_bottom_publish_purple,
-        R.drawable.shape_bottom_publish_sky
-    )
+/***************************************************
+ * 同时包含以下五个fragment
+ ******       HomeFragment           ***************
+ ******       MainFragment           ***************
+ ******       LiveFragment           ***************
+ ******       ShortFragment          ***************
+ ******       MineFragment           ***************
+ ***************************************************/
 
-private val homeDrawable
-    get() = arrayOf(
-        R.drawable.selector_button_home_sky,
-        R.drawable.selector_button_home,
-        R.drawable.selector_button_home_red,
-        R.drawable.selector_button_home_yellow,
-        R.drawable.selector_button_home_green,
-        R.drawable.selector_button_home_blue,
-        R.drawable.selector_button_home_purple,
-        R.drawable.selector_button_home_sky,
-    )
-private val dynamicDrawable
-    get() = arrayOf(
-        R.drawable.selector_button_dynamic_sky,
-        R.drawable.selector_button_dynamic,
-        R.drawable.selector_button_dynamic_red,
-        R.drawable.selector_button_dynamic_yellow,
-        R.drawable.selector_button_dynamic_green,
-        R.drawable.selector_button_dynamic_blue,
-        R.drawable.selector_button_dynamic_purple,
-        R.drawable.selector_button_dynamic_sky
-    )
-private val videoDrawable
-    get() = arrayOf(
-        R.drawable.selector_button_video_sky,
-        R.drawable.selector_button_video,
-        R.drawable.selector_button_video_red,
-        R.drawable.selector_button_video_yellow,
-        R.drawable.selector_button_video_green,
-        R.drawable.selector_button_video_blue,
-        R.drawable.selector_button_video_purple,
-        R.drawable.selector_button_video_sky
-    )
-private val mineDrawable
-    get() = arrayOf(
-        R.drawable.selector_button_mine_sky,
-        R.drawable.selector_button_mine,
-        R.drawable.selector_button_mine_red,
-        R.drawable.selector_button_mine_yellow,
-        R.drawable.selector_button_mine_green,
-        R.drawable.selector_button_mine_blue,
-        R.drawable.selector_button_mine_purple,
-        R.drawable.selector_button_mine_sky
-    )
+
 
 private val bottomImages: Array<Array<Int>>
     get() = arrayOf(
@@ -85,26 +39,11 @@ private val bottomImages: Array<Array<Int>>
         mineDrawable
     )
 
-private val publishImages
-    get() = arrayOf(
-        R.mipmap.img_bottom_publish_white,
-        R.mipmap.img_bottom_publish_white,
-        R.mipmap.img_bottom_publish_white,
-        R.mipmap.img_bottom_publish_white,
-        R.mipmap.img_bottom_publish_white,
-        R.mipmap.img_bottom_publish_white,
-        R.mipmap.img_bottom_publish_white,
-        R.mipmap.img_bottom_publish_white
-    )
-
-fun MainFragment.initBottom(indexArray: Array<Int>) {
-    val status = appViewModel.appColorType.value
-    if (status != null) {
-        Log.e("1mean", "111")
+fun MainFragment.initBottom() {
+    appViewModel.appColorType.value?.let {
         if (binding.bnvMain[0] is BottomNavigationMenuView) {
-            for (i in indexArray) {
+            for (i in 0..4) {
                 if (i == 2) {
-                    Log.e("1mean", "222")
                     val item = (binding.bnvMain[0] as BottomNavigationMenuView)[2]
                     if (item is BottomNavigationItemView) {
                         item.children.forEach { childView -> //就两个子view，默认的AppCompatImageView(图标) + BaselineLayout(文字)
@@ -112,47 +51,43 @@ fun MainFragment.initBottom(indexArray: Array<Int>) {
                         }
                         val publishLayout = LayoutInflater.from(mActivity)
                             .inflate(R.layout.view_bottom_navigation_publish, null)
-                        if (status == 0) {
+                        if (it == 0) {
                             publishLayout.findViewById<ConstraintLayout>(R.id.clayout_bottom_publish)
-                                .setBackgroundResource(publishDrawable[AppInfos.APP_COLOR_STATUS])
+                                .setBackgroundResource(publishDrawable[APP_COLOR_STATUS])
                         } else {
                             publishLayout.findViewById<ConstraintLayout>(R.id.clayout_bottom_publish)
-                                .setBackgroundResource(publishDrawable[status])
+                                .setBackgroundResource(publishDrawable[it])
                         }
                         publishLayout.findViewById<AppCompatImageView>(R.id.img_bottom_publish)
-                            .setImageResource(publishImages[status])
+                            .setImageResource(R.mipmap.img_bottom_publish_white)
                         item.addView(publishLayout) //添加自己需要的带 + 的图标
                     }
                 } else {
-                    Log.e("1mean", "3333")
                     val item = (binding.bnvMain[0] as BottomNavigationMenuView)[i]
                     if (item is BottomNavigationItemView) {
                         item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
                             if (childView is ImageView) {
-                                Log.e("1mean", "4444")
                                 childView.setImageDrawable(
                                     ContextCompat.getDrawable(
-                                        mActivity, bottomImages[i][status]
+                                        mActivity, bottomImages[i][it]
                                     )
                                 )
                             } else if (childView is BaselineLayout) {
 
-                                Log.e("1mean", "5555")
                                 val text1 = childView[0] as TextView
                                 val text2 = childView[1] as TextView
-                                Log.e("1mean", "status:$status")
-                                if (status == 0) {
+                                if (it == 0) {
                                     text2.setTextColor(
                                         ContextCompat.getColor(
                                             mActivity,
-                                            AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
+                                            viewColors[APP_COLOR_STATUS]
                                         )
                                     )
                                 } else {
                                     text2.setTextColor(
                                         ContextCompat.getColor(
                                             mActivity,
-                                            AppInfos.viewColors[status]
+                                            viewColors[it]
                                         )
                                     )
                                 }
@@ -168,27 +103,12 @@ fun MainFragment.initBottom(indexArray: Array<Int>) {
                 }
             }
         }
-    } else {
-        Log.e("1mean", "6666")
-        //修改第2个item的样式为自定义样式
-        if (binding.bnvMain[0] is BottomNavigationMenuView) {
-            val item = (binding.bnvMain[0] as BottomNavigationMenuView)[2]
-            if (item is BottomNavigationItemView) {
-                Log.e("1mean", "7777")
-                item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
-                    childView.visibility = View.GONE
-                }
-                val publishView = LayoutInflater.from(mActivity)
-                    .inflate(R.layout.view_bottom_navigation_publish, null)
-                item.addView(publishView)
-            }
-        }
     }
 }
 
-fun MainFragment.appColorObserver(indexArray: Array<Int>, type: Int) {
+fun MainFragment.appColorObserver(type: Int) {
     if (binding.bnvMain[0] is BottomNavigationMenuView) {
-        for (i in indexArray) {
+        for (i in 0..4) {
             val item = (binding.bnvMain[0] as BottomNavigationMenuView)[i]
             if (item is BottomNavigationItemView) {
                 if (i == 2) {
@@ -197,7 +117,7 @@ fun MainFragment.appColorObserver(indexArray: Array<Int>, type: Int) {
                     val publishImg =
                         item.findViewById<AppCompatImageView>(R.id.img_bottom_publish)
                     publishView.setBackgroundResource(publishDrawable[type])
-                    publishImg.setImageResource(publishImages[type])
+                    publishImg.setImageResource(R.mipmap.img_bottom_publish_white)
                 } else {
                     item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)
                         if (childView is ImageView) {
@@ -214,14 +134,14 @@ fun MainFragment.appColorObserver(indexArray: Array<Int>, type: Int) {
                                 text2.setTextColor(
                                     ContextCompat.getColor(
                                         mActivity,
-                                        AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
+                                        viewColors[APP_COLOR_STATUS]
                                     )
                                 )
                             } else {
                                 text2.setTextColor(
                                     ContextCompat.getColor(
                                         mActivity,
-                                        AppInfos.viewColors[type]
+                                        viewColors[type]
                                     )
                                 )
                             }
@@ -240,7 +160,32 @@ fun MainFragment.appColorObserver(indexArray: Array<Int>, type: Int) {
     }
 }
 
-fun MainFragment.bottomStateObserver(indexArray: Array<Int>, status: Int) {
+/**
+ * <修改底部颜色>
+ * @author: dongyiming
+ * @date: 10/24/23 3:47 PM
+ * @version: v1.0
+ */
+fun MainFragment.bottomUpDate(status: Int) {//status：变黑/白
+    var indexArray = arrayOf(0, 1, 2, 3, 4)
+    val bottomBgColors = arrayOf(
+        ContextCompat.getColor(mActivity, R.color.color_bg_home_bottomview),
+        ContextCompat.getColor(mActivity, R.color.black)
+    )
+
+    val shortVideoColors = arrayOf(
+        ContextCompat.getColor(mActivity, R.color.color_txt_bottom_unselected),
+        ContextCompat.getColor(mActivity, R.color.color_txt_bottom_unselected),
+        ContextCompat.getColor(mActivity, R.color.color_txt_bottom_unselected),
+        ContextCompat.getColor(mActivity, R.color.color_txt_bottom_selected),
+        ContextCompat.getColor(mActivity, R.color.color_txt_bottom_unselected)
+    )
+    binding.bnvMain.setBackgroundColor(bottomBgColors[status])//底部背景颜色
+
+
+}
+
+fun MainFragment.bottomStateObserver(status: Int) {
     val bottomBgColors = arrayOf(
         ContextCompat.getColor(mActivity, R.color.color_bg_home_bottomview),
         ContextCompat.getColor(mActivity, R.color.black)
@@ -256,7 +201,7 @@ fun MainFragment.bottomStateObserver(indexArray: Array<Int>, status: Int) {
 
     binding.bnvMain.setBackgroundColor(bottomBgColors[status])//底部背景颜色
     if (binding.bnvMain[0] is BottomNavigationMenuView) {
-        for (i in indexArray) {
+        for (i in 0..4) {
             val item = (binding.bnvMain[0] as BottomNavigationMenuView)[i]
             if (item is BottomNavigationItemView) {
                 if (i == 2) {//中间item
@@ -268,12 +213,11 @@ fun MainFragment.bottomStateObserver(indexArray: Array<Int>, status: Int) {
                         0 -> {//常规底部
                             val type = appViewModel.appColorType.value
                             if (type == null) {
-                                publishView.setBackgroundResource(publishDrawable[AppInfos.APP_COLOR_STATUS])
-                                publishImg.setImageResource(publishImages[0])
+                                publishView.setBackgroundResource(publishDrawable[APP_COLOR_STATUS])
                             } else {
                                 publishView.setBackgroundResource(publishDrawable[type])
-                                publishImg.setImageResource(publishImages[0])
                             }
+                            publishImg.setImageResource(R.mipmap.img_bottom_publish_white)
                         }
                         1 -> {//短视频底部
                             publishView.setBackgroundResource(R.drawable.shape_bottom_publish1)
@@ -281,6 +225,7 @@ fun MainFragment.bottomStateObserver(indexArray: Array<Int>, status: Int) {
                         }
                     }
                 } else {
+                    Log.e("2mean", "333333")
                     when (status) {
                         0 -> {//常规底部
                             item.children.forEach { childView -> //就两个子view，AppCompatImageView(图标) + BaselineLayout(文字)

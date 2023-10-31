@@ -9,6 +9,7 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.databinding.ActivityMusicSettingConfigBinding
 import com.example.pandas.databinding.ActivitySettingConfigBinding
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.fragment.main.mine.MineStyleFragment
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils
@@ -31,7 +32,7 @@ public class MusicConfigActivity :
     override fun initView(savedInstanceState: Bundle?) {
 
         appViewModel.appColorType.value?.let {
-            binding.clayoutConfigTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutConfigTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.ibnSettingBack.setImageResource(R.mipmap.img_top_leave)
                 binding.txtConfigTitle.setTextColor(
@@ -48,7 +49,7 @@ public class MusicConfigActivity :
                         R.color.white
                     )
                 )
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
 

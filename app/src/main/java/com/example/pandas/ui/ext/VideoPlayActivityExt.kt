@@ -68,14 +68,14 @@ fun VideoPlayingActivity.initViewPager(index: Int = 0) {
                 tabView.setSelectedColor(
                     ContextCompat.getColor(
                         this@initViewPager,
-                        AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
+                        viewColors[APP_COLOR_STATUS]
                     )
                 )
             } else {
                 tabView.setSelectedColor(
                     ContextCompat.getColor(
                         this@initViewPager,
-                        AppInfos.viewColors[status]
+                        viewColors[status]
                     )
                 )
             }
@@ -98,14 +98,14 @@ fun VideoPlayingActivity.initViewPager(index: Int = 0) {
                 linePagerIndicator.setColors(
                     ContextCompat.getColor(
                         this@initViewPager,
-                        AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
+                        viewColors[APP_COLOR_STATUS]
                     )
                 )
             } else {
                 linePagerIndicator.setColors(
                     ContextCompat.getColor(
                         this@initViewPager,
-                        AppInfos.viewColors[status]
+                        viewColors[status]
                     )
                 )
             }

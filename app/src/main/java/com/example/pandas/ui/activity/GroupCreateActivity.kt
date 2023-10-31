@@ -9,6 +9,7 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityCreateGroupBinding
 import com.example.pandas.ui.ext.addHorizontalAnimation
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
@@ -54,7 +55,7 @@ public class GroupCreateActivity : BaseActivity<HistoryViewModeL, ActivityCreate
         }
 
         appViewModel.appColorType.value?.let {
-            binding.clayoutCreatorTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutCreatorTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.ibnCreatorBack.setImageResource(R.mipmap.img_topview_back)
                 binding.txtCreatorTitle.setTextColor(
@@ -83,7 +84,7 @@ public class GroupCreateActivity : BaseActivity<HistoryViewModeL, ActivityCreate
                         R.color.white
                     )
                 )
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
     }

@@ -35,7 +35,9 @@ import com.example.pandas.ui.activity.MessageActivity
 import com.example.pandas.ui.activity.NewSearchActivity
 import com.example.pandas.ui.activity.ShortVideoActivity2
 import com.example.pandas.ui.adapter.HomePagerAdapter
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.startAnyActivity
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.ScaleTransitionPagerTitleView
 import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
@@ -83,7 +85,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
         val status = appViewModel.appColorType.value
         Log.e("1mean", "status;$status")
         indicatorColor =
-            if (status == null) AppInfos.viewColors[AppInfos.APP_COLOR_STATUS] else AppInfos.viewColors[status]
+            if (status == null) viewColors[APP_COLOR_STATUS] else viewColors[status]
 
         binding.tab.setBackgroundColor(Color.WHITE)
         commonNavigator = CommonNavigator(mActivity)
@@ -103,7 +105,6 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
 
             override fun updateIndicatorColors(color: Int) {
                 indicatorColor = color
-                Log.e("1mean", "indicatorColorindicatorColorindicatorColorindicatorColor")
                 notifyDataSetChanged()
             }
 
@@ -373,12 +374,12 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
 
     private fun updateTopView(it: Int) {
 
-        binding.bar.setBackgroundResource(AppInfos.viewColors[it])
-        binding.clayoutTopHeader.setBackgroundResource(AppInfos.viewColors[it])
+        binding.bar.setBackgroundResource(viewColors[it])
+        binding.clayoutTopHeader.setBackgroundResource(viewColors[it])
         if (it == 0) {
             commonNavigator?.let { navigator ->
                 val adapter = navigator.adapter as CommonNavigatorAdapter
-                adapter.updateIndicatorColors(AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
+                adapter.updateIndicatorColors(viewColors[APP_COLOR_STATUS])
             }
             binding.ibMessage.setImageResource(R.mipmap.img_home_message)
             binding.clayoutHomeSearch.setBackgroundResource(R.drawable.shape_home_search)
@@ -387,7 +388,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
             binding.clayoutHomeSearch.setBackgroundResource(R.drawable.shape_home_search_white)
             commonNavigator?.let { navigator ->
                 val adapter = navigator.adapter as CommonNavigatorAdapter
-                adapter.updateIndicatorColors(AppInfos.viewColors[it])
+                adapter.updateIndicatorColors(viewColors[it])
             }
         }
     }

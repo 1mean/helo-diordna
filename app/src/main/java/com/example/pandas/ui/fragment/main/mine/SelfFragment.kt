@@ -13,6 +13,7 @@ import com.example.pandas.databinding.FragmentMineBinding
 import com.example.pandas.ui.activity.BackGroundActivity
 import com.example.pandas.ui.adapter.SelfViewPagerAdapter
 import com.example.pandas.ui.ext.startAnyActivity
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
@@ -76,7 +77,7 @@ public class SelfFragment : BaseFragment<SelfViewModel, FragmentMineBinding>() {
             binding.imgUpdateDark.setImageResource(R.mipmap.img_mine_dark_gray)
             binding.imgUpdateBackground.setImageResource(R.mipmap.img_clothes_gray)
         } else {
-            binding.layoutMineTop.setBackgroundResource(AppInfos.bgColors[status])
+            binding.layoutMineTop.setBackgroundResource(viewColors[status])
             binding.slideTabSetting.textSelectColor =
                 ContextCompat.getColor(mActivity, R.color.white)
             binding.slideTabSetting.textUnselectColor =

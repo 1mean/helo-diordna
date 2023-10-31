@@ -17,6 +17,7 @@ import com.example.pandas.ui.adapter.FallsShortVideoAdapter
 import com.example.pandas.ui.adapter.decoration.FallsItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
@@ -30,6 +31,8 @@ public class ShortFindingFragment() :
     FallsShortVideoAdapter.ItemListener {
 
     private val mAdapter: FallsShortVideoAdapter by lazy { FallsShortVideoAdapter(listener = this) }
+
+    override fun lazyLoadTime(): Long = 0
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -70,14 +73,14 @@ public class ShortFindingFragment() :
             }
         })
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
     }
 
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
 
         mViewModel.fallsShortVideos.observe(viewLifecycleOwner) {

@@ -16,7 +16,9 @@ import com.example.pandas.databinding.AdapterPandasItemBinding
 import com.example.pandas.databinding.ItemTitleAdapterPandaBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.getHomePandaDesc
+import com.example.pandas.ui.ext.imageRes
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.dialog.MoreBottomSheetDialog
 import com.example.pandas.utils.TimeUtils
@@ -176,25 +178,13 @@ public class PandasAdapter(private val list: MutableList<PetVideo>, private var 
         }
     }
 
-    private val imageRes
-        get() = arrayOf(
-            R.mipmap.img_panda_title,
-            R.mipmap.img_panda_title_pink,
-            R.mipmap.img_panda_title_red,
-            R.mipmap.img_panda_title_yellow,
-            R.mipmap.img_panda_title_green,
-            R.mipmap.img_panda_title_blue,
-            R.mipmap.img_panda_title_purple,
-            R.mipmap.img_panda_title_sky
-        )
-
     inner class TitleViewHolder(binding: ItemTitleAdapterPandaBinding) :
         BaseEmptyViewHolder(binding.root) {
 
         val image = binding.imgPandaVideo
         fun handle() {
             if (status == 0) {
-                image.setImageResource(imageRes[AppInfos.APP_COLOR_STATUS])
+                image.setImageResource(imageRes[APP_COLOR_STATUS])
             } else {
                 image.setImageResource(imageRes[status])
             }

@@ -19,6 +19,7 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.OneVerticalViewModel
 import com.example.pandas.databinding.ActivityOneVerticalList2Binding
 import com.example.pandas.ui.ext.init
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.appbar.AppBarLayout
@@ -89,7 +90,7 @@ public class OneVerticalList2Activity :
                     if (it == 0) {
                         binding.collVertical.setContentScrimResource(R.color.black)
                     } else {
-                        binding.collVertical.setContentScrimResource(AppInfos.bgColors[it])
+                        binding.collVertical.setContentScrimResource(viewColors[it])
                     }
                 }
             }

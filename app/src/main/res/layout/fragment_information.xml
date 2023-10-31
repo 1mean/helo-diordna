@@ -107,7 +107,7 @@
                         app:layout_constraintTop_toTopOf="@id/clayout_video_info_follow"
                         app:layout_constraintBottom_toBottomOf="@id/clayout_video_info_follow"
                         android:textSize="12sp"
-                        android:textColor="@color/color_bg_grey"
+                        android:textColor="@color/color_bg_green"
                         android:text="@string/str_follow" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

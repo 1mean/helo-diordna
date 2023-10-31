@@ -25,6 +25,7 @@ import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivityMineInfoBinding
 import com.example.pandas.ui.ext.toastTopShow
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.fragment.main.mine.NameSettingFragment
 import com.example.pandas.ui.fragment.main.mine.SexSettingFragment
 import com.example.pandas.ui.view.dialog.FaceAddSheetDialog
@@ -106,7 +107,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
             backFinish()
         }
         appViewModel.appColorType.value?.let {
-            binding.clayoutInfoTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutInfoTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.btnSelfBack.setImageResource(R.mipmap.img_top_leave)
                 binding.txtSelfInfo.setTextColor(
@@ -123,7 +124,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
                         R.color.white
                     )
                 )
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
 

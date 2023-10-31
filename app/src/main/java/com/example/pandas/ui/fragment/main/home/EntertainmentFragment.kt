@@ -14,6 +14,7 @@ import com.example.pandas.ui.adapter.EntertainmentFragmentAdapter
 import com.example.pandas.ui.adapter.decoration.MyLoveItemDecoration
 import com.example.pandas.ui.ext.initNoFooter
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.viewColors
 
 /**
  * @description: 首页-娱乐
@@ -46,14 +47,14 @@ public class EntertainmentFragment : BaseLazyFragment<HomePageViewModel, LayoutS
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
     }
 
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
 
         mViewModel.loveDataWrapper.observe(viewLifecycleOwner) {

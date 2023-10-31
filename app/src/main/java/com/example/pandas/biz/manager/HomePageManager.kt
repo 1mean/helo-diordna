@@ -399,9 +399,12 @@ class PetManager {
     ): MutableList<VideoAndData> {
 
         return withContext(Dispatchers.IO) {
-            val list = petDao.queryUserVideos(code)
             val user = petDao.queryUserByCode(code)
-            petDao.quertUserVideos(code, startIndex, counts)
+            val list = petDao.quertUserVideos(code, startIndex, counts)
+            list.forEach {
+                it.video.user = user
+            }
+            list
         }
     }
 

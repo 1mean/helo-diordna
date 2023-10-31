@@ -15,6 +15,7 @@ import com.example.pandas.ui.adapter.CollectAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.ext.launcherActivity
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.dialog.DeletePopuWindow
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
@@ -69,8 +70,8 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
 
         appViewModel.appColorType.value?.let {
 
-            binding.refreshCollect.setColorSchemeResources(AppInfos.viewColors[it])
-            binding.clayoutCollectTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.refreshCollect.setColorSchemeResources(viewColors[it])
+            binding.clayoutCollectTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.ibnCollectBack.setImageResource(R.mipmap.img_setting_top_back_black33)
                 binding.txtCollectTitle.setTextColor(
@@ -83,7 +84,7 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
             } else {
                 binding.ibnCollectBack.setImageResource(R.mipmap.img_setting_top_back_white)
                 binding.txtCollectTitle.setTextColor(ContextCompat.getColor(this, R.color.white))
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
                 binding.btnCollectAdd.setImageResource(R.mipmap.img_topview_add_white)
             }
         }

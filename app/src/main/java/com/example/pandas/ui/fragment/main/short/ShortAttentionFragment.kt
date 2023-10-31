@@ -21,6 +21,7 @@ import com.example.pandas.ui.adapter.decoration.FallsItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.startAnyActivity
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
@@ -37,6 +38,8 @@ public class ShortAttentionFragment() :
     private var isFirstOnResume = false
 
     private var mAdapter: FallsShortVideoAdapter? = null
+
+    override fun lazyLoadTime(): Long = 0
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -88,7 +91,7 @@ public class ShortAttentionFragment() :
         })
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
 
         binding.txtLogin.setOnClickListener {
@@ -148,7 +151,7 @@ public class ShortAttentionFragment() :
         }
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
     }
 

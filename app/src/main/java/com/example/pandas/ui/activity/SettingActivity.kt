@@ -18,6 +18,7 @@ import com.example.pandas.biz.interaction.OnSureListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivityMineInfoBinding
 import com.example.pandas.databinding.ActivitySettingBinding
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.dialog.DeletePopuWindow
 import com.example.pandas.ui.view.dialog.StyleSettingPopuWindow
 import com.example.pandas.utils.AppUtils
@@ -39,7 +40,7 @@ public class SettingActivity : BaseActivity<BaseViewModel, ActivitySettingBindin
     override fun initView(savedInstanceState: Bundle?) {
 
         appViewModel.appColorType.value?.let {
-            binding.clayoutSettingTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutSettingTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_black33)
                 binding.txtSettingTitle.setTextColor(
@@ -56,7 +57,7 @@ public class SettingActivity : BaseActivity<BaseViewModel, ActivitySettingBindin
                         R.color.white
                     )
                 )
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false,viewColors[it])
             }
         }
 

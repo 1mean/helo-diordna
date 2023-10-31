@@ -22,6 +22,7 @@ import com.example.pandas.databinding.FragmentRoomBinding
 import com.example.pandas.ui.adapter.PetBannerAdapter
 import com.example.pandas.ui.adapter.RoomContentAdapter
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.viewpager.Indicator
 import com.example.pandas.utils.ScreenUtil
 import com.google.android.material.appbar.AppBarLayout
@@ -99,7 +100,7 @@ public class CutePetFragment : BaseLazyFragment<CutePetViewModel, FragmentRoomBi
         binding.tlayoutPet.setViewPager(binding.vpPet, tabNames)
 
         appViewModel.appColorType.value?.let {
-            binding.refreshPet.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.refreshPet.setColorSchemeResources(viewColors[it])
         }
     }
 

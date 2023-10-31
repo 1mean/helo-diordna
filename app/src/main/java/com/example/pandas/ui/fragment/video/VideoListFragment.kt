@@ -13,6 +13,7 @@ import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.VideoListAdapter
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
@@ -46,7 +47,7 @@ public class VideoListFragment : BaseFragment<MoreDataViewModel, LayoutSwipRefre
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
     }
 

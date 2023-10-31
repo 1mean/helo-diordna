@@ -17,10 +17,7 @@ import com.example.pandas.databinding.FragmentInformationBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoRecoListAdapter
-import com.example.pandas.ui.ext.addScaleAnimation
-import com.example.pandas.ui.ext.initLikeContainer
-import com.example.pandas.ui.ext.initUser
-import com.example.pandas.ui.ext.initVideo
+import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.dialog.AttentionBottomSheetDialog
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.um.shareManager
@@ -42,41 +39,6 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
     private lateinit var videoData: VideoData
     private var userCode: Int = -1
     private var isAttention = false
-    private val drawables
-        get() = arrayOf(
-            R.drawable.shape_user_attention2,
-            R.drawable.shape_user_attention_pink,
-            R.drawable.shape_user_attention_red,
-            R.drawable.shape_user_attention_yellow,
-            R.drawable.shape_user_attention_grey,
-            R.drawable.shape_user_attention_blue,
-            R.drawable.shape_user_attention_purple,
-            R.drawable.shape_user_attention2
-        )
-
-    val likeRes
-        get() = arrayOf(
-            R.mipmap.img_video_new_like,
-            R.mipmap.img_video_new_liked_pink,
-            R.mipmap.img_video_new_liked_red,
-            R.mipmap.img_video_new_liked_yellow,
-            R.mipmap.img_video_new_liked_green,
-            R.mipmap.img_video_new_liked_blue,
-            R.mipmap.img_video_new_liked_purple,
-            R.mipmap.img_video_new_liked_sky
-        )
-
-    val collectRes
-        get() = arrayOf(
-            R.mipmap.img_video_new_collect,
-            R.mipmap.img_video_new_collect_pink,
-            R.mipmap.img_video_new_collect_red,
-            R.mipmap.img_video_new_collect_yellow,
-            R.mipmap.img_video_new_collect_green,
-            R.mipmap.img_video_new_collect_blue,
-            R.mipmap.img_video_new_collect_purple,
-            R.mipmap.img_video_new_collect_sky
-        )
 
     var status: Int = 0
 
@@ -120,7 +82,12 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
             isTitleShow = !isTitleShow
         }
 
-        status = appViewModel.appColorType.value ?: AppInfos.APP_COLOR_STATUS
+        val type = appViewModel.appColorType.value
+        status = if (type == null || type == 0) {
+            APP_COLOR_STATUS
+        } else {
+            type
+        }
     }
 
     private val shareItemListener = object : ItemClickListener<String> {
@@ -167,17 +134,17 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     val status = appViewModel.appColorType.value
                     binding.txtVideoAttention.text = "关注"
                     if (status == null || status == 0) {
-                        binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[AppInfos.APP_COLOR_STATUS])
+                        binding.clayoutVideoInfoFollow.setBackgroundResource(shape_20_drawables[APP_COLOR_STATUS])
                         binding.txtVideoAttention.setTextColor(
                             ContextCompat.getColor(
-                                mActivity, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
+                                mActivity, R.color.white
                             )
                         )
                     } else {
-                        binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[status])
+                        binding.clayoutVideoInfoFollow.setBackgroundResource(shape_20_drawables[status])
                         binding.txtVideoAttention.setTextColor(
                             ContextCompat.getColor(
-                                mActivity, AppInfos.viewColors[status]
+                                mActivity, R.color.white
                             )
                         )
                     }
@@ -224,17 +191,17 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     val status = appViewModel.appColorType.value
                     binding.txtVideoAttention.text = "关注"
                     if (status == null || status == 0) {
-                        binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[AppInfos.APP_COLOR_STATUS])
+                        binding.clayoutVideoInfoFollow.setBackgroundResource(shape_20_drawables[APP_COLOR_STATUS])
                         binding.txtVideoAttention.setTextColor(
                             ContextCompat.getColor(
-                                mActivity, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
+                                mActivity, R.color.white
                             )
                         )
                     } else {
-                        binding.clayoutVideoInfoFollow.setBackgroundResource(drawables[status])
+                        binding.clayoutVideoInfoFollow.setBackgroundResource(shape_20_drawables[status])
                         binding.txtVideoAttention.setTextColor(
                             ContextCompat.getColor(
-                                mActivity, AppInfos.viewColors[status]
+                                mActivity, R.color.white
                             )
                         )
                     }

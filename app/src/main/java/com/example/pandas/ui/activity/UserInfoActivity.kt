@@ -1,10 +1,8 @@
 package com.example.pandas.ui.activity
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateInterpolator
@@ -28,12 +26,12 @@ import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.databinding.ActivityUserBinding
 import com.example.pandas.databinding.DialogAttentionCancelBinding
-import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.adapter.UserInfoPageAdapter
-import com.example.pandas.ui.ext.setLevelImageResourse
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
+import com.example.pandas.ui.ext.shape_20_drawables
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlin.math.abs
 
@@ -55,9 +53,8 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
+        StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
         userCode = intent.getIntExtra("userCode", -1)
-
 
         binding.vpUser.run {
             offscreenPageLimit = tabList.size
@@ -82,15 +79,15 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                     )
 
                     val status = appViewModel.appColorType.value
-                    selectedColor = if (status == null) {
+                    selectedColor = if (status == null || status == 0) {
                         ContextCompat.getColor(
                             this@UserInfoActivity,
-                            R.color.color_txt_short_tab_selected
+                            viewColors[APP_COLOR_STATUS]
                         )
                     } else {
                         ContextCompat.getColor(
                             this@UserInfoActivity,
-                            AppInfos.viewColors[status]
+                            viewColors[status]
                         )
                     }
                     setOnClickListener {
@@ -105,23 +102,23 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                 linePagerIndicator.run {
                     mode = LinePagerIndicator.MODE_EXACTLY
                     lineHeight = ScreenUtil.dip2px(2f)
-                    lineWidth = ScreenUtil.dip2px(36f)
+                    lineWidth = ScreenUtil.dip2px(30f)
                     startInterpolator = AccelerateInterpolator()
                     endInterpolator = DecelerateInterpolator(2.0f)
 
                     val status = appViewModel.appColorType.value
-                    if (status == null) {
+                    if (status == null || status == 0) {
                         setColors(
                             ContextCompat.getColor(
                                 this@UserInfoActivity,
-                                R.color.color_txt_short_tab_selected
+                                viewColors[APP_COLOR_STATUS]
                             )
                         )
                     } else {
                         setColors(
                             ContextCompat.getColor(
                                 this@UserInfoActivity,
-                                AppInfos.viewColors[status]
+                                viewColors[status]
                             )
                         )
                     }
@@ -132,15 +129,14 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
         binding.tbUser.setNavigator(commonNavigator)
         ViewPagerHelper.bind(binding.tbUser, binding.vpUser)
 
-        binding.barUser.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+        val lucencyColor = ContextCompat.getColor(this, R.color.color_white_lucency)
+        binding.barUser.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
 
             if (verticalOffset == 0) {
                 binding.txtUserBarName.visibility = View.GONE
-                binding.ibUserVideo.setImageResource(R.mipmap.img_topview_back_white)
+                binding.ibUserVideo.setImageResource(R.mipmap.img_user_back_white)
                 binding.ibUserMore.setImageResource(R.mipmap.img_user_more)
-                binding.ibUserVideo.setBackgroundResource(R.drawable.shape_bg_user_video)
-                binding.ibUserMore.setBackgroundResource(R.drawable.shape_bg_user_video)
-                binding.toolbarUser.contentScrim = null
+                binding.toolbarUserinfo.setBackgroundColor(lucencyColor)
             } else if (abs(verticalOffset) >= 0.6 * appBarLayout.totalScrollRange) {
                 if (!binding.txtUserBarName.isVisible) {
                     binding.txtUserBarName.visibility = View.VISIBLE
@@ -148,35 +144,29 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                         binding.txtUserBarName.text = it.userName
                     }
                 }
-                binding.ibUserVideo.background = null
-                binding.ibUserMore.background = null
-                val status = appViewModel.appColorType.value
-                if (status == null) {
-                    binding.ibUserVideo.setImageResource(R.mipmap.img_topview_back)
-                    binding.ibUserMore.setImageResource(R.mipmap.img_user_more_black)
-                    binding.toolbarUser.setContentScrimResource(R.color.color_bg_user_top)
-                    binding.txtUserBarName.setTextColor(
-                        ContextCompat.getColor(this, R.color.color_txt_user_top_name)
-                    )
-                } else {
-                    binding.toolbarUser.setContentScrimColor(
-                        ContextCompat.getColor(this, AppInfos.viewColors[status])
-                    )
-                    binding.txtUserBarName.setTextColor(
-                        ContextCompat.getColor(this, R.color.white)
-                    )
-                    binding.ibUserVideo.setImageResource(R.mipmap.img_topview_back_white)
-                    binding.ibUserMore.setImageResource(R.mipmap.img_user_more_white)
+
+                appViewModel.appColorType.value?.let {
+                    if (it == 0) {
+                        binding.toolbarUserinfo.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this,
+                                viewColors[APP_COLOR_STATUS]
+                            )
+                        )
+                    } else {
+                        binding.toolbarUserinfo.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this,
+                                viewColors[it]
+                            )
+                        )
+                    }
                 }
             } else {
                 binding.txtUserBarName.visibility = View.GONE
-                binding.ibUserVideo.setImageResource(R.mipmap.img_topview_back_white)
-                binding.ibUserMore.setImageResource(R.mipmap.img_user_more)
-                binding.ibUserVideo.setBackgroundResource(R.drawable.shape_bg_user_video)
-                binding.ibUserMore.setBackgroundResource(R.drawable.shape_bg_user_video)
-                binding.toolbarUser.contentScrim = null
+                binding.toolbarUserinfo.setBackgroundColor(lucencyColor)
             }
-        })
+        }
         binding.ibUserVideo.setOnClickListener {
             if (attentionUpdateCounts % 2 != 0) {
                 val intent = Intent().putExtra("userCode", userCode)
@@ -205,7 +195,7 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
 
     override fun createObserver() {
         mViewModel.user.observe(this) {
-            setLevelImageResourse(it.level, binding.imgUserLevel)
+            //setLevelImageResourse(it.level, binding.imgUserLevel)
             binding.txtUserName.text = it.userName
             binding.txtUserDesc.text = it.signature
 
@@ -214,19 +204,18 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
 
             it.headUrl?.let {
                 loadImage(this, it, binding.imgUserHeader)
+                //loadImage(this, it, binding.imgUserShelter)
             }
 
             val status = appViewModel.appColorType.value
-            if (status == null) {
-                binding.clayoutUserFollow.setBackgroundResource(AppInfos.drawables[0])
+            if (status == null || status == 0) {
+                binding.clayoutUserFollow.setBackgroundResource(shape_20_drawables[APP_COLOR_STATUS])
             } else {
-                binding.clayoutUserFollow.setBackgroundResource(AppInfos.drawables[status])
+                binding.clayoutUserFollow.setBackgroundResource(shape_20_drawables[status])
             }
 
             if (it.attention) {
                 binding.clayoutUserFollow.setBackgroundResource(R.drawable.shape_user_unattention)
-                binding.clayoutUserAttention.visibility = View.GONE
-                binding.clayoutUserUnattention.visibility = View.VISIBLE
             }
 
             binding.clayoutUserFollow.setOnClickListener { _ ->
@@ -235,8 +224,6 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                     attentionUpdateCounts += 1
                     mViewModel.updateAttention(it.userCode)
                     binding.clayoutUserFollow.setBackgroundResource(R.drawable.shape_user_unattention)
-                    binding.clayoutUserAttention.visibility = View.GONE
-                    binding.clayoutUserUnattention.visibility = View.VISIBLE
                     Toast.makeText(this, "已关注", Toast.LENGTH_SHORT).show()
                     it.attention = true
                 } else {
@@ -255,13 +242,11 @@ public class UserInfoActivity : BaseActivity<BaseViewModel, ActivityUserBinding>
                         mViewModel.updateAttention(it.userCode)
                         attentionUpdateCounts += 1
                         val status1 = appViewModel.appColorType.value
-                        if (status1 == null) {
-                            binding.clayoutUserFollow.setBackgroundResource(AppInfos.drawables[0])
+                        if (status1 == null || status1 == 0) {
+                            binding.clayoutUserFollow.setBackgroundResource(shape_20_drawables[APP_COLOR_STATUS])
                         } else {
-                            binding.clayoutUserFollow.setBackgroundResource(AppInfos.drawables[status1])
+                            binding.clayoutUserFollow.setBackgroundResource(shape_20_drawables[status1])
                         }
-                        binding.clayoutUserAttention.visibility = View.VISIBLE
-                        binding.clayoutUserUnattention.visibility = View.GONE
                         Toast.makeText(this, "已取消关注", Toast.LENGTH_SHORT).show()
                         it.attention = false
                         bottomSheetDialog.dismiss()

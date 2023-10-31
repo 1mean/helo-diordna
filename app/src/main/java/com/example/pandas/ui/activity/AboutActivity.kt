@@ -13,8 +13,10 @@ import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivityAboutBinding
 import com.example.pandas.databinding.ActivityMineInfoBinding
 import com.example.pandas.databinding.ActivitySettingBinding
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.shortToast
 import com.example.pandas.ui.ext.startAnyActivity
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
@@ -47,19 +49,31 @@ public class AboutActivity : BaseActivity<BaseViewModel, ActivityAboutBinding>()
         }
 
         appViewModel.appColorType.value?.let {
-            binding.clayoutSettingTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutSettingTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
-                binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back)
+                binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_black33)
                 binding.txtSettingTitle.setTextColor(
                     ContextCompat.getColor(
                         this,
                         R.color.color_history_title
                     )
                 )
+                binding.txtAboutSupport.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        viewColors[APP_COLOR_STATUS]
+                    )
+                )
             } else {
-                binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_white)
                 binding.txtSettingTitle.setTextColor(ContextCompat.getColor(this, R.color.white))
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                binding.txtAboutSupport.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        viewColors[it]
+                    )
+                )
             }
         }
     }

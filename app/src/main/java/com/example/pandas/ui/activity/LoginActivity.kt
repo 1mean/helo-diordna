@@ -101,13 +101,13 @@ public class LoginActivity : BaseActivity<BaseViewModel, ActivityLoginBinding>()
         val builder = SpannableStringBuilder()
         builder.append("阅读并同意《用户协议》和《隐私政策》") // 添加普通文本
         builder.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.color_bg_grey)),
+            ForegroundColorSpan(ContextCompat.getColor(this, R.color.color_bg_green)),
             5,
             11,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         builder.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.color_bg_grey)),
+            ForegroundColorSpan(ContextCompat.getColor(this, R.color.color_bg_green)),
             12,
             18,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE

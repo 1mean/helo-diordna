@@ -16,7 +16,7 @@ public class CommonBannerItemDecoration(context: Context) : RecyclerView.ItemDec
 
     private var paddingTop1: Int = context.resources.getDimension(R.dimen.common_lh_8_dimens).toInt()
     private var paddingTop2: Int = context.resources.getDimension(R.dimen.common_lh_16_dimens).toInt()
-    private var paddingHorizontal: Int = context.resources.getDimension(R.dimen.common_lh_5_dimens).toInt()
+    private var paddingHorizontal: Int = context.resources.getDimension(R.dimen.common_lh_8_dimens).toInt()
 
     override fun getItemOffsets(
         outRect: Rect,

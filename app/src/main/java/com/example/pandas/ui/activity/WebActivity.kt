@@ -10,6 +10,7 @@ import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.databinding.FragmentWebBinding
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.StatusBarUtils
 import com.just.agentweb.AgentWeb
 
@@ -33,7 +34,7 @@ class WebActivity : BaseActivity<BaseViewModel, FragmentWebBinding>() {
         //startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(mViewModel.url)))
 
         appViewModel.appColorType.value?.let {
-            binding.clayoutSettingTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutSettingTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back)
                 binding.txtSettingTitle.setTextColor(
@@ -62,7 +63,7 @@ class WebActivity : BaseActivity<BaseViewModel, FragmentWebBinding>() {
                         R.color.white
                     )
                 )
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
     }

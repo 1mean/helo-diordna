@@ -12,10 +12,7 @@ import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentMainBinding
 import com.example.pandas.ui.activity.PublishActivity
 import com.example.pandas.ui.adapter.HomeAdapter
-import com.example.pandas.ui.ext.appColorObserver
-import com.example.pandas.ui.ext.bottomStateObserver
-import com.example.pandas.ui.ext.initBottom
-import com.example.pandas.ui.ext.startAnyActivity
+import com.example.pandas.ui.ext.*
 import com.google.android.material.badge.BadgeDrawable
 
 
@@ -27,7 +24,6 @@ import com.google.android.material.badge.BadgeDrawable
  */
 public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBinding>() {
 
-    private var indexArray = arrayOf(0, 1, 2, 3, 4)
     val tabTitles = arrayListOf("首页", "动态", "发布", "视频", "我的")
 
     private var curPosition = 0
@@ -35,8 +31,9 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        val mAdapter = HomeAdapter(mActivity)
         binding.vpHome.apply {
-            adapter = HomeAdapter(mActivity)
+            adapter = mAdapter
             offscreenPageLimit = 5
             //setCurrentItem(0, false)
             isUserInputEnabled = false //禁止滑动
@@ -57,9 +54,9 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
             setOnItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.menu_home -> {
-                        if (curPosition == 0) {
-                            mViewModel.bottomState
-                        }
+//                        if (curPosition == 0) {
+//                            mViewModel.bottomState
+//                        }
                         curPosition = 0
                         binding.vpHome.setCurrentItem(0, false)
                     }
@@ -70,12 +67,6 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
                     }
                     R.id.menu_add -> {
                         curPosition = 2
-//                        binding.vpHome.setCurrentItem(2, false)
-//                        mActivity.supportFragmentManager.fragments.forEach {
-//                            if (it is PublishFragment) {
-//                                it.startPublishActivity()
-//                            }
-//                        }
                         startAnyActivity(mActivity, PublishActivity::class.java)
                         mActivity.overridePendingTransition(
                             R.anim.animate_short_comment_in,
@@ -83,8 +74,12 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
                         )
                     }
                     R.id.menu_more -> {
+                        Log.e("1mean","点击了")
                         curPosition = 3
                         binding.vpHome.setCurrentItem(3, false)
+                        //bug:在此处执行，而不是ShortFragment回调firstOnresume后再执行，这样第一次加载ShortFragment会有200ms的延时
+                        //bottomStateObserver(1)
+                        //bottomUpDate()
                     }
                     R.id.menu_mine -> {
                         curPosition = 4
@@ -99,17 +94,20 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
                 true //true表示拦截，不跳转
             }
         }
-        initBottom(indexArray)
+        initBottom()
     }
 
+    fun test(){
+        Log.e("4mean","test()")
+    }
     override fun createObserver() {
 
         appViewModel.appColorType.observe(this) { type ->
-            appColorObserver(indexArray, type)
+            appColorObserver(type)
         }
 
         mViewModel.bottomState.observe(viewLifecycleOwner) { status ->
-            bottomStateObserver(indexArray, status)
+            bottomStateObserver(status)
         }
     }
 

@@ -34,6 +34,7 @@ import com.example.pandas.ui.activity.*
 import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.ui.ext.startToActivity
 import com.example.pandas.ui.ext.toastTopShow
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.dialog.TimingBottomSheetDialog
 import com.example.pandas.utils.*
 import com.example.pandas.utils.FileUtils
@@ -172,6 +173,10 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
             } else {
                 startAnyActivity(mActivity, DownLoadActivity::class.java)
             }
+        }
+
+        binding.itemMineSearch.setOnClickListener {
+            startAnyActivity(mActivity, NewSearchActivity::class.java)
         }
 
         //1。主题不一致，会导致MainActivity刷新重建，即会主动调用recreate方法
@@ -458,7 +463,7 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
             binding.imgUpdateBackground.setImageResource(R.mipmap.img_clothes_new_black)
             binding.imgUpdateSearch.setImageResource(R.mipmap.img_search_new_black)
         } else {
-            binding.layoutMineTop.setBackgroundResource(AppInfos.bgColors[status])
+            binding.layoutMineTop.setBackgroundResource(viewColors[status])
             //binding.clayoutTopInfo.setBackgroundResource(AppInfos.bgColors[status])
 //            binding.txtMineName.setTextColor(ContextCompat.getColor(mActivity, R.color.white))
 //            binding.txtSelfZone.setTextColor(

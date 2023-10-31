@@ -15,6 +15,8 @@ import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentLivingBinding
 import com.example.pandas.ui.activity.NewSearchActivity
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.fragment.main.eyepetozer.EyepetozerFragment
 import com.example.pandas.ui.view.TabEntity
 import com.flyco.tablayout.listener.CustomTabEntity
@@ -29,6 +31,8 @@ import com.flyco.tablayout.listener.OnTabSelectListener
 public class LiveFragment : BaseFragment<MainFragmentViewModel, FragmentLivingBinding>() {
 
     private val tabTitles = arrayListOf("综合", "视频")
+
+    override fun lazyLoadTime(): Long = 0
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -98,11 +102,11 @@ public class LiveFragment : BaseFragment<MainFragmentViewModel, FragmentLivingBi
     private fun updateTop(status: Int?) {
         if (status == null || status == 0) {
             binding.slideTabSetting.textSelectColor =
-                ContextCompat.getColor(mActivity, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
+                ContextCompat.getColor(mActivity, viewColors[APP_COLOR_STATUS])
             binding.slideTabSetting.textUnselectColor =
                 ContextCompat.getColor(mActivity, R.color.color_text_eye_unselect)
             binding.slideTabSetting.indicatorColor =
-                ContextCompat.getColor(mActivity, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
+                ContextCompat.getColor(mActivity, viewColors[APP_COLOR_STATUS])
             binding.clayoutLiveTop.setBackgroundResource(R.color.color_white_lucency)
             binding.root.setBackgroundResource(R.drawable.shape_bg_living)
         } else {
@@ -110,10 +114,10 @@ public class LiveFragment : BaseFragment<MainFragmentViewModel, FragmentLivingBi
             binding.slideTabSetting.textSelectColor =
                 ContextCompat.getColor(mActivity, R.color.white)
             binding.slideTabSetting.textUnselectColor =
-                ContextCompat.getColor(mActivity, R.color.color_vertical_played)
+                ContextCompat.getColor(mActivity, R.color.white)
             binding.slideTabSetting.indicatorColor =
                 ContextCompat.getColor(mActivity, R.color.white)
-            binding.clayoutLiveTop.setBackgroundResource(AppInfos.viewColors[status])
+            binding.clayoutLiveTop.setBackgroundResource(viewColors[status])
         }
     }
 

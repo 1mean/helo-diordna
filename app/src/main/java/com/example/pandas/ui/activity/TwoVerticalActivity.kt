@@ -13,6 +13,7 @@ import com.example.pandas.biz.viewmodel.OneVerticalViewModel
 import com.example.pandas.databinding.ActivityTwoVerticalBinding
 import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoAndUser
+import com.example.pandas.ui.adapter.BannerListAdapter
 import com.example.pandas.ui.adapter.CommonBannerAdapter
 import com.example.pandas.ui.adapter.TwoVerticalAdapter
 import com.example.pandas.ui.adapter.decoration.CommonBannerItemDecoration
@@ -51,16 +52,16 @@ public class TwoVerticalActivity :
             binding.txtPandaDesc.text = PandaInfo.getPandaDesc(title)
         }
 
-        binding.txtPandaMore.setOnClickListener {
+        binding.btnPandaMore.setOnClickListener {
             with(binding.txtPandaDesc) {
                 if (isShowMore) {
                     maxLines = 1
                     minLines = 1
-                    binding.txtPandaMore.text = "展开"
+                    binding.btnPandaMore.setImageResource(R.mipmap.img_new_down)
                 } else {
                     maxLines = Int.MAX_VALUE
                     minLines = 1
-                    binding.txtPandaMore.text = "收起"
+                    binding.btnPandaMore.setImageResource(R.mipmap.img_new_up)
                 }
             }
             isShowMore = !isShowMore

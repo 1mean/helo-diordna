@@ -12,6 +12,13 @@
     <color name="color_bg_light_blue">#330d8eee</color>
     <color name="color_bg_light_purple">#339b27b0</color>
     <color name="color_bg_light_sky">#337558fe</color>
+    <color name="color_bg_light_plum">#33A04D84</color>
+    <color name="color_bg_light_sepia">#3362401B</color>
+    <color name="color_bg_light_lavender">#338474BD</color>
+    <color name="color_bg_light_gray">#33B2ADA8</color>
+    <color name="color_bg_light_tpink">#33E3BAC8</color><!--藤粉色-->
+    <color name="color_bg_light_coffee">#33F3CDB0</color><!--奶咖色-->
+    <color name="color_bg_light_orange">#33EA922D</color><!--蜜橙色-->
 
     <color name="color_bg_mid_pink">#88fa7298</color>
     <color name="color_bg_mid_red">#88f44435</color>
@@ -20,9 +27,17 @@
     <color name="color_bg_mid_blue">#880d8eee</color>
     <color name="color_bg_mid_purple">#889b27b0</color>
     <color name="color_bg_mid_sky">#887558fe</color>
+    <color name="color_bg_mid_plum">#88A04D84</color>
+    <color name="color_bg_mid_sepia">#8862401B</color>
+    <color name="color_bg_mid_lavender">#888474BD</color>
+    <color name="color_bg_mid_gray">#88B2ADA8</color>
+    <color name="color_bg_mid_tpink">#88E3BAC8</color><!--藤粉色-->
+    <color name="color_bg_mid_coffee">#88F3CDB0</color><!--奶咖色-->
+    <color name="color_bg_mid_orange">#88EA922D</color><!--蜜橙色-->
 
-
-
+    <color name="color_txt_bottom_short">#7f7f7f</color>
+    <color name="color_tab_unselected_short">#cccccc</color>
+    <color name="color_txt_userinfo_info">#e4e7e6</color>
 
 
     <!--=====================-->
@@ -434,7 +449,7 @@
 
 
     <color name="color_txt_mine_fans">#4c3700</color>
-
+    <color name="color_divider_one_vertical2">#e7e7e7</color>
 
 
     <!--主题相关-->
@@ -443,10 +458,18 @@
     <color name="color_bg_black">#141414</color>
     <color name="color_bg_red">#f44435</color>
     <color name="color_bg_yellow">#fec107</color>
-    <color name="color_bg_grey">#8bc24b</color>
+    <color name="color_bg_green">#8bc24b</color>
     <color name="color_bg_blue">#0d8eee</color>
     <color name="color_bg_purple">#9b27b0</color>
     <color name="color_bg_sky">#7558fe</color>
-    <color name="color_divider_one_vertical2">#e7e7e7</color>
+    <color name="color_bg_plum">#A04D84</color><!--梅紫色-->
+    <color name="color_bg_sepia">#62401B</color><!--棕褐-->
+    <color name="color_bg_lavender">#8474BD</color><!--薰衣草紫-->
+    <color name="color_bg_gray">#B2ADA8</color><!--高级灰-->
+
+    <color name="color_bg_tpink">#E3BAC8</color><!--藤粉色-->
+    <color name="color_bg_coffee">#F3CDB0</color><!--奶咖色-->
+    <color name="color_bg_orange">#EA922D</color><!--蜜橙色-->
+
 
 </resources>

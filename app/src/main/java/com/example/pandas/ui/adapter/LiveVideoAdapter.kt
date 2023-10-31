@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
+import com.blankj.utilcode.util.VibrateUtils
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.LiveVideoData
@@ -28,10 +29,7 @@ import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.activity.FollowAndFansActivity
 import com.example.pandas.ui.adapter.decoration.LiveVisitorItemDecoration
-import com.example.pandas.ui.ext.addScaleAnimation
-import com.example.pandas.ui.ext.setLikeAnimation
-import com.example.pandas.ui.ext.startAnyActivity
-import com.example.pandas.ui.ext.startUserInfoActivity
+import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.dialog.LiveBottomSheetDialog
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.utils.TimeUtils
@@ -50,18 +48,6 @@ public class LiveVideoAdapter(
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val mHandler: Handler = Handler(Looper.getMainLooper())
-
-    private val likeRes
-        get() = arrayOf(
-            R.mipmap.img_live_like,
-            R.mipmap.img_live_liked_pink,
-            R.mipmap.img_live_liked_red,
-            R.mipmap.img_live_liked_yellow,
-            R.mipmap.img_live_liked_green,
-            R.mipmap.img_live_liked_blue,
-            R.mipmap.img_live_liked_purple,
-            R.mipmap.img_live_liked_sky
-        )
 
     @SuppressLint("NotifyDataSetChanged")
     fun refresh(liveData: LiveVideoData) {
@@ -212,6 +198,7 @@ public class LiveVideoAdapter(
         val commentView = binding.clayoutItem2
         val likeView = binding.clayoutItem3
         val likeImg = binding.imgLiveItemLike
+        val share = binding.clayoutVideoInshare
         val likeTxt = binding.txtLiveItemLike
         val comments = binding.txtLiveItemComments
         val playshelter = binding.clayoutLiveShelter
@@ -233,6 +220,7 @@ public class LiveVideoAdapter(
             val video = data.lives[position - 1]
             val user = video.user
             val videoData = video.videoData ?: VideoData(videoCode = video.code)
+            var shareDialog: ShareBottomSheetDialog? = null
 
             user?.let {
                 it.headUrl?.let { url ->
@@ -261,9 +249,9 @@ public class LiveVideoAdapter(
 
             if (videoData.like) {
                 if (status == null || status == 0) {
-                    likeImg.setImageResource(likeRes[AppInfos.APP_COLOR_STATUS])
+                    likeImg.setImageResource(liveLikeRes[APP_COLOR_STATUS])
                 } else {
-                    likeImg.setImageResource(likeRes[status!!])
+                    likeImg.setImageResource(liveLikeRes[status!!])
                 }
             } else {
                 likeImg.setImageResource(R.mipmap.img_live_like)
@@ -302,6 +290,17 @@ public class LiveVideoAdapter(
                 }
             }
 
+            share.setOnClickListener {
+                if (shareDialog == null) {
+                    shareDialog =
+                        ShareBottomSheetDialog(context, object : ItemClickListener<String> {
+                            override fun onItemClick(t: String) {
+                            }
+                        })
+                }
+                shareDialog!!.addData().onShow()
+            }
+
             likeView.setOnClickListener {
 
                 addScaleAnimation(likeImg, 1.4f)
@@ -329,9 +328,9 @@ public class LiveVideoAdapter(
                         }
                     })
                     if (status == null || status == 0) {
-                        likeImg.setImageResource(likeRes[AppInfos.APP_COLOR_STATUS])
+                        likeImg.setImageResource(liveLikeRes[APP_COLOR_STATUS])
                     } else {
-                        likeImg.setImageResource(likeRes[status!!])
+                        likeImg.setImageResource(liveLikeRes[status!!])
                     }
                 }
             }

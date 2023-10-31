@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.R
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.UserInfoViewModel
+import com.example.pandas.databinding.FragmentDailyBinding
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 
 /**
@@ -14,14 +15,10 @@ import com.example.pandas.databinding.LayoutSwipRefreshBinding
  * @date: 4/24/22 5:13 下午
  * @version: v1.0
  */
-public class UserDailyFragment : BaseFragment<UserInfoViewModel, LayoutSwipRefreshBinding>() {
+public class UserDailyFragment : BaseFragment<UserInfoViewModel, FragmentDailyBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.swipLayout.isEnabled = false
-        binding.swipLayout.setBackgroundResource(R.color.color_bg_user_daily)
-//        binding.layoutEmpty.llayoutEmpty.setBackgroundResource(R.color.white)
-        binding.layoutEmpty.llayoutEmpty.visibility = View.VISIBLE
     }
 
     override fun createObserver() {

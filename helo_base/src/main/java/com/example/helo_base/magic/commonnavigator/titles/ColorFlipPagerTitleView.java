@@ -34,7 +34,7 @@ public class ColorFlipPagerTitleView extends SimplePagerTitleView {
     @Override
     public void onSelected(int index, int totalCount) {
 
-        setTextSize(17);
+        setTextSize(15);
     }
 
     @Override

@@ -56,7 +56,7 @@
                 android:layout_marginTop="-2dp"
 
                 app:unplayed_color="@color/color_white_lucency"
-                app:played_color="@color/color_bg_grey"
+                app:played_color="@color/color_bg_green"
 
                 app:buffered_color="@color/color_white_lucency" />
 

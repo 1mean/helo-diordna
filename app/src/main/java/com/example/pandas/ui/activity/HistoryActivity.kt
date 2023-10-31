@@ -19,6 +19,7 @@ import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityHistoryBinding
 import com.example.pandas.ui.adapter.HistoryAdapter
 import com.example.pandas.ui.ext.init
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
@@ -123,7 +124,7 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
         }
 
         appViewModel.appColorType.value?.let {
-            binding.clayoutHistoryTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutHistoryTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.ibnHistoryBack.setImageResource(R.mipmap.img_setting_top_back_black33)
                 binding.txtHistoryTitle.setTextColor(
@@ -152,7 +153,7 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
                         R.color.white
                     )
                 )
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
     }

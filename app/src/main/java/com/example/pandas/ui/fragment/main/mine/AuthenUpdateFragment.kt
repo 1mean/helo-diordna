@@ -8,10 +8,14 @@ import android.text.style.UnderlineSpan
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.pandas.R
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.databinding.FragmentAuthenUpdateBinding
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
+import com.example.pandas.ui.ext.shape_20_drawables
 import com.example.pandas.ui.ext.toastTopShow
+import com.example.pandas.ui.ext.viewColors
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +34,15 @@ public class AuthenUpdateFragment : BaseFragment<BaseViewModel, FragmentAuthenUp
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        val type = appViewModel.appColorType.value ?: 0
+        val spanColor: Int
+        if (type == 0) {
+            spanColor = viewColors[APP_COLOR_STATUS]
+            binding.txtAuthenSubmit.setBackgroundResource(shape_20_drawables[APP_COLOR_STATUS])
+        } else {
+            spanColor = viewColors[type]
+            binding.txtAuthenSubmit.setBackgroundResource(shape_20_drawables[type])
+        }
         val builder = SpannableStringBuilder()
         val builder2 = SpannableStringBuilder()
         val builder3 = SpannableStringBuilder()
@@ -39,25 +52,25 @@ public class AuthenUpdateFragment : BaseFragment<BaseViewModel, FragmentAuthenUp
         builder3.append("若您提交的真实身份信息未通过认证或者您持有的为港澳台或国外身份证件，可转交人工审核") // 添加普通文本
         builder4.append("特别说明：由于部分用户之前的实名信息不正确或认证失败，可能需要重新认证，请提交真实的信息进行认证即可。部分视频仅对成年用户进行开放") // 添加普通文本
         builder.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(mActivity, R.color.color_bg_grey)),
+            ForegroundColorSpan(ContextCompat.getColor(mActivity, spanColor)),
             0,
             4,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         builder2.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(mActivity, R.color.color_bg_grey)),
+            ForegroundColorSpan(ContextCompat.getColor(mActivity, spanColor)),
             83,
             93,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         builder3.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(mActivity, R.color.color_bg_grey)),
+            ForegroundColorSpan(ContextCompat.getColor(mActivity, spanColor)),
             37,
             41,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         builder4.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(mActivity, R.color.color_bg_grey)),
+            ForegroundColorSpan(ContextCompat.getColor(mActivity, spanColor)),
             0,
             4,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE

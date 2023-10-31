@@ -14,6 +14,7 @@ import com.example.pandas.ui.adapter.LandscapeAdapter
 import com.example.pandas.ui.adapter.decoration.LandScapeItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
@@ -51,14 +52,14 @@ public class LandscapeFragment :
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
     }
 
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
 
         mViewModel.landScapeDataWrapper.observe(viewLifecycleOwner) {

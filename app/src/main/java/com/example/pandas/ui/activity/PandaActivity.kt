@@ -17,6 +17,8 @@ import com.example.pandas.biz.viewmodel.PandaViewModel
 import com.example.pandas.databinding.ActivityCmBannerBinding
 import com.example.pandas.ui.adapter.ActivityPandaAdapter
 import com.example.pandas.ui.adapter.CommonBannerAdapter
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
@@ -65,12 +67,12 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
                 ContextCompat.getColor(
                     this,
                     R.color.white
-                ), ContextCompat.getColor(this, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
+                ), ContextCompat.getColor(this, viewColors[APP_COLOR_STATUS])
             )
             binding.tabCmBanner.setSelectedTabIndicatorColor(
                 ContextCompat.getColor(
                     this,
-                    AppInfos.viewColors[AppInfos.APP_COLOR_STATUS]
+                    viewColors[APP_COLOR_STATUS]
                 )
             )
         } else {
@@ -78,12 +80,12 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
                 ContextCompat.getColor(
                     this,
                     R.color.white
-                ), ContextCompat.getColor(this, AppInfos.viewColors[status])
+                ), ContextCompat.getColor(this, viewColors[status])
             )
             binding.tabCmBanner.setSelectedTabIndicatorColor(
                 ContextCompat.getColor(
                     this,
-                    AppInfos.viewColors[status]
+                    viewColors[status]
                 )
             )
         }

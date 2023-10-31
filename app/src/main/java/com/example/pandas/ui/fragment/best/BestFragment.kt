@@ -12,6 +12,7 @@ import com.example.pandas.ui.adapter.BannerChildAdapter
 import com.example.pandas.ui.adapter.decoration.RecommendDecoration2
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
@@ -60,7 +61,7 @@ public class BestFragment : BaseFragment<BannerViewModel, LayoutSwipRefreshBindi
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
     }
 

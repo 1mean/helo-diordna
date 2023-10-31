@@ -14,6 +14,7 @@ import com.example.pandas.databinding.ActivityCollectListBinding
 import com.example.pandas.sql.entity.Group
 import com.example.pandas.ui.adapter.CollectListAdapter
 import com.example.pandas.ui.ext.initNoFooter
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.appbar.AppBarLayout
@@ -51,7 +52,7 @@ public class CollectListActivity : BaseActivity<HistoryViewModeL, ActivityCollec
             })
 
         appViewModel.appColorType.value?.let {
-            binding.clayoutCollectListTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutCollectListTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.ibnCollectListBack.setImageResource(R.mipmap.img_topview_back)
                 binding.txtCollectListTitle.setTextColor(
@@ -74,7 +75,7 @@ public class CollectListActivity : BaseActivity<HistoryViewModeL, ActivityCollec
                         R.color.white
                     )
                 )
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
                 binding.txtCollectListManager.setTextColor(
                     ContextCompat.getColor(
                         this,

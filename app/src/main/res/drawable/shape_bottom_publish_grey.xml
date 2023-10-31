@@ -4,9 +4,9 @@
     <!-- 设置一个黑色边框 -->
     <stroke
             android:width="2dp"
-            android:color="@color/color_bg_grey" />
+            android:color="@color/color_bg_green" />
 
-    <solid android:color="@color/color_bg_grey"/>
+    <solid android:color="@color/color_bg_green"/>
 
     <!-- 设置一下边距,让空间大一点 -->
     <corners android:radius="10dp" />

@@ -12,6 +12,7 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.viewmodel.MoreDataViewModel
 import com.example.pandas.databinding.ActivityMoreBinding
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.fragment.main.home.music.MusicListFragment
 import com.example.pandas.ui.fragment.video.VideoListFragment
 import com.example.pandas.utils.DarkModeUtils
@@ -31,7 +32,7 @@ public class MoreDataListActivity : BaseActivity<MoreDataViewModel, ActivityMore
         initToolBar()
 
         appViewModel.appColorType.value?.let {
-            binding.clayoutMoreTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutMoreTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.btnMoreBack.setImageResource(R.mipmap.img_topview_back)
                 binding.txtMoreTitle.setTextColor(
@@ -48,7 +49,7 @@ public class MoreDataListActivity : BaseActivity<MoreDataViewModel, ActivityMore
                         R.color.white
                     )
                 )
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
     }

@@ -93,7 +93,7 @@
                 android:textSize="16sp"
                 android:id="@+id/tv_confirm"
                 android:text="@string/xpopup_ok"
-                android:textColor="@color/color_bg_grey"
+                android:textColor="@color/color_bg_green"
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"

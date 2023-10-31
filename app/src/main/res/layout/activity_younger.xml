@@ -9,8 +9,7 @@
             android:id="@+id/clayout_setting_top"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/color_bg_home">
+            app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/ibn_setting_back"

@@ -8,6 +8,7 @@ import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.databinding.ActivityIntegralBinding
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.StatusBarUtils
 
 /**
@@ -21,7 +22,7 @@ public class IntegralActivity : BaseActivity<BaseViewModel, ActivityIntegralBind
     override fun initView(savedInstanceState: Bundle?) {
 
         appViewModel.appColorType.value?.let {
-            binding.clayoutLaterTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutLaterTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.ibnIntegralBack.setImageResource(R.mipmap.img_topview_back)
                 binding.txtLaterTitle.setTextColor(
@@ -38,7 +39,7 @@ public class IntegralActivity : BaseActivity<BaseViewModel, ActivityIntegralBind
                         R.color.white
                     )
                 )
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
     }

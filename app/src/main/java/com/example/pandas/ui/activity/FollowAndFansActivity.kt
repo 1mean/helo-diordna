@@ -11,6 +11,8 @@ import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivityFollowBinding
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.fragment.main.mine.FansFragment
 import com.example.pandas.ui.fragment.main.mine.FollowFragment
 import com.example.pandas.utils.DarkModeUtils
@@ -59,13 +61,19 @@ public class FollowAndFansActivity : BaseActivity<SelfViewModel, ActivityFollowB
         binding.vp2Follow.currentItem = index
 
         appViewModel.appColorType.value?.let {
-            binding.layoutFollowTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.layoutFollowTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.ibnTopFinish.setImageResource(R.mipmap.img_topview_back)
                 binding.txtTopName.setTextColor(
                     ContextCompat.getColor(
                         this,
                         R.color.color_txt_panda_top
+                    )
+                )
+                binding.tabFollow.setSelectedTabIndicatorColor(
+                    ContextCompat.getColor(
+                        this,
+                        viewColors[APP_COLOR_STATUS]
                     )
                 )
             } else {
@@ -76,7 +84,13 @@ public class FollowAndFansActivity : BaseActivity<SelfViewModel, ActivityFollowB
                         R.color.white
                     )
                 )
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                binding.tabFollow.setSelectedTabIndicatorColor(
+                    ContextCompat.getColor(
+                        this,
+                        viewColors[it]
+                    )
+                )
             }
         }
     }

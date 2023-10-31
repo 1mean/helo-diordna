@@ -16,8 +16,10 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.RankViewModel
 import com.example.pandas.databinding.ActivityRankingBinding
 import com.example.pandas.ui.adapter.VideoListAdapter
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.tabs.TabLayout
@@ -43,14 +45,14 @@ public class RankingActivity : BaseActivity<RankViewModel, ActivityRankingBindin
             binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back)
             binding.tabRanking.setTabTextColors(
                 ContextCompat.getColor(this, R.color.color_tablayout_unselect_panda),
-                ContextCompat.getColor(this, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
+                ContextCompat.getColor(this, viewColors[APP_COLOR_STATUS])
             )
             binding.tabRanking.setSelectedTabIndicatorColor(
-                ContextCompat.getColor(this, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
+                ContextCompat.getColor(this, viewColors[APP_COLOR_STATUS])
             )
         } else {
-            StatusBarUtils.setStatusBarMode(this, false, AppInfos.viewColors[status])
-            binding.clayoutPlayTop.setBackgroundResource(AppInfos.viewColors[status])
+            StatusBarUtils.setStatusBarMode(this, false, viewColors[status])
+            binding.clayoutPlayTop.setBackgroundResource(viewColors[status])
             binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back_white)
             binding.tabRanking.setTabTextColors(
                 ContextCompat.getColor(this, R.color.color_vertical_played),

@@ -2,9 +2,13 @@ package com.example.pandas.ui.fragment.main.mine
 
 import android.os.Bundle
 import android.util.Log
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.databinding.FragmentAuthenBinding
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
+import com.example.pandas.ui.ext.shape_20_drawables
+import com.example.pandas.ui.ext.viewColors
 
 /**
  * @description: AuthenFragment
@@ -51,6 +55,15 @@ public class AuthenFragment : BaseFragment<BaseViewModel, FragmentAuthenBinding>
             mActivity.supportFragmentManager.popBackStack()
         }
 
+        val type = appViewModel.appColorType.value ?: 0
+        val spanColor: Int
+        if (type == 0) {
+            binding.clayoutAuthImage.setBackgroundResource(shape_20_drawables[APP_COLOR_STATUS])
+            binding.txtAuthenUpdate.setBackgroundResource(shape_20_drawables[APP_COLOR_STATUS])
+        } else {
+            binding.clayoutAuthImage.setBackgroundResource(shape_20_drawables[type])
+            binding.txtAuthenUpdate.setBackgroundResource(shape_20_drawables[type])
+        }
     }
 
     override fun createObserver() {

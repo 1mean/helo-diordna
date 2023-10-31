@@ -24,10 +24,7 @@ import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.RecommendAdapter
 import com.example.pandas.ui.adapter.decoration.RecommendDecoration
 import com.example.pandas.ui.adapter.decoration.RecommendDecoration2
-import com.example.pandas.ui.ext.init
-import com.example.pandas.ui.ext.setRefreshColor
-import com.example.pandas.ui.ext.startShortVideoActivity
-import com.example.pandas.ui.ext.startVideoPlayingActivity
+import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.ScreenUtil
 import com.google.android.exoplayer2.ui.StyledPlayerView
@@ -111,7 +108,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
     }
 
@@ -162,7 +159,7 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
 
         mViewModel.recommendDataWrapper.observe(viewLifecycleOwner) {

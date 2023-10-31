@@ -17,6 +17,7 @@ import com.example.pandas.ui.adapter.EyepetozerAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.ScreenUtil
 import com.google.android.exoplayer2.ui.StyledPlayerView
@@ -33,6 +34,8 @@ public class EyepetozerFragment :
     ExoPlayerManager.OnExoListListener {
 
     private var existDataInView = false//界面是否存在数据，下次出错不会影响界面显示
+
+    override fun lazyLoadTime(): Long = 0
 
     private var lastPos = -1 //上一次播放的ItemView的位置
     private var curPos = lastPos //当前要播放的ItemView的位置
@@ -68,7 +71,7 @@ public class EyepetozerFragment :
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
     }
 
@@ -109,7 +112,7 @@ public class EyepetozerFragment :
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
 
         mViewModel.eyepetozerWrapper.observe(viewLifecycleOwner) {

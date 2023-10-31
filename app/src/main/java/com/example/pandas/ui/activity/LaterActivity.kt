@@ -16,6 +16,7 @@ import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityLaterBinding
 import com.example.pandas.ui.adapter.LaterAdapter
 import com.example.pandas.ui.ext.initNoFooter
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
@@ -118,9 +119,9 @@ public class LaterActivity : BaseActivity<HistoryViewModeL, ActivityLaterBinding
         }
 
         appViewModel.appColorType.value?.let {
-            binding.clayoutLaterTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutLaterTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
-                binding.ibnLaterBack.setImageResource(R.mipmap.img_top_leave)
+                binding.ibnLaterBack.setImageResource(R.mipmap.img_setting_top_back_black33)
                 binding.txtLaterTitle.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -134,7 +135,7 @@ public class LaterActivity : BaseActivity<HistoryViewModeL, ActivityLaterBinding
                     )
                 )
             } else {
-                binding.ibnLaterBack.setImageResource(R.mipmap.img_top_leave_white)
+                binding.ibnLaterBack.setImageResource(R.mipmap.img_setting_top_back_white)
                 binding.txtLaterTitle.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -147,7 +148,7 @@ public class LaterActivity : BaseActivity<HistoryViewModeL, ActivityLaterBinding
                         R.color.white
                     )
                 )
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
     }

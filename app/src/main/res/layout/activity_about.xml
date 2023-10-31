@@ -163,6 +163,7 @@
                 android:textColor="@color/color_txt_mine_name" />
 
         <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_about_support"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintRight_toRightOf="@id/clayout_about_state"
@@ -171,8 +172,7 @@
                 android:textSize="11sp"
                 android:layout_marginEnd="15dp"
                 android:text="仅作个人及非商业用途"
-                android:textStyle="bold"
-                android:textColor="@color/blue500" />
+                android:textStyle="bold"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View

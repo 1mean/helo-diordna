@@ -13,6 +13,7 @@ import com.example.pandas.ui.adapter.PandasAdapter
 import com.example.pandas.ui.adapter.decoration.PandaItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
@@ -50,7 +51,7 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefre
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
             pandasAdapter.updateStatue(it)
         }
     }
@@ -64,7 +65,7 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefre
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
             pandasAdapter.updateStatue(it)
         }
 

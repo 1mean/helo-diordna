@@ -23,6 +23,7 @@ import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.CommentAdapter
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
@@ -125,7 +126,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
         binding.txtCommentSend.setOnClickListener { sendMessage() } //发送弹幕
 
         appViewModel.appColorType.value?.let {
-            binding.refreshComment.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.refreshComment.setColorSchemeResources(viewColors[it])
         }
     }
 
@@ -133,7 +134,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.refreshComment.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.refreshComment.setColorSchemeResources(viewColors[it])
         }
 
         mViewModel.comments.observe(viewLifecycleOwner) {

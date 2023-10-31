@@ -18,4 +18,8 @@ public class HomeAdapter(private val fragmentActivity: FragmentActivity) :
     override fun createFragment(position: Int): Fragment {
         return FragmentFactory.buildFragment(position, fragmentActivity)
     }
+
+    fun getFragment(position: Int): Fragment? {
+        return FragmentFactory.fragments[position]
+    }
 }

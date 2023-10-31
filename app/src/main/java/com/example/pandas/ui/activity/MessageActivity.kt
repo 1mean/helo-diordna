@@ -9,6 +9,7 @@ import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.MessageViewModel
 import com.example.pandas.databinding.ActivityMessageBinding
 import com.example.pandas.ui.ext.startAnyActivity
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.StatusBarUtils
 
 /**
@@ -22,7 +23,7 @@ public class MessageActivity : BaseActivity<MessageViewModel, ActivityMessageBin
     override fun initView(savedInstanceState: Bundle?) {
 
         appViewModel.appColorType.value?.let {
-            binding.clayoutPlayTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutPlayTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back)
                 binding.txtPlayTitle.setTextColor(
@@ -41,7 +42,7 @@ public class MessageActivity : BaseActivity<MessageViewModel, ActivityMessageBin
                     )
                 )
                 binding.imgMessageRelation.setImageResource(R.mipmap.img_message_top_relation_white)
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
 

@@ -16,6 +16,7 @@ import com.example.pandas.databinding.DialogAttentionCancelBinding
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.ext.initNoFooter
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.viewColors
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 /**
@@ -64,7 +65,7 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
         }
     }
 

@@ -118,9 +118,9 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         val status = appViewModel.appColorType.value
         Log.e("1mean", "==============$status")
         val r_color = if (status == null || status == 0) {
-            ContextCompat.getColor(this, AppInfos.viewColors[AppInfos.APP_COLOR_STATUS])
+            ContextCompat.getColor(this, viewColors[APP_COLOR_STATUS])
         } else {
-            ContextCompat.getColor(this, AppInfos.viewColors[status])
+            ContextCompat.getColor(this, viewColors[status])
         }
         fullTime.setScrubberColor(r_color)
         exoProgress!!.setScrubberColor(r_color)

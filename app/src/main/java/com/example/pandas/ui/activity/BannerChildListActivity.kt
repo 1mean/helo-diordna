@@ -13,6 +13,7 @@ import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.BannerViewModel
 import com.example.pandas.databinding.ActivityBannerChildBinding
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -54,7 +55,7 @@ public class BannerChildListActivity : BaseActivity<BannerViewModel, ActivityBan
         }
 
         appViewModel.appColorType.value?.let {
-            binding.clayoutHistoryTop.setBackgroundResource(AppInfos.bgColors[it])
+            binding.clayoutHistoryTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.ibnHistoryBack.setImageResource(R.mipmap.img_top_leave)
                 binding.txtHistoryTitle.setTextColor(
@@ -73,7 +74,7 @@ public class BannerChildListActivity : BaseActivity<BannerViewModel, ActivityBan
                     )
                 )
                 binding.imgTopSearch.setImageResource(R.mipmap.img_topview_search_white)
-                StatusBarUtils.setStatusBarMode(this, false, AppInfos.bgColors[it])
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
 

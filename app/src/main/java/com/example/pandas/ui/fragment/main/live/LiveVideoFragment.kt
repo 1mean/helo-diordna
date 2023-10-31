@@ -30,6 +30,7 @@ import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.toastTopShow
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.ScreenUtil
 import com.google.android.exoplayer2.Player.REPEAT_MODE_ONE
@@ -50,13 +51,15 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
 
     private var playerManager: LivePlayManager? = null
 
+    override fun lazyLoadTime(): Long = 0
+
     private val mHandler = Handler(Looper.getMainLooper())
 
     override fun initView(savedInstanceState: Bundle?) {
 
         val status = appViewModel.appColorType.value
         if (status != null) {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[status])
+            binding.swipLayout.setColorSchemeResources(viewColors[status])
         }
         mAdapter = LiveVideoAdapter(status, listener = this)
         binding.recyclerLayout.run {
@@ -106,7 +109,7 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(AppInfos.viewColors[it])
+            binding.swipLayout.setColorSchemeResources(viewColors[it])
             mAdapter?.updateStatus(it)
         }
 
