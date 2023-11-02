@@ -26,7 +26,6 @@ public class ScaleTransitionPagerTitleView(context: Context?) :
         super.onLeave(index, totalCount, leavePercent, leftToRight) // 实现颜色渐变
         scaleX = 1.0f + (mMinScale - 1.0f) * leavePercent
         scaleY = 1.0f + (mMinScale - 1.0f) * leavePercent
-        Log.e("1mean","onLeave scaleX:$scaleX, scaleY:$scaleY")
     }
 
     fun getMinScale(): Float {

@@ -37,6 +37,7 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
     val binding: VB get() = _binding!!
 
     private var isFirstVisible = false
+    private var netWorkFlag = false
     private var networkService: ConnectivityManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +50,10 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
         initView(savedInstanceState)
         createObserver()
 
-        networkService = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        networkService?.registerDefaultNetworkCallback(networkCallback)
+        if (netWorkFlag) {
+            networkService = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            networkService?.registerDefaultNetworkCallback(networkCallback)
+        }
     }
 
     /**
@@ -135,9 +138,9 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
 
     open fun preInit() {}
 
-    open fun netLost(){}
+    open fun netLost() {}
 
-    open fun netAvailable(){}
+    open fun netAvailable() {}
 
     /**
      * 创建观察者
@@ -185,7 +188,7 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
 
         override fun onAvailable(network: Network) {
             super.onAvailable(network)
-            toast(this@BaseActivity,"===网络连接成功，通知可以使用时调用====onAvailable=====")
+            toast(this@BaseActivity, "===网络连接成功，通知可以使用时调用====onAvailable=====")
             Log.e("1mean", "===网络连接成功，通知可以使用时调用====onAvailable=====")
             netAvailable()
         }
@@ -202,13 +205,13 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
 
         override fun onLosing(network: Network, maxMsToLive: Int) {
             super.onLosing(network, maxMsToLive)
-            toast(this@BaseActivity,"===网络正在断开连接====onLosing=====")
+            toast(this@BaseActivity, "===网络正在断开连接====onLosing=====")
             Log.e("1mean", "===网络正在断开连接====onLosing=====")
         }
 
         override fun onLost(network: Network) {
             super.onLost(network)
-            toast(this@BaseActivity,"===网络已断开连接====onLost=====")
+            toast(this@BaseActivity, "===网络已断开连接====onLost=====")
             Log.e("1mean", "===网络已断开连接====onLost=====")
             netLost()
         }
@@ -221,8 +224,6 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
 
     override fun onDestroy() {
         super.onDestroy()
-        if (networkService != null) {
-            networkService!!.unregisterNetworkCallback(networkCallback)
-        }
+        networkService?.unregisterNetworkCallback(networkCallback)
     }
 }

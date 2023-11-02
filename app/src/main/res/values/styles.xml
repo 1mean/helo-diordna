@@ -360,10 +360,10 @@
     <style name="style_setting_item_desc_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">15dp</item>
-        <item name="android:layout_marginEnd">15dp</item>
         <item name="android:textColor">@color/color_txt_setting_item_desc</item>
         <item name="android:textSize">11sp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_marginEnd">30dp</item>
     </style>
 
     <style name="style_setting_item_title_text">
@@ -669,5 +669,32 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
         <item name="android:background">@drawable/shape_bg_item_function</item>
+    </style>
+
+    <style name="style_setting_bg_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/selector_setting_item</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="style_setting_bg_item_arraw">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@mipmap/img_setting_forawrd</item>
+        <item name="android:layout_marginEnd">5dp</item>
+    </style>
+
+    <style name="style_self_item_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:textColor">@color/color_txt_setting_item_name</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 </resources>

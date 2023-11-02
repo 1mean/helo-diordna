@@ -74,7 +74,6 @@ public class SexSettingFragment : BaseLazyFragment<SelfViewModel, FragmentSexBin
 
         binding.btnSexSure.setOnClickListener {
             if (curSexIndex == sexIndex) {
-                mViewModel.closeFragment.value = true
             } else {
                 Log.e("1mean", "11111")
                 showLoading()
@@ -96,7 +95,6 @@ public class SexSettingFragment : BaseLazyFragment<SelfViewModel, FragmentSexBin
                 mViewModel.userInfo.value = it
                 loadingPopup?.dismiss()
                 appViewModel.sexUpdate.value = it.sex
-                mViewModel.closeFragment.value = true
             }, 500)
         }
     }

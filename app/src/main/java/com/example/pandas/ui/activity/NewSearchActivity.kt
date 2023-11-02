@@ -19,10 +19,7 @@ import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.viewmodel.SearchViewModel
 import com.example.pandas.databinding.ActivitySearchBinding
 import com.example.pandas.ui.adapter.HotSearchAdapter
-import com.example.pandas.ui.ext.backPressed
-import com.example.pandas.ui.ext.clearEditText
-import com.example.pandas.ui.ext.turnToSearchResultFragment
-import com.example.pandas.ui.ext.viewColors
+import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.fragment.search.SearchListFragment
 import com.example.pandas.utils.SoftInputUtils
 import com.example.pandas.utils.StatusBarUtils
@@ -201,7 +198,7 @@ public class NewSearchActivity : BaseExActivity<SearchViewModel, ActivitySearchB
     override fun onClick(position: Int, t: String) {
         mViewModel.keyWords = t
         isUserSet = true
-        binding.editSearch.text = Editable.Factory.getInstance().newEditable(t)
+        setEditText(binding.editSearch, t)
         turnToSearchResultFragment()
     }
 
@@ -211,7 +208,7 @@ public class NewSearchActivity : BaseExActivity<SearchViewModel, ActivitySearchB
     override fun onItemClick(t: String) {
         mViewModel.keyWords = t
         isUserSet = true
-        binding.editSearch.text = Editable.Factory.getInstance().newEditable(t)
+        setEditText(binding.editSearch, t)
         turnToSearchResultFragment()
     }
 

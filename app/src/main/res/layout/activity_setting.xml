@@ -3,14 +3,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_bg_setting"
+        android:background="@color/color_bg_activity_setting"
         android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_setting_top"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@color/color_bg_home">
+            android:layout_height="56dp">
 
         <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/ibn_setting_back"
@@ -24,20 +23,56 @@
                 style="@style/style_txt_top_collect"
                 app:layout_constraintTop_toTopOf="@id/clayout_setting_top"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_setting_top"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_setting_top"
-                app:layout_constraintRight_toRightOf="@id/clayout_setting_top"
+                app:layout_constraintLeft_toRightOf="@id/ibn_setting_back"
                 android:text="@string/str_setting" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-            style="@style/style_setting_activity_drivider"
-            android:background="@color/color_bg_setting_drivider" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_setting_self"
+            style="@style/style_setting_bg_item"
+            android:layout_height="73dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_setting_header"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                app:layout_constraintTop_toTopOf="@id/clayout_setting_self"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_setting_self"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_setting_self"
+                android:layout_marginStart="12dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_setting_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="22dp"
+                app:layout_constraintTop_toTopOf="@id/clayout_setting_self"
+                app:layout_constraintLeft_toRightOf="@id/img_setting_header"
+                android:textSize="16sp"
+                android:textColor="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#818891"
+                app:layout_constraintLeft_toLeftOf="@id/txt_setting_name"
+                app:layout_constraintBottom_toBottomOf="@id/img_setting_header"
+                android:textSize="11sp"
+                android:text="个人信息、账号绑定、隐私设置" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                style="@style/style_setting_bg_item_arraw"
+                app:layout_constraintRight_toRightOf="@id/clayout_setting_self"
+                app:layout_constraintTop_toTopOf="@id/clayout_setting_self"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_setting_self" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/color_bg_home_bottomview">
+            style="@style/style_setting_bg_item">
 
         <androidx.appcompat.widget.AppCompatTextView
                 style="@style/style_setting_item_title_text"
@@ -62,11 +97,17 @@
                     app:layout_constraintBottom_toBottomOf="@id/clayout_set_layout"
                     app:layout_constraintRight_toRightOf="@id/clayout_set_layout"
                     android:text="经典" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    style="@style/style_setting_bg_item_arraw"
+                    app:layout_constraintRight_toRightOf="@id/clayout_set_layout"
+                    app:layout_constraintTop_toTopOf="@id/clayout_set_layout"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_set_layout" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
                 style="@style/style_setting_activity_item_drivider"
-                android:background="@color/color_bg_setting_item_drivider" />
+                android:background="@color/color_bg_setting_divider" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_music_setting_style"
@@ -81,13 +122,15 @@
                     android:text="音乐界面样式" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                    style="@style/style_self_setting_arrow"
+                    style="@style/style_setting_bg_item_arraw"
+                    app:layout_constraintRight_toRightOf="@id/clayout_music_setting_style"
                     app:layout_constraintTop_toTopOf="@id/clayout_music_setting_style"
-                    app:layout_constraintBottom_toBottomOf="@id/clayout_music_setting_style"
-                    app:layout_constraintRight_toRightOf="@id/clayout_music_setting_style" />
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_music_setting_style" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View style="@style/style_setting_activity_item_drivider" />
+        <View
+                style="@style/style_setting_activity_item_drivider"
+                android:background="@color/color_bg_setting_divider" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_setting_style"
@@ -102,13 +145,15 @@
                     android:text="我的界面样式" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                    style="@style/style_self_setting_arrow"
+                    style="@style/style_setting_bg_item_arraw"
+                    app:layout_constraintRight_toRightOf="@id/clayout_setting_style"
                     app:layout_constraintTop_toTopOf="@id/clayout_setting_style"
-                    app:layout_constraintBottom_toBottomOf="@id/clayout_setting_style"
-                    app:layout_constraintRight_toRightOf="@id/clayout_setting_style" />
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_setting_style" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View style="@style/style_setting_activity_item_drivider" />
+        <View
+                style="@style/style_setting_activity_item_drivider"
+                android:background="@color/color_bg_setting_divider" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_set_home"
@@ -128,38 +173,18 @@
                     app:layout_constraintBottom_toBottomOf="@id/clayout_set_home"
                     app:layout_constraintRight_toRightOf="@id/clayout_set_home"
                     android:text="双列" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View style="@style/style_setting_activity_item_drivider" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clayout_set_dark"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/style_setting_item_name_text"
-                    app:layout_constraintTop_toTopOf="@id/clayout_set_dark"
-                    app:layout_constraintBottom_toBottomOf="@id/clayout_set_dark"
-                    app:layout_constraintLeft_toLeftOf="@id/clayout_set_dark"
-                    android:text="深色设置" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/style_setting_item_desc_text"
-                    app:layout_constraintTop_toTopOf="@id/clayout_set_dark"
-                    app:layout_constraintBottom_toBottomOf="@id/clayout_set_dark"
-                    app:layout_constraintRight_toRightOf="@id/clayout_set_dark"
-                    android:text="去设置" />
-
+            <androidx.appcompat.widget.AppCompatImageView
+                    style="@style/style_setting_bg_item_arraw"
+                    app:layout_constraintRight_toRightOf="@id/clayout_set_home"
+                    app:layout_constraintTop_toTopOf="@id/clayout_set_home"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_set_home" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <View style="@style/style_setting_activity_drivider" />
-
     <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color_bg_home_bottomview"
+            style="@style/style_setting_bg_item"
             android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -178,26 +203,22 @@
                     app:layout_constraintLeft_toLeftOf="@id/clayout_set_wifi"
                     android:text="仅仅Wi-Fi联网" />
 
-            <com.example.pandas.ui.view.SwitchButton
+            <com.github.iielse.switchbutton.SwitchView
+                    android:id="@+id/switch_config"
                     android:layout_width="45dp"
                     android:layout_height="24dp"
+                    app:hasShadow="false"
+                    app:isOpened="true"
                     app:layout_constraintTop_toTopOf="@id/clayout_set_wifi"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_set_wifi"
                     app:layout_constraintRight_toRightOf="@id/clayout_set_wifi"
-                    app:sb_checked="true"
-                    app:sb_circle_width="19dp"
-                    app:sb_background="@color/color_bg_setting_button_unchecked"
-                    app:sb_checked_color="@color/color_bg_setting_button_checked"
                     android:layout_marginEnd="15dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <View style="@style/style_setting_activity_drivider" />
-
     <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
+            style="@style/style_setting_bg_item"
             android:layout_height="wrap_content"
-            android:background="@color/color_bg_home_bottomview"
             android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -221,11 +242,14 @@
                     style="@style/style_setting_item_desc_text"
                     app:layout_constraintTop_toTopOf="@id/clayout_set_storage"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_set_storage"
+                    app:layout_constraintRight_toRightOf="@id/clayout_set_storage" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    style="@style/style_setting_bg_item_arraw"
                     app:layout_constraintRight_toRightOf="@id/clayout_set_storage"
-                    android:text="去清理" />
+                    app:layout_constraintTop_toTopOf="@id/clayout_set_storage"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_set_storage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <View style="@style/style_setting_activity_drivider" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -83,8 +83,11 @@
     <color name="color_bg_later_dialog">#ffffff</color>
     <color name="color_txt_later_dialog_title">#333333</color>
     <color name="color_bg_setting">#ffffff</color>
+    <color name="color_bg_activity_setting">#F6F7FB</color>
     <color name="color_txt_setting_item_name">#000000</color>
     <color name="color_music_setting_notice">#333333</color>
+    <color name="color_bg_item_setting_pressed">#F1F2F7</color>
+    <color name="color_bg_setting_divider">#f9f9f9</color>
 
     <!--home/recommend-->
     <color name="color_bg_recommend">#F1F2F4</color>

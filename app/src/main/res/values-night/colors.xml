@@ -189,6 +189,7 @@
     <color name="color_mine_txt_zone">#999A97</color>
     <color name="color_mine_txt_download">#454E54</color>
     <color name="color_bg_self">#17181A</color>
+    <color name="color_bg_activity_setting">#F6F7FB</color>
     <color name="color_bg_self_child">#F6F7FB</color>
     <color name="color_bg_mine">#E6EBF5</color>
     <color name="color_item_bg_mine_info">#11000000</color>

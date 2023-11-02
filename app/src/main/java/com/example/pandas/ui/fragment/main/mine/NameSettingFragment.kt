@@ -59,7 +59,6 @@ public class NameSettingFragment : BaseLazyFragment<SelfViewModel, FragmentMineI
                 }
             } else {
                 //bug:直接使用fragmentManager或调用activity来进行关闭fragment，都能成功关闭，但是下一次无法继续点击进来
-                mViewModel.closeFragment.value = true
             }
         }
     }
@@ -72,7 +71,6 @@ public class NameSettingFragment : BaseLazyFragment<SelfViewModel, FragmentMineI
                 mViewModel.userInfo.value = it
                 loadingPopup?.dismiss()
                 appViewModel.nameUpdate.value = it.userName
-                mViewModel.closeFragment.value = true
             }, 500)
         }
     }

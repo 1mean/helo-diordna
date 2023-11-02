@@ -258,12 +258,10 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
                 val isOverHalf = ScreenUtil.isOverHalfViewVisiable(childView)
                 if (isOverHalf) {
                     if (!recoManager.isPlaying()) {
-                        Log.e("recoooooooo", "111")
                         recoManager.resumePlay()
                     }
                 } else {
                     if (recoManager.isPlaying()) {
-                        Log.e("recoooooooo", "222")
                         recoManager.pausePlayer()
                         updatePlayerView(true, playPos)
                     }

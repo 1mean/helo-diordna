@@ -25,7 +25,7 @@ public class MessageActivity : BaseActivity<MessageViewModel, ActivityMessageBin
         appViewModel.appColorType.value?.let {
             binding.clayoutPlayTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
-                binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back)
+                binding.ibnPlayBack.setImageResource(R.mipmap.img_setting_top_back_black33)
                 binding.txtPlayTitle.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -34,7 +34,7 @@ public class MessageActivity : BaseActivity<MessageViewModel, ActivityMessageBin
                 )
                 binding.imgMessageRelation.setImageResource(R.mipmap.img_message_top_relation)
             } else {
-                binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.ibnPlayBack.setImageResource(R.mipmap.img_setting_top_back_white)
                 binding.txtPlayTitle.setTextColor(
                     ContextCompat.getColor(
                         this,

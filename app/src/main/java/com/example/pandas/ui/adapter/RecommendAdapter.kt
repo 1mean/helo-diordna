@@ -12,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.VibrateUtils
 import com.example.pandas.R
+import com.example.pandas.app.appViewModel
 import com.example.pandas.bean.pet.RecommendData
 import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.ext.loadCenterImage
@@ -333,6 +334,7 @@ public class RecommendAdapter(
                 playerView.showController()
             }
         }
+
 
         fun handle(position: Int) {
 

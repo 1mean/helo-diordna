@@ -95,6 +95,7 @@
                 android:name=".ui.activity.LoginActivity"
                 android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity android:name=".ui.activity.BannerChildListActivity" />
+        <activity android:name=".ui.activity.ReNameActivity" />
         <activity android:name=".ui.activity.OneVerticalList2Activity" />
         <activity android:name=".ui.activity.MusicConfigActivity" />
         <activity android:name=".ui.activity.OneVerticalListActivity" />

@@ -1219,6 +1219,32 @@ class PetManager {
         }
     }
 
+    suspend fun reName(userName: String, userCode: Int) {
+
+        withContext(Dispatchers.IO) {
+            val user = petDao.queryUserByCode(userCode)
+            if (user != null) {
+                if (user.userName != userName) {
+                    user.userName = userName
+                    petDao.updateUser(user)
+                }
+            }
+        }
+    }
+
+    suspend fun reSex(sex: Int, userCode: Int) {
+
+        withContext(Dispatchers.IO) {
+            val user = petDao.queryUserByCode(userCode)
+            if (user != null) {
+                if (user.sex != sex) {
+                    user.sex = sex
+                    petDao.updateUser(user)
+                }
+            }
+        }
+    }
+
     suspend fun updateVideoComment(comment: VideoComment) {
         return withContext(Dispatchers.IO) {
             petDao.updateVideoComment(comment)

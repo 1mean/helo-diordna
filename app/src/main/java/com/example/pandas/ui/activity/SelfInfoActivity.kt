@@ -1,5 +1,6 @@
 package com.example.pandas.ui.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -8,12 +9,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
-import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
-import com.blankj.utilcode.util.KeyboardUtils
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
@@ -24,17 +22,16 @@ import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivityMineInfoBinding
+import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.ext.toastTopShow
-import com.example.pandas.ui.ext.viewColors
-import com.example.pandas.ui.fragment.main.mine.NameSettingFragment
-import com.example.pandas.ui.fragment.main.mine.SexSettingFragment
 import com.example.pandas.ui.view.dialog.FaceAddSheetDialog
 import com.example.pandas.utils.BitmapUtils
 import com.example.pandas.utils.FileUtils
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.File
 
 /**
@@ -51,6 +48,9 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
     private var hasHeader: Boolean = false
     val TAG_INFO = "fragment_mine_info"
     private var type: Int = -1
+    private var user: User? = null
+    private val sexs
+        get() = mapOf<Int, String>(0 to "女", 1 to "男", 2 to "保密")
 
     private val mHandler = Handler(Looper.getMainLooper())
 
@@ -101,45 +101,72 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
             }
         }
 
+    private val reNameLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == RESULT_OK) {
+                it.data?.let { intent ->
+                    val newName = intent.getStringExtra("newName")
+                    newName?.let {
+                        binding.txtMineInfoName.text = it
+                    }
+                }
+            }
+        }
+
     override fun initView(savedInstanceState: Bundle?) {
+
+        StatusBarUtils.setStatusBarMode(this, true, R.color.color_bg_activity_setting)
 
         binding.btnSelfBack.setOnClickListener {
             backFinish()
         }
-        appViewModel.appColorType.value?.let {
-            binding.clayoutInfoTop.setBackgroundResource(viewColors[it])
-            if (it == 0) {
-                binding.btnSelfBack.setImageResource(R.mipmap.img_top_leave)
-                binding.txtSelfInfo.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_txt_mylove_self
-                    )
-                )
-            } else {
-                binding.btnSelfBack.setImageResource(R.mipmap.img_top_leave_white)
-                binding.txtSelfInfo.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
-                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
-            }
-        }
 
-        binding.clayoutInfoHead.setOnClickListener {
+        binding.clayoutSelfHeader.setOnClickListener {
             showDialog()
         }
 
-        binding.clayoutInfoName.setOnClickListener {
-            type = 1
-            turnToFragment("修改昵称")
+        binding.clayoutSelfName.setOnClickListener {
+            user?.let {
+                val intent = Intent(this, ReNameActivity::class.java)
+                intent.putExtra("name", it.userName)
+                intent.putExtra("userCode", it.userCode)
+                reNameLauncher.launch(intent)
+            }
         }
 
         binding.clayoutInfoSex.setOnClickListener {
-            type = 2
-            turnToFragment("修改性别")
+
+            val sex = binding.txtSelfSex.text.toString()
+            var checkedPosition = 0
+            if (sex.isEmpty()) {
+                checkedPosition = 0
+            } else {
+                sexs.entries.forEach {
+                    if (it.value == sex) {
+                        checkedPosition = it.key
+                    }
+                }
+            }
+            XPopup.Builder(this)
+                .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
+                .asBottomList(
+                    "性别",
+                    arrayOf("女", "男", "保密"),
+                    null,
+                    checkedPosition
+                ) { position, text ->
+                    binding.txtSelfSex.text = text
+                    user?.let {
+                        val sex1 = when (text) {
+                            "女" -> 1
+                            "男" -> 0
+                            else -> -1
+                        }
+                        mViewModel.reSex(sex1, it.userCode)
+                        appViewModel.sexUpdate.value = sex1
+                    }
+                }
+                .show()
         }
 
 //        binding.txtMineTopSave.setOnClickListener {
@@ -199,6 +226,9 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
         mViewModel.userInfo.observe(this) {
 
             it?.let { user ->
+
+                this.user = user
+
                 if (!hasHeader) {
                     user.headUrl?.let {
                         loadCircleImage(this, it, binding.imgMineInfoHeader)
@@ -208,24 +238,13 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
                     binding.txtMineInfoName.text = it
                 }
                 when (user.sex) {
-                    0 -> binding.txtMineInfoSex.text = "男"
-                    1 -> binding.txtMineInfoSex.text = "女"
-                    else -> binding.txtMineInfoSex.text = "保密"
+                    0 -> binding.txtSelfSex.text = "男"
+                    1 -> binding.txtSelfSex.text = "女"
+                    else -> binding.txtSelfSex.text = "保密"
                 }
-                binding.txtMineInfoNum.text = user.userCode.toString()
+                binding.txtMineInfoNum.text = "ID:${user.userCode.toString()}"
                 user.signature?.let {
-                    binding.txtMineInfoSign.text = it
-                }
-            }
-        }
-
-        mViewModel.closeFragment.observe(this) {
-            Log.e("1mean", "closeFragment observe")
-            val fragment = supportFragmentManager.findFragmentByTag(TAG_INFO)
-            if (fragment != null) {
-                supportFragmentManager.popBackStack()
-                binding.txtSelfInfo.post {
-                    binding.txtSelfInfo.text = "个人信息"
+                    binding.txtSelfSign.text = it
                 }
             }
         }
@@ -312,38 +331,8 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
         }
     }
 
-    private fun turnToFragment(name: String) {
-        val transaction = supportFragmentManager.beginTransaction()
-        val fragment = supportFragmentManager.findFragmentByTag(TAG_INFO)
-        if (fragment == null) {
-            val newFragment = when (name) {
-                "修改昵称" -> NameSettingFragment()
-                "修改性别" -> SexSettingFragment()
-                else -> {
-                    SexSettingFragment()
-                }
-            }
-            transaction.add(R.id.flayout_mine_info, newFragment, TAG_INFO)
-                .addToBackStack(null).commit()
-        }
-        binding.txtSelfInfo.post {
-            binding.txtSelfInfo.text = name
-        }
-    }
-
     private fun backFinish() {
-        val fragment = supportFragmentManager.findFragmentByTag(TAG_INFO)
-        if (fragment == null) {
-            finish()
-        } else {
-            if (fragment is NameSettingFragment) {
-                (fragment as NameSettingFragment).hideSoft()
-            }
-            //bug:关闭fragment的操作只能在activity里执行，在fragment里执行后下次无法再次点击进入fragment
-            supportFragmentManager.popBackStack()
-            binding.txtSelfInfo.post {
-                binding.txtSelfInfo.text = "个人信息"
-            }
-        }
+        setResult(Activity.RESULT_OK)
+        finish()
     }
 }

@@ -6,10 +6,12 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
+import android.text.Editable
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.view.animation.OvershootInterpolator
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
@@ -310,3 +312,10 @@ fun intervalClick(view: View, listener: View.OnClickListener) {
     }
 }
 //-------------------<辅助功能 结束>-----------------------------------------------------------------
+
+/**
+ * EditText设置内容
+ */
+fun setEditText(editText: EditText, input: String) {
+    editText.text = Editable.Factory.getInstance().newEditable(input)
+}

@@ -254,4 +254,7 @@ dependencies {
     implementation 'io.github.lucksiege:camerax:v3.11.1'
 
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
+
+    /*switchbutton*/
+    implementation 'com.github.iielse:switchbutton:1.0.4'
 }

@@ -20,10 +20,7 @@ import com.example.pandas.biz.viewmodel.SearchViewModel
 import com.example.pandas.databinding.ActivitySearchBinding
 import com.example.pandas.ui.adapter.HotSearchAdapter
 import com.example.pandas.ui.adapter.SearchResultAdapter
-import com.example.pandas.ui.ext.backPressed
-import com.example.pandas.ui.ext.clearEditText
-import com.example.pandas.ui.ext.turnToSearchResultFragment
-import com.example.pandas.ui.ext.viewColors
+import com.example.pandas.ui.ext.*
 import com.example.pandas.utils.SoftInputUtils
 import com.example.pandas.utils.StatusBarUtils
 import kotlinx.coroutines.launch
@@ -194,7 +191,7 @@ public class SearchActivity : BaseExActivity<SearchViewModel, ActivitySearchBind
     override fun onClick(position: Int, t: String) {
         mViewModel.keyWords = t
         isUserSet = true
-        binding.editSearch.text = Editable.Factory.getInstance().newEditable(t)
+        setEditText(binding.editSearch, t)
         turnToSearchListFragment()
     }
 

@@ -136,6 +136,18 @@ open class BaseViewModel : ViewModel() {
         }
     }
 
+    fun reName(userName: String, userCode: Int) {
+        viewModelScope.launch {
+            PetManagerCoroutine.reName(userName, userCode)
+        }
+    }
+
+    fun reSex(sex: Int, userCode: Int) {
+        viewModelScope.launch {
+            PetManagerCoroutine.reSex(sex, userCode)
+        }
+    }
+
     fun getUserByCode(userCode: Int) {
         viewModelScope.launch {
             user.value = PetManagerCoroutine.getUser(userCode)
