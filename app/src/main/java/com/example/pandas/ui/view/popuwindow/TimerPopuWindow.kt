@@ -57,7 +57,8 @@ public class TimerPopuWindow(
 
         animationStyle = R.style.style_timer_animation
         isOutsideTouchable = true
-        showAtLocation(view, Gravity.BOTTOM, 0, 100)
+//        showAtLocation(view, Gravity.BOTTOM, 0, 100)
+        showAtLocation(view, Gravity.BOTTOM, 0, 50)
     }
 
     //bug:重写dismiss，解决一些问题

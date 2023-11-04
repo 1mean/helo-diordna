@@ -161,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:text="3"
                     android:textColor="#6e7075"
-                    android:textSize="17sp"
+                    android:textSize="22sp"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_timer_time3"
                     app:layout_constraintRight_toRightOf="@id/clayout_timer_time3"
                     app:layout_constraintTop_toTopOf="@id/clayout_timer_time3"
