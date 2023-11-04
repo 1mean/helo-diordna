@@ -25,15 +25,13 @@ import com.example.pandas.biz.manager.VerticalPlayManager
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.ActivityVerticalVideoplayBinding
-import com.example.pandas.sql.entity.User
 import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoPagerAdapter
 import com.example.pandas.ui.dialog.ShortBottomDialog
 import com.example.pandas.ui.ext.addRefreshAnimation
-import com.example.pandas.ui.ext.startUserInfoActivity
 import com.example.pandas.ui.ext.toastTopShow
-import com.example.pandas.ui.view.dialog.ShortRightPopuWindow
+import com.example.pandas.ui.view.popuwindow.ShortRightPopuWindow
 import com.example.pandas.utils.StatusBarUtils
 import com.example.pandas.utils.VibrateUtils
 import com.google.android.exoplayer2.util.Util

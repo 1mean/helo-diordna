@@ -1232,6 +1232,19 @@ class PetManager {
         }
     }
 
+    suspend fun reSign(sign: String, userCode: Int) {
+
+        withContext(Dispatchers.IO) {
+            val user = petDao.queryUserByCode(userCode)
+            if (user != null) {
+                if (user.signature != sign) {
+                    user.signature = sign
+                    petDao.updateUser(user)
+                }
+            }
+        }
+    }
+
     suspend fun reSex(sex: Int, userCode: Int) {
 
         withContext(Dispatchers.IO) {

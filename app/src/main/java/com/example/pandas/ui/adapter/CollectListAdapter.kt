@@ -9,6 +9,7 @@ import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.utils.TimeUtils
 
 /**
@@ -32,7 +33,6 @@ public class CollectListAdapter(
     override fun getLayoutId(): Int = R.layout.adapter_collect_list
 
     override fun convert(holder: BaseViewHolder, data: PetVideo, position: Int) {
-
 
         val context = holder.itemView.context
         val cover = holder.getWidget<AppCompatImageView>(R.id.img_collect_item_cover)
@@ -77,6 +77,9 @@ public class CollectListAdapter(
             name.text = it.userName
         }
 
+        holder.itemView.setOnClickListener {
+            startVideoPlayingActivity(context, data)
+        }
 
     }
 

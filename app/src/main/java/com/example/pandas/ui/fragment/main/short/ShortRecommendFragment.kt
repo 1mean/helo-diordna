@@ -21,7 +21,7 @@ import com.example.pandas.databinding.FragmentVerticalVideoplayBinding
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.activity.UserInfoActivity
 import com.example.pandas.ui.adapter.VideoPagerAdapter
-import com.example.pandas.ui.view.dialog.ShortRightPopuWindow
+import com.example.pandas.ui.view.popuwindow.ShortRightPopuWindow
 import com.google.android.exoplayer2.util.Util
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView

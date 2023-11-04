@@ -1,4 +1,4 @@
-package com.example.pandas.ui.view.dialog
+package com.example.pandas.ui.view.popuwindow
 
 import android.content.Context
 import android.os.Handler

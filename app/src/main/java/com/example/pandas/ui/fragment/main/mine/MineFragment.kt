@@ -36,6 +36,7 @@ import com.example.pandas.ui.ext.startToActivity
 import com.example.pandas.ui.ext.toastTopShow
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.dialog.TimingBottomSheetDialog
+import com.example.pandas.ui.view.popuwindow.TimerPopuWindow
 import com.example.pandas.utils.*
 import com.example.pandas.utils.FileUtils
 import com.lxj.xpopup.XPopup
@@ -94,12 +95,15 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
         }
         binding.clayoutSettingTiming.setOnClickListener {
 
-            val dialog = TimingBottomSheetDialog(mActivity, object : ItemClickListener<Int> {
-                override fun onItemClick(t: Int) {
+//            val dialog = TimingBottomSheetDialog(mActivity, object : ItemClickListener<Int> {
+//                override fun onItemClick(t: Int) {
+//
+//                }
+//            })
+//            dialog.onShow()
 
-                }
-            })
-            dialog.onShow()
+            val timerPop = TimerPopuWindow(mActivity)
+            timerPop.setBackDark().onShow(binding.clayoutSettingTiming)
         }
         binding.clayoutSelf.setOnClickListener {
             startAnyActivity(mActivity, SelfInfoActivity::class.java)
@@ -520,9 +524,7 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
                         val contentValues = ContentValues()
                         contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, destFile.name)
                         contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/*")
-                        val contentUri: Uri
-                        contentUri =
-                            if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+                        val contentUri: Uri = if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
                                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI
                             } else {
                                 MediaStore.Images.Media.INTERNAL_CONTENT_URI

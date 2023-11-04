@@ -142,6 +142,12 @@ open class BaseViewModel : ViewModel() {
         }
     }
 
+    fun reSign(sign: String, userCode: Int) {
+        viewModelScope.launch {
+            PetManagerCoroutine.reSign(sign, userCode)
+        }
+    }
+
     fun reSex(sex: Int, userCode: Int) {
         viewModelScope.launch {
             PetManagerCoroutine.reSex(sex, userCode)

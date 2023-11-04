@@ -19,6 +19,7 @@ import com.example.pandas.databinding.ActivityAboutBinding
 import com.example.pandas.databinding.ActivityMineInfoBinding
 import com.example.pandas.databinding.ActivityRenameBinding
 import com.example.pandas.databinding.ActivitySettingBinding
+import com.example.pandas.databinding.ActivitySignBinding
 import com.example.pandas.ui.ext.*
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
@@ -26,59 +27,56 @@ import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
 
 /**
- * @description: SettingActivity
+ * @description: 个性签名
  * @author: dongyiming
  * @date: 8/20/22 12:28 上午
  * @version: v1.0
  */
-public class ReNameActivity : BaseActivity<SelfViewModel, ActivityRenameBinding>() {
+public class SignActivity : BaseActivity<SelfViewModel, ActivitySignBinding>() {
 
-    private var oldName: String? = null
+    private var oldSign: String? = null
     private var userCode: Int? = null
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        oldName = intent.getStringExtra("name")
+        oldSign = intent.getStringExtra("sign")
         userCode = intent.getIntExtra("userCode", -1)
-        oldName?.let {
-            setEditText(binding.editUpdateName, it)
+        oldSign?.let {
+            setEditText(binding.editSignName, it)
         }
 
-        binding.txtRenameDesc.text = "- 修改昵称需要消耗6个积分,修改前能确保积分足够\n" +
-                "- 禁止输入色情、广告、虚假信息等\n" +
-                "- 每天可最多修改10次昵称\n" +
-                "- 昵称限7个字符。1中文占1字符，2英文、数字占1个字符"
+        binding.txtSignDesc.text = "- 个性签名内容限定50个字符\n" +
+                "- 禁止输入色情、广告、虚假信息等"
 
-        binding.editUpdateName.requestFocus()
-        binding.editUpdateName.post {
+        binding.editSignName.requestFocus()
+        binding.editSignName.post {
             KeyboardUtils.showSoftInput()
         }
 
-        binding.btnNameSure.setOnClickListener {
-            binding.editUpdateName.post {
+        binding.btnSignSure.setOnClickListener {
+            binding.editSignName.post {
                 KeyboardUtils.hideSoftInput(this)
             }
-            val newName = binding.editUpdateName.text.toString()
-            if (oldName == newName) {
+            val newSign = binding.editSignName.text.toString()
+            if (oldSign == newSign) {
                 finish()
             } else {
-                if (newName.isNotEmpty()) {
-                    if (newName.length > 7) {
-                        toastTopShow(this, "昵称超过最大长度")
+                if (newSign.isNotEmpty()) {
+                    if (newSign.length > 50) {
+                        toastTopShow(this, "个性签名超过最大长度")
                         return@setOnClickListener
                     }
                     showLoading()
-                    mViewModel.reName(newName, userCode!!)
-                    binding.editUpdateName.postDelayed({
+                    mViewModel.reSign(newSign, userCode!!)
+                    binding.editSignName.postDelayed({
                         loadingPopup?.dismiss()
-                        appViewModel.nameUpdate.value = newName
                         val intent = Intent()
-                        intent.putExtra("newName", newName)
+                        intent.putExtra("newSign", newSign)
                         setResult(RESULT_OK, intent)
                         finish()
                     }, 500)
                 } else {
-                    toastTopShow(this, "昵称不能为空")
+                    toastTopShow(this, "个性签名不能为空")
                 }
             }
         }

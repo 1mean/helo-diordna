@@ -14,7 +14,7 @@ import com.example.pandas.biz.interaction.OnSureListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivitySettingBinding
 import com.example.pandas.ui.ext.startAnyActivity
-import com.example.pandas.ui.view.dialog.StyleSettingPopuWindow
+import com.example.pandas.ui.view.popuwindow.StyleSettingPopuWindow
 import com.example.pandas.utils.AppUtils
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils

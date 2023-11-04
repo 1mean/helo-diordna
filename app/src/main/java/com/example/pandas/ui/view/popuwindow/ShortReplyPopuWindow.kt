@@ -1,10 +1,9 @@
-package com.example.pandas.ui.view.dialog
+package com.example.pandas.ui.view.popuwindow
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager

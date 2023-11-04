@@ -54,7 +54,7 @@ public class CollectListActivity : BaseActivity<HistoryViewModeL, ActivityCollec
         appViewModel.appColorType.value?.let {
             binding.clayoutCollectListTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
-                binding.ibnCollectListBack.setImageResource(R.mipmap.img_topview_back)
+                binding.ibnCollectListBack.setImageResource(R.mipmap.img_setting_top_back_black33)
                 binding.txtCollectListTitle.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -68,7 +68,7 @@ public class CollectListActivity : BaseActivity<HistoryViewModeL, ActivityCollec
                     )
                 )
             } else {
-                binding.ibnCollectListBack.setImageResource(R.mipmap.img_topview_back_white)
+                binding.ibnCollectListBack.setImageResource(R.mipmap.img_setting_top_back_white)
                 binding.txtCollectListTitle.setTextColor(
                     ContextCompat.getColor(
                         this,

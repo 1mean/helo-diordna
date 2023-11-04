@@ -107,7 +107,25 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
                 it.data?.let { intent ->
                     val newName = intent.getStringExtra("newName")
                     newName?.let {
+                        user?.let { u->
+                            u.userName = it
+                        }
                         binding.txtMineInfoName.text = it
+                    }
+                }
+            }
+        }
+
+    private val reSignLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == RESULT_OK) {
+                it.data?.let { intent ->
+                    val newSign = intent.getStringExtra("newSign")
+                    newSign?.let {
+                        user?.let { u->
+                            u.signature = it
+                        }
+                        binding.txtSelfSign.text = it
                     }
                 }
             }
@@ -169,13 +187,14 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
                 .show()
         }
 
-//        binding.txtMineTopSave.setOnClickListener {
-//            Log.e("1mean", "type: $type")
-//            when (type) {
-//                1 -> mViewModel.updateName.value = true
-//                2 -> mViewModel.updateSex.value = true
-//            }
-//        }
+        binding.clayoutInfoSign.setOnClickListener {
+            user?.let {
+                val intent = Intent(this, SignActivity::class.java)
+                intent.putExtra("sign", it.signature)
+                intent.putExtra("userCode", it.userCode)
+                reSignLauncher.launch(intent)
+            }
+        }
     }
 
     override fun onkeyBack() {

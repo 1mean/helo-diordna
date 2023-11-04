@@ -180,6 +180,8 @@
                     android:textSize="12sp"
                     android:layout_marginEnd="30dp"
                     android:includeFontPadding="false"
+                    android:maxLength="17"
+                    android:ellipsize="end"
                     android:textColor="@color/color_text_setting_info"
                     app:layout_constraintTop_toTopOf="@id/clayout_info_sign"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_info_sign"
@@ -203,7 +205,7 @@
             android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clayout_self_sign"
+                android:id="@+id/clayout_self_id"
                 android:layout_width="match_parent"
                 android:layout_height="55dp">
 
@@ -214,17 +216,17 @@
                     android:textColor="@color/color_txt_mylove_self"
                     android:textSize="14sp"
                     android:text="@string/str_NO"
-                    app:layout_constraintTop_toTopOf="@id/clayout_self_sign"
-                    app:layout_constraintBottom_toBottomOf="@id/clayout_self_sign"
-                    app:layout_constraintLeft_toLeftOf="@id/clayout_self_sign"
+                    app:layout_constraintTop_toTopOf="@id/clayout_self_id"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_self_id"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_self_id"
                     android:layout_marginStart="15dp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@id/clayout_self_sign"
-                    app:layout_constraintBottom_toBottomOf="@id/clayout_self_sign"
-                    app:layout_constraintRight_toRightOf="@id/clayout_self_sign"
+                    app:layout_constraintTop_toTopOf="@id/clayout_self_id"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_self_id"
+                    app:layout_constraintRight_toRightOf="@id/clayout_self_id"
                     android:textColor="@color/color_text_setting_info"
                     android:textSize="12sp"
                     android:text="1074309089"
