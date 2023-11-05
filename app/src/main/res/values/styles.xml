@@ -529,7 +529,7 @@
     <style name="style_timer_animation">
         <item name="android:windowEnterAnimation">@anim/animate_timer_show</item>
         <!--设置了没效果-->
-        <!--<item name="android:windowExitAnimation">@anim/animate_short_input_out</item>-->
+        <item name="android:windowExitAnimation">@anim/animate_timer_close</item>
     </style>
 
     <style name="style_header_dialog_animation">

@@ -32,24 +32,32 @@ public class TimerPopuWindow(
         height = (screenHeight * 0.43).toInt()
         Log.e("1mean", "width= $width , height= $height")
 
+        this.isFocusable = true
+
         val view = activity.layoutInflater.inflate(R.layout.window_timer, null)
         contentView = view
 
         setOnDismissListener {
             activity.window.run {
-                attributes.alpha = 1.0f
-                addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+//                val lp = attributes
+//                lp.alpha = 1.0f
+////                clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+////                attributes = lp
+//                attributes.alpha = 1.0f
+//                //addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+//                clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+                setBgAlpha(1.0f)
             }
         }
     }
 
     fun setBackDark(): TimerPopuWindow {
         //设置背景变暗
-        activity.window.run {
-            isFocusable = true
-            attributes.alpha = 0.5f //代表透明程度，范围为0 - 1.0f
-            addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-        }
+//        activity.window.run {
+//            attributes.alpha = 0.5f //代表透明程度，范围为0 - 1.0f
+//            addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+//        }
+        setBgAlpha(0.5f)
         return this
     }
 
@@ -71,5 +79,22 @@ public class TimerPopuWindow(
 //            }
 //        }
         super.dismiss()
+    }
+
+    /**
+     * 设置背景透明度
+     *
+     * @param bgAlpha 透明度值
+     */
+    fun setBgAlpha(bgAlpha: Float) {
+        val attributes = this.activity.window.attributes
+        attributes.alpha = bgAlpha
+        //alpha在0.0f和1.0f之间，1.0f完全不暗，0.0f全暗
+        if (bgAlpha == 1.0f) {
+            this.activity.window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        } else {
+            this.activity.window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        }
+        this.activity.window.attributes = attributes
     }
 }
