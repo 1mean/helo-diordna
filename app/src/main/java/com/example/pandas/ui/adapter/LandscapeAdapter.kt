@@ -163,19 +163,11 @@ public class LandscapeAdapter(private val lifecycle: Lifecycle, private var data
                 name.text = it.userName
             }
             layoutMore.setOnClickListener {
-                val dialog =
-                    ShareBottomSheetDialog(itemView.context, object : ItemClickListener<String> {
-                        override fun onItemClick(t: String) {
-                        }
-                    })
+                val dialog = ShareBottomSheetDialog(itemView.context) {}
                 dialog.addData().onShow()
             }
             itemView.setOnLongClickListener {
-                val dialog =
-                    ShareBottomSheetDialog(itemView.context, object : ItemClickListener<String> {
-                        override fun onItemClick(t: String) {
-                        }
-                    })
+                val dialog = ShareBottomSheetDialog(itemView.context) {}
                 dialog.addData().onShow()
                 VibrateUtils.vibrate(2000)
                 true

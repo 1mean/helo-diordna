@@ -436,11 +436,7 @@ public class VideoPagerAdapter(
 
             shareItem.setOnClickListener {
 
-                val dialog =
-                    ShareBottomSheetDialog(context, object : ItemClickListener<String> {
-                        override fun onItemClick(t: String) {
-                        }
-                    })
+                val dialog = ShareBottomSheetDialog(context) {}
                 dialog.addData().onShow()
             }
 

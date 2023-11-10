@@ -13,6 +13,7 @@ import com.example.pandas.biz.viewmodel.LocalCacheViewModel
 import com.example.pandas.databinding.ActivityListBinding
 import com.example.pandas.ui.adapter.ListAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration2
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
@@ -74,11 +75,15 @@ public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBindin
         )
 
         appViewModel.appColorType.value?.let {
-            binding.refreshList.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.refreshList.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.refreshList.setColorSchemeResources(viewColors[it])
+            }
             StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             binding.viewListTop.setBackgroundResource(viewColors[it])
             binding.txtPandaTitle.setTextColor(ContextCompat.getColor(this, viewColors[0]))
-            binding.ibnPandaBack.setImageResource(R.mipmap.img_topview_back_white)
+            binding.ibnPandaBack.setImageResource(R.mipmap.img_setting_top_back_white)
             binding.btnPandaSearch.setImageResource(R.mipmap.img_topview_search_white)
         }
 

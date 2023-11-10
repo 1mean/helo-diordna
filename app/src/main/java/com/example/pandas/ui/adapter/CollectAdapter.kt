@@ -23,7 +23,7 @@ import com.example.pandas.ui.view.dialog.DeleteBottomSheetDialog
  */
 public class CollectAdapter(
     private val list: MutableList<Group> = mutableListOf(),
-    private val listener: CollectListener
+    private val deleteGroup: (groupCode: Int) -> Unit
 ) :
     BaseCommonAdapter<Group>(list) {
 
@@ -76,7 +76,7 @@ public class CollectAdapter(
                     override fun onItemClick(t: Int) {
                         if (t == 0) {
                             mPos = position
-                            listener.deleteGroup(data.groupCode)
+                            deleteGroup(data.groupCode)
                         }
                     }
                 })
@@ -87,13 +87,9 @@ public class CollectAdapter(
         holder.itemView.setOnClickListener {
 
             val intent = Intent(context, CollectListActivity::class.java).apply {
-                putExtra("group",data)
+                putExtra("group", data)
             }
             context.startActivity(intent)
         }
-    }
-
-    interface CollectListener {
-        fun deleteGroup(groupCode: Int)
     }
 }

@@ -18,10 +18,7 @@ import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.activity.LoginActivity
 import com.example.pandas.ui.adapter.FallsShortVideoAdapter
 import com.example.pandas.ui.adapter.decoration.FallsItemDecoration
-import com.example.pandas.ui.ext.init
-import com.example.pandas.ui.ext.setRefreshColor
-import com.example.pandas.ui.ext.startAnyActivity
-import com.example.pandas.ui.ext.viewColors
+import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
@@ -91,7 +88,11 @@ public class ShortAttentionFragment() :
         })
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
         }
 
         binding.txtLogin.setOnClickListener {
@@ -151,7 +152,11 @@ public class ShortAttentionFragment() :
         }
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
         }
     }
 

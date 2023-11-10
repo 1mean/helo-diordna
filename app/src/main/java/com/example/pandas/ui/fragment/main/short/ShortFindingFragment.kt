@@ -15,6 +15,7 @@ import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.FallsShortVideoAdapter
 import com.example.pandas.ui.adapter.decoration.FallsItemDecoration
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
@@ -73,14 +74,22 @@ public class ShortFindingFragment() :
             }
         })
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
         }
     }
 
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
         }
 
         mViewModel.fallsShortVideos.observe(viewLifecycleOwner) {

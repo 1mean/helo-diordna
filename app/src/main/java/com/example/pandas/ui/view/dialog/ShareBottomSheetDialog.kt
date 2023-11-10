@@ -22,15 +22,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
  */
 public class ShareBottomSheetDialog(
     context: Context,
-    private val listener: ItemClickListener<String>
+    private val onItemClick: (t: String) -> Unit
 ) :
     BottomSheetDialog(context) {
 
     private var _binding: DialogShareBinding? = null
     val binding: DialogShareBinding get() = _binding!!
 
-    private val topAdapter: ShareDialogAdapter by lazy { ShareDialogAdapter(listener = listener) }
-    private val bomAdapter: ShareDialogAdapter by lazy { ShareDialogAdapter(listener = listener) }
+    private val topAdapter: ShareDialogAdapter by lazy { ShareDialogAdapter(onItemClick = onItemClick) }
+    private val bomAdapter: ShareDialogAdapter by lazy { ShareDialogAdapter(onItemClick = onItemClick) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

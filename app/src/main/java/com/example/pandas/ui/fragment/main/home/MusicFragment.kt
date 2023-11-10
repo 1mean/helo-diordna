@@ -79,7 +79,6 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
         }
 
         binding.swipMusic.run {
-            setColorSchemeResources(viewColors[APP_COLOR_STATUS])
             setOnRefreshListener {
                 mViewModel.getMusicTopData()
             }
@@ -131,11 +130,13 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
             val color = ContextCompat.getColor(mActivity, lightViewColors[APP_COLOR_STATUS])
             binding.tabMusic.setSelectedTabIndicatorColor(color)
             binding.imgMusicNotice.setImageResource(imgRes[APP_COLOR_STATUS])
+            binding.swipMusic.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
         } else {
             val color = ContextCompat.getColor(mActivity, lightViewColors[status])
             binding.tabMusic.setSelectedTabIndicatorColor(color)
             binding.swipMusic.setColorSchemeResources(viewColors[status])
             binding.imgMusicNotice.setImageResource(imgRes[status])
+            binding.swipMusic.setColorSchemeResources(viewColors[status])
         }
     }
 
@@ -148,10 +149,17 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipMusic.setColorSchemeResources(viewColors[it])
-            val color = ContextCompat.getColor(mActivity, lightViewColors[it])
-            binding.tabMusic.setSelectedTabIndicatorColor(color)
-            binding.imgMusicNotice.setImageResource(imgRes[it])
+            if (it == 0) {
+                binding.swipMusic.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+                val color = ContextCompat.getColor(mActivity, lightViewColors[APP_COLOR_STATUS])
+                binding.tabMusic.setSelectedTabIndicatorColor(color)
+                binding.imgMusicNotice.setImageResource(imgRes[APP_COLOR_STATUS])
+            } else {
+                binding.swipMusic.setColorSchemeResources(viewColors[it])
+                val color = ContextCompat.getColor(mActivity, lightViewColors[it])
+                binding.tabMusic.setSelectedTabIndicatorColor(color)
+                binding.imgMusicNotice.setImageResource(imgRes[it])
+            }
         }
 
         mViewModel.musicData.observe(viewLifecycleOwner) {

@@ -16,10 +16,7 @@ import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.PandasAdapter
 import com.example.pandas.ui.adapter.decoration.MusicFragmentItemDecoration
 import com.example.pandas.ui.adapter.decoration.PandaItemDecoration
-import com.example.pandas.ui.ext.addItemAnimation
-import com.example.pandas.ui.ext.init
-import com.example.pandas.ui.ext.setRefreshColor
-import com.example.pandas.ui.ext.viewColors
+import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
@@ -52,7 +49,11 @@ public class MusicFragment2 : BaseFragment<HomePageViewModel, LayoutSwipRefreshB
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
         }
 
     }
@@ -66,7 +67,11 @@ public class MusicFragment2 : BaseFragment<HomePageViewModel, LayoutSwipRefreshB
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
         }
 
         mViewModel.musicData2.observe(viewLifecycleOwner) {

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
@@ -14,6 +15,7 @@ import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.DialogAttentionCancelBinding
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.initNoFooter
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
@@ -65,7 +67,18 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+                mAdapter.setVipColor(
+                    ContextCompat.getColor(
+                        mActivity,
+                        viewColors[APP_COLOR_STATUS]
+                    )
+                )
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+                mAdapter.setVipColor(ContextCompat.getColor(mActivity, viewColors[it]))
+            }
         }
     }
 

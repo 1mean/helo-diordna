@@ -19,7 +19,7 @@
                 android:id="@+id/ibn_top_finish"
                 android:layout_width="56dp"
                 android:layout_height="match_parent"
-                android:src="@mipmap/img_top_leave"
+                android:src="@mipmap/img_setting_top_back_black33"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"

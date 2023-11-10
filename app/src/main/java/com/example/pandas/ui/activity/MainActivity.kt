@@ -1,15 +1,13 @@
 package com.example.pandas.ui.activity
 
 import android.Manifest
-import android.content.Context
-import android.content.IntentFilter
+import android.app.Service
+import android.content.*
 import android.graphics.Rect
-import android.os.Build
 import android.os.Bundle
+import android.os.IBinder
 import android.view.KeyEvent
 import android.view.MotionEvent
-import android.view.WindowInsets
-import android.view.WindowInsetsController
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
@@ -18,7 +16,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation.findNavController
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.base.viewmodel.BaseViewModel
@@ -26,6 +23,8 @@ import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.databinding.ActivityMainBinding
 import com.example.pandas.ui.broadcast.TimingBroadCast
 import com.example.pandas.ui.ext.viewColors
+import com.example.pandas.ui.service.AudioPlayService
+import com.example.pandas.ui.service.MainService
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
@@ -35,6 +34,7 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
     private var exitTime = 0L
 
     private var broadCast: TimingBroadCast? = null
+    var mService: MainService? = null
 
     private val permissions = arrayOf(
         Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -108,8 +108,24 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
             }
         }
 
+        val intent = Intent(this, MainService::class.java)
+        bindService(intent, conn, Service.BIND_AUTO_CREATE)
+
         //appViewModel.downLoadVideoCovers(this,this)
         //appViewModel.downLoadUserCovers(this,this)
+    }
+
+    private val conn = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName, service: IBinder) {
+
+            val binder = service as MainService.LocalBinder
+            mService = binder.getService()
+
+        }
+
+        override fun onServiceDisconnected(name: ComponentName?) {
+            mService = null
+        }
     }
 
     override fun createObserver() {

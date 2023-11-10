@@ -11,6 +11,7 @@ import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MoreDataViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.VideoListAdapter
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
@@ -47,7 +48,11 @@ public class VideoListFragment : BaseFragment<MoreDataViewModel, LayoutSwipRefre
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
         }
     }
 

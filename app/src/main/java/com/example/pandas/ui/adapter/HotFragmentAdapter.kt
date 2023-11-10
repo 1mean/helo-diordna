@@ -152,22 +152,14 @@ public class HotFragmentAdapter(val list: MutableList<PetVideo>) : Adapter<ViewH
             }
 
             itemView.setOnLongClickListener {
-                val dialog =
-                    ShareBottomSheetDialog(context, object : ItemClickListener<String> {
-                        override fun onItemClick(t: String) {
-                        }
-                    })
+                val dialog = ShareBottomSheetDialog(context) {}
                 dialog.addData().onShow()
                 VibrateUtils.vibrate(2000)
                 true
             }
 
             more.setOnClickListener {
-                val dialog =
-                    ShareBottomSheetDialog(context, object : ItemClickListener<String> {
-                        override fun onItemClick(t: String) {
-                        }
-                    })
+                val dialog = ShareBottomSheetDialog(context) {}
                 dialog.addData().onShow()
             }
         }

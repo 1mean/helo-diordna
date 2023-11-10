@@ -23,7 +23,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.example.pandas.R
 import jp.wasabeef.glide.transformations.BlurTransformation
 
-private fun getResoureId(): Int = if (AppInstance.isNightMode) {
+private fun getResoureId(): Int = if (AppInstance.instance.isNightMode) {
     R.color.color_bg_image_holder_night
 } else {
     R.color.color_bg_image_holder

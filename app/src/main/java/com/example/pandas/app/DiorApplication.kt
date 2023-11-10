@@ -57,7 +57,7 @@ class DiorApplication : Application(), ViewModelStoreOwner {
         val nightMode = DarkModeUtils.getNightModel(this)
         if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
             DarkModeUtils.applyNightMode(this)
-            AppInstance.isNightMode = true
+            AppInstance.instance.isNightMode = true
         }
         //initdata()
     }

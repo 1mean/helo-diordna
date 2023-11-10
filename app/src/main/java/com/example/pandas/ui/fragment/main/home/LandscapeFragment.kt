@@ -12,6 +12,7 @@ import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.LandscapeAdapter
 import com.example.pandas.ui.adapter.decoration.LandScapeItemDecoration
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
@@ -52,14 +53,22 @@ public class LandscapeFragment :
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
         }
     }
 
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
         }
 
         mViewModel.landScapeDataWrapper.observe(viewLifecycleOwner) {

@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
+import com.example.pandas.base.lifecycle.LifecycleHandler
 import com.example.pandas.biz.interaction.CommentWindowListener
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.manager.SoftInputManager
@@ -70,7 +71,7 @@ public class ShortVideoActivity2 :
     var popupView: ShortRightPopuWindow? = null
     var lastClickTime: Long = 0
 
-    private val mHandler: Handler = Handler(Looper.getMainLooper())
+    private val mHandler = LifecycleHandler(Looper.getMainLooper(),this)
 
     override fun initStatusView() {
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)

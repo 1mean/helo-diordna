@@ -16,6 +16,7 @@ import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
+import com.example.pandas.base.lifecycle.LifecycleHandler
 import com.example.pandas.biz.ext.getUserHeader
 import com.example.pandas.biz.ext.loadCircleBitmap
 import com.example.pandas.biz.ext.loadCircleImage
@@ -52,7 +53,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
     private val sexs
         get() = mapOf<Int, String>(0 to "女", 1 to "男", 2 to "保密")
 
-    private val mHandler = Handler(Looper.getMainLooper())
+    private val mHandler = LifecycleHandler(Looper.getMainLooper(),this)
 
     private val albumLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {

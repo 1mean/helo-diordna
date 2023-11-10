@@ -16,7 +16,7 @@ import com.example.pandas.biz.interaction.ItemClickListener
  */
 public class ShareDialogAdapter(
     list: MutableList<ShareItem> = mutableListOf(),
-    private val listener: ItemClickListener<String>
+    private val onItemClick: (t: String) -> Unit
 ) :
     BaseCommonAdapter<ShareItem>(list) {
 
@@ -37,7 +37,7 @@ public class ShareDialogAdapter(
         }
 
         holder.itemView.setOnClickListener {
-            listener.onItemClick(data.name)
+            onItemClick(data.name)
         }
     }
 

@@ -131,7 +131,7 @@
                         android:id="@+id/group_mine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:constraint_referenced_ids="txt_mine_name,img_mine_sex,clayout_self,txt_coins" />
+                        app:constraint_referenced_ids="txt_mine_name,img_mine_sex,clayout_self,txt_mine_integral" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_mine_name"
@@ -151,6 +151,20 @@
                         app:layout_constraintTop_toBottomOf="@id/txt_mine_name"
                         app:layout_constraintLeft_toLeftOf="@id/txt_mine_name"
                         android:layout_marginTop="10dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_mine_integral"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@id/img_mine_sex"
+                        app:layout_constraintBottom_toBottomOf="@id/img_mine_sex"
+                        app:layout_constraintLeft_toRightOf="@id/img_mine_sex"
+                        android:layout_marginStart="5dp"
+                        android:includeFontPadding="false"
+                        android:textColor="#9b9fa6"
+                        android:textSize="11sp"
+                        android:text="累计积分：12"
+                        />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/img_mine_level"

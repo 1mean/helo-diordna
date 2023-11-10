@@ -51,7 +51,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
         )
     }
 
-    private val shareDialog by lazy { ShareBottomSheetDialog(mActivity, shareItemListener) }
+    private val shareDialog by lazy { ShareBottomSheetDialog(mActivity,{}) }
 
 
     override fun initView(savedInstanceState: Bundle?) {

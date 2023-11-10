@@ -19,7 +19,7 @@
                 android:layout_height="match_parent"
                 app:layout_constraintLeft_toLeftOf="@id/view_list_top"
                 android:background="@null"
-                android:src="@mipmap/img_topview_back" />
+                android:src="@mipmap/img_setting_top_back_black33" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_panda_title"

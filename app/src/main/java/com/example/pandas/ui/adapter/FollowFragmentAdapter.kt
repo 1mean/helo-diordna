@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
+import com.example.pandas.app.appViewModel
 import com.example.pandas.base.adapter.BaseCommonAdapter
 import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCircleImage
@@ -23,7 +24,12 @@ public class FollowFragmentAdapter(
 ) :
     BaseCommonAdapter<User>(list) {
 
+    private var vipColor: Int? = null
     override fun getLayoutId(): Int = R.layout.adapter_follow
+
+    fun setVipColor(vipColor: Int) {
+        this.vipColor = vipColor
+    }
 
     fun updateItem(position: Int, hd: RecyclerView.ViewHolder?) {
         val data = list[position]
@@ -58,7 +64,11 @@ public class FollowFragmentAdapter(
         desc.text = data.signature
 
         if (data.vip == 1) {
-            name.setTextColor(ContextCompat.getColor(context, R.color.color_tab_text_selected))
+            if (vipColor != null) {
+                name.setTextColor(vipColor!!)
+            } else {
+                name.setTextColor(ContextCompat.getColor(context, R.color.color_tab_text_selected))
+            }
         } else {
             name.setTextColor(ContextCompat.getColor(context, R.color.color_txt_follow_name))
         }

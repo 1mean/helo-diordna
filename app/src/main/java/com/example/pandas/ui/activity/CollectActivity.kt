@@ -13,6 +13,7 @@ import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityCollectBinding
 import com.example.pandas.ui.adapter.CollectAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.launcherActivity
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
@@ -27,14 +28,32 @@ import com.lxj.xpopup.impl.LoadingPopupView
  * @date: 8/13/22 11:18 上午
  * @version: v1.0
  */
-public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBinding>(),
-    CollectAdapter.CollectListener {
-
-    private val mAdapter: CollectAdapter by lazy { CollectAdapter(listener = this) }
+public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBinding>(){
 
     private var loadingPopup: LoadingPopupView? = null
 
-    private var position: Int = 0
+    private val mAdapter: CollectAdapter by lazy { CollectAdapter(deleteGroup = {
+        val popWindow = DeletePopuWindow(this, object : OnSureListener {
+            override fun onSure() {
+                super.onCancel()
+                if (loadingPopup == null) {
+                    loadingPopup = XPopup.Builder(this@CollectActivity).dismissOnBackPressed(true)
+                        .isLightNavigationBar(true)
+                        .isViewMode(false)
+                        .asLoading(
+                            null,
+                            R.layout.layout_waiting,
+                            LoadingPopupView.Style.ProgressBar
+                        )
+                    loadingPopup!!.show()
+                } else {
+                    loadingPopup!!.show()
+                }
+                mViewModel.removeGroup(it)
+            }
+        })
+        popWindow.setTitle("确定要删除吗？").setBackDark().onShow(binding.rvCollect)
+    }) }
 
     private val requestLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -70,7 +89,11 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
 
         appViewModel.appColorType.value?.let {
 
-            binding.refreshCollect.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.refreshCollect.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.refreshCollect.setColorSchemeResources(viewColors[it])
+            }
             binding.clayoutCollectTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
                 binding.ibnCollectBack.setImageResource(R.mipmap.img_setting_top_back_black33)
@@ -113,29 +136,5 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
                 mAdapter.deleteItem()
             }
         }
-    }
-
-    override fun deleteGroup(groupCode: Int) {
-
-        val popWindow = DeletePopuWindow(this, object : OnSureListener {
-            override fun onSure() {
-                super.onCancel()
-                if (loadingPopup == null) {
-                    loadingPopup = XPopup.Builder(this@CollectActivity).dismissOnBackPressed(true)
-                        .isLightNavigationBar(true)
-                        .isViewMode(false)
-                        .asLoading(
-                            null,
-                            R.layout.layout_waiting,
-                            LoadingPopupView.Style.ProgressBar
-                        )
-                    loadingPopup!!.show()
-                } else {
-                    loadingPopup!!.show()
-                }
-                mViewModel.removeGroup(groupCode)
-            }
-        })
-        popWindow.setTitle("确定要删除吗？").setBackDark().onShow(binding.rvCollect)
     }
 }

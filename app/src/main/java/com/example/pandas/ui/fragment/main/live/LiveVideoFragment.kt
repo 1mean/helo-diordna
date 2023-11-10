@@ -16,6 +16,7 @@ import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.fragment.BaseCMFragment
+import com.example.pandas.base.lifecycle.LifecycleHandler
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
 import com.example.pandas.biz.interaction.ExoPlayerListener
@@ -27,10 +28,7 @@ import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.activity.VideoPlayingActivity
 import com.example.pandas.ui.adapter.LiveVideoAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
-import com.example.pandas.ui.ext.init
-import com.example.pandas.ui.ext.setRefreshColor
-import com.example.pandas.ui.ext.toastTopShow
-import com.example.pandas.ui.ext.viewColors
+import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.ScreenUtil
 import com.google.android.exoplayer2.Player.REPEAT_MODE_ONE
@@ -58,7 +56,9 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
     override fun initView(savedInstanceState: Bundle?) {
 
         val status = appViewModel.appColorType.value
-        if (status != null) {
+        if (status == null || status == 0) {
+            binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+        } else {
             binding.swipLayout.setColorSchemeResources(viewColors[status])
         }
         mAdapter = LiveVideoAdapter(status, listener = this)
@@ -109,7 +109,11 @@ public class LiveVideoFragment : BaseCMFragment<LiveViewModel, LayoutSwipRefresh
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
             mAdapter?.updateStatus(it)
         }
 

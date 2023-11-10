@@ -17,7 +17,7 @@
                 android:layout_height="match_parent"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_play_top"
                 android:background="@null"
-                android:src="@mipmap/img_topview_back" />
+                android:src="@mipmap/img_setting_top_back_black33" />
 
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_ranking"
@@ -34,7 +34,6 @@
                 app:tabTextAppearance="@style/RankingTabLayoutTextStyle"
                 app:tabIndicator="@drawable/shape_tab_ranking"
                 android:paddingBottom="3dp"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.viewpager2.widget.ViewPager2

@@ -22,7 +22,7 @@ import com.example.pandas.utils.TimeUtils
  */
 public class CutePetChildAdapter(
     private val list: MutableList<PetVideo>,
-    private val listener: OnLikeClickListener
+    private val likeListener: (videoData: VideoData) -> Unit,
 ) :
     BaseCommonAdapter<PetVideo>(list) {
 
@@ -72,14 +72,14 @@ public class CutePetChildAdapter(
                 val count = videoData.likes - 1
                 counts.text = count.toString()
                 videoData.likes = count
-                listener.likeClick(videoData)
+                likeListener(videoData)
             } else {
                 likeView.setImageResource(R.mipmap.img_pet_liked)
                 videoData.like = true
                 val count = videoData.likes + 1
                 counts.text = count.toString()
                 videoData.likes = count
-                listener.likeClick(videoData)
+                likeListener(videoData)
             }
         }
 
@@ -96,9 +96,5 @@ public class CutePetChildAdapter(
         holder.itemView.setOnClickListener {
             startVideoPlayingActivity(context, data)
         }
-    }
-
-    interface OnLikeClickListener {
-        fun likeClick(videoData: VideoData)
     }
 }

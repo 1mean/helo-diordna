@@ -292,11 +292,7 @@ public class LiveVideoAdapter(
 
             share.setOnClickListener {
                 if (shareDialog == null) {
-                    shareDialog =
-                        ShareBottomSheetDialog(context, object : ItemClickListener<String> {
-                            override fun onItemClick(t: String) {
-                            }
-                        })
+                    shareDialog = ShareBottomSheetDialog(context) {}
                 }
                 shareDialog!!.addData().onShow()
             }
@@ -367,13 +363,7 @@ public class LiveVideoAdapter(
                             }
                             2 -> {
                                 if (dialog == null) {
-                                    dialog =
-                                        ShareBottomSheetDialog(
-                                            context,
-                                            object : ItemClickListener<String> {
-                                                override fun onItemClick(t: String) {
-                                                }
-                                            })
+                                    dialog = ShareBottomSheetDialog(context) {}
                                     dialog!!.addData()
                                 }
                                 dialog!!.onShow()

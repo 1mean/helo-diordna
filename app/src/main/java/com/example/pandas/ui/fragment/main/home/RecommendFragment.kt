@@ -108,7 +108,11 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
         }
     }
 
@@ -159,7 +163,11 @@ public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRef
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
         }
 
         mViewModel.recommendDataWrapper.observe(viewLifecycleOwner) {

@@ -40,6 +40,17 @@ public class AppViewModel : ViewModel() {
 
     val loginStatus by lazy { UnPeekLiveData<Int>() }
 
+    //安卓5.1后，规定AlarmManager时间间隔不得小于60秒，少于60秒的任务，使用timer，但是AlarmManager的稳定性不行，长时间使用
+    //耗电和息屏放置会出现不准时，差距会有几分钟
+    //Alarm 的方法 set() 在SDK_INT 19以前是精确的闹钟。19以后为了节能省电（减少系统唤醒和电池使用）
+    //使用Alarm.set()和Alarm.setRepeating()已经不能保证精确性
+    //19以后需要精确的闹钟就需要用到Alarm方法setWindow()和setExact()这两个方法了
+    val timer by lazy { UnPeekLiveData<Int>() }
+
+    fun startTimer(){
+
+
+    }
 
     /**
      * 下载项目所有的封面图片到本地，防止远程项目被删除

@@ -29,7 +29,6 @@ public class CommentReplySheetDialog(
     private var _binding: DialogVerticalInputBinding? = null
     val binding: DialogVerticalInputBinding get() = _binding!!
 
-    private val mHandler: Handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

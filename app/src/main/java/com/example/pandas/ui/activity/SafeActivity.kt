@@ -26,7 +26,6 @@ import com.example.pandas.utils.StatusBarUtils
 public class SafeActivity : BaseActivity<MainViewModel, ActivitySafeBinding>() {
 
     private val desc = "还有其他问题? 联系客服"
-    private val mHandler = Handler(Looper.getMainLooper())
 
     override fun initView(savedInstanceState: Bundle?) {
 

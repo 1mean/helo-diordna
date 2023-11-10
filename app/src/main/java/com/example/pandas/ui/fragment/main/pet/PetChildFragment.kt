@@ -21,10 +21,13 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @version: v1.0
  */
 public class PetChildFragment() :
-    BaseLazyFragment<CutePetViewModel, LayoutLoadingRefreshBinding>(),
-    CutePetChildAdapter.OnLikeClickListener {
+    BaseLazyFragment<CutePetViewModel, LayoutLoadingRefreshBinding>(){
 
-    private val mAdapter: CutePetChildAdapter by lazy { CutePetChildAdapter(mutableListOf(), this) }
+    private val mAdapter: CutePetChildAdapter by lazy {
+        CutePetChildAdapter(mutableListOf()) {
+            mViewModel.addOrUpdateVideoData(it)
+        }
+    }
 
     private var type = 0
 
@@ -85,9 +88,5 @@ public class PetChildFragment() :
             fragment.arguments = args
             return fragment
         }
-    }
-
-    override fun likeClick(videoData: VideoData) {
-        mViewModel.addOrUpdateVideoData(videoData)
     }
 }

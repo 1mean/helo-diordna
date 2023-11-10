@@ -472,7 +472,8 @@
 
     <color name="color_bg_tpink">#E3BAC8</color><!--藤粉色-->
     <color name="color_bg_coffee">#F3CDB0</color><!--奶咖色-->
-    <color name="color_bg_orange">#EA922D</color><!--蜜橙色-->
+    <color name="color_bg_orange">#EA922D</color>
+    <color name="color_timer_time">#6e7075</color><!--蜜橙色-->
 
 
 </resources>

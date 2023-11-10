@@ -29,15 +29,9 @@ import com.example.pandas.biz.ext.loadCircleBitmap
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentSetting2Binding
-import com.example.pandas.databinding.FragmentSettingBinding
 import com.example.pandas.ui.activity.*
-import com.example.pandas.ui.ext.startAnyActivity
-import com.example.pandas.ui.ext.startToActivity
-import com.example.pandas.ui.ext.toastTopShow
-import com.example.pandas.ui.ext.viewColors
-import com.example.pandas.ui.view.dialog.TimingBottomSheetDialog
+import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.popuwindow.TimerDialogFragment
-import com.example.pandas.ui.view.popuwindow.TimerPopuWindow
 import com.example.pandas.utils.*
 import com.example.pandas.utils.FileUtils
 import com.lxj.xpopup.XPopup
@@ -58,6 +52,7 @@ import java.io.FileOutputStream
  */
 public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>() {
 
+    private val tabTitles = arrayListOf("我的")
     private var headerDialog: HeaderDialog? = null
     private var tempCameraPicName: String = ""
     private var loginStatus: Int = 0
@@ -197,11 +192,11 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
                 if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
                     DarkModeUtils.applyDayMode(mActivity)
                     StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
-                    AppInstance.isNightMode = true
+                    AppInstance.instance.isNightMode = true
                 } else {
                     DarkModeUtils.applyNightMode(mActivity)
                     StatusBarUtils.updataStatus(mActivity, true, true, R.color.color_white_lucency)
-                    AppInstance.isNightMode = false
+                    AppInstance.instance.isNightMode = false
                 }
             } else {
                 toastTopShow(mActivity, "当前不支持暗黑模式设置～")

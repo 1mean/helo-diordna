@@ -42,7 +42,7 @@ public class RankingActivity : BaseActivity<RankViewModel, ActivityRankingBindin
         if (status == null || status == 0) {
             StatusBarUtils.setStatusBarMode(this, true, R.color.color_white_lucency)
             binding.clayoutPlayTop.setBackgroundResource(R.color.white)
-            binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back)
+            binding.ibnPlayBack.setImageResource(R.mipmap.img_setting_top_back_black33)
             binding.tabRanking.setTabTextColors(
                 ContextCompat.getColor(this, R.color.color_tablayout_unselect_panda),
                 ContextCompat.getColor(this, viewColors[APP_COLOR_STATUS])
@@ -53,7 +53,7 @@ public class RankingActivity : BaseActivity<RankViewModel, ActivityRankingBindin
         } else {
             StatusBarUtils.setStatusBarMode(this, false, viewColors[status])
             binding.clayoutPlayTop.setBackgroundResource(viewColors[status])
-            binding.ibnPlayBack.setImageResource(R.mipmap.img_topview_back_white)
+            binding.ibnPlayBack.setImageResource(R.mipmap.img_setting_top_back_white)
             binding.tabRanking.setTabTextColors(
                 ContextCompat.getColor(this, R.color.color_vertical_played),
                 ContextCompat.getColor(this, R.color.white)

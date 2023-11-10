@@ -15,6 +15,7 @@ import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.base.activity.BaseActivity
+import com.example.pandas.base.lifecycle.LifecycleHandler
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityHistoryBinding
 import com.example.pandas.ui.adapter.HistoryAdapter
@@ -37,7 +38,7 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
     private var selectAll: Boolean = false
     private var popWindow: PopupWindow? = null
 
-    private val mHandler: Handler = Handler(Looper.getMainLooper())
+    private val mHandler = LifecycleHandler(Looper.getMainLooper(),this)
     private val mAdapter: HistoryAdapter by lazy { HistoryAdapter(listener = this) }
 
     override fun initView(savedInstanceState: Bundle?) {

@@ -64,6 +64,11 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="MineTabLayoutTextStyle">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
     <style name="PetTabLayoutTextStyle">
         <item name="android:textSize">13sp</item>
     </style>
@@ -640,8 +645,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:textSize">13sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/color_txt_mine_fans</item>
     </style>
 

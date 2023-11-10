@@ -210,4 +210,71 @@ object TimeUtils {
         return descriptiveText
     }
 
+    /**
+     * parseTime是System.currentTime
+     */
+    fun parseTimer(parseTime: Long): String? {
+
+        val spaceMill = parseTime - System.currentTimeMillis()
+        if (spaceMill < 0) {
+            return null
+        }
+        val spaceSec = spaceMill / 1000
+        return if (spaceSec < 60) {// xx秒
+            "$spaceSec"
+        } else if (spaceSec < 60 * 60) {// xx分钟xx秒
+            "${spaceSec / 60}:${spaceSec % 60}"
+        } else {
+            "${spaceSec / 60 / 60}:${spaceSec % (60 * 60) / 60}:${spaceSec % (60 * 60) % 60}"
+        }
+    }
+
+    /**
+     * 将秒解析成时间显示
+     */
+    fun parseSeconds(second: Long): String {
+        val builder = StringBuilder()
+        if (second < 10) {
+            builder.append("0$second")
+        } else if (second < 60) {//只有秒
+            builder.append("$second")
+        } else if (second < 60 * 60) {//有分钟
+            val minute = second / 60
+            val sec = second % 60
+            if (minute < 10) {
+                if (sec < 10) {
+                    builder.append("0$minute:0$sec")
+                } else {
+                    builder.append("0$minute:$sec")
+                }
+            } else {
+                if (sec < 10) {
+                    builder.append("$minute:0$sec")
+
+                } else {
+                    builder.append("$minute:$sec")
+                }
+            }
+        } else {
+            val hour = second / 60 / 60
+            if (hour < 10) {
+                builder.append("0$hour")
+            } else {
+                builder.append("$hour")
+            }
+            val minute = (second % (60 * 60)) / 60
+            if (minute < 10) {
+                builder.append(":0$minute")
+            } else {
+                builder.append(":$minute")
+            }
+            val sec = (second % (60 * 60)) % 60
+            if (sec < 10) {
+                builder.append(":0$sec")
+            } else {
+                builder.append(":$sec")
+            }
+        }
+        return builder.toString()
+    }
 }

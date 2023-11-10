@@ -63,7 +63,7 @@ public class FollowAndFansActivity : BaseActivity<SelfViewModel, ActivityFollowB
         appViewModel.appColorType.value?.let {
             binding.layoutFollowTop.setBackgroundResource(viewColors[it])
             if (it == 0) {
-                binding.ibnTopFinish.setImageResource(R.mipmap.img_topview_back)
+                binding.ibnTopFinish.setImageResource(R.mipmap.img_setting_top_back_black33)
                 binding.txtTopName.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -77,7 +77,7 @@ public class FollowAndFansActivity : BaseActivity<SelfViewModel, ActivityFollowB
                     )
                 )
             } else {
-                binding.ibnTopFinish.setImageResource(R.mipmap.img_topview_back_white)
+                binding.ibnTopFinish.setImageResource(R.mipmap.img_setting_top_back_white)
                 binding.txtTopName.setTextColor(
                     ContextCompat.getColor(
                         this,

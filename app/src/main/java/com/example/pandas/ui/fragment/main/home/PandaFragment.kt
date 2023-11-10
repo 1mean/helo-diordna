@@ -11,6 +11,7 @@ import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.PandasAdapter
 import com.example.pandas.ui.adapter.decoration.PandaItemDecoration
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
@@ -51,7 +52,11 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefre
         }
 
         appViewModel.appColorType.value?.let {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
             pandasAdapter.updateStatue(it)
         }
     }
@@ -65,7 +70,11 @@ public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefre
     override fun createObserver() {
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
-            binding.swipLayout.setColorSchemeResources(viewColors[it])
+            if (it == 0) {
+                binding.swipLayout.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+            } else {
+                binding.swipLayout.setColorSchemeResources(viewColors[it])
+            }
             pandasAdapter.updateStatue(it)
         }
 

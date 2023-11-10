@@ -38,16 +38,19 @@
                 android:id="@+id/clayout_timer_time1"
                 android:layout_width="81dp"
                 android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_timer_time"
                 app:layout_constraintRight_toRightOf="@id/clayout_timer_time"
-                android:background="@drawable/shape_timer_normal"
+                android:background="@drawable/shape_timer_selected"
                 app:layout_constraintHorizontal_bias="0.1">
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_timer1_top"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="每隔"
-                    android:textColor="#6e7075"
+                    android:text="定时"
+                    android:textColor="@color/color_timer_time"
                     android:textSize="13sp"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_timer_time1"
                     app:layout_constraintRight_toRightOf="@id/clayout_timer_time1"
@@ -56,10 +59,11 @@
                     app:layout_constraintVertical_bias="0.15" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_timer1_bottom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="小时"
-                    android:textColor="#6e7075"
+                    android:text="分钟"
+                    android:textColor="@color/color_timer_time"
                     android:textSize="13sp"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_timer_time1"
                     app:layout_constraintRight_toRightOf="@id/clayout_timer_time1"
@@ -68,10 +72,11 @@
                     app:layout_constraintVertical_bias="0.85" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_timer1_mid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textColor="#6e7075"
+                    android:text="30"
+                    android:textColor="@color/color_timer_time"
                     android:textSize="17sp"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_timer_time1"
                     app:layout_constraintRight_toRightOf="@id/clayout_timer_time1"
@@ -83,15 +88,18 @@
                 android:id="@+id/clayout_timer_time2"
                 android:layout_width="81dp"
                 android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_timer_time"
                 app:layout_constraintRight_toRightOf="@id/clayout_timer_time"
                 android:background="@drawable/shape_timer_normal">
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_timer2_top"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="每隔"
-                    android:textColor="#6e7075"
+                    android:text="定时"
+                    android:textColor="@color/color_timer_time"
                     android:textSize="13sp"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_timer_time2"
                     app:layout_constraintRight_toRightOf="@id/clayout_timer_time2"
@@ -100,10 +108,11 @@
                     app:layout_constraintVertical_bias="0.15" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_timer2_bottom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="小时"
-                    android:textColor="#6e7075"
+                    android:textColor="@color/color_timer_time"
                     android:textSize="13sp"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_timer_time2"
                     app:layout_constraintRight_toRightOf="@id/clayout_timer_time2"
@@ -112,10 +121,11 @@
                     app:layout_constraintVertical_bias="0.85" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_timer2_mid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1"
-                    android:textColor="#6e7075"
+                    android:textColor="@color/color_timer_time"
                     android:textSize="17sp"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_timer_time2"
                     app:layout_constraintRight_toRightOf="@id/clayout_timer_time2"
@@ -127,16 +137,19 @@
                 android:id="@+id/clayout_timer_time3"
                 android:layout_width="81dp"
                 android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_timer_time"
                 app:layout_constraintRight_toRightOf="@id/clayout_timer_time"
                 android:background="@drawable/shape_timer_normal"
                 app:layout_constraintHorizontal_bias="0.9">
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_timer3_top"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="每隔"
-                    android:textColor="#6e7075"
+                    android:text="定时"
+                    android:textColor="@color/color_timer_time"
                     android:textSize="13sp"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_timer_time3"
                     app:layout_constraintRight_toRightOf="@id/clayout_timer_time3"
@@ -145,10 +158,11 @@
                     app:layout_constraintVertical_bias="0.15" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_timer3_bottom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="小时"
-                    android:textColor="#6e7075"
+                    android:textColor="@color/color_timer_time"
                     android:textSize="13sp"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_timer_time3"
                     app:layout_constraintRight_toRightOf="@id/clayout_timer_time3"
@@ -157,17 +171,30 @@
                     app:layout_constraintVertical_bias="0.85" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_timer3_mid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3"
-                    android:textColor="#6e7075"
-                    android:textSize="22sp"
+                    android:text="2"
+                    android:textColor="@color/color_timer_time"
+                    android:textSize="17sp"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_timer_time3"
                     app:layout_constraintRight_toRightOf="@id/clayout_timer_time3"
                     app:layout_constraintTop_toTopOf="@id/clayout_timer_time3"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_timer_time3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_timer_cancel"

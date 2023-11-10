@@ -21,8 +21,6 @@ import com.example.pandas.utils.StatusBarUtils
  */
 public class GroupChatActivity : BaseActivity<MainViewModel, ActivityGroupChatBinding>() {
 
-    private val mHandler = Handler(Looper.getMainLooper())
-
     override fun initView(savedInstanceState: Bundle?) {
 
         val type = appViewModel.appColorType.value ?: 0

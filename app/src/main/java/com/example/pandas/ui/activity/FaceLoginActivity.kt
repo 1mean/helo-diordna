@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
+import com.example.pandas.base.lifecycle.LifecycleHandler
 import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.biz.ext.loadCircleBitmap
 import com.example.pandas.biz.interaction.ItemClickListener
@@ -55,7 +56,7 @@ public class FaceLoginActivity : BaseActivity<BaseViewModel, ActivityFaceLoginBi
     private var mAbsoluteFaceSize = 0
     private var loadingPopup: LoadingPopupView? = null
 
-    private val mHandler = Handler(Looper.getMainLooper())
+    private val mHandler = LifecycleHandler(Looper.getMainLooper(),this)
 
     private val albumLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
