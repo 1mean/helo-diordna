@@ -16,9 +16,9 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.User
 import com.example.pandas.biz.interaction.AnimationListener
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.activity.AudioPlayActivity
 import com.example.pandas.ui.activity.ShortVideoActivity
 import com.example.pandas.ui.activity.UserInfoActivity

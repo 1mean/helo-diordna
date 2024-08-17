@@ -10,23 +10,22 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.android_sqlite.entity.PetVideo
+import com.android.base.utils.ScreenUtil
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseCMFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.manager.RecoPlayManager
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
-import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.RecommendAdapter
 import com.example.pandas.ui.adapter.decoration.RecommendDecoration
 import com.example.pandas.ui.adapter.decoration.RecommendDecoration2
 import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
-import com.example.pandas.utils.ScreenUtil
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.util.Util
 
@@ -39,7 +38,7 @@ import com.google.android.exoplayer2.util.Util
  * @date: 1/4/22 3:05 下午
  * @version: v1.0
  */
-public class RecommendFragment : BaseCMFragment<HomePageViewModel, LayoutSwipRefreshBinding>(),
+public class RecommendFragment : BaseFragment<HomePageViewModel, LayoutSwipRefreshBinding>(),
     RecommendAdapter.RecoViewListener, ExoPlayerListener {
 
     private var startActivity = false

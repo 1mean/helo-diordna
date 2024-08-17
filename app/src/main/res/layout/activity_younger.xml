@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/color_bg_home">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_setting_top"
@@ -47,7 +47,7 @@
             android:text="儿童/青少年模式"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/black_33"
+            android:textColor="@color/color_music_setting_notice"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
@@ -62,7 +62,7 @@
             app:layout_constraintTop_toBottomOf="@id/txt_activity_younger"
             android:layout_marginTop="30dp"
             android:textSize="14sp"
-            android:textColor="@color/black_33"
+            android:textColor="@color/color_music_setting_notice"
             android:lineSpacingExtra="4dp" />
 
     <androidx.appcompat.widget.AppCompatTextView

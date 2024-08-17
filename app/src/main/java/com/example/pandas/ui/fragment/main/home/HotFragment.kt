@@ -6,9 +6,8 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseLazyFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.ext.APP_COLOR_STATUS
@@ -23,7 +22,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @date: 4/20/22 11:20 下午
  * @version: v1.0
  */
-public class HotFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
+public class HotFragment : BaseFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
 
     private val mAdapter: HotFragmentAdapter by lazy { HotFragmentAdapter(mutableListOf()) }
 

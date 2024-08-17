@@ -1,12 +1,11 @@
 package com.example.pandas.ui.adapter
 
 import androidx.appcompat.widget.AppCompatImageView
+import com.android.android_sqlite.bean.BannerItem
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.bean.BannerItem
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadImage
-import com.example.pandas.ui.ext.startVideoPlayingActivity
 
 /**
  * @description: ImageAdapter

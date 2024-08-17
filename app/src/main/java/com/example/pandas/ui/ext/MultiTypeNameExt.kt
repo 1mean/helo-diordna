@@ -1,6 +1,6 @@
 package com.example.pandas.ui.ext;
 
-import com.example.pandas.sql.entity.PeriodType
+import com.android.android_sqlite.bean.PeriodType
 
 
 fun getHomePandaDesc(period:Int,title:String):String{

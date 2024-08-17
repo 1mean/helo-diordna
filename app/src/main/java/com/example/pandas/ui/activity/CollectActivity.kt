@@ -4,10 +4,9 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.interaction.OnSureListener
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityCollectBinding
@@ -66,6 +65,35 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+            appViewModel.appColorType.value?.let {
+                if (it == 0) {
+                    binding.refreshCollect.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+                } else {
+                    binding.refreshCollect.setColorSchemeResources(viewColors[it])
+                }
+                binding.clayoutCollectTop.setBackgroundResource(viewColors[it])
+                if (it == 0) {
+                    binding.ibnCollectBack.setImageResource(R.mipmap.img_setting_top_back_black33)
+                    binding.txtCollectTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                    binding.btnCollectAdd.setImageResource(R.mipmap.img_topview_add_black)
+                    StatusBarUtils.setStatusBarMode(this, true, viewColors[it])
+                } else {
+                    binding.ibnCollectBack.setImageResource(R.mipmap.img_setting_top_back_white)
+                    binding.txtCollectTitle.setTextColor(ContextCompat.getColor(this, R.color.white))
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                    binding.btnCollectAdd.setImageResource(R.mipmap.img_topview_add_white)
+                }
+            }
+        }
+
         val paddingTop = resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
         binding.rvCollect.run {
             adapter = mAdapter
@@ -85,31 +113,6 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
         }
         binding.btnCollectAdd.setOnClickListener {
             launcherActivity(requestLauncher, this, GroupCreateActivity::class.java)
-        }
-
-        appViewModel.appColorType.value?.let {
-
-            if (it == 0) {
-                binding.refreshCollect.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
-            } else {
-                binding.refreshCollect.setColorSchemeResources(viewColors[it])
-            }
-            binding.clayoutCollectTop.setBackgroundResource(viewColors[it])
-            if (it == 0) {
-                binding.ibnCollectBack.setImageResource(R.mipmap.img_setting_top_back_black33)
-                binding.txtCollectTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_title
-                    )
-                )
-                binding.btnCollectAdd.setImageResource(R.mipmap.img_topview_add_black)
-            } else {
-                binding.ibnCollectBack.setImageResource(R.mipmap.img_setting_top_back_white)
-                binding.txtCollectTitle.setTextColor(ContextCompat.getColor(this, R.color.white))
-                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
-                binding.btnCollectAdd.setImageResource(R.mipmap.img_topview_add_white)
-            }
         }
     }
 

@@ -3,10 +3,10 @@ package com.example.pandas.ui.fragment.main.mine
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelStoreOwner
-import com.blankj.utilcode.util.KeyboardUtils
+import com.android.base.utils.KeyboardUtils
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseLazyFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentMineInfoBinding
 import com.example.pandas.ui.ext.toastTopShow
@@ -19,7 +19,7 @@ import com.lxj.xpopup.impl.LoadingPopupView
  * @date: 7/21/23 12:37 PM
  * @version: v1.0
  */
-public class NameSettingFragment : BaseLazyFragment<SelfViewModel, FragmentMineInfoBinding>() {
+public class NameSettingFragment : BaseFragment<SelfViewModel, FragmentMineInfoBinding>() {
 
     private var name: String? = null
 
@@ -29,7 +29,7 @@ public class NameSettingFragment : BaseLazyFragment<SelfViewModel, FragmentMineI
 
         binding.editUpdateName.requestFocus()
         binding.editUpdateName.post {
-            KeyboardUtils.showSoftInput()
+            KeyboardUtils.showSoftInput(mActivity)
         }
 
         binding.btnDeleteNameInput.setOnClickListener {

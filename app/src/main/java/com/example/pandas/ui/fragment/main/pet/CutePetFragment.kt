@@ -1,22 +1,11 @@
 package com.example.pandas.ui.fragment.main.pet
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.DecelerateInterpolator
 import androidx.core.content.ContextCompat
-import com.example.helo_base.magic.ViewPagerHelper
-import com.example.helo_base.magic.commonnavigator.CommonNavigator
-import com.example.helo_base.magic.commonnavigator.abs.CommonNavigatorAdapter
-import com.example.helo_base.magic.commonnavigator.abs.IPagerIndicator
-import com.example.helo_base.magic.commonnavigator.abs.IPagerTitleView
-import com.example.helo_base.magic.commonnavigator.indicators.LinePagerIndicator
-import com.example.helo_base.magic.commonnavigator.titles.ColorFlipPagerTitleView
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseLazyFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.CutePetViewModel
 import com.example.pandas.databinding.FragmentRoomBinding
 import com.example.pandas.ui.adapter.PetBannerAdapter
@@ -25,10 +14,8 @@ import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.viewpager.Indicator
-import com.example.pandas.utils.ScreenUtil
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 
 
 /**
@@ -37,7 +24,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  * @date: 2021/11/27 8:10 上午
  * @version: v1.0
  */
-public class CutePetFragment : BaseLazyFragment<CutePetViewModel, FragmentRoomBinding>() {
+public class CutePetFragment : BaseFragment<CutePetViewModel, FragmentRoomBinding>() {
 
     private var indicator: Indicator? = null
     private val bannerAdapter: PetBannerAdapter by lazy { PetBannerAdapter(mutableListOf()) }

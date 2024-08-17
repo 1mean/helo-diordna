@@ -59,6 +59,11 @@
     <color name="color_txt_short_bottom_selected">#454651</color>
     <color name="color_txtshort_bottom_unselected">#666a71</color>
     <color name="color_bg_top_live">#F1F0F6</color>
+    <color name="color_txt_bootom_main">#000000</color>
+    <color name="color_txt_edit_comment">#000000</color>
+    <color name="color_bg_dialog_later">#ffffff</color>
+    <color name="color_bg_dialog_later_press">#E4E5E5</color>
+    <color name="color_bg_dialog_view">#c9cdd1</color>
 
     <!--self-->
     <color name="color_txt_mine_name">#000000</color>
@@ -83,11 +88,17 @@
     <color name="color_bg_later_dialog">#ffffff</color>
     <color name="color_txt_later_dialog_title">#333333</color>
     <color name="color_bg_setting">#ffffff</color>
+    <color name="color_bg_minefragment">#ffffff</color>
     <color name="color_bg_activity_setting">#F6F7FB</color>
     <color name="color_txt_setting_item_name">#000000</color>
     <color name="color_music_setting_notice">#333333</color>
     <color name="color_bg_item_setting_pressed">#F1F2F7</color>
+    <color name="color_bg_item_setting_press">#ffffff</color>
     <color name="color_bg_setting_divider">#f9f9f9</color>
+    <color name="color_txt_item_dialog_selfinfo">#161A1C</color>
+    <color name="color_txt_cancel_dialog_selfinfo">#000000</color>
+    <color name="color_bg_fansview">#fff9ef</color>
+    <color name="color_bg_item_function">#f9fafe</color>
 
     <!--home/recommend-->
     <color name="color_bg_recommend">#F1F2F4</color>
@@ -138,6 +149,11 @@
     <color name="color_txt_live_item_name">#161A1A</color>
     <color name="color_txt_live_item_des">#171a1c</color>
     <color name="color_txt_live_item_share">#61666A</color>
+    <color name="color_bg_live_search">#ffffff</color>
+
+    <color name="color_top_startColor">#f1f4f9</color>
+    <color name="color_top_centerColor">#f4f4f4</color>
+    <color name="color_top_endColor">#ffffff</color>
 
     <!--cutepetfragment-->
     <color name="color_bg_cute_fragment">#ffffff</color>
@@ -170,6 +186,7 @@
     <color name="color_txt_video_share">#484D51</color>
     <color name="color_bg_video_divider">#E2E6E6</color>
     <color name="color_txt_video_cancel">#444E55</color>
+    <color name="color_bg_divider_live">#eeeeee</color>
 
     <!--UserInfoActivity-->
     <color name="color_txt_name_userinfo">#2E333A</color>
@@ -303,7 +320,9 @@
     <!--    <color name="color_bg_reco">#EFF3F3</color>-->
     <color name="color_bg_reco">#F0F3F3</color>
     <color name="color_bg_home_dialog">#F4F8F8</color>
-    <color name="color_txt_dialog">#484E4F</color>
+    <color name="color_txt_dialog">#171a1c</color>
+    <color name="color_bg_more_dialog">#f6f7f9</color>
+    <color name="color_bg_more_dialog_divider">#F0F3F3</color>
 
     <!--love  -->
     <color name="color_txt_love_pet">#111111</color>
@@ -399,9 +418,14 @@
     <color name="color_bg_setting_item_drivider">#F3F4F8</color>
     <color name="color_txt_setting_item_desc">#838790</color>
     <color name="color_bg_divider_setting">#f5f5f5</color>
+    <color name="color_bg_safe">#f5f5f5</color>
     <color name="color_bg_setting_button_checked">#00A8FF</color>
     <color name="color_bg_setting_button_unchecked">#DBDBDB</color>
     <color name="color_loging_desc_txt">#999999</color>
+    <color name="color_txt_logining">#333333</color>
+    <color name="color_txt_login_username">#333333</color>
+    <color name="color_txt_login_passward">#999999</color>
+    <color name="color_bg_register">#8bc24b</color>
 
     <!--live-->
     <color name="color_live_tab_select">#FF679A</color>
@@ -422,6 +446,8 @@
     <color name="color_live_name">#161A1A</color>
     <color name="color_text_item_timing">#F2F4F9</color>
     <color name="color_bg_banner_top">#2F2F2F</color>
+    <color name="color_txt_name_music">#000000</color>
+    <color name="color_tab_selected_music">#000000</color>
 
 
     <!-- face -->
@@ -475,5 +501,64 @@
     <color name="color_bg_orange">#EA922D</color>
     <color name="color_timer_time">#6e7075</color><!--蜜橙色-->
 
+    <!--selector-->
+    <color name="ps_color_grey">#393a3e</color>
+    <color name="ps_color_black">#000000</color>
+    <color name="ps_color_99_black">#99000000</color>
+    <color name="ps_color_white">#FFFFFF</color>
+    <color name="ps_color_blue">#7D7DFF</color>
+    <color name="ps_color_light_grey">#999999</color>
+    <color name="ps_color_a83">#a8333333</color>
+    <color name="ps_color_33">#333333</color>
+    <color name="ps_color_70">#70000000</color>
+    <color name="ps_color_80">#80000000</color>
+    <color name="ps_color_20">#20000000</color>
+    <color name="ps_color_e">#EEEEEE</color>
+    <color name="ps_color_bd">#BDBDBD</color>
+    <color name="ps_color_fa">#FAFAFA</color>
+    <color name="ps_color_66">#666666</color>
+    <color name="ps_color_fa632d">#FA632D</color>
+    <color name="ps_color_9b">#9b9b9b</color>
+    <color name="ps_color_f2">#F2F2F2</color>
+    <color name="ps_color_transparent">#00000000</color>
+    <color name="ps_color_transparent_white">#F0FFFFFF</color>
+    <color name="ps_color_transparent_e0db">#E0DBDBDB</color>
+    <color name="ps_color_53575e">#53575e</color>
+    <color name="ps_color_f0">#F0F0F0</color>
+    <color name="ps_color_grey_3e">#dd393a3e</color>
+    <color name="ps_color_4d">#4d4d4d</color>
+    <color name="ps_color_e0ff6100">#E0FF6100</color>
+    <color name="ps_color_eb">#ebebeb</color>
+    <color name="ps_color_ba3">#b0567ba3</color>
+    <color name="ps_color_bfe85d">#BF96E85D</color>
+    <color name="ps_color_ffe85d">#FF96E85D</color>
+    <color name="ps_color_ffd042">#FFFFD042</color>
+    <color name="ps_color_20c064">#20c064</color>
+    <color name="ps_color_394a3e">#394a3e</color>
+    <color name="ps_color_half_grey">#E6393a3e</color>
+    <color name="ps_color_ec">#ececec</color>
+    <color name="ps_color_4e4d4e">#4e4d4e</color>
+    <color name="ps_color_aab2bd">#AAB2BD</color>
+    <color name="ps_color_half_white">#99FFFFFF</color>
+    <color name="ps_color_ff572e">#ff572e</color>
+    <color name="ps_color_529BeA">#529BeA</color>
+    <color name="ps_color_8D57FC">#8D57FC</color>
+    <color name="ps_color_0077F6">#0077F6</color>
+    <color name="ps_color_E4E4E4">#E4E4E4</color>
+    <color name="ps_color_212121">#212121</color>
+
+
+    <color name="color_bg_divider_dialog">#E4E5E7</color>
+    <color name="color_bg_week">#9b27b0</color>
+    <color name="color_bg_week_other">#fec107</color>
+    <color name="color_bg_divider_publish">#f5f5f5</color>
+    <color name="color_txt_publish_title">#000000</color>
+    <color name="color_txt_publish_title_hint">#999999</color>
+    <color name="color_txt_publish_des">#212121</color>
+    <color name="color_logout_divider">#EEEEEE</color>
+
+    <!--通用-->
+    <color name="color_bg_layout_background">#F6F7FB</color>
+    <color name="color_bg_layout_above">#ffffff</color>
 
 </resources>

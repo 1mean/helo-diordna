@@ -1,18 +1,15 @@
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.android.android_sqlite.entity.VideoAndData
+import com.android.base.utils.TimeUtils
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCenterImage
-import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.interaction.ItemClickListener
-import com.example.pandas.sql.entity.VideoAndData
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.dialog.MoreBottomSheetDialog
-import com.example.pandas.utils.NumUtils
-import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: UserVideosAdapter

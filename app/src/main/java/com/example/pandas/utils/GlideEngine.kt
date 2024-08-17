@@ -6,8 +6,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.pandas.R
-import com.luck.picture.lib.engine.ImageEngine
-import com.luck.picture.lib.utils.ActivityCompatHelper
+import com.life.publish.lib_selector.engine.ImageEngine
+import com.life.publish.lib_selector.utils.ActivityCompatHelper
 
 /**
  * @author：luck

@@ -1,11 +1,12 @@
 package com.example.pandas.biz.viewmodel
 
 import android.content.Context
-import android.util.Log
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.utils.FileUtils
+import com.android.base.utils.FileUtils
+import com.android.base.vm.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -51,6 +52,7 @@ public class ErrorViewModel : BaseViewModel() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun readFile(fileName: String?) {
 
         viewModelScope.launch {

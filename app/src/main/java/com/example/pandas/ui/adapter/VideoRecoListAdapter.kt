@@ -1,19 +1,17 @@
 package com.example.pandas.ui.adapter
 
-import android.util.Log
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.android.android_sqlite.entity.PetVideo
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
+import com.android.base.utils.TimeUtils
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCenterImage
-import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.interaction.ItemClickListener
-import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.dialog.MoreBottomSheetDialog
-import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: 播放详情页推荐视频列表

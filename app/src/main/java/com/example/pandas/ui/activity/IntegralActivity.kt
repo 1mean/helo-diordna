@@ -2,11 +2,10 @@ package com.example.pandas.ui.activity
 
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.viewmodel.BaseViewModel
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.databinding.ActivityIntegralBinding
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.StatusBarUtils
@@ -21,25 +20,31 @@ public class IntegralActivity : BaseActivity<BaseViewModel, ActivityIntegralBind
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        appViewModel.appColorType.value?.let {
-            binding.clayoutLaterTop.setBackgroundResource(viewColors[it])
-            if (it == 0) {
-                binding.ibnIntegralBack.setImageResource(R.mipmap.img_topview_back)
-                binding.txtLaterTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_title
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+
+            appViewModel.appColorType.value?.let {
+                binding.clayoutLaterTop.setBackgroundResource(viewColors[it])
+                if (it == 0) {
+                    binding.ibnIntegralBack.setImageResource(R.mipmap.img_topview_back)
+                    binding.txtLaterTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
                     )
-                )
-            } else {
-                binding.ibnIntegralBack.setImageResource(R.mipmap.img_topview_back_white)
-                binding.txtLaterTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
+                    StatusBarUtils.setStatusBarMode(this, true, viewColors[it])
+                } else {
+                    binding.ibnIntegralBack.setImageResource(R.mipmap.img_topview_back_white)
+                    binding.txtLaterTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
                     )
-                )
-                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                }
             }
         }
     }

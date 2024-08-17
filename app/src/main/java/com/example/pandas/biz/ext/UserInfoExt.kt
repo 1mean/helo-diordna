@@ -3,8 +3,8 @@ package com.example.pandas.biz.ext;
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import com.android.base.utils.FileUtils
 import com.example.pandas.app.AppInfos
-import com.example.pandas.utils.FileUtils
 import kotlinx.coroutines.*
 import java.io.File
 

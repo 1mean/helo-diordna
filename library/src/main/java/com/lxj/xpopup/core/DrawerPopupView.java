@@ -13,12 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
-import com.lxj.xpopup.R;
 import com.lxj.xpopup.animator.PopupAnimator;
+import com.lxj.xpopup.R;
 import com.lxj.xpopup.enums.PopupPosition;
 import com.lxj.xpopup.enums.PopupStatus;
 import com.lxj.xpopup.util.KeyboardUtils;
-import com.lxj.xpopup.util.XPopupUtils;
 import com.lxj.xpopup.widget.PopupDrawerLayout;
 
 /**

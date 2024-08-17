@@ -4,17 +4,16 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
+import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentMineBinding
 import com.example.pandas.ui.activity.BackGroundActivity
 import com.example.pandas.ui.adapter.SelfViewPagerAdapter
 import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.ui.ext.viewColors
-import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
 

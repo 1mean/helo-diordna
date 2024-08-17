@@ -50,7 +50,7 @@
                 app:layout_constraintTop_toTopOf="@id/clayout_setting_self"
                 app:layout_constraintLeft_toRightOf="@id/img_setting_header"
                 android:textSize="16sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/color_txt_setting_item_name" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -165,9 +165,10 @@
                     app:layout_constraintTop_toTopOf="@id/clayout_set_home"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_set_home"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_set_home"
-                    android:text="首页推荐设置" />
+                    android:text="首页单双列设置" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_reco_arrange"
                     style="@style/style_setting_item_desc_text"
                     app:layout_constraintTop_toTopOf="@id/clayout_set_home"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_set_home"
@@ -179,6 +180,40 @@
                     app:layout_constraintRight_toRightOf="@id/clayout_set_home"
                     app:layout_constraintTop_toTopOf="@id/clayout_set_home"
                     app:layout_constraintBottom_toBottomOf="@id/clayout_set_home" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_height="wrap_content"
+            style="@style/style_setting_bg_item"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/style_setting_item_title_text"
+                android:text="@string/str_dark_mode" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_set_dark"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/style_setting_item_name_text"
+                    app:layout_constraintTop_toTopOf="@id/clayout_set_dark"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_set_dark"
+                    app:layout_constraintLeft_toLeftOf="@id/clayout_set_dark"
+                    android:text="开启深色模式" />
+
+            <com.github.iielse.switchbutton.SwitchView
+                    android:id="@+id/switch_dark"
+                    android:layout_width="45dp"
+                    android:layout_height="24dp"
+                    app:hasShadow="false"
+                    app:isOpened="true"
+                    app:layout_constraintTop_toTopOf="@id/clayout_set_dark"
+                    app:layout_constraintBottom_toBottomOf="@id/clayout_set_dark"
+                    app:layout_constraintRight_toRightOf="@id/clayout_set_dark"
+                    android:layout_marginEnd="15dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/color_bg_home">
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_authen_update_info1"
@@ -15,7 +15,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:textSize="13sp"
-            android:textColor="@color/black_33"
+            android:textColor="@color/color_music_setting_notice"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="16dp"
             android:lineSpacingExtra="5dp" />
@@ -44,7 +44,7 @@
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/txt_authen_update_info2"
             android:layout_marginTop="33dp"
-            android:textColor="@color/black_33"
+            android:textColor="@color/color_music_setting_notice"
             app:layout_constraintLeft_toLeftOf="@id/txt_authen_update_info2" />
 
     <androidx.appcompat.widget.AppCompatEditText
@@ -74,7 +74,7 @@
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/edit_authentication_name"
             android:layout_marginTop="24dp"
-            android:textColor="@color/black_33"
+            android:textColor="@color/color_music_setting_notice"
             app:layout_constraintLeft_toLeftOf="@id/txt_authentication_name" />
 
     <androidx.appcompat.widget.AppCompatEditText

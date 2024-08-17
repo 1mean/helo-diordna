@@ -61,7 +61,7 @@
                 android:textSize="13sp"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textColor="@color/black" />
+                android:textColor="@color/color_txt_name_music" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_singer_name"

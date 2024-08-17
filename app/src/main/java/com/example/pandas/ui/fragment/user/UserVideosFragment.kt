@@ -2,19 +2,12 @@ package com.example.pandas.ui.fragment.user
 
 import UserVideosAdapter
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pandas.R
-import com.example.pandas.app.AppInfos
-import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.UserInfoViewModel
 import com.example.pandas.databinding.FragmentUserVideosBinding
-import com.example.pandas.databinding.LayoutSwipRefreshBinding
-import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.ext.init
-import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**

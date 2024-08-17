@@ -3,21 +3,16 @@ package com.example.pandas.ui.fragment.main.home
 import MusicFragment2Adapter
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout.VERTICAL
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.android.android_sqlite.bean.MusicBean
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.bean.MusicBean
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
-import com.example.pandas.ui.adapter.PandasAdapter
 import com.example.pandas.ui.adapter.decoration.MusicFragmentItemDecoration
-import com.example.pandas.ui.adapter.decoration.PandaItemDecoration
 import com.example.pandas.ui.ext.*
-import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 
 /**
  * @description: 新的MusicFragment界面
@@ -35,7 +30,7 @@ public class MusicFragment2 : BaseFragment<HomePageViewModel, LayoutSwipRefreshB
         binding.recyclerLayout.init(
             MusicFragmentItemDecoration(paddingTop.toInt()),
             musicAdapter,
-            LinearLayoutManager(mActivity, VERTICAL, false),
+            LinearLayoutManager(mActivity, RecyclerView.VERTICAL, false),
             null
         )
 

@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
+import com.android.android_sqlite.bean.PageCommonData
+import com.android.android_sqlite.bean.VideoType
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
-import com.example.pandas.bean.pet.PageCommonData
-import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.databinding.CardImageBinding
 import com.example.pandas.databinding.LayoutSleepBinding
 import com.example.pandas.ui.activity.MoreDataListActivity

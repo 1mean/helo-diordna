@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
+import com.android.base.utils.TimeUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
@@ -17,7 +18,6 @@ import com.example.pandas.ui.activity.EyePlayingActivity
 import com.example.pandas.ui.activity.VerticalVideoActivity
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.view.viewpager.ConflictBanner
-import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: EyeOtherAdapter

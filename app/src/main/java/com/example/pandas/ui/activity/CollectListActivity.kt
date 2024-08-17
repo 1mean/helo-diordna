@@ -2,22 +2,19 @@ package com.example.pandas.ui.activity
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.core.content.ContextCompat
+import com.android.android_sqlite.entity.Group
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityCollectListBinding
-import com.example.pandas.sql.entity.Group
 import com.example.pandas.ui.adapter.CollectListAdapter
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.initNoFooter
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
-import com.google.android.material.appbar.AppBarLayout
 
 /**
  * @description: CollectListActivity
@@ -33,7 +30,44 @@ public class CollectListActivity : BaseActivity<HistoryViewModeL, ActivityCollec
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.setStatusBarMode(this, true, R.color.white)
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+            appViewModel.appColorType.value?.let {
+                binding.clayoutCollectListTop.setBackgroundResource(viewColors[it])
+                if (it == 0) {
+                    binding.ibnCollectListBack.setImageResource(R.mipmap.img_setting_top_back_black33)
+                    binding.txtCollectListTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                    binding.txtCollectListManager.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, true, viewColors[it])
+                } else {
+                    binding.ibnCollectListBack.setImageResource(R.mipmap.img_setting_top_back_white)
+                    binding.txtCollectListTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                    binding.txtCollectListManager.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                }
+            }
+        }
 
         val group = intent.getParcelableExtra<Group>("group")
         group?.let {
@@ -50,40 +84,6 @@ public class CollectListActivity : BaseActivity<HistoryViewModeL, ActivityCollec
                     mViewModel.getPageGroupItem(false, groupCode)
                 }
             })
-
-        appViewModel.appColorType.value?.let {
-            binding.clayoutCollectListTop.setBackgroundResource(viewColors[it])
-            if (it == 0) {
-                binding.ibnCollectListBack.setImageResource(R.mipmap.img_setting_top_back_black33)
-                binding.txtCollectListTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_title
-                    )
-                )
-                binding.txtCollectListManager.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_title
-                    )
-                )
-            } else {
-                binding.ibnCollectListBack.setImageResource(R.mipmap.img_setting_top_back_white)
-                binding.txtCollectListTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
-                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
-                binding.txtCollectListManager.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
-            }
-        }
     }
 
     override fun firstOnResume() {

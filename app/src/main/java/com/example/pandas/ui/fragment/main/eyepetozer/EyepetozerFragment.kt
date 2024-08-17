@@ -6,10 +6,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.base.utils.ScreenUtil
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseCMFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.manager.ExoPlayerManager
 import com.example.pandas.biz.viewmodel.EyepetozerViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
@@ -20,7 +20,6 @@ import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
-import com.example.pandas.utils.ScreenUtil
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.util.Util
 
@@ -30,8 +29,7 @@ import com.google.android.exoplayer2.util.Util
  * @date: 2021/12/21 2:16 下午
  * @version: v1.0
  */
-public class EyepetozerFragment :
-    BaseCMFragment<EyepetozerViewModel, LayoutSwipRefreshBinding>(),
+public class EyepetozerFragment : BaseFragment<EyepetozerViewModel, LayoutSwipRefreshBinding>(),
     ExoPlayerManager.OnExoListListener {
 
     private var existDataInView = false//界面是否存在数据，下次出错不会影响界面显示

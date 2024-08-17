@@ -4,13 +4,12 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.example.pandas.base.fragment.BaseLazyFragment
+import com.android.base.tablayout.listener.CustomTabEntity
+import com.android.base.tablayout.listener.OnTabSelectListener
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.EyepetozerViewModel
 import com.example.pandas.databinding.FragmentOtherBinding
 import com.example.pandas.ui.view.TabEntity
-import com.flyco.tablayout.listener.CustomTabEntity
-import com.flyco.tablayout.listener.OnTabSelectListener
-import java.util.*
 
 /**
  * @description: OtherFragment
@@ -18,7 +17,7 @@ import java.util.*
  * @date: 5/11/22 3:55 下午
  * @version: v1.0
  */
-public class OtherFragment : BaseLazyFragment<EyepetozerViewModel, FragmentOtherBinding>() {
+public class OtherFragment : BaseFragment<EyepetozerViewModel, FragmentOtherBinding>() {
 
     private val tabTitles = arrayListOf("热门", "推荐")
 

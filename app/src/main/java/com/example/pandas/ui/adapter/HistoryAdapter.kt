@@ -1,24 +1,19 @@
 package com.example.pandas.ui.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.android.android_sqlite.bean.HistoryItem
+import com.android.android_sqlite.entity.History
+import com.android.base.utils.TimeUtils
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.bean.HistoryItem
 import com.example.pandas.biz.ext.loadCenterImage
-import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.databinding.AdapterHistoryItemBinding
 import com.example.pandas.databinding.AdapterItemTitleHistoryBinding
-import com.example.pandas.sql.entity.History
 import com.example.pandas.ui.ext.startVideoPlayingActivity
-import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: HistoryAdapter

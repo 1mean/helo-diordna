@@ -132,7 +132,7 @@
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.example.helo_base.magic.MagicIndicator
+        <com.android.base.custom_tablayout.MagicIndicator
                 android:id="@+id/tab"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"

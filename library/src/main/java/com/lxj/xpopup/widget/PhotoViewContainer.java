@@ -2,17 +2,17 @@ package com.lxj.xpopup.widget;
 
 import android.content.Context;
 import android.graphics.Color;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
-import androidx.viewpager.widget.ViewPager;
-import androidx.customview.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.customview.widget.ViewDragHelper;
+import androidx.viewpager.widget.ViewPager;
+
 import com.lxj.xpopup.interfaces.OnDragChangeListener;
 import com.lxj.xpopup.photoview.PhotoView;
 
@@ -92,7 +92,6 @@ public class PhotoViewContainer extends FrameLayout {
         if(view instanceof PhotoView){
             return  (((PhotoView)view).attacher.isTopEnd || ((PhotoView)view).attacher.isBottomEnd);
         }
-//        SubsamplingScaleImageView ssiv = (SubsamplingScaleImageView) view;
         return false;
     }
 

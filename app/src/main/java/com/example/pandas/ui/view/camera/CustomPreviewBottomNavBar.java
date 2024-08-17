@@ -3,7 +3,7 @@ package com.example.pandas.ui.view.camera;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.luck.picture.lib.widget.PreviewBottomNavBar;
+import com.life.publish.lib_selector.widget.PreviewBottomNavBar;
 
 /**
  * @author：luck

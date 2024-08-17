@@ -4,6 +4,6 @@
     <!--定义圆角-->
     <corners android:radius="20dp" />
     <!--内部填充色-->
-    <solid android:color="@color/white" />
+    <solid android:color="@color/color_bg_live_search" />
 
 </shape>

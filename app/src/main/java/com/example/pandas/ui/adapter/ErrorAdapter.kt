@@ -2,8 +2,8 @@ package com.example.pandas.ui.adapter
 
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import java.io.File
 
 /**

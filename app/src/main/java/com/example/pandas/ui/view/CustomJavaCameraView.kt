@@ -4,13 +4,6 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.util.AttributeSet
 import android.util.Log
-import org.opencv.android.JavaCamera2View
-import org.opencv.android.Utils
-import org.opencv.core.Core
-import org.opencv.core.Core.ROTATE_180
-import org.opencv.core.Mat
-import org.opencv.core.Size
-import org.opencv.imgproc.Imgproc
 
 /**
  * @description: 解决opencv不能全屏的问题
@@ -18,8 +11,8 @@ import org.opencv.imgproc.Imgproc
  * @date: 6/29/22 11:12 下午
  * @version: v1.0
  */
-public class CustomJavaCameraView : JavaCamera2View {
-
+public class CustomJavaCameraView /*: JavaCamera2View*/ {
+/*
     //当前是否竖屏
     var isPortrait = true
 
@@ -201,6 +194,6 @@ public class CustomJavaCameraView : JavaCamera2View {
 
     fun setOnFrameReadCallBack(onFrameReadCallBack: OnFrameReadCallBack) {
         this.onFrameReadCallBack = onFrameReadCallBack
-    }
+    }*/
 
 }

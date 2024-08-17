@@ -1,3 +1,4 @@
+/*
 package com.example.pandas.ui.activity
 
 import FaceManager
@@ -12,7 +13,7 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.viewmodel.BaseViewModel
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.MatRect
 import com.example.pandas.databinding.ActivityFaceBinding
 import com.example.pandas.ui.adapter.FaceDetectedAdapter
@@ -33,6 +34,7 @@ import java.util.concurrent.Executors
 import kotlin.math.roundToInt
 
 
+*/
 /**
  * 1-完成基本人脸识别功能
  * 2-调优opencv
@@ -43,7 +45,8 @@ import kotlin.math.roundToInt
  * @author: dongyiming
  * @date: 11/2/22 9:20 AM
  * @version: v1.0
- */
+ *//*
+
 public class Face2Activity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
     CvCameraViewListener2 {
 
@@ -111,11 +114,13 @@ public class Face2Activity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
         }
     }
 
-    /**
+    */
+/**
      * 注意：
      * CameraBridgeViewBase里checkCurrentState()方法判断mCameraPermissionGranted=false不会启动camera，会导致黑屏
      * 故必须申请此权限，否则只能自己手动启动camera，如restart connect方法
-     */
+     *//*
+
     private fun requestPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -131,11 +136,13 @@ public class Face2Activity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
         }
     }
 
-    /**
+    */
+/**
      * 初始化正脸分类器 初始化级联分类器
      *
      * 写入/data/user/0/com.example.hello_diordna/app_cascade/lbpcascade_frontalface_improved.xml
-     */
+     *//*
+
     private fun initFrontFace() {
         try {
             //读取存放在raw的文件
@@ -160,9 +167,11 @@ public class Face2Activity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
         }
     }
 
-    /**
+    */
+/**
      * 初始化侧脸分类器
-     */
+     *//*
+
     private fun initProfileFace() {
         try {
             //读取存放在raw的文件
@@ -187,10 +196,12 @@ public class Face2Activity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
         }
     }
 
-    /**
+    */
+/**
      * 眼睛
      * 初始化级联分类器
-     */
+     *//*
+
     fun initClassifierEye() {
         try {
             //读取存放在raw的文件
@@ -220,12 +231,14 @@ public class Face2Activity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
     override fun createObserver() {
     }
 
-    /**
+    */
+/**
      * 设置全屏/常亮/强制横屏
      *
      * JavaCameraView默认横屏，当改成竖屏时，预览会发生逆时针90度旋转。需要对预览帧进行实时处理才能正确显示图像
      * 处理：翻转预览帧，导致帧率降低，此处强制横屏来简化处理
-     */
+     *//*
+
     private fun initWindow() {
 //        StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
         ScreenUtil.setFullScreen(this)
@@ -256,11 +269,13 @@ public class Face2Activity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
         mRgba?.release()
     }
 
-    /**
+    */
+/**
      * 获取每一帧的数据，进行人脸检测 Thread[OpenCVCameraBackground,5,main] 异步线程
      *  - 首先要初始化级联分类器 raw里保存模型文件
      *  - 一秒预览数据回调30次，额滴娘叻
-     */
+     *//*
+
     private var currentMat: Mat? = null //返回的每一帧的Mat数据
     private val mRelativeFaceSize = 0.1f
     override fun onCameraFrame(inputFrame: CameraBridgeViewBase.CvCameraViewFrame): Mat {
@@ -558,4 +573,4 @@ public class Face2Activity : BaseActivity<BaseViewModel, ActivityFaceBinding>(),
     companion object {
         private const val CAMERA_PERMISSION_REQUEST_CODE = 200
     }
-}
+}*/

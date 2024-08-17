@@ -8,11 +8,10 @@ import android.graphics.Paint
 import android.os.Build
 import android.text.TextPaint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
+import com.android.base.utils.ScreenUtil
 import com.example.pandas.R
-import com.example.pandas.utils.ScreenUtil
 import java.util.*
 import kotlin.math.ceil
 

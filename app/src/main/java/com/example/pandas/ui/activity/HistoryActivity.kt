@@ -1,28 +1,24 @@
 package com.example.pandas.ui.activity
 
+import AppInstance
 import android.os.Bundle
-import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.PopupWindow
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.lifecycle.LifecycleHandler
+import com.android.base.ui.lifecycle.LifecycleHandler
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityHistoryBinding
 import com.example.pandas.ui.adapter.HistoryAdapter
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
-import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
 
@@ -38,12 +34,49 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
     private var selectAll: Boolean = false
     private var popWindow: PopupWindow? = null
 
-    private val mHandler = LifecycleHandler(Looper.getMainLooper(),this)
+    private val mHandler = LifecycleHandler(Looper.getMainLooper(), this)
     private val mAdapter: HistoryAdapter by lazy { HistoryAdapter(listener = this) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        val padding = resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+            appViewModel.appColorType.value?.let {
+                binding.clayoutHistoryTop.setBackgroundResource(viewColors[it])
+                if (it == 0) {
+                    binding.ibnHistoryBack.setImageResource(R.mipmap.img_setting_top_back_black33)
+                    binding.txtHistoryTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                    binding.txtHistoryManager.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_manager
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, true, viewColors[0])
+                } else {
+                    binding.ibnHistoryBack.setImageResource(R.mipmap.img_setting_top_back_white)
+                    binding.txtHistoryTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    binding.txtHistoryManager.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                }
+            }
+        }
 
         binding.rvHistory.init(
             null,
@@ -121,40 +154,6 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
                 cancel.setOnClickListener {
                     popWindow!!.dismiss()
                 }
-            }
-        }
-
-        appViewModel.appColorType.value?.let {
-            binding.clayoutHistoryTop.setBackgroundResource(viewColors[it])
-            if (it == 0) {
-                binding.ibnHistoryBack.setImageResource(R.mipmap.img_setting_top_back_black33)
-                binding.txtHistoryTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_title
-                    )
-                )
-                binding.txtHistoryManager.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_manager
-                    )
-                )
-            } else {
-                binding.ibnHistoryBack.setImageResource(R.mipmap.img_setting_top_back_white)
-                binding.txtHistoryTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
-                binding.txtHistoryManager.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
-                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
     }

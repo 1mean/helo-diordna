@@ -2,24 +2,20 @@ package com.lxj.xpopup.core;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import androidx.annotation.NonNull;
-import com.lxj.xpopup.R;
+
 import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.R;
 import com.lxj.xpopup.enums.PopupStatus;
-import com.lxj.xpopup.util.KeyboardUtils;
 import com.lxj.xpopup.util.XPermission;
-import com.lxj.xpopup.util.XPopupUtils;
 
 /**
  * 弹窗的宿主

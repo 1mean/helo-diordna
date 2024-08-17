@@ -3,27 +3,23 @@ package com.lxj.xpopup.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
-import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.Rotate;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
-import com.bumptech.glide.request.transition.Transition;
-import com.davemorrissey.labs.subscaleview.ImageSource;
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
+
 import com.lxj.xpopup.core.ImageViewerPopupView;
 import com.lxj.xpopup.interfaces.XPopupImageLoader;
 import com.lxj.xpopup.photoview.OnMatrixChangedListener;
 import com.lxj.xpopup.photoview.PhotoView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.io.File;
 
@@ -36,7 +32,8 @@ public class SmartGlideImageLoader implements XPopupImageLoader {
     private int errImg;
     private boolean mBigImage;
 
-    public SmartGlideImageLoader() { }
+    public SmartGlideImageLoader() {
+    }
 
     public SmartGlideImageLoader(int errImgRes) {
         errImg = errImgRes;
@@ -51,16 +48,14 @@ public class SmartGlideImageLoader implements XPopupImageLoader {
     public View loadImage(final int position, @NonNull final Object url, @NonNull ImageViewerPopupView popupView,
                           @Nullable final PhotoView snapshot, @NonNull final ProgressBar progressBar) {
         progressBar.setVisibility(View.VISIBLE);
-        final View imageView = mBigImage ? buildBigImageView(popupView, progressBar, position)
-                : buildPhotoView(popupView, snapshot, position);
+        final View imageView = buildPhotoView(popupView, snapshot, position);
         final Context context = imageView.getContext();
-        if (snapshot!=null && snapshot.getDrawable() != null && ((int)snapshot.getTag())==position ) {
+        if (snapshot != null && snapshot.getDrawable() != null && ((int) snapshot.getTag()) == position) {
             if (imageView instanceof PhotoView) {
                 try {
                     ((PhotoView) imageView).setImageDrawable(snapshot.getDrawable().getConstantState().newDrawable());
-                } catch (Exception e) { }
-            } else {
-                ((SubsamplingScaleImageView) imageView).setImage(ImageSource.bitmap(XPopupUtils.view2Bitmap(snapshot)));
+                } catch (Exception e) {
+                }
             }
         }
         Glide.with(imageView).downloadOnly().load(url)
@@ -72,8 +67,6 @@ public class SmartGlideImageLoader implements XPopupImageLoader {
                         if (imageView instanceof PhotoView) {
                             ((PhotoView) imageView).setImageResource(errImg);
                             ((PhotoView) imageView).setZoomable(true);
-                        } else {
-                            ((SubsamplingScaleImageView) imageView).setImage(ImageSource.resource(errImg));
                         }
                     }
 
@@ -92,74 +85,17 @@ public class SmartGlideImageLoader implements XPopupImageLoader {
                             if (size[0] > maxW || size[1] > maxH) {
                                 //TODO: 可能导致大图GIF展示不出来
                                 Bitmap rawBmp = XPopupUtils.getBitmap(resource, maxW, maxH);
-                                ((PhotoView) imageView).setImageBitmap(XPopupUtils.rotate(rawBmp, degree, size[0]/2f, size[1]/2f));
+                                ((PhotoView) imageView).setImageBitmap(XPopupUtils.rotate(rawBmp, degree, size[0] / 2f, size[1] / 2f));
 //                                Glide.with(imageView).load(rawBmp)
 //                                        .apply(new RequestOptions().error(errImg).override(size[0], size[1])).into(((PhotoView) imageView));
                             } else {
                                 Glide.with(imageView).load(resource)
                                         .apply(new RequestOptions().error(errImg).override(size[0], size[1])).into(((PhotoView) imageView));
                             }
-                        } else {
-                            //大图加载
-                            SubsamplingScaleImageView bigImageView = (SubsamplingScaleImageView) imageView;
-                            boolean longImage = false;
-                            if (size[1] * 1f / size[0] > XPopupUtils.getScreenHeight(context) * 1f / XPopupUtils.getAppWidth(context)) {
-                                longImage = true;
-                                bigImageView.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_START);
-                            } else {
-                                longImage = false;
-                                bigImageView.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CENTER_INSIDE);
-                            }
-
-                            int s2 = size[0]*size[1];
-                            //优化点击缩放
-                            if(s2!=0){
-                                int i = XPopupUtils.getScreenWidth(context) * XPopupUtils.getAppWidth(context) / s2;
-                                if(i>0) bigImageView.setDoubleTapZoomDpi(320/i);
-                            }
-
-                            bigImageView.setOrientation(degree);
-                            bigImageView.setOnImageEventListener(new SSIVListener(bigImageView, progressBar, errImg, longImage, resource));
-                            Bitmap preview = XPopupUtils.getBitmap(resource, XPopupUtils.getAppWidth(context), XPopupUtils.getScreenHeight(context));
-                            bigImageView.setImage(ImageSource.uri(Uri.fromFile(resource)).dimensions(size[0], size[1]),
-                                    preview!=null ? ImageSource.cachedBitmap(preview):null);
                         }
                     }
                 });
         return imageView;
-    }
-
-    private SubsamplingScaleImageView buildBigImageView(final ImageViewerPopupView popupView, ProgressBar progressBar, final int realPosition) {
-        final SubsamplingScaleImageView ssiv = new SubsamplingScaleImageView(popupView.getContext());
-        ssiv.setMinimumDpi(1);
-        ssiv.setMaximumDpi(320);
-        ssiv.setDoubleTapZoomDuration(250);
-        ssiv.setDoubleTapZoomStyle(SubsamplingScaleImageView.ZOOM_FOCUS_CENTER);
-        ssiv.setOnStateChangedListener(new SubsamplingScaleImageView.DefaultOnStateChangedListener() {
-            @Override
-            public void onCenterChanged(PointF newCenter, int origin) {
-                super.onCenterChanged(newCenter, origin);
-                //TODO 同步SubsamplingScaleImageView的滚动给snapshot
-//                    Log.e("tag", "y: " + newCenter.y   + " vh: "+ ssiv.getMeasuredHeight()
-//                    + "  dy: "+ (newCenter.y - ssiv.getMeasuredHeight()/2));
-            }
-        });
-        ssiv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupView.dismiss();
-            }
-        });
-        if (popupView.longPressListener != null) {
-            ssiv.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    popupView.longPressListener.onLongPressed(popupView, realPosition);
-                    return false;
-                }
-            });
-        }
-        return ssiv;
     }
 
     private PhotoView buildPhotoView(final ImageViewerPopupView popupView, final PhotoView snapshotView, final int realPosition) {
@@ -195,11 +131,12 @@ public class SmartGlideImageLoader implements XPopupImageLoader {
 
     @Override
     public void loadSnapshot(@NonNull Object uri, @NonNull final PhotoView snapshot, @Nullable final ImageView srcView) {
-        if(mBigImage){
-            if(srcView!=null && srcView.getDrawable()!=null){
+        if (mBigImage) {
+            if (srcView != null && srcView.getDrawable() != null) {
                 try {
                     snapshot.setImageDrawable(srcView.getDrawable().getConstantState().newDrawable());
-                }catch (Exception e){ }
+                } catch (Exception e) {
+                }
             }
             Glide.with(snapshot).downloadOnly().load(uri)
                     .into(new ImageDownloadTarget() {
@@ -218,13 +155,13 @@ public class SmartGlideImageLoader implements XPopupImageLoader {
                             if (size[0] > maxW || size[1] > maxH) {
                                 //缩放加载
                                 Bitmap rawBmp = XPopupUtils.getBitmap(resource, maxW, maxH);
-                                snapshot.setImageBitmap(XPopupUtils.rotate(rawBmp, degree, size[0]/2f, size[1]/2f));
+                                snapshot.setImageBitmap(XPopupUtils.rotate(rawBmp, degree, size[0] / 2f, size[1] / 2f));
                             } else {
                                 Glide.with(snapshot).load(resource).apply(new RequestOptions().override(size[0], size[1])).into(snapshot);
                             }
                         }
                     });
-        }else {
+        } else {
             Glide.with(snapshot).load(uri).override(Target.SIZE_ORIGINAL).into(snapshot);
         }
     }

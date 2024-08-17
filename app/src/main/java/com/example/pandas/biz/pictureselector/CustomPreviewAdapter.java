@@ -17,12 +17,12 @@ import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.ImageViewState;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.example.pandas.R;
-import com.luck.picture.lib.adapter.PicturePreviewAdapter;
-import com.luck.picture.lib.adapter.holder.BasePreviewHolder;
-import com.luck.picture.lib.entity.LocalMedia;
-import com.luck.picture.lib.photoview.OnViewTapListener;
-import com.luck.picture.lib.utils.ActivityCompatHelper;
-import com.luck.picture.lib.utils.MediaUtils;
+import com.life.publish.lib_selector.adapter.PicturePreviewAdapter;
+import com.life.publish.lib_selector.adapter.holder.BasePreviewHolder;
+import com.life.publish.lib_selector.entity.LocalMedia;
+import com.life.publish.lib_selector.photoview.OnViewTapListener;
+import com.life.publish.lib_selector.utils.ActivityCompatHelper;
+import com.life.publish.lib_selector.utils.MediaUtils;
 
 public class CustomPreviewAdapter extends PicturePreviewAdapter {
 

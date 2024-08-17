@@ -1,6 +1,6 @@
 import android.os.Bundle
-import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.base.viewmodel.BaseViewModel
+import com.android.base.ui.fragment.BaseFragment
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.databinding.FragmentNullBinding
 
 /**

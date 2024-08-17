@@ -2,12 +2,14 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pandas.base.viewmodel.BaseViewModel
+import com.android.android_sqlite.PetManagerCoroutine
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.VideoComment
+import com.android.android_sqlite.entity.VideoData
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.biz.ext.loge
-import com.example.pandas.biz.http.exception.ExceptionHandle
-import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.sql.entity.PetVideo
+import com.android.base.exception.ExceptionHandle
 import kotlinx.coroutines.launch
 
 /**
@@ -26,6 +28,7 @@ public class ShortVideoViewModel : BaseViewModel() {
     var attentionPage = 10
     var hasMore = true//是否有更多
 
+    val commentResult: MutableLiveData<VideoComment> by lazy { MutableLiveData() }
     val verticalVideos: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
     val fallsShortVideos: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
     val attentionShortVideos: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
@@ -227,7 +230,27 @@ public class ShortVideoViewModel : BaseViewModel() {
         }
     }
 
-    fun addAttention(userCode: Int) {
+    fun updateAttention(userCode: Int) {
+        viewModelScope.launch {
+            PetManagerCoroutine.updateAttention(userCode)
+        }
+    }
 
+    fun addOrUpdateVideoData(videoData: VideoData) {
+        viewModelScope.launch {
+            PetManagerCoroutine.addOrUpdateVideoData(videoData)
+        }
+    }
+
+    fun updatePetVideo(video: PetVideo) {
+        viewModelScope.launch {
+            PetManagerCoroutine.updatePetVideo(video)
+        }
+    }
+
+    fun sendComment(comment: VideoComment) {
+        viewModelScope.launch {
+            commentResult.value = PetManagerCoroutine.sendComment(comment)
+        }
     }
 }

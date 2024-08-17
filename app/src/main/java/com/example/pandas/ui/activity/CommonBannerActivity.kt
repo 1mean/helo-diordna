@@ -1,8 +1,8 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.viewmodel.BaseViewModel
+import com.android.base.ui.activity.BaseActivity
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.databinding.ActivityCmBannerBinding
 
 /**

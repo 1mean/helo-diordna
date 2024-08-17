@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.data.qq.EmotionItem
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.DialogBottomCommentBinding

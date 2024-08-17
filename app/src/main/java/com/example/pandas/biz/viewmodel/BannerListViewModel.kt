@@ -2,18 +2,12 @@ package com.example.pandas.biz.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import com.android.android_sqlite.PetManagerCoroutine
+import com.android.android_sqlite.bean.BannerListBean
+import com.android.android_sqlite.entity.VideoAndUser
 import com.example.pandas.app.AppInfos
-import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.bean.BannerListBean
-import com.example.pandas.bean.LandscapeData
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
-import com.example.pandas.biz.ext.loge
-import com.example.pandas.biz.http.exception.ExceptionHandle
-import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.VideoAndUser
-import kotlinx.coroutines.launch
 
 /**
  * @description: PandaViewModel

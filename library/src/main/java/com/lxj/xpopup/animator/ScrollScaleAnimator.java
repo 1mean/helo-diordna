@@ -4,7 +4,6 @@ import android.animation.IntEvaluator;
 import android.animation.ValueAnimator;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
-import android.util.Log;
 import android.view.View;
 import com.lxj.xpopup.enums.PopupAnimation;
 

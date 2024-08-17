@@ -5,19 +5,16 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.VideoAndUser
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.ext.loadPandaBackGround
 import com.example.pandas.biz.interaction.PagerChangedListener
 import com.example.pandas.biz.viewmodel.BannerListViewModel
-import com.example.pandas.biz.viewmodel.OneVerticalViewModel
 import com.example.pandas.databinding.ActivityBannerListBinding
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.VideoAndUser
 import com.example.pandas.ui.adapter.BannerListAdapter
 import com.example.pandas.ui.adapter.CommonBannerAdapter
-import com.example.pandas.ui.adapter.PandaListAdapter
 import com.example.pandas.ui.adapter.decoration.CommonBannerItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
@@ -35,12 +32,13 @@ public class BannerListActivity : BaseActivity<BannerListViewModel, ActivityBann
 
     private val mAdapter: BannerListAdapter by lazy { BannerListAdapter(mutableListOf()) }
 
-    override fun initStatusView() {
+    fun initStatusView() {
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
     }
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        initStatusView()
         binding.refreshBannerList.apply {
             setProgressViewEndTarget(true, 300)
             setRefreshColor()

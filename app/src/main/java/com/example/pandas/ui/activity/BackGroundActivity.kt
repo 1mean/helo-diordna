@@ -1,17 +1,19 @@
 package com.example.pandas.ui.activity
 
+import AppInstance
 import BgSelectAdapter
+import BgSplashAdapter
 import android.os.Bundle
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.viewmodel.BaseViewModel
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.databinding.ActivityBgBinding
 import com.example.pandas.ui.adapter.decoration.BackgroundItemDecoration
+import com.example.pandas.ui.adapter.decoration.SplashItemDecoration
 import com.example.pandas.ui.ext.bgNames
 import com.example.pandas.ui.ext.toastTopShow
 import com.example.pandas.ui.ext.viewColors
@@ -24,16 +26,17 @@ import com.example.pandas.utils.StatusBarUtils
  * @date: 8/20/22 12:28 上午
  * @version: v1.0
  */
-public class BackGroundActivity : BaseActivity<BaseViewModel, ActivityBgBinding>(),
-    BgSelectAdapter.ItemClickListener {
+public class BackGroundActivity : BaseActivity<BaseViewModel, ActivityBgBinding>() {
 
-
-
-    private val mAdapter by lazy { BgSelectAdapter(listener = this) }
+    private val mAdapter by lazy { BgSelectAdapter(itemClick = { itemClick(it) }) }
+    private val sAdapter by lazy { BgSplashAdapter(itemClick = { itemSplashClick(it) }) }
 
     override fun initView(savedInstanceState: Bundle?) {
 
         val paddingTop = resources.getDimension(R.dimen.common_lh_15_dimens).toInt()
+        val paddingLeft = resources.getDimension(R.dimen.common_lh_12_dimens).toInt()
+        val paddingRight = resources.getDimension(R.dimen.common_lh_12_dimens).toInt()
+        val paddingMid = resources.getDimension(R.dimen.common_lh_10_dimens).toInt()
 
         binding.ibnSettingBack.setOnClickListener { finish() }
 
@@ -43,8 +46,25 @@ public class BackGroundActivity : BaseActivity<BaseViewModel, ActivityBgBinding>
             addItemDecoration(BackgroundItemDecoration(paddingTop))
         }
 
-        appViewModel.appColorType.value?.let {
-            update(it)
+        with(binding.rvSplash) {
+            adapter = sAdapter
+            layoutManager = GridLayoutManager(this@BackGroundActivity, 3)
+            addItemDecoration(
+                SplashItemDecoration(
+                    paddingTop,
+                    paddingLeft,
+                    paddingRight,
+                    paddingMid
+                )
+            )
+        }
+
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+            appViewModel.appColorType.value?.let {
+                update(it)
+            }
         }
     }
 
@@ -58,15 +78,21 @@ public class BackGroundActivity : BaseActivity<BaseViewModel, ActivityBgBinding>
         super.onResume()
         val status = SPUtils.getInt(this, AppInfos.BG_STATUS_KEY)
         mAdapter.refreshAdapter(bgNames, status)
+        val status2 = SPUtils.getInt(this, AppInfos.BG_Splash_KEY)
+        sAdapter.refreshAdapter(AppInfos.splashImgs.toMutableList(), status2)
     }
 
-    override fun itemClick(position: Int) {
-
+    private fun itemClick(position: Int) {
         SPUtils.putInt(this, AppInfos.BG_STATUS_KEY, position)
         mAdapter.updateSelect(position)
-        Log.e("lidandan3", "colors[position]= ${viewColors[position]}")
         appViewModel.appColorType.value = position
         toastTopShow(this, "已更换的主题将在切换到主页后生效")
+    }
+
+    private fun itemSplashClick(position: Int) {
+        SPUtils.putInt(this, AppInfos.BG_Splash_KEY, position)
+        sAdapter.updateSelect(position)
+        toastTopShow(this, "已更换的主题将在重启时展示")
     }
 
     private fun update(status: Int) {

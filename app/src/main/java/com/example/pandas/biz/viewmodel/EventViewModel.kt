@@ -1,7 +1,7 @@
 package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.pandas.base.viewmodel.UnPeekLiveData
+import com.android.base.vm.UnPeekLiveData
 
 /**
  * @description: APP全局的ViewModel，可以在这里发送全局通知替代EventBus，LiveDataBus等

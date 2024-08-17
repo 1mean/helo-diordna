@@ -1,8 +1,8 @@
 package com.example.pandas.um
 
 import android.app.Activity
+import com.android.android_sqlite.entity.PetVideo
 import com.example.pandas.biz.ext.getLocalFilePath
-import com.example.pandas.sql.entity.PetVideo
 import com.umeng.socialize.ShareAction
 import com.umeng.socialize.bean.SHARE_MEDIA
 import com.umeng.socialize.media.UMImage

@@ -1,5 +1,5 @@
 package com.example.pandas.ui.view
-import com.flyco.tablayout.listener.CustomTabEntity
+import com.android.base.tablayout.listener.CustomTabEntity
 
 /**
  * @description: TabEntity

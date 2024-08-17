@@ -16,7 +16,38 @@
 
         <!--给项目里的所有BottomSheetDialog设置圆角，如果不用全部圆角可屏蔽，然后在构造方法里自行设置style-->
         <!--<item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>-->
-        <item name="android:windowBackground">@drawable/layer_bg_splash</item>
+        <!--<item name="android:windowBackground">@drawable/layer_bg_splash</item-->>
+    </style>
+
+    <style name="SplashAppTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash_logo_welcome</item>
+        <!--<item name="android:windowFullscreen">true</item>-->
+    </style>
+
+    <style name="TargetScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- Splash启动页Style -->
+    <style name="Theme.SplashScreen.Demo" parent="Theme.SplashScreen">
+        <!--启动画面背景颜色-->
+        <item name="windowSplashScreenBackground">@color/color_black_lucency</item>
+        <!-- 替换起始窗口中心的图标,启动画面icon图标：这里可以是图片、帧动画等-->
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/liuyifei</item>
+        <!--启动画面图标后面的背景。如果窗口背景与图标之间的对比度不够高，这非常有用-->
+        <item name="windowSplashScreenIconBackgroundColor">@color/black</item>
+        <!-- icon动画在关闭之前显示的时长：最长时间为1000毫秒-->
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <!-- 设置要在启动画面底部显示的图片。不过，设计指南不建议使用品牌图片-->
+        <item name="android:windowSplashScreenBrandingImage">@mipmap/liuyifei</item>
+        <item name="postSplashScreenTheme">@style/TargetScreenTheme</item>
+        <!-- Splash退出后的主题-->
+        <!--<item name="postSplashScreenTheme">@style/Theme.Android12_Splash</item>-->
     </style>
 
     <!-- common gravity   -->
@@ -176,7 +207,7 @@
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/color_txt_setting_item_name</item>
     </style>
 
     <style name="style_user_top_value">
@@ -207,7 +238,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_marginStart">20dp</item>
-        <item name="android:textColor">@color/grey900</item>
+        <item name="android:textColor">@color/color_txt_item_dialog_selfinfo</item>
         <item name="android:textSize">14sp</item>
     </style>
 
@@ -215,13 +246,13 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.1dp</item>
         <item name="android:layout_marginStart">20dp</item>
-        <item name="android:background">@color/color_home_divider</item>
+        <item name="android:background">@color/color_bg_divider_dialog</item>
     </style>
 
     <style name="style_user_dialog_divider2">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">5dp</item>
-        <item name="android:background">@color/color_bg_user_divider</item>
+        <item name="android:background">@color/color_viewpager_bg</item>
     </style>
 
     <!-- SelfFragment ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -466,7 +497,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/color_video_name_txt</item>
+        <item name="android:textColor">@color/color_txt_item_dialog_selfinfo</item>
         <item name="android:layout_marginStart">20dp</item>
         <item name="android:layout_gravity">center_vertical</item>
     </style>
@@ -475,7 +506,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.66dp</item>
         <item name="android:layout_marginStart">20dp</item>
-        <item name="android:background">@color/color_follow_bg</item>
+        <item name="android:background">@color/color_bg_divider_dialog</item>
     </style>
 
     <!-- 实现BottomSheetDialog圆角效果 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -706,5 +737,66 @@
         <item name="android:textColor">@color/color_txt_setting_item_name</item>
         <item name="android:textSize">14sp</item>
         <item name="android:includeFontPadding">false</item>
+    </style>
+
+
+
+    <!--selector-->
+
+    <style name="Base.Theme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <style name="Picture.Theme.Translucent" parent="Base.Theme.NoActionBar">
+        <item name="android:windowBackground">@color/ps_color_transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="PictureThemeWindowStyle">
+        <item name="android:windowEnterAnimation">@anim/ps_anim_album_show</item>
+        <item name="android:windowExitAnimation">@anim/ps_anim_album_dismiss</item>
+    </style>
+
+    <style name="PictureThemeDialogWindowStyle">
+        <item name="android:windowEnterAnimation">@anim/ps_anim_modal_in</item>
+        <item name="android:windowExitAnimation">@anim/ps_anim_modal_out</item>
+    </style>
+
+    <style name="Picture.Theme.Dialog.AudioStyle">
+        <item name="android:windowEnterAnimation">@anim/ps_anim_enter</item>
+        <item name="android:windowExitAnimation">@anim/ps_anim_exit</item>
+    </style>
+
+    <style name="Picture.Theme.AlertDialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@color/ps_color_transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+
+    <style name="PictureThemeDialogFragmentAnim" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/ps_anim_up_in</item>
+        <item name="android:windowExitAnimation">@anim/ps_anim_down_out</item>
+    </style>
+
+    <style name="Picture.Theme.Dialog" parent="@android:style/Theme.Dialog">
+
+        <!-- 边框 -->
+        <item name="android:windowFrame">@android:color/transparent</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+
+        <!-- 自己想要的背景 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 </resources>

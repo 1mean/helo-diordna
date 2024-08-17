@@ -1,10 +1,9 @@
 package com.example.pandas.biz.pictureselector
 
 import android.content.Context
-import android.util.Log
 import com.example.pandas.R
-import com.luck.picture.lib.config.InjectResourceSource
-import com.luck.picture.lib.interfaces.OnInjectLayoutResourceListener
+import com.life.publish.lib_selector.config.InjectResourceSource
+import com.life.publish.lib_selector.interfaces.OnInjectLayoutResourceListener
 
 /**
  * @description: 注入自定义布局UI，前提是布局View id 和 根目录Layout必须一致

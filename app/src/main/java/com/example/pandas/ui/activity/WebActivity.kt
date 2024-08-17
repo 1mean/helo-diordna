@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.viewmodel.BaseViewModel
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.databinding.FragmentWebBinding
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.StatusBarUtils
 import com.just.agentweb.AgentWeb
@@ -20,6 +20,46 @@ class WebActivity : BaseActivity<BaseViewModel, FragmentWebBinding>() {
     private var preWeb: AgentWeb.PreAgentWeb? = null
 
     override fun initView(savedInstanceState: Bundle?) {
+
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+            appViewModel.appColorType.value?.let {
+                binding.clayoutSettingTop.setBackgroundResource(viewColors[it])
+                if (it == 0) {
+                    binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back)
+                    binding.txtSettingTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                    binding.btnWebRefresh.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_manager
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, true, viewColors[it])
+                } else {
+                    binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back_white)
+                    binding.txtSettingTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    binding.btnWebRefresh.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                }
+            }
+        }
+
         preWeb = AgentWeb.with(this)
             .setAgentWebParent(binding.llayoutWeb, LinearLayout.LayoutParams(-1, -1))
             .useDefaultIndicator()
@@ -32,40 +72,6 @@ class WebActivity : BaseActivity<BaseViewModel, FragmentWebBinding>() {
 
         //用浏览器打开
         //startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(mViewModel.url)))
-
-        appViewModel.appColorType.value?.let {
-            binding.clayoutSettingTop.setBackgroundResource(viewColors[it])
-            if (it == 0) {
-                binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back)
-                binding.txtSettingTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_title
-                    )
-                )
-                binding.btnWebRefresh.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_manager
-                    )
-                )
-            } else {
-                binding.ibnSettingBack.setImageResource(R.mipmap.img_topview_back_white)
-                binding.txtSettingTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
-                binding.btnWebRefresh.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
-                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
-            }
-        }
     }
 
     override fun firstOnResume() {

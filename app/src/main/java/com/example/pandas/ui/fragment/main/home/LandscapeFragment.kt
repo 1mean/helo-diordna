@@ -3,11 +3,10 @@ package com.example.pandas.ui.fragment.main.home
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.android.android_sqlite.bean.LandscapeData
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseLazyFragment
-import com.example.pandas.bean.LandscapeData
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.LandscapeAdapter
@@ -25,7 +24,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @version: v1.0
  */
 public class LandscapeFragment :
-    BaseLazyFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
+    BaseFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
 
     private val mAdapter: LandscapeAdapter by lazy { LandscapeAdapter(lifecycle, LandscapeData()) }
 

@@ -2,16 +2,17 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.bean.ReplyInfo
+import com.android.android_sqlite.PetManagerCoroutine
+import com.android.android_sqlite.bean.ReplyInfo
+import com.android.android_sqlite.bean.VideoInfo
+import com.android.android_sqlite.entity.CommentAndUser
+import com.android.android_sqlite.entity.History
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.VideoData
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
-import com.example.pandas.bean.VideoInfo
 import com.example.pandas.biz.ext.loge
-import com.example.pandas.biz.http.exception.ExceptionHandle
-import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.sql.entity.CommentAndUser
-import com.example.pandas.sql.entity.History
-import com.example.pandas.sql.entity.PetVideo
+import com.android.base.exception.ExceptionHandle
 import com.google.android.exoplayer2.util.Util
 import kotlinx.coroutines.launch
 import java.util.*
@@ -192,6 +193,25 @@ public class VideoViewModel : BaseViewModel() {
 
         viewModelScope.launch {
             PetManagerCoroutine.deleteCollection(groupName, videoCode)
+        }
+    }
+
+    fun updateAttention(userCode: Int) {
+        viewModelScope.launch {
+            PetManagerCoroutine.updateAttention(userCode)
+        }
+    }
+
+    fun addOrUpdateVideoData(videoData: VideoData) {
+        viewModelScope.launch {
+            PetManagerCoroutine.addOrUpdateVideoData(videoData)
+        }
+    }
+
+
+    fun addLaterPlayer(videoCode: Int) {
+        viewModelScope.launch {
+            PetManagerCoroutine.addLater(videoCode)
         }
     }
 }

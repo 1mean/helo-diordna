@@ -7,6 +7,9 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.VideoData
+import com.android.base.utils.ScreenUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -15,15 +18,12 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadImage
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.ext.addScaleAnimation
 import com.example.pandas.ui.ext.startShortVideoActivity
-import com.example.pandas.utils.ScreenUtil
 import de.hdodenhof.circleimageview.CircleImageView
 
 

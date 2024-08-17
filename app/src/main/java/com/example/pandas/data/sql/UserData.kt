@@ -1,6 +1,6 @@
 package com.example.pandas.data.sql
 
-import com.example.pandas.sql.entity.User
+import com.android.android_sqlite.entity.User
 
 object UserData {
 

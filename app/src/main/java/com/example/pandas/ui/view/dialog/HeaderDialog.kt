@@ -1,8 +1,3 @@
-import android.R.attr.duration
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Bitmap
@@ -14,11 +9,12 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
-import android.view.animation.OvershootInterpolator
 import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.android.base.utils.FileUtils
+import com.android.base.utils.ScreenUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.CustomTarget
@@ -26,8 +22,6 @@ import com.bumptech.glide.request.transition.Transition
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.biz.interaction.ItemClickListener
-import com.example.pandas.utils.FileUtils
-import com.example.pandas.utils.ScreenUtil
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
 import kotlinx.coroutines.CoroutineScope

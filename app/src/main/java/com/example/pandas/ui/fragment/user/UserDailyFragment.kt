@@ -1,13 +1,10 @@
 package com.example.pandas.ui.fragment.user
 
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.ViewModelStoreOwner
-import com.example.pandas.R
-import com.example.pandas.base.fragment.BaseFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.UserInfoViewModel
 import com.example.pandas.databinding.FragmentDailyBinding
-import com.example.pandas.databinding.LayoutSwipRefreshBinding
 
 /**
  * @description: UserDailyFragment

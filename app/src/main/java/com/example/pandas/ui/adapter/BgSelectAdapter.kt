@@ -3,8 +3,8 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.ui.ext.shape_5_drawables
 
 /**
@@ -16,7 +16,7 @@ import com.example.pandas.ui.ext.shape_5_drawables
 public class BgSelectAdapter(
     private val list: MutableList<String> = mutableListOf(),
     private var status: Int = 0,
-    private val listener: ItemClickListener
+    private val itemClick: (position: Int) -> Unit
 ) :
     BaseCommonAdapter<String>(list) {
 
@@ -59,12 +59,7 @@ public class BgSelectAdapter(
             if (position == status) {
                 return@setOnClickListener
             }
-            listener.itemClick(position)
+            itemClick(position)
         }
     }
-
-    interface ItemClickListener {
-        fun itemClick(position: Int)
-    }
-
 }

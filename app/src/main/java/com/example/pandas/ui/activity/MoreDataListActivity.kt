@@ -3,19 +3,17 @@ package com.example.pandas.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import com.android.android_sqlite.bean.VideoType
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.viewmodel.MoreDataViewModel
 import com.example.pandas.databinding.ActivityMoreBinding
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.fragment.main.home.music.MusicListFragment
 import com.example.pandas.ui.fragment.video.VideoListFragment
-import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
 /**

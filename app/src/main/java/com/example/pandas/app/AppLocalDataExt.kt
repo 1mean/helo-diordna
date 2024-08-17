@@ -1,8 +1,8 @@
 package com.example.pandas.app;
 
-import com.example.pandas.bean.pet.VideoType
-import com.example.pandas.sql.entity.PeriodType
-import com.example.pandas.sql.entity.PetVideo
+import com.android.android_sqlite.bean.PeriodType
+import com.android.android_sqlite.bean.VideoType
+import com.android.android_sqlite.entity.PetVideo
 
 
 //给本地视频文件目录设定的名字和封面图

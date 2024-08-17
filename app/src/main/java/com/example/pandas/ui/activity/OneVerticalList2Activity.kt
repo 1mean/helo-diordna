@@ -8,14 +8,13 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.base.ui.activity.BaseActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.OneVerticalViewModel
 import com.example.pandas.databinding.ActivityOneVerticalList2Binding
 import com.example.pandas.ui.ext.init
@@ -39,12 +38,13 @@ public class OneVerticalList2Activity :
     private var type: Int = -1
     private val mAdapter: OneVertical2Adapter by lazy { OneVertical2Adapter(mutableListOf()) }
 
-    override fun initStatusView() {
+    fun initStatusView() {
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
     }
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        initStatusView()
         title = intent.getStringExtra("title").toString()
         type = intent.getIntExtra("type", -1)
 

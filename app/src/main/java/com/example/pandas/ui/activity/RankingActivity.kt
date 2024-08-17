@@ -1,30 +1,22 @@
 package com.example.pandas.ui.activity
 
+import AppInstance
 import RankingChildFragment
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.biz.RankViewModel
+import com.example.pandas.biz.viewmodel.RankViewModel
 import com.example.pandas.databinding.ActivityRankingBinding
-import com.example.pandas.ui.adapter.VideoListAdapter
 import com.example.pandas.ui.ext.APP_COLOR_STATUS
-import com.example.pandas.ui.ext.init
-import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
-import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.lxj.xpopup.impl.LoadingPopupView
 
 /**
  * @description: 播放榜单
@@ -38,29 +30,33 @@ public class RankingActivity : BaseActivity<RankViewModel, ActivityRankingBindin
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        val status = appViewModel.appColorType.value
-        if (status == null || status == 0) {
-            StatusBarUtils.setStatusBarMode(this, true, R.color.color_white_lucency)
-            binding.clayoutPlayTop.setBackgroundResource(R.color.white)
-            binding.ibnPlayBack.setImageResource(R.mipmap.img_setting_top_back_black33)
-            binding.tabRanking.setTabTextColors(
-                ContextCompat.getColor(this, R.color.color_tablayout_unselect_panda),
-                ContextCompat.getColor(this, viewColors[APP_COLOR_STATUS])
-            )
-            binding.tabRanking.setSelectedTabIndicatorColor(
-                ContextCompat.getColor(this, viewColors[APP_COLOR_STATUS])
-            )
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
         } else {
-            StatusBarUtils.setStatusBarMode(this, false, viewColors[status])
-            binding.clayoutPlayTop.setBackgroundResource(viewColors[status])
-            binding.ibnPlayBack.setImageResource(R.mipmap.img_setting_top_back_white)
-            binding.tabRanking.setTabTextColors(
-                ContextCompat.getColor(this, R.color.color_vertical_played),
-                ContextCompat.getColor(this, R.color.white)
-            )
-            binding.tabRanking.setSelectedTabIndicatorColor(
-                ContextCompat.getColor(this, R.color.white)
-            )
+            val status = appViewModel.appColorType.value
+            if (status == null || status == 0) {
+                StatusBarUtils.setStatusBarMode(this, true, R.color.color_white_lucency)
+                binding.clayoutPlayTop.setBackgroundResource(R.color.white)
+                binding.ibnPlayBack.setImageResource(R.mipmap.img_setting_top_back_black33)
+                binding.tabRanking.setTabTextColors(
+                    ContextCompat.getColor(this, R.color.color_tablayout_unselect_panda),
+                    ContextCompat.getColor(this, viewColors[APP_COLOR_STATUS])
+                )
+                binding.tabRanking.setSelectedTabIndicatorColor(
+                    ContextCompat.getColor(this, viewColors[APP_COLOR_STATUS])
+                )
+            } else {
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[status])
+                binding.clayoutPlayTop.setBackgroundResource(viewColors[status])
+                binding.ibnPlayBack.setImageResource(R.mipmap.img_setting_top_back_white)
+                binding.tabRanking.setTabTextColors(
+                    ContextCompat.getColor(this, R.color.color_vertical_played),
+                    ContextCompat.getColor(this, R.color.white)
+                )
+                binding.tabRanking.setSelectedTabIndicatorColor(
+                    ContextCompat.getColor(this, R.color.white)
+                )
+            }
         }
 
         binding.vp2Ranking.apply {

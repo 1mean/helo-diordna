@@ -6,8 +6,8 @@ import android.widget.RadioGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.MainViewModel
 import com.example.pandas.databinding.ActivityHomeBinding
 import com.example.pandas.ui.adapter.HomeAdapter
@@ -42,7 +42,7 @@ public class HomeActivity : BaseActivity<MainViewModel, ActivityHomeBinding>(),
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
+        //StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
 
         binding.rgHome.apply {
             setOnCheckedChangeListener(this@HomeActivity)

@@ -2,8 +2,8 @@ import android.content.Intent
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.bean.CachaListItem
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.ui.activity.ListActivity

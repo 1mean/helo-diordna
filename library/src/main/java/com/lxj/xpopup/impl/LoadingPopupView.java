@@ -10,9 +10,9 @@ import androidx.transition.ChangeBounds;
 import androidx.transition.Fade;
 import androidx.transition.TransitionManager;
 import androidx.transition.TransitionSet;
-import com.lxj.xpopup.R;
 import com.lxj.xpopup.core.CenterPopupView;
 import com.lxj.xpopup.util.XPopupUtils;
+import com.lxj.xpopup.R;
 
 /**
  * Description: 加载对话框

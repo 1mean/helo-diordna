@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.LocalCacheViewModel
 import com.example.pandas.databinding.ActivityListBinding
 import com.example.pandas.ui.adapter.ListAdapter
@@ -73,18 +72,31 @@ public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBindin
                 }
             }
         )
-
-        appViewModel.appColorType.value?.let {
-            if (it == 0) {
-                binding.refreshList.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
-            } else {
-                binding.refreshList.setColorSchemeResources(viewColors[it])
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+            appViewModel.appColorType.value?.let {
+                if (it == 0) {
+                    binding.refreshList.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
+                    StatusBarUtils.setStatusBarMode(this, true, viewColors[it])
+                    binding.viewListTop.setBackgroundResource(R.color.color_bg_home)
+                    binding.txtPandaTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                    binding.ibnPandaBack.setImageResource(R.mipmap.img_setting_top_back_black33)
+                    binding.btnPandaSearch.setImageResource(R.mipmap.img_topview_search)
+                } else {
+                    binding.refreshList.setColorSchemeResources(viewColors[it])
+                    binding.txtPandaTitle.setTextColor(ContextCompat.getColor(this, viewColors[0]))
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                    binding.viewListTop.setBackgroundResource(viewColors[it])
+                    binding.ibnPandaBack.setImageResource(R.mipmap.img_setting_top_back_white)
+                    binding.btnPandaSearch.setImageResource(R.mipmap.img_topview_search_white)
+                }
             }
-            StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
-            binding.viewListTop.setBackgroundResource(viewColors[it])
-            binding.txtPandaTitle.setTextColor(ContextCompat.getColor(this, viewColors[0]))
-            binding.ibnPandaBack.setImageResource(R.mipmap.img_setting_top_back_white)
-            binding.btnPandaSearch.setImageResource(R.mipmap.img_topview_search_white)
         }
 
         binding.ibnPandaBack.setOnClickListener {

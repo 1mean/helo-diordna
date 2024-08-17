@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
-import com.example.pandas.base.fragment.BaseLazyFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.EyepetozerViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.EyeOtherAdapter
@@ -19,7 +19,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @date: 5/19/22 12:55 上午
  * @version: v1.0
  */
-public class EyeOtherFragment : BaseLazyFragment<EyepetozerViewModel, LayoutSwipRefreshBinding>() {
+public class EyeOtherFragment : BaseFragment<EyepetozerViewModel, LayoutSwipRefreshBinding>() {
 
     private val mAdapter by lazy { EyeOtherAdapter(mutableListOf()) }
 

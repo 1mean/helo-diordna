@@ -1,8 +1,8 @@
 package com.example.pandas.biz.interaction
 
+import com.android.android_sqlite.entity.CommentAndUser
+import com.android.android_sqlite.entity.VideoComment
 import com.example.pandas.bean.UIDataWrapper
-import com.example.pandas.sql.entity.CommentAndUser
-import com.example.pandas.sql.entity.VideoComment
 
 
 /**

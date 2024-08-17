@@ -12,10 +12,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.pandas.R
 import com.example.pandas.biz.interaction.OnItemLongClickListener
-import com.luck.picture.lib.config.PictureMimeType
-import com.luck.picture.lib.config.SelectMimeType
-import com.luck.picture.lib.entity.LocalMedia
-import com.luck.picture.lib.utils.DateUtils
+import com.life.publish.lib_selector.config.PictureMimeType
+import com.life.publish.lib_selector.config.SelectMimeType
+import com.life.publish.lib_selector.entity.LocalMedia
+import com.life.publish.lib_selector.utils.DateUtils
 
 class GridImageAdapter(context: Context, result: List<LocalMedia>?) :
     RecyclerView.Adapter<GridImageAdapter.ViewHolder>() {
@@ -122,14 +122,14 @@ class GridImageAdapter(context: Context, result: List<LocalMedia>?) :
             if (chooseModel == SelectMimeType.ofAudio()) {
                 viewHolder.tvDuration.visibility = View.VISIBLE
                 viewHolder.tvDuration.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    R.drawable.ps_ic_audio,
+                    R.mipmap.ps_ic_audio,
                     0,
                     0,
                     0
                 )
             } else {
                 viewHolder.tvDuration.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    R.drawable.ps_ic_video,
+                    R.mipmap.ps_ic_video,
                     0,
                     0,
                     0

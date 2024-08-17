@@ -3,14 +3,12 @@ package com.lxj.xpopup.impl;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-
-import androidx.annotation.NonNull;
-
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
-import com.lxj.xpopup.R;
+import androidx.annotation.NonNull;
+
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnCancelListener;
 import com.lxj.xpopup.interfaces.OnInputConfirmListener;
@@ -45,9 +43,9 @@ public class InputConfirmPopupView extends ConfirmPopupView implements View.OnCl
         }
 
         XPopupUtils.setCursorDrawableColor(et_input, XPopup.getPrimaryColor());
-        if(bindLayoutId == 0){
+        if (bindLayoutId == 0) {
             et_input.post(() -> {
-                if(et_input.getMeasuredWidth()>0){
+                if (et_input.getMeasuredWidth() > 0) {
                     BitmapDrawable defaultDrawable = XPopupUtils.createBitmapDrawable(getContext(), et_input.getMeasuredWidth(), Color.parseColor("#888888"));
                     BitmapDrawable focusDrawable = XPopupUtils.createBitmapDrawable(getContext(), et_input.getMeasuredWidth(), XPopup.getPrimaryColor());
                     et_input.setBackgroundDrawable(XPopupUtils.createSelector(defaultDrawable, focusDrawable));
@@ -65,6 +63,7 @@ public class InputConfirmPopupView extends ConfirmPopupView implements View.OnCl
         et_input.setHintTextColor(Color.parseColor("#888888"));
         et_input.setTextColor(Color.parseColor("#333333"));
     }
+
     protected void applyDarkTheme() {
         super.applyDarkTheme();
         et_input.setHintTextColor(Color.parseColor("#888888"));

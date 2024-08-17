@@ -7,8 +7,8 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.android.base.utils.ScreenUtil
 import com.example.pandas.R
-import com.example.pandas.utils.ScreenUtil
 
 /**
  * @description: CheckView

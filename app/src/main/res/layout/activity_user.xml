@@ -275,12 +275,12 @@
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-        <com.example.helo_base.magic.MagicIndicator
+        <com.android.base.custom_tablayout.MagicIndicator
                 android:id="@+id/tb_user"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:paddingBottom="8dp"
-                android:background="@color/white" />
+                android:background="@color/color_bg_home" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

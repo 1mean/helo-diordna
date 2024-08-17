@@ -77,6 +77,7 @@
                 android:background="@drawable/shape_video_input"
                 android:textColorHint="@color/silver"
                 android:maxLines="1"
+                android:textColor="@color/color_txt_edit_comment"
                 android:textCursorDrawable="@drawable/shape_edit_comment"
                 android:ellipsize="end"
                 tools:ignore="RtlSymmetry" />

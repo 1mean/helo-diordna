@@ -91,7 +91,7 @@
                 app:tabTextAppearance="@style/PetTabLayoutTextStyle"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
 
-        <com.flyco.tablayout.SlidingTabLayout2
+        <com.android.base.tablayout.SlidingTabLayout2
                 android:id="@+id/tlayout_pet"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"

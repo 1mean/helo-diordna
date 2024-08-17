@@ -94,7 +94,7 @@ fun MainFragment.initBottom() {
                                 text1.setTextColor(
                                     ContextCompat.getColor(
                                         mActivity,
-                                        R.color.black
+                                        R.color.color_txt_bootom_main
                                     )
                                 )
                             }

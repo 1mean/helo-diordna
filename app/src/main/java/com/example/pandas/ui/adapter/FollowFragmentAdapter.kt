@@ -5,12 +5,11 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.android.android_sqlite.entity.User
 import com.example.pandas.R
-import com.example.pandas.app.appViewModel
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCircleImage
-import com.example.pandas.sql.entity.User
 
 /**
  * @description: FollowFragmentAdapter

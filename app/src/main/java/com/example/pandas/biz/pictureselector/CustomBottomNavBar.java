@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.example.pandas.R;
-import com.luck.picture.lib.widget.BottomNavBar;
+import com.life.publish.lib_selector.widget.BottomNavBar;
 
 public class CustomBottomNavBar extends BottomNavBar implements View.OnClickListener {
 

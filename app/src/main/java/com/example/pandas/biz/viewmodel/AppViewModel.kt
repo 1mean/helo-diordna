@@ -4,16 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
+import com.android.android_sqlite.PetManagerCoroutine
+import com.android.base.utils.FileUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.base.viewmodel.UnPeekLiveData
-import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.utils.FileUtils
+import com.android.base.vm.UnPeekLiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -31,6 +30,8 @@ public class AppViewModel : ViewModel() {
     val appColorType by lazy { UnPeekLiveData<Int>() }
 
     val recommendType by lazy { UnPeekLiveData<Int>() }
+
+    val recoArrangeType by lazy { UnPeekLiveData<Int>() }
 
     val headerUpdate by lazy { UnPeekLiveData<Boolean>() }
 

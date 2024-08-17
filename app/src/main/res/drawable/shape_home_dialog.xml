@@ -5,9 +5,10 @@
     <!--定义圆角-->
     <corners android:radius="3dp" />
     <!--内部填充色-->
-    <solid android:color="@color/color_bg_home_dialog" />
-    <stroke
+    <!--<solid android:color="@color/color_bg_home_dialog" />-->
+    <solid android:color="@color/color_bg_dialog_later" />
+    <!--<stroke
             android:color="@color/color_home_divider"
-            android:width="0.67dp" />
+            android:width="0.67dp" />-->
 </shape>
 

@@ -8,14 +8,13 @@ import android.view.WindowManager
 import android.widget.PopupWindow
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
-import com.example.pandas.databinding.ActivityLaterBinding
 import com.example.pandas.databinding.ActivityLoveBinding
 import com.example.pandas.ui.adapter.LaterAdapter
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.initNoFooter
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
@@ -35,6 +34,45 @@ public class LoveActivity : BaseActivity<HistoryViewModeL, ActivityLoveBinding>(
     private val mAdapter: LaterAdapter by lazy { LaterAdapter(listener = this) }
 
     override fun initView(savedInstanceState: Bundle?) {
+
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+            appViewModel.appColorType.value?.let {
+                binding.clayoutLaterTop.setBackgroundResource(viewColors[it])
+                if (it == 0) {
+                    binding.ibnLaterBack.setImageResource(R.mipmap.img_setting_top_back_black33)
+                    binding.txtLaterTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                    binding.txtLaterManager.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_manager
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, true, viewColors[it])
+                } else {
+                    binding.ibnLaterBack.setImageResource(R.mipmap.img_setting_top_back_white)
+                    binding.txtLaterTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    binding.txtLaterManager.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                }
+            }
+        }
 
         binding.rvLater.initNoFooter(
             null,
@@ -115,40 +153,6 @@ public class LoveActivity : BaseActivity<HistoryViewModeL, ActivityLoveBinding>(
                 cancel.setOnClickListener {
                     popWindow.dismiss()
                 }
-            }
-        }
-
-        appViewModel.appColorType.value?.let {
-            binding.clayoutLaterTop.setBackgroundResource(viewColors[it])
-            if (it == 0) {
-                binding.ibnLaterBack.setImageResource(R.mipmap.img_setting_top_back_black33)
-                binding.txtLaterTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_title
-                    )
-                )
-                binding.txtLaterManager.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_manager
-                    )
-                )
-            } else {
-                binding.ibnLaterBack.setImageResource(R.mipmap.img_setting_top_back_white)
-                binding.txtLaterTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
-                binding.txtLaterManager.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
-                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
     }

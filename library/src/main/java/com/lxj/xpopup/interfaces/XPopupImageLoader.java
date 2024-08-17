@@ -1,14 +1,13 @@
 package com.lxj.xpopup.interfaces;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.lxj.xpopup.core.ImageViewerPopupView;
 import com.lxj.xpopup.photoview.PhotoView;
 

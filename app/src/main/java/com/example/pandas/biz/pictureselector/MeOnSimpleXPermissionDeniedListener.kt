@@ -6,7 +6,7 @@ import android.content.Context
 import android.text.TextUtils
 import com.luck.lib.camerax.listener.OnSimpleXPermissionDeniedListener
 import com.luck.lib.camerax.permissions.SimpleXPermissionUtil
-import com.luck.picture.lib.dialog.RemindDialog
+import com.life.publish.lib_selector.dialog.RemindDialog
 
 /**
  * @description: MeOnSimpleXPermissionDeniedListener

@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pandas.base.fragment.BaseFragment
+import com.android.android_sqlite.entity.MusicVo
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.ext.getMusicUrl
 import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.viewmodel.MoreDataViewModel
 import com.example.pandas.databinding.FragmentMusicListBinding
-import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.ui.activity.AudioPlayActivity
 import com.example.pandas.ui.adapter.MusicListAdapter
 import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView2

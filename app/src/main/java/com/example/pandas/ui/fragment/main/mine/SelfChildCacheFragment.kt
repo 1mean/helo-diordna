@@ -2,7 +2,7 @@ package com.example.pandas.ui.fragment.main.mine
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pandas.base.fragment.BaseFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentCacheListBinding
 import com.example.pandas.ui.adapter.CacheListAdapter

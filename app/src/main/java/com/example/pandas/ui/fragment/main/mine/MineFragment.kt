@@ -18,11 +18,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
+import com.android.base.ui.fragment.BaseFragment
+import com.android.base.utils.BitmapUtils
+import com.android.base.utils.FileUtils
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
-import com.example.pandas.app.LoginInfo
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.ext.getUserHeader
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCircleBitmap
@@ -30,14 +31,19 @@ import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.FragmentSetting2Binding
 import com.example.pandas.ui.activity.*
-import com.example.pandas.ui.ext.*
+import com.example.pandas.ui.ext.startAnyActivity
+import com.example.pandas.ui.ext.startToActivity
+import com.example.pandas.ui.ext.toastTopShow
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.popuwindow.TimerDialogFragment
-import com.example.pandas.utils.*
-import com.example.pandas.utils.FileUtils
+import com.example.pandas.utils.DarkModeUtils
+import com.example.pandas.utils.Preference
+import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
 import com.lxj.xpopup.util.XPopupUtils
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -55,7 +61,8 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
     private val tabTitles = arrayListOf("我的")
     private var headerDialog: HeaderDialog? = null
     private var tempCameraPicName: String = ""
-    private var loginStatus: Int = 0
+    private val loginStatus: Boolean
+        get() = AppInstance.instance.isLoginSuccess
     private var loadingPopup: LoadingPopupView? = null
 
     private val mHandler: Handler = Handler(Looper.getMainLooper())
@@ -65,29 +72,32 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
     override fun initView(savedInstanceState: Bundle?) {
 
         //loadCircleImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
-        loginStatus = LoginInfo.instance.getLoginStatus()
-        if (loginStatus == 0) {
+        if (!loginStatus) {
             binding.groupMine.visibility = View.GONE
             binding.txtMineLogin.visibility = View.VISIBLE
         }
 
         binding.imgMineHeader.setOnClickListener {
-            if (loginStatus == 0) {
-                startLogin()
-            } else {
+            if (loginStatus) {
                 showHeader()
+            } else {
+                startLogin()
             }
         }
 
         binding.clayoutKugouStyle1.setOnClickListener {
-            if (loginStatus == 0) {
-                startLogin()
-            } else {
+            if (loginStatus) {
                 startAnyActivity(mActivity, HistoryActivity::class.java)
+            } else {
+                startLogin()
             }
         }
         binding.llayoutSetting.setOnClickListener {
-            startToActivity(mActivity, SettingActivity::class.java)
+            if (loginStatus) {
+                startToActivity(mActivity, SettingActivity::class.java)
+            } else {
+                startLogin()
+            }
         }
         binding.clayoutSettingTiming.setOnClickListener {
 
@@ -108,27 +118,27 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
             startAnyActivity(mActivity, SelfInfoActivity::class.java)
         }
         binding.clayoutMineAttention.setOnClickListener {
-            if (loginStatus == 0) {
-                startLogin()
-            } else {
+            if (loginStatus) {
                 val intent =
                     Intent(mActivity, FollowAndFansActivity::class.java).putExtra(
                         "FollowsOrFans",
                         0
                     )
                 mActivity.startActivity(intent)
+            } else {
+                startLogin()
             }
         }
         binding.clayoutMineFans.setOnClickListener {
-            if (loginStatus == 0) {
-                startLogin()
-            } else {
+            if (loginStatus) {
                 val intent =
                     Intent(mActivity, FollowAndFansActivity::class.java).putExtra(
                         "FollowsOrFans",
                         1
                     )
                 mActivity.startActivity(intent)
+            } else {
+                startLogin()
             }
         }
         binding.txtMineName.setOnClickListener {
@@ -136,33 +146,33 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
         }
 
         binding.clayoutKugouStyle5.setOnClickListener {
-            if (loginStatus == 0) {
-                startLogin()
-            } else {
+            if (loginStatus) {
                 startAnyActivity(mActivity, LaterActivity::class.java)
+            } else {
+                startLogin()
             }
         }
 
         binding.clayoutKugouStyle4.setOnClickListener {
-            if (loginStatus == 0) {
-                startLogin()
-            } else {
+            if (loginStatus) {
                 startAnyActivity(mActivity, CollectActivity::class.java)
+            } else {
+                startLogin()
             }
         }
         binding.clayoutKugouStyle3.setOnClickListener {
-            if (loginStatus == 0) {
-                startLogin()
-            } else {
+            if (loginStatus) {
                 startAnyActivity(mActivity, LoveActivity::class.java)
+            } else {
+                startLogin()
             }
         }
 
         binding.clayoutKugouStyle6.setOnClickListener {
-            if (loginStatus == 0) {
-                startLogin()
-            } else {
+            if (loginStatus) {
                 startAnyActivity(mActivity, IntegralActivity::class.java)
+            } else {
+                startLogin()
             }
         }
 
@@ -171,10 +181,10 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
         }
 
         binding.clayoutKugouStyle2.setOnClickListener {
-            if (loginStatus == 0) {
-                startLogin()
-            } else {
+            if (loginStatus) {
                 startAnyActivity(mActivity, DownLoadActivity::class.java)
+            } else {
+                startLogin()
             }
         }
 
@@ -204,8 +214,7 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
         }
 
         binding.llayoutSettingLoginout.setOnClickListener {
-
-            XPopup.Builder(mActivity).asConfirm("退出登录", "退出账号很多功能将无法使用，确定退出吗？", "取消", "确定退出",
+            XPopup.Builder(mActivity).asConfirm("退出登录", "退出账号很多功能将无法使用，确定退出吗？", "取消", "确定",
                 {
                     if (loadingPopup == null) {
                         loadingPopup = XPopup.Builder(mActivity).dismissOnBackPressed(true)
@@ -220,9 +229,7 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
                     } else {
                         loadingPopup!!.show()
                     }
-                    mHandler.postDelayed({
-                        appViewModel.loginStatus.value = 0
-                    }, 1000)
+                    mViewModel.logout()
                 }, { Log.e("1mean", "取消") }, false, R.layout.dialog_login_out
             ).show()
         }
@@ -251,29 +258,31 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
             startAnyActivity(mActivity, GroupChatActivity::class.java)
         }
 
-        updateTop(appViewModel.appColorType.value)
+        if (!AppInstance.instance.isNightMode) {
+            updateTop(appViewModel.appColorType.value)
+        }
 
+        if (AppInstance.instance.isLoginSuccess) {//成功登录了
+            binding.groupMine.visibility = View.VISIBLE
+            binding.txtMineLogin.visibility = View.GONE
+            binding.llayoutSettingLoginout.visibility = View.VISIBLE
+            loadViewData()
+        } else {
+            binding.groupMine.visibility = View.GONE
+            binding.txtMineLogin.visibility = View.VISIBLE
+            binding.imgMineHeader.setImageResource(R.mipmap.img_icon_panda)
+            binding.llayoutSettingLoginout.visibility = View.GONE
+        }
     }
 
     override fun createObserver() {
 
         appViewModel.loginStatus.observe(viewLifecycleOwner) {
-            if (it == 1) {
-                Log.e("1mean", "登录成功，设置界面修改")
-                loginStatus = 1
+            if (it > 0) {
                 binding.groupMine.visibility = View.VISIBLE
                 binding.txtMineLogin.visibility = View.GONE
                 binding.llayoutSettingLoginout.visibility = View.VISIBLE
                 loadViewData()
-            } else {
-                loginStatus = 0
-                LoginInfo.instance.setLoginStatus(0)
-                binding.groupMine.visibility = View.GONE
-                binding.txtMineLogin.visibility = View.VISIBLE
-                binding.imgMineHeader.setImageResource(R.mipmap.img_icon_seadog)
-                binding.llayoutSettingLoginout.visibility = View.GONE
-                SPUtils.putInt(mActivity, AppInfos.LOGIN_KEY, 0)
-                loadingPopup?.dismiss()
             }
         }
 
@@ -292,9 +301,6 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
         mViewModel.follows.observe(viewLifecycleOwner) {
             //binding.txtMineFollow.text = it.toString()
 
-        }
-
-        appViewModel.appColorType.observe(viewLifecycleOwner) {
         }
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
@@ -324,6 +330,21 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
                 }
                 1 -> {
                     binding.imgMineSex.setImageResource(R.mipmap.img_mine_female)
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            mViewModel.logout.collect {
+                if (it.errorCode == 0) {//退出登录成功
+                    binding.groupMine.visibility = View.GONE
+                    binding.txtMineLogin.visibility = View.VISIBLE
+                    binding.imgMineHeader.setImageResource(R.mipmap.img_icon_seadog)
+                    binding.llayoutSettingLoginout.visibility = View.GONE
+                    AppInstance.instance.isLoginSuccess = false
+                    Preference.clear()
+                    delay(1000)
+                    loadingPopup?.dismiss()
                 }
             }
         }
@@ -462,22 +483,12 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
                     R.color.color_txt_tab
                 )
             )
-            binding.imgUpdateDark.setImageResource(R.mipmap.img_dark_new_black)
+            //binding.imgUpdateDark.setImageResource(R.mipmap.img_dark_new_black)
             binding.imgUpdateBackground.setImageResource(R.mipmap.img_clothes_new_black)
             binding.imgUpdateSearch.setImageResource(R.mipmap.img_search_new_black)
         } else {
             binding.layoutMineTop.setBackgroundResource(viewColors[status])
-            //binding.clayoutTopInfo.setBackgroundResource(AppInfos.bgColors[status])
-//            binding.txtMineName.setTextColor(ContextCompat.getColor(mActivity, R.color.white))
-//            binding.txtSelfZone.setTextColor(
-//                ContextCompat.getColor(
-//                    mActivity,
-//                    R.color.color_txt_top
-//                )
-//            )
-//            binding.imgZoneTo.setImageResource(R.mipmap.img_setting_top_arror_white)
-//
-            binding.imgUpdateDark.setImageResource(R.mipmap.img_dark_new_white)
+            //binding.imgUpdateDark.setImageResource(R.mipmap.img_dark_new_white)
             binding.imgUpdateBackground.setImageResource(R.mipmap.img_clothes_new_white)
             binding.imgUpdateSearch.setImageResource(R.mipmap.img_search_new_white)
         }
@@ -497,7 +508,7 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
                 try {
                     val dir = File(
                         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
-                        context!!.packageName
+                        requireContext().packageName
                     )
                     if (!dir.exists()) dir.mkdirs()
                     val destFile = File(
@@ -517,7 +528,7 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
                         }
                         val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
                         intent.data = Uri.parse("file://" + destFile.absolutePath)
-                        context!!.sendBroadcast(intent)
+                        requireContext().sendBroadcast(intent)
                     } else {
                         //android10以上，增加了新字段，自己insert，因为RELATIVE_PATH，DATE_EXPIRES，IS_PENDING是29新增字段
                         val contentValues = ContentValues()
@@ -531,17 +542,17 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
                             }
                         contentValues.put(
                             MediaStore.Images.Media.RELATIVE_PATH,
-                            Environment.DIRECTORY_DCIM + "/" + context!!.packageName
+                            Environment.DIRECTORY_DCIM + "/" + requireContext().packageName
                         )
                         contentValues.put(MediaStore.MediaColumns.IS_PENDING, 1)
-                        val uri = context!!.contentResolver.insert(contentUri, contentValues)
+                        val uri = requireContext().contentResolver.insert(contentUri, contentValues)
                         if (uri == null) {
                             withContext(Dispatchers.Main) {
                                 headerDialog?.downLoadHeader(false)
                             }
                             return@launch
                         }
-                        val resolver = context!!.contentResolver
+                        val resolver = requireContext().contentResolver
                         resolver.openOutputStream(uri)?.let { out ->
                             FileUtils.writeFileFromIS(
                                 out,
@@ -570,8 +581,8 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
     }
 
     private fun loadViewData() {
-        if (loginStatus == 1) {
-            mViewModel.getCurrentFollows(mActivity)
+        if (loginStatus) {
+            //mViewModel.getCurrentFollows(mActivity)
             mViewModel.getUserInfo()
             lifecycleScope.launch {
                 val bitmap = getUserHeader(mActivity)

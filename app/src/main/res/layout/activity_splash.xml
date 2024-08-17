@@ -1,47 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/img_splash">
+        android:background="@color/white">
 
     <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_splash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:visibility="gone"
-            android:src="@mipmap/img_icon_fire" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/img_splash_qx" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
-            android:visibility="gone"
+            android:id="@+id/clayout_splash_info"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="72dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp">
 
         <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/img_fire"
-                android:layout_gravity="center_vertical" />
+                android:id="@+id/txt_splash_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/img_logo_panda" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="5dp"
-                android:text="火龙"
-                android:fontFamily="@font/fzzy"
+                android:fontFamily="@font/fzpty"
+                android:text="熊猫视频"
+                android:includeFontPadding="false"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_splash_close"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="15dp"
+            android:layout_gravity="right"
+            android:text="跳过广告"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:background="@drawable/shape_splash_close" />
+</FrameLayout>

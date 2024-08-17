@@ -10,22 +10,21 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
-import com.blankj.utilcode.util.VibrateUtils
+import com.android.android_sqlite.bean.RecommendData
+import com.android.android_sqlite.bean.VideoType
+import com.android.android_sqlite.entity.PetVideo
+import com.android.base.utils.NumUtils
+import com.android.base.utils.TimeUtils
+import com.android.base.utils.VibrateUtils
 import com.example.pandas.R
-import com.example.pandas.app.appViewModel
-import com.example.pandas.bean.pet.RecommendData
-import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.CardItemLayoutBinding
 import com.example.pandas.databinding.ItemBannerRecommendBinding
 import com.example.pandas.databinding.ItemRecommendVideoBinding
-import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.view.dialog.MoreBottomSheetDialog
 import com.example.pandas.ui.view.viewpager.Indicator
-import com.example.pandas.utils.NumUtils
-import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: 首页-推荐
@@ -256,7 +255,6 @@ public class RecommendAdapter(
             itemView.setOnLongClickListener {
                 showDialog(petVideo.code)
                 VibrateUtils.vibrate(2000)
-                //VibrateUtils.vibrate(context, 500)
                 true
             }
 

@@ -1,27 +1,24 @@
 package com.example.pandas.ui.fragment.main.short
 
+import AppInstance
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.android.base.tablayout.listener.CustomTabEntity
+import com.android.base.tablayout.listener.OnTabSelectListener
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentShortVideoBinding
 import com.example.pandas.ui.activity.NewSearchActivity
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.TabEntity
-import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
-import com.flyco.tablayout.listener.CustomTabEntity
-import com.flyco.tablayout.listener.OnTabSelectListener
 
 /**
  * @description: PetChildFragment
@@ -174,8 +171,7 @@ public class ShortFragment() :
         isOnResume = false
         if (isUpdate) {
             if (binding.tbShort.currentTab == 2) {
-                val nightMode = DarkModeUtils.getNightModel(mActivity)
-                if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
+                if (AppInstance.instance.isNightMode) {//夜间模式
                     StatusBarUtils.updataStatus(mActivity, false, true, R.color.color_white_lucency)
                 } else {
                     val status = appViewModel.appColorType.value
@@ -235,35 +231,44 @@ public class ShortFragment() :
             binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
         } else {
             needUpadate = false
-            val status = appViewModel.appColorType.value
-            if (status == null || status == 0) {
-                binding.tbShort.textSelectColor = tabTitleColors[2]
-                binding.tbShort.textUnselectColor = tabTitleColors[1]
-
-                binding.tbShort.indicatorColor = tabTitleColors[2]
-
-                StatusBarUtils.updataStatus(
-                    mActivity,
-                    true,
-                    true,
-                    R.color.color_white_lucency
-                )
-                binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1)
-                binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
-            } else {
-                binding.tbShort.textSelectColor = tabTitleColors[3]
-                binding.tbShort.textUnselectColor = tabTitleColors[3]
-
-                binding.tbShort.indicatorColor = tabTitleColors[3]
-
+            if (AppInstance.instance.isNightMode) {
                 StatusBarUtils.updataStatus(
                     mActivity,
                     false,
                     true,
-                    viewColors[status]
+                    R.color.color_white_lucency
                 )
-                binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1_white)
-                binding.clayoutShortTab.setBackgroundResource(viewColors[status])
+            } else {
+                val status = appViewModel.appColorType.value
+                if (status == null || status == 0) {
+                    binding.tbShort.textSelectColor = tabTitleColors[2]
+                    binding.tbShort.textUnselectColor = tabTitleColors[1]
+
+                    binding.tbShort.indicatorColor = tabTitleColors[2]
+
+                    StatusBarUtils.updataStatus(
+                        mActivity,
+                        true,
+                        true,
+                        R.color.color_white_lucency
+                    )
+                    binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1)
+                    binding.clayoutShortTab.setBackgroundResource(R.color.color_white_lucency)
+                } else {
+                    binding.tbShort.textSelectColor = tabTitleColors[3]
+                    binding.tbShort.textUnselectColor = tabTitleColors[3]
+
+                    binding.tbShort.indicatorColor = tabTitleColors[3]
+
+                    StatusBarUtils.updataStatus(
+                        mActivity,
+                        false,
+                        true,
+                        viewColors[status]
+                    )
+                    binding.imgShortSearch.setImageResource(R.mipmap.img_short_search1_white)
+                    binding.clayoutShortTab.setBackgroundResource(viewColors[status])
+                }
             }
             mViewModel.updateBottomBackground(0)
         }

@@ -5,12 +5,12 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import com.android.android_sqlite.entity.MusicVo
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.interaction.OnItemmmmClickListener
-import com.example.pandas.sql.entity.MusicVo
 
 /**
  * @description: AudioMenuAdapter

@@ -6,7 +6,7 @@ import com.bumptech.glide.Glide
 import com.luck.lib.camerax.SimpleCameraX
 import com.luck.lib.camerax.listener.OnSimpleXPermissionDeniedListener
 import com.luck.lib.camerax.listener.OnSimpleXPermissionDescriptionListener
-import com.luck.picture.lib.interfaces.OnCameraInterceptListener
+import com.life.publish.lib_selector.interfaces.OnCameraInterceptListener
 import java.io.File
 
 /**

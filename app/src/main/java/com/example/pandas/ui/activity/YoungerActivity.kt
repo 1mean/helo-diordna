@@ -1,16 +1,15 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
-import android.os.Handler
 import android.os.Looper
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import androidx.core.content.ContextCompat
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.lifecycle.LifecycleHandler
+import com.android.base.ui.lifecycle.LifecycleHandler
 import com.example.pandas.biz.viewmodel.MainViewModel
 import com.example.pandas.databinding.ActivityYoungerBinding
 import com.example.pandas.ui.ext.APP_COLOR_STATUS
@@ -30,7 +29,7 @@ public class YoungerActivity : BaseActivity<MainViewModel, ActivityYoungerBindin
     private val desc =
         "开启青少年模式后，系统将自动关闭所有视频的下载功能，需要输入密码后才能恢复使用\n\n开启青少年模式，需要先设置独立密码，如忘记密码可联系客服申述重制\n\n青少年模式是响应国家政策，为促进青少年健康成长的一种模式，我们优先针对核心场景进行优化，也将继续致力于优化更多场景"
     private val desc2 = "更多信息可阅读《儿童/青少年使用须知》"
-    private val mHandler = LifecycleHandler(Looper.getMainLooper(),this)
+    private val mHandler = LifecycleHandler(Looper.getMainLooper(), this)
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -38,22 +37,31 @@ public class YoungerActivity : BaseActivity<MainViewModel, ActivityYoungerBindin
         val spanColor: Int
         if (type == 0) {
             spanColor = viewColors[APP_COLOR_STATUS]
-            binding.clayoutSettingTop.setBackgroundResource(R.color.color_bg_home)
-            binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_black33)
-            binding.txtSettingTitle.setTextColor(
-                ContextCompat.getColor(
-                    this,
-                    R.color.color_history_title
-                )
-            )
-            binding.txtYoungerModeOpen.setBackgroundResource(shape_20_drawables[APP_COLOR_STATUS])
         } else {
             spanColor = viewColors[type]
-            binding.clayoutSettingTop.setBackgroundResource(viewColors[type])
-            binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_white)
-            binding.txtSettingTitle.setTextColor(ContextCompat.getColor(this, R.color.white))
-            StatusBarUtils.setStatusBarMode(this, false, viewColors[type])
-            binding.txtYoungerModeOpen.setBackgroundResource(shape_20_drawables[type])
+        }
+
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+            if (type == 0) {
+                binding.clayoutSettingTop.setBackgroundResource(R.color.color_bg_home)
+                binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_black33)
+                binding.txtSettingTitle.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_history_title
+                    )
+                )
+                binding.txtYoungerModeOpen.setBackgroundResource(shape_20_drawables[APP_COLOR_STATUS])
+                StatusBarUtils.setStatusBarMode(this, true, viewColors[type])
+            } else {
+                binding.clayoutSettingTop.setBackgroundResource(viewColors[type])
+                binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_white)
+                binding.txtSettingTitle.setTextColor(ContextCompat.getColor(this, R.color.white))
+                StatusBarUtils.setStatusBarMode(this, false, viewColors[type])
+                binding.txtYoungerModeOpen.setBackgroundResource(shape_20_drawables[type])
+            }
         }
 
         binding.txtActivityYoungerDesc.text = desc

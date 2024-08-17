@@ -6,11 +6,10 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.GridLayoutManager
+import com.android.android_sqlite.bean.VideoType
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.bean.pet.VideoType
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.FragmentMusicBinding
 import com.example.pandas.ui.activity.OneVerticalList2Activity
@@ -83,6 +82,11 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
                 mViewModel.getMusicTopData()
             }
         }
+
+        binding.tabMusic.setTabTextColors(
+            ContextCompat.getColor(mActivity, R.color.color_home_music_text_unselected),
+            ContextCompat.getColor(mActivity, R.color.color_tab_selected_music)
+        )
 
         //binding.tabMusic.setTitles(mTitles)
         TabLayoutMediator(

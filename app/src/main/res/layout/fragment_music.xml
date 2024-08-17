@@ -162,7 +162,7 @@
                     android:paddingBottom="10dp"
                     android:overScrollMode="never"
                     app:tabIndicatorFullWidth="true"
-                    app:tabSelectedTextColor="@color/black"
+                    app:tabSelectedTextColor="@color/color_tab_selected_music"
                     app:tabTextColor="@color/color_home_music_text_unselected"
                     app:tabTextAppearance="@style/MusicTabLayoutTextStyle"
                     app:tabIndicator="@drawable/layer_music_indicator"

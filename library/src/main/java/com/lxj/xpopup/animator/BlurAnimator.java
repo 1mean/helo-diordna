@@ -6,7 +6,6 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 
-import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.util.XPopupUtils;
 
 /**

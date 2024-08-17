@@ -12,13 +12,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.android.android_sqlite.entity.VideoData
 import com.example.pandas.R
-import com.example.pandas.base.fragment.BaseFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.interaction.CommentWindowListener
 import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.databinding.FragmentVerticalVideoplayBinding
-import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.activity.UserInfoActivity
 import com.example.pandas.ui.adapter.VideoPagerAdapter
 import com.example.pandas.ui.view.popuwindow.ShortRightPopuWindow
@@ -252,7 +252,8 @@ public class ShortRecommendFragment :
             })
         }
         XPopup.setShadowBgColor(ContextCompat.getColor(mActivity, R.color.color_white_lucency))
-        XPopup.Builder(mActivity).setPopupCallback(object : XPopupCallback {
+        XPopup.Builder(mActivity).setPopupCallback(object :
+            XPopupCallback {
             override fun onCreated(popupView: BasePopupView?) {
             }
 

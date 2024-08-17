@@ -2,10 +2,10 @@ package com.example.pandas.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.android.android_sqlite.bean.PetViewData
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.databinding.FragmentItemLoveBinding
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 

@@ -9,18 +9,18 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
+import com.android.android_sqlite.entity.CommentAndUser
+import com.android.android_sqlite.entity.User
+import com.android.android_sqlite.entity.VideoComment
+import com.android.base.utils.TimeUtils
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.interaction.ShortCommentListener
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.AdapterShortCommentBinding
-import com.example.pandas.sql.entity.CommentAndUser
-import com.example.pandas.sql.entity.User
-import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.ext.addScaleAnimation
 import com.example.pandas.ui.ext.startUserInfoActivity
-import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: ShortCommentAdapter
@@ -194,19 +194,15 @@ public class ShortCommentAdapter(
             }
             when (topComment.state) {
                 0 -> {//1，没有评论的item,添加回复
-                    Log.e("1mean", "2222")
                     data[position].comment.state = 1
                 }
                 2 -> {//3,有评论，但是未点开
-                    Log.e("1mean", "3333")
                     data[position].comment.state = 3
                 }
             }
             if (mRecyclerView.adapter!!.itemCount < topComment.replyCounts) {
-                Log.e("1mean", "4444")
                 topComment.replyComments.add(mRecyclerView.adapter!!.itemCount - 1, comment)
             } else {
-                Log.e("1mean", "5555")
                 topComment.replyComments.add(comment)
             }
             topComment.newReplyCounts += 1

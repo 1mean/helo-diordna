@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.luck.picture.lib.config.PictureMimeType
-import com.luck.picture.lib.entity.LocalMedia
-import com.luck.picture.lib.interfaces.OnMediaEditInterceptListener
-import com.luck.picture.lib.utils.DateUtils
+import com.life.publish.lib_selector.config.PictureMimeType
+import com.life.publish.lib_selector.entity.LocalMedia
+import com.life.publish.lib_selector.interfaces.OnMediaEditInterceptListener
+import com.life.publish.lib_selector.utils.DateUtils
 import com.yalantis.ucrop.UCrop
 import com.yalantis.ucrop.UCropImageEngine
 import java.io.File

@@ -2,12 +2,12 @@ package com.example.pandas.ui.activity
 
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.databinding.ActivityCreateGroupBinding
+import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.addHorizontalAnimation
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.StatusBarUtils
@@ -26,7 +26,44 @@ public class GroupCreateActivity : BaseActivity<HistoryViewModeL, ActivityCreate
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.setStatusBarMode(this, true, R.color.white)
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+            appViewModel.appColorType.value?.let {
+                binding.clayoutCreatorTop.setBackgroundResource(viewColors[it])
+                if (it == 0) {
+                    binding.ibnCreatorBack.setImageResource(R.mipmap.img_topview_back)
+                    binding.txtCreatorTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                    binding.txtCreatorFinish.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_manager
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, true, viewColors[it])
+                } else {
+                    binding.ibnCreatorBack.setImageResource(R.mipmap.img_topview_back_white)
+                    binding.txtCreatorTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    binding.txtCreatorFinish.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                }
+            }
+        }
 
         binding.txtCreatorFinish.setOnClickListener {
 
@@ -51,40 +88,6 @@ public class GroupCreateActivity : BaseActivity<HistoryViewModeL, ActivityCreate
                     loadingPopup!!.show()
                 }
                 mViewModel.createAGroup(name.toString(), desc.toString(), isOpen)
-            }
-        }
-
-        appViewModel.appColorType.value?.let {
-            binding.clayoutCreatorTop.setBackgroundResource(viewColors[it])
-            if (it == 0) {
-                binding.ibnCreatorBack.setImageResource(R.mipmap.img_topview_back)
-                binding.txtCreatorTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_title
-                    )
-                )
-                binding.txtCreatorFinish.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_manager
-                    )
-                )
-            } else {
-                binding.ibnCreatorBack.setImageResource(R.mipmap.img_topview_back_white)
-                binding.txtCreatorTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
-                binding.txtCreatorFinish.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
-                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
     }

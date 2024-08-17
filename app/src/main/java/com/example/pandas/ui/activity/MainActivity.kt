@@ -1,5 +1,6 @@
 package com.example.pandas.ui.activity
 
+import AppInstance
 import android.Manifest
 import android.app.Service
 import android.content.*
@@ -15,17 +16,16 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation.findNavController
+import com.android.base.ui.activity.BaseActivity
+import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.viewmodel.BaseViewModel
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.biz.manager.PlayerManager
 import com.example.pandas.databinding.ActivityMainBinding
 import com.example.pandas.ui.broadcast.TimingBroadCast
 import com.example.pandas.ui.ext.viewColors
-import com.example.pandas.ui.service.AudioPlayService
 import com.example.pandas.ui.service.MainService
-import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
 class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
@@ -58,55 +58,27 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
             val alwaysDeniedList = list - deniedList
         }
 
-    override fun initStatusView() {
-        val nightMode = DarkModeUtils.getNightModel(this)
-        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {//夜间模式
-            StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
-        } else {
-            StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
-        }
-    }
-
     override fun initView(savedInstanceState: Bundle?) {
 
         requestPermissions.launch(permissions)
 
-//        if (!Python.isStarted()) {
-//            Python.start(AndroidPlatform(this))
-//        }
-//        val py = Python.getInstance()
-//        val module = py.getModule("test1")
-//        val list = module.callAttr("parseUrl")
-//        Log.e("1mean","python解析： $list")
-
-//        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-//            override fun handleOnBackPressed() {
-//                val nav = Navigation.findNavController(this@MainActivity, R.id.main_navigation)
-//                if (nav.currentDestination != null && nav.currentDestination!!.id != R.id.mainFragment) {
-//                    //如果当前界面不是主页，那么直接调用返回即可
-//                    nav.navigateUp()
-//                } else {
-//                    //是主页
-//                    if (System.currentTimeMillis() - exitTime > 2000) {
-//                        Toast.makeText(this@MainActivity,"再按一次退出程序",Toast.LENGTH_SHORT).show()
-//                        exitTime = System.currentTimeMillis()
-//                    } else {
-//                        finish()
-//                    }
-//                }
-//            }
-//        })
+        if (AppInstance.instance.isNightMode) {//夜间模式
+            StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
+        } else {
+            //StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
+            appViewModel.appColorType.value?.let {
+                if (it == 0) {
+                    StatusBarUtils.updataStatus(this, true, true, R.color.color_white_lucency)
+                } else {
+                    StatusBarUtils.updataStatus(this, false, true, viewColors[it])
+                }
+            }
+        }
 
         val intentFilter = IntentFilter()
         intentFilter.addAction(ALARM_EVENT)
         broadCast = TimingBroadCast()
         registerReceiver(broadCast, intentFilter)
-
-        appViewModel.appColorType.value?.let {
-            if (it != 0) {
-                StatusBarUtils.updataStatus(this, false, true, viewColors[it])
-            }
-        }
 
         val intent = Intent(this, MainService::class.java)
         bindService(intent, conn, Service.BIND_AUTO_CREATE)

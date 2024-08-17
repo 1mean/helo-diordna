@@ -3,18 +3,13 @@ package com.example.pandas.ui.fragment.main.mine
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.compose.ui.BiasAlignment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
-import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.base.viewmodel.BaseViewModel
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.ErrorViewModel
 import com.example.pandas.databinding.FragmentErrorBinding
-import java.io.BufferedReader
-import java.io.FileInputStream
-import java.io.InputStreamReader
 
 /**
  * @description: ErrorFragment

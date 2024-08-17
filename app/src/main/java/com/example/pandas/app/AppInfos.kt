@@ -10,17 +10,23 @@ import com.example.pandas.R
  */
 object AppInfos {
 
+    const val LOGIN_KEY = "login"
+    const val USERNAME_KEY = "userName"
+    const val PASSWORD_KEY = "passWord"
+    const val IS_DEBUG = false
+    const val LOG_APP = "HELO_APPLICATION"
     const val APP_FLAG = false
     const val AUTHOR_ID = 1074309089 //作者ID
     const val AUTHOR_NAME = "和叶小可怜" //作者ID
-    const val DEBUG_LOG_TAG = "pandas_log" //debug版本的默认删除日志tag
+    const val DEBUG_LOG_TAG = "helo_log" //debug版本的默认删除日志tag
     const val SEARCH_KEY = "history" //搜索历史记录存入sp的key
-    const val LOGIN_KEY = "login" //搜索登录信息存入sp的key  0为未登录，1为登录成功
     const val THEME_COLOR = "theme_color" //主题颜色
     const val ATTENTION_KEY = "attention" //搜索关注列表的key
     const val VIDEO_PLAY_KEY = "code" //视频播放界面需要传递的key
     const val BG_STATUS_KEY = "bg_status" //设置背景色
+    const val BG_Splash_KEY = "splash_status" //设置背景色
     const val RECO_STATUS_KEY = "reco_type" //设置推荐页面的排布类型
+    const val RECO_ARRANGE_KEY = "arrange_type" //首页单双列
     const val MINE_STYLE_KEY = "mine_type" //我的界面的样式
     const val MUSIC_STYLE_KEY = "music_type" //音乐界面的样式
     const val LOCAL_DATA_KEY = "local_data_type" //音乐界面的样式
@@ -41,6 +47,27 @@ object AppInfos {
 
     //阈值
     const val useTempShortComment = true
+
+    val splashImgs
+        get() = arrayOf(
+            R.mipmap.img_splash,
+            R.mipmap.img_splash_catboy,
+            R.mipmap.img_splash_armer,
+            R.mipmap.img_splash_chicken,
+            R.mipmap.img_splash_superman,
+            R.mipmap.img_splash_cat,
+            R.mipmap.img_splash_dpcq
+        )
+    val splashNames
+        get() = arrayOf(
+            "晚舟",
+            "勇士",
+            "起航",
+            "黎明之战",
+            "科技战士",
+            "黑猫",
+            "斗破苍穹"
+        )
 
     val provinces = mutableListOf(
         "北京",

@@ -1,9 +1,9 @@
 package com.example.pandas.ui.activity
 
+import AppInstance
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
-import android.graphics.drawable.BitmapDrawable
 import android.os.*
 import android.util.Log
 import android.view.KeyEvent
@@ -18,12 +18,13 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import com.example.helo_base.magic.commonnavigator.CommonNavigator
-import com.example.helo_base.magic.commonnavigator.abs.CommonNavigatorAdapter
+import com.android.android_sqlite.entity.PetVideo
+import com.android.base.ui.activity.BaseActivity
+import com.android.base.utils.ScreenUtil
+import com.android.base.custom_tablayout.commonnavigator.CommonNavigator
+import com.android.base.custom_tablayout.commonnavigator.abs.CommonNavigatorAdapter
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
 import com.example.pandas.biz.interaction.CommentsListener
@@ -33,12 +34,10 @@ import com.example.pandas.biz.interaction.VideoMoreSelectListener
 import com.example.pandas.biz.manager.VideoPlayManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.ActivityVideoBinding
-import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.fragment.video.CommentListFragment
 import com.example.pandas.ui.view.VideoTabView
 import com.example.pandas.ui.view.dialog.VideoMoreBottomSheetDialog
-import com.example.pandas.utils.ScreenUtil
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.exoplayer2.ui.DefaultTimeBar
 import com.google.android.exoplayer2.ui.StyledPlayerView
@@ -77,12 +76,13 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
 
     val videoManager: VideoPlayManager by lazy { VideoPlayManager(this, this) }
 
-    override fun initStatusView() {
+    fun initStatusView() {
         StatusBarUtils.setStatusBarMode(this, false, R.color.black)
     }
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        initStatusView()
         window.decorView.setBackgroundResource(R.color.white)//弹出软键盘背景会出现处理冷启动白屏的windowBackground
 
         video = intent.getParcelableExtra("petVideo")

@@ -1,6 +1,6 @@
 package com.example.pandas.data.simulate
 
-import com.example.pandas.sql.entity.VideoComment
+import com.android.android_sqlite.entity.VideoComment
 
 
 object ShortCommentData {

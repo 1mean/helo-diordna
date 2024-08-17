@@ -1,27 +1,28 @@
 package com.example.pandas.ui.activity
 
+import AppInstance
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.blankj.utilcode.util.KeyboardUtils
+import com.android.base.utils.SoftInputUtils
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseExActivity
+import com.android.base.ui.activity.BaseSoftKeyBoardActivity
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.viewmodel.SearchViewModel
 import com.example.pandas.databinding.ActivitySearchBinding
 import com.example.pandas.ui.adapter.HotSearchAdapter
-import com.example.pandas.ui.ext.*
+import com.example.pandas.ui.ext.clearEditText
+import com.example.pandas.ui.ext.setEditText
+import com.example.pandas.ui.ext.turnToSearchResultFragment
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.fragment.search.SearchListFragment
-import com.example.pandas.utils.SoftInputUtils
 import com.example.pandas.utils.StatusBarUtils
 import kotlinx.coroutines.launch
 
@@ -32,7 +33,7 @@ import kotlinx.coroutines.launch
  * @date: 2/17/22 4:23 下午
  * @version: v1.0
  */
-public class NewSearchActivity : BaseExActivity<SearchViewModel, ActivitySearchBinding>(),
+public class NewSearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, ActivitySearchBinding>(),
     ItemClickListener<String>, OnItemmmmClickListener<String> {
 
     val TAG_SEARCH = "fragment_search_result"
@@ -111,25 +112,30 @@ public class NewSearchActivity : BaseExActivity<SearchViewModel, ActivitySearchB
             }
         }
 
-        appViewModel.appColorType.value?.let {
-            binding.clayoutSearchTitle.setBackgroundResource(viewColors[it])
-            if (it == 0) {
-                binding.txtSearchCancel.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_text_search_cancel
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        }else{
+            appViewModel.appColorType.value?.let {
+                binding.clayoutSearchTitle.setBackgroundResource(viewColors[it])
+                if (it == 0) {
+                    binding.txtSearchCancel.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_text_search_cancel
+                        )
                     )
-                )
-                binding.editSearch.setBackgroundResource(R.drawable.shape_home_search)
-            } else {
-                binding.txtSearchCancel.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
+                    binding.editSearch.setBackgroundResource(R.drawable.shape_home_search)
+                    StatusBarUtils.setStatusBarMode(this, true, viewColors[it])
+                } else {
+                    binding.txtSearchCancel.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
                     )
-                )
-                binding.editSearch.setBackgroundResource(R.drawable.shape_home_search_white)
-                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                    binding.editSearch.setBackgroundResource(R.drawable.shape_home_search_white)
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                }
             }
         }
     }

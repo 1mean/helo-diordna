@@ -1,11 +1,11 @@
 package com.example.pandas.data.sql
 
 import android.util.Log
+import com.android.android_sqlite.entity.MusicVo
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.User
+import com.android.android_sqlite.entity.VideoComment
 import com.example.pandas.data.simulate.ShortCommentData
-import com.example.pandas.sql.entity.MusicVo
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.User
-import com.example.pandas.sql.entity.VideoComment
 
 object AppData {
 

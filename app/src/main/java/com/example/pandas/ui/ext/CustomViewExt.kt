@@ -150,6 +150,7 @@ fun setTextType(isBold: Boolean, value: TextView) {
 }
 
 fun toastTopShow(activity: Activity, content: String) {
+    //Toast.makeText(activity,content,Toast.LENGTH_SHORT).show()
     ToastUtils.make().setGravity(Gravity.CENTER, 0, 100)
         .setBgResource(R.drawable.shape_bg_toast)
         .setTextColor(ContextCompat.getColor(activity, R.color.white)).show(content)

@@ -1,7 +1,6 @@
 package com.example.pandas.bean
 
-import com.example.pandas.bean.pet.PageCommonData
-import com.example.pandas.bean.pet.RecommendData
+import com.android.android_sqlite.bean.*
 
 /**
  * @description: TODO

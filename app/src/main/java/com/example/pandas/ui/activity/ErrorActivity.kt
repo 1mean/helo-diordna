@@ -1,20 +1,13 @@
 package com.example.pandas.ui.activity
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pandas.R
-import com.example.pandas.base.activity.BaseActivity
+import com.android.base.ui.activity.BaseActivity
+import com.android.base.utils.FileUtils
 import com.example.pandas.biz.viewmodel.ErrorViewModel
 import com.example.pandas.databinding.ActivityErrorBinding
 import com.example.pandas.ui.adapter.ErrorAdapter
-import com.example.pandas.utils.DarkModeUtils
-import com.example.pandas.utils.FileUtils
-import com.example.pandas.utils.StatusBarUtils
 import java.io.File
 
 /**

@@ -17,13 +17,13 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.pandas.R
-import com.luck.picture.lib.interfaces.OnRecordAudioInterceptListener
-import com.luck.picture.lib.permissions.PermissionChecker
-import com.luck.picture.lib.permissions.PermissionConfig
-import com.luck.picture.lib.permissions.PermissionResultCallback
-import com.luck.picture.lib.utils.DensityUtil
-import com.luck.picture.lib.utils.ToastUtils
-import com.luck.picture.lib.widget.MediumBoldTextView
+import com.life.publish.lib_selector.interfaces.OnRecordAudioInterceptListener
+import com.life.publish.lib_selector.permissions.PermissionChecker
+import com.life.publish.lib_selector.permissions.PermissionConfig
+import com.life.publish.lib_selector.permissions.PermissionResultCallback
+import com.life.publish.lib_selector.utils.DensityUtil
+import com.life.publish.lib_selector.utils.ToastUtils
+import com.life.publish.lib_selector.widget.MediumBoldTextView
 
 /**
  * @description: MeOnRecordAudioInterceptListener

@@ -1,33 +1,32 @@
 package com.example.pandas.ui.fragment.video
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.android_sqlite.bean.ReplyInfo
+import com.android.android_sqlite.entity.PetVideo
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.bean.ReplyInfo
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.interaction.CommentsListener
-import com.example.pandas.biz.manager.SoftInputManager
+import com.android.base.manager.SoftInputManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.FragmentCommentBinding
-import com.example.pandas.sql.entity.PetVideo
+import com.example.pandas.ui.activity.LoginActivity
 import com.example.pandas.ui.adapter.CommentAdapter
-import com.example.pandas.ui.ext.APP_COLOR_STATUS
-import com.example.pandas.ui.ext.init
-import com.example.pandas.ui.ext.setRefreshColor
-import com.example.pandas.ui.ext.viewColors
+import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
+import kotlinx.coroutines.flow.collect
 
 
 /**
@@ -38,6 +37,9 @@ import com.lxj.xpopup.impl.LoadingPopupView
  */
 public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentCommentBinding>(),
     CommentAdapter.OnCommentClickListener {
+
+    private val loginSuccess: Boolean
+        get() = AppInstance.instance.isLoginSuccess
 
     private var code = -1
 
@@ -62,6 +64,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun initView(savedInstanceState: Bundle?) {
 
         val video = mActivity.intent.getParcelableExtra<PetVideo>("petVideo")
@@ -88,24 +91,46 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
 
         val color1 = ContextCompat.getColor(mActivity, R.color.color_name_vip)
         val color2 = ContextCompat.getColor(mActivity, R.color.silver)
-        binding.editVideo.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+//        binding.editVideo.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//
+//                s?.let {
+//                    if (it.isNotEmpty()) {
+//                        binding.txtCommentSend.setTextColor(color1)
+//                    } else {
+//                        binding.txtCommentSend.setTextColor(color2)
+//                    }
+//                }
+//            }
+//
+//            override fun afterTextChanged(s: Editable?) {
+//            }
+//        })
+
+        binding.editVideo.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                if (!loginSuccess) {
+                    binding.editVideo.isEnabled = false
+                    startAnyActivity(mActivity, LoginActivity::class.java)
+                }
+                true
             }
+            false
+        }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                s?.let {
-                    if (it.isNotEmpty()) {
-                        binding.txtCommentSend.setTextColor(color1)
-                    } else {
-                        binding.txtCommentSend.setTextColor(color2)
-                    }
+        lifecycleScope.launchWhenCreated {
+            binding.editVideo.textWatcherFlow().collect {
+                if (it.isNotEmpty()) {
+                    binding.txtCommentSend.setTextColor(color1)
+                } else {
+                    binding.txtCommentSend.setTextColor(color2)
                 }
             }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-        })
+        }
 
         km.setOnSoftKeyBoardChangeListener(object :
             SoftInputManager.OnSoftKeyBoardChangeListener {

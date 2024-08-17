@@ -2,20 +2,16 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.android.android_sqlite.PetManagerCoroutine
+import com.android.android_sqlite.bean.*
+import com.android.android_sqlite.entity.MusicVo
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.VideoAndUser
 import com.example.pandas.app.AppInfos
-import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.bean.LandscapeData
-import com.example.pandas.bean.MusicBean
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
-import com.example.pandas.bean.pet.PageCommonData
-import com.example.pandas.bean.pet.RecommendData
-import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.ext.loge
-import com.example.pandas.biz.http.exception.ExceptionHandle
-import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.sql.entity.MusicVo
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.VideoAndUser
+import com.android.base.exception.ExceptionHandle
 import kotlinx.coroutines.launch
 
 /**
@@ -363,6 +359,13 @@ class HomePageViewModel : BaseViewModel() {
                 )
                 songDataWrapper.value = dataList
             }
+        }
+    }
+
+
+    fun addLaterPlayer(videoCode: Int) {
+        viewModelScope.launch {
+            PetManagerCoroutine.addLater(videoCode)
         }
     }
 }

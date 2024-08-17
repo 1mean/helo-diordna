@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp">
 
-        <com.flyco.tablayout.CommonTabLayout
+        <com.android.base.tablayout.CommonTabLayout
                 android:id="@+id/tab_eye"
                 android:layout_width="104dp"
                 android:layout_height="match_parent"

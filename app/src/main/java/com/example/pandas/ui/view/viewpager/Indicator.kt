@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
+import com.android.base.utils.ScreenUtil
 import com.example.pandas.R
-import com.example.pandas.utils.ScreenUtil
 
 /**
  * @description: 自定义ViewPager的翻页指示器

@@ -11,12 +11,12 @@ import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ui.StyledPlayerView;
-import com.luck.picture.lib.config.PictureMimeType;
-import com.luck.picture.lib.config.SelectorConfig;
-import com.luck.picture.lib.config.SelectorProviders;
-import com.luck.picture.lib.engine.VideoPlayerEngine;
-import com.luck.picture.lib.entity.LocalMedia;
-import com.luck.picture.lib.interfaces.OnPlayerListener;
+import com.life.publish.lib_selector.config.PictureMimeType;
+import com.life.publish.lib_selector.config.SelectorConfig;
+import com.life.publish.lib_selector.config.SelectorProviders;
+import com.life.publish.lib_selector.engine.VideoPlayerEngine;
+import com.life.publish.lib_selector.entity.LocalMedia;
+import com.life.publish.lib_selector.interfaces.OnPlayerListener;
 
 import java.io.File;
 import java.util.concurrent.CopyOnWriteArrayList;

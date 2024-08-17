@@ -82,7 +82,7 @@
                         android:elevation="15dp"
                         android:id="@+id/cl_tab">
 
-                    <com.example.helo_base.magic.MagicIndicator
+                    <com.android.base.custom_tablayout.MagicIndicator
                             android:id="@+id/tabView"
                             android:layout_width="0dp"
                             android:layout_height="0dp"

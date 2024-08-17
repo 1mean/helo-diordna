@@ -2,14 +2,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.pandas.bean.pet.VideoType
+import com.android.android_sqlite.bean.VideoType
+import com.android.android_sqlite.entity.MusicVo
+import com.android.android_sqlite.entity.PetVideo
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.ext.loadMusicBackGround
 import com.example.pandas.databinding.MusicTopItem1Binding
 import com.example.pandas.databinding.MusicTopItem2Binding
-import com.example.pandas.sql.entity.MusicVo
-import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.ext.startMusicActivity
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 

@@ -24,13 +24,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_comment_empty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
                     android:text="@string/no_comment_string"
                     android:gravity="center_horizontal"
+                    android:textColor="@color/color_txt_setting_item_name"
                     android:layout_marginTop="100dp" />
 
         </FrameLayout>

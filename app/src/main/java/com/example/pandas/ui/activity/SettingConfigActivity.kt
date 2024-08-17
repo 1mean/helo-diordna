@@ -1,16 +1,16 @@
 package com.example.pandas.ui.activity
 
+import AppInstance
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.databinding.ActivitySettingConfigBinding
 import com.example.pandas.ui.ext.toastTopShow
 import com.example.pandas.ui.ext.viewColors
-import com.example.pandas.ui.fragment.main.mine.MineStyleFragment
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils
 
@@ -24,7 +24,36 @@ public class SettingConfigActivity : BaseActivity<BaseViewModel, ActivitySetting
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.setStatusBarMode(this, true, R.color.color_bg_activity_setting)
+        if (!AppInstance.instance.isNightMode) {
+            appViewModel.appColorType.value?.let {
+                binding.clayoutConfigTop.setBackgroundResource(viewColors[it])
+                if (it == 0) {
+                    binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_black33)
+                    binding.txtConfigTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, true, viewColors[it])
+                } else {
+                    binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_white)
+                    binding.txtConfigTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                }
+            }
+        } else {
+            StatusBarUtils.setStatusBarMode(
+                this,
+                false,//深色模式
+                R.color.color_bg_activity_setting
+            )
+        }
 
         val titleName = intent.getStringExtra("name")
         binding.txtConfigTitle.text = titleName
@@ -45,6 +74,7 @@ public class SettingConfigActivity : BaseActivity<BaseViewModel, ActivitySetting
         binding.ibnSettingBack.setOnClickListener {
             finish()
         }
+
     }
 
     override fun createObserver() {

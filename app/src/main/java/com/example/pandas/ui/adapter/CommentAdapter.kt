@@ -10,20 +10,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.android.android_sqlite.bean.ReplyInfo
+import com.android.android_sqlite.entity.CommentAndUser
+import com.android.android_sqlite.entity.User
+import com.android.android_sqlite.entity.VideoComment
+import com.android.base.utils.TimeUtils
 import com.example.pandas.R
-import com.example.pandas.bean.ReplyInfo
 import com.example.pandas.biz.ext.loadHeadCircleImage
 import com.example.pandas.biz.interaction.SpanClickListener
 import com.example.pandas.databinding.ItemCommentsBinding
 import com.example.pandas.databinding.ItemTopCommentsBinding
-import com.example.pandas.sql.entity.CommentAndUser
-import com.example.pandas.sql.entity.User
-import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.ext.setLevelImageResourse
 import com.example.pandas.ui.ext.setTextType
 import com.example.pandas.ui.ext.startUserInfoActivity
 import com.example.pandas.utils.SpannableStringUtils
-import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: 视频评论页面

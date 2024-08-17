@@ -2,20 +2,30 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="254.67dp"
-        android:background="@color/color_bg_home_dialog"
+        android:background="@color/color_bg_more_dialog"
         android:orientation="vertical">
+
+    <View
+        android:layout_width="30dp"
+        android:layout_height="3dp"
+        android:background="@drawable/shape_bg_view_dialog_more"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center_horizontal" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/llayout_dialog_top"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/ripple_bg_home_item_dialog"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/shape_dialog_later"
             android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="13dp"
                 android:clickable="false"
                 android:layout_gravity="center_vertical"
                 android:src="@mipmap/img_dialog_play" />
@@ -24,19 +34,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="13dp"
+                android:layout_marginStart="8dp"
                 android:text="@string/str_play_after"
                 android:textSize="14sp"
                 android:clickable="false"
                 android:includeFontPadding="false"
                 android:textColor="@color/color_video_name_txt" />
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="0.67dp"
-            android:layout_marginStart="24dp"
-            android:background="@color/color_home_divider" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -100,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:layout_marginTop="10dp"
-            android:background="@color/color_bg_reco" />
+            android:background="@color/color_bg_more_dialog_divider" />
 
     <RelativeLayout
             android:id="@+id/rlayout_dialog_cancel"

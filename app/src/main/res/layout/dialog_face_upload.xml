@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:textSize="15sp"
-            android:textColor="@color/black"
+            android:textColor="@color/color_txt_cancel_dialog_selfinfo"
             android:text="@string/str_cancel"
             android:gravity="center" />
 </androidx.appcompat.widget.LinearLayoutCompat>

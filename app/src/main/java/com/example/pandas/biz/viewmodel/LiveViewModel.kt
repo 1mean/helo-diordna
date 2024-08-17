@@ -1,10 +1,13 @@
 package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.bean.LiveVideoData
+import androidx.lifecycle.viewModelScope
+import com.android.android_sqlite.PetManagerCoroutine
+import com.android.android_sqlite.bean.LiveVideoData
+import com.android.android_sqlite.entity.VideoData
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
-import com.example.pandas.biz.manager.PetManagerCoroutine
+import kotlinx.coroutines.launch
 
 /**
  * @description: EyepetozerViewModel
@@ -55,5 +58,18 @@ public class LiveViewModel : BaseViewModel() {
                 )
                 liveVideos.value = dataList
             })
+    }
+
+    fun addOrUpdateVideoData(videoData: VideoData) {
+        viewModelScope.launch {
+            PetManagerCoroutine.addOrUpdateVideoData(videoData)
+        }
+    }
+
+
+    fun addLaterPlayer(videoCode: Int) {
+        viewModelScope.launch {
+            PetManagerCoroutine.addLater(videoCode)
+        }
     }
 }

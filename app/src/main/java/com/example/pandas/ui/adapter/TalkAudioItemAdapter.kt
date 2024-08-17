@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.android.android_sqlite.entity.MusicVo
 import com.example.pandas.R
 import com.example.pandas.databinding.AdapterTalkItemBinding
-import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 
 /**

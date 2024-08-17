@@ -1,6 +1,5 @@
 package com.example.pandas.biz.ext
 
-import AppInstance
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable

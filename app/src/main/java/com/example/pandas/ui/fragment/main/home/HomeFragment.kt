@@ -15,32 +15,26 @@ import android.view.animation.DecelerateInterpolator
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
-import com.example.helo_base.magic.ViewPagerHelper
-import com.example.helo_base.magic.commonnavigator.CommonNavigator
-import com.example.helo_base.magic.commonnavigator.abs.CommonNavigatorAdapter
-import com.example.helo_base.magic.commonnavigator.abs.IPagerIndicator
-import com.example.helo_base.magic.commonnavigator.abs.IPagerTitleView
-import com.example.helo_base.magic.commonnavigator.indicators.LinePagerIndicator
-import com.example.helo_base.magic.commonnavigator.titles.SimplePagerTitleView
+import com.android.base.utils.ScreenUtil
+import com.android.base.custom_tablayout.ViewPagerHelper
+import com.android.base.custom_tablayout.commonnavigator.CommonNavigator
+import com.android.base.custom_tablayout.commonnavigator.abs.CommonNavigatorAdapter
+import com.android.base.custom_tablayout.commonnavigator.abs.IPagerIndicator
+import com.android.base.custom_tablayout.commonnavigator.abs.IPagerTitleView
+import com.android.base.custom_tablayout.commonnavigator.indicators.LinePagerIndicator
+import com.android.base.custom_tablayout.commonnavigator.titles.SimplePagerTitleView
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.ext.getUserHeader
 import com.example.pandas.biz.ext.loadCircleBitmap
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentHomeBinding
-import com.example.pandas.ui.activity.BannerListActivity
-import com.example.pandas.ui.activity.MessageActivity
-import com.example.pandas.ui.activity.NewSearchActivity
-import com.example.pandas.ui.activity.ShortVideoActivity2
+import com.example.pandas.ui.activity.*
 import com.example.pandas.ui.adapter.HomePagerAdapter
 import com.example.pandas.ui.ext.APP_COLOR_STATUS
-import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.ScaleTransitionPagerTitleView
-import com.example.pandas.utils.ScreenUtil
-import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -87,7 +81,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
         indicatorColor =
             if (status == null) viewColors[APP_COLOR_STATUS] else viewColors[status]
 
-        binding.tab.setBackgroundColor(Color.WHITE)
+        binding.tab.setBackgroundColor(ContextCompat.getColor(mActivity,R.color.color_bg_home))
         commonNavigator = CommonNavigator(mActivity)
         commonNavigator!!.isAdjustMode = false
         commonNavigator!!.isSkimOver = false
@@ -168,6 +162,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
         binding.imgHead.setOnClickListener {
             mActivity.startActivity(Intent(mActivity, ShortVideoActivity2::class.java))
         }
+
         binding.ibMessage.setOnClickListener {
             mActivity.startActivity(Intent(mActivity, MessageActivity::class.java))
         }
@@ -181,7 +176,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
         }
 
         binding.clayoutHomeTopMore.setOnClickListener {
-            startAnyActivity(mActivity, BannerListActivity::class.java)
+            //startAnyActivity(mActivity, BannerListActivity::class.java)
         }
     }
 

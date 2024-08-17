@@ -1,19 +1,16 @@
 package com.example.pandas.ui.fragment.main
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentMainBinding
 import com.example.pandas.ui.activity.PublishActivity
 import com.example.pandas.ui.adapter.HomeAdapter
 import com.example.pandas.ui.ext.*
-import com.google.android.material.badge.BadgeDrawable
 
 
 /**
@@ -97,9 +94,6 @@ public class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBind
         initBottom()
     }
 
-    fun test(){
-        Log.e("4mean","test()")
-    }
     override fun createObserver() {
 
         appViewModel.appColorType.observe(this) { type ->

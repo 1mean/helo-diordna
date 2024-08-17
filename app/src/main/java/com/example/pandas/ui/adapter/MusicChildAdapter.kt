@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.android.android_sqlite.entity.MusicVo
 import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.databinding.AdapterMusicChildBinding
 import com.example.pandas.databinding.LayoutTopMusicBinding
-import com.example.pandas.sql.entity.MusicVo
 import com.example.pandas.ui.ext.addScaleAnimation
 import com.example.pandas.ui.ext.startMusicActivity
 

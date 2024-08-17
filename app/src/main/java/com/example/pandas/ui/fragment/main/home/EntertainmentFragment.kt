@@ -3,11 +3,10 @@ package com.example.pandas.ui.fragment.main.home
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.android_sqlite.bean.PageCommonData
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseLazyFragment
-import com.example.pandas.bean.pet.PageCommonData
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.EntertainmentFragmentAdapter
@@ -23,7 +22,7 @@ import com.example.pandas.ui.ext.viewColors
  * @date: 1/28/22 8:51 下午
  * @version: v1.0
  */
-public class EntertainmentFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
+public class EntertainmentFragment : BaseFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
 
     private val mAdapter: EntertainmentFragmentAdapter by lazy {
         EntertainmentFragmentAdapter(lifecycle, PageCommonData())

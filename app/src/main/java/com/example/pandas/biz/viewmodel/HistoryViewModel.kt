@@ -3,13 +3,13 @@ package com.example.pandas.biz.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.bean.HistoryItem
+import com.android.android_sqlite.PetManagerCoroutine
+import com.android.android_sqlite.bean.HistoryItem
+import com.android.android_sqlite.entity.Group
+import com.android.android_sqlite.entity.History
+import com.android.android_sqlite.entity.PetVideo
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
-import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.sql.entity.Group
-import com.example.pandas.sql.entity.History
-import com.example.pandas.sql.entity.PetVideo
 import kotlinx.coroutines.launch
 
 /**

@@ -13,6 +13,9 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import com.android.android_sqlite.entity.CommentAndUser
+import com.android.android_sqlite.entity.User
+import com.android.android_sqlite.entity.VideoComment
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.UIDataWrapper
@@ -22,9 +25,6 @@ import com.example.pandas.biz.interaction.ShortCommentListener
 import com.example.pandas.biz.manager.ShortCommentManage
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.DialogBottomCommentBinding
-import com.example.pandas.sql.entity.CommentAndUser
-import com.example.pandas.sql.entity.User
-import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.adapter.ShortCommentAdapter
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView

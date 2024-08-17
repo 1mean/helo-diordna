@@ -1,18 +1,13 @@
 package com.example.pandas.ui.view.popuwindow
 
 import android.app.Activity
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.Gravity
 import android.view.View
-import android.view.View.FOCUSABLE
 import android.view.WindowManager
 import android.widget.PopupWindow
-import androidx.core.view.marginLeft
+import com.android.base.utils.ScreenUtil
 import com.example.pandas.R
-import com.example.pandas.utils.ScreenUtil
-import com.example.pandas.utils.StatusBarUtils
 
 
 /**

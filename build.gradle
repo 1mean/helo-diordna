@@ -1,22 +1,28 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
 buildscript {
-    ext.kotlin_version = '1.7.20'
+    //kotlin version 和 Minimum Gradle version是对应的，目前是1.7.10和gradle-7.6
+    //[版本对应]https://docs.gradle.org/current/userguide/compatibility.html#kotlin
+    ext.kotlin_version = '1.7.10'
+    ext.hilt_version = '2.52'
     repositories {
         google()
         mavenCentral()
-
         maven { url 'https://repo1.maven.org/maven2/' }//友盟相关
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.3'
+        classpath 'com.android.tools.build:gradle:7.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        //classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
     }
 }
 
-//python环境相关
-//plugins {
-//    id 'com.chaquo.python' version '12.0.0' apply false
-//}
+//python
+plugins {
+    //id 'com.chaquo.python' version '12.0.0' apply false
+    //id ("com.google.devtools.ksp")  version "1.7.0-1.0.6"
+    //id 'org.jetbrains.kotlin.android' version '1.8.0' apply false
+}
 
 allprojects {
     repositories {

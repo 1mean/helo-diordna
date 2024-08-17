@@ -5,23 +5,20 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.blankj.utilcode.util.VibrateUtils
-import com.bumptech.glide.Glide
-import com.example.pandas.R
-import com.example.pandas.app.AppInfos
+import com.android.android_sqlite.entity.PetVideo
+import com.android.base.utils.TimeUtils
+import com.android.base.utils.VibrateUtils
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.data.network.getGridItems
 import com.example.pandas.databinding.AdapterPandansTopBinding
 import com.example.pandas.databinding.AdapterPandasItemBinding
 import com.example.pandas.databinding.ItemTitleAdapterPandaBinding
-import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.getHomePandaDesc
 import com.example.pandas.ui.ext.imageRes
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.dialog.MoreBottomSheetDialog
-import com.example.pandas.utils.TimeUtils
 import com.lxj.xpopup.XPopup
 
 /**

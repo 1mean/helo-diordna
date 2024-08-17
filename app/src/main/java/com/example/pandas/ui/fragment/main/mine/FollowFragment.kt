@@ -9,9 +9,8 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.DialogAttentionCancelBinding
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
@@ -109,7 +108,7 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
 
             _bottomSheetDialog = BottomSheetDialog(mActivity)
             _dBinding = DialogAttentionCancelBinding.inflate(LayoutInflater.from(mActivity))
-
+            dBinding.root.setBackgroundResource(R.color.color_bg_delete_dialog)
             dBinding.rlayoutAdd.setOnClickListener {
                 Toast.makeText(mActivity, "加入特别关注", Toast.LENGTH_SHORT).show()
                 bottomSheetDialog.dismiss()

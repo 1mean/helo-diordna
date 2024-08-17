@@ -6,18 +6,16 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
-import com.blankj.utilcode.util.VibrateUtils
+import com.android.android_sqlite.bean.LandscapeData
+import com.android.base.utils.TimeUtils
+import com.android.base.utils.VibrateUtils
 import com.example.pandas.R
-import com.example.pandas.bean.LandscapeData
 import com.example.pandas.biz.ext.loadCenterImage
-import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
-import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.AdapterLandscapeItemBinding
 import com.example.pandas.databinding.LayoutBannerLandscapeBinding
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
 import com.example.pandas.ui.view.viewpager.Indicator
-import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: LandscapeAdapter

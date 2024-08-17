@@ -6,11 +6,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pandas.R
-import com.example.pandas.bean.SearchInfo
+import com.android.android_sqlite.bean.SearchInfo
+import com.android.base.utils.StringColorUtil
 import com.example.pandas.databinding.AdapterPopuSearchBinding
-import com.example.pandas.databinding.ItemCacheTitleBinding
 import com.example.pandas.databinding.ItemTopSearchListBinding
-import com.example.pandas.utils.StringColorUtil
 
 /**
  * @description: list

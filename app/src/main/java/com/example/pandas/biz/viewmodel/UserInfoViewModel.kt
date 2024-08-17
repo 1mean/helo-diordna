@@ -2,13 +2,14 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pandas.base.viewmodel.BaseViewModel
+import com.android.android_sqlite.PetManagerCoroutine
+import com.android.android_sqlite.entity.User
+import com.android.android_sqlite.entity.VideoAndData
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
-import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.biz.ext.loge
-import com.example.pandas.biz.http.exception.ExceptionHandle
-import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.sql.entity.VideoAndData
+import com.android.base.exception.ExceptionHandle
+import com.android.base.vm.SingleLiveData
 import kotlinx.coroutines.launch
 
 /**
@@ -21,6 +22,7 @@ public class UserInfoViewModel : BaseViewModel() {
 
     var startIndex = 0//分页起始
     var hasMore = true//是否有更多
+    val user: SingleLiveData<User> by lazy { SingleLiveData() }
 
     val userVideos: MutableLiveData<UIDataWrapper<VideoAndData>> by lazy { MutableLiveData() }
 
@@ -65,6 +67,18 @@ public class UserInfoViewModel : BaseViewModel() {
                 )
                 userVideos.value = dataList
             }
+        }
+    }
+
+    fun updateAttention(userCode: Int) {
+        viewModelScope.launch {
+            PetManagerCoroutine.updateAttention(userCode)
+        }
+    }
+
+    fun getUserByCode(userCode: Int) {
+        viewModelScope.launch {
+            user.value = PetManagerCoroutine.getUser(userCode)
         }
     }
 }

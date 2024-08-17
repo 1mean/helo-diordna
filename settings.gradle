@@ -4,4 +4,6 @@ pluginManagement {
         maven { url "https://chaquo.com/maven" }
     }
 }
-include ':app', ':helo_base', 'opencv460', ':library',':selector'
+include ':app', ':library'
+include ':android-base'
+include ':android-sqlite'

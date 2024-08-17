@@ -12,7 +12,6 @@ import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.KeyEvent
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.animation.LinearInterpolator
@@ -21,33 +20,28 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SimpleItemAnimator
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.biz.interaction.OnItemLongClickListener
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.biz.pictureselector.*
 import com.example.pandas.databinding.ActivityPublishBinding
 import com.example.pandas.ui.adapter.GridImageAdapter
 import com.example.pandas.ui.view.camera.CustomLoadingDialog
-import com.example.pandas.ui.view.recyclerview.FullyGridLayoutManager
 import com.example.pandas.utils.ExoPlayerEngine
 import com.example.pandas.utils.GlideEngine
-import com.luck.picture.lib.animators.AnimationType
-import com.luck.picture.lib.basic.*
-import com.luck.picture.lib.config.*
-import com.luck.picture.lib.decoration.GridSpacingItemDecoration
-import com.luck.picture.lib.entity.LocalMedia
-import com.luck.picture.lib.interfaces.*
-import com.luck.picture.lib.language.LanguageConfig
-import com.luck.picture.lib.style.BottomNavBarStyle
-import com.luck.picture.lib.style.PictureSelectorStyle
-import com.luck.picture.lib.style.SelectMainStyle
-import com.luck.picture.lib.style.TitleBarStyle
-import com.luck.picture.lib.utils.*
+import com.life.publish.lib_selector.animators.AnimationType
+import com.life.publish.lib_selector.basic.*
+import com.life.publish.lib_selector.config.*
+import com.life.publish.lib_selector.entity.LocalMedia
+import com.life.publish.lib_selector.interfaces.*
+import com.life.publish.lib_selector.language.LanguageConfig
+import com.life.publish.lib_selector.style.BottomNavBarStyle
+import com.life.publish.lib_selector.style.PictureSelectorStyle
+import com.life.publish.lib_selector.style.SelectMainStyle
+import com.life.publish.lib_selector.style.TitleBarStyle
+import com.life.publish.lib_selector.utils.*
 import com.yalantis.ucrop.UCrop
 import java.io.File
 import java.util.*
@@ -58,8 +52,7 @@ import java.util.*
  * @date: 8/20/22 12:28 上午
  * @version: v1.0
  */
-public class PublishActivity : BaseActivity<BaseViewModel, ActivityPublishBinding>(),
-    IBridgePictureBehavior {
+public class PublishActivity : BaseActivity<BaseViewModel, ActivityPublishBinding>(), IBridgePictureBehavior {
 
     private val TAG = "PictureSelectorTag"
 
@@ -810,8 +803,11 @@ public class PublishActivity : BaseActivity<BaseViewModel, ActivityPublishBindin
 
                 result.data?.let {
                     if (SDK_INT >= 33) {
-                        val list = it.extras?.getParcelableArrayList("data", LocalMedia::class.java)
-                        Log.e("1mean", "1 list size: ${list?.size}")
+                        it.extras?.let { bundle->
+                            //val list = it.extras?.getParcelableArrayList("data", LocalMedia::class.java)
+                            val list = bundle.getParcelableArrayList<LocalMedia>("data")
+                            Log.e("1mean", "1 list size: ${list?.size}")
+                        }
                     } else {
                         @Suppress("DEPRECATION")
                         val list = it.extras?.getParcelableArrayList<LocalMedia>("data")
@@ -937,9 +933,16 @@ public class PublishActivity : BaseActivity<BaseViewModel, ActivityPublishBindin
 
     private fun forSelectResult(model: PictureSelectionModel) {
         when (resultMode) {
-            ACTIVITY_RESULT -> model.forResult(PictureConfig.CHOOSE_REQUEST)
-            CALLBACK_RESULT -> model.forResult(meOnResultCallbackListener)
-            else -> model.forResult(launcherResult)
+            ACTIVITY_RESULT -> {
+                model.forResult(PictureConfig.CHOOSE_REQUEST)
+            }
+            CALLBACK_RESULT -> {
+                model.forResult(meOnResultCallbackListener)
+            }
+            else -> {
+                model.forResult(launcherResult)
+                finish()
+            }
         }
     }
 

@@ -3,9 +3,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.*
+import com.android.android_sqlite.bean.MusicBean
+import com.android.android_sqlite.bean.VideoType
 import com.example.pandas.R
-import com.example.pandas.bean.MusicBean
-import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.databinding.AdapterItem1MusicBinding
 import com.example.pandas.databinding.AdapterItem2MusicBinding
 import com.example.pandas.databinding.AdapterItem3MusicVideoBinding

@@ -3,20 +3,20 @@ package com.example.pandas.app
 import AppInstance
 import AppViewModel
 import android.app.Application
+import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
-import com.example.pandas.bean.pet.VideoType
+import com.android.android_sqlite.app.SqliteApplication
+import com.android.base.ModuleApplication
+import com.android.base.app.CrashHandler
 import com.example.pandas.biz.viewmodel.EventViewModel
-import com.example.pandas.data.sql.AppData
-import com.example.pandas.data.sql.MusicVideoData
-import com.example.pandas.sql.database.AppDataBase
-import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.um.UmInitConfig
 import com.example.pandas.utils.DarkModeUtils
-import com.example.pandas.utils.SPUtils
+import com.example.pandas.utils.Preference
 import com.umeng.commonsdk.UMConfigure
+import java.lang.reflect.Method
 
 
 //Application全局共享的ViewModel，里面存放了一些账户信息，基本配置信息等
@@ -28,6 +28,8 @@ val eventViewModel: EventViewModel by lazy { DiorApplication.eventViewModelInsta
 class DiorApplication : Application(), ViewModelStoreOwner {
 
     private lateinit var mAppViewModelStore: ViewModelStore
+    private var moduleApplication: ModuleApplication? = null
+    private var sqliteModuleApplication: SqliteApplication? = null
     private var mFactory: ViewModelProvider.Factory? = null
 
     companion object {
@@ -36,6 +38,18 @@ class DiorApplication : Application(), ViewModelStoreOwner {
         lateinit var appViewModelInstance: AppViewModel
     }
 
+    /**
+     * 目的：模块共有的初始化，放入主工程Application 中,模块自身的特殊功能初始化，放在自己的 Application
+     * 问题：多Module项目开发的时候，app module和library module都有不同的自定义Application,无法共存
+     *      - 首先，自定义Application需要声明在AndroidManifest.xml中。每个Module都有该清单文件，但是最终的APK文件只能包含一个。
+     *      - 因此，在构建应用时，Gradle构建会将所有清单文件合并到一个封装到 APK 的清单文件中。
+     *      - 合并的优先级是:App Module > Library Module
+     * 最终结果：APP打开的时候，只会初始化主工程的application（打开主工程AndroidManifest，点击Merged Manifest
+     * ，就可以看到，其他的Module的application都被覆盖了，只剩下主工程application）
+     * 解决方案：
+     *      - 在初始化主工程application的时候，对其他module的application进行初始化
+     *      - 使用Hilt/Dagger这种依赖注入的方案
+     */
     override fun onCreate() {
         super.onCreate()
 
@@ -47,6 +61,12 @@ class DiorApplication : Application(), ViewModelStoreOwner {
         appViewModelInstance = getAppViewModelProvider()[AppViewModel::class.java]
 
         CrashHandler.init(this)
+
+        Preference.setContext(this)
+
+        //同步Module的Application的onCreate,用于执行module的一些自定义初始化操作
+        moduleApplication?.onCreate()
+        sqliteModuleApplication?.onCreate()
 
         //友盟初始化
         UMConfigure.preInit(applicationContext, AppInfos.appKey, AppInfos.channel)
@@ -60,6 +80,62 @@ class DiorApplication : Application(), ViewModelStoreOwner {
             AppInstance.instance.isNightMode = true
         }
         //initdata()
+    }
+
+    /**
+     * 实际上就是主工程的Application和module的Application共用一个base
+     *  - 不用在Module的AndroidManifest中注册
+     */
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        moduleApplication = getModuleApplicationInstance(this)
+        sqliteModuleApplication = getSqliteApplicationInstance(this)
+        try {
+            //通过反射调用moduleApplication的attach方法
+            val method: Method? =
+                Application::class.java.getDeclaredMethod("attach", Context::class.java)
+            method?.let {
+                it.isAccessible = true
+                it.invoke(moduleApplication, baseContext)
+                it.invoke(sqliteModuleApplication, baseContext)
+            }
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    //映射获取ModuleApplication
+    private fun getModuleApplicationInstance(paramContext: Context): ModuleApplication? {
+        try {
+            if (moduleApplication == null) {
+                val classLoader = paramContext.classLoader
+                if (classLoader != null) {
+                    val mClass = classLoader.loadClass(ModuleApplication::class.java.name)
+                    if (mClass != null)
+                        moduleApplication = mClass.newInstance() as ModuleApplication
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return moduleApplication
+    }
+
+    //映射获取ModuleApplication
+    private fun getSqliteApplicationInstance(paramContext: Context): SqliteApplication? {
+        try {
+            if (sqliteModuleApplication == null) {
+                val classLoader = paramContext.classLoader
+                if (classLoader != null) {
+                    val mClass = classLoader.loadClass(SqliteApplication::class.java.name)
+                    if (mClass != null)
+                        sqliteModuleApplication = mClass.newInstance() as SqliteApplication
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return sqliteModuleApplication
     }
 
     /**
@@ -82,8 +158,6 @@ class DiorApplication : Application(), ViewModelStoreOwner {
     private fun initdata() {
 
         Thread {
-            val petDao = AppDataBase.getInstance().petVideoDao()
-
 
 //            val codes = arrayOf(708,1050)
 //            for (code in codes) {

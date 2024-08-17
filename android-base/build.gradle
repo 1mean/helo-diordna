@@ -1,0 +1,113 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    //id 'com.google.dagger.hilt.android'
+    //id 'com.google.devtools.ksp'//room ksp 速度比kapt快2倍
+}
+
+android {
+    namespace 'com.android.base'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 33
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility "1.8"
+        targetCompatibility "1.8"
+    }
+
+    //使用viewbinding取代kotlin-android-extensions插件
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+
+    api 'androidx.core:core-ktx:1.7.0'
+    api 'androidx.appcompat:appcompat:1.4.2'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    //implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    /****界面***********************************************************************************/
+    api "io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.1"
+    api 'androidx.recyclerview:recyclerview:1.2.1'
+    api "com.google.android.material:material:1.4.0"
+    api 'androidx.constraintlayout:constraintlayout:2.1.0'
+    api 'androidx.core:core-animation:1.0.0-alpha02'
+    api 'androidx.navigation:navigation-fragment-ktx:2.4.1'
+    api 'androidx.navigation:navigation-ui-ktx:2.4.1'//管理fragment的navigation
+    var lifecycle_version = "2.4.0"
+    api("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    api("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
+    api("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+    api("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
+    api("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
+    kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")//lifecycle
+    api 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'//google下拉刷新
+    api 'com.google.android.exoplayer:exoplayer-core:2.18.0'
+    api 'com.google.android.exoplayer:exoplayer-dash:2.18.0'
+    api 'com.google.android.exoplayer:exoplayer-ui:2.18.0'//google视频播放
+    api 'de.hdodenhof:circleimageview:3.1.0'//CircleImageView
+    api 'com.geyifeng.immersionbar:immersionbar:3.2.2'
+    api 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'//android 4.4以上沉浸式实现
+    api "androidx.core:core-splashscreen:1.0.0-alpha02"//splashscreen
+
+    /****网络请求、异步任务、图片处理****************************************************************/
+    api 'com.squareup.retrofit2:retrofit:2.9.0'
+    api 'com.github.bumptech.glide:glide:4.12.0'
+    kapt 'com.github.bumptech.glide:compiler:4.12.0'//glide
+    api 'jp.wasabeef:glide-transformations:4.3.0'//Glide配合工具，实现图片重点色提取
+    api 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    api 'io.reactivex.rxjava3:rxjava:3.0.0'
+    api 'com.squareup.okhttp3:okhttp:4.9.0'
+    api 'com.squareup.okhttp3:logging-interceptor:3.6.0'//rxjava3
+    api 'com.squareup.retrofit2:converter-gson:2.9.0'
+    api 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+
+    /****数据库***********************************************************************************/
+
+
+    /***功能***********************************************************************************/
+    //debugImplementation because LeakCanary should only run in debug builds.
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'//leak-android
+    //api("com.google.dagger:hilt-android:2.52")
+    //kapt("com.google.dagger:hilt-android-compiler:2.52")//Hilt
+    api 'com.blankj:utilcodex:1.31.1'
+}
+
+//打包方式：
+//1，直接右侧gradle，选择要打包的Module，然后点击下面的assemble，直接可以打包，但是很多版本的as下面Module里是空的
+//2，使用命令方式打包：在项目根目录下使用 ./gradlew signage:assemble
+//3，借助gradle代码方式，在下面编写makeJar()方法，通过命令gradlew makejar打包jar和aar
+//jar包在build/libs/signage.jar,aar包在build/outputs/aar/signage-debug.aar和signage-release.aar
+//如果gradlew命令没有权限，可以通过命令chmod +x gradlew获取权限，在输入gradlew打包命令
+task makeJar(type: Copy) {
+    //删除存在的（注意mylibrary是自己命名的，名字随便改）
+    delete 'build/libs/com.android.baselib.jar'
+    //设置拷贝的文件，需要根据AS的版本找到响应的文件夹
+    from('build/intermediates/compile_library_classes_jar/debug')
+    //jar包最后的文件目录
+    into('build/libs/')
+    //include ,exclude参数来设置过滤（我们只关心classes.jar这个文件）
+    include('classes.jar')
+    //重命名（名字随便改）
+    rename('classes.jar', 'com.android.baselib.jar')
+}
+makeJar.dependsOn(build)

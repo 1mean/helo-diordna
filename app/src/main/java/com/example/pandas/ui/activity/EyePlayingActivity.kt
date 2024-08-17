@@ -11,8 +11,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadEmptyCircleImage

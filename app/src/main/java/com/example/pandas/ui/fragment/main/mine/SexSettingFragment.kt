@@ -5,9 +5,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseLazyFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.SelfViewModel
-import com.example.pandas.databinding.FragmentMineInfoBinding
 import com.example.pandas.databinding.FragmentSexBinding
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
@@ -18,7 +17,7 @@ import com.lxj.xpopup.impl.LoadingPopupView
  * @date: 7/22/23 1:22 PM
  * @version: v1.0
  */
-public class SexSettingFragment : BaseLazyFragment<SelfViewModel, FragmentSexBinding>() {
+public class SexSettingFragment : BaseFragment<SelfViewModel, FragmentSexBinding>() {
 
     private var sexIndex = 0
     private var curSexIndex = 0

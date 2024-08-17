@@ -67,7 +67,7 @@ object DarkModeUtils {
         return sp.getInt(KEY_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
     }
 
-    fun setNightModel(context: Context, nightMode: Int) {
+    private fun setNightModel(context: Context, nightMode: Int) {
         val sp: SharedPreferences = context.getSharedPreferences(KEY_MODE, Context.MODE_PRIVATE)
         sp.edit().putInt(KEY_MODE, nightMode).apply()
     }

@@ -16,9 +16,9 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import com.example.pandas.R
 import com.luck.lib.camerax.listener.OnSimpleXPermissionDescriptionListener
-import com.luck.picture.lib.permissions.PermissionConfig
-import com.luck.picture.lib.utils.DensityUtil
-import com.luck.picture.lib.widget.MediumBoldTextView
+import com.life.publish.lib_selector.permissions.PermissionConfig
+import com.life.publish.lib_selector.utils.DensityUtil
+import com.life.publish.lib_selector.widget.MediumBoldTextView
 
 /**
  * @description: SimpleCameraX添加权限说明

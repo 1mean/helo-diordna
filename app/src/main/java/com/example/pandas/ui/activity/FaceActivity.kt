@@ -1,30 +1,6 @@
 package com.example.pandas.ui.activity
 
-import android.content.res.Configuration
-import android.graphics.Bitmap
-import android.os.Bundle
-import android.util.Log
-import android.view.Window
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageButton
-import com.example.pandas.R
-import com.example.pandas.ui.ext.shortToast
-import com.example.pandas.ui.view.CustomJavaCameraView
-import com.example.pandas.utils.StatusBarUtils
-import org.opencv.android.BaseLoaderCallback
-import org.opencv.android.CameraBridgeViewBase
-import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2
-import org.opencv.android.LoaderCallbackInterface
-import org.opencv.android.OpenCVLoader
-import org.opencv.core.Mat
-import org.opencv.core.Rect
-import org.opencv.core.Scalar
-import org.opencv.core.Size
-import org.opencv.objdetect.CascadeClassifier
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 
 
 /**
@@ -33,10 +9,10 @@ import java.io.IOException
  * @date: 11/2/22 9:20 AM
  * @version: v1.0
  */
-public class FaceActivity : AppCompatActivity(),
-    CvCameraViewListener2 {
+public class FaceActivity : AppCompatActivity()
+/*CvCameraViewListener2*/ {
 
-    private var isFrontCamera: Boolean = false
+    /*private var isFrontCamera: Boolean = false
     private var mRgba: Mat? = null
     private var mGray: Mat? = null
     private var classifierFace: CascadeClassifier? = null //这个检测器检测是真垃圾
@@ -118,11 +94,12 @@ public class FaceActivity : AppCompatActivity(),
         })
     }
 
+    */
     /**
      * 人脸
      * 初始化级联分类器
      * 写入/data/user/0/com.example.hello_diordna/app_cascade/lbpcascade_frontalface_improved.xml
-     */
+     *//*
     private fun initClassifierFace() {
         try {
             //读取存放在raw的文件
@@ -147,9 +124,10 @@ public class FaceActivity : AppCompatActivity(),
         }
     }
 
+    */
     /**
      * 初始化正脸分类器
-     */
+     *//*
     private fun initFrontFace() {
         try {
             //读取存放在raw的文件
@@ -174,9 +152,10 @@ public class FaceActivity : AppCompatActivity(),
         }
     }
 
+    */
     /**
      * 初始化侧脸分类器
-     */
+     *//*
     private fun initProfileFace() {
         try {
             //读取存放在raw的文件
@@ -201,10 +180,11 @@ public class FaceActivity : AppCompatActivity(),
         }
     }
 
+    */
     /**
      * 眼睛
      * 初始化级联分类器
-     */
+     *//*
     fun initClassifierEye() {
         try {
             //读取存放在raw的文件
@@ -239,12 +219,13 @@ public class FaceActivity : AppCompatActivity(),
     fun createObserver() {
     }
 
+    */
     /**
      * 设置全屏/常亮/强制横屏
      *
      * JavaCameraView默认横屏，当改成竖屏时，预览会发生逆时针90度旋转。需要对预览帧进行实时处理才能正确显示图像
      * 处理：翻转预览帧，导致帧率降低，此处强制横屏来简化处理
-     */
+     *//*
     fun initWindow() {
 //        WindowCompat.setDecorFitsSystemWindows(window, false)
 //         StatusBarUtils.setStatusBarMode(this, true, R.color.white)
@@ -275,9 +256,10 @@ public class FaceActivity : AppCompatActivity(),
         cameraView.restartCamera()
     }
 
+    */
     /**
      * OpeenCV包的初始化
-     */
+     *//*
     private fun initLoadOpenCV() {
 
         val success = OpenCVLoader.initDebug()
@@ -299,14 +281,15 @@ public class FaceActivity : AppCompatActivity(),
     }
 
 
+    */
     /**
      * 获取每一帧的数据，进行人脸检测(线程池里不同的线程)
      * -
      *  - 首先要初始化级联分类器 raw里保存模型文件
-     */
+     *//*
     override fun onCameraFrame(inputFrame: CameraBridgeViewBase.CvCameraViewFrame): Mat {
         mRgba = inputFrame.rgba()//RGBA
-        /*mGray = inputFrame.gray()//返回单通道的灰度图
+        *//*mGray = inputFrame.gray()//返回单通道的灰度图
         //隔3帧进行一次人脸检测
         val mRelativeFaceSize = 0.2f
         if (mAbsoluteFaceSize == 0) {
@@ -343,7 +326,7 @@ public class FaceActivity : AppCompatActivity(),
                 mRgba, "你好", rect.tl(),
                 FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255.0, 0.0, 0.0, 255.0)
             )
-        }*/
+        }*//*
         return mRgba!!
     }
 
@@ -367,5 +350,5 @@ public class FaceActivity : AppCompatActivity(),
                 }
             }
         }
-    }
+    }*/
 }

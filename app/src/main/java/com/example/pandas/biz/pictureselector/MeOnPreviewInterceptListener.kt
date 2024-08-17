@@ -2,9 +2,9 @@ package com.example.pandas.biz.pictureselector
 
 import android.content.Context
 import androidx.fragment.app.FragmentActivity
-import com.luck.picture.lib.basic.FragmentInjectManager
-import com.luck.picture.lib.entity.LocalMedia
-import com.luck.picture.lib.interfaces.OnPreviewInterceptListener
+import com.life.publish.lib_selector.basic.FragmentInjectManager
+import com.life.publish.lib_selector.entity.LocalMedia
+import com.life.publish.lib_selector.interfaces.OnPreviewInterceptListener
 
 /**
  * @description: 自定义预览

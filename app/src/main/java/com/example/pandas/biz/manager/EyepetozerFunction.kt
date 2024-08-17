@@ -10,7 +10,7 @@ import io.reactivex.rxjava3.functions.Function
  */
 class EyepetozerFunction : Function<Eyepetozer, MutableList<EyepetozerItem>> {
 
-    override fun apply(eyepetozer: Eyepetozer?): MutableList<EyepetozerItem> {
+    override fun apply(eyepetozer: Eyepetozer): MutableList<EyepetozerItem> {
 
         val list: MutableList<EyepetozerItem> = mutableListOf()
         val itemList = eyepetozer?.itemList

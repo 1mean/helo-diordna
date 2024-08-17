@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.util.Log
@@ -15,23 +14,23 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.android.android_sqlite.entity.VideoData
+import com.android.base.ui.activity.BaseActivity
+import com.android.base.utils.VibrateUtils
 import com.example.pandas.R
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.lifecycle.LifecycleHandler
+import com.android.base.ui.lifecycle.LifecycleHandler
 import com.example.pandas.biz.interaction.CommentWindowListener
 import com.example.pandas.biz.interaction.ExoPlayerListener
-import com.example.pandas.biz.manager.SoftInputManager
+import com.android.base.manager.SoftInputManager
 import com.example.pandas.biz.manager.VerticalPlayManager
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.ActivityVerticalVideoplayBinding
-import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.VideoPagerAdapter
 import com.example.pandas.ui.dialog.ShortBottomDialog
 import com.example.pandas.ui.ext.addRefreshAnimation
 import com.example.pandas.ui.view.popuwindow.ShortRightPopuWindow
 import com.example.pandas.utils.StatusBarUtils
-import com.example.pandas.utils.VibrateUtils
 import com.google.android.exoplayer2.util.Util
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
@@ -71,15 +70,16 @@ public class ShortVideoActivity2 :
     var popupView: ShortRightPopuWindow? = null
     var lastClickTime: Long = 0
 
-    private val mHandler = LifecycleHandler(Looper.getMainLooper(),this)
+    private val mHandler = LifecycleHandler(Looper.getMainLooper(), this)
 
-    override fun initStatusView() {
+    fun initStatusView() {
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
     }
 
     @SuppressLint("Recycle")
     override fun initView(savedInstanceState: Bundle?) {
 
+        initStatusView()
         //bug:一句代码解决了两天的bug，关闭popuwindow时，edittext仍然有焦点，会反复弹出
         //window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
         manager = VerticalPlayManager(this, this)
@@ -226,7 +226,7 @@ public class ShortVideoActivity2 :
                             totalOffset = 100
                             binding.clayoutVerticalTop.offsetTopAndBottom(totalOffset)
                             quickFlag = true
-                            VibrateUtils.vibrate(this, 50)
+                            VibrateUtils.vibrate(50)
                             binding.ibnVerticalTopClose.alpha = 0f
                             binding.ibnVerticalTopMore.alpha = 0f
                         }
@@ -246,7 +246,7 @@ public class ShortVideoActivity2 :
                                 }
                                 totalOffset += offset
                                 if (totalOffset >= 100) {
-                                    VibrateUtils.vibrate(this, 50)
+                                    VibrateUtils.vibrate(50)
                                 }
                                 binding.clayoutVerticalTop.offsetTopAndBottom(offset)
                             }
@@ -563,7 +563,8 @@ public class ShortVideoActivity2 :
                 })
         }
         XPopup.setShadowBgColor(ContextCompat.getColor(this, R.color.color_white_lucency))
-        XPopup.Builder(this).setPopupCallback(object : XPopupCallback {
+        XPopup.Builder(this).setPopupCallback(object :
+            XPopupCallback {
             override fun onCreated(popupView: BasePopupView?) {
             }
 

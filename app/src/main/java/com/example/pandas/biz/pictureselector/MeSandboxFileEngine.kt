@@ -1,9 +1,9 @@
 package com.example.pandas.biz.pictureselector
 
 import android.content.Context
-import com.luck.picture.lib.engine.UriToFileTransformEngine
-import com.luck.picture.lib.interfaces.OnKeyValueResultCallbackListener
-import com.luck.picture.lib.utils.SandboxTransformUtils
+import com.life.publish.lib_selector.engine.UriToFileTransformEngine
+import com.life.publish.lib_selector.interfaces.OnKeyValueResultCallbackListener
+import com.life.publish.lib_selector.utils.SandboxTransformUtils
 
 /**
  * @description: 自定义沙盒文件处理

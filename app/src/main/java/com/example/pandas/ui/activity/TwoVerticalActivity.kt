@@ -4,16 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.VideoAndUser
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadPandaBackGround
 import com.example.pandas.biz.interaction.PagerChangedListener
 import com.example.pandas.biz.viewmodel.OneVerticalViewModel
 import com.example.pandas.databinding.ActivityTwoVerticalBinding
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.VideoAndUser
-import com.example.pandas.ui.adapter.BannerListAdapter
 import com.example.pandas.ui.adapter.CommonBannerAdapter
 import com.example.pandas.ui.adapter.TwoVerticalAdapter
 import com.example.pandas.ui.adapter.decoration.CommonBannerItemDecoration
@@ -37,12 +36,13 @@ public class TwoVerticalActivity :
     private var title: String = ""
     private var isShowMore: Boolean = true
 
-    override fun initStatusView() {
+    fun initStatusView() {
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
     }
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        initStatusView()
         title = intent.getStringExtra("title").toString()
         runOnUiThread {
             binding.txtCmBannerTitle.text = title

@@ -1,5 +1,5 @@
+import com.android.android_sqlite.entity.VideoComment
 import com.example.pandas.biz.interaction.ICommentListener
-import com.example.pandas.sql.entity.VideoComment
 
 /**
  * @description: 处理评论相关的业务

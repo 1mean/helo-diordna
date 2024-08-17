@@ -3,14 +3,12 @@ package com.example.pandas.ui.adapter
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import com.android.android_sqlite.entity.User
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
-import com.example.pandas.biz.ext.loadImage
-import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.ext.startUserInfoActivity
-import de.hdodenhof.circleimageview.CircleImageView
 
 /**
  * @description: LiveVisitorAdapter

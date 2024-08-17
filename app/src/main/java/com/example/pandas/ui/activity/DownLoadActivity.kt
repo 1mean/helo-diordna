@@ -1,28 +1,16 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.biz.interaction.OnSureListener
-import com.example.pandas.biz.viewmodel.HistoryViewModeL
 import com.example.pandas.biz.viewmodel.SelfViewModel
-import com.example.pandas.databinding.ActivityCollectBinding
 import com.example.pandas.databinding.ActivityDownloadBinding
 import com.example.pandas.ui.adapter.CacheListAdapter
-import com.example.pandas.ui.adapter.CollectAdapter
-import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
-import com.example.pandas.ui.ext.launcherActivity
-import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
-import com.example.pandas.ui.view.dialog.DeletePopuWindow
 import com.example.pandas.utils.StatusBarUtils
-import com.lxj.xpopup.XPopup
-import com.lxj.xpopup.impl.LoadingPopupView
 
 /**
  * @description: 我的下载
@@ -36,31 +24,36 @@ public class DownLoadActivity : BaseActivity<SelfViewModel, ActivityDownloadBind
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+            appViewModel.appColorType.value?.let {
+                binding.clayoutDownloadTop.setBackgroundResource(viewColors[it])
+                if (it == 0) {
+                    binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_black33)
+                    binding.txtSettingTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, true, viewColors[it])
+                } else {
+                    binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_white)
+                    binding.txtSettingTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                }
+            }
+        }
+
         binding.rvDownloadList.apply {
             layoutManager = LinearLayoutManager(this@DownLoadActivity)
             adapter = mAdapter
-        }
-
-        appViewModel.appColorType.value?.let {
-            binding.clayoutDownloadTop.setBackgroundResource(viewColors[it])
-            if (it == 0) {
-                binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_black33)
-                binding.txtSettingTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_title
-                    )
-                )
-            } else {
-                binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_white)
-                binding.txtSettingTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
-                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
-            }
         }
     }
 

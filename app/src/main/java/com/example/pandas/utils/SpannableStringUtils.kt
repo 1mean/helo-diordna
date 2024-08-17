@@ -6,9 +6,9 @@ import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import com.android.android_sqlite.entity.User
+import com.android.android_sqlite.entity.VideoComment
 import com.example.pandas.biz.interaction.SpanClickListener
-import com.example.pandas.sql.entity.User
-import com.example.pandas.sql.entity.VideoComment
 
 /**
  * @description: SpannableString

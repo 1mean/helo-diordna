@@ -2,8 +2,8 @@ package com.example.pandas.biz.pictureselector;
 
 import android.os.Bundle;
 
-import com.luck.picture.lib.PictureSelectorPreviewFragment;
-import com.luck.picture.lib.adapter.PicturePreviewAdapter;
+import com.life.publish.lib_selector.PictureSelectorPreviewFragment;
+import com.life.publish.lib_selector.adapter.PicturePreviewAdapter;
 
 /**
  * @author：luck

@@ -5,14 +5,13 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.VideoData
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseLazyFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.databinding.FragmentListShortVideoBinding
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.FallsShortVideoAdapter
 import com.example.pandas.ui.adapter.decoration.FallsItemDecoration
 import com.example.pandas.ui.ext.APP_COLOR_STATUS
@@ -28,7 +27,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @version: v1.0
  */
 public class ShortFindingFragment() :
-    BaseLazyFragment<ShortVideoViewModel, FragmentListShortVideoBinding>(),
+    BaseFragment<ShortVideoViewModel, FragmentListShortVideoBinding>(),
     FallsShortVideoAdapter.ItemListener {
 
     private val mAdapter: FallsShortVideoAdapter by lazy { FallsShortVideoAdapter(listener = this) }

@@ -16,15 +16,41 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility "1.8"
+        targetCompatibility "1.8"
+    }
 }
 
 dependencies {
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'com.github.li-xiaojun:EasyAdapter:1.2.8'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    //如果lib打包成aar，第三方包是不会被app调用的，会报错java.lang.NoClassDefFoundError: Failed resolution of: Lcom/lxj/easyadapter/EasyAdapter;
+    implementation 'com.github.li-xiaojun:EasyAdapter:1.2.8'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
-    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
 }
+
+//打包方式：
+//1，直接右侧gradle，选择要打包的Module，然后点击下面的assemble，直接可以打包，但是很多版本的as下面Module里是空的
+//2，使用命令方式打包：在项目根目录下使用 ./gradlew signage:assemble
+//3，借助gradle代码方式，在下面编写makeJar()方法，通过命令gradlew makejar打包jar和aar
+//jar包在build/libs/signage.jar,aar包在build/outputs/aar/signage-debug.aar和signage-release.aar
+//如果gradlew命令没有权限，可以通过命令chmod +x gradlew获取权限，在输入gradlew打包命令
+task makeJar(type: Copy) {
+    //删除存在的（注意mylibrary是自己命名的，名字随便改）
+    delete 'build/libs/com.lxj.xpopup.jar'
+    //设置拷贝的文件，需要根据AS的版本找到响应的文件夹
+    from('build/intermediates/compile_library_classes_jar/debug')
+    //jar包最后的文件目录
+    into('build/libs/')
+    //include ,exclude参数来设置过滤（我们只关心classes.jar这个文件）
+    include('classes.jar')
+    //重命名（名字随便改）
+    rename('classes.jar', 'com.lxj.xpopup.jar')
+}
+makeJar.dependsOn(build)

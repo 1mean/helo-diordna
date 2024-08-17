@@ -1,5 +1,6 @@
 package com.example.pandas.ui.adapter
 
+import AppInstance
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -13,6 +14,10 @@ import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.VideoComment
+import com.android.android_sqlite.entity.VideoData
+import com.android.base.utils.TimeUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
@@ -20,16 +25,13 @@ import com.bumptech.glide.request.transition.Transition
 import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadImage
-import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.interaction.PlayerDoubleTapListener
 import com.example.pandas.databinding.AdapterVideoVerticalBinding
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.VideoComment
-import com.example.pandas.sql.entity.VideoData
+import com.example.pandas.ui.activity.LoginActivity
 import com.example.pandas.ui.ext.addShortEndAnimation
 import com.example.pandas.ui.ext.addShortStartAnimation
+import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
-import com.example.pandas.utils.TimeUtils
 import jp.wasabeef.glide.transformations.BlurTransformation
 import java.util.*
 
@@ -391,46 +393,51 @@ public class VideoPagerAdapter(
             }
 
             collectItem.setOnClickListener {
-                val data = list[position]
-                if (data.videoData == null) {
-                    addShortStartAnimation(collectImg)
-                    collectImg.setImageResource(R.mipmap.img_vertical_collected1)
-                    collects.text = "1"
-                    val vd = VideoData(
-                        videoCode = data.code,
-                        collect = true,
-                        collects = 1,
-                        collectTime = System.currentTimeMillis()
-                    )
-                    data.videoData = vd
-                    listener.updataVideoData(vd)
-                    listener.collect(true, data.code)
-                } else {
-                    data.videoData?.let { vd ->
-                        if (vd.collect) {
-                            addShortEndAnimation(collectImg)
-                            collectImg.setImageResource(R.mipmap.img_vertical_collect)
-                            var collectCount = vd.collects - 1
-                            if (collectCount > 0) {
-                                collects.text = collectCount.toString()
-                            } else {
-                                collects.text = "收藏"
-                                collectCount = 0
-                            }
-                            vd.collects = collectCount
-                            listener.collect(false, data.code)
-                        } else {
-                            addShortStartAnimation(collectImg)
-                            collectImg.setImageResource(R.mipmap.img_vertical_collected1)
-                            val collectCount = vd.collects + 1
-                            collects.text = collectCount.toString()
-                            vd.collectTime = System.currentTimeMillis()
-                            vd.collects = collectCount
-                            listener.collect(true, data.code)
-                        }
-                        vd.collect = !vd.collect
+                if (AppInstance.instance.isLoginSuccess) {
+
+                    val data = list[position]
+                    if (data.videoData == null) {
+                        addShortStartAnimation(collectImg)
+                        collectImg.setImageResource(R.mipmap.img_vertical_collected1)
+                        collects.text = "1"
+                        val vd = VideoData(
+                            videoCode = data.code,
+                            collect = true,
+                            collects = 1,
+                            collectTime = System.currentTimeMillis()
+                        )
+                        data.videoData = vd
                         listener.updataVideoData(vd)
+                        listener.collect(true, data.code)
+                    } else {
+                        data.videoData?.let { vd ->
+                            if (vd.collect) {
+                                addShortEndAnimation(collectImg)
+                                collectImg.setImageResource(R.mipmap.img_vertical_collect)
+                                var collectCount = vd.collects - 1
+                                if (collectCount > 0) {
+                                    collects.text = collectCount.toString()
+                                } else {
+                                    collects.text = "收藏"
+                                    collectCount = 0
+                                }
+                                vd.collects = collectCount
+                                listener.collect(false, data.code)
+                            } else {
+                                addShortStartAnimation(collectImg)
+                                collectImg.setImageResource(R.mipmap.img_vertical_collected1)
+                                val collectCount = vd.collects + 1
+                                collects.text = collectCount.toString()
+                                vd.collectTime = System.currentTimeMillis()
+                                vd.collects = collectCount
+                                listener.collect(true, data.code)
+                            }
+                            vd.collect = !vd.collect
+                            listener.updataVideoData(vd)
+                        }
                     }
+                } else {
+                    startAnyActivity(context, LoginActivity::class.java)
                 }
             }
 
@@ -518,68 +525,75 @@ public class VideoPagerAdapter(
 //            })
 
             commentItem.setOnClickListener {
-                val commentCounts = videoData?.comments ?: 0
-                listener.showComments(video.code, commentCounts)
+                if (AppInstance.instance.isLoginSuccess) {
+                    val commentCounts = videoData?.comments ?: 0
+                    listener.showComments(video.code, commentCounts)
+                } else {
+                    startAnyActivity(context, LoginActivity::class.java)
+                }
             }
 
             attentionView.setOnClickListener {
+                if (AppInstance.instance.isLoginSuccess) {
+                    val alphaAnimation = ObjectAnimator.ofFloat(attentionView, "alpha", 1f, 0f)
+                    alphaAnimation.duration = 200
+                    alphaAnimation.addListener(object : Animator.AnimatorListener {
+                        override fun onAnimationStart(animation: Animator) {
+                        }
 
-                val alphaAnimation = ObjectAnimator.ofFloat(attentionView, "alpha", 1f, 0f)
-                alphaAnimation.duration = 200
-                alphaAnimation.addListener(object : Animator.AnimatorListener {
-                    override fun onAnimationStart(animation: Animator) {
+                        override fun onAnimationEnd(animation: Animator) {
+
+                            attentionView.setBackgroundResource(R.drawable.shape_bg_vertical_attentioned)
+                            attentionView.setImageResource(R.mipmap.img_short_attentioned)
+
+                            val alphaAnimation1 =
+                                ObjectAnimator.ofFloat(attentionView, "alpha", 0f, 1f)
+                            val transScaleX =
+                                ObjectAnimator.ofFloat(attentionView, "scaleX", 0f, 1.3f, 1f)
+                            val transScaleY =
+                                ObjectAnimator.ofFloat(attentionView, "scaleY", 0f, 1.3f, 1f)
+
+                            val animatorSet = AnimatorSet()
+                            animatorSet.play(alphaAnimation1).with(transScaleX).with(transScaleY)
+                            animatorSet.duration = 500
+                            animatorSet.start()
+
+                            val alphaAnimation2 =
+                                ObjectAnimator.ofFloat(attentionView, "alpha", 1f, 0f)
+                            alphaAnimation2.duration = 200
+                            alphaAnimation2.startDelay = 2000
+                            alphaAnimation2.start()
+
+                            alphaAnimation2.addListener(object : Animator.AnimatorListener {
+                                override fun onAnimationStart(animation: Animator) {
+                                }
+
+                                override fun onAnimationEnd(animation: Animator) {
+                                    attentionView.visibility = View.GONE
+                                }
+
+                                override fun onAnimationCancel(animation: Animator) {
+                                }
+
+                                override fun onAnimationRepeat(animation: Animator) {
+                                }
+                            })
+                        }
+
+                        override fun onAnimationCancel(animation: Animator) {
+                        }
+
+                        override fun onAnimationRepeat(animation: Animator) {
+                        }
+                    })
+                    alphaAnimation.start()
+
+                    user?.let {
+                        it.attention = true
+                        listener.addAttention(it.userCode)
                     }
-
-                    override fun onAnimationEnd(animation: Animator) {
-
-                        attentionView.setBackgroundResource(R.drawable.shape_bg_vertical_attentioned)
-                        attentionView.setImageResource(R.mipmap.img_short_attentioned)
-
-                        val alphaAnimation1 =
-                            ObjectAnimator.ofFloat(attentionView, "alpha", 0f, 1f)
-                        val transScaleX =
-                            ObjectAnimator.ofFloat(attentionView, "scaleX", 0f, 1.3f, 1f)
-                        val transScaleY =
-                            ObjectAnimator.ofFloat(attentionView, "scaleY", 0f, 1.3f, 1f)
-
-                        val animatorSet = AnimatorSet()
-                        animatorSet.play(alphaAnimation1).with(transScaleX).with(transScaleY)
-                        animatorSet.duration = 500
-                        animatorSet.start()
-
-                        val alphaAnimation2 =
-                            ObjectAnimator.ofFloat(attentionView, "alpha", 1f, 0f)
-                        alphaAnimation2.duration = 200
-                        alphaAnimation2.startDelay = 2000
-                        alphaAnimation2.start()
-
-                        alphaAnimation2.addListener(object : Animator.AnimatorListener {
-                            override fun onAnimationStart(animation: Animator) {
-                            }
-
-                            override fun onAnimationEnd(animation: Animator) {
-                                attentionView.visibility = View.GONE
-                            }
-
-                            override fun onAnimationCancel(animation: Animator) {
-                            }
-
-                            override fun onAnimationRepeat(animation: Animator) {
-                            }
-                        })
-                    }
-
-                    override fun onAnimationCancel(animation: Animator) {
-                    }
-
-                    override fun onAnimationRepeat(animation: Animator) {
-                    }
-                })
-                alphaAnimation.start()
-
-                user?.let {
-                    it.attention = true
-                    listener.addAttention(it.userCode)
+                } else {
+                    startAnyActivity(context, LoginActivity::class.java)
                 }
             }
         }

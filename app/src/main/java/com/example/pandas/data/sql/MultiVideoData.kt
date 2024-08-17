@@ -1,11 +1,11 @@
 package com.example.pandas.data.sql
 
-import com.example.pandas.bean.pet.VideoType
-import com.example.pandas.sql.entity.PeriodType
-import com.example.pandas.sql.entity.PetVideo
+import com.android.android_sqlite.bean.PeriodType
+import com.android.android_sqlite.bean.VideoType
+import com.android.android_sqlite.entity.PetVideo
 
 /**
- * @description: TODO
+ * @description: MultiVideoData
  * @author: dongyiming
  * @date: 2/8/22 7:16 下午
  * @version: v1.0

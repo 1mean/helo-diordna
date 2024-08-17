@@ -4,8 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.util.Log
-import com.blankj.utilcode.util.AppUtils
+import com.android.base.utils.AppUtils
 
 /**
  * @description: 定时关机

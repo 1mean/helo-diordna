@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import androidx.annotation.Nullable;
 
 import com.example.pandas.R;
-import com.luck.picture.lib.widget.CompleteSelectView;
+import com.life.publish.lib_selector.widget.CompleteSelectView;
 
 /**
  * @author：luck

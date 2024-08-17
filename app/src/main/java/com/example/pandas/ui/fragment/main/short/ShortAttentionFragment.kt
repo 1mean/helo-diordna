@@ -1,20 +1,19 @@
 package com.example.pandas.ui.fragment.main.short
 
+import AppInstance
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.VideoData
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
-import com.example.pandas.app.LoginInfo
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseLazyFragment
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.databinding.FragmentListShortVideoBinding
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.activity.LoginActivity
 import com.example.pandas.ui.adapter.FallsShortVideoAdapter
 import com.example.pandas.ui.adapter.decoration.FallsItemDecoration
@@ -28,10 +27,11 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @version: v1.0
  */
 public class ShortAttentionFragment() :
-    BaseLazyFragment<ShortVideoViewModel, FragmentListShortVideoBinding>(),
+    BaseFragment<ShortVideoViewModel, FragmentListShortVideoBinding>(),
     FallsShortVideoAdapter.ItemListener {
 
-    private var loginStatus: Int = 0
+    private val loginStatus: Boolean
+        get() = AppInstance.instance.isLoginSuccess
     private var isFirstOnResume = false
 
     private var mAdapter: FallsShortVideoAdapter? = null
@@ -40,8 +40,7 @@ public class ShortAttentionFragment() :
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        loginStatus = LoginInfo.instance.getLoginStatus()
-        if (loginStatus == 0) {
+        if (!loginStatus) {
             binding.recyclerLayout.visibility = View.GONE
             binding.swipLayout.isEnabled = false
             binding.clayoutAttentionLogin.visibility = View.VISIBLE
@@ -67,7 +66,7 @@ public class ShortAttentionFragment() :
             setBackgroundResource(R.drawable.shape_video_short)
             setRefreshColor()
             setOnRefreshListener {
-                if (loginStatus == 1) {
+                if (loginStatus) {
                     binding.recyclerLayout.isRefreshing(true)
                     mViewModel.getAttentionFallVideos(true)
                 }
@@ -106,7 +105,6 @@ public class ShortAttentionFragment() :
         appViewModel.loginStatus.observe(viewLifecycleOwner) {
 
             if (it == 0) {//退出登录
-                loginStatus = 0
                 binding.swipLayout.isEnabled = false
                 //mAdapter = null
                 //binding.recyclerLayout.adapter = null
@@ -114,7 +112,6 @@ public class ShortAttentionFragment() :
                 binding.recyclerLayout.visibility = View.GONE
                 binding.clayoutAttentionLogin.visibility = View.VISIBLE
             } else {
-                loginStatus = 1
                 if (!isFirstOnResume) {//还未进入该界面过
                     binding.clayoutAttentionLogin.visibility = View.GONE
                     binding.swipLayout.isEnabled = true
@@ -162,7 +159,7 @@ public class ShortAttentionFragment() :
 
     override fun firstOnResume() {
         isFirstOnResume = true
-        if (loginStatus == 1) {
+        if (loginStatus) {
             mViewModel.getAttentionFallVideos(true)
             binding.swipLayout.isRefreshing = true
         }
@@ -170,7 +167,7 @@ public class ShortAttentionFragment() :
 
     override fun refresh() {
         super.refresh()
-        if (loginStatus == 1) {
+        if (loginStatus) {
             mViewModel.getAttentionFallVideos(true)
             binding.swipLayout.isRefreshing = true
             binding.recyclerLayout.smoothScrollToPosition(0)

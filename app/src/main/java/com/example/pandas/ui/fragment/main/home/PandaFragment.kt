@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseLazyFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.PandasAdapter
@@ -23,7 +22,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @date: 1/12/22 7:35 下午
  * @version: v1.0
  */
-public class PandaFragment : BaseLazyFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
+public class PandaFragment : BaseFragment<HomePageViewModel, LayoutSwipRefreshBinding>() {
 
     private val pandasAdapter: PandasAdapter by lazy { PandasAdapter(arrayListOf(), 0) }
 

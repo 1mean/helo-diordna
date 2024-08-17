@@ -7,20 +7,19 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
+import com.android.android_sqlite.bean.VideoType
+import com.android.android_sqlite.entity.PetVideo
+import com.android.base.utils.NumUtils
+import com.android.base.utils.TimeUtils
+import com.android.base.utils.VibrateUtils
 import com.example.pandas.R
-import com.example.pandas.bean.pet.VideoType
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.AdapterItemBannerChildBinding
 import com.example.pandas.databinding.ItemBannerBannerListBinding
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.ui.ext.startShortVideoActivity
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.dialog.MoreBottomSheetDialog
 import com.example.pandas.ui.view.viewpager.Indicator
-import com.example.pandas.utils.NumUtils
-import com.example.pandas.utils.TimeUtils
-import com.example.pandas.utils.VibrateUtils
 
 /**
  * @description:
@@ -193,7 +192,7 @@ public class BannerChildAdapter(
 
             itemView.setOnLongClickListener {
                 showDialog(petVideo.code)
-                VibrateUtils.vibrate(context, 2000)
+                VibrateUtils.vibrate(2000)
                 true
             }
 

@@ -2,7 +2,7 @@ package com.example.pandas.ui.view
 
 import android.content.Context
 import android.util.Log
-import com.example.helo_base.magic.commonnavigator.titles.ColorTransitionPagerTitleView
+import com.android.base.custom_tablayout.commonnavigator.titles.ColorTransitionPagerTitleView
 
 /**
  * @description: ScaleTransitionPagerTitleView

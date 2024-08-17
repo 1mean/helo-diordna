@@ -1,9 +1,8 @@
 package com.example.pandas.biz.ext
 
 import android.content.Context
+import com.android.base.utils.FileUtils
 import com.example.pandas.app.getExtFilePath
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.utils.FileUtils
 import java.io.File
 
 /**

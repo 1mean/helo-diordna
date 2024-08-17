@@ -3,14 +3,14 @@ package com.example.pandas.ui.adapter
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.android.android_sqlite.entity.VideoAndUser
+import com.android.base.utils.NumUtils
+import com.android.base.utils.TimeUtils
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
-import com.example.pandas.sql.entity.VideoAndUser
 import com.example.pandas.ui.ext.startVideoPlayingActivity
-import com.example.pandas.utils.NumUtils
-import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: VideoListAdapter

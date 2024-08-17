@@ -3,7 +3,7 @@ package com.example.pandas.ui.fragment.search
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelStoreOwner
-import com.example.pandas.base.fragment.BaseFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.SearchViewModel
 import com.example.pandas.databinding.LayoutLoadmoreBinding
 import com.example.pandas.ui.ext.init

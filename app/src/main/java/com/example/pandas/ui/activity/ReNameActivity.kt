@@ -1,26 +1,17 @@
 package com.example.pandas.ui.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
-import com.blankj.utilcode.util.KeyboardUtils
+import com.android.base.ui.activity.BaseActivity
+import com.android.base.utils.KeyboardUtils
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.viewmodel.BaseViewModel
 import com.example.pandas.biz.viewmodel.SelfViewModel
-import com.example.pandas.databinding.ActivityAboutBinding
-import com.example.pandas.databinding.ActivityMineInfoBinding
 import com.example.pandas.databinding.ActivityRenameBinding
-import com.example.pandas.databinding.ActivitySettingBinding
-import com.example.pandas.ui.ext.*
-import com.example.pandas.utils.DarkModeUtils
+import com.example.pandas.ui.ext.setEditText
+import com.example.pandas.ui.ext.toastTopShow
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
@@ -38,6 +29,49 @@ public class ReNameActivity : BaseActivity<SelfViewModel, ActivityRenameBinding>
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        if (!AppInstance.instance.isNightMode) {
+            appViewModel.appColorType.value?.let {
+                binding.clayoutRenameTop.setBackgroundResource(viewColors[it])
+                if (it == 0) {
+                    binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_black33)
+                    binding.txtSettingTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                    binding.btnNameSure.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, true, viewColors[it])
+                } else {
+                    binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_white)
+                    binding.txtSettingTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    binding.btnNameSure.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                }
+            }
+        } else {
+            StatusBarUtils.setStatusBarMode(
+                this,
+                false,//深色模式
+                R.color.color_bg_home
+            )
+        }
+
         oldName = intent.getStringExtra("name")
         userCode = intent.getIntExtra("userCode", -1)
         oldName?.let {
@@ -51,7 +85,7 @@ public class ReNameActivity : BaseActivity<SelfViewModel, ActivityRenameBinding>
 
         binding.editUpdateName.requestFocus()
         binding.editUpdateName.post {
-            KeyboardUtils.showSoftInput()
+            KeyboardUtils.showSoftInput(this)
         }
 
         binding.btnNameSure.setOnClickListener {

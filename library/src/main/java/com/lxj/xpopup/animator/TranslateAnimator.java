@@ -5,7 +5,6 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
-import android.view.animation.LinearInterpolator;
 
 import com.lxj.xpopup.enums.PopupAnimation;
 

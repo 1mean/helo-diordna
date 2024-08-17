@@ -7,15 +7,15 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.VideoData
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.FragmentInformationBinding
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.VideoData
+import com.example.pandas.ui.activity.LoginActivity
 import com.example.pandas.ui.adapter.VideoRecoListAdapter
 import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.dialog.AttentionBottomSheetDialog
@@ -31,6 +31,9 @@ import com.umeng.socialize.bean.SHARE_MEDIA
  */
 public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformationBinding>(),
     View.OnClickListener {
+
+    private val loginSuccess: Boolean
+        get() = AppInstance.instance.isLoginSuccess
 
     private val mAdapter: VideoRecoListAdapter by lazy { VideoRecoListAdapter() }
 
@@ -51,7 +54,7 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
         )
     }
 
-    private val shareDialog by lazy { ShareBottomSheetDialog(mActivity,{}) }
+    private val shareDialog by lazy { ShareBottomSheetDialog(mActivity, {}) }
 
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -151,21 +154,25 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                 }
 
                 binding.clayoutVideoInfoFollow.setOnClickListener {
-                    if (isAttention) {
-                        bottomSheetDialog.onShow()
-                    } else {
-                        mViewModel.updateAttention(userCode)
-                        binding.txtVideoAttention.text = "已关注"
-                        binding.txtVideoAttention.setTextColor(
-                            ContextCompat.getColor(
-                                mActivity,
-                                R.color.color_txt_panda_list_item
+                    if (loginSuccess) {
+                        if (isAttention) {
+                            bottomSheetDialog.onShow()
+                        } else {
+                            mViewModel.updateAttention(userCode)
+                            binding.txtVideoAttention.text = "已关注"
+                            binding.txtVideoAttention.setTextColor(
+                                ContextCompat.getColor(
+                                    mActivity,
+                                    R.color.color_txt_panda_list_item
+                                )
                             )
-                        )
-                        binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_unattention)
-                        Toast.makeText(mActivity, "已关注", Toast.LENGTH_SHORT).show()
-                        author.attention = !author.attention
-                        isAttention = !isAttention
+                            binding.clayoutVideoInfoFollow.setBackgroundResource(R.drawable.shape_user_unattention)
+                            Toast.makeText(mActivity, "已关注", Toast.LENGTH_SHORT).show()
+                            author.attention = !author.attention
+                            isAttention = !isAttention
+                        }
+                    } else {
+                        startAnyActivity(mActivity, LoginActivity::class.java)
                     }
                 }
             }
@@ -185,7 +192,6 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
                     Toast.makeText(mActivity, "加入默认分组", Toast.LENGTH_SHORT).show()
                 }
                 2 -> {//取消关注
-
                     mViewModel.updateAttention(userCode)
 
                     val status = appViewModel.appColorType.value
@@ -291,23 +297,27 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
 //                mViewModel.addOrUpdateVideoData(videoData)
 //            }
             R.id.item_collect -> {
-                addScaleAnimation(binding.imgCollect, 1.3f)
-                if (videoData.collect) {
-                    videoData.collects -= 1
-                    binding.imgCollect.setImageResource(R.mipmap.img_video_new_collect)
-                    binding.txtVideoCollect.text = videoData.collects.toString()
+                if (loginSuccess) {
+                    addScaleAnimation(binding.imgCollect, 1.3f)
+                    if (videoData.collect) {
+                        videoData.collects -= 1
+                        binding.imgCollect.setImageResource(R.mipmap.img_video_new_collect)
+                        binding.txtVideoCollect.text = videoData.collects.toString()
+                    } else {
+                        videoData.collects += 1
+                        binding.imgCollect.setImageResource(collectRes[status])
+                    }
+                    if (videoData.collects > 0) {
+                        binding.txtVideoCollect.text = videoData.collects.toString()
+                    } else {
+                        binding.txtVideoCollect.text = "收藏"
+                        videoData.collects = 0
+                    }
+                    videoData.collect = !videoData.collect
+                    mViewModel.addOrUpdateVideoData(videoData)
                 } else {
-                    videoData.collects += 1
-                    binding.imgCollect.setImageResource(collectRes[status])
+                    startAnyActivity(mActivity, LoginActivity::class.java)
                 }
-                if (videoData.collects > 0) {
-                    binding.txtVideoCollect.text = videoData.collects.toString()
-                } else {
-                    binding.txtVideoCollect.text = "收藏"
-                    videoData.collects = 0
-                }
-                videoData.collect = !videoData.collect
-                mViewModel.addOrUpdateVideoData(videoData)
             }
             R.id.item_share -> {
                 shareDialog.addData().onShow()

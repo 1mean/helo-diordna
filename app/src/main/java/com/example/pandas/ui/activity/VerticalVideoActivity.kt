@@ -1,11 +1,10 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.viewmodel.VerticalVideoModel
 import com.example.pandas.databinding.ActivityVerticalVideoplayBinding
@@ -24,8 +23,7 @@ import com.google.android.exoplayer2.util.Util
  * @date: 2/23/22 10:20 下午
  * @version: v1.0
  */
-public class VerticalVideoActivity :
-    BaseActivity<VerticalVideoModel, ActivityVerticalVideoplayBinding>(),
+public class VerticalVideoActivity : BaseActivity<VerticalVideoModel, ActivityVerticalVideoplayBinding>(),
     VerticalVideoAdapter.VideoCallBack {
 
     private var mPlayer: ExoPlayer? = null

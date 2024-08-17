@@ -2,24 +2,22 @@ package com.lxj.xpopup;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.PointF;
 import android.os.Build;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.Lifecycle;
+
 import com.lxj.xpopup.animator.PopupAnimator;
 import com.lxj.xpopup.core.BasePopupView;
 import com.lxj.xpopup.core.ImageViewerPopupView;
 import com.lxj.xpopup.core.PopupInfo;
 import com.lxj.xpopup.enums.PopupAnimation;
 import com.lxj.xpopup.enums.PopupPosition;
-import com.lxj.xpopup.impl.AttachListPopupView;
 import com.lxj.xpopup.impl.BottomListPopupView;
-import com.lxj.xpopup.impl.CenterListPopupView;
 import com.lxj.xpopup.impl.ConfirmPopupView;
 import com.lxj.xpopup.impl.InputConfirmPopupView;
 import com.lxj.xpopup.impl.LoadingPopupView;
@@ -33,6 +31,7 @@ import com.lxj.xpopup.interfaces.XPopupCallback;
 import com.lxj.xpopup.interfaces.XPopupImageLoader;
 import com.lxj.xpopup.util.XPermission;
 import com.lxj.xpopup.util.XPopupUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -779,27 +778,27 @@ public class XPopup {
          * @param bindItemLayoutId 自定义列表的item布局 条目的布局id，要求布局中必须有id为iv_image的ImageView，和id为tv_text的TextView
          * @return
          */
-        public CenterListPopupView asCenterList(CharSequence title, String[] data, int[] iconIds, int checkedPosition, OnSelectListener selectListener, int bindLayoutId,
-                                                int bindItemLayoutId) {
-            CenterListPopupView popupView = new CenterListPopupView(this.context, bindLayoutId, bindItemLayoutId)
-                    .setStringData(title, data, iconIds)
-                    .setCheckedPosition(checkedPosition)
-                    .setOnSelectListener(selectListener);
-            popupView.popupInfo = this.popupInfo;
-            return popupView;
-        }
+//        public CenterListPopupView asCenterList(CharSequence title, String[] data, int[] iconIds, int checkedPosition, OnSelectListener selectListener, int bindLayoutId,
+//                                                int bindItemLayoutId) {
+//            CenterListPopupView popupView = new CenterListPopupView(this.context, bindLayoutId, bindItemLayoutId)
+//                    .setStringData(title, data, iconIds)
+//                    .setCheckedPosition(checkedPosition)
+//                    .setOnSelectListener(selectListener);
+//            popupView.popupInfo = this.popupInfo;
+//            return popupView;
+//        }
 
-        public CenterListPopupView asCenterList(CharSequence title, String[] data, int[] iconIds, int checkedPosition, OnSelectListener selectListener) {
-            return asCenterList(title, data, iconIds, checkedPosition, selectListener, 0, 0);
-        }
-
-        public CenterListPopupView asCenterList(CharSequence title, String[] data, OnSelectListener selectListener) {
-            return asCenterList(title, data, null, -1, selectListener);
-        }
-
-        public CenterListPopupView asCenterList(CharSequence title, String[] data, int[] iconIds, OnSelectListener selectListener) {
-            return asCenterList(title, data, iconIds, -1, selectListener);
-        }
+//        public CenterListPopupView asCenterList(CharSequence title, String[] data, int[] iconIds, int checkedPosition, OnSelectListener selectListener) {
+//            return asCenterList(title, data, iconIds, checkedPosition, selectListener, 0, 0);
+//        }
+//
+//        public CenterListPopupView asCenterList(CharSequence title, String[] data, OnSelectListener selectListener) {
+//            return asCenterList(title, data, null, -1, selectListener);
+//        }
+//
+//        public CenterListPopupView asCenterList(CharSequence title, String[] data, int[] iconIds, OnSelectListener selectListener) {
+//            return asCenterList(title, data, iconIds, -1, selectListener);
+//        }
 
         /**
          * 显示在中间加载的弹窗
@@ -875,24 +874,24 @@ public class XPopup {
          * @param contentGravity   列表的居中位置。默认是居中
          * @return
          */
-        public AttachListPopupView asAttachList(String[] data, int[] iconIds, OnSelectListener selectListener, int bindLayoutId,
-                                                int bindItemLayoutId, int contentGravity) {
-            AttachListPopupView popupView = new AttachListPopupView(this.context, bindLayoutId, bindItemLayoutId)
-                    .setStringData(data, iconIds)
-                    .setContentGravity(contentGravity)
-                    .setOnSelectListener(selectListener);
-            popupView.popupInfo = this.popupInfo;
-            return popupView;
-        }
+//        public AttachListPopupView asAttachList(String[] data, int[] iconIds, OnSelectListener selectListener, int bindLayoutId,
+//                                                int bindItemLayoutId, int contentGravity) {
+//            AttachListPopupView popupView = new AttachListPopupView(this.context, bindLayoutId, bindItemLayoutId)
+//                    .setStringData(data, iconIds)
+//                    .setContentGravity(contentGravity)
+//                    .setOnSelectListener(selectListener);
+//            popupView.popupInfo = this.popupInfo;
+//            return popupView;
+//        }
 
-        public AttachListPopupView asAttachList(String[] data, int[] iconIds, OnSelectListener selectListener, int bindLayoutId,
-                                                int bindItemLayoutId) {
-            return asAttachList(data, iconIds, selectListener, bindLayoutId, bindItemLayoutId, Gravity.CENTER);
-        }
-
-        public AttachListPopupView asAttachList(String[] data, int[] iconIds, OnSelectListener selectListener) {
-            return asAttachList(data, iconIds, selectListener, 0, 0, Gravity.CENTER);
-        }
+//        public AttachListPopupView asAttachList(String[] data, int[] iconIds, OnSelectListener selectListener, int bindLayoutId,
+//                                                int bindItemLayoutId) {
+//            return asAttachList(data, iconIds, selectListener, bindLayoutId, bindItemLayoutId, Gravity.CENTER);
+//        }
+//
+//        public AttachListPopupView asAttachList(String[] data, int[] iconIds, OnSelectListener selectListener) {
+//            return asAttachList(data, iconIds, selectListener, 0, 0, Gravity.CENTER);
+//        }
 
         /**
          * 大图浏览类型弹窗，单张图片使用场景

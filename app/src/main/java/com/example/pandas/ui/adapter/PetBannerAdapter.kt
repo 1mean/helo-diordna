@@ -4,10 +4,9 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.android.android_sqlite.entity.PetVideo
 import com.bumptech.glide.Glide
-import com.example.pandas.bean.pet.PetViewData
 import com.example.pandas.databinding.LayoutImageBinding
-import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 
 /**

@@ -5,8 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.base.activity.BaseActivity
 import com.example.pandas.biz.viewmodel.OneVerticalViewModel
 import com.example.pandas.databinding.ActivityOneVerticalListBinding
 import com.example.pandas.ui.ext.init
@@ -25,23 +25,24 @@ public class OneVerticalListActivity :
     private var title: String = ""
     private val mAdapter: OneVerticalAdapter by lazy { OneVerticalAdapter(mutableListOf(), title) }
 
-    override fun initStatusView() {
+    fun initStatusView() {
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
     }
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        initStatusView()
         title = intent.getStringExtra("title").toString()
         binding.txtOneTopTitle.text = title
 
         binding.txtOneHugeTitle.text = StringBuilder("ipanda").append(title).toString()
 
         if (title == "每周必看") {
-            binding.root.setBackgroundResource(R.color.color_bg_purple)
-            binding.llayoutTopOneVertical.setBackgroundResource(R.color.color_bg_purple)
+            binding.root.setBackgroundResource(R.color.color_bg_week)
+            binding.llayoutTopOneVertical.setBackgroundResource(R.color.color_bg_week)
         } else {
-            binding.root.setBackgroundResource(R.color.color_bg_yellow)
-            binding.llayoutTopOneVertical.setBackgroundResource(R.color.color_bg_yellow)
+            binding.root.setBackgroundResource(R.color.color_bg_week_other)
+            binding.llayoutTopOneVertical.setBackgroundResource(R.color.color_bg_week_other)
         }
         binding.txtTopDesc.text = "$title 已暂停更新！！"
 

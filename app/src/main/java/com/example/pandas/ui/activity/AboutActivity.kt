@@ -1,23 +1,18 @@
 package com.example.pandas.ui.activity
 
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.biz.viewmodel.SelfViewModel
+import com.android.base.ui.activity.BaseActivity
+import com.android.base.vm.BaseViewModel
 import com.example.pandas.databinding.ActivityAboutBinding
-import com.example.pandas.databinding.ActivityMineInfoBinding
-import com.example.pandas.databinding.ActivitySettingBinding
 import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.shortToast
 import com.example.pandas.ui.ext.startAnyActivity
 import com.example.pandas.ui.ext.viewColors
-import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.StatusBarUtils
 
 /**
@@ -28,7 +23,47 @@ import com.example.pandas.utils.StatusBarUtils
  */
 public class AboutActivity : BaseActivity<BaseViewModel, ActivityAboutBinding>() {
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun initView(savedInstanceState: Bundle?) {
+
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+            appViewModel.appColorType.value?.let {
+                binding.clayoutSettingTop.setBackgroundResource(viewColors[it])
+                if (it == 0) {
+                    binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_black33)
+                    binding.txtSettingTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                    binding.txtAboutSupport.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            viewColors[APP_COLOR_STATUS]
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, true, viewColors[it])
+                } else {
+                    binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_white)
+                    binding.txtSettingTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                    binding.txtAboutSupport.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            viewColors[it]
+                        )
+                    )
+                }
+            }
+        }
 
         binding.ibnSettingBack.setOnClickListener { finish() }
 
@@ -48,34 +83,12 @@ public class AboutActivity : BaseActivity<BaseViewModel, ActivityAboutBinding>()
             startAnyActivity(this, WebActivity::class.java)
         }
 
-        appViewModel.appColorType.value?.let {
-            binding.clayoutSettingTop.setBackgroundResource(viewColors[it])
-            if (it == 0) {
-                binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_black33)
-                binding.txtSettingTitle.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_history_title
-                    )
-                )
-                binding.txtAboutSupport.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        viewColors[APP_COLOR_STATUS]
-                    )
-                )
-            } else {
-                binding.ibnSettingBack.setImageResource(R.mipmap.img_setting_top_back_white)
-                binding.txtSettingTitle.setTextColor(ContextCompat.getColor(this, R.color.white))
-                StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
-                binding.txtAboutSupport.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        viewColors[it]
-                    )
-                )
-            }
-        }
+        binding.txtAboutSupport.setTextColor(
+            ContextCompat.getColor(
+                this@AboutActivity,
+                R.color.color_txt_mine_name
+            )
+        )
     }
 
     override fun createObserver() {

@@ -10,7 +10,7 @@
     <TextView
             android:id="@+id/tv_title"
             android:textSize="17sp"
-            android:textColor="@color/_xpopup_title_color"
+            android:textColor="@color/color_txt_item_dialog_selfinfo"
             android:lines="1"
             android:paddingBottom="5dp"
             android:ellipsize="end"
@@ -36,7 +36,7 @@
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
                     android:paddingBottom="5dp"
-                    android:textColor="@color/_xpopup_content_color"
+                    android:textColor="@color/color_txt_item_dialog_selfinfo"
                     android:textSize="15sp"
                     android:gravity="center"
                     android:layout_width="match_parent"
@@ -61,7 +61,7 @@
     <View
             android:layout_width="match_parent"
             android:id="@+id/xpopup_divider1"
-            android:background="@color/_xpopup_list_divider"
+            android:background="@color/color_logout_divider"
             android:layout_height=".3dp" />
 
     <LinearLayout
@@ -74,19 +74,13 @@
                 android:id="@+id/tv_cancel"
                 android:textSize="16sp"
                 android:text="@string/xpopup_cancel"
-                android:textColor="#666666"
+                android:textColor="@color/color_txt_item_dialog_selfinfo"
                 android:background="?android:attr/selectableItemBackground"
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="match_parent" />
-
-        <View
-                android:layout_width=".3dp"
-                android:id="@+id/xpopup_divider2"
-                android:background="@color/_xpopup_list_divider"
                 android:layout_height="match_parent" />
 
         <TextView
@@ -100,6 +94,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:textStyle="bold"
                 android:layout_height="match_parent" />
     </LinearLayout>
 </LinearLayout>

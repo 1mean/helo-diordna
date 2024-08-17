@@ -19,7 +19,7 @@
                 android:layout_height="match_parent"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_creator_top"
                 android:background="@null"
-                android:src="@mipmap/img_back_1" />
+                android:src="@mipmap/img_topview_back" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_creator_title"

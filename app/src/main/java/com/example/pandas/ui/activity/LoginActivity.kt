@@ -1,27 +1,30 @@
 package com.example.pandas.ui.activity
 
+import AppInstance
 import android.os.Bundle
+import android.text.InputFilter
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
-import android.text.style.UnderlineSpan
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
+import com.android.base.ui.activity.BaseActivity
+import com.android.base.utils.NumUtils
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
-import com.example.pandas.app.LoginInfo
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.viewmodel.BaseViewModel
+import com.example.pandas.biz.viewmodel.WanAndroidViewModel
 import com.example.pandas.databinding.ActivityLoginBinding
 import com.example.pandas.ui.ext.toast
 import com.example.pandas.ui.ext.toastTopShow
-import com.example.pandas.utils.NumUtils
-import com.example.pandas.utils.SPUtils
+import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
+
 
 /**
  * @description: 登录
@@ -29,7 +32,7 @@ import java.util.*
  * @date: 9/24/23 11:32 PM
  * @version: v1.0
  */
-public class LoginActivity : BaseActivity<BaseViewModel, ActivityLoginBinding>() {
+public class LoginActivity : BaseActivity<WanAndroidViewModel, ActivityLoginBinding>() {
 
     private val WATTING_TIME = 60
     private var timer: Timer? = null
@@ -46,10 +49,26 @@ public class LoginActivity : BaseActivity<BaseViewModel, ActivityLoginBinding>()
         )
 
     override fun initView(savedInstanceState: Bundle?) {
-        Log.e("1mean", "initView")
+
+        if (AppInstance.instance.isNightMode) {
+            StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
+        } else {
+            StatusBarUtils.setStatusBarMode(this, true, R.color.color_bg_home)
+        }
         binding.btnLoginClose.setOnClickListener {
             finish()
         }
+
+        val inputFilter = InputFilter { source, start, end, _, _, _ ->
+            for (i in start until end) {
+                if (!Character.isLetterOrDigit(source[i])) {
+                    return@InputFilter ""// 非数字或字母，返回空字符串
+                }
+            }
+            null //允许输入
+        }
+        binding.editLoginSecretCode.filters = arrayOf(inputFilter)
+
         binding.btnLoginCode.setOnClickListener {
 
             if (!taskRunning) {
@@ -99,21 +118,21 @@ public class LoginActivity : BaseActivity<BaseViewModel, ActivityLoginBinding>()
         }
 
         val builder = SpannableStringBuilder()
-        builder.append("阅读并同意《用户协议》和《隐私政策》") // 添加普通文本
+        builder.append("我已阅读并同意《用户协议》和《隐私政策》") // 添加普通文本
         builder.setSpan(
             ForegroundColorSpan(ContextCompat.getColor(this, R.color.color_bg_green)),
-            5,
-            11,
+            7,
+            13,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         builder.setSpan(
             ForegroundColorSpan(ContextCompat.getColor(this, R.color.color_bg_green)),
-            12,
-            18,
+            14,
+            20,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         ) // 字体颜色
-        builder.setSpan(UnderlineSpan(), 5, 11, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // 下划线
-        builder.setSpan(UnderlineSpan(), 12, 18, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // 下划线
+//        builder.setSpan(UnderlineSpan(), 7, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // 下划线
+//        builder.setSpan(UnderlineSpan(), 14, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // 下划线
 //        builder.setSpan(
 //            URLSpan("https://www.baidu.com"),
 //            5,
@@ -139,6 +158,63 @@ public class LoginActivity : BaseActivity<BaseViewModel, ActivityLoginBinding>()
                 }
             }
         })
+
+        binding.txtRegisterSecret.setOnClickListener {
+            if (isSelected) {
+                if (binding.editLoginSecret.text == null || binding.editLoginSecretCode.text == null) {
+                    toastTopShow(this, "账号或密码不能为空")
+                    return@setOnClickListener
+                }
+                if (loadingPopup == null) {
+                    loadingPopup = XPopup.Builder(this).dismissOnBackPressed(true)
+                        .isLightNavigationBar(true)
+                        .isViewMode(false)
+                        .asLoading(
+                            null,
+                            R.layout.loading_login,
+                            LoadingPopupView.Style.ProgressBar
+                        )
+                    loadingPopup!!.show()
+                } else {
+                    loadingPopup!!.show()
+                }
+                mViewModel.register(
+                    binding.editLoginSecret.text.toString(),
+                    binding.editLoginSecretCode.text.toString(),
+                    binding.editLoginSecretCode.text.toString()
+                )
+            } else {
+                toastTopShow(this, "阅读并同意《用户协议》和《隐私政策》")
+            }
+        }
+
+        binding.txtLoginSecret.setOnClickListener {//密码登录
+            if (isSelected) {
+                if (binding.editLoginSecret.text == null || binding.editLoginSecretCode.text == null) {
+                    toastTopShow(this, "账号或密码不能为空")
+                    return@setOnClickListener
+                }
+                if (loadingPopup == null) {
+                    loadingPopup = XPopup.Builder(this).dismissOnBackPressed(true)
+                        .isLightNavigationBar(true)
+                        .isViewMode(false)
+                        .asLoading(
+                            null,
+                            R.layout.loading_login,
+                            LoadingPopupView.Style.ProgressBar
+                        )
+                    loadingPopup!!.show()
+                } else {
+                    loadingPopup!!.show()
+                }
+                mViewModel.login(
+                    binding.editLoginSecret.text.toString(),
+                    binding.editLoginSecretCode.text.toString()
+                )
+            } else {
+                toastTopShow(this, "阅读并同意《用户协议》和《隐私政策》")
+            }
+        }
 
         binding.txtLogin.setOnClickListener {
             if (isSelected) {
@@ -171,10 +247,17 @@ public class LoginActivity : BaseActivity<BaseViewModel, ActivityLoginBinding>()
                         } else {
                             loadingPopup!!.show()
                         }
-                        startLoginIn()
+                        mViewModel.login(
+                            binding.editLoginSecret.text.toString(),
+                            binding.editLoginSecretCode.text.toString()
+                        )
                     } else {
                         toastTopShow(this, "验证码错误，请重新获取")
                     }
+                }
+                if (binding.editLoginSecret.text == null || binding.editLoginSecretCode.text == null) {
+                    toastTopShow(this, "账号或密码不能为空")
+                    return@setOnClickListener
                 }
             } else {
                 toastTopShow(this, "阅读并同意《用户协议》和《隐私政策》")
@@ -183,12 +266,51 @@ public class LoginActivity : BaseActivity<BaseViewModel, ActivityLoginBinding>()
     }
 
     override fun createObserver() {
-        Log.e("1mean", "createObserver")
+        lifecycleScope.launch {
+            mViewModel.register.collect {
+                when (it.errorCode) {
+                    0 -> {
+                        toastTopShow(this@LoginActivity, "注册并登录成功")
+                        AppInstance.instance.isLoginSuccess = true
+                        appViewModel.loginStatus.value = 1
+                        loadingPopup?.dismiss()
+                        delay(50)
+                        finish()
+                    }
+                    -1 -> {
+                        toastTopShow(this@LoginActivity, it.errorMsg.toString())
+                        loadingPopup?.dismiss()
+                    }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            mViewModel.login.collect {
+                when (it.errorCode) {
+                    0 -> {
+                        toastTopShow(this@LoginActivity, "登录成功")
+                        AppInstance.instance.isLoginSuccess = true
+                        appViewModel.loginStatus.value = 1
+                        loadingPopup?.dismiss()
+                        delay(50)
+                        finish()
+                    }
+                    -1 -> {
+                        toastTopShow(this@LoginActivity, it.errorMsg.toString())
+                        loadingPopup?.dismiss()
+                    }
+                    //errorCode = -1001 代表登录失效，需要重新登录
+                    -1001 -> {
+                        toastTopShow(this@LoginActivity, "登录失效，需要重新登录")
+                        loadingPopup?.dismiss()
+                    }
+                }
+            }
+        }
     }
 
     private fun startLoginIn() {
-        SPUtils.putInt(this, AppInfos.LOGIN_KEY, 1)
-        LoginInfo.instance.setLoginStatus(1)
         appViewModel.loginStatus.value = 1
         timer?.cancel()
         timer = null

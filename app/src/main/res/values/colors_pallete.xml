@@ -3,6 +3,7 @@
 
     <!-- 黑色全透明   -->
     <color name="color_white_lucency">#00000000</color>
+    <color name="color_black_lucency">#00ffffff</color>
     <!-- color.xml 通用调色板 -->
     <color name="red50">#fde0dc</color>
     <color name="red100">#f9bdbb</color>

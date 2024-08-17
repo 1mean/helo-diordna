@@ -1,6 +1,10 @@
 package com.example.pandas
 
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.reduce
 import org.junit.Test
 import kotlin.system.measureTimeMillis
 
@@ -391,5 +395,21 @@ public class CoroutineTest {
             println("Parent is not cancelled")
         }
         job.join()
+    }
+
+    @Test
+    fun `test terminal operator`() = runBlocking {
+
+        println("""close.trim""".trimMargin())
+        val channel = Channel<Int>()
+        val sum = (1..3).asFlow().map {
+            it * it
+        }.reduce { a, b ->
+            println("a=$a,b=$b")
+            a + b
+        }
+        println(sum)
+
+
     }
 }

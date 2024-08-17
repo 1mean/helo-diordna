@@ -5,32 +5,37 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
+import com.android.android_sqlite.entity.User
+import com.android.base.ui.activity.BaseActivity
+import com.android.base.utils.BitmapUtils
+import com.android.base.utils.FileUtils
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.base.lifecycle.LifecycleHandler
+import com.android.base.ui.lifecycle.LifecycleHandler
 import com.example.pandas.biz.ext.getUserHeader
 import com.example.pandas.biz.ext.loadCircleBitmap
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.ActivityMineInfoBinding
-import com.example.pandas.sql.entity.User
 import com.example.pandas.ui.ext.toastTopShow
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.dialog.FaceAddSheetDialog
-import com.example.pandas.utils.BitmapUtils
-import com.example.pandas.utils.FileUtils
+import com.example.pandas.ui.view.dialog.SexSelectDialog
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
+import com.lxj.xpopup.interfaces.OnSelectListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
@@ -44,17 +49,18 @@ import java.io.File
 public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBinding>() {
 
     private var mDialog: FaceAddSheetDialog? = null
+    private var sDialog: SexSelectDialog? = null
     private var loadingPopup: LoadingPopupView? = null
     private var tempCameraPicName: String = ""
     private var hasHeader: Boolean = false
     val TAG_INFO = "fragment_mine_info"
     private var type: Int = -1
+    private var sexType: Int = 0
     private var user: User? = null
     private val sexs
-        get() = mapOf<Int, String>(0 to "女", 1 to "男", 2 to "保密")
+        get() = mapOf<Int, String>(0 to "男", 1 to "女", 2 to "保密")
 
-    private val mHandler = LifecycleHandler(Looper.getMainLooper(),this)
-
+    @RequiresApi(Build.VERSION_CODES.R)
     private val albumLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == RESULT_OK) {
@@ -80,6 +86,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
             }
         }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     private val takePictureLauncher =
         //TakePicturePreview()返回bitmap预览图，是缩略图，比较模糊
         registerForActivityResult(ActivityResultContracts.TakePicture()) { result ->
@@ -108,7 +115,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
                 it.data?.let { intent ->
                     val newName = intent.getStringExtra("newName")
                     newName?.let {
-                        user?.let { u->
+                        user?.let { u ->
                             u.userName = it
                         }
                         binding.txtMineInfoName.text = it
@@ -123,7 +130,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
                 it.data?.let { intent ->
                     val newSign = intent.getStringExtra("newSign")
                     newSign?.let {
-                        user?.let { u->
+                        user?.let { u ->
                             u.signature = it
                         }
                         binding.txtSelfSign.text = it
@@ -134,7 +141,11 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        StatusBarUtils.setStatusBarMode(this, true, R.color.color_bg_activity_setting)
+        StatusBarUtils.setStatusBarMode(
+            this,
+            !AppInstance.instance.isNightMode,//深色模式
+            R.color.color_bg_activity_setting
+        )
 
         binding.btnSelfBack.setOnClickListener {
             backFinish()
@@ -154,38 +165,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
         }
 
         binding.clayoutInfoSex.setOnClickListener {
-
-            val sex = binding.txtSelfSex.text.toString()
-            var checkedPosition = 0
-            if (sex.isEmpty()) {
-                checkedPosition = 0
-            } else {
-                sexs.entries.forEach {
-                    if (it.value == sex) {
-                        checkedPosition = it.key
-                    }
-                }
-            }
-            XPopup.Builder(this)
-                .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
-                .asBottomList(
-                    "性别",
-                    arrayOf("女", "男", "保密"),
-                    null,
-                    checkedPosition
-                ) { position, text ->
-                    binding.txtSelfSex.text = text
-                    user?.let {
-                        val sex1 = when (text) {
-                            "女" -> 1
-                            "男" -> 0
-                            else -> -1
-                        }
-                        mViewModel.reSex(sex1, it.userCode)
-                        appViewModel.sexUpdate.value = sex1
-                    }
-                }
-                .show()
+            showSexDialog()
         }
 
         binding.clayoutInfoSign.setOnClickListener {
@@ -194,6 +174,31 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
                 intent.putExtra("sign", it.signature)
                 intent.putExtra("userCode", it.userCode)
                 reSignLauncher.launch(intent)
+            }
+        }
+
+        if (!AppInstance.instance.isNightMode) {
+            appViewModel.appColorType.value?.let {
+                if (it == 0) {
+                    binding.clayoutInfoTop.setBackgroundResource(R.color.color_bg_activity_setting)
+                    binding.btnSelfBack.setImageResource(R.mipmap.img_setting_top_back_black33)
+                    binding.txtSelfInfo.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.color_history_title
+                        )
+                    )
+                } else {
+                    binding.clayoutInfoTop.setBackgroundResource(viewColors[it])
+                    binding.btnSelfBack.setImageResource(R.mipmap.img_setting_top_back_white)
+                    binding.txtSelfInfo.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
+                    StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
+                }
             }
         }
     }
@@ -206,6 +211,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
 
         if (mDialog == null) {
             mDialog = FaceAddSheetDialog(this, object : ItemClickListener<Int> {
+                @RequiresApi(Build.VERSION_CODES.R)
                 override fun onItemClick(t: Int) {
                     if (t == 1) {
                         val faceDir =
@@ -241,6 +247,20 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
         mDialog!!.onShow()
     }
 
+    private fun showSexDialog() {
+
+        val sDialog = SexSelectDialog(this, sexType, object : ItemClickListener<Int> {
+            @RequiresApi(Build.VERSION_CODES.R)
+            override fun onItemClick(t: Int) {
+                binding.txtSelfSex.text = sexs[t]
+                mViewModel.reSex(t, user!!.userCode)
+                appViewModel.sexUpdate.value = t
+                sexType = t
+            }
+        })
+        sDialog.onShow()
+    }
+
     override fun createObserver() {
 
         mViewModel.userInfo.observe(this) {
@@ -257,6 +277,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
                 user.userName?.let {
                     binding.txtMineInfoName.text = it
                 }
+                sexType = user.sex
                 when (user.sex) {
                     0 -> binding.txtSelfSex.text = "男"
                     1 -> binding.txtSelfSex.text = "女"
@@ -290,6 +311,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
      * @date: 11/9/22 3:45 AM
      * @version: v1.0
      */
+    @RequiresApi(Build.VERSION_CODES.R)
     private fun trackFace() {
         lifecycleScope.launch(Dispatchers.Default) {
             val compressedBitmap = BitmapUtils.compressBitmap(tempCameraPicName, 400, 400)
@@ -319,6 +341,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     private fun trackPicture(uri: Uri) {
         lifecycleScope.launch(Dispatchers.Default) {
             FileUtils.getRealPathFromUri(this@SelfInfoActivity, uri)?.let { path ->

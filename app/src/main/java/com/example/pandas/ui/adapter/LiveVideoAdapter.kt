@@ -13,10 +13,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
-import com.blankj.utilcode.util.VibrateUtils
+import com.android.android_sqlite.bean.LiveVideoData
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.VideoData
+import com.android.base.utils.TimeUtils
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
-import com.example.pandas.bean.LiveVideoData
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.ext.loadImage
@@ -25,14 +26,11 @@ import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.Item1AdapterLiveVideoBinding
 import com.example.pandas.databinding.Item2AdapterLiveVideoBinding
 import com.example.pandas.databinding.Item3AdapterLiveVideoBinding
-import com.example.pandas.sql.entity.PetVideo
-import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.activity.FollowAndFansActivity
 import com.example.pandas.ui.adapter.decoration.LiveVisitorItemDecoration
 import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.dialog.LiveBottomSheetDialog
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
-import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: 动态-综合
@@ -231,7 +229,7 @@ public class LiveVideoAdapter(
                 if (it.vip == 1) {
                     userName.setTextColor(ContextCompat.getColor(context, R.color.color_live_vip))
                 } else {
-                    userName.setTextColor(ContextCompat.getColor(context, R.color.color_live_name))
+                    userName.setTextColor(ContextCompat.getColor(context, R.color.color_txt_video_info_name))
                 }
             }
 

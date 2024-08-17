@@ -3,11 +3,11 @@ package com.example.pandas.biz.pictureselector
 import android.Manifest
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
-import com.luck.picture.lib.dialog.RemindDialog
-import com.luck.picture.lib.interfaces.OnCallbackListener
-import com.luck.picture.lib.interfaces.OnPermissionDeniedListener
-import com.luck.picture.lib.permissions.PermissionConfig
-import com.luck.picture.lib.permissions.PermissionUtil
+import com.life.publish.lib_selector.dialog.RemindDialog
+import com.life.publish.lib_selector.interfaces.OnCallbackListener
+import com.life.publish.lib_selector.interfaces.OnPermissionDeniedListener
+import com.life.publish.lib_selector.permissions.PermissionConfig
+import com.life.publish.lib_selector.permissions.PermissionUtil
 
 /**
  * @description: 权限拒绝后回调

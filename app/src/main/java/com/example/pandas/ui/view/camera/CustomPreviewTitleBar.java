@@ -2,12 +2,8 @@ package com.example.pandas.ui.view.camera;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
 
-import com.example.pandas.R;
-import com.luck.picture.lib.style.TitleBarStyle;
-import com.luck.picture.lib.utils.StyleUtils;
-import com.luck.picture.lib.widget.PreviewTitleBar;
+import com.life.publish.lib_selector.widget.PreviewTitleBar;
 
 /**
  * @author：luck

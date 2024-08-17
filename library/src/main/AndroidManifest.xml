@@ -4,7 +4,7 @@
     <application >
     <meta-data android:name="android.notch_support" android:value="true"/>
     <!--PermissonActivity-->
-    <activity android:name=".util.XPermission$PermissionActivity"
+    <activity android:name="XPermission$PermissionActivity"
         android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 </application>
 </manifest>

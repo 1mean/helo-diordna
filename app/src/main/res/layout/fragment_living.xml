@@ -17,7 +17,7 @@
             android:layout_height="52dp"
             android:background="@color/color_white_lucency">
 
-        <com.flyco.tablayout.SlidingTabLayout2
+        <com.android.base.tablayout.SlidingTabLayout2
                 android:id="@+id/slide_tab_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

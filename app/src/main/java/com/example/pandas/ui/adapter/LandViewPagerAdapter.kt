@@ -3,11 +3,11 @@ package com.example.pandas.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.android.android_sqlite.entity.PetVideo
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.databinding.ViewpagerRecommendBinding
-import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.viewholder.BaseEmptyViewHolder
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 

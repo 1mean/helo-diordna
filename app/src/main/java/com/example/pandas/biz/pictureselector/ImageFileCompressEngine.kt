@@ -2,10 +2,10 @@ package com.example.pandas.biz.pictureselector
 
 import android.content.Context
 import android.net.Uri
-import com.luck.picture.lib.config.PictureMimeType
-import com.luck.picture.lib.engine.CompressFileEngine
-import com.luck.picture.lib.interfaces.OnKeyValueResultCallbackListener
-import com.luck.picture.lib.utils.DateUtils
+import com.life.publish.lib_selector.config.PictureMimeType
+import com.life.publish.lib_selector.engine.CompressFileEngine
+import com.life.publish.lib_selector.interfaces.OnKeyValueResultCallbackListener
+import com.life.publish.lib_selector.utils.DateUtils
 import top.zibin.luban.Luban
 import top.zibin.luban.OnNewCompressListener
 import java.io.File

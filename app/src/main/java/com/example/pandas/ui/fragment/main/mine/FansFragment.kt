@@ -1,8 +1,8 @@
 package com.example.pandas.ui.fragment.main.mine
 import android.os.Bundle
 import android.view.View
-import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.base.fragment.BaseFragment
+import com.android.base.vm.BaseViewModel
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 
 /**

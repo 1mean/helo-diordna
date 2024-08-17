@@ -3,7 +3,6 @@ package com.example.pandas.ui.view.recyclerview
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.android.base.ui.adapter.BaseViewHolder
 
 
 /**

@@ -6,17 +6,17 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.android.android_sqlite.entity.CommentAndUser
+import com.android.android_sqlite.entity.User
+import com.android.android_sqlite.entity.VideoComment
+import com.android.base.utils.TimeUtils
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.interaction.ShortCommentListener
 import com.example.pandas.data.qq.QqEmoticons
 import com.example.pandas.databinding.AdapterShortCommentBinding
-import com.example.pandas.sql.entity.CommentAndUser
-import com.example.pandas.sql.entity.User
-import com.example.pandas.sql.entity.VideoComment
 import com.example.pandas.ui.ext.addScaleAnimation
-import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: ShortCommentAdapter

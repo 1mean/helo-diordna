@@ -2,9 +2,9 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pandas.base.viewmodel.BaseViewModel
-import com.example.pandas.biz.manager.PetManagerCoroutine
-import com.example.pandas.sql.entity.MusicVo
+import com.android.android_sqlite.PetManagerCoroutine
+import com.android.android_sqlite.entity.MusicVo
+import com.android.base.vm.BaseViewModel
 import kotlinx.coroutines.launch
 
 /**

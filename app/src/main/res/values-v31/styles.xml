@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.SplashScreen.Demo" parent="Theme.SplashScreen">
+        <!--启动画面背景颜色-->
+        <item name="windowSplashScreenBackground">@color/color_black_lucency</item>
+        <!-- 替换起始窗口中心的图标,启动画面icon图标：这里可以是图片、帧动画等-->
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/img_icon_sheep</item>
+        <!--启动画面图标后面的背景。如果窗口背景与图标之间的对比度不够高，这非常有用-->
+        <item name="windowSplashScreenIconBackgroundColor">@color/red</item>
+        <!-- icon动画在关闭之前显示的时长：最长时间为1000毫秒-->
+        <item name="windowSplashScreenAnimationDuration">2000</item>
+        <!-- 设置要在启动画面底部显示的图片。不过，设计指南不建议使用品牌图片-->
+        <!--<item name="android:windowSplashScreenBrandingImage">@mipmap/img_icon_sheep</item>-->
+        <item name="postSplashScreenTheme">@style/TargetScreenTheme</item>
+        <!-- Splash退出后的主题-->
+        <!--<item name="postSplashScreenTheme">@style/Theme.Android12_Splash</item>-->
+    </style>
+</resources>

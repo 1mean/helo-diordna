@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import com.android.base.utils.ScreenUtil
 import com.example.pandas.R
 import com.example.pandas.biz.interaction.ItemClickListener
-import com.example.pandas.utils.ScreenUtil
 
 /**
  * @description: 搜索记录展示,为了方便，只用作添加TextView

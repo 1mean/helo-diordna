@@ -1,8 +1,8 @@
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pandas.base.fragment.BaseFragment
-import com.example.pandas.biz.RankViewModel
+import com.android.base.ui.fragment.BaseFragment
+import com.example.pandas.biz.viewmodel.RankViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.RankingListAdapter
 import com.example.pandas.ui.ext.init

@@ -12,12 +12,12 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.base.utils.ScreenUtil
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.databinding.DialogBottomTimingBinding
 import com.example.pandas.ui.service.TimingService
-import com.example.pandas.utils.ScreenUtil
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 /**

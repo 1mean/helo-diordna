@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.pandas.R;
-import com.luck.picture.lib.widget.TitleBar;
+import com.life.publish.lib_selector.widget.TitleBar;
 
 public class CustomTitleBar extends TitleBar implements View.OnClickListener {
 

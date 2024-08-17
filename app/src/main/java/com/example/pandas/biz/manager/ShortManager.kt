@@ -2,9 +2,9 @@ import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import com.android.android_sqlite.entity.PetVideo
 import com.example.pandas.biz.ext.getLocalFilePath
 import com.example.pandas.biz.interaction.ExoPlayerListener
-import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.ext.toastTopShow
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.analytics.AnalyticsListener

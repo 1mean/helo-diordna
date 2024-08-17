@@ -1,16 +1,13 @@
 package com.example.pandas.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
 import com.example.pandas.app.getHehuaBanner
-import com.example.pandas.base.activity.BaseActivity
-import com.example.pandas.biz.ext.loadLayoutBackGround
 import com.example.pandas.biz.ext.loadPandaBackGround
 import com.example.pandas.biz.interaction.PagerChangedListener
 import com.example.pandas.biz.viewmodel.PandaViewModel
@@ -34,12 +31,12 @@ public class PandaActivity : BaseActivity<PandaViewModel, ActivityCmBannerBindin
 
     private val tabTitles = arrayListOf("成和花", "幼年花", "月亮花", "小二班")
 
-    override fun initStatusView() {
+    fun initStatusView() {
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-
+        initStatusView()
         val title = intent.getStringExtra("title")
         binding.txtCmBannerTitle.text = title
 

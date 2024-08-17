@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.base.utils.TimeUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
@@ -17,7 +18,6 @@ import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.controller.VideoIntroController
 import com.example.pandas.biz.interaction.CommonResultListener
 import com.example.pandas.databinding.FragmentVideoIntroBinding
-import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: TODO

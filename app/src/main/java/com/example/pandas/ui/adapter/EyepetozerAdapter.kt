@@ -7,16 +7,16 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.android.base.utils.NumUtils
+import com.android.base.utils.TimeUtils
 import com.example.pandas.R
-import com.example.pandas.base.adapter.BaseCommonAdapter
-import com.example.pandas.base.adapter.BaseViewHolder
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadEmptyCircleImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.ui.activity.EyePlayingActivity
-import com.example.pandas.utils.NumUtils
-import com.example.pandas.utils.TimeUtils
 import com.google.android.exoplayer2.ui.StyledPlayerView
 
 /**

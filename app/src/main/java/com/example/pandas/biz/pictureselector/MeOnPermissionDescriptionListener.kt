@@ -16,10 +16,10 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.pandas.R
-import com.luck.picture.lib.interfaces.OnPermissionDescriptionListener
-import com.luck.picture.lib.permissions.PermissionConfig
-import com.luck.picture.lib.utils.DensityUtil
-import com.luck.picture.lib.widget.MediumBoldTextView
+import com.life.publish.lib_selector.interfaces.OnPermissionDescriptionListener
+import com.life.publish.lib_selector.permissions.PermissionConfig
+import com.life.publish.lib_selector.utils.DensityUtil
+import com.life.publish.lib_selector.widget.MediumBoldTextView
 
 /**
  * @description: MeOnPermissionDescriptionListener

@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import com.example.pandas.R
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.DialogBottomLiveBinding
 import com.example.pandas.databinding.DialogFaceUploadBinding
@@ -36,6 +38,12 @@ public class FaceAddSheetDialog(
 
     private fun initWidget() {
 
+        binding.txtLiveBottomCancel.setTextColor(
+            ContextCompat.getColor(
+                context,
+                R.color.color_txt_cancel_dialog_selfinfo
+            )
+        )
         binding.txtLiveBottomCancel.setOnClickListener {
             dismiss()
         }

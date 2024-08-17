@@ -31,8 +31,8 @@ import androidx.transition.TransitionSet;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.lxj.xpopup.R;
 import com.lxj.xpopup.enums.PopupStatus;
+import com.lxj.xpopup.R;
 import com.lxj.xpopup.interfaces.OnDragChangeListener;
 import com.lxj.xpopup.interfaces.OnImageViewerLongPressListener;
 import com.lxj.xpopup.interfaces.OnSrcViewUpdateListener;

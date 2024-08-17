@@ -1,8 +1,8 @@
 package com.example.pandas.data.sql
 
-import com.example.pandas.bean.pet.VideoType
-import com.example.pandas.sql.entity.PeriodType
-import com.example.pandas.sql.entity.PetVideo
+import com.android.android_sqlite.bean.VideoType
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.bean.PeriodType
 
 object PetMomPandaData3 {
     private val list = mutableListOf<PetVideo>()

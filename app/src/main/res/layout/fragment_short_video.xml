@@ -3,7 +3,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/flayout_short"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_bg_home">
 
     <View
             android:layout_width="match_parent"
@@ -16,11 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+    <!--android:layout_height="52dp"-->
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_short_tab"
             android:layout_width="match_parent"
             android:layout_marginTop="32.66dp"
-            android:layout_height="52dp">
+            android:layout_height="40dp">
 
         <!--<com.google.android.material.tabs.TabLayout
                 android:id="@+id/tb_short"
@@ -38,7 +40,7 @@
                 app:tabTextAppearance="@style/ShortTabLayoutTextStyle"
                 app:tabIndicator="@drawable/layer_short_indicator" />-->
 
-        <com.flyco.tablayout.CommonTabLayout
+        <com.android.base.tablayout.CommonTabLayout
                 android:id="@+id/tb_short"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

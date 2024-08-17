@@ -7,9 +7,7 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.os.Looper
-import android.os.Message
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
@@ -18,15 +16,14 @@ import android.view.*
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.os.postDelayed
 import androidx.fragment.app.DialogFragment
-import com.blankj.utilcode.util.AppUtils
+import com.android.base.utils.AppUtils
+import com.android.base.utils.ScreenUtil
+import com.android.base.utils.TimeUtils
 import com.example.pandas.R
-import com.example.pandas.base.lifecycle.LifecycleHandler
+import com.android.base.ui.lifecycle.LifecycleHandler
 import com.example.pandas.ui.activity.MainActivity
 import com.example.pandas.ui.broadcast.ShutdownBroadcastReceiver
-import com.example.pandas.utils.ScreenUtil
-import com.example.pandas.utils.TimeUtils
 import java.util.*
 
 
@@ -119,7 +116,7 @@ public class TimerDialogFragment : DialogFragment() {
 
         if (pIntent == null) {//创建一个用于广播的延迟意图
             //val broadIntent = Intent(ALARM_EVENT)
-            val broadIntent = Intent(activity!!, ShutdownBroadcastReceiver::class.java)
+            val broadIntent = Intent(requireActivity(), ShutdownBroadcastReceiver::class.java)
             broadIntent.putExtra("request", "shutdown")
             pIntent =
                 PendingIntent.getBroadcast(
@@ -132,7 +129,7 @@ public class TimerDialogFragment : DialogFragment() {
         return rootView
     }
 
-    private val handler = LifecycleHandler(Looper.getMainLooper(),this)
+    private val handler = LifecycleHandler(Looper.getMainLooper(), this)
 
     private fun startTimer() {
         handler.postDelayed(timerTask, 1000)

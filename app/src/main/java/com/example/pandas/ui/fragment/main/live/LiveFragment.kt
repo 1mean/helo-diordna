@@ -9,18 +9,14 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pandas.R
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
-import com.example.pandas.base.fragment.BaseFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.MainFragmentViewModel
 import com.example.pandas.databinding.FragmentLivingBinding
 import com.example.pandas.ui.activity.NewSearchActivity
 import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.fragment.main.eyepetozer.EyepetozerFragment
-import com.example.pandas.ui.view.TabEntity
-import com.flyco.tablayout.listener.CustomTabEntity
-import com.flyco.tablayout.listener.OnTabSelectListener
 
 /**
  * @description: 动态

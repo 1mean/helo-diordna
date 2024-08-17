@@ -1,14 +1,13 @@
 package com.example.pandas.ui.view
 
 import android.content.Context
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
-import com.example.helo_base.magic.ArgbEvaluatorHolder
-import com.example.helo_base.magic.commonnavigator.abs.IPagerTitleView
+import com.android.base.custom_tablayout.ArgbEvaluatorHolder
+import com.android.base.custom_tablayout.commonnavigator.abs.IPagerTitleView
 import com.example.pandas.R
 
 /**

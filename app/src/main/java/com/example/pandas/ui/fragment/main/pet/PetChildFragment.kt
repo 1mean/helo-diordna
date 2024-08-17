@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pandas.R
-import com.example.pandas.base.fragment.BaseLazyFragment
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.CutePetViewModel
 import com.example.pandas.databinding.LayoutLoadingRefreshBinding
-import com.example.pandas.sql.entity.VideoData
 import com.example.pandas.ui.adapter.CutePetChildAdapter
-import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.adapter.decoration.PetChildItemDecoration
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
@@ -20,8 +18,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @date: 2021/12/11 3:54 下午
  * @version: v1.0
  */
-public class PetChildFragment() :
-    BaseLazyFragment<CutePetViewModel, LayoutLoadingRefreshBinding>(){
+public class PetChildFragment() : BaseFragment<CutePetViewModel, LayoutLoadingRefreshBinding>(){
 
     private val mAdapter: CutePetChildAdapter by lazy {
         CutePetChildAdapter(mutableListOf()) {

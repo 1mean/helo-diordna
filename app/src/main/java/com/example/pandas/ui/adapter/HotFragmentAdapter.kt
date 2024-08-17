@@ -1,4 +1,3 @@
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -6,17 +5,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.blankj.utilcode.util.VibrateUtils
+import com.android.android_sqlite.entity.PetVideo
+import com.android.base.utils.NumUtils
+import com.android.base.utils.TimeUtils
+import com.android.base.utils.VibrateUtils
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
-import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.AdapterHotFragmentBinding
 import com.example.pandas.databinding.AdapterTopHotFragmentBinding
-import com.example.pandas.sql.entity.PetVideo
 import com.example.pandas.ui.adapter.decoration.HotFragmentTopDecoration
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
-import com.example.pandas.utils.NumUtils
-import com.example.pandas.utils.TimeUtils
 
 /**
  * @description: HotFragmentAdapter
