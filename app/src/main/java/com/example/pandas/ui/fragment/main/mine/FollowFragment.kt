@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
@@ -19,6 +20,8 @@ import com.example.pandas.ui.ext.initNoFooter
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 /**
  * @description: 我的-粉丝-我的关注
@@ -83,17 +86,18 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
 
     override fun createObserver() {
 
-        mViewModel.followUser.observe(viewLifecycleOwner) {
-
-            if (it.isEmpty()) {
-                binding.recyclerLayout.visibility = View.GONE
-                binding.layoutEmpty.llayoutEmpty.visibility = View.VISIBLE
-            } else {
-                binding.recyclerLayout.visibility = View.VISIBLE
-                binding.layoutEmpty.llayoutEmpty.visibility = View.GONE
-                mAdapter.refreshAdapter(it)
+        lifecycleScope.launch {
+            mViewModel.followUser.collect {
+                if (it.isEmpty()) {
+                    binding.recyclerLayout.visibility = View.GONE
+                    binding.layoutEmpty.llayoutEmpty.visibility = View.VISIBLE
+                } else {
+                    binding.recyclerLayout.visibility = View.VISIBLE
+                    binding.layoutEmpty.llayoutEmpty.visibility = View.GONE
+                    mAdapter.refreshAdapter(it)
+                }
+                binding.swipLayout.isRefreshing = false
             }
-            binding.swipLayout.isRefreshing = false
         }
     }
 

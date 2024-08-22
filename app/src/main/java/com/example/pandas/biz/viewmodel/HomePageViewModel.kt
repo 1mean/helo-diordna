@@ -2,16 +2,19 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android.android_sqlite.PetManagerCoroutine
 import com.android.android_sqlite.bean.*
 import com.android.android_sqlite.entity.MusicVo
 import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.VideoAndUser
-import com.example.pandas.app.AppInfos
+import com.android.android_sqlite.manager.musicRepository
+import com.android.android_sqlite.manager.videoRepository
+import com.android.base.exception.ExceptionHandle
 import com.android.base.vm.BaseViewModel
+import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.biz.ext.loge
-import com.android.base.exception.ExceptionHandle
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 /**
@@ -45,6 +48,8 @@ class HomePageViewModel : BaseViewModel() {
      *       }
      *   }
      ************************************************************************************/
+    private val _musicData: MutableSharedFlow<MutableList<VideoAndUser>> by lazy { MutableSharedFlow() }
+    val musicData = _musicData.asSharedFlow()
 
     val petDataWrapper: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
 
@@ -55,8 +60,6 @@ class HomePageViewModel : BaseViewModel() {
     val landScapeDataWrapper: MutableLiveData<UIDataWrapper<LandscapeData>> by lazy { MutableLiveData() }
 
     val hotDataWrapper: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
-
-    val musicData: MutableLiveData<MutableList<VideoAndUser>> by lazy { MutableLiveData() }
 
     val songDataWrapper: MutableLiveData<UIDataWrapper<MusicVo>> by lazy { MutableLiveData() }
 
@@ -78,7 +81,7 @@ class HomePageViewModel : BaseViewModel() {
             videoCodes.remove(selected)
         }
 
-        request({ PetManagerCoroutine.getSelectedVideo(selects) },
+        request({ videoRepository.getSelectedVideo(selects) },
             {
                 //请求数据成功
                 pandaHasMore = videoCodes.isNotEmpty()
@@ -126,7 +129,7 @@ class HomePageViewModel : BaseViewModel() {
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getRecommendByPage(recoIndex, page)
+                videoRepository.getRecommendByPage(recoIndex, page)
             }.onSuccess {
                 hasMoreReco = it.itemList.isNotEmpty() && it.itemList.size >= page
                 if (hasMoreReco) {
@@ -163,7 +166,7 @@ class HomePageViewModel : BaseViewModel() {
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getLoveData(isRefresh, startIndex)
+                videoRepository.getLoveData(isRefresh, startIndex)
             }.onSuccess {
                 startIndex += if (startIndex == 0) 10 else 11
                 val dataList = UIDataWrapper<PageCommonData>(
@@ -195,7 +198,7 @@ class HomePageViewModel : BaseViewModel() {
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getLandscapeData(landIndex, 11)
+                videoRepository.getLandscapeData(landIndex, 11)
             }.onSuccess {
 
                 hasMore = if (it.itemList.size > 10) {
@@ -239,7 +242,7 @@ class HomePageViewModel : BaseViewModel() {
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getHotData(hotIndex, 11)
+                videoRepository.getHotData(hotIndex, 11)
             }.onSuccess {
                 hotHasMore = if (it.size > 10) {
                     it.removeLast()
@@ -276,8 +279,10 @@ class HomePageViewModel : BaseViewModel() {
 
     fun getMusicTopData() {
         viewModelScope.launch {
-            musicData.value =
-                PetManagerCoroutine.getVideosByVideoType(VideoType.MUSIC.ordinal, 0, 2)
+            videoRepository.getVideosByType(VideoType.MUSIC.ordinal, 0, 2)
+                .collect {
+                    _musicData.emit(it)
+                }
         }
     }
 
@@ -285,7 +290,7 @@ class HomePageViewModel : BaseViewModel() {
 
         viewModelScope.launch {
             kotlin.runCatching {
-                PetManagerCoroutine.getMusic()
+                musicRepository.getMusic()
             }.onSuccess {
                 val musicBean = UIDataWrapper<MusicBean>(
                     isSuccess = true,
@@ -316,7 +321,7 @@ class HomePageViewModel : BaseViewModel() {
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getPageMusic(type, musicIndex, 21)
+                musicRepository.getPageMusic(type, musicIndex, 21)
             }.onSuccess {
                 if (type == 0) {
                     songHasMore = if (it.size > 20) {
@@ -365,7 +370,7 @@ class HomePageViewModel : BaseViewModel() {
 
     fun addLaterPlayer(videoCode: Int) {
         viewModelScope.launch {
-            PetManagerCoroutine.addLater(videoCode)
+            videoRepository.addLater(videoCode)
         }
     }
 }

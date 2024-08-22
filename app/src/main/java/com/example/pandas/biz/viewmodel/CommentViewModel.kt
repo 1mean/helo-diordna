@@ -1,8 +1,8 @@
 package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.android.android_sqlite.PetManagerCoroutine
 import com.android.android_sqlite.entity.CommentAndUser
+import com.android.android_sqlite.manager.commentRepository
 import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 
@@ -25,7 +25,7 @@ public class CommentViewModel : BaseViewModel() {
             startIndex = 0
         }
         request({
-            PetManagerCoroutine.getPageComments(true, videoCode, startIndex, pageCount)
+            commentRepository.getPageComments(true, videoCode, startIndex, pageCount)
         }, {
             val hasMore = if (it.size > 20) {
                 it.removeLast()

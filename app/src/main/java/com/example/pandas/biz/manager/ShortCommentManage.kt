@@ -1,10 +1,10 @@
 package com.example.pandas.biz.manager
 
 import android.content.Context
-import com.android.android_sqlite.PetManagerCoroutine
 import com.android.android_sqlite.entity.CommentAndUser
 import com.android.android_sqlite.entity.User
 import com.android.android_sqlite.entity.VideoComment
+import com.android.android_sqlite.manager.commentRepository
 import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.biz.interaction.ICommentCallback
@@ -34,7 +34,7 @@ public class ShortCommentManage(val context: Context, val commentScope: Coroutin
         listener: ICommentCallback
     ) {
         commentScope.launch {
-            val list = PetManagerCoroutine.getPageComments(
+            val list = commentRepository.getPageComments(
                 true,
                 videoCode,
                 startIndex,
@@ -92,7 +92,7 @@ public class ShortCommentManage(val context: Context, val commentScope: Coroutin
     ) {
 
         commentScope.launch {
-            val list = PetManagerCoroutine.getPageReplyComments(
+            val list = commentRepository.getPageReplyComments(
                 startIndex,
                 pageCount,
                 videoCode,
@@ -104,14 +104,14 @@ public class ShortCommentManage(val context: Context, val commentScope: Coroutin
 
     fun sendComment(comment: VideoComment, listener: ICommentCallback) {
         commentScope.launch {
-            val videoComment = PetManagerCoroutine.sendComment(comment)
+            val videoComment = commentRepository.sendComment(comment)
             listener.sendCommentResult(videoComment)
         }
     }
 
     fun updateComment(videoComment: VideoComment) {
         commentScope.launch {
-            PetManagerCoroutine.updateVideoComment(videoComment)
+            commentRepository.updateVideoComment(videoComment)
         }
     }
 }

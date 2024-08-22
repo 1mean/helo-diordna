@@ -59,9 +59,9 @@
             android:layout_marginTop="12dp"
             android:paddingStart="8dp"
             android:hint="请输入真实姓名"
-            android:textColorHint="#cccccc"
+            android:textColorHint="@color/color_edit_hint_input"
             android:textSize="15sp"
-            android:textColor="@color/black_33"
+            android:textColor="@color/color_txt_input"
             android:gravity="left|center_vertical"
             android:background="@drawable/shape_name_bg_authentication" />
 
@@ -90,9 +90,9 @@
             android:paddingStart="8dp"
             android:gravity="left|center_vertical"
             android:hint="请输入本人真实身份证号码"
-            android:textColorHint="#cccccc"
+            android:textColorHint="@color/color_edit_hint_input"
             android:textSize="15sp"
-            android:textColor="@color/black_33"
+            android:textColor="@color/color_txt_input"
             android:maxLength="18"
             android:background="@drawable/shape_name_bg_authentication"/>
 

@@ -4,15 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
-import com.android.android_sqlite.PetManagerCoroutine
+import com.android.android_sqlite.manager.videoRepository
 import com.android.base.utils.FileUtils
+import com.android.base.vm.UnPeekLiveData
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.android.base.vm.UnPeekLiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -48,7 +48,7 @@ public class AppViewModel : ViewModel() {
     //19以后需要精确的闹钟就需要用到Alarm方法setWindow()和setExact()这两个方法了
     val timer by lazy { UnPeekLiveData<Int>() }
 
-    fun startTimer(){
+    fun startTimer() {
 
 
     }
@@ -68,43 +68,39 @@ public class AppViewModel : ViewModel() {
         lifecycleOwner: LifecycleOwner,
         context: Context
     ) {
-
         lifecycleOwner.lifecycleScope.launch {
-
-            val covers = PetManagerCoroutine.getAllPetCoverUrl() //获取视频封面
-            Log.e("helo-download", "cover size: ${covers.size}")
-            covers.forEach {
-
-                withContext(Dispatchers.IO) {
-                    val fileName = it.fileName
-                    Glide.with(context).downloadOnly().load(it.cover)
-                        .diskCacheStrategy(DiskCacheStrategy.DATA)
-                        .listener(object : RequestListener<File> {
-                            override fun onLoadFailed(
-                                e: GlideException?,
-                                model: Any?,
-                                target: Target<File>?,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                return false
-                            }
-
-                            override fun onResourceReady(
-                                resource: File?,
-                                model: Any?,
-                                target: Target<File>?,
-                                dataSource: DataSource?,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                lifecycleOwner.lifecycleScope.launch(Dispatchers.Default) {
-                                    downloadIndex++
-                                    downLoad(context, fileName, resource)
+            videoRepository.getAllPetCoverUrl().collect { covers ->
+                covers.forEach {
+                    withContext(Dispatchers.IO) {
+                        val fileName = it.fileName
+                        Glide.with(context).downloadOnly().load(it.cover)
+                            .diskCacheStrategy(DiskCacheStrategy.DATA)
+                            .listener(object : RequestListener<File> {
+                                override fun onLoadFailed(
+                                    e: GlideException?,
+                                    model: Any?,
+                                    target: Target<File>?,
+                                    isFirstResource: Boolean
+                                ): Boolean {
+                                    return false
                                 }
-                                //存储图片
-                                return false
-                            }
 
-                        }).preload()
+                                override fun onResourceReady(
+                                    resource: File?,
+                                    model: Any?,
+                                    target: Target<File>?,
+                                    dataSource: DataSource?,
+                                    isFirstResource: Boolean
+                                ): Boolean {
+                                    lifecycleOwner.lifecycleScope.launch(Dispatchers.Default) {
+                                        downloadIndex++
+                                        downLoad(context, fileName, resource)
+                                    }
+                                    //存储图片
+                                    return false
+                                }
+                            }).preload()
+                    }
                 }
             }
         }
@@ -115,50 +111,49 @@ public class AppViewModel : ViewModel() {
         context: Context
     ) {
         lifecycleOwner.lifecycleScope.launch {
-
-            val covers = PetManagerCoroutine.getAllUserCovers() //获取用户头像
-            Log.e("helo-download", "cover size: ${covers.size}")
-            covers.forEach {
-
-                withContext(Dispatchers.IO) {
-                    val userCode = it.userCode
-                    Glide.with(context).downloadOnly().load(it.headUrl)
-                        .diskCacheStrategy(DiskCacheStrategy.DATA)
-                        .listener(object : RequestListener<File> {
-                            override fun onLoadFailed(
-                                e: GlideException?,
-                                model: Any?,
-                                target: Target<File>?,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                return false
-                            }
-
-                            override fun onResourceReady(
-                                resource: File?,
-                                model: Any?,
-                                target: Target<File>?,
-                                dataSource: DataSource?,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                lifecycleOwner.lifecycleScope.launch(Dispatchers.Default) {
-                                    downloadIndex++
-                                    withContext(Dispatchers.Default) {
-                                        val fileDir =
-                                            FileUtils.getExternalFileDirectory(
-                                                context,
-                                                Environment.DIRECTORY_DOWNLOADS
-                                            )
-                                        val newFile = File(fileDir, "/user/$userCode.jpg")
-                                        FileUtils.copy(resource, newFile)
-                                    }
+            videoRepository.getAllUserCovers().collect { covers ->
+                covers.forEach {
+                    withContext(Dispatchers.IO) {
+                        val userCode = it.userCode
+                        Glide.with(context).downloadOnly().load(it.headUrl)
+                            .diskCacheStrategy(DiskCacheStrategy.DATA)
+                            .listener(object : RequestListener<File> {
+                                override fun onLoadFailed(
+                                    e: GlideException?,
+                                    model: Any?,
+                                    target: Target<File>?,
+                                    isFirstResource: Boolean
+                                ): Boolean {
+                                    return false
                                 }
-                                //存储图片
-                                return false
-                            }
 
-                        }).preload()
+                                override fun onResourceReady(
+                                    resource: File?,
+                                    model: Any?,
+                                    target: Target<File>?,
+                                    dataSource: DataSource?,
+                                    isFirstResource: Boolean
+                                ): Boolean {
+                                    lifecycleOwner.lifecycleScope.launch(Dispatchers.Default) {
+                                        downloadIndex++
+                                        withContext(Dispatchers.Default) {
+                                            val fileDir =
+                                                FileUtils.getExternalFileDirectory(
+                                                    context,
+                                                    Environment.DIRECTORY_DOWNLOADS
+                                                )
+                                            val newFile = File(fileDir, "/user/$userCode.jpg")
+                                            FileUtils.copy(resource, newFile)
+                                        }
+                                    }
+                                    //存储图片
+                                    return false
+                                }
+
+                            }).preload()
+                    }
                 }
+
             }
         }
     }

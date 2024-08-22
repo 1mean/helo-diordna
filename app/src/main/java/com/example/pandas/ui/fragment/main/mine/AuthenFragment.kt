@@ -18,14 +18,11 @@ import com.example.pandas.ui.ext.shape_20_drawables
 public class AuthenFragment : BaseFragment<BaseViewModel, FragmentAuthenBinding>() {
 
     companion object {
-        fun newInstance(name: String, card: String): AuthenFragment {
-            val args = Bundle().apply {
+        fun newInstance(name: String, card: String) = AuthenFragment().apply {
+            arguments = Bundle().apply {
                 putString("name", name)
                 putString("card", card)
             }
-            val fragment = AuthenFragment()
-            fragment.arguments = args
-            return fragment
         }
     }
 

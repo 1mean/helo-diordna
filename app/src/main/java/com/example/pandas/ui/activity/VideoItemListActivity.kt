@@ -2,6 +2,7 @@ package com.example.pandas.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
@@ -16,6 +17,7 @@ import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
+import kotlinx.coroutines.launch
 
 /**
  * @description: VideoItemListActivity
@@ -80,26 +82,28 @@ public class VideoItemListActivity : BaseActivity<PandaViewModel, ActivityVideoL
 
     override fun createObserver() {
 
-        mViewModel.pandaResult.observe(this) {
+        lifecycleScope.launch {
+            mViewModel.pandaResult.collect {
 
-            if (it.isSuccess) {
-                binding.recyclerLayout.visibility = View.VISIBLE
-                when {
-                    it.isFirstEmpty -> {
-                        binding.layoutEmpty.llayoutEmpty.visibility = View.VISIBLE
+                if (it.isSuccess) {
+                    binding.recyclerLayout.visibility = View.VISIBLE
+                    when {
+                        it.isFirstEmpty -> {
+                            binding.layoutEmpty.llayoutEmpty.visibility = View.VISIBLE
+                        }
+                        it.isRefresh -> {
+                            binding.recyclerLayout.isRefreshing(false)
+                            mAdapter.refreshAdapter(it.listData)
+                        }
+                        else -> {
+                            mAdapter.loadMore(it.listData)
+                        }
                     }
-                    it.isRefresh -> {
-                        binding.recyclerLayout.isRefreshing(false)
-                        mAdapter.refreshAdapter(it.listData)
-                    }
-                    else -> {
-                        mAdapter.loadMore(it.listData)
-                    }
+                    binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
                 }
-                binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
+                binding.swipLayout.visibility = View.VISIBLE
+                binding.swipLayout.isRefreshing = false
             }
-            binding.swipLayout.visibility = View.VISIBLE
-            binding.swipLayout.isRefreshing = false
         }
     }
 }

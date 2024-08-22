@@ -114,6 +114,10 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
             val timerDialog = TimerDialogFragment()
             timerDialog.show(mActivity.supportFragmentManager, "dialog")
         }
+
+        binding.llayoutWanandroid.setOnClickListener {
+            startAnyActivity(mActivity, WanAndroidActivity::class.java)
+        }
         binding.clayoutSelf.setOnClickListener {
             startAnyActivity(mActivity, SelfInfoActivity::class.java)
         }
@@ -286,21 +290,18 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
             }
         }
 
-        mViewModel.userInfo.observe(viewLifecycleOwner) {
-            binding.txtMineName.text = it.userName
-            when (it.sex) {
-                0 -> {
-                    binding.imgMineSex.setImageResource(R.mipmap.img_mine_male)
-                }
-                1 -> {
-                    binding.imgMineSex.setImageResource(R.mipmap.img_mine_female)
+        lifecycleScope.launch {
+            mViewModel.user.collect {
+                binding.txtMineName.text = it.userName
+                when (it.sex) {
+                    0 -> {
+                        binding.imgMineSex.setImageResource(R.mipmap.img_mine_male)
+                    }
+                    1 -> {
+                        binding.imgMineSex.setImageResource(R.mipmap.img_mine_female)
+                    }
                 }
             }
-        }
-
-        mViewModel.follows.observe(viewLifecycleOwner) {
-            //binding.txtMineFollow.text = it.toString()
-
         }
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
@@ -583,7 +584,7 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
     private fun loadViewData() {
         if (loginStatus) {
             //mViewModel.getCurrentFollows(mActivity)
-            mViewModel.getUserInfo()
+            mViewModel.getUser()
             lifecycleScope.launch {
                 val bitmap = getUserHeader(mActivity)
                 if (bitmap == null) {

@@ -1,5 +1,6 @@
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.RankViewModel
@@ -8,6 +9,7 @@ import com.example.pandas.ui.adapter.RankingListAdapter
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
+import kotlinx.coroutines.launch
 
 /**
  * @description: RankingChildFragment
@@ -20,11 +22,8 @@ public class RankingChildFragment : BaseFragment<RankViewModel, LayoutSwipRefres
     private val mAdapter: RankingListAdapter by lazy { RankingListAdapter(mutableListOf()) }
 
     companion object {
-        fun newInstance(id: Int): RankingChildFragment {
-            val args = Bundle().apply { putInt("position", id) }
-            val fragment = RankingChildFragment()
-            fragment.arguments = args
-            return fragment
+        fun newInstance(id: Int) = RankingChildFragment().apply {
+            arguments = Bundle().apply { putInt("position", id) }
         }
     }
 
@@ -50,24 +49,25 @@ public class RankingChildFragment : BaseFragment<RankViewModel, LayoutSwipRefres
 
     override fun createObserver() {
 
-        mViewModel.ranks.observe(this) {
+        lifecycleScope.launch {
+            mViewModel.ranks.collect {
+                if (it.isSuccess) {
 
-            if (it.isSuccess) {
-
-                binding.recyclerLayout.visibility = View.VISIBLE
-                when {
-                    it.isRefresh -> {
-                        mAdapter.refreshAdapter(it.listData)
-                        binding.recyclerLayout.isRefreshing(false)
+                    binding.recyclerLayout.visibility = View.VISIBLE
+                    when {
+                        it.isRefresh -> {
+                            mAdapter.refreshAdapter(it.listData)
+                            binding.recyclerLayout.isRefreshing(false)
+                        }
+                        else -> {
+                            mAdapter.loadMore(it.listData)
+                        }
                     }
-                    else -> {
-                        mAdapter.loadMore(it.listData)
-                    }
+                    binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
                 }
-                binding.recyclerLayout.loadMoreFinished(it.isEmpty, it.hasMore)
+                binding.swipLayout.visibility = View.VISIBLE
+                binding.swipLayout.isRefreshing = false
             }
-            binding.swipLayout.visibility = View.VISIBLE
-            binding.swipLayout.isRefreshing = false
         }
     }
 

@@ -45,7 +45,7 @@ data class User(
     @ColumnInfo
     var reservedInt: Int = 0,//预留int字段
     @ColumnInfo
-    var reservedString: String? = null,//预留string字段
+    var reservedString: String? = null,//预留string字段  目前用来区分登录用户"account"代表登录用户
 
     @Ignore
     var booleanFlag: Boolean = false

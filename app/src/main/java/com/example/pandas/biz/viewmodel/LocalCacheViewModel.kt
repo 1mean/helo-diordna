@@ -3,14 +3,18 @@ package com.example.pandas.biz.viewmodel
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.android.android_sqlite.PetManagerCoroutine
+import androidx.lifecycle.viewModelScope
 import com.android.android_sqlite.bean.PetViewData
 import com.android.android_sqlite.entity.VideoAndUser
+import com.android.android_sqlite.manager.videoRepository
 import com.android.base.utils.FileUtils
-import com.example.pandas.app.fileDesc
 import com.android.base.vm.BaseViewModel
+import com.example.pandas.app.fileDesc
 import com.example.pandas.bean.UIDataWrapper
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 
@@ -28,7 +32,8 @@ public class LocalCacheViewModel : BaseViewModel() {
     private var mp4List = mutableListOf<File>()
     val selectFileName: MutableLiveData<String> by lazy { MutableLiveData() }
     val localVideos: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
-    val pandaResult: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
+    private val _pandaResult: MutableSharedFlow<UIDataWrapper<VideoAndUser>> by lazy { MutableSharedFlow() }
+    val pandaResult = _pandaResult.asSharedFlow()
 
     /**
      * 获取本地videos文件夹里的目录
@@ -93,9 +98,9 @@ public class LocalCacheViewModel : BaseViewModel() {
                 pageList.forEach { file ->
                     Log.e("1mean", "file: ${file.name}")
                     val fileName = file.name.split(".")[0]
-                    Log.e("2mean","fileName:  $fileName")
-                    val data = PetManagerCoroutine.getVideoByFileName(fileName)
-                    Log.e("2mean","data:  $data")
+                    Log.e("2mean", "fileName:  $fileName")
+                    val data = videoRepository.getVideoByFileName(fileName)
+                    Log.e("2mean", "data:  $data")
                     if (data != null) {//会存在为null的情况
                         videoList.add(data)
                     }
@@ -134,38 +139,25 @@ public class LocalCacheViewModel : BaseViewModel() {
     }
 
     fun getPandas(isRefresh: Boolean, title: String) {
-
-        if (isRefresh) {
-            startIndex = 0
-        }
-
-        request({
-            PetManagerCoroutine.getPandas(title, startIndex, 21)
-        }, {
-
-            val hasMore = if (it.isNotEmpty() && it.size > 20) {
-                it.removeLast()
-                true
-            } else {
-                false
+        viewModelScope.launch {
+            if (isRefresh) startIndex = 0
+            videoRepository.getPandas(title, startIndex, 21).collect {
+                val hasMore = if (it.isNotEmpty() && it.size > 20) {
+                    it.removeLast()
+                    true
+                } else {
+                    false
+                }
+                val dataList = UIDataWrapper(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    hasMore = hasMore,
+                    isFirstEmpty = isRefresh && it.isEmpty(),
+                    listData = it
+                )
+                startIndex += 20
+                _pandaResult.emit(dataList)
             }
-            val dataList = UIDataWrapper(
-                isSuccess = true,
-                isRefresh = isRefresh,
-                hasMore = hasMore,
-                isFirstEmpty = isRefresh && it.isEmpty(),
-                listData = it
-            )
-            startIndex += 20
-            pandaResult.value = dataList
-        }, {
-            val dataList = UIDataWrapper(
-                isSuccess = false,
-                errMessage = it.errorMsg,
-                isRefresh = isRefresh,
-                listData = mutableListOf<VideoAndUser>()
-            )
-            pandaResult.value = dataList
-        })
+        }
     }
 }

@@ -2,14 +2,19 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android.android_sqlite.PetManagerCoroutine
 import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.VideoComment
 import com.android.android_sqlite.entity.VideoData
+import com.android.android_sqlite.manager.commentRepository
+import com.android.android_sqlite.manager.groupRepository
+import com.android.android_sqlite.manager.userRepository
+import com.android.android_sqlite.manager.videoRepository
+import com.android.base.exception.ExceptionHandle
 import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.biz.ext.loge
-import com.android.base.exception.ExceptionHandle
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 /**
@@ -29,20 +34,27 @@ public class ShortVideoViewModel : BaseViewModel() {
     var hasMore = true//是否有更多
 
     val commentResult: MutableLiveData<VideoComment> by lazy { MutableLiveData() }
-    val verticalVideos: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
+
+    val _verticalVideosFlow: MutableSharedFlow<UIDataWrapper<PetVideo>> by lazy { MutableSharedFlow() }
+    val verticalVideosFlow = _verticalVideosFlow.asSharedFlow()
+
+    val _verticalVideosFlow1: MutableSharedFlow<UIDataWrapper<PetVideo>> by lazy { MutableSharedFlow() }
+    val verticalVideosFlow1 = _verticalVideosFlow1.asSharedFlow()
+
+
     val fallsShortVideos: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
     val attentionShortVideos: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
 
     fun getVerticalVideos(isRefresh: Boolean, videoCode: Int) {
 
-        if (isRefresh) {
-            startIndex1 = 0
-        }
         viewModelScope.launch {
-            runCatching {
-                PetManagerCoroutine.getVerticalVideos1(startIndex1, 21, videoCode)
-            }.onSuccess {
-
+            if (isRefresh) {
+                startIndex1 = 0
+            }
+            flow {
+                val list = videoRepository.getVerticalVideos1(startIndex1, 21, videoCode)
+                emit(list)
+            }.catch { e -> e.printStackTrace() }.collect {
                 hasMore = if (it.size > 20) {
                     it.removeLast()
                     true
@@ -59,33 +71,21 @@ public class ShortVideoViewModel : BaseViewModel() {
                     listData = it
                 )
                 startIndex1 += 10
-                verticalVideos.value = dataList
-            }.onFailure {
-
-                it.message?.loge()
-                it.printStackTrace()
-                val exception = ExceptionHandle.handleException(it)
-                val dataList = UIDataWrapper<PetVideo>(
-                    isSuccess = false,
-                    errMessage = exception.errorMsg,
-                    isRefresh = isRefresh,
-                    listData = mutableListOf()
-                )
-                verticalVideos.value = dataList
+                _verticalVideosFlow1.emit(dataList)
             }
         }
     }
 
     fun getVerticalVideos(isRefresh: Boolean) {
 
-        if (isRefresh) {
-            startIndex = 0
-        }
         viewModelScope.launch {
-            runCatching {
-                PetManagerCoroutine.getVerticalVideos(startIndex, 21)
-            }.onSuccess {
-
+            if (isRefresh) {
+                startIndex = 0
+            }
+            flow {
+                val list = videoRepository.getVerticalVideos(startIndex, 21)
+                emit(list)
+            }.catch { e -> e.printStackTrace() }.flowOn(Dispatchers.IO).collect {
                 hasMore = if (it.size > 20) {
                     it.removeLast()
                     true
@@ -102,19 +102,7 @@ public class ShortVideoViewModel : BaseViewModel() {
                     listData = it
                 )
                 startIndex += 10
-                verticalVideos.value = dataList
-            }.onFailure {
-
-                it.message?.loge()
-                it.printStackTrace()
-                val exception = ExceptionHandle.handleException(it)
-                val dataList = UIDataWrapper<PetVideo>(
-                    isSuccess = false,
-                    errMessage = exception.errorMsg,
-                    isRefresh = isRefresh,
-                    listData = mutableListOf()
-                )
-                verticalVideos.value = dataList
+                _verticalVideosFlow.emit(dataList)
             }
         }
     }
@@ -132,7 +120,7 @@ public class ShortVideoViewModel : BaseViewModel() {
         }
         viewModelScope.launch {
             runCatching {
-                PetManagerCoroutine.getFallsShortVideos(fallsStartIndex, fallsPage + 1)
+                videoRepository.getFallsShortVideos(fallsStartIndex, fallsPage + 1)
             }.onSuccess {
 
                 hasMore = if (it.size > fallsPage) {
@@ -181,7 +169,7 @@ public class ShortVideoViewModel : BaseViewModel() {
         }
         viewModelScope.launch {
             runCatching {
-                PetManagerCoroutine.getAttentionFallsShortVideos(
+                videoRepository.getAttentionFallsShortVideos(
                     attentionStartIndex,
                     attentionPage + 1
                 )
@@ -223,34 +211,34 @@ public class ShortVideoViewModel : BaseViewModel() {
     fun updateCollect(isAdd: Boolean, videoCode: Int) {
         viewModelScope.launch {
             if (isAdd) {
-                PetManagerCoroutine.addCollection("默认收藏夹", videoCode)
+                groupRepository.addCollection("默认收藏夹", videoCode)
             } else {
-                PetManagerCoroutine.deleteCollection("默认收藏夹", videoCode)
+                groupRepository.deleteCollection("默认收藏夹", videoCode)
             }
         }
     }
 
     fun updateAttention(userCode: Int) {
         viewModelScope.launch {
-            PetManagerCoroutine.updateAttention(userCode)
+            userRepository.updateAttention(userCode)
         }
     }
 
     fun addOrUpdateVideoData(videoData: VideoData) {
         viewModelScope.launch {
-            PetManagerCoroutine.addOrUpdateVideoData(videoData)
+            videoRepository.addOrUpdateVideoData(videoData)
         }
     }
 
     fun updatePetVideo(video: PetVideo) {
         viewModelScope.launch {
-            PetManagerCoroutine.updatePetVideo(video)
+            videoRepository.updatePetVideo(video)
         }
     }
 
     fun sendComment(comment: VideoComment) {
         viewModelScope.launch {
-            commentResult.value = PetManagerCoroutine.sendComment(comment)
+            commentResult.value = commentRepository.sendComment(comment)
         }
     }
 }

@@ -159,7 +159,6 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
             user?.let {
                 val intent = Intent(this, ReNameActivity::class.java)
                 intent.putExtra("name", it.userName)
-                intent.putExtra("userCode", it.userCode)
                 reNameLauncher.launch(intent)
             }
         }
@@ -172,7 +171,6 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
             user?.let {
                 val intent = Intent(this, SignActivity::class.java)
                 intent.putExtra("sign", it.signature)
-                intent.putExtra("userCode", it.userCode)
                 reSignLauncher.launch(intent)
             }
         }
@@ -253,7 +251,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
             @RequiresApi(Build.VERSION_CODES.R)
             override fun onItemClick(t: Int) {
                 binding.txtSelfSex.text = sexs[t]
-                mViewModel.reSex(t, user!!.userCode)
+                mViewModel.reSex(t)
                 appViewModel.sexUpdate.value = t
                 sexType = t
             }
@@ -263,29 +261,25 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
 
     override fun createObserver() {
 
-        mViewModel.userInfo.observe(this) {
+        lifecycleScope.launch {
+            mViewModel.user.collect {
 
-            it?.let { user ->
-
-                this.user = user
-
-                if (!hasHeader) {
-                    user.headUrl?.let {
-                        loadCircleImage(this, it, binding.imgMineInfoHeader)
-                    }
-                }
-                user.userName?.let {
-                    binding.txtMineInfoName.text = it
-                }
-                sexType = user.sex
-                when (user.sex) {
+                this@SelfInfoActivity.user = it
+//                if (!hasHeader) {
+//                    user.headUrl?.let {
+//                        loadCircleImage(this, it, binding.imgMineInfoHeader)
+//                    }
+//                }
+                binding.txtMineInfoName.text = it.userName
+                sexType = it.sex
+                when (it.sex) {
                     0 -> binding.txtSelfSex.text = "男"
                     1 -> binding.txtSelfSex.text = "女"
                     else -> binding.txtSelfSex.text = "保密"
                 }
-                binding.txtMineInfoNum.text = "ID:${user.userCode.toString()}"
-                user.signature?.let {
-                    binding.txtSelfSign.text = it
+                binding.txtMineInfoNum.text = "ID:${it.userCode.toString()}"
+                it.signature?.let { sign->
+                    binding.txtSelfSign.text = sign
                 }
             }
         }
@@ -300,7 +294,7 @@ public class SelfInfoActivity : BaseActivity<SelfViewModel, ActivityMineInfoBind
                 hasHeader = true
                 loadCircleBitmap(this@SelfInfoActivity, bitmap, binding.imgMineInfoHeader)
             }
-            mViewModel.getUserInfo()
+            mViewModel.getUser()
         }
     }
 

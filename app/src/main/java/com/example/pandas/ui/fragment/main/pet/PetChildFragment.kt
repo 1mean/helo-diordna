@@ -18,7 +18,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @date: 2021/12/11 3:54 下午
  * @version: v1.0
  */
-public class PetChildFragment() : BaseFragment<CutePetViewModel, LayoutLoadingRefreshBinding>(){
+public class PetChildFragment() : BaseFragment<CutePetViewModel, LayoutLoadingRefreshBinding>() {
 
     private val mAdapter: CutePetChildAdapter by lazy {
         CutePetChildAdapter(mutableListOf()) {
@@ -75,15 +75,10 @@ public class PetChildFragment() : BaseFragment<CutePetViewModel, LayoutLoadingRe
      * Fragment必须有空构造函数，否则会报错，传递值时处理
      */
     companion object {
-
-        fun newInstance(id: Int): PetChildFragment {
-
-            val args = Bundle().apply {
+        fun newInstance(id: Int) = PetChildFragment().apply {
+            arguments = Bundle().apply {
                 putInt("type", id)
             }
-            val fragment = PetChildFragment()
-            fragment.arguments = args
-            return fragment
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.android.android_sqlite
 
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 import org.junit.Assert.*

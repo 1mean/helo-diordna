@@ -101,11 +101,8 @@ public class MusicChildFragment : BaseFragment<HomePageViewModel, LayoutOnlyLoad
     }
 
     companion object {
-        fun newInstance(id: Int): MusicChildFragment {
-            val args = Bundle().apply { putInt("type", id) }
-            val fragment = MusicChildFragment()
-            fragment.arguments = args
-            return fragment
+        fun newInstance(id: Int) = MusicChildFragment().apply {
+            arguments = Bundle().apply { putInt("type", id) }
         }
     }
 }

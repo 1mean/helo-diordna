@@ -1,10 +1,13 @@
 package com.example.pandas.biz.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import com.android.android_sqlite.PetManagerCoroutine
+import androidx.lifecycle.viewModelScope
 import com.android.android_sqlite.entity.VideoAndUser
+import com.android.android_sqlite.manager.videoRepository
 import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.launch
 
 /**
  * @description: RankViewModel
@@ -17,40 +20,30 @@ public class RankViewModel : BaseViewModel() {
     private var startIndex = 0
     private val pageCount = 21
 
-    val ranks: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
+    private val _ranks: MutableSharedFlow<UIDataWrapper<VideoAndUser>> by lazy { MutableSharedFlow() }
+    val ranks = _ranks.asSharedFlow()
 
     fun getRanks(isRefresh: Boolean) {
-        if (isRefresh) {
-            startIndex = 0
-        }
-        request({
-            PetManagerCoroutine.getPageRanks(startIndex, pageCount)
-        }, {
-            val hasMore = if (it.size > 20) {
-                it.removeLast()
-                true
-            } else {
-                false
+        viewModelScope.launch {
+            if (isRefresh) startIndex = 0
+            videoRepository.getPageRanks(startIndex, pageCount).collect {
+                val hasMore = if (it.size > 20) {
+                    it.removeLast()
+                    true
+                } else {
+                    false
+                }
+                val dataList = UIDataWrapper(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    isEmpty = it.isEmpty(),
+                    hasMore = hasMore,
+                    isFirstEmpty = isRefresh && it.isEmpty(),
+                    listData = it
+                )
+                startIndex += 20
+                _ranks.emit(dataList)
             }
-            val dataList = UIDataWrapper(
-                isSuccess = true,
-                isRefresh = isRefresh,
-                isEmpty = it.isEmpty(),
-                hasMore = hasMore,
-                isFirstEmpty = isRefresh && it.isEmpty(),
-                listData = it
-            )
-            startIndex += 20
-            ranks.value = dataList
-
-        }, {
-            val dataList = UIDataWrapper(
-                isSuccess = false,
-                errMessage = it.errorMsg,
-                isRefresh = isRefresh,
-                listData = mutableListOf<VideoAndUser>()
-            )
-            ranks.value = dataList
-        })
+        }
     }
 }

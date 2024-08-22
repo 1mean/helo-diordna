@@ -2,11 +2,13 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android.android_sqlite.PetManagerCoroutine
 import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.VideoData
+import com.android.android_sqlite.manager.videoRepository
 import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 /**
@@ -17,33 +19,26 @@ import kotlinx.coroutines.launch
  */
 public class CutePetViewModel : BaseViewModel() {
 
-    val bannerWrapper: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
+    private val _bannerWrapper: MutableSharedFlow<UIDataWrapper<PetVideo>> by lazy { MutableSharedFlow() }
+    val bannerWrapper = _bannerWrapper.asSharedFlow()
+
     val pageDataWrapper: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
 
     //分页起始位置
     var startIndex = 0
 
     fun getBannerData(isRefresh: Boolean) {
-
-        request({ PetManagerCoroutine.getCutePetBannerData() },
-            {
-                val dataList = UIDataWrapper<PetVideo>(
+        viewModelScope.launch {
+            videoRepository.getCutePetBannerData().collect {
+                val dataList = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = isRefresh,
                     isEmpty = it.isEmpty(),
                     listData = it
                 )
-                bannerWrapper.value = dataList
-            },
-            {
-                val dataList = UIDataWrapper<PetVideo>(
-                    isSuccess = false,
-                    isRefresh = isRefresh,
-                    errMessage = it.errorMsg,
-                    listData = mutableListOf<PetVideo>()
-                )
-                bannerWrapper.value = dataList
-            })
+                _bannerWrapper.emit(dataList)
+            }
+        }
     }
 
     private var hasMore = false
@@ -53,7 +48,7 @@ public class CutePetViewModel : BaseViewModel() {
             startIndex = 0
         }
 
-        request({ PetManagerCoroutine.getCutePetByType(type, startIndex, 21) },
+        request({ videoRepository.getCutePetByType(type, startIndex, 21) },
             {
 
                 hasMore = if (it.isNotEmpty() && it.size > 20) {
@@ -86,7 +81,7 @@ public class CutePetViewModel : BaseViewModel() {
 
     fun addOrUpdateVideoData(videoData: VideoData) {
         viewModelScope.launch {
-            PetManagerCoroutine.addOrUpdateVideoData(videoData)
+            videoRepository.addOrUpdateVideoData(videoData)
         }
     }
 }

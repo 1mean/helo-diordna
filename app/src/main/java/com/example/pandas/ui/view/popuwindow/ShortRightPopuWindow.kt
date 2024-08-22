@@ -304,7 +304,7 @@ public class ShortRightPopuWindow(private val mContext: Context) : BottomPopupVi
         commentCounts += 1
         this.clickPosition = -1
 
-        Log.e("2mean","mListener:$mListener, commentCounts:$commentCounts")
+        Log.e("2mean", "mListener:$mListener, commentCounts:$commentCounts")
         mListener?.updateComments(commentCounts)
         mHandler.post {
             txtShortComments.text = "${commentCounts}条评论"

@@ -9,10 +9,10 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.base.ui.activity.BaseSoftKeyBoardActivity
 import com.android.base.utils.SoftInputUtils
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.android.base.ui.activity.BaseSoftKeyBoardActivity
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.viewmodel.SearchViewModel
@@ -129,13 +129,8 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
 
     override fun createObserver() {
 
-        mViewModel.run {
-
-            hotSearchList.observe(this@SearchActivity) { list ->
-                mAdapter.refreshAdapter(list)
-            }
-
-            resultList.observe(this@SearchActivity) {
+        lifecycleScope.launch {
+            mViewModel.resultList.collect {
                 binding.rvList.visibility = View.VISIBLE
                 if (it.isSuccess) {
                     if (it.isEmpty) {
@@ -144,6 +139,12 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
                         rAdapter.refreshAdapter(mViewModel.keyWords, it.listData)
                     }
                 }
+            }
+        }
+        mViewModel.run {
+
+            hotSearchList.observe(this@SearchActivity) { list ->
+                mAdapter.refreshAdapter(list)
             }
 
             searchHistory.observe(this@SearchActivity) {

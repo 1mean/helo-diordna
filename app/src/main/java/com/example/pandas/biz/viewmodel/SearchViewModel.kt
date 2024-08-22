@@ -4,15 +4,17 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android.android_sqlite.PetManagerCoroutine
-import com.example.pandas.app.AppInfos
-import com.android.base.vm.BaseViewModel
-import com.android.base.vm.UnPeekLiveData
 import com.android.android_sqlite.bean.SearchInfo
 import com.android.android_sqlite.entity.VideoAndUser
+import com.android.android_sqlite.manager.videoRepository
+import com.android.base.vm.BaseViewModel
+import com.android.base.vm.UnPeekLiveData
+import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.utils.SPUtils
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -29,29 +31,25 @@ public class SearchViewModel : BaseViewModel() {
     private var startIndex = 0
     private var hotMore = true//是否有更多
     val hotSearchList: MutableLiveData<MutableList<String>> by lazy { MutableLiveData() }
-    val resultList: MutableLiveData<UIDataWrapper<SearchInfo>> by lazy { MutableLiveData() }
-    val searchResult: UnPeekLiveData<UIDataWrapper<VideoAndUser>> by lazy { UnPeekLiveData() }
+
+    private val _resultList: MutableSharedFlow<UIDataWrapper<SearchInfo>> by lazy { MutableSharedFlow() }
+    val resultList = _resultList.asSharedFlow()
+    private val _searchResult: MutableSharedFlow<UIDataWrapper<VideoAndUser>> by lazy { MutableSharedFlow() }
+    val searchResult = _searchResult.asSharedFlow()
+
     val searchHistory: MutableLiveData<List<String>> by lazy { MutableLiveData() }
 
     fun search(words: String) {
-
-        request({ PetManagerCoroutine.search(words) },
-            {
+        viewModelScope.launch {
+            videoRepository.search(words).collect {
                 val dataList = UIDataWrapper(
                     isSuccess = true,
                     isEmpty = it.isEmpty(),
                     listData = it
                 )
-                resultList.value = dataList
-            },
-            {
-                val dataList = UIDataWrapper(
-                    isSuccess = false,
-                    errMessage = it.errorMsg,
-                    listData = mutableListOf<SearchInfo>()
-                )
-                resultList.value = dataList
-            })
+                _resultList.emit(dataList)
+            }
+        }
     }
 
     /**
@@ -94,14 +92,9 @@ public class SearchViewModel : BaseViewModel() {
     }
 
     fun searchRefresh(isRefresh: Boolean, words: String) {
-
-        if (isRefresh) {
-            startIndex = 0
-        }
-
-        request({ PetManagerCoroutine.searchByPage(words, startIndex) },
-            {
-                Log.e("1mean", "search counts:${it.size}")
+        viewModelScope.launch {
+            if (isRefresh) startIndex = 0
+            videoRepository.searchByPage(words, startIndex).collect {
                 hotMore = if (it.size > 10) {
                     it.removeLast()
                     true
@@ -117,17 +110,9 @@ public class SearchViewModel : BaseViewModel() {
                     listData = it
                 )
                 startIndex += 10
-                searchResult.value = dataList
-            },
-            {
-                val dataList = UIDataWrapper(
-                    isSuccess = false,
-                    isRefresh = isRefresh,
-                    errMessage = it.errorMsg,
-                    listData = mutableListOf<VideoAndUser>()
-                )
-                searchResult.value = dataList
-            })
+                _searchResult.emit(dataList)
+            }
+        }
     }
 
     fun getHotSearch() {

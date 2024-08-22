@@ -25,8 +25,6 @@ import com.lxj.xpopup.impl.LoadingPopupView
 public class ReNameActivity : BaseActivity<SelfViewModel, ActivityRenameBinding>() {
 
     private var oldName: String? = null
-    private var userCode: Int? = null
-
     override fun initView(savedInstanceState: Bundle?) {
 
         if (!AppInstance.instance.isNightMode) {
@@ -73,7 +71,6 @@ public class ReNameActivity : BaseActivity<SelfViewModel, ActivityRenameBinding>
         }
 
         oldName = intent.getStringExtra("name")
-        userCode = intent.getIntExtra("userCode", -1)
         oldName?.let {
             setEditText(binding.editUpdateName, it)
         }
@@ -102,7 +99,7 @@ public class ReNameActivity : BaseActivity<SelfViewModel, ActivityRenameBinding>
                         return@setOnClickListener
                     }
                     showLoading()
-                    mViewModel.reName(newName, userCode!!)
+                    mViewModel.reName(newName)
                     binding.editUpdateName.postDelayed({
                         loadingPopup?.dismiss()
                         appViewModel.nameUpdate.value = newName

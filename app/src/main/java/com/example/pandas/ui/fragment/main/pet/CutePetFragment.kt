@@ -3,9 +3,10 @@ package com.example.pandas.ui.fragment.main.pet
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.CutePetViewModel
 import com.example.pandas.databinding.FragmentRoomBinding
 import com.example.pandas.ui.adapter.PetBannerAdapter
@@ -16,6 +17,7 @@ import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.viewpager.Indicator
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
+import kotlinx.coroutines.launch
 
 
 /**
@@ -97,35 +99,34 @@ public class CutePetFragment : BaseFragment<CutePetViewModel, FragmentRoomBindin
     }
 
     override fun createObserver() {
+        lifecycleScope.launch {
+            mViewModel.bannerWrapper.collect {
+                if (it.isSuccess) {
+                    val bannerList = it.listData
+                    if (bannerList.isNotEmpty()) {
 
-        mViewModel.bannerWrapper.observe(viewLifecycleOwner) {
-
-            if (it.isSuccess) {
-
-                val bannerList = it.listData
-                if (bannerList.isNotEmpty()) {
-
-                    indicator!!.initIndicator(
-                        bannerList.size,
-                        ContextCompat.getColor(mActivity, R.color.white)
-                    )
-                    bannerAdapter.refreshData(bannerList)
-                    binding.bannerPet.setAdapter(bannerAdapter).setIndicator(indicator!!, true)
-                        .setAutoPlayed(true)
+                        indicator!!.initIndicator(
+                            bannerList.size,
+                            ContextCompat.getColor(mActivity, R.color.white)
+                        )
+                        bannerAdapter.refreshData(bannerList)
+                        binding.bannerPet.setAdapter(bannerAdapter).setIndicator(indicator!!, true)
+                            .setAutoPlayed(true)
+                    }
                 }
-            }
 
-            if (it.isRefresh) {
-                //初始化ViewPager相关
-                binding.vpPet.apply {
-                    adapter = RoomContentAdapter(childFragmentManager, lifecycle, tabNames)
-                    offscreenPageLimit = tabNames.size
+                if (it.isRefresh) {
+                    //初始化ViewPager相关
+                    binding.vpPet.apply {
+                        adapter = RoomContentAdapter(childFragmentManager, lifecycle, tabNames)
+                        offscreenPageLimit = tabNames.size
+                    }
+                    binding.refreshPet.isRefreshing = false
                 }
+
+                binding.clayoutShow.visibility = View.VISIBLE
                 binding.refreshPet.isRefreshing = false
             }
-
-            binding.clayoutShow.visibility = View.VISIBLE
-            binding.refreshPet.isRefreshing = false
         }
     }
 

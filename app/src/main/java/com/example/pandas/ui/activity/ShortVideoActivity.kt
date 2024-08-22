@@ -14,6 +14,7 @@ import android.view.animation.LinearInterpolator
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.android.android_sqlite.entity.VideoComment
 import com.android.android_sqlite.entity.VideoData
@@ -40,6 +41,7 @@ import com.google.android.exoplayer2.util.Util
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
 import com.lxj.xpopup.interfaces.XPopupCallback
+import kotlinx.coroutines.launch
 
 
 /**
@@ -161,32 +163,32 @@ public class ShortVideoActivity :
     }
 
     override fun createObserver() {
-
-        mViewModel.verticalVideos.observe(this) {
-
-            if (it.isSuccess) {
-                when {
-                    it.isRefresh -> {
-                        mAdapter.refreshAdapter(it.listData)
-                        if (isRefreshing) {
-                            manager?.refreshPlayer(it.listData)
-                            isRefreshing = false
-                            binding.clayoutVerticalRefresh.visibility = View.GONE
-                        } else {
-                            manager?.initPlayer(it.listData)
+        lifecycleScope.launch {
+            mViewModel.verticalVideosFlow1.collect {
+                if (it.isSuccess) {
+                    when {
+                        it.isRefresh -> {
+                            mAdapter.refreshAdapter(it.listData)
+                            if (isRefreshing) {
+                                manager?.refreshPlayer(it.listData)
+                                isRefreshing = false
+                                binding.clayoutVerticalRefresh.visibility = View.GONE
+                            } else {
+                                manager?.initPlayer(it.listData)
+                            }
+                        }
+                        it.hasMore -> {
+                            mAdapter.loadMore(it.listData)
+                            manager?.addMediaItems(it.listData)
                         }
                     }
-                    it.hasMore -> {
-                        mAdapter.loadMore(it.listData)
-                        manager?.addMediaItems(it.listData)
-                    }
+                    hasMore = it.hasMore
                 }
-                hasMore = it.hasMore
             }
         }
 
-        mViewModel.commentResult.observe(this) {
 
+        mViewModel.commentResult.observe(this) {
             if (it != null) {
                 toastTopShow(this, "评论成功")
                 mAdapter.recyclerView?.let { rv ->

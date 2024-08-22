@@ -1,4 +1,4 @@
-package com.example.pandas
+package com.example.pandas.api
 
 import com.example.pandas.biz.viewmodel.WanAndroidViewModel
 import kotlinx.coroutines.runBlocking

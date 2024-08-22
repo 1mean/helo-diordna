@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.base.ui.activity.BaseActivity
 import com.bumptech.glide.Glide
@@ -23,6 +24,8 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.appbar.AppBarLayout
 import jp.wasabeef.glide.transformations.BlurTransformation
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 /**
@@ -99,21 +102,21 @@ public class OneVerticalList2Activity :
 
     override fun createObserver() {
 
-        mViewModel.itemListResult.observe(this) {
-
-            if (it.isSuccess) {
-
-                binding.rvOne.visibility = View.VISIBLE
-                when {
-                    it.isRefresh -> {
-                        mAdapter.refreshAdapter(it.listData)
-                        binding.rvOne.isRefreshing(false)
+        lifecycleScope.launch {
+            mViewModel.itemListResult.collect {
+                if (it.isSuccess) {
+                    binding.rvOne.visibility = View.VISIBLE
+                    when {
+                        it.isRefresh -> {
+                            mAdapter.refreshAdapter(it.listData)
+                            binding.rvOne.isRefreshing(false)
+                        }
+                        else -> {
+                            mAdapter.loadMore(it.listData)
+                        }
                     }
-                    else -> {
-                        mAdapter.loadMore(it.listData)
-                    }
+                    binding.rvOne.loadMoreFinished(it.isEmpty, it.hasMore)
                 }
-                binding.rvOne.loadMoreFinished(it.isEmpty, it.hasMore)
             }
         }
     }

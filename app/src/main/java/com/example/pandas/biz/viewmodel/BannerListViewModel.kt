@@ -2,11 +2,11 @@ package com.example.pandas.biz.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.android.android_sqlite.PetManagerCoroutine
 import com.android.android_sqlite.bean.BannerListBean
 import com.android.android_sqlite.entity.VideoAndUser
-import com.example.pandas.app.AppInfos
+import com.android.android_sqlite.manager.videoRepository
 import com.android.base.vm.BaseViewModel
+import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.UIDataWrapper
 
 /**
@@ -43,9 +43,9 @@ public class BannerListViewModel : BaseViewModel() {
             videoCodes.remove(selected)
         }
 
-        Log.e("1mean","selects size: ${selects.size}")
+        Log.e("1mean", "selects size: ${selects.size}")
         request({
-            PetManagerCoroutine.getSelectedVideoUser(selects)
+            videoRepository.getSelectedVideoUser(selects)
         },
             {
                 var hasMore = false

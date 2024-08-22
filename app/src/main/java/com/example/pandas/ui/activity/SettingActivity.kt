@@ -25,6 +25,7 @@ import com.example.pandas.ui.view.dialog.StyleSelectDialog
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.SPUtils
 import com.example.pandas.utils.StatusBarUtils
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
@@ -139,15 +140,17 @@ public class SettingActivity : BaseActivity<SelfViewModel, ActivitySettingBindin
 
     override fun createObserver() {
 
-        mViewModel.userInfo.observe(this) {
-            binding.txtSettingName.text = it.userName
-            //bug:这里必须添加上颜色的动态设置，否则深色模式下还是显示黑色
-            binding.txtSettingName.setTextColor(
-                ContextCompat.getColor(
-                    this,
-                    R.color.color_txt_setting_item_name
+        lifecycleScope.launch {
+            mViewModel.user.collect{
+                binding.txtSettingName.text = it.userName
+                //bug:这里必须添加上颜色的动态设置，否则深色模式下还是显示黑色
+                binding.txtSettingName.setTextColor(
+                    ContextCompat.getColor(
+                        this@SettingActivity,
+                        R.color.color_txt_setting_item_name
+                    )
                 )
-            )
+            }
         }
 
         appViewModel.nameUpdate.observe(this) {
@@ -159,7 +162,7 @@ public class SettingActivity : BaseActivity<SelfViewModel, ActivitySettingBindin
     override fun onResume() {
         super.onResume()
 
-        mViewModel.getUserInfo()
+        mViewModel.getUser()
 
         lifecycleScope.launch {
             binding.txtSettingCache.text = AppUtils.getAppCache(this@SettingActivity)

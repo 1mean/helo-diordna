@@ -2,8 +2,8 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android.android_sqlite.PetManagerCoroutine
 import com.android.android_sqlite.entity.MusicVo
+import com.android.android_sqlite.manager.musicRepository
 import com.android.base.vm.BaseViewModel
 import kotlinx.coroutines.launch
 
@@ -20,13 +20,13 @@ public class AudioViewModel : BaseViewModel() {
 
     fun getMusicInfo(fileName: String) {
         viewModelScope.launch {
-            musicResult.value = PetManagerCoroutine.getMusic(fileName)
+            musicResult.value = musicRepository.getMusic(fileName)
         }
     }
 
     fun getMenu() {
         viewModelScope.launch {
-            musicsResult.value = PetManagerCoroutine.getAllMusic()
+            musicsResult.value = musicRepository.getAllMusic()
         }
     }
 }

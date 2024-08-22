@@ -64,6 +64,10 @@
     <color name="color_bg_dialog_later">#ffffff</color>
     <color name="color_bg_dialog_later_press">#E4E5E5</color>
     <color name="color_bg_dialog_view">#c9cdd1</color>
+    <color name="color_bg_dialog_sign">#F7F7F8</color>
+    <color name="color_txt_mine_lv">#818891</color>
+    <color name="color_edit_hint_input">#cccccc</color>
+    <color name="color_bg_short_top_divider">#e6e6e6</color>
 
     <!--self-->
     <color name="color_txt_mine_name">#000000</color>
@@ -99,6 +103,8 @@
     <color name="color_txt_cancel_dialog_selfinfo">#000000</color>
     <color name="color_bg_fansview">#fff9ef</color>
     <color name="color_bg_item_function">#f9fafe</color>
+    <color name="color_bg_input">#fafafa</color>
+    <color name="color_txt_input">#333333</color>
 
     <!--home/recommend-->
     <color name="color_bg_recommend">#F1F2F4</color>
@@ -399,6 +405,7 @@
     <!--history-->
     <color name="color_history_title">#17191E</color>
     <color name="color_history_manager">#61666A</color>
+    <color name="color_edit_hint_resign">#757575</color>
 
     <!--collect-->
     <color name="color_collect_creator">#949DA0</color>
@@ -477,7 +484,7 @@
     <color name="color_bg_yuanchuang">#e9f6ff</color>
 
 
-    <color name="color_txt_mine_fans">#4c3700</color>
+    <color name="color_txt_mine_fans">#4b3503</color>
     <color name="color_divider_one_vertical2">#e7e7e7</color>
 
 

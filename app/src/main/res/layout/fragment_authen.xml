@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
-        android:background="@color/white">
+        android:background="@color/color_bg_home">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_auth_image"
@@ -46,7 +46,7 @@
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/clayout_auth_image"
             android:layout_marginTop="20dp"
-            android:textColor="@color/black_33"
+            android:textColor="@color/color_txt_later_dialog_title"
             app:layout_constraintLeft_toLeftOf="@id/clayout_auth_image" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -61,7 +61,7 @@
             android:layout_marginTop="12dp"
             android:paddingStart="8dp"
             android:textSize="15sp"
-            android:textColor="@color/black_33"
+            android:textColor="@color/color_txt_input"
             android:gravity="left|center_vertical"
             android:background="@drawable/shape_name_bg_authentication"
             android:text="董**" />
@@ -75,7 +75,7 @@
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/txt_authentication_name2"
             android:layout_marginTop="24dp"
-            android:textColor="@color/black_33"
+            android:textColor="@color/color_txt_later_dialog_title"
             app:layout_constraintLeft_toLeftOf="@id/clayout_auth_image" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -91,7 +91,7 @@
             android:paddingStart="8dp"
             android:gravity="left|center_vertical"
             android:textSize="15sp"
-            android:textColor="@color/black_33"
+            android:textColor="@color/color_txt_input"
             android:maxLength="18"
             android:background="@drawable/shape_name_bg_authentication"
             android:text="4****************8" />

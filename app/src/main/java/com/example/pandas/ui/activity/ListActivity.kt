@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
@@ -18,6 +19,7 @@ import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
+import kotlinx.coroutines.launch
 
 /**
  * @description: 熊猫-绩笑/肉肉
@@ -128,22 +130,23 @@ public class ListActivity : BaseActivity<LocalCacheViewModel, ActivityListBindin
             binding.llayoutActivityList.visibility = View.VISIBLE
         }
 
-        mViewModel.pandaResult.observe(this) {
-
-            if (it.isSuccess) {
-                when {
-                    it.isRefresh -> {
-                        mAdapter.refreshAdapter(it.listData)
-                        binding.recyclerviewList.isRefreshing(false)
+        lifecycleScope.launch {
+            mViewModel.pandaResult.collect {
+                if (it.isSuccess) {
+                    when {
+                        it.isRefresh -> {
+                            mAdapter.refreshAdapter(it.listData)
+                            binding.recyclerviewList.isRefreshing(false)
+                        }
+                        else -> {
+                            mAdapter.loadMore(it.listData)
+                        }
                     }
-                    else -> {
-                        mAdapter.loadMore(it.listData)
-                    }
+                    binding.recyclerviewList.loadMoreFinished(it.isEmpty, it.hasMore)
                 }
-                binding.recyclerviewList.loadMoreFinished(it.isEmpty, it.hasMore)
+                binding.refreshList.isRefreshing = false
+                binding.llayoutActivityList.visibility = View.VISIBLE
             }
-            binding.refreshList.isRefreshing = false
-            binding.llayoutActivityList.visibility = View.VISIBLE
         }
     }
 

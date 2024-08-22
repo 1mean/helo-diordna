@@ -6,8 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.android.android_sqlite.dao.PetVideoDao
-import com.android.android_sqlite.dao.UserDao
+import com.android.android_sqlite.dao.*
 import com.android.android_sqlite.entity.*
 
 /**
@@ -25,6 +24,10 @@ public abstract class AppDataBase : RoomDatabase() {
 
     abstract fun petVideoDao(): PetVideoDao
     abstract fun userDao(): UserDao
+    abstract fun groupDao(): GroupDao
+    abstract fun historyDao(): HistoryDao
+    abstract fun musicDao(): MusicDao
+    abstract fun videoCommentDao(): VideoCommentDao
 
     companion object {
 

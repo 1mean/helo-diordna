@@ -25,13 +25,13 @@ public class ErrorFragment : BaseFragment<ErrorViewModel, FragmentErrorBinding>(
 
 
         fileName = arguments?.getString("fileName")
-        Log.e("1mean","fileName:$fileName")
+        Log.e("1mean", "fileName:$fileName")
 
     }
 
     override fun createObserver() {
 
-        mViewModel.fileList.observe(viewLifecycleOwner){
+        mViewModel.fileList.observe(viewLifecycleOwner) {
 
 
             if (it.isNotEmpty()) {
@@ -44,7 +44,8 @@ public class ErrorFragment : BaseFragment<ErrorViewModel, FragmentErrorBinding>(
 
                         override fun convert(holder: BaseViewHolder, data: String, position: Int) {
 
-                            val content = holder.getWidget<AppCompatTextView>(R.id.txt_item_error_content)
+                            val content =
+                                holder.getWidget<AppCompatTextView>(R.id.txt_item_error_content)
 
                             content.text = data
                         }
@@ -63,11 +64,8 @@ public class ErrorFragment : BaseFragment<ErrorViewModel, FragmentErrorBinding>(
     }
 
     companion object {
-        fun newInstance(fileName: String): ErrorFragment {
-            val args = Bundle().apply { putString("fileName", fileName) }
-            val fragment = ErrorFragment()
-            fragment.arguments = args
-            return fragment
+        fun newInstance(fileName: String) = ErrorFragment().apply {
+            arguments = Bundle().apply { putString("fileName", fileName) }
         }
     }
 }

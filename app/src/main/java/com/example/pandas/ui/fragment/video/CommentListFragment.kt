@@ -212,14 +212,10 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
     }
 
     companion object {
-
-        fun newInstance(commentId: Int): CommentListFragment {
-            val args = Bundle().apply {
+        fun newInstance(commentId: Int) = CommentListFragment().apply {
+            arguments = Bundle().apply {
                 putInt("commentId", commentId)
             }
-            val fragment = CommentListFragment()
-            fragment.arguments = args
-            return fragment
         }
     }
 }

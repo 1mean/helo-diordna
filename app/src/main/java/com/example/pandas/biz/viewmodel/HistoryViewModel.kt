@@ -3,11 +3,13 @@ package com.example.pandas.biz.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android.android_sqlite.PetManagerCoroutine
 import com.android.android_sqlite.bean.HistoryItem
 import com.android.android_sqlite.entity.Group
 import com.android.android_sqlite.entity.History
 import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.manager.groupRepository
+import com.android.android_sqlite.manager.historyRepository
+import com.android.android_sqlite.manager.videoRepository
 import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import kotlinx.coroutines.launch
@@ -40,7 +42,7 @@ public class HistoryViewModeL : BaseViewModel() {
             startIndex = 0
         }
 
-        request({ PetManagerCoroutine.getHistory(startIndex, 21) },
+        request({ historyRepository.getHistory(startIndex, 21) },
             {
                 val hasMore = it.size > 20
                 startIndex += 20
@@ -69,11 +71,8 @@ public class HistoryViewModeL : BaseViewModel() {
 
     fun getPageLater(isRefresh: Boolean) {
 
-        if (isRefresh) {
-            index = 0
-        }
-
-        request({ PetManagerCoroutine.getLater(index, 21) },
+        if (isRefresh) index = 0
+        request({ videoRepository.getLater(index, 21) },
             {
                 val hasMore = it.size > 20
                 index += 20
@@ -106,7 +105,7 @@ public class HistoryViewModeL : BaseViewModel() {
             loveIndex = 0
         }
 
-        request({ PetManagerCoroutine.getLove(loveIndex, 21) },
+        request({ videoRepository.getLove(loveIndex, 21) },
             {
                 Log.e("1mean", "getLove: $it")
                 val hasMore = it.size > 20
@@ -140,7 +139,7 @@ public class HistoryViewModeL : BaseViewModel() {
         if (isRefresh) {
             groupStartIndex = 0
         }
-        request({ PetManagerCoroutine.getPageGroupItems(groupCode, groupStartIndex, 21) },
+        request({ groupRepository.getPageGroupItems(groupCode, groupStartIndex, 21) },
             {
                 val hasMore = it.size > 20
                 groupStartIndex += 20
@@ -167,7 +166,7 @@ public class HistoryViewModeL : BaseViewModel() {
 
     fun getCollects() {
 
-        request({ PetManagerCoroutine.getCollects() },
+        request({ groupRepository.getCollects() },
             {
                 val dataList = UIDataWrapper(
                     isSuccess = true,
@@ -188,7 +187,7 @@ public class HistoryViewModeL : BaseViewModel() {
 
     fun removeHistory(list: MutableList<History>, removeAll: Boolean) {
 
-        request({ PetManagerCoroutine.removeHistory(list, removeAll) },
+        request({ historyRepository.removeHistory(list, removeAll) },
             {
                 var hasmore = false
                 if (!removeAll) {
@@ -219,27 +218,27 @@ public class HistoryViewModeL : BaseViewModel() {
     fun removeLaters(list: MutableList<PetVideo>, removeAll: Boolean) {
 
         viewModelScope.launch {
-            PetManagerCoroutine.removeLaters(list, removeAll)
+            videoRepository.removeLaters(list, removeAll)
         }
     }
 
     fun removeLovers(list: MutableList<PetVideo>, removeAll: Boolean) {
 
         viewModelScope.launch {
-            PetManagerCoroutine.removeLoves(list, removeAll)
+            videoRepository.removeLoves(list, removeAll)
         }
     }
 
     fun createAGroup(groupName: String, groupDesc: String, isOpen: Boolean) {
 
         viewModelScope.launch {
-            createResult.value = PetManagerCoroutine.createGroup(groupName, groupDesc, isOpen)
+            createResult.value = groupRepository.createGroup(groupName, groupDesc, isOpen)
         }
     }
 
     fun removeGroup(groupCode: Int) {
         viewModelScope.launch {
-            removeResult.value = PetManagerCoroutine.removeGroup(groupCode)
+            removeResult.value = groupRepository.removeGroup(groupCode)
         }
     }
 }

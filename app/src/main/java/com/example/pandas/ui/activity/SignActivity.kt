@@ -1,5 +1,6 @@
 package com.example.pandas.ui.activity
 
+import AppInstance
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.content.ContextCompat
@@ -25,7 +26,6 @@ import com.lxj.xpopup.impl.LoadingPopupView
 public class SignActivity : BaseActivity<SelfViewModel, ActivitySignBinding>() {
 
     private var oldSign: String? = null
-    private var userCode: Int? = null
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -73,7 +73,6 @@ public class SignActivity : BaseActivity<SelfViewModel, ActivitySignBinding>() {
         }
 
         oldSign = intent.getStringExtra("sign")
-        userCode = intent.getIntExtra("userCode", -1)
         oldSign?.let {
             setEditText(binding.editSignName, it)
         }
@@ -100,7 +99,7 @@ public class SignActivity : BaseActivity<SelfViewModel, ActivitySignBinding>() {
                         return@setOnClickListener
                     }
                     showLoading()
-                    mViewModel.reSign(newSign, userCode!!)
+                    mViewModel.reSign(newSign)
                     binding.editSignName.postDelayed({
                         loadingPopup?.dismiss()
                         val intent = Intent()

@@ -2,17 +2,17 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android.android_sqlite.PetManagerCoroutine
 import com.android.android_sqlite.bean.ReplyInfo
 import com.android.android_sqlite.bean.VideoInfo
 import com.android.android_sqlite.entity.CommentAndUser
 import com.android.android_sqlite.entity.History
 import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.VideoData
+import com.android.android_sqlite.manager.*
+import com.android.base.exception.ExceptionHandle
 import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.biz.ext.loge
-import com.android.base.exception.ExceptionHandle
 import com.google.android.exoplayer2.util.Util
 import kotlinx.coroutines.launch
 import java.util.*
@@ -42,7 +42,7 @@ public class VideoViewModel : BaseViewModel() {
 
         viewModelScope.launch {
             runCatching {
-                PetManagerCoroutine.getVideoInfo(code, 40)
+                videoRepository.getVideoInfo(code, 40)
             }.onSuccess {
                 videos.value = it
             }.onFailure {
@@ -55,7 +55,7 @@ public class VideoViewModel : BaseViewModel() {
 
     fun getVideoData(code: Int) {
         viewModelScope.launch {
-            videoData.value = PetManagerCoroutine.getVideoInfoData(code)
+            videoData.value = videoRepository.getVideoInfoData(code)
         }
     }
 
@@ -70,8 +70,8 @@ public class VideoViewModel : BaseViewModel() {
                     lastTime = System.currentTimeMillis(),
                     playPosition = position
                 )
-            PetManagerCoroutine.saveHistory(history)
-            PetManagerCoroutine.addOrUpdateVideoData(code, currentPosition)
+            historyRepository.saveHistory(history)
+            videoRepository.addOrUpdateVideoData(code, currentPosition)
         }
     }
 
@@ -89,7 +89,7 @@ public class VideoViewModel : BaseViewModel() {
             startCommentsIndex = 0
         }
         request({
-            PetManagerCoroutine.getVideoCommentByPage(
+            commentRepository.getVideoCommentByPage(
                 isOrderByTime,
                 code,
                 startCommentsIndex,
@@ -131,7 +131,7 @@ public class VideoViewModel : BaseViewModel() {
             startIndex = 0
         }
         request({
-            PetManagerCoroutine.getCommentReplyByPage(
+            commentRepository.getCommentReplyByPage(
                 code,
                 commentId,
                 startIndex,
@@ -172,46 +172,46 @@ public class VideoViewModel : BaseViewModel() {
     fun saveComment(code: Int, replyInfo: ReplyInfo?, content: String) {
 
         viewModelScope.launch {
-            createComment.value = PetManagerCoroutine.saveComment(replyInfo, content, code)
+            createComment.value = commentRepository.saveComment(replyInfo, content, code)
         }
     }
 
     fun saveReply(replyInfo: ReplyInfo, content: String) {
         viewModelScope.launch {
-            createReply.value = PetManagerCoroutine.saveReply(replyInfo, content)
+            createReply.value = commentRepository.saveReply(replyInfo, content)
         }
     }
 
     fun addCollection(videoCode: Int, groupName: String) {
 
         viewModelScope.launch {
-            PetManagerCoroutine.addCollection(groupName, videoCode)
+            groupRepository.addCollection(groupName, videoCode)
         }
     }
 
     fun deleteCollection(videoCode: Int, groupName: String) {
 
         viewModelScope.launch {
-            PetManagerCoroutine.deleteCollection(groupName, videoCode)
+            groupRepository.deleteCollection(groupName, videoCode)
         }
     }
 
     fun updateAttention(userCode: Int) {
         viewModelScope.launch {
-            PetManagerCoroutine.updateAttention(userCode)
+            userRepository.updateAttention(userCode)
         }
     }
 
     fun addOrUpdateVideoData(videoData: VideoData) {
         viewModelScope.launch {
-            PetManagerCoroutine.addOrUpdateVideoData(videoData)
+            videoRepository.addOrUpdateVideoData(videoData)
         }
     }
 
 
     fun addLaterPlayer(videoCode: Int) {
         viewModelScope.launch {
-            PetManagerCoroutine.addLater(videoCode)
+            videoRepository.addLater(videoCode)
         }
     }
 }

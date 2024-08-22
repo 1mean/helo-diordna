@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.lifecycleScope
 import com.example.pandas.R
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.appViewModel
@@ -19,6 +20,7 @@ import com.example.pandas.ui.ext.startToActivity
 import com.example.pandas.ui.view.dialog.TimingBottomSheetDialog
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.util.SmartGlideImageLoader
+import kotlinx.coroutines.launch
 
 /**
  * @description: 我的-设置
@@ -99,8 +101,10 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
 
     override fun createObserver() {
 
-        mViewModel.follows.observe(viewLifecycleOwner) {
-            binding.txtMineFollow.text = it.toString()
+        lifecycleScope.launch {
+            mViewModel.follows.collect {
+                binding.txtMineFollow.text = it.toString()
+            }
         }
 
         appViewModel.appColorType.observe(viewLifecycleOwner) {
@@ -108,7 +112,7 @@ public class SelfChildSettingFragment : BaseFragment<SelfViewModel, FragmentChil
     }
 
     override fun firstOnResume() {
-        mViewModel.getCurrentFollows(mActivity)
+        mViewModel.getCurrentFollows()
     }
 
     private fun showHeader() {

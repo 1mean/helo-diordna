@@ -27,11 +27,8 @@ public class BestFragment : BaseFragment<BannerViewModel, LayoutSwipRefreshBindi
     private val mAdapter: BannerChildAdapter by lazy { BannerChildAdapter(lifecycle) }
 
     companion object {
-        fun newInstance(id: Int): BestFragment {
-            val args = Bundle().apply { putInt("position", id) }
-            val fragment = BestFragment()
-            fragment.arguments = args
-            return fragment
+        fun newInstance(id: Int) = BestFragment().apply {
+            arguments = Bundle().apply { putInt("position", id) }
         }
     }
 
@@ -47,7 +44,7 @@ public class BestFragment : BaseFragment<BannerViewModel, LayoutSwipRefreshBindi
             GridLayoutManager(mActivity, 2),
             listener = object : SwipRecyclerView.ILoadMoreListener {
                 override fun onLoadMore() {
-                    mViewModel.getBest(false,mPosition)
+                    mViewModel.getBest(false, mPosition)
                 }
             })
 

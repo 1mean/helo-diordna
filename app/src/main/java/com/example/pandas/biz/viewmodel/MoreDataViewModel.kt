@@ -2,11 +2,14 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android.android_sqlite.PetManagerCoroutine
 import com.android.android_sqlite.entity.MusicVo
 import com.android.android_sqlite.entity.VideoAndUser
+import com.android.android_sqlite.manager.musicRepository
+import com.android.android_sqlite.manager.videoRepository
 import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 /**
@@ -23,13 +26,15 @@ public class MoreDataViewModel : BaseViewModel() {
 
     val itemListResult: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
     val musicResult: MutableLiveData<UIDataWrapper<MusicVo>> by lazy { MutableLiveData() }
-    val musicCount: MutableLiveData<Int> by lazy { MutableLiveData() }
+
+    val _musicCountFlow: MutableSharedFlow<Int> by lazy { MutableSharedFlow() }
+    val musicCountFlow = _musicCountFlow.asSharedFlow()
 
     fun getMusicCounts() {
-
         viewModelScope.launch {
-
-            musicCount.value = PetManagerCoroutine.getMusicCounts()
+            musicRepository.getMusicCounts().collect {
+                _musicCountFlow.emit(it)
+            }
         }
     }
 
@@ -39,7 +44,7 @@ public class MoreDataViewModel : BaseViewModel() {
         if (isRefresh) {
             videoStartIndex = 0
         }
-        request({ PetManagerCoroutine.getVideosByVideoType(currentType, videoStartIndex, 21) },
+        request({ videoRepository.getVideosByVideoType(currentType, videoStartIndex, 21) },
             {
 
                 hasMoreData = it.size >= 21
@@ -69,7 +74,7 @@ public class MoreDataViewModel : BaseViewModel() {
 
     fun getPageMusic() {
 
-        request({ PetManagerCoroutine.getPageMusic(0, musicStartIndex, 21) },
+        request({ musicRepository.getPageMusic(0, musicStartIndex, 21) },
             { list ->
                 val hasMore = list.size == 21
                 if (list.size == 21) {

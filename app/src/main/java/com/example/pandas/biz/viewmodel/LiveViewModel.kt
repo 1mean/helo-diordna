@@ -2,9 +2,9 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android.android_sqlite.PetManagerCoroutine
 import com.android.android_sqlite.bean.LiveVideoData
 import com.android.android_sqlite.entity.VideoData
+import com.android.android_sqlite.manager.videoRepository
 import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import kotlinx.coroutines.launch
@@ -28,7 +28,7 @@ public class LiveViewModel : BaseViewModel() {
         if (isRefresh) {
             startIndex = 0
         }
-        requests({ PetManagerCoroutine.getLiveVides(isRefresh, startIndex, 31) },
+        requests({ videoRepository.getLiveVides(isRefresh, startIndex, 31) },
             {
                 //请求数据成功
                 pandaHasMore = if (it.lives.size > 30) {
@@ -62,14 +62,14 @@ public class LiveViewModel : BaseViewModel() {
 
     fun addOrUpdateVideoData(videoData: VideoData) {
         viewModelScope.launch {
-            PetManagerCoroutine.addOrUpdateVideoData(videoData)
+            videoRepository.addOrUpdateVideoData(videoData)
         }
     }
 
 
     fun addLaterPlayer(videoCode: Int) {
         viewModelScope.launch {
-            PetManagerCoroutine.addLater(videoCode)
+            videoRepository.addLater(videoCode)
         }
     }
 }

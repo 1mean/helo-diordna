@@ -24,6 +24,8 @@
     <color name="color_bg_more_dialog">#101010</color>
     <color name="color_bg_more_dialog_divider">#161919</color>
     <color name="color_bg_dialog_view">#464a4e</color>
+    <color name="color_bg_input">#1e2121</color>
+    <color name="color_bg_short_top_divider">#2b2a32</color>
 
     <!-- 我的->设置界面 -->
     <color name="color_txt_mine_name">#e7eaea</color>
@@ -72,6 +74,7 @@
     <color name="color_tablayout_unselect_panda">#e1e1e1</color>
     <color name="color_bg_panda_list">#1e2121</color>
     <color name="color_txt_panda_list_item">#e7eaea</color>
+    <color name="color_txt_input">#e7eaea</color>
 
 
     <!--searchActivity-->
@@ -284,6 +287,8 @@
     <color name="color_bg_reco">#F0F3F3</color>
     <color name="color_bg_home_dialog">#1e2121</color>
     <color name="color_txt_dialog">#e7eaea</color>
+    <color name="color_txt_mine_lv">#d0d4d8</color>
+    <color name="color_edit_hint_input">#ACB4BB</color>
 
     <!--love  -->
     <color name="color_txt_love_pet">#111111</color>
@@ -361,6 +366,8 @@
     <!--history-->
     <color name="color_history_title">#e7eaea</color>
     <color name="color_history_manager">#a0a8ab</color>
+    <color name="color_edit_hint_resign">#6c7379</color>
+    <color name="color_bg_dialog_sign">#000000</color>
 
     <!--collect-->
     <color name="color_collect_creator">#949DA0</color>

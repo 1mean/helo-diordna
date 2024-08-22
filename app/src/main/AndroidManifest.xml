@@ -113,6 +113,7 @@
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.IntegralActivity" />
         <activity android:name=".ui.activity.RankingActivity" />
+        <activity android:name=".ui.activity.WanAndroidActivity" />
         <activity android:name=".ui.activity.VerticalVideoActivity" />
         <activity android:name=".ui.activity.MoreDataListActivity" />
         <activity android:name="com.life.publish.lib_selector.PicturePublishActivity" />

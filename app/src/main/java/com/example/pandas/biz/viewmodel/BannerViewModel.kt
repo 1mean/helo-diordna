@@ -1,11 +1,11 @@
 package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.android.android_sqlite.PetManagerCoroutine
 import com.android.android_sqlite.bean.VideoType
 import com.android.android_sqlite.entity.PetVideo
-import com.example.pandas.app.AppInfos
+import com.android.android_sqlite.manager.videoRepository
 import com.android.base.vm.BaseViewModel
+import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.UIDataWrapper
 
 /**
@@ -86,8 +86,8 @@ public class BannerViewModel : BaseViewModel() {
 
         request({
             when (position) {
-                0, 1, 2 -> PetManagerCoroutine.getSelectedVideo(selects)
-                else -> PetManagerCoroutine.getCutePetByType(
+                0, 1, 2 -> videoRepository.getSelectedVideo(selects)
+                else -> videoRepository.getCutePetByType(
                     VideoType.BIRD.ordinal, startIndex4, pages + 1
                 )
             }

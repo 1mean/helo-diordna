@@ -273,6 +273,9 @@ public class LoginActivity : BaseActivity<WanAndroidViewModel, ActivityLoginBind
                         toastTopShow(this@LoginActivity, "注册并登录成功")
                         AppInstance.instance.isLoginSuccess = true
                         appViewModel.loginStatus.value = 1
+                        if (it.data != null) {
+                            mViewModel.insertUser(it.data.username, it.data.id)
+                        }
                         loadingPopup?.dismiss()
                         delay(50)
                         finish()
@@ -292,6 +295,9 @@ public class LoginActivity : BaseActivity<WanAndroidViewModel, ActivityLoginBind
                         toastTopShow(this@LoginActivity, "登录成功")
                         AppInstance.instance.isLoginSuccess = true
                         appViewModel.loginStatus.value = 1
+                        if (it.data != null) {
+                            mViewModel.insertUser(it.data.username, it.data.id)
+                        }
                         loadingPopup?.dismiss()
                         delay(50)
                         finish()

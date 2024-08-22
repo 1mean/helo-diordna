@@ -4,11 +4,13 @@ import AppInstance
 import AppViewModel
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.android.android_sqlite.app.SqliteApplication
+import com.android.android_sqlite.manager.userRepository
 import com.android.base.ModuleApplication
 import com.android.base.app.CrashHandler
 import com.example.pandas.biz.viewmodel.EventViewModel
@@ -16,6 +18,8 @@ import com.example.pandas.um.UmInitConfig
 import com.example.pandas.utils.DarkModeUtils
 import com.example.pandas.utils.Preference
 import com.umeng.commonsdk.UMConfigure
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.lang.reflect.Method
 
 
@@ -156,6 +160,16 @@ class DiorApplication : Application(), ViewModelStoreOwner {
     private var startIndex = 0
     private val page = 10
     private fun initdata() {
+
+        GlobalScope.launch {
+            userRepository.getLoginUser("account").collect {
+                Log.e("111111mean","userName=${it.userName}")
+                Log.e("111111mean","userCode=${it.userCode}")
+                Log.e("111111mean","sex=${it.sex}")
+                Log.e("111111mean","signature=${it.signature}")
+                Log.e("111111mean","reservedString=${it.reservedString}")
+            }
+        }
 
         Thread {
 

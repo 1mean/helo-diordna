@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.android_sqlite.bean.VideoType
 import com.example.pandas.R
@@ -23,6 +24,7 @@ import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.fragment.main.home.music.MusicChildFragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.launch
 
 /**
  * @description: 首页-音乐
@@ -166,12 +168,13 @@ public class MusicFragment : BaseFragment<HomePageViewModel, FragmentMusicBindin
             }
         }
 
-        mViewModel.musicData.observe(viewLifecycleOwner) {
-            topAdapter.refreshAdapter(it)
-            binding.clayoutMusic.visibility = View.VISIBLE
-            binding.swipMusic.isRefreshing = false
+        lifecycleScope.launch {
+            mViewModel.musicData.collect{
+                topAdapter.refreshAdapter(it)
+                binding.clayoutMusic.visibility = View.VISIBLE
+                binding.swipMusic.isRefreshing = false
+            }
         }
-
     }
 
     override fun firstOnResume() {

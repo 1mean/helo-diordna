@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.android_sqlite.entity.MusicVo
 import com.android.base.ui.fragment.BaseFragment
@@ -14,6 +15,7 @@ import com.example.pandas.databinding.FragmentMusicListBinding
 import com.example.pandas.ui.activity.AudioPlayActivity
 import com.example.pandas.ui.adapter.MusicListAdapter
 import com.example.pandas.ui.view.recyclerview.LoadMoreRecyclerView2
+import kotlinx.coroutines.launch
 
 /**
  * @description: MusicListFragment
@@ -39,9 +41,12 @@ public class MusicListFragment : BaseFragment<MoreDataViewModel, FragmentMusicLi
 
     override fun createObserver() {
 
-        mViewModel.musicCount.observe(viewLifecycleOwner) {
-            binding.txtMusicTopCounts.text = it.toString()
+        lifecycleScope.launch {
+            mViewModel.musicCountFlow.collect {
+                binding.txtMusicTopCounts.text = it.toString()
+            }
         }
+
         mViewModel.musicResult.observe(viewLifecycleOwner) {
 
             if (it.isSuccess) {

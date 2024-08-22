@@ -51,7 +51,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/clayout_rename_top"
             android:hint="彰显你的个性，让周围的人更了解你"
-            android:textColorHint="@color/color_comment_item_name"
+            android:textColorHint="@color/color_edit_hint_resign"
             android:textColor="@color/color_txt_title_item_panda"
             android:textCursorDrawable="@drawable/shape_edit_comment"
             android:textSize="15sp"

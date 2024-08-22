@@ -2,14 +2,15 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android.android_sqlite.PetManagerCoroutine
 import com.android.android_sqlite.entity.User
 import com.android.android_sqlite.entity.VideoAndData
+import com.android.android_sqlite.manager.userRepository
+import com.android.android_sqlite.manager.videoRepository
+import com.android.base.exception.ExceptionHandle
 import com.android.base.vm.BaseViewModel
+import com.android.base.vm.SingleLiveData
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.biz.ext.loge
-import com.android.base.exception.ExceptionHandle
-import com.android.base.vm.SingleLiveData
 import kotlinx.coroutines.launch
 
 /**
@@ -34,7 +35,7 @@ public class UserInfoViewModel : BaseViewModel() {
         viewModelScope.launch {
 
             kotlin.runCatching {
-                PetManagerCoroutine.getUserVideos(code, startIndex, 11)
+                videoRepository.getUserVideos(code, startIndex, 11)
             }.onSuccess {
 
                 hasMore = if (it.size > 10) {
@@ -72,13 +73,13 @@ public class UserInfoViewModel : BaseViewModel() {
 
     fun updateAttention(userCode: Int) {
         viewModelScope.launch {
-            PetManagerCoroutine.updateAttention(userCode)
+            userRepository.updateAttention(userCode)
         }
     }
 
     fun getUserByCode(userCode: Int) {
         viewModelScope.launch {
-            user.value = PetManagerCoroutine.getUser(userCode)
+            user.value = userRepository.getUser(userCode)
         }
     }
 }

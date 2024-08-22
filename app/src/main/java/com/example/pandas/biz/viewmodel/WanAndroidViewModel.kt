@@ -2,8 +2,9 @@ package com.example.pandas.biz.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
+import com.android.android_sqlite.entity.User
+import com.android.android_sqlite.manager.userRepository
 import com.android.base.vm.BaseViewModel
-import com.example.pandas.app.AppInfos
 import com.example.pandas.app.AppInfos.LOGIN_KEY
 import com.example.pandas.app.AppInfos.PASSWORD_KEY
 import com.example.pandas.app.AppInfos.USERNAME_KEY
@@ -12,6 +13,7 @@ import com.example.pandas.biz.http.invoker.wanAndroidInvoke
 import com.example.pandas.utils.Preference
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 
 /**
@@ -76,4 +78,12 @@ public class WanAndroidViewModel : BaseViewModel() {
             }
         }
     }
+
+    fun insertUser(name: String, code: Int) {
+        viewModelScope.launch {
+            val user = User(userName = name, userCode = code, reservedString = "account")
+            userRepository.insert(user)
+        }
+    }
+
 }

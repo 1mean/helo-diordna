@@ -11,6 +11,7 @@ import android.view.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.android.android_sqlite.entity.VideoData
 import com.example.pandas.R
@@ -26,6 +27,7 @@ import com.google.android.exoplayer2.util.Util
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
 import com.lxj.xpopup.interfaces.XPopupCallback
+import kotlinx.coroutines.launch
 
 
 /**
@@ -80,20 +82,21 @@ public class ShortRecommendFragment :
     }
 
     override fun createObserver() {
-        mViewModel.verticalVideos.observe(this) {
-            Log.e("2mean","ShortRecommendFragment createObServer get videos")
-            if (it.isSuccess) {
-                when {
-                    it.isRefresh -> {
-                        mAdapter.refreshAdapter(it.listData)
-                        manager?.addMediaItems(it.listData)
+        lifecycleScope.launch {
+            mViewModel.verticalVideosFlow.collect {
+                if (it.isSuccess) {
+                    when {
+                        it.isRefresh -> {
+                            mAdapter.refreshAdapter(it.listData)
+                            manager?.addMediaItems(it.listData)
+                        }
+                        it.hasMore -> {
+                            mAdapter.loadMore(it.listData)
+                            manager?.addMediaItems(it.listData)
+                        }
                     }
-                    it.hasMore -> {
-                        mAdapter.loadMore(it.listData)
-                        manager?.addMediaItems(it.listData)
-                    }
+                    hasMore = it.hasMore
                 }
-                hasMore = it.hasMore
             }
         }
     }
@@ -101,13 +104,13 @@ public class ShortRecommendFragment :
     override fun onStart() {
         super.onStart()
         if (Util.SDK_INT > 23) {
-            Log.e("2mean","ShortRecommendFragment onStart()")
+            Log.e("2mean", "ShortRecommendFragment onStart()")
             manager?.initPlayer()
         }
     }
 
     override fun firstOnResume() {
-        Log.e("2mean","ShortRecommendFragment firstOnResume()")
+        Log.e("2mean", "ShortRecommendFragment firstOnResume()")
         mViewModel.getVerticalVideos(true)
     }
 
@@ -146,7 +149,7 @@ public class ShortRecommendFragment :
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
 
-            Log.e("2mean","ShortRecommendFragment onPageSelect $position")
+            Log.e("2mean", "ShortRecommendFragment onPageSelect $position")
             if (currentPosition != position) {
                 mAdapter.recyclerView?.let {
                     val viewHolder =
@@ -180,7 +183,7 @@ public class ShortRecommendFragment :
 
     override fun isPlayingChanged(isPlaying: Boolean) {
         super.isPlayingChanged(isPlaying)
-        Log.e("2mean","ShortRecommendFragment isPlayingChanged:$isPlaying")
+        Log.e("2mean", "ShortRecommendFragment isPlayingChanged:$isPlaying")
         if (isPlaying) {
             mAdapter.recyclerView?.let {
                 val viewHolder =
@@ -326,7 +329,7 @@ public class ShortRecommendFragment :
 
     override fun onPause() {
         super.onPause()
-        Log.e("2mean","ShortRecommendFragment onPause")
+        Log.e("2mean", "ShortRecommendFragment onPause")
         if (!startActivity) {
             manager?.release()
         }
@@ -339,7 +342,7 @@ public class ShortRecommendFragment :
 
     override fun againOnResume() {
         super.againOnResume()
-        Log.e("2mean","ShortRecommendFragment againOnResume()")
+        Log.e("2mean", "ShortRecommendFragment againOnResume()")
         val fragment = parentFragment
         if (fragment != null && fragment is ShortFragment) {
             (fragment as ShortFragment).isUpdate = true

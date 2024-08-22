@@ -1,11 +1,15 @@
 package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.android.android_sqlite.PetManagerCoroutine
+import androidx.lifecycle.viewModelScope
 import com.android.android_sqlite.entity.VideoAndUser
-import com.example.pandas.app.AppInfos
+import com.android.android_sqlite.manager.videoRepository
 import com.android.base.vm.BaseViewModel
+import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.UIDataWrapper
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.launch
 
 /**
  * @description: BannerViewModel
@@ -16,8 +20,12 @@ import com.example.pandas.bean.UIDataWrapper
 public class OneVerticalViewModel : BaseViewModel() {
 
     val bestList: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
-    val itemListResult: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
-    val pandaResult: MutableLiveData<UIDataWrapper<VideoAndUser>> by lazy { MutableLiveData() }
+
+    private val _itemListResult: MutableSharedFlow<UIDataWrapper<VideoAndUser>> by lazy { MutableSharedFlow() }
+    val itemListResult = _itemListResult.asSharedFlow()
+
+    private val _pandaResult: MutableSharedFlow<UIDataWrapper<VideoAndUser>> by lazy { MutableSharedFlow() }
+    val pandaResult = _pandaResult.asSharedFlow()
 
     private var counts = 0
     private var startIndex = 0
@@ -47,7 +55,7 @@ public class OneVerticalViewModel : BaseViewModel() {
         }
 
         request({
-            PetManagerCoroutine.getSelectedVideoUser(selects)
+            videoRepository.getSelectedVideoUser(selects)
         },
             {
                 var hasMore = false
@@ -77,12 +85,13 @@ public class OneVerticalViewModel : BaseViewModel() {
 
     fun getListResult(isRefresh: Boolean, currentType: Int) {
 
-        if (isRefresh) {
-            videoStartIndex = 0
-        }
-        request({ PetManagerCoroutine.getVideosByVideoType(currentType, videoStartIndex, 21) },
-            {
+        viewModelScope.launch {
 
+            if (isRefresh) {
+                videoStartIndex = 0
+            }
+
+            videoRepository.getVideosByType(currentType, videoStartIndex, 21).collect {
                 val hasMoreData = it.size >= 21
                 if (hasMoreData) {
                     it.removeLast()
@@ -95,55 +104,36 @@ public class OneVerticalViewModel : BaseViewModel() {
                     listData = it
                 )
                 videoStartIndex += 20
-                itemListResult.value = dataList
-            },
-            {
-                val dataList = UIDataWrapper(
-                    isSuccess = false,
-                    isRefresh = isRefresh,
-                    errMessage = it.errorMsg,
-                    listData = mutableListOf<VideoAndUser>()
-                )
-                itemListResult.value = dataList
-            })
+                _itemListResult.emit(dataList)
+            }
+        }
     }
 
     fun getPandas(isRefresh: Boolean, title: String) {
-
-        if (isRefresh) {
-            startIndex = 0
-            counts = 26
-        } else {
-            counts = 21
-        }
-
-        request({
-            PetManagerCoroutine.getPandas(title, startIndex, counts)
-        }, {
-
-            val hasMore = if (it.isNotEmpty() && it.size >= counts) {
-                it.removeLast()
-                true
+        viewModelScope.launch {
+            if (isRefresh) {
+                startIndex = 0
+                counts = 26
             } else {
-                false
+                counts = 21
             }
-            val dataList = UIDataWrapper(
-                isSuccess = true,
-                isRefresh = isRefresh,
-                hasMore = hasMore,
-                isFirstEmpty = isRefresh && it.isEmpty(),
-                listData = it
-            )
-            startIndex += counts
-            pandaResult.value = dataList
-        }, {
-            val dataList = UIDataWrapper(
-                isSuccess = false,
-                errMessage = it.errorMsg,
-                isRefresh = isRefresh,
-                listData = mutableListOf<VideoAndUser>()
-            )
-            pandaResult.value = dataList
-        })
+            videoRepository.getPandas(title, startIndex, counts).collect {
+                val hasMore = if (it.isNotEmpty() && it.size >= counts) {
+                    it.removeLast()
+                    true
+                } else {
+                    false
+                }
+                val dataList = UIDataWrapper(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    hasMore = hasMore,
+                    isFirstEmpty = isRefresh && it.isEmpty(),
+                    listData = it
+                )
+                startIndex += counts
+                _pandaResult.emit(dataList)
+            }
+        }
     }
 }

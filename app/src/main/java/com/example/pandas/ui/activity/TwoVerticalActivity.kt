@@ -3,6 +3,7 @@ package com.example.pandas.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.VideoAndUser
@@ -21,6 +22,7 @@ import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.example.pandas.utils.StatusBarUtils
 import com.google.android.material.appbar.AppBarLayout
+import kotlinx.coroutines.launch
 
 /**
  * @description: BannerListActivity
@@ -98,45 +100,46 @@ public class TwoVerticalActivity :
 
     override fun createObserver() {
 
-        mViewModel.pandaResult.observe(this) {
-
-            if (it.isSuccess) {
-                when {
-                    it.isRefresh -> {
-                        val bannerList = mutableListOf<PetVideo>()
-                        val itemList = mutableListOf<VideoAndUser>()
-                        it.listData.forEachIndexed { index, videoAndUser ->
-                            if (index < 5) {
-                                bannerList.add(videoAndUser.video)
-                            } else {
-                                itemList.add(videoAndUser)
+        lifecycleScope.launch {
+            mViewModel.pandaResult.collect {
+                if (it.isSuccess) {
+                    when {
+                        it.isRefresh -> {
+                            val bannerList = mutableListOf<PetVideo>()
+                            val itemList = mutableListOf<VideoAndUser>()
+                            it.listData.forEachIndexed { index, videoAndUser ->
+                                if (index < 5) {
+                                    bannerList.add(videoAndUser.video)
+                                } else {
+                                    itemList.add(videoAndUser)
+                                }
                             }
-                        }
-                        if (bannerList.isNotEmpty()) {
-                            val adapter = CommonBannerAdapter(bannerList)
-                            binding.bannerCmTop.setLifecycleRegistry(lifecycle)
-                                .setPagePadding(60, 60, 36)
-                                .addPageChangeListener(object : PagerChangedListener {
-                                    override fun onChange(position: Int) {
-                                        bannerList[position].cover?.let {
-                                            loadPandaBackGround(
-                                                this@TwoVerticalActivity,
-                                                it,
-                                                binding.clayoutBannerList
-                                            )
+                            if (bannerList.isNotEmpty()) {
+                                val adapter = CommonBannerAdapter(bannerList)
+                                binding.bannerCmTop.setLifecycleRegistry(lifecycle)
+                                    .setPagePadding(60, 60, 36)
+                                    .addPageChangeListener(object : PagerChangedListener {
+                                        override fun onChange(position: Int) {
+                                            bannerList[position].cover?.let {
+                                                loadPandaBackGround(
+                                                    this@TwoVerticalActivity,
+                                                    it,
+                                                    binding.clayoutBannerList
+                                                )
+                                            }
                                         }
-                                    }
-                                }).setAdapter(adapter)
-                                .setAutoPlayed(true)
+                                    }).setAdapter(adapter)
+                                    .setAutoPlayed(true)
+                            }
+                            mAdapter.refreshAdapter(itemList)
+                            binding.rvBannerList.isRefreshing(false)
                         }
-                        mAdapter.refreshAdapter(itemList)
-                        binding.rvBannerList.isRefreshing(false)
+                        else -> {
+                            mAdapter.loadMore(it.listData)
+                        }
                     }
-                    else -> {
-                        mAdapter.loadMore(it.listData)
-                    }
+                    binding.rvBannerList.loadMoreFinished(it.isEmpty, it.hasMore)
                 }
-                binding.rvBannerList.loadMoreFinished(it.isEmpty, it.hasMore)
             }
         }
     }
