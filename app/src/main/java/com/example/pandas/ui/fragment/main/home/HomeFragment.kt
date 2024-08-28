@@ -81,7 +81,7 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
         indicatorColor =
             if (status == null) viewColors[APP_COLOR_STATUS] else viewColors[status]
 
-        binding.tab.setBackgroundColor(ContextCompat.getColor(mActivity,R.color.color_bg_home))
+        binding.tab.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.color_bg_home))
         commonNavigator = CommonNavigator(mActivity)
         commonNavigator!!.isAdjustMode = false
         commonNavigator!!.isSkimOver = false
@@ -177,6 +177,9 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
 
         binding.clayoutHomeTopMore.setOnClickListener {
             //startAnyActivity(mActivity, BannerListActivity::class.java)
+            val intent = Intent(mActivity, WanContentActivity::class.java)
+            intent.putExtra("url", "https://www.bilibili.com/blackboard/era/LuoConcert01.html")
+            startActivity(intent)
         }
     }
 

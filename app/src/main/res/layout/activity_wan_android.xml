@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_bg_home"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_wan_top"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibn_wan_back"
+            style="@style/style_img_top_collect"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_wan_top"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_wan_top"
+            app:layout_constraintTop_toTopOf="@id/clayout_wan_top" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibtn_wan_search"
+            android:layout_width="42dp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:src="@mipmap/img_short_search_black"
+            app:layout_constraintRight_toRightOf="@id/clayout_wan_top" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_wan_title"
+            style="@style/style_txt_top_collect"
+            android:text="玩Android"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_wan_top"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_wan_top"
+            app:layout_constraintRight_toRightOf="@id/clayout_wan_top"
+            app:layout_constraintTop_toTopOf="@id/clayout_wan_top" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_wan_tab"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <!--color_txt_tab_selected_wan-->
+        <com.android.base.tablayout.SlidingTabLayout2
+            android:id="@+id/tab_wan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            tl:tl_indicator_color="@color/color_indictor_wanandroid"
+            tl:tl_indicator_margin_left="2dp"
+            tl:tl_indicator_margin_right="2dp"
+            tl:tl_indicator_style="BLOCK"
+            tl:tl_textSelectColor="@color/color_txt_tab_selected_wan"
+            tl:tl_textUnselectColor="@color/color_txt_tab_unselected_wan" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp2_wanandroid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

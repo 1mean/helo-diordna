@@ -186,7 +186,6 @@ public class HistoryViewModeL : BaseViewModel() {
     }
 
     fun removeHistory(list: MutableList<History>, removeAll: Boolean) {
-
         request({ historyRepository.removeHistory(list, removeAll) },
             {
                 var hasmore = false

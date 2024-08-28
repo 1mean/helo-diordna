@@ -67,6 +67,8 @@ public class VideoPagerAdapter(
         }
     }
 
+    fun getPetVide(position: Int) = list[position]
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding =
             AdapterVideoVerticalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -392,6 +394,10 @@ public class VideoPagerAdapter(
                 handleItemLike(position)
             }
 
+            collectItem.setOnLongClickListener {
+                listener.collectItemLongClick(list[position].code)
+                true
+            }
             collectItem.setOnClickListener {
                 if (AppInstance.instance.isLoginSuccess) {
 
@@ -640,6 +646,8 @@ public class VideoPagerAdapter(
         fun onDoubleTap()
 
         fun onSingleTap()
+
+        fun collectItemLongClick(videoCode: Int)
 
         fun updataVideoData(videoData: VideoData)
 

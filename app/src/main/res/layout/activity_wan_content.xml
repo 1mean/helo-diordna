@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_bg_home"
+    tools:ignore="MissingDefaultResource">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_wan_top"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibn_wan_back"
+            style="@style/style_img_top_collect"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_wan_top"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_wan_top"
+            app:layout_constraintTop_toTopOf="@id/clayout_wan_top" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibtn_wan_collect"
+            android:layout_width="42dp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:visibility="gone"
+            android:src="@mipmap/img_music_item_like1"
+            app:layout_constraintRight_toRightOf="@id/clayout_wan_top" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_wan_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="90dp"
+            android:layout_marginEnd="90dp"
+            android:gravity="center"
+            android:textColor="@color/color_history_title"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:includeFontPadding="false"
+            android:ellipsize="end"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_wan_top"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_wan_top"
+            app:layout_constraintRight_toRightOf="@id/clayout_wan_top"
+            app:layout_constraintTop_toTopOf="@id/clayout_wan_top" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/flayout_webContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

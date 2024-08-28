@@ -12,15 +12,14 @@ import com.android.base.vm.SingleLiveData
 import com.example.pandas.app.AppInfos
 import com.example.pandas.app.getFileCover
 import com.example.pandas.app.getUiName
-import com.example.pandas.bean.CachaListItem
-import com.example.pandas.bean.CacheListItemData
-import com.example.pandas.bean.LoginResponse
+import com.example.pandas.bean.*
 import com.example.pandas.biz.ext.getVideoLocalPath
 import com.example.pandas.biz.http.invoker.wanAndroidInvoke
 import com.example.pandas.utils.SPUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -49,6 +48,8 @@ public class SelfViewModel : BaseViewModel() {
     private val _followUser: MutableSharedFlow<MutableList<User>> by lazy { MutableSharedFlow() }
     val followUser = _followUser.asSharedFlow()
     val cacheList: MutableLiveData<MutableList<CacheListItemData>> by lazy { MutableLiveData() }
+    private val _coinFlow: MutableSharedFlow<CoinResponse> by lazy { MutableSharedFlow() }
+    val coinFlow = _coinFlow.asSharedFlow()
 
     fun getUser() {
         viewModelScope.launch {
@@ -158,7 +159,6 @@ public class SelfViewModel : BaseViewModel() {
     fun reSex(sex: Int) {
         viewModelScope.launch {
             userRepository.reSex(sex)
-
         }
     }
 
@@ -172,6 +172,14 @@ public class SelfViewModel : BaseViewModel() {
             wanAndroidInvoke.logOutWanAndroid().collect {
                 Log.e("1mean", "logout thread:${Thread.currentThread().name}")
                 _logout.emit(it)
+            }
+        }
+    }
+
+    fun getCoin() {
+        viewModelScope.launch {
+            wanAndroidInvoke.getCoin().collect {
+                _coinFlow.emit(it)
             }
         }
     }

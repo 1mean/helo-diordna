@@ -16,12 +16,11 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pandas.R
 import com.android.base.ui.adapter.BaseCommonAdapter
 import com.android.base.ui.adapter.BaseViewHolder
+import com.example.pandas.R
 import com.example.pandas.data.qq.EmotionItem
 import com.example.pandas.data.qq.QqEmoticons
-import com.example.pandas.databinding.DialogBottomCommentBinding
 import com.example.pandas.ui.adapter.decoration.ShortEmoji2Decoration
 import com.example.pandas.ui.adapter.decoration.ShortEmojiDecoration
 import com.lxj.xpopup.core.BottomPopupView
@@ -54,9 +53,6 @@ public class ShortReplyPopuWindow(
     private val toUserName: String,
     private val listener: CommentInputListener
 ) : BottomPopupView(context) {
-
-    private var _binding: DialogBottomCommentBinding? = null
-    val binding: DialogBottomCommentBinding get() = _binding!!
 
     override fun getImplLayoutId(): Int = R.layout.dialog_vertical_input
 

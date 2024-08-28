@@ -16,8 +16,8 @@ import com.android.android_sqlite.entity.*
  * @version: v1.0
  */
 @Database(
-    entities = [PetVideo::class, MusicVo::class, History::class, User::class, VideoData::class, VideoComment::class, Group::class, GroupVideoItem::class],
-    version = 3,
+    entities = [PetVideo::class, MusicVo::class, History::class, User::class, VideoData::class, VideoComment::class, Group::class, GroupVideoItem::class, SearchHistory::class],
+    version = 4,
     exportSchema = false
 )
 public abstract class AppDataBase : RoomDatabase() {
@@ -28,6 +28,7 @@ public abstract class AppDataBase : RoomDatabase() {
     abstract fun historyDao(): HistoryDao
     abstract fun musicDao(): MusicDao
     abstract fun videoCommentDao(): VideoCommentDao
+    abstract fun searchHistoryDao(): SearchHistoryDao
 
     companion object {
 
@@ -53,7 +54,7 @@ public abstract class AppDataBase : RoomDatabase() {
                 )
                     .allowMainThreadQueries()//允许在主线程查询
                     .fallbackToDestructiveMigration()//设置升级策略，失败了会回滚至上一个版本
-                    .addMigrations(migration_1_2, migration_2_3)
+                    .addMigrations(migration_1_2, migration_2_3, migration_3_4)
                     .addCallback(object : Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
@@ -81,6 +82,14 @@ public abstract class AppDataBase : RoomDatabase() {
             override fun migrate(database: SupportSQLiteDatabase) {
                 val sql =
                     "CREATE TABLE IF NOT EXISTS `history` (`id` INTEGER PRIMARY KEY AUTOINCREMENT,`code` INTEGER NOT NULL,`lastTime` INTEGER,`playPosition` TEXT,`reservedInt` INTEGER DEFAULT 0,`reservedString` TEXT)"
+                database.execSQL(sql)
+            }
+        }
+
+        private val migration_3_4 = object : Migration(3, 4) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                val sql =
+                    "CREATE TABLE IF NOT EXISTS `search_history` (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,`createTime` INTEGER NOT NULL DEFAULT 0,`updateTime` INTEGER NOT NULL DEFAULT 0,`type` INTEGER NOT NULL DEFAULT 0,`reservedInt` INTEGER NOT NULL DEFAULT 0,`reservedString` TEXT)"
                 database.execSQL(sql)
             }
         }

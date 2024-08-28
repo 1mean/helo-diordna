@@ -115,7 +115,7 @@ fun loadLocalCircleImage(context: Context, urlRes: Int, view: ImageView) {
         .into(view)
 }
 
-fun loadImage(context: Context, url: String, view: ImageView) {
+fun loadImage(context: Context, url: String?, view: ImageView) {
     Glide.with(context).load(url).placeholder(getResoureId()).into(view)
 }
 

@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.android.android_sqlite.app.SqliteApplication
+import com.android.android_sqlite.manager.groupRepository
 import com.android.android_sqlite.manager.userRepository
 import com.android.base.ModuleApplication
 import com.android.base.app.CrashHandler
@@ -83,7 +84,7 @@ class DiorApplication : Application(), ViewModelStoreOwner {
             DarkModeUtils.applyNightMode(this)
             AppInstance.instance.isNightMode = true
         }
-        //initdata()
+        initdata()
     }
 
     /**

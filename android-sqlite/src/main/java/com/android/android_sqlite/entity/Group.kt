@@ -13,9 +13,9 @@ data class Group(
     //切记不能用类似 isXxx 的字段，会造成无法自动生成字段的set方法
 
     @PrimaryKey(autoGenerate = true)
-    var id: Int = 0,//id
+    var id: Int = 0,//id作为区分群组，0为常规群组收藏，创建的新的群组一次累加
     @ColumnInfo
-    var groupCode: Int = 0,//groupId
+    var groupCode: Int = 0,
     @ColumnInfo
     var groupName: String? = null,//群组名
     @ColumnInfo

@@ -84,9 +84,8 @@ fun NewSearchActivity.clearEditText() {
 fun SearchActivity.turnToSearchResultFragment() {
 
     keyBoardInvisible(binding.editSearch)
-    binding.rvList.visibility = View.GONE
     binding.editSearch.isCursorVisible = false
-    mViewModel.saveSearchHistory(this)
+    //mViewModel.saveSearchHistory(this)
 
     addOrShowFragment()
 }
@@ -95,7 +94,8 @@ fun NewSearchActivity.turnToSearchResultFragment() {
 
     keyBoardInvisible(binding.editSearch)
     binding.editSearch.isCursorVisible = false
-    mViewModel.saveSearchHistory(this)
+    Log.e("1mean","key = " + mViewModel.keyWords)
+    mViewModel.insertSearchHistory(0, mViewModel.keyWords)
 
     addOrShowFragment()
 }

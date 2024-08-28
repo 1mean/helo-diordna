@@ -81,10 +81,8 @@ public class YoungerActivity : BaseActivity<MainViewModel, ActivityYoungerBindin
         }
 
         binding.txtYoungerModeOpen.setOnClickListener {
-            toastTopShow(this, "开启成功")
-            mHandler.postDelayed({
-                finish()
-            }, 500)
+            showToast("开启成功")
+            finish()
         }
     }
 

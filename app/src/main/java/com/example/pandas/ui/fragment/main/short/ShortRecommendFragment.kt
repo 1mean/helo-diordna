@@ -13,7 +13,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
+import com.android.android_sqlite.entity.Group
 import com.android.android_sqlite.entity.VideoData
+import com.android.base.interaction.AdapterListener
+import com.android.base.interaction.ViewClickListener
 import com.example.pandas.R
 import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.interaction.CommentWindowListener
@@ -21,9 +24,14 @@ import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.databinding.FragmentVerticalVideoplayBinding
 import com.example.pandas.ui.activity.UserInfoActivity
+import com.example.pandas.ui.adapter.CollectItemAdapter
 import com.example.pandas.ui.adapter.VideoPagerAdapter
+import com.example.pandas.ui.ext.toastTopShow
+import com.example.pandas.ui.view.popuwindow.CreateGroupPopupView
+import com.example.pandas.ui.view.popuwindow.ShortCollectPopupView
 import com.example.pandas.ui.view.popuwindow.ShortRightPopuWindow
 import com.google.android.exoplayer2.util.Util
+import com.google.android.material.snackbar.Snackbar
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
 import com.lxj.xpopup.interfaces.XPopupCallback
@@ -40,6 +48,7 @@ public class ShortRecommendFragment :
     BaseFragment<ShortVideoViewModel, FragmentVerticalVideoplayBinding>(), ExoPlayerListener,
     VideoPagerAdapter.VerticalVideoListener {
 
+    private var collectPopupView: ShortCollectPopupView? = null
     private var hasMore = false
     private var startActivity = false
     private val mAdapter: VideoPagerAdapter by lazy { VideoPagerAdapter(listener = this) }
@@ -96,6 +105,54 @@ public class ShortRecommendFragment :
                         }
                     }
                     hasMore = it.hasMore
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            mViewModel.groupFlow.collect {
+                collectPopupView = ShortCollectPopupView(mActivity, it, object : AdapterListener<Group> {
+                        override fun itemClick(position: Int, t: Group) {
+                            mViewModel.addGroupItem(videoCode, t)
+                            collectPopupView?.dismiss()
+                        }
+
+                        override fun viewClick() {//创建新的group
+                            collectPopupView?.dismiss()
+                            val coverUrl = mAdapter.getPetVide(currentPosition).cover
+                            val createPopupView = CreateGroupPopupView(mActivity, coverUrl, object :
+                                ViewClickListener<Group> {
+                                override fun viewClick(t: Group) {
+
+                                }
+                            })
+                            XPopup.Builder(context)
+                                .moveUpToKeyboard(true) //如果不加这个，评论弹窗会移动到软键盘上面
+                                .dismissOnTouchOutside(true)
+                                .animationDuration(600)
+                                .asCustom(createPopupView)
+                                .show()
+                        }
+                    })
+                XPopup.setShadowBgColor(
+                    ContextCompat.getColor(
+                        mActivity,
+                        R.color.color_white_lucency
+                    )
+                )
+                XPopup.Builder(context)
+                    //.moveUpToKeyboard(false) //如果不加这个，评论弹窗会移动到软键盘上面
+                    .dismissOnTouchOutside(true)
+                    .animationDuration(600)
+                    .asCustom(collectPopupView)
+                    .show()
+            }
+        }
+
+        lifecycleScope.launch {
+            mViewModel.addGroupItemFlow.collect {
+                if (it.isNotEmpty()) {
+                    toastTopShow(mActivity, it)
                 }
             }
         }
@@ -206,6 +263,12 @@ public class ShortRecommendFragment :
         } else {
             manager?.continuePlayer()
         }
+    }
+
+    private var videoCode: Int = 0
+    override fun collectItemLongClick(videoCode: Int) {
+        this.videoCode = videoCode
+        mViewModel.getCollectGroups()
     }
 
     override fun updataVideoData(videoData: VideoData) {

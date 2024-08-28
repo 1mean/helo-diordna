@@ -71,12 +71,6 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        //loadCircleImage(mActivity, AppInfos.HEAD_URL, binding.imgMineHeader)
-        if (!loginStatus) {
-            binding.groupMine.visibility = View.GONE
-            binding.txtMineLogin.visibility = View.VISIBLE
-        }
-
         binding.imgMineHeader.setOnClickListener {
             if (loginStatus) {
                 showHeader()
@@ -119,6 +113,12 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
             startAnyActivity(mActivity, WanAndroidActivity::class.java)
         }
         binding.clayoutSelf.setOnClickListener {
+            startAnyActivity(mActivity, SelfInfoActivity::class.java)
+        }
+        binding.txtMineIntegral.setOnClickListener {
+            startAnyActivity(mActivity, IntegralActivity::class.java)
+        }
+        binding.txtMineId.setOnClickListener {
             startAnyActivity(mActivity, SelfInfoActivity::class.java)
         }
         binding.clayoutMineAttention.setOnClickListener {
@@ -267,10 +267,8 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
         }
 
         if (AppInstance.instance.isLoginSuccess) {//成功登录了
-            binding.groupMine.visibility = View.VISIBLE
             binding.txtMineLogin.visibility = View.GONE
             binding.llayoutSettingLoginout.visibility = View.VISIBLE
-            loadViewData()
         } else {
             binding.groupMine.visibility = View.GONE
             binding.txtMineLogin.visibility = View.VISIBLE
@@ -291,8 +289,20 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
         }
 
         lifecycleScope.launch {
+            mViewModel.coinFlow.collect {
+                if (it.errorCode == 0) {
+                    val coins = it.data.coinCount
+                    binding.txtMineIntegral.text = "积分：$coins"
+                }
+            }
+        }
+
+        lifecycleScope.launch {
             mViewModel.user.collect {
+                binding.groupMine.visibility = View.VISIBLE
                 binding.txtMineName.text = it.userName
+                binding.txtMineId.text = "用户ID：${it.userCode}"
+                binding.imgMineLevel.text = "LV.2"
                 when (it.sex) {
                     0 -> {
                         binding.imgMineSex.setImageResource(R.mipmap.img_mine_male)
@@ -583,8 +593,8 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
 
     private fun loadViewData() {
         if (loginStatus) {
-            //mViewModel.getCurrentFollows(mActivity)
             mViewModel.getUser()
+            mViewModel.getCoin()
             lifecycleScope.launch {
                 val bitmap = getUserHeader(mActivity)
                 if (bitmap == null) {

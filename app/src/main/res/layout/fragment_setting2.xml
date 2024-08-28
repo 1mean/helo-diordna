@@ -133,69 +133,67 @@
                         android:id="@+id/group_mine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                    android:visibility="gone"
                         app:constraint_referenced_ids="txt_mine_name,img_mine_sex,clayout_self,txt_mine_integral,img_mine_level" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_mine_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="@id/clayout_top_info"
+                        app:layout_constraintTop_toTopOf="@id/clayout_top_header"
                         app:layout_constraintLeft_toRightOf="@id/clayout_top_header"
-                        android:layout_marginTop="26dp"
                         android:layout_marginStart="10dp"
-                        android:textSize="19sp"
+                    android:layout_marginTop="5dp"
+                        android:textSize="20sp"
+                    android:includeFontPadding="false"
                         android:textColor="@color/color_txt_mine_name" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/img_mine_sex"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/txt_mine_name"
-                        app:layout_constraintLeft_toLeftOf="@id/txt_mine_name"
-                        android:layout_marginTop="10dp" />
+                    android:id="@+id/img_mine_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/txt_mine_name"
+                    app:layout_constraintBottom_toBottomOf="@id/txt_mine_name"
+                    app:layout_constraintLeft_toRightOf="@id/txt_mine_name"
+                    android:layout_marginStart="10dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/img_mine_level"
+                    android:layout_width="27dp"
+                    android:layout_height="14dp"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textSize="9sp"
+                    android:textColor="@color/color_txt_mine_lv"
+                    android:background="@drawable/shape_bg_level"
+                    app:layout_constraintLeft_toRightOf="@id/img_mine_sex"
+                    app:layout_constraintTop_toTopOf="@id/txt_mine_name"
+                    app:layout_constraintBottom_toBottomOf="@id/txt_mine_name"
+                    android:layout_marginStart="10dp"
+                    android:visibility="gone"
+                    tools:ignore="SmallSp" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_mine_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/txt_mine_name"
+                    app:layout_constraintLeft_toLeftOf="@id/txt_mine_name"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#9b9fa6"
+                    android:textSize="11sp"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_mine_integral"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="@id/img_mine_sex"
-                        app:layout_constraintBottom_toBottomOf="@id/img_mine_sex"
-                        app:layout_constraintLeft_toRightOf="@id/img_mine_sex"
-                        android:layout_marginStart="5dp"
+                        app:layout_constraintTop_toBottomOf="@id/txt_mine_id"
+                        app:layout_constraintLeft_toLeftOf="@id/txt_mine_name"
                         android:includeFontPadding="false"
+                        android:layout_marginTop="5dp"
                         android:textColor="#9b9fa6"
-                        android:textSize="11sp"
-                        android:text="累计积分：12"
-                        />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/img_mine_level"
-                        android:layout_width="27dp"
-                        android:layout_height="14dp"
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:text="LV.0"
-                        android:textSize="9sp"
-                        android:textColor="@color/color_txt_mine_lv"
-                        android:background="@drawable/shape_bg_level"
-                        app:layout_constraintLeft_toRightOf="@id/txt_mine_name"
-                        app:layout_constraintTop_toTopOf="@id/txt_mine_name"
-                        app:layout_constraintBottom_toBottomOf="@id/txt_mine_name"
-                        android:layout_marginStart="10dp"
-                        tools:ignore="SmallSp" />
-
-                <!--android:text="ID：24870949"-->
-                <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txt_coins"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="11sp"
-                        android:layout_marginStart="10dp"
-                        android:textColor="@color/color_txt_tab"
-                        android:gravity="center_vertical"
-                        android:includeFontPadding="false"
-                        app:layout_constraintTop_toTopOf="@id/img_mine_sex"
-                        app:layout_constraintLeft_toRightOf="@id/img_mine_sex" />
+                        android:textSize="11sp"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/clayout_self"
@@ -286,6 +284,24 @@
                         app:layout_constraintRight_toRightOf="@id/clayout_mine_title">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_mine_fans"
+                        style="@style/style_mine_setting_fans"
+                        app:layout_constraintTop_toTopOf="@id/clayout_mine_fans"
+                        app:layout_constraintBottom_toBottomOf="@id/clayout_mine_fans"
+                        app:layout_constraintLeft_toLeftOf="@id/clayout_mine_fans"
+                        app:layout_constraintRight_toRightOf="@id/clayout_mine_fans"
+                        android:text="@string/str_fans" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@id/txt_mine_fans"
+                        app:layout_constraintBottom_toBottomOf="@id/txt_mine_fans"
+                        app:layout_constraintRight_toLeftOf="@id/txt_mine_fans"
+                        android:layout_marginEnd="10dp"
+                        android:src="@mipmap/img_mine_fans" />
+
+                    <!--<androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/txt_mine_fans"
                             style="@style/style_mine_setting_fans"
                             app:layout_constraintVertical_bias="0.3"
@@ -300,11 +316,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintVertical_bias="0.3"
-                            app:layout_constraintHorizontal_bias="0.4"
+                            app:layout_constraintHorizontal_bias="0.3"
                             app:layout_constraintTop_toTopOf="@id/txt_mine_fans"
                             app:layout_constraintBottom_toBottomOf="@id/txt_mine_fans"
                             app:layout_constraintRight_toLeftOf="@id/txt_mine_fans"
-                            android:src="@mipmap/img_self_attention" />
+                            android:src="@mipmap/img_mine_fans" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -317,7 +333,7 @@
                         app:layout_constraintTop_toTopOf="@id/clayout_mine_fans"
                         app:layout_constraintBottom_toBottomOf="@id/clayout_mine_fans"
                         app:layout_constraintLeft_toLeftOf="@id/clayout_mine_fans"
-                        app:layout_constraintRight_toRightOf="@id/clayout_mine_fans" />
+                        app:layout_constraintRight_toRightOf="@id/clayout_mine_fans" />-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

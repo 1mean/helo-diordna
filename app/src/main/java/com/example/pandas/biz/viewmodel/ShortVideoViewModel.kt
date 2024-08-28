@@ -2,6 +2,7 @@ package com.example.pandas.biz.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.android.android_sqlite.entity.Group
 import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.VideoComment
 import com.android.android_sqlite.entity.VideoData
@@ -32,6 +33,12 @@ public class ShortVideoViewModel : BaseViewModel() {
     var fallsPage = 10
     var attentionPage = 10
     var hasMore = true//是否有更多
+
+    private val _groupsFlow: MutableSharedFlow<MutableList<Group>> by lazy { MutableSharedFlow() }
+    val groupFlow = _groupsFlow.asSharedFlow()
+
+    private val _addGroupItemFlow: MutableSharedFlow<String> by lazy { MutableSharedFlow() }
+    val addGroupItemFlow = _addGroupItemFlow.asSharedFlow()
 
     val commentResult: MutableLiveData<VideoComment> by lazy { MutableLiveData() }
 
@@ -239,6 +246,22 @@ public class ShortVideoViewModel : BaseViewModel() {
     fun sendComment(comment: VideoComment) {
         viewModelScope.launch {
             commentResult.value = commentRepository.sendComment(comment)
+        }
+    }
+
+    fun getCollectGroups() {
+        viewModelScope.launch {
+            groupRepository.getGroups().collect {
+                _groupsFlow.emit(it)
+            }
+        }
+    }
+
+    fun addGroupItem(videoCode: Int, group: Group) {
+        viewModelScope.launch {
+            groupRepository.addGroupItem(videoCode, group).collect {
+                _addGroupItemFlow.emit(it)
+            }
         }
     }
 }

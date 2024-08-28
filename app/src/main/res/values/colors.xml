@@ -51,6 +51,7 @@
     <!-- 首页  -->
     <color name="color_bg_home_bottomview">#ffffff</color>
     <color name="color_bg_home">#ffffff</color>
+    <color name="color_txt_history_updatetime">#939a9f</color>
     <color name="color_txt_unselected_home">#60696C</color>
     <color name="color_edit_bg_search_home">#f2f4f9</color>
     <color name="color_bg_divider_home">#E2E6E6</color>
@@ -68,6 +69,7 @@
     <color name="color_txt_mine_lv">#818891</color>
     <color name="color_edit_hint_input">#cccccc</color>
     <color name="color_bg_short_top_divider">#e6e6e6</color>
+    <color name="color_indictor_wanandroid">#e6e6e6</color>
 
     <!--self-->
     <color name="color_txt_mine_name">#000000</color>
@@ -204,7 +206,7 @@
 
     <!--searchActivity-->
     <color name="color_txt_num_search">#95999d</color>
-    <color name="color_bg_search_history">#f0f3f3</color>
+    <color name="color_bg_search_history">#f6f7f9</color>
     <color name="color_txt_edit_hint_search">#ACB4BB</color>
     <color name="color_bg_message_divider">#E5E6E6</color>
 
@@ -235,6 +237,9 @@
     <color name="color_bg_reco_followed">#FFF3EC</color>
     <color name="color_txt_reco_followed">#FB6439</color>
     <color name="color_bg_reco_type">#FF5E97</color>
+    <color name="color_bg_short_collect">#ffffff</color>
+    <color name="color_bg_bottom_collect">#ffffff</color>
+    <color name="color_bg_divider_bottom_collect">#e3e6e5</color>
 
     <!--self-->
     <color name="color_black_80">#80000000</color>
@@ -343,6 +348,7 @@
 
     <!--search-->
     <color name="color_text_search_cancel">#5E676D</color>
+    <color name="color_text_search">#000000</color>
     <color name="color_text_search_num">#95999d</color>
     <color name="color_bg_hot_shape">#fc8f51</color>
     <color name="color_bg_new_shape">#fd7193</color>
@@ -561,8 +567,14 @@
     <color name="color_bg_divider_publish">#f5f5f5</color>
     <color name="color_txt_publish_title">#000000</color>
     <color name="color_txt_publish_title_hint">#999999</color>
+    <color name="color_txt_wan_type">#999999</color>
+    <color name="color_txt_wan_title">#555555</color>
+    <color name="color_txt_wan_name">#2e2e2e</color>
     <color name="color_txt_publish_des">#212121</color>
     <color name="color_logout_divider">#EEEEEE</color>
+    <color name="color_txt_tab_selected_wan">#000000</color>
+    <color name="color_txt_tab_unselected_wan">#646464</color>
+    <color name="color_bg_collect_add">#f3f3f3</color>
 
     <!--通用-->
     <color name="color_bg_layout_background">#F6F7FB</color>

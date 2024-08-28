@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.android.base.ui.adapter.BaseViewHolder
 import com.blankj.utilcode.util.ToastUtils
 import com.example.pandas.R
 import com.example.pandas.ui.adapter.SleepVideoItemAdapter
@@ -80,6 +81,18 @@ fun SwipRecyclerView.init(
     }
     setRefreshAdapter(adapter, listener)
     return this
+}
+
+fun RecyclerView.initBase(
+    itemDecoration: RecyclerView.ItemDecoration? = null,
+    manager: RecyclerView.LayoutManager = LinearLayoutManager(context),
+    adapter: RecyclerView.Adapter<BaseViewHolder>,
+) {
+    layoutManager = manager
+    itemDecoration?.let {
+        addItemDecoration(it)
+    }
+    setAdapter(adapter)
 }
 
 fun SwipRecyclerView2.init2(

@@ -54,6 +54,7 @@
     <!--search-->
     <string name="str_cancel">取消</string>
     <string name="str_hot_search">热搜</string>
+    <string name="str_search">搜索</string>
     <string name="str_history_search">搜索历史</string>
     <string name="str_hot">热</string>
     <string name="str_new">新</string>

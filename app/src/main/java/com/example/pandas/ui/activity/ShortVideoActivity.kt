@@ -549,6 +549,9 @@ public class ShortVideoActivity :
         }
     }
 
+    override fun collectItemLongClick(videoCode: Int) {
+    }
+
     override fun updataVideoData(videoData: VideoData) {
         mViewModel.addOrUpdateVideoData(videoData)
     }

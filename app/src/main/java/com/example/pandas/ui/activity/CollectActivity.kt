@@ -1,25 +1,22 @@
 package com.example.pandas.ui.activity
 
+import AppInstance
 import android.os.Bundle
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.example.pandas.biz.interaction.OnSureListener
-import com.example.pandas.biz.viewmodel.HistoryViewModeL
+import com.example.pandas.biz.viewmodel.CollectViewModeL
 import com.example.pandas.databinding.ActivityCollectBinding
-import com.example.pandas.ui.adapter.CollectAdapter
-import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
-import com.example.pandas.ui.ext.APP_COLOR_STATUS
-import com.example.pandas.ui.ext.launcherActivity
-import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.lightViewColors
 import com.example.pandas.ui.ext.viewColors
-import com.example.pandas.ui.view.dialog.DeletePopuWindow
+import com.example.pandas.ui.fragment.main.mine.CollectFragment
 import com.example.pandas.utils.StatusBarUtils
-import com.lxj.xpopup.XPopup
-import com.lxj.xpopup.impl.LoadingPopupView
+import kotlinx.coroutines.launch
 
 /**
  * @description: 我的收藏
@@ -27,41 +24,10 @@ import com.lxj.xpopup.impl.LoadingPopupView
  * @date: 8/13/22 11:18 上午
  * @version: v1.0
  */
-public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBinding>(){
+public class CollectActivity : BaseActivity<CollectViewModeL, ActivityCollectBinding>() {
 
-    private var loadingPopup: LoadingPopupView? = null
-
-    private val mAdapter: CollectAdapter by lazy { CollectAdapter(deleteGroup = {
-        val popWindow = DeletePopuWindow(this, object : OnSureListener {
-            override fun onSure() {
-                super.onCancel()
-                if (loadingPopup == null) {
-                    loadingPopup = XPopup.Builder(this@CollectActivity).dismissOnBackPressed(true)
-                        .isLightNavigationBar(true)
-                        .isViewMode(false)
-                        .asLoading(
-                            null,
-                            R.layout.layout_waiting,
-                            LoadingPopupView.Style.ProgressBar
-                        )
-                    loadingPopup!!.show()
-                } else {
-                    loadingPopup!!.show()
-                }
-                mViewModel.removeGroup(it)
-            }
-        })
-        popWindow.setTitle("确定要删除吗？").setBackDark().onShow(binding.rvCollect)
-    }) }
-
-    private val requestLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-
-            if (result.resultCode == RESULT_OK) {
-                binding.refreshCollect.isRefreshing = true
-                mViewModel.getCollects()
-            }
-        }
+    private val mTitles = arrayListOf<String>()
+    private val groupCodes = arrayListOf<Int>()
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -69,11 +35,6 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
             StatusBarUtils.setStatusBarMode(this, false, R.color.color_bg_home)
         } else {
             appViewModel.appColorType.value?.let {
-                if (it == 0) {
-                    binding.refreshCollect.setColorSchemeResources(viewColors[APP_COLOR_STATUS])
-                } else {
-                    binding.refreshCollect.setColorSchemeResources(viewColors[it])
-                }
                 binding.clayoutCollectTop.setBackgroundResource(viewColors[it])
                 if (it == 0) {
                     binding.ibnCollectBack.setImageResource(R.mipmap.img_setting_top_back_black33)
@@ -83,61 +44,67 @@ public class CollectActivity : BaseActivity<HistoryViewModeL, ActivityCollectBin
                             R.color.color_history_title
                         )
                     )
-                    binding.btnCollectAdd.setImageResource(R.mipmap.img_topview_add_black)
+                    binding.tabWan.indicatorColor = ContextCompat.getColor(this, lightViewColors[7])
                     StatusBarUtils.setStatusBarMode(this, true, viewColors[it])
                 } else {
+                    binding.tabWan.indicatorColor =
+                        ContextCompat.getColor(this, lightViewColors[it])
                     binding.ibnCollectBack.setImageResource(R.mipmap.img_setting_top_back_white)
-                    binding.txtCollectTitle.setTextColor(ContextCompat.getColor(this, R.color.white))
+                    binding.txtCollectTitle.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.white
+                        )
+                    )
                     StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
-                    binding.btnCollectAdd.setImageResource(R.mipmap.img_topview_add_white)
                 }
             }
         }
 
-        val paddingTop = resources.getDimension(R.dimen.common_lh_6_dimens).toInt()
-        binding.rvCollect.run {
-            adapter = mAdapter
-            addItemDecoration(CommonItemDecoration(paddingTop = paddingTop))
-            layoutManager = LinearLayoutManager(this@CollectActivity)
-        }
-
-        binding.refreshCollect.run {
-            setRefreshColor()
-            setOnRefreshListener {
-                binding.refreshCollect.isRefreshing = true
-                mViewModel.getCollects()
-            }
-        }
         binding.ibnCollectBack.setOnClickListener {
             finish()
-        }
-        binding.btnCollectAdd.setOnClickListener {
-            launcherActivity(requestLauncher, this, GroupCreateActivity::class.java)
         }
     }
 
     override fun firstOnResume() {
         super.firstOnResume()
-        binding.refreshCollect.isRefreshing = true
-        mViewModel.getCollects()
+        mViewModel.getCollectGroups()
     }
 
     override fun createObserver() {
-
-        mViewModel.collectResult.observe(this) {
-
-            if (it.isSuccess) {
-                mAdapter.refreshAdapter(it.listData)
+        lifecycleScope.launch {
+            mViewModel.groupFlow.collect {
+                mTitles.clear()
+                if (it.isNotEmpty()) {
+                    it.forEach { group ->
+                        mTitles.add(group.groupName!!)
+                        groupCodes.add(group.groupCode)
+                    }
+                    binding.vp2Collect.apply {
+                        adapter = CollectagerAdapter(this@CollectActivity)
+                        offscreenPageLimit = mTitles.size
+                        currentItem = 0
+                        isSaveEnabled = false
+                    }
+                    binding.tabWan.setViewPager(binding.vp2Collect, mTitles)
+                }
             }
-            binding.refreshCollect.isRefreshing = false
+        }
+    }
+
+    private inner class CollectagerAdapter(activity: FragmentActivity) :
+        FragmentStateAdapter(activity) {
+
+        override fun getItemCount(): Int = mTitles.size
+
+        private val pageIds = mTitles.map { it.hashCode().toLong() }
+
+        override fun createFragment(position: Int): Fragment {
+            return CollectFragment.newInstance(groupCodes[position])
         }
 
-        mViewModel.removeResult.observe(this) {
+        override fun getItemId(position: Int): Long = pageIds[position]
 
-            if (it) {
-                loadingPopup?.dismiss()
-                mAdapter.deleteItem()
-            }
-        }
+        override fun containsItem(itemId: Long): Boolean = pageIds.contains(itemId)
     }
 }

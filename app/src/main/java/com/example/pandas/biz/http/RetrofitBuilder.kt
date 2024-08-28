@@ -134,7 +134,7 @@ public class RetrofitBuilder private constructor() {
         return RetrofitBuild(
             url = url,
             client = okHttpClientBuilder.build(),
-            gsonFactory = GsonConverterFactory.create(),
+            gsonFactory = GsonConverterFactory.create()
             //coroutineCallAdapterFactory = CoroutineCallAdapterFactory()
         ).retrofit
     }

@@ -4,10 +4,12 @@ import android.animation.Animator
 import android.animation.Animator.AnimatorListener
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.text.Editable
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.view.animation.OvershootInterpolator
@@ -23,6 +25,7 @@ import com.example.pandas.ui.activity.AudioPlayActivity
 import com.example.pandas.ui.activity.ShortVideoActivity
 import com.example.pandas.ui.activity.UserInfoActivity
 import com.example.pandas.ui.activity.VideoPlayingActivity
+import com.just.agentweb.AgentWeb
 import kotlin.math.abs
 
 
@@ -295,6 +298,9 @@ fun addFragment(activity: AppCompatActivity, tag: String, newFragment: Fragment,
 }
 
 //-------------------<动画相关 结束>-----------------------------------------------------------------
+//-------------------<web功能 开始>-----------------------------------------------------------------
+
+//-------------------<web相关 结束>-----------------------------------------------------------------
 //-------------------<辅助功能 开始>-----------------------------------------------------------------
 fun shortToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()

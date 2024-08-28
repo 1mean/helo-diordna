@@ -26,6 +26,9 @@
     <color name="color_bg_dialog_view">#464a4e</color>
     <color name="color_bg_input">#1e2121</color>
     <color name="color_bg_short_top_divider">#2b2a32</color>
+    <color name="color_bg_short_collect">#101010</color>
+    <color name="color_bg_bottom_collect">#242727</color>
+    <color name="color_bg_divider_bottom_collect">#2b2a32</color>
 
     <!-- 我的->设置界面 -->
     <color name="color_txt_mine_name">#e7eaea</color>
@@ -303,6 +306,7 @@
 
     <!--search-->
     <color name="color_text_search_cancel">#B0B0B1</color>
+    <color name="color_text_search">#B0B0B1</color>
     <color name="color_text_search_num">#95999d</color>
     <color name="color_bg_hot_shape">#fc8f51</color>
     <color name="color_bg_new_shape">#fd7193</color>
@@ -313,6 +317,7 @@
     <color name="color_search_text_like">#F76395</color>
     <color name="color_search_edit_cursor">#919AA0</color>
     <color name="color_txt_edit_comment">#cfd2d2</color>
+    <color name="color_txt_history_updatetime">#939a9f</color>
 
     <!--more info-->
     <color name="color_bar_txt_title">#e7eaea</color>
@@ -446,8 +451,15 @@
     <color name="color_bg_divider_publish">#2f3234</color>
     <color name="color_txt_publish_title">#d5d7dc</color>
     <color name="color_txt_publish_title_hint">#6c7379</color>
+    <color name="color_txt_wan_type">#999999</color>
+    <color name="color_txt_wan_title">#d0d4d8</color>
+    <color name="color_txt_wan_name">#83888E</color>
     <color name="color_txt_publish_des">#d5d7dc</color>
     <color name="color_logout_divider">#2f3234</color>
+    <color name="color_txt_tab_selected_wan">#ffffff</color>
+    <color name="color_txt_tab_unselected_wan">#a1a8ad</color>
+    <color name="color_indictor_wanandroid">#999999</color>
+    <color name="color_bg_collect_add">#f3f3f3</color>
 
 
     <!--通用-->

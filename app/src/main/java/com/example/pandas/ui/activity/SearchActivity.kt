@@ -53,20 +53,20 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
                 layoutManager = GridLayoutManager(this@SearchActivity, 2)
                 adapter = mAdapter
             }
-
-            binding.rvList.run {
-                layoutManager = LinearLayoutManager(this@SearchActivity)
-                adapter = rAdapter
-            }
-
-            binding.txtSearchCancel.setOnClickListener {
-                SoftInputUtils.closeKeybord(this@SearchActivity)
-                finish()
-            }
-
-            binding.clClear.setOnClickListener {
-                mViewModel.clearHistory(this@SearchActivity)
-            }
+//
+//            binding.rvList.run {
+//                layoutManager = LinearLayoutManager(this@SearchActivity)
+//                adapter = rAdapter
+//            }
+//
+//            binding.txtSearchCancel.setOnClickListener {
+//                SoftInputUtils.closeKeybord(this@SearchActivity)
+//                finish()
+//            }
+//
+//            binding.clClear.setOnClickListener {
+//                mViewModel.clearHistory(this@SearchActivity)
+//            }
 
             binding.btnSearchClear.setOnClickListener {
                 clearEditText()
@@ -82,7 +82,6 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
                 val fragment = supportFragmentManager.findFragmentByTag(TAG_SEARCH)
                 if (fragment != null) {
                     supportFragmentManager.popBackStack()
-                    binding.rvList.visibility = View.VISIBLE
                     mViewModel.search(mViewModel.keyWords)
                 }
             }
@@ -102,19 +101,19 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
         appViewModel.appColorType.value?.let {
             binding.clayoutSearchTitle.setBackgroundResource(viewColors[it])
             if (it == 0) {
-                binding.txtSearchCancel.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_text_search_cancel
-                    )
-                )
+//                binding.txtSearchCancel.setTextColor(
+//                    ContextCompat.getColor(
+//                        this,
+//                        R.color.color_text_search_cancel
+//                    )
+//                )
             } else {
-                binding.txtSearchCancel.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.white
-                    )
-                )
+//                binding.txtSearchCancel.setTextColor(
+//                    ContextCompat.getColor(
+//                        this,
+//                        R.color.white
+//                    )
+//                )
                 StatusBarUtils.setStatusBarMode(this, false, viewColors[it])
             }
         }
@@ -123,7 +122,6 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
     override fun firstOnResume() {
         super.firstOnResume()
         mViewModel.getHotSearch()
-        mViewModel.getSrachHistory(this)
     }
 
 
@@ -131,7 +129,6 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
 
         lifecycleScope.launch {
             mViewModel.resultList.collect {
-                binding.rvList.visibility = View.VISIBLE
                 if (it.isSuccess) {
                     if (it.isEmpty) {
                         rAdapter.clear()
@@ -148,7 +145,7 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
             }
 
             searchHistory.observe(this@SearchActivity) {
-                binding.gridSearch.init(it, this@SearchActivity)
+//                binding.gridSearch.init(it, this@SearchActivity)
             }
         }
     }
@@ -167,7 +164,7 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
             } else {
                 rAdapter.clear()
                 binding.btnSearchClear.visibility = View.GONE
-                binding.rvList.visibility = View.GONE
+//                binding.rvList.visibility = View.GONE
             }
 
             if (!isUserSet) {//代码设置的内容，不需要下面操作
@@ -209,7 +206,6 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
         //mFragment.clear()
         binding.editSearch.text = null
         binding.editSearch.isCursorVisible = false
-        binding.rvList.visibility = View.GONE
     }
 
     override fun turnToSearchListFragment() {

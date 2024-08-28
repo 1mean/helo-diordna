@@ -5,16 +5,23 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.android.android_sqlite.bean.SearchInfo
+import com.android.android_sqlite.entity.SearchHistory
 import com.android.android_sqlite.entity.VideoAndUser
+import com.android.android_sqlite.manager.searchHistoryRepository
 import com.android.android_sqlite.manager.videoRepository
 import com.android.base.vm.BaseViewModel
 import com.android.base.vm.UnPeekLiveData
 import com.example.pandas.app.AppInfos
+import com.example.pandas.bean.HotKeyResponse
 import com.example.pandas.bean.UIDataWrapper
+import com.example.pandas.bean.WxPageArticleResponse
+import com.example.pandas.biz.http.invoker.wanAndroidInvoke
 import com.example.pandas.utils.SPUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -39,6 +46,20 @@ public class SearchViewModel : BaseViewModel() {
 
     val searchHistory: MutableLiveData<List<String>> by lazy { MutableLiveData() }
 
+    private val _hotkey: MutableSharedFlow<HotKeyResponse> by lazy { MutableSharedFlow() }
+    val hotkey = _hotkey.asSharedFlow()
+    private val _pageSearch: MutableSharedFlow<WxPageArticleResponse> by lazy { MutableSharedFlow() }
+    val pageSearch = _pageSearch.asSharedFlow()
+    private val _collectInnerArticle: MutableSharedFlow<WxPageArticleResponse> by lazy { MutableSharedFlow() }
+    val collectInnerArticle = _collectInnerArticle.asSharedFlow()
+    private val _removeCollectedArticle: MutableSharedFlow<WxPageArticleResponse> by lazy { MutableSharedFlow() }
+    val removeCollectedArticle = _removeCollectedArticle.asSharedFlow()
+    private val _queryAllHistoryFlow: MutableSharedFlow<MutableList<SearchHistory>> by lazy { MutableSharedFlow() }
+    val queryAllHistoryFlow = _queryAllHistoryFlow.asSharedFlow()
+    private val _deleteAllFlow: MutableSharedFlow<Int> by lazy { MutableSharedFlow() }
+    val deleteAllFlow = _deleteAllFlow.asSharedFlow()
+
+
     fun search(words: String) {
         viewModelScope.launch {
             videoRepository.search(words).collect {
@@ -52,41 +73,32 @@ public class SearchViewModel : BaseViewModel() {
         }
     }
 
-    /**
-     * 获取历史搜索记录，用sp存储在本地，返回一个逆序的list
-     */
-    fun getSrachHistory(context: Context) {
-
+    fun insertSearchHistory(type: Int, content: String) {
         viewModelScope.launch {
-            searchHistory.value = withContext(Dispatchers.Default) {
-                val history = SPUtils.getString(context, AppInfos.SEARCH_KEY)
-                if (history.isEmpty()) {
-                    arrayListOf()
-                } else {
-                    history.split(",").reversed()
-                }
-            }
-        }
-    }
-
-    /**
-     * 存入记录到本地
-     */
-    fun saveSearchHistory(context: Context) {
-
-        viewModelScope.launch {
-            withContext(Dispatchers.Default) {
-                SPUtils.putSearchList(context, AppInfos.SEARCH_KEY, keyWords)
-            }
+            searchHistoryRepository.insert(
+                SearchHistory(
+                    createTime = System.currentTimeMillis(),
+                    updateTime = System.currentTimeMillis(),
+                    reservedString = content,
+                    type = type
+                )
+            )
         }
     }
 
     fun clearHistory(context: Context) {
-
         viewModelScope.launch {
             searchHistory.value = withContext(Dispatchers.Default) {
                 SPUtils.clearKey(context, AppInfos.SEARCH_KEY)
                 listOf()
+            }
+        }
+    }
+
+    fun clearAllHistory(type:Int) {
+        viewModelScope.launch {
+            searchHistoryRepository.deleteAllHistory(type).collect{
+                _deleteAllFlow.emit(it)
             }
         }
     }
@@ -132,4 +144,43 @@ public class SearchViewModel : BaseViewModel() {
         hotSearchList.value = list
     }
 
+    fun hotkey() {
+        viewModelScope.launch {
+            wanAndroidInvoke.hotkey().collect {
+                _hotkey.emit(it)
+            }
+        }
+    }
+
+    fun pageSearch(page: Int, key: String) {
+        viewModelScope.launch {
+            wanAndroidInvoke.pageSearch(page, key).collect {
+                _pageSearch.emit(it)
+            }
+        }
+    }
+
+    fun collectInnerArticle(id: Int) {
+        viewModelScope.launch {
+            wanAndroidInvoke.collectInnerArticle(id).collect {
+                _collectInnerArticle.emit(it)
+            }
+        }
+    }
+
+    fun removeCollectedArticle(id: Int, originId: Int) {
+        viewModelScope.launch {
+            wanAndroidInvoke.removeCollectedArticle(id, originId).collect {
+                _removeCollectedArticle.emit(it)
+            }
+        }
+    }
+
+    fun getAllHistory(type: Int) {
+        viewModelScope.launch {
+            searchHistoryRepository.queryAll(type).collect {
+                _queryAllHistoryFlow.emit(it)
+            }
+        }
+    }
 }

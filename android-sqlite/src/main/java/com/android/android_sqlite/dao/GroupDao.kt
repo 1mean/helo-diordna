@@ -15,7 +15,7 @@ public interface GroupDao {
 
     /*add******************************************************************/
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(groupVideoItem: GroupVideoItem)
+    suspend fun insert(groupVideoItem: GroupVideoItem): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(group: Group)

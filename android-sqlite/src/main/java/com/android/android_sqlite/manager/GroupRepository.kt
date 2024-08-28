@@ -9,6 +9,9 @@ import com.android.android_sqlite.entity.PetVideo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 
 /**
@@ -129,6 +132,8 @@ public class GroupRepository : BaseRepository() {
         }
     }
 
+    fun getGroups(): Flow<MutableList<Group>> = flowIn(groupDao.queryAllGroups())
+
     suspend fun getCollects(): MutableList<Group> {
         return withContext(Dispatchers.IO) {
             val groupInfos = groupDao.queryGroupNoType(99)
@@ -227,4 +232,19 @@ public class GroupRepository : BaseRepository() {
             }
         }
     }
+
+    fun addGroupItem(videoCode: Int, group: Group): Flow<String> = flow {
+        val groupItem = groupDao.queryGroupItem(group.groupCode, videoCode)
+        if (groupItem == null) {
+            val result =
+                groupDao.insert(GroupVideoItem(groupCode = group.groupCode, videoCode = videoCode))
+            if (result > 0) {
+                emit("已加入\"${group.groupName}\"")
+            } else {
+                emit("收藏失败!!")
+            }
+        } else {
+            emit("")
+        }
+    }.catch { e -> e.printStackTrace() }.flowOn(Dispatchers.IO)
 }

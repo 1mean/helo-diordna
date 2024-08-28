@@ -69,7 +69,6 @@ public class HotFragment : BaseFragment<HomePageViewModel, LayoutSwipRefreshBind
         mViewModel.hotDataWrapper.observe(viewLifecycleOwner) {
 
             if (it.isSuccess) {
-
                 binding.recyclerLayout.visibility = View.VISIBLE
                 when {
                     it.isRefresh -> {

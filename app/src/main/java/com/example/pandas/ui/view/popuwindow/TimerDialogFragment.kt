@@ -121,7 +121,7 @@ public class TimerDialogFragment : DialogFragment() {
             pIntent =
                 PendingIntent.getBroadcast(
                     activity?.applicationContext, 0, broadIntent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    PendingIntent.FLAG_IMMUTABLE
                 )
         }
 

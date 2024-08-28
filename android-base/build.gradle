@@ -68,6 +68,12 @@ dependencies {
     api 'com.geyifeng.immersionbar:immersionbar:3.2.2'
     api 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'//android 4.4以上沉浸式实现
     api "androidx.core:core-splashscreen:1.0.0-alpha02"//splashscreen
+    api 'io.github.justson:agentweb-core:v5.1.1-androidx'
+    //h5需要选择图片和下载
+    api 'io.github.justson:agentweb-filechooser:v5.1.1-androidx' // (可选)
+    //implementation 'com.github.Justson:Downloader:v5.0.4-androidx' // (可选)
+
+    //api "com.just.agentweb:agentweb:3.0.0"
 
     /****网络请求、异步任务、图片处理****************************************************************/
     api 'com.squareup.retrofit2:retrofit:2.9.0'

@@ -1,63 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/color_bg_home">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bg_activity_setting"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clayout_later_top"
-            android:layout_width="match_parent"
-            android:layout_height="56dp">
+        android:id="@+id/clayout_later_top"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
 
         <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/ibn_integral_back"
-                style="@style/style_img_top_collect"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_later_top"
-                app:layout_constraintTop_toTopOf="@id/clayout_later_top"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_later_top" />
+            android:id="@+id/ibn_integral_back"
+            style="@style/style_img_top_collect"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_later_top"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_later_top"
+            app:layout_constraintTop_toTopOf="@id/clayout_later_top" />
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_later_title"
-                style="@style/style_txt_top_collect"
-                app:layout_constraintLeft_toLeftOf="@id/clayout_later_top"
-                app:layout_constraintRight_toRightOf="@id/clayout_later_top"
-                app:layout_constraintTop_toTopOf="@id/clayout_later_top"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_later_top"
-                android:text="@string/str_mine_integral" />
+            android:id="@+id/txt_later_title"
+            style="@style/style_txt_top_collect"
+            android:text="@string/str_mine_integral"
+            android:layout_marginStart="50dp"
+            app:layout_constraintLeft_toRightOf="@id/ibn_integral_back"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_later_top"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_later_top"
+            app:layout_constraintTop_toTopOf="@id/clayout_later_top" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibtn_integral_rule"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toRightOf="@id/clayout_later_top"
+            android:src="@mipmap/img_intrgral_rule"
+            android:background="@null"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_coins"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/selector_setting_item">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_coin"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:layout_constraintTop_toTopOf="@id/clayout_coins"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_coins"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_coins"
+            app:layout_constraintRight_toRightOf="@id/clayout_coins"
+            android:textColor="@color/color_text_search"
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str_mine_total_integral"
-                android:textSize="14sp"
-                android:textColor="@color/color_self_total_integral"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp" />
+            android:id="@+id/txt_integral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_coin"
+            app:layout_constraintLeft_toRightOf="@id/txt_coin"
+            android:text="积分"
+            android:visibility="gone"
+            android:textColor="@color/color_self_total_integral"
+            android:textSize="13sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="12"
-                android:textSize="37dp"
-                android:textStyle="bold"
-                android:textColor="@color/color_self_total_integral"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp" />
+            android:id="@+id/txt_coin_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_coins"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_coins"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            android:textColor="@color/color_self_total_integral"
+            android:textSize="13sp"/>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_mine_integral"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:textColor="@color/color_text_search"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:paddingStart="15dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical|left"
+        android:includeFontPadding="false"
+        android:text="积分明细"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.pandas.ui.view.recyclerview.SwipRecyclerView
+            android:id="@+id/recycler_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="true"
+            android:visibility="gone"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
+            android:indeterminateTint="@color/color_bg_gray"/>
+    </FrameLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

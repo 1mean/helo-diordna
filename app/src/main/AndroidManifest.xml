@@ -1,76 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        package="com.example.pandas">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.pandas">
 
     <!--<uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />-->
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission
-            android:name="android.permission.PACKAGE_USAGE_STATS"
-            tools:ignore="ProtectedPermissions" />
-
-
-    <!--Android 13版本适配，细化存储权限-->
-    <!--    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />-->
-    <!--    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />-->
-    <!--    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />-->
-
-    <!--从Android 11开始，必须要在AndroidManifest.xml清单文件中加入query权限申请，才能检测到手机上安装的三方应用包安装状态-->
-    <queries>
-        <package android:name="com.instagram.android" />
-        <package android:name="com.tencent.mm" />
-        <package android:name="com.tencent.mobileqq" />
-        <package android:name="com.tencent.wework" />
-        <package android:name="com.qzone" />
-        <package android:name="com.sina.weibo" />
-        <package android:name="com.alibaba.android.rimet" />
-        <package android:name="com.eg.android.AlipayGphone" />
-        <package android:name="com.donews.renren.android" />
-        <package android:name="com.douban.frodo" />
-        <package android:name="com.youdao.note" />
-        <package android:name="im.yixin" />
-        <package android:name="com.yinxiang" />
-        <package android:name="com.facebook.katana" />
-        <package android:name="com.linkedin.android" />
-    </queries>
-
-    <queries package="${applicationId}">
-        <intent>
-            <action android:name="android.media.action.IMAGE_CAPTURE" />
-        </intent>
-        <intent>
-            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
-        </intent>
-    </queries>
-
     <application
-            android:networkSecurityConfig="@xml/network_security_config"
-            android:name="com.example.pandas.app.DiorApplication"
-            android:allowBackup="true"
-            android:icon="@mipmap/img_icon_panda"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+        android:name="com.example.pandas.app.DiorApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/img_icon_panda"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
 
         <!--明确引用org.apache.http.legacy库，避免QQ官方open sdk在Android 9上报错 -->
-        <uses-library
-                android:name="org.apache.http.legacy"
-                android:required="false" />
-
-        <!--没有好的图片和动画，暂时不用Android12-->
-        <!--android:theme="@style/Theme.SplashScreen.Demo"-->
         <activity
-                android:name="com.example.pandas.ui.activity.SplashActivity"
-                android:theme="@style/SplashAppTheme"
-                android:exported="true">
+            android:name="com.example.pandas.ui.activity.SplashActivity"
+            android:exported="true"
+            android:theme="@style/SplashAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -87,16 +36,19 @@
             </intent-filter>
         </activity>
 
+        <!--没有好的图片和动画，暂时不用Android12-->
+        <!--android:theme="@style/Theme.SplashScreen.Demo"-->
         <activity
-                android:name=".ui.activity.MainActivity"
-                android:launchMode="singleTask" />
+            android:name=".ui.activity.MainActivity"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:windowSoftInputMode="adjustResize|adjustPan" />
         <!--android:windowSoftInputMode="adjustResize" : 当软键盘弹出时，Activity 的大小会被调整，
         以保证软键盘不会覆盖布局。这种方式适用于 Activity 中只有一个可编辑的 EditText 控件，或者多个 EditText 控件都位于同一个 ScrollView 中。
         android:windowSoftInputMode="adjustPan" : 仅仅将当前 EditText 控件顶上去，其他的布局不会受到影响。
         这种方式通常在多个 EditText 控件位于不同位置时使用，或者在普通的 View 中使用-->
-        <activity
-                android:name=".ui.activity.LoginActivity"
-                android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity android:name=".ui.activity.BannerChildListActivity" />
         <activity android:name=".ui.activity.ReNameActivity" />
         <activity android:name=".ui.activity.SignActivity" />
@@ -114,6 +66,10 @@
         <activity android:name=".ui.activity.IntegralActivity" />
         <activity android:name=".ui.activity.RankingActivity" />
         <activity android:name=".ui.activity.WanAndroidActivity" />
+        <activity android:name=".ui.activity.WanContentActivity" />
+        <activity
+            android:name=".ui.activity.WanSearchActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".ui.activity.VerticalVideoActivity" />
         <activity android:name=".ui.activity.MoreDataListActivity" />
         <activity android:name="com.life.publish.lib_selector.PicturePublishActivity" />
@@ -136,31 +92,30 @@
         <activity android:name=".ui.activity.GroupCreateActivity" />
         <activity android:name=".ui.activity.ListActivity" />
         <activity
-                android:name=".ui.activity.AuthenticationActivity"
-                android:windowSoftInputMode="adjustResize|adjustPan" />
+            android:name=".ui.activity.AuthenticationActivity"
+            android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity
-                android:name=".ui.activity.YoungerActivity"
-                android:windowSoftInputMode="adjustResize|adjustPan" />
+            android:name=".ui.activity.YoungerActivity"
+            android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity
-                android:name=".ui.activity.SafeActivity"
-                android:windowSoftInputMode="adjustResize|adjustPan" />
+            android:name=".ui.activity.SafeActivity"
+            android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity android:name=".ui.activity.GroupChatActivity" />
         <activity android:name=".ui.activity.CollectListActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
         <activity android:name=".ui.activity.FaceActivity" />
-        <!--<activity android:name=".ui.activity.Face2Activity" />-->
         <activity android:name=".ui.activity.CommonBannerActivity" />
+        <!--<activity android:name=".ui.activity.Face2Activity" />-->
         <activity android:name=".ui.activity.ShortVideoActivity" />
         <activity android:name=".ui.activity.NewSearchActivity" />
         <activity
-                android:name=".ui.activity.VideoPlayingActivity"
-                android:configChanges="keyboardHidden|orientation|screenSize" />
-
-        <activity
-                android:name="com.tencent.tauth.AuthActivity"
-                android:launchMode="singleTask"
-                android:noHistory="true"
-                android:exported="true">
+            android:name=".ui.activity.VideoPlayingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <!--<activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -172,69 +127,121 @@
         </activity>
 
         <activity
-                tools:replace="android:configChanges"
-                android:name="com.tencent.connect.common.AssistActivity"
-                android:configChanges="orientation|keyboardHidden|screenSize"
-                android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            tools:replace="android:configChanges" />-->
+
+        <activity
+            android:name=".ui.activity.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!--分享7.1.7SDK适配微信官方的v6.8.0版本，需要在工程AndroidManifest.xml清单文件中增加-->
         <activity
-                android:name=".ui.activity.WXEntryActivity"
-                android:configChanges="keyboardHidden|orientation|screenSize"
-                android:exported="true"
+            android:name="com.life.publish.lib_selector.basic.PictureSelectorSupporterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Base.Theme.NoActionBar">
 
-                android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        </activity>
 
-        <provider
-                android:name="androidx.core.content.FileProvider"
-                android:authorities="${applicationId}.fileProvider"
-                android:exported="false"
-                android:grantUriPermissions="true">
-            <meta-data
-                    android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/provider_paths" />
-        </provider>
+        <activity
+            android:name="com.life.publish.lib_selector.basic.PictureSelectorTransparentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Picture.Theme.Translucent">
+
+        </activity>
 
 
         <!--service-->
-        <service android:name=".ui.service.AudioPlayService" />
-        <service android:name=".ui.service.TimingService" />
-        <service android:name=".ui.service.MainService" />
-
-        <!--receiver-->
-        <receiver android:name=".ui.broadcast.TimingBroadCast" />
-        <receiver android:name=".ui.broadcast.ShutdownBroadcastReceiver" />
-
-        <!--selector框架-->
         <provider
-                android:name="com.life.publish.lib_selector.basic.PictureFileProvider"
-                android:authorities="${applicationId}.luckProvider"
-                android:exported="false"
-                android:grantUriPermissions="true">
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
-                    android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/ps_file_paths" />
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+        <provider
+            android:name="com.life.publish.lib_selector.basic.PictureFileProvider"
+            android:authorities="${applicationId}.luckProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/ps_file_paths" />
         </provider>
 
+        <receiver android:name=".ui.broadcast.TimingBroadCast" />
+
+        <!--receiver-->
+        <receiver android:name=".ui.broadcast.ShutdownBroadcastReceiver" />
+        <service android:name=".ui.service.AudioPlayService" />
+
+        <!--selector框架-->
+        <service android:name=".ui.service.TimingService" />
+
+        <service android:name=".ui.service.MainService" />
+
         <service
-                android:name="com.life.publish.lib_selector.service.ForegroundService"
-                android:enabled="true"
-                android:foregroundServiceType="location" />
+            android:name="com.life.publish.lib_selector.service.ForegroundService"
+            android:enabled="true"
+            android:foregroundServiceType="location" />
 
-        <activity
-                android:name="com.life.publish.lib_selector.basic.PictureSelectorSupporterActivity"
-                android:configChanges="orientation|keyboardHidden|screenSize"
-                android:theme="@style/Base.Theme.NoActionBar">
-
-        </activity>
-
-        <activity
-                android:name="com.life.publish.lib_selector.basic.PictureSelectorTransparentActivity"
-                android:configChanges="orientation|keyboardHidden|screenSize"
-                android:theme="@style/Picture.Theme.Translucent">
-
-        </activity>
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
+
+    <queries>
+        <package android:name="com.instagram.android" />
+        <package android:name="com.tencent.mm" />
+        <package android:name="com.tencent.mobileqq" />
+        <package android:name="com.tencent.wework" />
+        <package android:name="com.qzone" />
+        <package android:name="com.sina.weibo" />
+        <package android:name="com.alibaba.android.rimet" />
+        <package android:name="com.eg.android.AlipayGphone" />
+        <package android:name="com.donews.renren.android" />
+        <package android:name="com.douban.frodo" />
+        <package android:name="com.youdao.note" />
+        <package android:name="im.yixin" />
+        <package android:name="com.yinxiang" />
+        <package android:name="com.facebook.katana" />
+        <package android:name="com.linkedin.android" />
+    </queries>
+    <queries package="${applicationId}">
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
+        </intent>
+    </queries>
+
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+
+    <!--Android 13版本适配，细化存储权限-->
+    <!--    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />-->
+    <!--    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />-->
+    <!--    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />-->
+
+    <!--从Android 11开始，必须要在AndroidManifest.xml清单文件中加入query权限申请，才能检测到手机上安装的三方应用包安装状态-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
