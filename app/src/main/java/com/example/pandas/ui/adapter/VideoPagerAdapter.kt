@@ -296,6 +296,37 @@ public class VideoPagerAdapter(
             }
         }
 
+        fun updateCollectView(isCollect: Boolean, position: Int) {
+            if (isCollect) {
+                collectImg.setImageResource(R.mipmap.img_vertical_collected1)
+            } else {
+                collectImg.setImageResource(R.mipmap.img_vertical_collect)
+            }
+            list[position].videoData?.let {
+                if (isCollect) {
+                    if (!it.collect) {
+                        val collectCount = it.collects + 1
+                        collects.text = collectCount.toString()
+                        it.collectTime = System.currentTimeMillis()
+                        it.collects = collectCount
+                        it.collect = true
+                    }
+                } else {
+                    if (it.collect) {
+                        var collectCount = it.collects - 1
+                        if (collectCount > 0) {
+                            collects.text = collectCount.toString()
+                        } else {
+                            collects.text = "收藏"
+                            collectCount = 0
+                        }
+                        it.collects = collectCount
+                        it.collect = false
+                    }
+                }
+            }
+        }
+
         fun handle(position: Int) {
             val video = list[position]
             val user = video.user
@@ -395,12 +426,11 @@ public class VideoPagerAdapter(
             }
 
             collectItem.setOnLongClickListener {
-                listener.collectItemLongClick(list[position].code)
+                listener.collectItemLongClick(list[position])
                 true
             }
             collectItem.setOnClickListener {
                 if (AppInstance.instance.isLoginSuccess) {
-
                     val data = list[position]
                     if (data.videoData == null) {
                         addShortStartAnimation(collectImg)
@@ -414,7 +444,7 @@ public class VideoPagerAdapter(
                         )
                         data.videoData = vd
                         listener.updataVideoData(vd)
-                        listener.collect(true, data.code)
+                        listener.collect(true, data)
                     } else {
                         data.videoData?.let { vd ->
                             if (vd.collect) {
@@ -428,7 +458,7 @@ public class VideoPagerAdapter(
                                     collectCount = 0
                                 }
                                 vd.collects = collectCount
-                                listener.collect(false, data.code)
+                                listener.collect(false, data)
                             } else {
                                 addShortStartAnimation(collectImg)
                                 collectImg.setImageResource(R.mipmap.img_vertical_collected1)
@@ -436,7 +466,7 @@ public class VideoPagerAdapter(
                                 collects.text = collectCount.toString()
                                 vd.collectTime = System.currentTimeMillis()
                                 vd.collects = collectCount
-                                listener.collect(true, data.code)
+                                listener.collect(true, data)
                             }
                             vd.collect = !vd.collect
                             listener.updataVideoData(vd)
@@ -647,11 +677,11 @@ public class VideoPagerAdapter(
 
         fun onSingleTap()
 
-        fun collectItemLongClick(videoCode: Int)
+        fun collectItemLongClick(petVideo: PetVideo)
 
         fun updataVideoData(videoData: VideoData)
 
-        fun collect(isAdd: Boolean, videoCode: Int)
+        fun collect(isAdd: Boolean, petVideo: PetVideo)
 
         fun updateUserAttention(userCode: Int)
 

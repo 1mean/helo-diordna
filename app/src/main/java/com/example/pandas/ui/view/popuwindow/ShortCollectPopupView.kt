@@ -47,5 +47,8 @@ public class ShortCollectPopupView(
         bottomView.setOnClickListener {
             listener.viewClick()
         }
+        btnAdd.setOnClickListener {
+            listener.viewClick()
+        }
     }
 }

@@ -164,27 +164,6 @@ public class HistoryViewModeL : BaseViewModel() {
             })
     }
 
-    fun getCollects() {
-
-        request({ groupRepository.getCollects() },
-            {
-                val dataList = UIDataWrapper(
-                    isSuccess = true,
-                    isEmpty = it.isEmpty(),
-                    listData = it
-                )
-                collectResult.value = dataList
-            },
-            {
-                val dataList = UIDataWrapper(
-                    isSuccess = false,
-                    errMessage = it.errorMsg,
-                    listData = mutableListOf<Group>()
-                )
-                collectResult.value = dataList
-            })
-    }
-
     fun removeHistory(list: MutableList<History>, removeAll: Boolean) {
         request({ historyRepository.removeHistory(list, removeAll) },
             {
@@ -225,19 +204,6 @@ public class HistoryViewModeL : BaseViewModel() {
 
         viewModelScope.launch {
             videoRepository.removeLoves(list, removeAll)
-        }
-    }
-
-    fun createAGroup(groupName: String, groupDesc: String, isOpen: Boolean) {
-
-        viewModelScope.launch {
-            createResult.value = groupRepository.createGroup(groupName, groupDesc, isOpen)
-        }
-    }
-
-    fun removeGroup(groupCode: Int) {
-        viewModelScope.launch {
-            removeResult.value = groupRepository.removeGroup(groupCode)
         }
     }
 }

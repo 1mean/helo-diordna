@@ -32,7 +32,7 @@ public class CollectItemAdapter(
         val title = holder.getWidget<AppCompatTextView>(R.id.txt_title_collect)
         val desc = holder.getWidget<AppCompatTextView>(R.id.txt_desc_collect)
 
-        loadImage(context, data.groupCover, cover)
+        loadCenterImage(context, data.groupCover, cover)
         title.text = data.groupName
         val str = if (data.open) {
             " • 公开"

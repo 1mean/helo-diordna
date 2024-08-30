@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.android.android_sqlite.entity.Group
+import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.VideoData
 import com.android.base.interaction.AdapterListener
 import com.android.base.interaction.ViewClickListener
@@ -91,6 +92,18 @@ public class ShortRecommendFragment :
     }
 
     override fun createObserver() {
+
+        lifecycleScope.launch {
+            mViewModel.createNewGroupFlow.collect {
+                toastTopShow(mActivity, it)
+                mAdapter.recyclerView?.let { rv ->
+                    val viewHolder =
+                        rv.findViewHolderForAdapterPosition(currentPosition) as? VideoPagerAdapter.MyViewHolder
+                    viewHolder?.updateCollectView(true, currentPosition)
+                }
+            }
+        }
+
         lifecycleScope.launch {
             mViewModel.verticalVideosFlow.collect {
                 if (it.isSuccess) {
@@ -111,9 +124,13 @@ public class ShortRecommendFragment :
 
         lifecycleScope.launch {
             mViewModel.groupFlow.collect {
-                collectPopupView = ShortCollectPopupView(mActivity, it, object : AdapterListener<Group> {
+                Log.e("1111mean", "mViewModel.groupFlow")
+                collectPopupView =
+                    ShortCollectPopupView(mActivity, it, object : AdapterListener<Group> {
                         override fun itemClick(position: Int, t: Group) {
-                            mViewModel.addGroupItem(videoCode, t)
+                            petVideo?.let {video->
+                                mViewModel.addGroupItem(video, t)
+                            }
                             collectPopupView?.dismiss()
                         }
 
@@ -123,7 +140,9 @@ public class ShortRecommendFragment :
                             val createPopupView = CreateGroupPopupView(mActivity, coverUrl, object :
                                 ViewClickListener<Group> {
                                 override fun viewClick(t: Group) {
-
+                                    petVideo?.let {
+                                        mViewModel.createNewGroupAndIn(it.code, t)
+                                    }
                                 }
                             })
                             XPopup.Builder(context)
@@ -152,8 +171,26 @@ public class ShortRecommendFragment :
         lifecycleScope.launch {
             mViewModel.addGroupItemFlow.collect {
                 if (it.isNotEmpty()) {
+                    if (it != "不支持重复加入收藏夹") {
+                        mAdapter.recyclerView?.let { rv ->
+                            val viewHolder =
+                                rv.findViewHolderForAdapterPosition(currentPosition) as? VideoPagerAdapter.MyViewHolder
+                            viewHolder?.updateCollectView(true, currentPosition)
+                        }
+                    }
                     toastTopShow(mActivity, it)
                 }
+            }
+        }
+
+        lifecycleScope.launch {
+            mViewModel.defaultCollectFlow.collect {
+//                mAdapter.recyclerView?.let { rv ->
+//                    val viewHolder =
+//                        rv.findViewHolderForAdapterPosition(currentPosition) as? VideoPagerAdapter.MyViewHolder
+//                    viewHolder?.updateCollectView(true, currentPosition)
+//                }
+                toastTopShow(mActivity, it)
             }
         }
     }
@@ -265,9 +302,10 @@ public class ShortRecommendFragment :
         }
     }
 
-    private var videoCode: Int = 0
-    override fun collectItemLongClick(videoCode: Int) {
-        this.videoCode = videoCode
+    private var petVideo: PetVideo? = null
+    override fun collectItemLongClick(petVideo: PetVideo) {
+        this.petVideo = petVideo
+        Log.e("1mean", "collectItemLongClick")
         mViewModel.getCollectGroups()
     }
 
@@ -275,8 +313,8 @@ public class ShortRecommendFragment :
         mViewModel.addOrUpdateVideoData(videoData)
     }
 
-    override fun collect(isAdd: Boolean, videoCode: Int) {
-        mViewModel.updateCollect(isAdd, videoCode)
+    override fun collect(isAdd: Boolean, petVideo: PetVideo) {
+        mViewModel.updateCollect(isAdd, petVideo)
     }
 
     override fun updateUserAttention(userCode: Int) {

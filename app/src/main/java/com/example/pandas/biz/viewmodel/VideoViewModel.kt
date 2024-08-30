@@ -182,20 +182,6 @@ public class VideoViewModel : BaseViewModel() {
         }
     }
 
-    fun addCollection(videoCode: Int, groupName: String) {
-
-        viewModelScope.launch {
-            groupRepository.addCollection(groupName, videoCode)
-        }
-    }
-
-    fun deleteCollection(videoCode: Int, groupName: String) {
-
-        viewModelScope.launch {
-            groupRepository.deleteCollection(groupName, videoCode)
-        }
-    }
-
     fun updateAttention(userCode: Int) {
         viewModelScope.launch {
             userRepository.updateAttention(userCode)

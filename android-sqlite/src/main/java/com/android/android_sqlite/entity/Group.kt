@@ -33,7 +33,7 @@ data class Group(
     @ColumnInfo
     var open: Boolean = false,//群组内容是否公开展示
     @ColumnInfo
-    var type: Int = 0,//群组类型，目前99为默认群组
+    var type: Int = 0,
 
     @ColumnInfo
     var reservedInt: Int = 0,//预留int字段

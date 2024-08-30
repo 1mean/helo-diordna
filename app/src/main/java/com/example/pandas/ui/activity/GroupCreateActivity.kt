@@ -87,20 +87,20 @@ public class GroupCreateActivity : BaseActivity<HistoryViewModeL, ActivityCreate
                 } else {
                     loadingPopup!!.show()
                 }
-                mViewModel.createAGroup(name.toString(), desc.toString(), isOpen)
+                //mViewModel.createAGroup(name.toString(), desc.toString(), isOpen)
             }
         }
     }
 
     override fun createObserver() {
 
-        mViewModel.createResult.observe(this) {
-            loadingPopup!!.dismiss()
-            if (it) {
-                setResult(RESULT_OK)
-                finish()
-            }
-        }
+//        mViewModel.createResult.observe(this) {
+//            loadingPopup!!.dismiss()
+//            if (it) {
+//                setResult(RESULT_OK)
+//                finish()
+//            }
+//        }
     }
 
 }

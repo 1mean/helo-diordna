@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
+import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.VideoComment
 import com.android.android_sqlite.entity.VideoData
 import com.android.base.ui.activity.BaseActivity
@@ -549,15 +550,15 @@ public class ShortVideoActivity :
         }
     }
 
-    override fun collectItemLongClick(videoCode: Int) {
+    override fun collectItemLongClick(petVideo: PetVideo) {
     }
 
     override fun updataVideoData(videoData: VideoData) {
         mViewModel.addOrUpdateVideoData(videoData)
     }
 
-    override fun collect(isAdd: Boolean, videoCode: Int) {
-        mViewModel.updateCollect(isAdd, videoCode)
+    override fun collect(isAdd: Boolean, petVideo: PetVideo) {
+        mViewModel.updateCollect(isAdd, petVideo)
     }
 
     override fun updateUserAttention(userCode: Int) {

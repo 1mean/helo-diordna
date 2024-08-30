@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.android.android_sqlite.app.SqliteApplication
+import com.android.android_sqlite.entity.GroupVideoItem
 import com.android.android_sqlite.manager.groupRepository
 import com.android.android_sqlite.manager.userRepository
 import com.android.base.ModuleApplication
@@ -163,13 +164,7 @@ class DiorApplication : Application(), ViewModelStoreOwner {
     private fun initdata() {
 
         GlobalScope.launch {
-            userRepository.getLoginUser("account").collect {
-                Log.e("111111mean","userName=${it.userName}")
-                Log.e("111111mean","userCode=${it.userCode}")
-                Log.e("111111mean","sex=${it.sex}")
-                Log.e("111111mean","signature=${it.signature}")
-                Log.e("111111mean","reservedString=${it.reservedString}")
-            }
+            //groupRepository.removeAll()
         }
 
         Thread {

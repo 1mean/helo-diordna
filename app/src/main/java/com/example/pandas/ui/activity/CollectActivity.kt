@@ -78,7 +78,7 @@ public class CollectActivity : BaseActivity<CollectViewModeL, ActivityCollectBin
                 if (it.isNotEmpty()) {
                     it.forEach { group ->
                         mTitles.add(group.groupName!!)
-                        groupCodes.add(group.groupCode)
+                        groupCodes.add(group.id)
                     }
                     binding.vp2Collect.apply {
                         adapter = CollectagerAdapter(this@CollectActivity)

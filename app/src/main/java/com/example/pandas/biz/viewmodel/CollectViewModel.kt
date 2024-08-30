@@ -32,7 +32,9 @@ public class CollectViewModeL : BaseViewModel() {
 
     fun getCollectGroups() {
         viewModelScope.launch {
-            groupRepository.getGroups().collect {
+            flow {
+                emit(groupRepository.getGroups())
+            }.collect {
                 _groupsFlow.emit(it)
             }
         }

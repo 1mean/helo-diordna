@@ -1,6 +1,7 @@
 package com.example.pandas.ui.fragment.main.mine
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
@@ -98,12 +99,15 @@ public class CollectFragment : BaseFragment<CollectViewModeL, LayoutSwipRefreshB
 
         lifecycleScope.launch {
             mViewModel.groupsVideosFlow.collect {
+                Log.e("1meaadsan","size=${it.size}")
                 if (pageIndex == 0) {//刷新
                     if (it.isNotEmpty()) {
                         mAdapter.refreshAdapter(it)
                         binding.recyclerLayout.isRefreshing(false)
                         binding.recyclerLayout.visibility = View.VISIBLE
                         pageIndex++
+                    } else {
+                        mAdapter.clear()
                     }
                 } else {
                     if (it.isNotEmpty()) {

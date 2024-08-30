@@ -1,5 +1,6 @@
 package com.example.pandas.biz.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.android.android_sqlite.entity.Group
@@ -37,8 +38,14 @@ public class ShortVideoViewModel : BaseViewModel() {
     private val _groupsFlow: MutableSharedFlow<MutableList<Group>> by lazy { MutableSharedFlow() }
     val groupFlow = _groupsFlow.asSharedFlow()
 
+    private val _defaultCollectFlow: MutableSharedFlow<String> by lazy { MutableSharedFlow() }
+    val defaultCollectFlow = _defaultCollectFlow.asSharedFlow()
+
     private val _addGroupItemFlow: MutableSharedFlow<String> by lazy { MutableSharedFlow() }
     val addGroupItemFlow = _addGroupItemFlow.asSharedFlow()
+
+    private val _createNewGroupFlow: MutableSharedFlow<String> by lazy { MutableSharedFlow() }
+    val createNewGroupFlow = _createNewGroupFlow.asSharedFlow()
 
     val commentResult: MutableLiveData<VideoComment> by lazy { MutableLiveData() }
 
@@ -215,15 +222,21 @@ public class ShortVideoViewModel : BaseViewModel() {
         }
     }
 
-    fun updateCollect(isAdd: Boolean, videoCode: Int) {
+    fun updateCollect(isCollect: Boolean, petVideo: PetVideo) {
         viewModelScope.launch {
-            if (isAdd) {
-                groupRepository.addCollection("默认收藏夹", videoCode)
-            } else {
-                groupRepository.deleteCollection("默认收藏夹", videoCode)
+            flow {
+                val result = if (isCollect) {//点击收藏
+                    groupRepository.insertGroupItem(petVideo, null)
+                } else {
+                    groupRepository.removeGroupItemByCode(petVideo.code)
+                }
+                emit(result)
+            }.catch { e -> e.printStackTrace() }.flowOn(Dispatchers.IO).collect {
+                _defaultCollectFlow.emit(it)
             }
         }
     }
+
 
     fun updateAttention(userCode: Int) {
         viewModelScope.launch {
@@ -251,16 +264,31 @@ public class ShortVideoViewModel : BaseViewModel() {
 
     fun getCollectGroups() {
         viewModelScope.launch {
-            groupRepository.getGroups().collect {
+            flow {
+                emit(groupRepository.getGroups())
+            }.collect {
+                Log.e("1mean", "getCollectGroups collect:$it")
                 _groupsFlow.emit(it)
             }
         }
     }
 
-    fun addGroupItem(videoCode: Int, group: Group) {
+    fun addGroupItem(video: PetVideo, group: Group) {
         viewModelScope.launch {
-            groupRepository.addGroupItem(videoCode, group).collect {
+            flow {
+                emit(groupRepository.insertGroupItem(video, group))
+            }.catch { e -> e.printStackTrace() }.flowOn(Dispatchers.IO).collect {
                 _addGroupItemFlow.emit(it)
+            }
+        }
+    }
+
+    fun createNewGroupAndIn(videoCode: Int, group: Group) {
+        viewModelScope.launch {
+            flow {
+                emit(groupRepository.createNewGroupAndIn(group, videoCode))
+            }.catch { e -> e.printStackTrace() }.flowOn(Dispatchers.IO).collect {
+                _createNewGroupFlow.emit(it)
             }
         }
     }

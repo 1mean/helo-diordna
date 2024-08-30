@@ -2,12 +2,17 @@ package com.example.pandas.ui.view.popuwindow
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.appcompat.widget.*
+import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.android.android_sqlite.entity.Group
 import com.android.base.interaction.AdapterListener
 import com.android.base.interaction.ViewClickListener
 import com.example.pandas.R
+import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.ui.adapter.CollectItemAdapter
 import com.example.pandas.ui.ext.initBase
@@ -45,7 +50,7 @@ public class CreateGroupPopupView(
         editText = findViewById(R.id.edit_group_name)
         switchView = findViewById(R.id.switch_open)
 
-        loadImage(context, coverUrl, cover)
+        loadCenterImage(context, coverUrl, cover)
 
         editText.isFocusable = true
         cancelView.setOnClickListener { dismiss() }
@@ -63,7 +68,15 @@ public class CreateGroupPopupView(
                 groupCover = coverUrl
             )
             listener.viewClick(group)
+            dismiss()
         }
 
+        editText.addTextChangedListener { input ->
+            if (input == null || input.isEmpty()) {
+                sureView.setTextColor(ContextCompat.getColor(context, R.color.color_bg_mid_red))
+            } else {
+                sureView.setTextColor(ContextCompat.getColor(context, R.color.color_bg_red))
+            }
+        }
     }
 }
