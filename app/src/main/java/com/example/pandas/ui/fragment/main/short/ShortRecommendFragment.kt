@@ -185,11 +185,6 @@ public class ShortRecommendFragment :
 
         lifecycleScope.launch {
             mViewModel.defaultCollectFlow.collect {
-//                mAdapter.recyclerView?.let { rv ->
-//                    val viewHolder =
-//                        rv.findViewHolderForAdapterPosition(currentPosition) as? VideoPagerAdapter.MyViewHolder
-//                    viewHolder?.updateCollectView(true, currentPosition)
-//                }
                 toastTopShow(mActivity, it)
             }
         }

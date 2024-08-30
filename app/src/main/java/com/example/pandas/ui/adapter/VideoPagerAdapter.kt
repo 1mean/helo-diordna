@@ -8,6 +8,7 @@ import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -302,26 +303,40 @@ public class VideoPagerAdapter(
             } else {
                 collectImg.setImageResource(R.mipmap.img_vertical_collect)
             }
-            list[position].videoData?.let {
-                if (isCollect) {
-                    if (!it.collect) {
-                        val collectCount = it.collects + 1
-                        collects.text = collectCount.toString()
-                        it.collectTime = System.currentTimeMillis()
-                        it.collects = collectCount
-                        it.collect = true
-                    }
-                } else {
-                    if (it.collect) {
-                        var collectCount = it.collects - 1
-                        if (collectCount > 0) {
+            if (list[position].videoData == null) {
+                addShortStartAnimation(collectImg)
+                collectImg.setImageResource(R.mipmap.img_vertical_collected1)
+                collects.text = "1"
+                val vd = VideoData(
+                    videoCode = list[position].code,
+                    collect = true,
+                    collects = 1,
+                    collectTime = System.currentTimeMillis()
+                )
+                list[position].videoData = vd
+            } else {
+                list[position].videoData?.let {
+                    if (isCollect) {
+                        Log.e("1measdan","it.collect=${it.collect}")
+                        if (!it.collect) {
+                            val collectCount = it.collects + 1
                             collects.text = collectCount.toString()
-                        } else {
-                            collects.text = "收藏"
-                            collectCount = 0
+                            it.collectTime = System.currentTimeMillis()
+                            it.collects = collectCount
+                            it.collect = true
                         }
-                        it.collects = collectCount
-                        it.collect = false
+                    } else {
+                        if (it.collect) {
+                            var collectCount = it.collects - 1
+                            if (collectCount > 0) {
+                                collects.text = collectCount.toString()
+                            } else {
+                                collects.text = "收藏"
+                                collectCount = 0
+                            }
+                            it.collects = collectCount
+                            it.collect = false
+                        }
                     }
                 }
             }
