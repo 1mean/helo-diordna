@@ -53,4 +53,6 @@ public interface UserDao {
     @Query("select userCode from user where attention=1 limit 0,30")
     fun queryLiveAttentionUserCodes(): Flow<MutableList<Int>>
 
+    @Query("select * from user where userName like (:like) limit (:startIndex),(:pageCount)")
+    fun queryLikedPageUser(like: String, startIndex: Int, pageCount: Int): Flow<MutableList<User>>
 }

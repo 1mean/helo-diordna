@@ -29,6 +29,8 @@ public class CollectViewModeL : BaseViewModel() {
     val groupFlow = _groupsFlow.asSharedFlow()
     private val _groupsVideosFlow: MutableSharedFlow<MutableList<PetVideo>> by lazy { MutableSharedFlow() }
     val groupsVideosFlow = _groupsVideosFlow.asSharedFlow()
+    private val _groupsInsertFlow: MutableSharedFlow<Long> by lazy { MutableSharedFlow() }
+    val groupsInsertFlow = _groupsInsertFlow.asSharedFlow()
 
     fun getCollectGroups() {
         viewModelScope.launch {
@@ -51,4 +53,11 @@ public class CollectViewModeL : BaseViewModel() {
         }
     }
 
+    fun createGroup(group: Group){
+        viewModelScope.launch {
+            groupRepository.insert(group).collect{
+                _groupsInsertFlow.emit(it)
+            }
+        }
+    }
 }

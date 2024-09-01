@@ -6,8 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.android.android_sqlite.bean.SearchInfo
 import com.android.android_sqlite.entity.SearchHistory
+import com.android.android_sqlite.entity.User
 import com.android.android_sqlite.entity.VideoAndUser
 import com.android.android_sqlite.manager.searchHistoryRepository
+import com.android.android_sqlite.manager.userRepository
 import com.android.android_sqlite.manager.videoRepository
 import com.android.base.vm.BaseViewModel
 import com.android.base.vm.UnPeekLiveData
@@ -58,6 +60,8 @@ public class SearchViewModel : BaseViewModel() {
     val queryAllHistoryFlow = _queryAllHistoryFlow.asSharedFlow()
     private val _deleteAllFlow: MutableSharedFlow<Int> by lazy { MutableSharedFlow() }
     val deleteAllFlow = _deleteAllFlow.asSharedFlow()
+    private val _likedUsersFlow: MutableSharedFlow<MutableList<User>> by lazy { MutableSharedFlow() }
+    val likedUsersFlow = _likedUsersFlow.asSharedFlow()
 
 
     fun search(words: String) {
@@ -95,9 +99,9 @@ public class SearchViewModel : BaseViewModel() {
         }
     }
 
-    fun clearAllHistory(type:Int) {
+    fun clearAllHistory(type: Int) {
         viewModelScope.launch {
-            searchHistoryRepository.deleteAllHistory(type).collect{
+            searchHistoryRepository.deleteAllHistory(type).collect {
                 _deleteAllFlow.emit(it)
             }
         }
@@ -181,6 +185,28 @@ public class SearchViewModel : BaseViewModel() {
             searchHistoryRepository.queryAll(type).collect {
                 _queryAllHistoryFlow.emit(it)
             }
+        }
+    }
+
+    fun getLikeUser(key: String, startIndex: Int, pageCount: Int) {
+        viewModelScope.launch {
+            userRepository.getLikedUser(key, startIndex, pageCount).collect {
+                _likedUsersFlow.emit(it)
+            }
+        }
+    }
+
+    fun follow(context: Context, userCode: Int) {
+        viewModelScope.launch {
+            withContext(Dispatchers.Default) {
+                SPUtils.saveList<String>(context, AppInfos.ATTENTION_KEY, userCode.toString())
+            }
+        }
+    }
+
+    fun updateAttention(userCode: Int) {
+        viewModelScope.launch {
+            userRepository.updateAttention(userCode)
         }
     }
 }

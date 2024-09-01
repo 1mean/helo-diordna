@@ -1,7 +1,8 @@
-package com.example.pandas.ui.fragment.main.mine
+package com.example.pandas.ui.fragment.search
 
 import FollowFragmentAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -9,9 +10,10 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.android.base.ui.fragment.BaseFragment
+import com.example.pandas.biz.viewmodel.SearchViewModel
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.DialogAttentionCancelBinding
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
@@ -20,16 +22,16 @@ import com.example.pandas.ui.ext.initNoFooter
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
- * @description: 我的-粉丝-我的关注
+ * @description: SearchUserFragment
  * @author: dongyiming
- * @date: 5/10/22 2:39 下午
+ * @date: 8/25/24 2:27 AM
  * @version: v1.0
  */
-public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBinding>(),
+public class SearchUserFragment :
+    BaseFragment<SearchViewModel, LayoutSwipRefreshBinding>(),
     FollowFragmentAdapter.OnFollowViewClickListener {
 
     private var _bottomSheetDialog: BottomSheetDialog? = null
@@ -37,6 +39,13 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
 
     private var _dBinding: DialogAttentionCancelBinding? = null
     private val dBinding get() = _dBinding!!
+
+    private var startIndex = 0
+    private var pageCounts = 20
+
+    companion object {
+        fun newInstance() = SearchUserFragment()
+    }
 
     private val mAdapter: FollowFragmentAdapter by lazy {
         FollowFragmentAdapter(
@@ -55,7 +64,8 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
             setBackgroundResource(R.color.color_bg_home)
             setRefreshColor()
             setOnRefreshListener {
-                mViewModel.getAllFollowUser()
+                startIndex = 0
+                mViewModel.getLikeUser(mViewModel.keyWords, startIndex, pageCounts)
             }
         }
 
@@ -87,15 +97,25 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
     override fun createObserver() {
 
         lifecycleScope.launch {
-            mViewModel.followUser.collect {
+            mViewModel.likedUsersFlow.collect {
+                Log.e("1madasdasdean","size=" + it.size)
                 if (it.isEmpty()) {
-                    binding.recyclerLayout.visibility = View.GONE
-                    binding.layoutEmpty.llayoutEmpty.visibility = View.VISIBLE
+                    if (startIndex == 0) {
+                        mAdapter.clear()
+                        binding.layoutEmpty.llayoutEmpty.visibility = View.VISIBLE
+                        binding.recyclerLayout.visibility = View.GONE
+                    }
                 } else {
                     binding.recyclerLayout.visibility = View.VISIBLE
                     binding.layoutEmpty.llayoutEmpty.visibility = View.GONE
-                    mAdapter.refreshAdapter(it)
+                    if (startIndex == 0) {
+                        mAdapter.refreshAdapter(it)
+                    } else {
+                        mAdapter.loadMore(it)
+                    }
+                    startIndex = (startIndex + 1) * pageCounts
                 }
+                binding.recyclerLayout.loadMoreFinished(it.isEmpty(), it.size >= pageCounts)
                 binding.swipLayout.isRefreshing = false
             }
         }
@@ -103,7 +123,8 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
 
     override fun firstOnResume() {
         binding.swipLayout.isRefreshing = true
-        mViewModel.getAllFollowUser()
+        Log.e("1madasdasdean","key= ${mViewModel.keyWords}")
+        mViewModel.getLikeUser(mViewModel.keyWords, startIndex, pageCounts)
     }
 
     override fun followViewClick(position: Int, userCode: Int) {

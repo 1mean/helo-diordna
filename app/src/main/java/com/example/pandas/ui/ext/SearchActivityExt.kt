@@ -6,6 +6,7 @@ import com.example.pandas.R
 import com.example.pandas.ui.activity.NewSearchActivity
 import com.example.pandas.ui.activity.SearchActivity
 import com.example.pandas.ui.fragment.search.SearchListFragment
+import com.example.pandas.ui.fragment.search.SearchResultFragment
 
 /**
  * popBackStackImmediate为同步，popBackStack为异步
@@ -26,7 +27,7 @@ fun SearchActivity.addOrShowFragment() {
     }
 
     if (fragment == null) {
-        val newFragment = SearchListFragment()
+        val newFragment = SearchResultFragment()
         transaction.add(R.id.llayout_search_content, newFragment, TAG_SEARCH)
             .addToBackStack(null).commit()
     }
@@ -45,7 +46,7 @@ fun NewSearchActivity.addOrShowFragment() {
 //    }
 
     if (fragment == null) {
-        val newFragment = SearchListFragment()
+        val newFragment = SearchResultFragment()
         transaction.add(R.id.llayout_search_content, newFragment, TAG_SEARCH)
             .addToBackStack(null).commit()
     }

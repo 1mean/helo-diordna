@@ -34,9 +34,9 @@
             android:id="@+id/txt_collect_title"
             style="@style/style_txt_top_collect"
             android:text="@string/str_mine_collect"
+            android:layout_marginStart="60dp"
             app:layout_constraintBottom_toBottomOf="@id/clayout_collect_top"
             app:layout_constraintLeft_toLeftOf="@id/clayout_collect_top"
-            app:layout_constraintRight_toRightOf="@id/clayout_collect_top"
             app:layout_constraintTop_toTopOf="@id/clayout_collect_top" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

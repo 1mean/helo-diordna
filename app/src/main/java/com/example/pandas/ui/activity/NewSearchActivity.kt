@@ -25,7 +25,7 @@ import com.example.pandas.ui.ext.setEditText
 import com.example.pandas.ui.ext.toastTopShow
 import com.example.pandas.ui.ext.turnToSearchResultFragment
 import com.example.pandas.ui.ext.viewColors
-import com.example.pandas.ui.fragment.search.SearchListFragment
+import com.example.pandas.ui.fragment.search.SearchResultFragment
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
@@ -247,7 +247,7 @@ public class NewSearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activ
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = supportFragmentManager.findFragmentByTag(TAG_SEARCH)
         if (fragment == null) {
-            val newFragment = SearchListFragment()
+            val newFragment = SearchResultFragment()
             transaction.add(R.id.llayout_search_content, newFragment, TAG_SEARCH)
                 .addToBackStack(null).commit()
         } else {

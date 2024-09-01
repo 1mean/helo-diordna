@@ -2,6 +2,7 @@ package com.example.pandas.ui.activity
 
 import AppInstance
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -12,6 +13,7 @@ import com.example.pandas.R
 import com.example.pandas.app.appViewModel
 import com.example.pandas.biz.viewmodel.CollectViewModeL
 import com.example.pandas.databinding.ActivityCollectBinding
+import com.example.pandas.ui.ext.launcherActivity
 import com.example.pandas.ui.ext.lightViewColors
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.fragment.main.mine.CollectFragment
@@ -28,6 +30,15 @@ public class CollectActivity : BaseActivity<CollectViewModeL, ActivityCollectBin
 
     private val mTitles = arrayListOf<String>()
     private val groupCodes = arrayListOf<Int>()
+
+    private val requestLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
+            if (result.resultCode == RESULT_OK) {
+                //binding.refreshCollect.isRefreshing = true
+                mViewModel.getCollectGroups()
+            }
+        }
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -63,6 +74,9 @@ public class CollectActivity : BaseActivity<CollectViewModeL, ActivityCollectBin
 
         binding.ibnCollectBack.setOnClickListener {
             finish()
+        }
+        binding.btnCollectAdd.setOnClickListener {
+            launcherActivity(requestLauncher, this, GroupCreateActivity::class.java)
         }
     }
 

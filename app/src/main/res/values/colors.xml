@@ -574,6 +574,7 @@
     <color name="color_logout_divider">#EEEEEE</color>
     <color name="color_txt_tab_selected_wan">#000000</color>
     <color name="color_txt_tab_unselected_wan">#646464</color>
+    <color name="color_txt_tab_unselected_search">#999999</color>
     <color name="color_bg_collect_add">#f3f3f3</color>
 
     <!--通用-->

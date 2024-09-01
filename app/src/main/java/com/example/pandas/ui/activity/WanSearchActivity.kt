@@ -1,7 +1,6 @@
 package com.example.pandas.ui.activity
 
 import AppInstance
-import WanSearchListFragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -26,6 +25,7 @@ import com.example.pandas.ui.adapter.decoration.FallsItemDecoration
 import com.example.pandas.ui.ext.setEditText
 import com.example.pandas.ui.ext.toastTopShow
 import com.example.pandas.ui.ext.viewColors
+import com.example.pandas.ui.fragment.search.WanSearchListFragment
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
@@ -244,7 +244,7 @@ public open class WanSearchActivity : BaseActivity<SearchViewModel, ActivityWanS
     }
 
     private fun turnToSearchResultFragment() {
-        Log.e("1mean","11111111")
+        Log.e("1mean", "11111111")
         KeyboardUtils.hideSoftInput(this)
         binding.editSearch.isCursorVisible = false
         mViewModel.insertSearchHistory(1, mViewModel.keyWords)
@@ -262,7 +262,7 @@ public open class WanSearchActivity : BaseActivity<SearchViewModel, ActivityWanS
         }
     }
 
-    private fun startSearch(){
+    private fun startSearch() {
         val content = if (binding.editSearch.text.isNullOrEmpty()) {
             binding.editSearch.hint.toString()
         } else {
@@ -292,7 +292,7 @@ public open class WanSearchActivity : BaseActivity<SearchViewModel, ActivityWanS
         }
     }
 
-    private fun leave(){
+    private fun leave() {
         val fragment = supportFragmentManager.findFragmentByTag(TAG_SEARCH)
         if (fragment == null) {
             finish()

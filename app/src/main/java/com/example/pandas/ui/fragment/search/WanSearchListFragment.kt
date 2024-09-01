@@ -1,3 +1,4 @@
+package com.example.pandas.ui.fragment.search
 import android.os.Bundle
 import android.util.Log
 import android.view.View

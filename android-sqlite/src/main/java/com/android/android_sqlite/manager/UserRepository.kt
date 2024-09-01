@@ -1,5 +1,6 @@
 package com.android.android_sqlite.manager
 
+import androidx.room.Index
 import com.android.android_sqlite.app.AppDataBase
 import com.android.android_sqlite.dao.UserDao
 import com.android.android_sqlite.entity.User
@@ -137,4 +138,7 @@ public class UserRepository : BaseRepository() {
 
     fun getAllFollowUsers(): Flow<MutableList<User>> = flowInDelay(userDao.queryAllAttentionUsers())
     fun getAllFollowCounts(): Flow<Int> = flowIn(userDao.queryAllAttentionCounts())
+
+    fun getLikedUser(key: String, startIndex: Int, pageCount: Int): Flow<MutableList<User>> =
+        flowInDelay(userDao.queryLikedPageUser(key, startIndex, pageCount))
 }

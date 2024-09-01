@@ -304,7 +304,6 @@ public class VideoPagerAdapter(
                 collectImg.setImageResource(R.mipmap.img_vertical_collect)
             }
             if (list[position].videoData == null) {
-                addShortStartAnimation(collectImg)
                 collectImg.setImageResource(R.mipmap.img_vertical_collected1)
                 collects.text = "1"
                 val vd = VideoData(
@@ -317,24 +316,14 @@ public class VideoPagerAdapter(
             } else {
                 list[position].videoData?.let {
                     if (isCollect) {
-                        Log.e("1measdan","it.collect=${it.collect}")
                         if (!it.collect) {
-                            val collectCount = it.collects + 1
-                            collects.text = collectCount.toString()
+                            collects.text = "1"
                             it.collectTime = System.currentTimeMillis()
-                            it.collects = collectCount
                             it.collect = true
                         }
                     } else {
                         if (it.collect) {
-                            var collectCount = it.collects - 1
-                            if (collectCount > 0) {
-                                collects.text = collectCount.toString()
-                            } else {
-                                collects.text = "收藏"
-                                collectCount = 0
-                            }
-                            it.collects = collectCount
+                            collects.text = "收藏"
                             it.collect = false
                         }
                     }
@@ -412,8 +401,10 @@ public class VideoPagerAdapter(
                 }
 
                 if (it.collect) {
+                    collects.text = "1"
                     collectImg.setImageResource(R.mipmap.img_vertical_collected1)
                 } else {
+                    collects.text = "收藏"
                     collectImg.setImageResource(R.mipmap.img_vertical_collect)
                 }
 
@@ -421,12 +412,6 @@ public class VideoPagerAdapter(
                     comments.text = "抢首评"
                 } else {
                     comments.text = it.comments.toString()
-                }
-
-                if (it.collects == 0) {
-                    collects.text = "收藏"
-                } else {
-                    collects.text = it.collects.toString()
                 }
 
                 if (it.shares == 0) {
@@ -465,22 +450,13 @@ public class VideoPagerAdapter(
                             if (vd.collect) {
                                 addShortEndAnimation(collectImg)
                                 collectImg.setImageResource(R.mipmap.img_vertical_collect)
-                                var collectCount = vd.collects - 1
-                                if (collectCount > 0) {
-                                    collects.text = collectCount.toString()
-                                } else {
-                                    collects.text = "收藏"
-                                    collectCount = 0
-                                }
-                                vd.collects = collectCount
+                                collects.text = "收藏"
                                 listener.collect(false, data)
                             } else {
                                 addShortStartAnimation(collectImg)
                                 collectImg.setImageResource(R.mipmap.img_vertical_collected1)
-                                val collectCount = vd.collects + 1
-                                collects.text = collectCount.toString()
+                                collects.text = "1"
                                 vd.collectTime = System.currentTimeMillis()
-                                vd.collects = collectCount
                                 listener.collect(true, data)
                             }
                             vd.collect = !vd.collect

@@ -459,6 +459,7 @@
     <color name="color_txt_tab_selected_wan">#ffffff</color>
     <color name="color_txt_tab_unselected_wan">#a1a8ad</color>
     <color name="color_indictor_wanandroid">#999999</color>
+    <color name="color_txt_tab_unselected_search">#a1a8ad</color>
     <color name="color_bg_collect_add">#f3f3f3</color>
 
 

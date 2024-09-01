@@ -19,6 +19,10 @@ import kotlinx.coroutines.launch
  */
 public class SearchListFragment : BaseFragment<SearchViewModel, LayoutLoadmoreBinding>() {
 
+    companion object {
+        fun newInstance() = SearchListFragment()
+    }
+
     private val mAdapter: SearchResultAdapter by lazy { SearchResultAdapter("") }
 
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity

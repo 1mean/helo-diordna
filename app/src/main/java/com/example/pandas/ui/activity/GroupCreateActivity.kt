@@ -1,18 +1,22 @@
 package com.example.pandas.ui.activity
 
+import AppInstance
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import com.android.android_sqlite.entity.Group
 import com.android.base.ui.activity.BaseActivity
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.example.pandas.biz.viewmodel.HistoryViewModeL
+import com.example.pandas.biz.viewmodel.CollectViewModeL
 import com.example.pandas.databinding.ActivityCreateGroupBinding
-import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.addHorizontalAnimation
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
+import kotlinx.coroutines.launch
 
 /**
  * @description: GroupCreateActivity
@@ -20,7 +24,7 @@ import com.lxj.xpopup.impl.LoadingPopupView
  * @date: 8/17/22 3:57 下午
  * @version: v1.0
  */
-public class GroupCreateActivity : BaseActivity<HistoryViewModeL, ActivityCreateGroupBinding>() {
+public class GroupCreateActivity : BaseActivity<CollectViewModeL, ActivityCreateGroupBinding>() {
 
     private var loadingPopup: LoadingPopupView? = null
 
@@ -67,10 +71,10 @@ public class GroupCreateActivity : BaseActivity<HistoryViewModeL, ActivityCreate
 
         binding.txtCreatorFinish.setOnClickListener {
 
-            val name = binding.editCreateName.text
-            val desc = binding.editCreateIntroduce.text
+            val name = binding.editCreateName.text.toString()
+            val desc = binding.editCreateIntroduce.text.toString()
             val isOpen = binding.switchGroupCreator.isChecked
-            if (name.isNullOrEmpty()) {
+            if (name.isEmpty()) {
                 addHorizontalAnimation(binding.txtCreatorName)
                 return@setOnClickListener
             } else {
@@ -87,20 +91,29 @@ public class GroupCreateActivity : BaseActivity<HistoryViewModeL, ActivityCreate
                 } else {
                     loadingPopup!!.show()
                 }
-                //mViewModel.createAGroup(name.toString(), desc.toString(), isOpen)
+                val group = Group(
+                    groupName = name,
+                    groupDesc = desc,
+                    createTime = System.currentTimeMillis(),
+                    updateTime = System.currentTimeMillis(),
+                    open = isOpen
+                )
+                mViewModel.createGroup(group)
             }
         }
     }
 
     override fun createObserver() {
-
-//        mViewModel.createResult.observe(this) {
-//            loadingPopup!!.dismiss()
-//            if (it) {
-//                setResult(RESULT_OK)
-//                finish()
-//            }
-//        }
+        lifecycleScope.launch {
+            mViewModel.groupsInsertFlow.collect {
+                Log.e("1mean","it result = $it")
+                loadingPopup?.dismiss()
+                if (it >= 1) {
+                    setResult(RESULT_OK)
+                    finish()
+                }
+            }
+        }
     }
 
 }

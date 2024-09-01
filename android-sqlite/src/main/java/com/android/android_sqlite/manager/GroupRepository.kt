@@ -29,10 +29,13 @@ public class GroupRepository : BaseRepository() {
         }
     }
 
-    suspend fun insert(group: Group) {
-        withContext(Dispatchers.IO) {
-            groupDao.insert(group)
-        }
+    fun insert(group: Group): Flow<Long> {
+        return flow {
+            delay(1000)
+            emit(groupDao.insert(group))
+        }.catch { e -> e.printStackTrace() }
+            .flowOn(Dispatchers.IO)
+
     }
 
     suspend fun delete(groupItem: GroupVideoItem) {
