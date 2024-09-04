@@ -219,7 +219,7 @@ interface PetVideoDao {
     ): Flow<MutableList<VideoAndUser>>
 
     @Transaction
-    @Query("select * from pet_video where type=0 and videoType=0 and title like (:words) limit (:startIndex),(:counts)")
+    @Query("select * from pet_video where type=0 and videoType=0 and title like '%' || :words || '%' limit (:startIndex),(:counts)")
     fun queryPandaByName(
         words: String,
         startIndex: Int,
@@ -238,11 +238,11 @@ interface PetVideoDao {
     @Query("select * from pet_video where code=(:code)")
     suspend fun getVideoByCode(code: Int): PetVideo
 
-    @Query("select title,code from pet_video where title like (:words) limit 0,(:count)")
+    @Query("select title,code from pet_video where title like '%' || :words || '%' limit 0,(:count)")
     fun queryByKeyWords(words: String, count: Int): Flow<MutableList<SearchInfo>>
 
     @Transaction
-    @Query("select * from pet_video where period=(:period) and type=0 and videoType=0 and title like (:words) limit (:startIndex),(:counts)")
+    @Query("select * from pet_video where period=(:period) and type=0 and videoType=0 and title like '%' || :words || '%' limit (:startIndex),(:counts)")
     fun queryPeriedByKey(
         words: String,
         period: Int,
@@ -251,7 +251,7 @@ interface PetVideoDao {
     ): Flow<MutableList<VideoAndUser>>
 
     @Transaction
-    @Query("select * from pet_video where type=0 and videoType=0 and star=1 and title like (:words) limit (:startIndex),(:counts)")
+    @Query("select * from pet_video where type=0 and videoType=0 and star=1 and title like '%' || :words || '%' limit (:startIndex),(:counts)")
     fun queryLovedByKey(
         words: String,
         startIndex: Int,
@@ -259,7 +259,7 @@ interface PetVideoDao {
     ): Flow<MutableList<VideoAndUser>>
 
     @Transaction
-    @Query("select * from pet_video where title like (:words) limit (:startIndex),(:counts)")
+    @Query("select * from pet_video where title like '%' || :words || '%' limit (:startIndex),(:counts)")
     fun queryWordsByPage(
         words: String,
         startIndex: Int,

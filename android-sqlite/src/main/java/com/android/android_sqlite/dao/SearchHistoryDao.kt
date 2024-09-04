@@ -33,6 +33,9 @@ public interface SearchHistoryDao {
     @Query("delete from search_history where type=(:type)")
     suspend fun deleteAll(type:Int): Int //deleteAll方法只能返回Int，返回Flow<Int>就会报错
 
+    @Query("delete from search_history where id=(:id)")
+    suspend fun deleteById(id:Int): Int //deleteAll方法只能返回Int，返回Flow<Int>就会报错
+
     @Query("select * from search_history where type=(:type) order by updateTime desc limit (:startIndex),(:count)")
     fun querySearchHistoryByPage(
         type: Int,

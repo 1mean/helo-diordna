@@ -54,8 +54,7 @@ import kotlin.math.abs
  * @date: 12/29/21 3:48 下午
  * @version: v1.0
  */
-public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBinding>(),
-    CommentsListener, ExoPlayerListener, VideoMoreSelectListener {
+public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBinding>() {
 
     val tabNames = arrayListOf("简介", "评论")
 
@@ -72,9 +71,25 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     private var fullPos: AppCompatTextView? = null
     private var video: PetVideo? = null
 
-    private val moreDialog by lazy { VideoMoreBottomSheetDialog(this, this) }
+    private val moreDialog by lazy {
+        VideoMoreBottomSheetDialog(
+            this,
+            { addPlayLater() },
+            { setPlaySpeed() })
+    }
 
-    val videoManager: VideoPlayManager by lazy { VideoPlayManager(this, this) }
+    val videoManager: VideoPlayManager by lazy {
+        VideoPlayManager(this) { isPlaying: Boolean ->
+            if (isPlaying && !isControllerShow) {//解决视频开始播放时,进度条显示错误，task会有1秒才会显示正确值
+                binding.exoTime.run {
+                    visibility = View.VISIBLE
+                    setDuration(videoManager.getDuration())
+                    setBufferedPosition(videoManager.bufferedPos())
+                    setPosition(videoManager.getCurrentPos())
+                }
+            }
+        }
+    }
 
     fun initStatusView() {
         StatusBarUtils.setStatusBarMode(this, false, R.color.black)
@@ -332,17 +347,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         }
     }
 
-    override fun isPlayingChanged(isPlaying: Boolean) {
-        if (isPlaying && !isControllerShow) {//解决视频开始播放时,进度条显示错误，task会有1秒才会显示正确值
-            binding.exoTime.run {
-                visibility = View.VISIBLE
-                setDuration(videoManager.getDuration())
-                setBufferedPosition(videoManager.bufferedPos())
-                setPosition(videoManager.getCurrentPos())
-            }
-        }
-    }
-
     private var lastClickTime: Long = 0
     private fun isFastClick(): Boolean {
 
@@ -432,23 +436,6 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         return super.dispatchTouchEvent(ev)
     }
 
-    override fun showCommentsFragment(commentId: Int) {
-        val fragments = supportFragmentManager.fragments
-        addFragment(
-            "comment_list", R.id.llayout_video_info, CommentListFragment.newInstance(commentId),
-            intArrayOf(
-                R.anim.animate_fragment_in,
-                R.anim.animate_fragment_out,
-                R.anim.animate_fragment_in,
-                R.anim.animate_fragment_out
-            )
-        )
-    }
-
-    override fun closeCommentFragment() {
-        popBack("comment_list")
-    }
-
     override fun onkeyBack() {
 
         val fragment = supportFragmentManager.findFragmentByTag("comment_list")
@@ -483,8 +470,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
         return super.onKeyDown(keyCode, event)
     }
 
-    override fun addPlayLater() {
-        super.addPlayLater()
+    private fun addPlayLater() {
         video?.let {
             mViewModel.addLaterPlayer(it.code)
         }
@@ -493,9 +479,7 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
     }
 
     private var checkPos = 3
-    override fun setPlaySpeed() {
-        super.setPlaySpeed()
-
+    private fun setPlaySpeed() {
         XPopup.Builder(this)
             .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
             .asBottomList(

@@ -119,6 +119,7 @@ open class SwipRecyclerView : RecyclerView {
     override fun onScrollStateChanged(state: Int) {
         super.onScrollStateChanged(state)
 
+        Log.e("1mean","state:$state")
         if (state == SCROLL_STATE_IDLE && mListener != null && !isRefreshing && !isLoadingData && autoLoadMore) {
 
             val lastVisibleItemPosition = if (layoutManager is GridLayoutManager) {
@@ -141,9 +142,11 @@ open class SwipRecyclerView : RecyclerView {
                         "SwipInfo",
                         "childCount:$childCount,lastVisibleItemPosition:$lastVisibleItemPosition, total:$total, isRefreshing:$isRefreshing, hasMore:$hasMore"
                     )
+                    Log.e("1mean","childCount:$childCount,lastVisibleItemPosition:$lastVisibleItemPosition, total:$total, isRefreshing:$isRefreshing, hasMore:$hasMore")
                     if (childCount > 0 && lastVisibleItemPosition >= total - 1 && total > childCount
                         && !isRefreshing && hasMore
                     ) {
+                        Log.e("1mean","dispatchLoadMore")
                         dispatchLoadMore()
                     }
                 }

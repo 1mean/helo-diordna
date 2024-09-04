@@ -26,12 +26,19 @@ import com.example.pandas.utils.StatusBarUtils
  * @date: 8/13/22 11:18 上午
  * @version: v1.0
  */
-public class LoveActivity : BaseActivity<HistoryViewModeL, ActivityLoveBinding>(),
-    LaterAdapter.LaterListener {
+public class LoveActivity : BaseActivity<HistoryViewModeL, ActivityLoveBinding>() {
 
     private var selectAll: Boolean = false
 
-    private val mAdapter: LaterAdapter by lazy { LaterAdapter(listener = this) }
+    private val mAdapter: LaterAdapter by lazy {
+        LaterAdapter(mutableListOf(), {
+            binding.clayoutLaterBottom.visibility = View.VISIBLE
+            binding.txtLaterManager.text = resources.getString(R.string.str_cancel)
+        }, {
+            binding.imgSelectAll.setImageResource(R.mipmap.img_history_unselect)
+            selectAll = false
+        })
+    }
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -165,9 +172,7 @@ public class LoveActivity : BaseActivity<HistoryViewModeL, ActivityLoveBinding>(
     override fun createObserver() {
 
         mViewModel.loveResult.observe(this) {
-            Log.e("1mean","listdata: ${it.listData.size}")
             if (it.isSuccess) {
-                Log.e("1mean","listdata: ${it.listData.size}")
                 if (it.isRefresh) {
                     mAdapter.refreshAdapter(it.listData)
                     binding.rvLater.isRefreshing(false)
@@ -178,16 +183,4 @@ public class LoveActivity : BaseActivity<HistoryViewModeL, ActivityLoveBinding>(
             }
         }
     }
-
-    override fun onLongClick() {
-
-        binding.clayoutLaterBottom.visibility = View.VISIBLE
-        binding.txtLaterManager.text = resources.getString(R.string.str_cancel)
-    }
-
-    override fun cancelAllSelected() {
-        binding.imgSelectAll.setImageResource(R.mipmap.img_history_unselect)
-        selectAll = false
-    }
-
 }

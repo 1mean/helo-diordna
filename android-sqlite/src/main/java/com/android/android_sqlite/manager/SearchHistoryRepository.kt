@@ -58,4 +58,9 @@ public class SearchHistoryRepository : BaseRepository() {
     fun queryAll(type: Int): Flow<MutableList<SearchHistory>> =
         flowIn(searchHistoryDao.queryAll(type))
 
+    suspend fun deleteHistoryById(id:Int){
+        withContext(Dispatchers.IO) {
+            searchHistoryDao.deleteById(id)
+        }
+    }
 }

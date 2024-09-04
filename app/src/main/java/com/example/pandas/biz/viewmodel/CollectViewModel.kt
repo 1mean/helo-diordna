@@ -8,6 +8,7 @@ import com.android.android_sqlite.bean.HistoryItem
 import com.android.android_sqlite.entity.Group
 import com.android.android_sqlite.entity.History
 import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.VideoData
 import com.android.android_sqlite.manager.groupRepository
 import com.android.android_sqlite.manager.historyRepository
 import com.android.android_sqlite.manager.videoRepository
@@ -16,6 +17,7 @@ import com.example.pandas.bean.UIDataWrapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * @description: CollectViewModeL
@@ -58,6 +60,18 @@ public class CollectViewModeL : BaseViewModel() {
             groupRepository.insert(group).collect{
                 _groupsInsertFlow.emit(it)
             }
+        }
+    }
+
+    fun addOrUpdateVideoData(videoData: VideoData) {
+        viewModelScope.launch {
+            videoRepository.addOrUpdateVideoData(videoData)
+        }
+    }
+
+    fun updatePetVideo(video: PetVideo) {
+        viewModelScope.launch {
+            videoRepository.updatePetVideo(video)
         }
     }
 }

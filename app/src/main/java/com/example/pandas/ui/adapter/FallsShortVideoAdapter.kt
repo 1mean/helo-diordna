@@ -9,6 +9,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.VideoData
+import com.android.base.ui.adapter.BaseCommonAdapter
+import com.android.base.ui.adapter.BaseViewHolder
 import com.android.base.utils.ScreenUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -18,8 +20,6 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.example.pandas.R
-import com.android.base.ui.adapter.BaseCommonAdapter
-import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.ui.ext.addScaleAnimation
@@ -34,8 +34,9 @@ import de.hdodenhof.circleimageview.CircleImageView
  * @version: v1.0
  */
 public class FallsShortVideoAdapter(
-    private val list: MutableList<PetVideo> = mutableListOf(),
-    private val listener:ItemListener
+    list: MutableList<PetVideo> = mutableListOf(),
+    private val updataVideoData: (videoData: VideoData) -> Unit,
+    private val updatePetVideo: (video: PetVideo) -> Unit
 ) :
     BaseCommonAdapter<PetVideo>(list) {
 
@@ -111,8 +112,11 @@ public class FallsShortVideoAdapter(
 
                             data.width = resourceWidth
                             data.height = resourceHeight
-                            Log.e("1mean","code:${data.code}, width=$resourceWidth, height=$resourceHeight")
-                            listener.updatePetVideo(data)
+                            Log.e(
+                                "1mean",
+                                "code:${data.code}, width=$resourceWidth, height=$resourceHeight"
+                            )
+                            updatePetVideo(data)
 
                             //val finalWidth = cover.width
                             val finalWidth = ScreenUtil.getScreenWidth(context) / 2
@@ -121,7 +125,8 @@ public class FallsShortVideoAdapter(
                             //} else {
                             //  (finalWidth / resourceWidth.toDouble()) * resourceHeight
                             //}
-                            val finalHeight = (resourceHeight / resourceWidth.toDouble()) * finalWidth
+                            val finalHeight =
+                                (resourceHeight / resourceWidth.toDouble()) * finalWidth
                             val params = cover.layoutParams
                             //params.width = finalWidth
                             cover.layoutParams = params
@@ -139,12 +144,12 @@ public class FallsShortVideoAdapter(
                 params.width = finalWidth
                 params.height = finalHeight.toInt()
                 cover.layoutParams = params
-                loadCenterImage(context,it,cover)
+                loadCenterImage(context, it, cover)
             }
 
 
 
-             holder.itemView.setOnClickListener {
+            holder.itemView.setOnClickListener {
                 startShortVideoActivity(context, data.code)
             }
         }
@@ -173,7 +178,6 @@ public class FallsShortVideoAdapter(
         likeLayout.setOnClickListener {
             addScaleAnimation(likeView, 1.3f)
             if (videoData == null) {
-                Log.e("lidandan3","1")
                 likeView.setImageResource(R.mipmap.img_item_comment_liked)
                 likes.text = "1"
                 videoData = VideoData(videoCode = data.code, like = true, likes = 1)
@@ -181,13 +185,11 @@ public class FallsShortVideoAdapter(
                 likes.setTextColor(textColors[1])
             } else {
                 if (videoData!!.like) {
-                    Log.e("lidandan3","2")
                     likeView.setImageResource(R.mipmap.img_item_comment_like)
                     likes.setTextColor(textColors[0])
                     videoData!!.likes -= 1
                     likes.text = videoData!!.likes.toString()
                 } else {
-                    Log.e("lidandan3","3")
                     likeView.setImageResource(R.mipmap.img_item_comment_liked)
                     likes.setTextColor(textColors[1])
                     videoData!!.likes += 1
@@ -195,14 +197,8 @@ public class FallsShortVideoAdapter(
                 }
                 videoData!!.like = !videoData!!.like
             }
-            listener.updataVideoData(videoData!!)
+            updataVideoData(videoData!!)
         }
-    }
-
-    interface ItemListener {
-        fun updataVideoData(videoData: VideoData)
-
-        fun updatePetVideo(video: PetVideo)
     }
 //    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
 //        super.onAttachedToRecyclerView(recyclerView)

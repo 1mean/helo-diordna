@@ -28,7 +28,7 @@ import com.example.pandas.ui.ext.startUserInfoActivity
  */
 public class ShortReplyCommentAdapter(
     private val commentUsers: MutableList<CommentAndUser>,
-    val listener: ReplyItemClickListener
+    private val reply: (commentUser: CommentAndUser) -> Unit
 ) :
     Adapter<ViewHolder>() {
 
@@ -205,7 +205,7 @@ public class ShortReplyCommentAdapter(
             }
 
             itemView.setOnClickListener {
-                listener.reply(
+                reply(
                     convertCommentAndUser(
                         comment.videoCode,
                         comment.topCommentId,
@@ -225,10 +225,6 @@ public class ShortReplyCommentAdapter(
                 startUserInfoActivity(context, user.userCode)
             }
         }
-    }
-
-    interface ReplyItemClickListener {
-        fun reply(commentUser: CommentAndUser)
     }
 
     fun convertCommentAndUser(

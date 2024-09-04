@@ -1,6 +1,5 @@
 package com.example.pandas.ui.fragment.main.mine
 
-import FollowFragmentAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,18 +8,18 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.SelfViewModel
 import com.example.pandas.databinding.DialogAttentionCancelBinding
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
+import com.example.pandas.ui.adapter.FollowFragmentAdapter
 import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.initNoFooter
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.viewColors
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
@@ -29,8 +28,7 @@ import kotlinx.coroutines.launch
  * @date: 5/10/22 2:39 下午
  * @version: v1.0
  */
-public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBinding>(),
-    FollowFragmentAdapter.OnFollowViewClickListener {
+public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBinding>() {
 
     private var _bottomSheetDialog: BottomSheetDialog? = null
     private val bottomSheetDialog get() = _bottomSheetDialog!!
@@ -41,7 +39,11 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
     private val mAdapter: FollowFragmentAdapter by lazy {
         FollowFragmentAdapter(
             mutableListOf(),
-            this
+            { position: Int, userCode: Int ->
+                followViewClick(position, userCode)
+            }, { _: Int, userCode: Int ->
+                mViewModel.follow(mActivity, userCode)
+            }
         )
     }
 
@@ -106,7 +108,7 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
         mViewModel.getAllFollowUser()
     }
 
-    override fun followViewClick(position: Int, userCode: Int) {
+    private fun followViewClick(position: Int, userCode: Int) {
 
         if (_bottomSheetDialog == null) {
 
@@ -136,9 +138,5 @@ public class FollowFragment : BaseFragment<SelfViewModel, LayoutSwipRefreshBindi
             bottomSheetDialog.dismiss()
         }
         bottomSheetDialog.show()
-    }
-
-    override fun unFollowViewClick(position: Int, userCode: Int) {
-        mViewModel.follow(mActivity, userCode)
     }
 }

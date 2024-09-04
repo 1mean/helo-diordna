@@ -32,7 +32,7 @@ import com.example.pandas.utils.SpannableStringUtils
  */
 public class CommentListAdapter(
     private val list: MutableList<CommentAndUser>,
-    private val listener: ItemClickListener
+    private val reply: (reply: ReplyInfo) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -246,7 +246,7 @@ public class CommentListAdapter(
                 } else {
                     3
                 }
-                listener.reply(
+                reply(
                     ReplyInfo(
                         list[0].comment.commentId,
                         videoComment.videoCode,
@@ -264,7 +264,7 @@ public class CommentListAdapter(
                 } else {
                     3
                 }
-                listener.reply(
+                reply(
                     ReplyInfo(
                         list[0].comment.commentId,
                         videoComment.videoCode,
@@ -293,9 +293,5 @@ public class CommentListAdapter(
             list.addAll(data)
             notifyItemRangeInserted(list.size + 1, data.size)
         }
-    }
-
-    interface ItemClickListener {
-        fun reply(reply: ReplyInfo)
     }
 }

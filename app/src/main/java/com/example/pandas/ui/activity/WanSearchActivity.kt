@@ -37,14 +37,27 @@ import kotlinx.coroutines.launch
  * @date: 8/22/24 11:53 PM
  * @version: v1.0
  */
-public open class WanSearchActivity : BaseActivity<SearchViewModel, ActivityWanSearchBinding>(),
-    ItemClickListener<String>, OnItemmmmClickListener<String> {
+public open class WanSearchActivity : BaseActivity<SearchViewModel, ActivityWanSearchBinding>() {
 
     val TAG_SEARCH = "fragment_search_result"
     private var loadingPopup: LoadingPopupView? = null
 
-    private val mAdapter: HotSearchAdapter by lazy { HotSearchAdapter(listener = this) }
-    private val hAdapter: SearchHistorydapter by lazy { SearchHistorydapter(listener = this) }
+    private val mAdapter: HotSearchAdapter by lazy {
+        HotSearchAdapter(mutableListOf()) { _: Int, t: String ->
+            mViewModel.keyWords = t
+            //isUserSet = true
+            setEditText(binding.editSearch, t)
+            turnToSearchResultFragment()
+        }
+    }
+
+    private val hAdapter: SearchHistorydapter by lazy {
+        SearchHistorydapter(mutableListOf()) { t: String ->
+            mViewModel.keyWords = t
+            setEditText(binding.editSearch, t)
+            turnToSearchResultFragment()
+        }
+    }
 
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -222,25 +235,6 @@ public open class WanSearchActivity : BaseActivity<SearchViewModel, ActivityWanS
     //当软键盘存在时，从左侧/右侧滑动屏幕时，不会关闭activity，只是会关闭软键盘，因为onkeyBack()根本不会触发，软键盘关闭后再滑动屏幕时，才会触发
     override fun onkeyBack() {
         leave()
-    }
-
-    /**
-     * 热点
-     */
-    override fun onClick(position: Int, t: String) {
-        mViewModel.keyWords = t
-        //isUserSet = true
-        setEditText(binding.editSearch, t)
-        turnToSearchResultFragment()
-    }
-
-    /**
-     * 搜索历史
-     */
-    override fun onItemClick(t: String) {
-        mViewModel.keyWords = t
-        setEditText(binding.editSearch, t)
-        turnToSearchResultFragment()
     }
 
     private fun turnToSearchResultFragment() {

@@ -25,26 +25,48 @@ import com.example.pandas.ui.ext.setEditText
 import com.example.pandas.ui.ext.toastTopShow
 import com.example.pandas.ui.ext.turnToSearchResultFragment
 import com.example.pandas.ui.ext.viewColors
+import com.example.pandas.ui.fragment.search.SearchListFragment
 import com.example.pandas.ui.fragment.search.SearchResultFragment
+import com.example.pandas.ui.fragment.search.SearchUserFragment
 import com.example.pandas.utils.StatusBarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
 import kotlinx.coroutines.launch
 
 
-/**
+/**'
+ * BUG:针对SearchUserFragment和SearchListFragment的各种离奇的数据莫名回灌的解决办法
+ *  - 1，每个fragment都不共享viewmodel，自己使用自己独立的Viewmodel
+ *  - 2，使用SingleLiveData代替MutableLiveData和MytableSharedFLow
+ *  缺一不可，不然各种莫名其妙的操作bug
+ *
  * @description: 搜索界面
  * @author: dongyiming
  * @date: 2/17/22 4:23 下午
  * @version: v1.0
  */
-public class NewSearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, ActivitySearchBinding>(),
-    ItemClickListener<String>, OnItemmmmClickListener<String> {
+public class NewSearchActivity :
+    BaseSoftKeyBoardActivity<SearchViewModel, ActivitySearchBinding>() {
 
+    var keyWords = ""
     val TAG_SEARCH = "fragment_search_result"
     private var loadingPopup: LoadingPopupView? = null
-    private val mAdapter: HotSearchAdapter by lazy { HotSearchAdapter(listener = this) }
-    private val hAdapter: SearchHistorydapter by lazy { SearchHistorydapter(listener = this) }
+
+    private val mAdapter: HotSearchAdapter by lazy {
+        HotSearchAdapter(mutableListOf()) { _: Int, t: String ->
+            keyWords = t
+            setEditText(binding.editSearch, t)
+            turnToSearchResultFragment()
+        }
+    }
+
+    private val hAdapter: SearchHistorydapter by lazy {
+        SearchHistorydapter(mutableListOf()) { t: String ->
+            keyWords = t
+            setEditText(binding.editSearch, t)
+            turnToSearchResultFragment()
+        }
+    }
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
@@ -94,7 +116,7 @@ public class NewSearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activ
         }
 
         binding.ibtnSearchClear.setOnClickListener {
-            XPopup.Builder(this).asConfirm(null, "将删除全部搜索历史记录，确定删除吗？", "取消", "确定",
+            XPopup.Builder(this).asConfirm(null, "确定删除全部搜索历史记录吗？", "取消", "确定",
                 {
                     if (loadingPopup == null) {
                         loadingPopup = XPopup.Builder(this).dismissOnBackPressed(true)
@@ -142,6 +164,16 @@ public class NewSearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activ
                 }
             }
         }
+
+        binding.btnSearchClear.setOnClickListener {
+            binding.editSearch.text = null
+            //binding.editSearch.requestFocus()
+            val fragment = supportFragmentManager.findFragmentByTag(TAG_SEARCH)
+            fragment?.let {
+                supportFragmentManager.popBackStack()
+                KeyboardUtils.hideSoftInput(this)
+            }
+        }
     }
 
     override fun firstOnResume() {
@@ -151,7 +183,6 @@ public class NewSearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activ
     }
 
     override fun createObserver() {
-
         mViewModel.run {
             hotSearchList.observe(this@NewSearchActivity) { list ->
                 mAdapter.refreshAdapter(list)
@@ -179,16 +210,6 @@ public class NewSearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activ
                 loadingPopup?.dismiss()
             }
         }
-
-        binding.btnSearchClear.setOnClickListener {
-            binding.editSearch.text = null
-            binding.editSearch.requestFocus()
-            val fragment = supportFragmentManager.findFragmentByTag(TAG_SEARCH)
-            fragment?.let {
-                supportFragmentManager.popBackStack()
-                KeyboardUtils.hideSoftInput(this)
-            }
-        }
     }
 
     private val watch = object : TextWatcher {
@@ -212,31 +233,12 @@ public class NewSearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activ
         leave()
     }
 
-    /**
-     * 热点
-     */
-    override fun onClick(position: Int, t: String) {
-        mViewModel.keyWords = t
-        setEditText(binding.editSearch, t)
-        turnToSearchResultFragment()
-    }
-
-    /**
-     * 搜索历史
-     */
-    override fun onItemClick(t: String) {
-        mViewModel.keyWords = t
-        setEditText(binding.editSearch, t)
-        turnToSearchResultFragment()
-    }
-
     private fun startSearch() {
         val content = if (binding.editSearch.text.isNullOrEmpty()) {
             binding.editSearch.hint.toString()
         } else {
             binding.editSearch.text.toString()
         }
-        mViewModel.keyWords = content
         binding.editSearch.postDelayed({
             KeyboardUtils.hideSoftInput(this@NewSearchActivity)
         }, 50)
@@ -247,14 +249,28 @@ public class NewSearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activ
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = supportFragmentManager.findFragmentByTag(TAG_SEARCH)
         if (fragment == null) {
+            keyWords = content
             val newFragment = SearchResultFragment()
             transaction.add(R.id.llayout_search_content, newFragment, TAG_SEARCH)
                 .addToBackStack(null).commit()
         } else {
             if (binding.editSearch.text.isNullOrEmpty()) {
+                keyWords = ""
                 supportFragmentManager.popBackStack()
             } else {
-                mViewModel.searchRefresh(true, content)
+                if (keyWords != content) {
+                    keyWords = content
+                    val fragments = supportFragmentManager.fragments
+                    if (fragments.isNotEmpty()) {
+                        fragments.forEach { fragment ->
+                            if (fragment is SearchListFragment) {
+                                (fragment as SearchListFragment).reSearch(keyWords)
+                            } else if (fragment is SearchUserFragment) {
+                                (fragment as SearchUserFragment).reSearch(keyWords)
+                            }
+                        }
+                    }
+                }
             }
         }
     }

@@ -22,7 +22,7 @@ import java.io.File
  */
 public class VideoPlayManager(
     private val context: Context,
-    private val exoListener: ExoPlayerListener
+    private val isPlayingChanged: (isPlaying: Boolean) -> Unit
 ) {
 
     private var isOpenVoice = true //默认声音开放
@@ -48,7 +48,7 @@ public class VideoPlayManager(
         mPlayer.repeatMode = Player.REPEAT_MODE_ONE
         StyledPlayerView.switchTargetView(mPlayer, null, playerView)
 
-        Log.e("1mean","fileName1: ${mediaInfo.playUrl}")
+        Log.e("1mean", "fileName1: ${mediaInfo.playUrl}")
         val videoCode = mediaInfo.videoCode
         val playPos = mediaInfo.playPos
         if (PlayerConfig.instance.hasMediaItem(videoCode)) {
@@ -127,7 +127,7 @@ public class VideoPlayManager(
         //当 #{isPlaying()} 的值改变时调用 ，是否player正在播放中
         override fun onIsPlayingChanged(isPlaying: Boolean) {
             super.onIsPlayingChanged(isPlaying)
-            exoListener.isPlayingChanged(isPlaying)
+            isPlayingChanged(isPlaying)
             Log.e(
                 "RecoPlayManager",
                 "$isPlaying cost time: " + (System.currentTimeMillis() - startTime)
@@ -164,7 +164,7 @@ public class VideoPlayManager(
         _mPlayer?.let {
             mPlayer.currentMediaItem?.let {
                 val videoCode = it.mediaId.toInt()
-                Log.e("recoooooooo","lastPos: ${mPlayer.currentPosition}")
+                Log.e("recoooooooo", "lastPos: ${mPlayer.currentPosition}")
                 PlayerConfig.instance.updatePosition(videoCode, mPlayer.currentPosition)
             }
             mPlayer.removeListener(mListener)

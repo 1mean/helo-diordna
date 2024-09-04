@@ -3,20 +3,19 @@ package com.example.pandas.ui.adapter
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import com.example.pandas.R
 import com.android.base.ui.adapter.BaseCommonAdapter
 import com.android.base.ui.adapter.BaseViewHolder
-import com.example.pandas.biz.interaction.OnItemmmmClickListener
+import com.example.pandas.R
 
 /**
- * @description: TODO
+ * @description: HotSearchAdapter
  * @author: dongyiming
  * @date: 2/17/22 5:39 下午
  * @version: v1.0
  */
 public class HotSearchAdapter(
     private val list: MutableList<String> = mutableListOf(),
-    private val listener: OnItemmmmClickListener<String>
+    private val onClick: (position: Int, t: String) -> Unit
 ) :
     BaseCommonAdapter<String>(list) {
 
@@ -49,7 +48,7 @@ public class HotSearchAdapter(
         title.text = list[position]
 
         holder.itemView.setOnClickListener {
-            listener.onClick(position, list[position])
+            onClick.invoke(position, list[position])
         }
     }
 }

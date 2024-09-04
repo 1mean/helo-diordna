@@ -461,6 +461,8 @@
     <color name="color_indictor_wanandroid">#999999</color>
     <color name="color_txt_tab_unselected_search">#a1a8ad</color>
     <color name="color_bg_collect_add">#f3f3f3</color>
+    <color name="color_bg_footer_divider">#464a50</color>
+    <color name="color_txt_footer_message">#92999e</color>
 
 
     <!--通用-->

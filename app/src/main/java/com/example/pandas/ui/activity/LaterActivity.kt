@@ -24,12 +24,19 @@ import com.example.pandas.utils.StatusBarUtils
  * @date: 8/13/22 11:18 上午
  * @version: v1.0
  */
-public class LaterActivity : BaseActivity<HistoryViewModeL, ActivityLaterBinding>(),
-    LaterAdapter.LaterListener {
+public class LaterActivity : BaseActivity<HistoryViewModeL, ActivityLaterBinding>() {
 
     private var selectAll: Boolean = false
 
-    private val mAdapter: LaterAdapter by lazy { LaterAdapter(listener = this) }
+    private val mAdapter: LaterAdapter by lazy {
+        LaterAdapter(mutableListOf(), {
+            binding.clayoutLaterBottom.visibility = View.VISIBLE
+            binding.txtLaterManager.text = resources.getString(R.string.str_cancel)
+        }, {
+            binding.imgSelectAll.setImageResource(R.mipmap.img_history_unselect)
+            selectAll = false
+        })
+    }
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -174,16 +181,4 @@ public class LaterActivity : BaseActivity<HistoryViewModeL, ActivityLaterBinding
             }
         }
     }
-
-    override fun onLongClick() {
-
-        binding.clayoutLaterBottom.visibility = View.VISIBLE
-        binding.txtLaterManager.text = resources.getString(R.string.str_cancel)
-    }
-
-    override fun cancelAllSelected() {
-        binding.imgSelectAll.setImageResource(R.mipmap.img_history_unselect)
-        selectAll = false
-    }
-
 }

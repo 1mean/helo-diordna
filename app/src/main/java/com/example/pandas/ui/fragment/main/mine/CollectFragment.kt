@@ -12,7 +12,6 @@ import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
 import com.example.pandas.biz.viewmodel.CollectViewModeL
-import com.example.pandas.biz.viewmodel.WanAndroidViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.FallsShortVideoAdapter
 import com.example.pandas.ui.adapter.decoration.FallsItemDecoration
@@ -29,13 +28,19 @@ import kotlinx.coroutines.launch
  * @date: 8/27/24 5:34 PM
  * @version: v1.0
  */
-public class CollectFragment : BaseFragment<CollectViewModeL, LayoutSwipRefreshBinding>(),
-    FallsShortVideoAdapter.ItemListener {
+public class CollectFragment : BaseFragment<CollectViewModeL, LayoutSwipRefreshBinding>() {
 
     private var pageCount = 10
     private var pageIndex = 0
     private var groupCode = 0
-    private val mAdapter: FallsShortVideoAdapter by lazy { FallsShortVideoAdapter(listener = this) }
+    private val mAdapter: FallsShortVideoAdapter by lazy {
+        FallsShortVideoAdapter(mutableListOf(), { videoData: VideoData ->
+            mViewModel.addOrUpdateVideoData(videoData)
+        }, { video: PetVideo ->
+            mViewModel.updatePetVideo(video)
+        })
+    }
+
     override fun lazyLoadTime(): Long = 0
 
     companion object {
@@ -99,7 +104,7 @@ public class CollectFragment : BaseFragment<CollectViewModeL, LayoutSwipRefreshB
 
         lifecycleScope.launch {
             mViewModel.groupsVideosFlow.collect {
-                Log.e("1meaadsan","size=${it.size}")
+                Log.e("1meaadsan", "size=${it.size}")
                 if (pageIndex == 0) {//刷新
                     if (it.isNotEmpty()) {
                         mAdapter.refreshAdapter(it)
@@ -126,13 +131,5 @@ public class CollectFragment : BaseFragment<CollectViewModeL, LayoutSwipRefreshB
     override fun firstOnResume() {
         mViewModel.getGroupVideos(groupCode, pageIndex * pageCount, pageCount)
         binding.swipLayout.isRefreshing = true
-    }
-
-    override fun updataVideoData(videoData: VideoData) {
-        //mViewModel.addOrUpdateVideoData(videoData)
-    }
-
-    override fun updatePetVideo(video: PetVideo) {
-        //mViewModel.updatePetVideo(video)
     }
 }

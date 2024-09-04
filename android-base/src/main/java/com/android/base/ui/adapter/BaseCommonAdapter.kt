@@ -1,6 +1,7 @@
 package com.android.base.ui.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +40,7 @@ public abstract class BaseCommonAdapter<T>(private val data: MutableList<T>) :
         if (list.isNotEmpty()) {
             val size = data.size
             data.addAll(list)
+            Log.e("1medadaaasdasdasdadan","data size = ${data.size}")
             notifyItemRangeInserted(size, list.size)
         }
     }

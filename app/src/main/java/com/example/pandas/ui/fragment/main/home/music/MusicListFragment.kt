@@ -24,9 +24,24 @@ import kotlinx.coroutines.launch
  * @version: v1.0
  */
 public class MusicListFragment : BaseFragment<MoreDataViewModel, FragmentMusicListBinding>(),
-    LoadMoreRecyclerView2.ILoadMoreListener, OnItemmmmClickListener<String> {
+    LoadMoreRecyclerView2.ILoadMoreListener {
 
-    private val mAdapter: MusicListAdapter by lazy { MusicListAdapter(mutableListOf(), this) }
+    private val mAdapter: MusicListAdapter by lazy {
+        MusicListAdapter(mutableListOf()) { position: Int, t: String ->
+            val filePath = getMusicUrl(mActivity, t)
+            if (filePath.isNotEmpty()) {
+
+                val intent = Intent(mActivity, AudioPlayActivity::class.java).apply {
+                    putExtra("fileName", t)
+                    putExtra("position", position)
+                }
+                mActivity.startActivity(intent)
+            } else {
+                showToast("找不到音频文件")
+            }
+        }
+    }
+
     override fun initView(savedInstanceState: Bundle?) {
 
         binding.recyclerMusicList.apply {
@@ -89,21 +104,4 @@ public class MusicListFragment : BaseFragment<MoreDataViewModel, FragmentMusicLi
 //        binding.txtMusicListSong.text = music.audioName
 //        binding.txtMusicListName.text = music.singerName
     }
-
-    override fun onClick(position: Int, t: String) {
-
-        val filePath = getMusicUrl(mActivity, t)
-        if (filePath.isNotEmpty()) {
-
-            val intent = Intent(mActivity, AudioPlayActivity::class.java).apply {
-                putExtra("fileName", t)
-                putExtra("position", position)
-            }
-            //mActivity.startService(intent)
-            mActivity.startActivity(intent)
-        } else {
-            showToast("找不到音频文件")
-        }
-    }
-
 }

@@ -1,4 +1,5 @@
 package com.example.pandas.ui.adapter
+
 import com.example.pandas.R
 import com.android.base.ui.adapter.BaseCommonAdapter
 import com.android.base.ui.adapter.BaseViewHolder
@@ -13,8 +14,8 @@ import com.google.android.exoplayer2.ui.PlayerView
  * @version: v1.0
  */
 public class VerticalVideoAdapter(
-    private val list: MutableList<EyepetozerItem>,
-    private val call: VideoCallBack
+    list: MutableList<EyepetozerItem>,
+    private val VideoCallBack: (url: String?, playerView: PlayerView) -> Unit
 ) : BaseCommonAdapter<EyepetozerItem>(list) {
 
     private var mPlayer: ExoPlayer? = null
@@ -23,7 +24,7 @@ public class VerticalVideoAdapter(
 
     override fun convert(holder: BaseViewHolder, data: EyepetozerItem, position: Int) {
 
-        call.play(data.playUrl, holder.getWidget(R.id.playView))
+        VideoCallBack.invoke(data.playUrl, holder.getWidget(R.id.playView))
 //        if (data.playUrl != null) {
 //
 //            val playView = holder.getWidget<PlayerView>(R.id.playView)
@@ -44,9 +45,5 @@ public class VerticalVideoAdapter(
 //                it.prepare()//设置播放器状态为prepare
 //            }
 //        }
-    }
-
-    interface VideoCallBack {
-        fun play(url: String?, playerView: PlayerView)
     }
 }

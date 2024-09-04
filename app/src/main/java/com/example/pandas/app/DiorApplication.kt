@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelStoreOwner
 import com.android.android_sqlite.app.SqliteApplication
 import com.android.android_sqlite.entity.GroupVideoItem
 import com.android.android_sqlite.manager.groupRepository
+import com.android.android_sqlite.manager.searchHistoryRepository
 import com.android.android_sqlite.manager.userRepository
 import com.android.base.ModuleApplication
 import com.android.base.app.CrashHandler
@@ -164,7 +165,7 @@ class DiorApplication : Application(), ViewModelStoreOwner {
     private fun initdata() {
 
         GlobalScope.launch {
-            //groupRepository.removeAll()
+            //searchHistoryRepository.deleteHistoryById(69)
         }
 
         Thread {

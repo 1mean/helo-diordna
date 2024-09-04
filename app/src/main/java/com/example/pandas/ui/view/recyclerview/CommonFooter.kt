@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.pandas.R
 
 /**
@@ -20,6 +21,7 @@ public class CommonFooter(context: Context) : LinearLayoutCompat(context), SwipL
 
     private val message: AppCompatTextView
     private val mProgressBar: ProgressBar
+    private val messageLayout: ConstraintLayout
 
     init {
         layoutParams = ViewGroup.LayoutParams(-1, -2)
@@ -27,6 +29,7 @@ public class CommonFooter(context: Context) : LinearLayoutCompat(context), SwipL
         visibility = View.GONE
         View.inflate(context, R.layout.footer_recyclerview, this)
         message = findViewById(R.id.txt_footer)
+        messageLayout = findViewById(R.id.clayout_footer_mesage)
         mProgressBar = findViewById(R.id.progressBar)
         setOnClickListener(this)
     }
@@ -34,7 +37,7 @@ public class CommonFooter(context: Context) : LinearLayoutCompat(context), SwipL
     override fun onLoading() {
         visibility = View.VISIBLE
         mProgressBar.visibility = View.VISIBLE
-        message.visibility = View.GONE
+        messageLayout.visibility = View.GONE
     }
 
     override fun onLoadFinished(isEmpty: Boolean, hasMore: Boolean) {
@@ -45,15 +48,15 @@ public class CommonFooter(context: Context) : LinearLayoutCompat(context), SwipL
             visibility = View.VISIBLE
             if (isEmpty) {
                 mProgressBar.visibility = View.GONE
-                message.visibility = View.VISIBLE
                 message.postDelayed({
+                    messageLayout.visibility = View.VISIBLE
                     message.text = "暂时没有数据"
                 },350)
             } else {
                 mProgressBar.visibility = View.GONE
-                message.visibility = View.VISIBLE
                 message.postDelayed({//延时是为了避免每次加载时都显示文字，效果比较突兀
-                    message.text = "没有更多数据啦"
+                    messageLayout.visibility = View.VISIBLE
+                    message.text = "无更多内容"
                 },350)
             }
         }
@@ -63,7 +66,7 @@ public class CommonFooter(context: Context) : LinearLayoutCompat(context), SwipL
 
         visibility = View.VISIBLE
         mProgressBar.visibility = View.GONE
-        message.visibility = View.VISIBLE
+        messageLayout.visibility = View.VISIBLE
         message.text = errorMessage
     }
 

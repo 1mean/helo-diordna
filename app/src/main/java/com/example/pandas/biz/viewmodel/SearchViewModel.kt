@@ -3,6 +3,7 @@ package com.example.pandas.biz.viewmodel
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.android.android_sqlite.bean.SearchInfo
 import com.android.android_sqlite.entity.SearchHistory
@@ -12,6 +13,7 @@ import com.android.android_sqlite.manager.searchHistoryRepository
 import com.android.android_sqlite.manager.userRepository
 import com.android.android_sqlite.manager.videoRepository
 import com.android.base.vm.BaseViewModel
+import com.android.base.vm.SingleLiveData
 import com.android.base.vm.UnPeekLiveData
 import com.example.pandas.app.AppInfos
 import com.example.pandas.bean.HotKeyResponse
@@ -20,10 +22,7 @@ import com.example.pandas.bean.WxPageArticleResponse
 import com.example.pandas.biz.http.invoker.wanAndroidInvoke
 import com.example.pandas.utils.SPUtils
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -40,6 +39,11 @@ public class SearchViewModel : BaseViewModel() {
     private var startIndex = 0
     private var hotMore = true//是否有更多
     val hotSearchList: MutableLiveData<MutableList<String>> by lazy { MutableLiveData() }
+
+    val newSearchRefresh1: MutableLiveData<Boolean> by lazy { MutableLiveData() }
+    private val _newSearchRefresh: MutableSharedFlow<Boolean> by lazy { MutableSharedFlow() }
+    val newSearchRefresh = _newSearchRefresh.asSharedFlow()
+
 
     private val _resultList: MutableSharedFlow<UIDataWrapper<SearchInfo>> by lazy { MutableSharedFlow() }
     val resultList = _resultList.asSharedFlow()
@@ -60,8 +64,16 @@ public class SearchViewModel : BaseViewModel() {
     val queryAllHistoryFlow = _queryAllHistoryFlow.asSharedFlow()
     private val _deleteAllFlow: MutableSharedFlow<Int> by lazy { MutableSharedFlow() }
     val deleteAllFlow = _deleteAllFlow.asSharedFlow()
+
+    //这里不使用MutableSharedFlow，因为无法解决一个bug，每次点击关注后，这个数据就会一直多次回掉给collect，导致界面一直有重复数据
+    val likedUsersFlow: SingleLiveData<MutableList<User>> by lazy { SingleLiveData() }
+    val likedUsersFlow2: MutableLiveData<MutableList<User>> by lazy { MutableLiveData() }
+
     private val _likedUsersFlow: MutableSharedFlow<MutableList<User>> by lazy { MutableSharedFlow() }
-    val likedUsersFlow = _likedUsersFlow.asSharedFlow()
+    val likedUsersFlowww = _likedUsersFlow.asSharedFlow()
+
+    val attentionFlow: SingleLiveData<Int> by lazy { SingleLiveData() }
+    val unAttentionFlow: SingleLiveData<Int> by lazy { SingleLiveData() }
 
 
     fun search(words: String) {
@@ -97,6 +109,19 @@ public class SearchViewModel : BaseViewModel() {
                 listOf()
             }
         }
+    }
+
+    fun newSearchRefresh(isRefresh: Boolean) {
+        viewModelScope.launch {
+            flow<Boolean> {
+                emit(isRefresh)
+            }.catch { e -> e.printStackTrace() }.flowOn(Dispatchers.IO).collect {
+                _newSearchRefresh.emit(it)
+            }
+        }
+//        viewModelScope.launch {
+//            newSearchRefresh.value = isRefresh
+//        }
     }
 
     fun clearAllHistory(type: Int) {
@@ -190,23 +215,57 @@ public class SearchViewModel : BaseViewModel() {
 
     fun getLikeUser(key: String, startIndex: Int, pageCount: Int) {
         viewModelScope.launch {
+            likedUsersFlow.value = userRepository.getLikedUser1(key, startIndex, pageCount)
+        }
+    }
+
+    fun getLikeUserrrrrr(key: String, startIndex: Int, pageCount: Int) {
+        viewModelScope.launch {
             userRepository.getLikedUser(key, startIndex, pageCount).collect {
+                Log.e("1mean","getLikedUser size:${it.size}")
                 _likedUsersFlow.emit(it)
             }
         }
     }
 
-    fun follow(context: Context, userCode: Int) {
+    fun attention(userCode: Int, position: Int) {
         viewModelScope.launch {
-            withContext(Dispatchers.Default) {
-                SPUtils.saveList<String>(context, AppInfos.ATTENTION_KEY, userCode.toString())
-            }
+//            flow {
+//                emit()
+//            }.catch { e -> e.printStackTrace() }.flowOn(Dispatchers.IO).collect {
+//                Log.e("1mean", "attention it=$it")
+//                if (it >= 1) {
+//                    attentionFlow.value = position
+//                    //_attentionFlow.emit(position)
+//                }
+//            }
+
+            attentionFlow.value = userRepository.attention(true, userCode)
         }
     }
 
-    fun updateAttention(userCode: Int) {
+    fun removeAttention(userCode: Int, position: Int) {
         viewModelScope.launch {
-            userRepository.updateAttention(userCode)
+            userRepository.attention(false, userCode)
+            unAttentionFlow.value = position
+//            flow {
+//                emit(userRepository.attention(false, userCode))
+//            }.catch { e -> e.printStackTrace() }.flowOn(Dispatchers.IO).collect {
+//                Log.e("1mean", "attention it=$it")
+//                if (it >= 1) {
+//                    _unAttentionFlow.emit(position)
+//                }
+//            }
         }
+//        viewModelScope.launch {
+//            userRepository.attention(false, userCode).collect {
+//                Log.e("1mean", "unAttention it=$it")
+//                if (it >= 1) {
+//                    _unAttentionFlow.emit(position)
+//                }
+//            }
+//        }
     }
+
+
 }

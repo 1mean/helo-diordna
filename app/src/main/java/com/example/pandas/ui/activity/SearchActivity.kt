@@ -30,15 +30,24 @@ import kotlinx.coroutines.launch
  * @date: 2/17/22 4:23 下午
  * @version: v1.0
  */
-public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, ActivitySearchBinding>(),
-    ItemClickListener<String>, SearchResultAdapter.SearchItemSelectedListener,
-    OnItemmmmClickListener<String> {
+public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, ActivitySearchBinding>() {
 
     val TAG_SEARCH = "fragment_search_result"
 
-    private val rAdapter: SearchResultAdapter by lazy { SearchResultAdapter(listener = this) }
+    private val rAdapter: SearchResultAdapter by lazy {
+        SearchResultAdapter(turnToSearchListFragment = {
+            turnToSearchResultFragment()
+        })
+    }
 
-    private val mAdapter: HotSearchAdapter by lazy { HotSearchAdapter(listener = this) }
+    private val mAdapter: HotSearchAdapter by lazy {
+        HotSearchAdapter(mutableListOf()) { position: Int, t: String ->
+            //mViewModel.keyWords = t
+            isUserSet = true
+            binding.editSearch.text = Editable.Factory.getInstance().newEditable(t)
+            turnToSearchResultFragment()
+        }
+    }
 
     private var isUserSet = false //edittext是否是代码设置，点击热搜和历史进入
 
@@ -82,14 +91,14 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
                 val fragment = supportFragmentManager.findFragmentByTag(TAG_SEARCH)
                 if (fragment != null) {
                     supportFragmentManager.popBackStack()
-                    mViewModel.search(mViewModel.keyWords)
+                    //mViewModel.search(mViewModel.keyWords)
                 }
             }
             setOnEditorActionListener { v, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
                     if (binding.editSearch.text.isNullOrEmpty()) {
-                        mViewModel.keyWords = binding.editSearch.hint.toString()
+                        //mViewModel.keyWords = binding.editSearch.hint.toString()
                     }
                     turnToSearchResultFragment()
                 }
@@ -133,7 +142,7 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
                     if (it.isEmpty) {
                         rAdapter.clear()
                     } else {
-                        rAdapter.refreshAdapter(mViewModel.keyWords, it.listData)
+                        //rAdapter.refreshAdapter(mViewModel.keyWords, it.listData)
                     }
                 }
             }
@@ -160,7 +169,7 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
 
             if (text?.length != 0) {
                 binding.btnSearchClear.visibility = View.VISIBLE
-                mViewModel.keyWords = text.toString()
+                //mViewModel.keyWords = text.toString()
             } else {
                 rAdapter.clear()
                 binding.btnSearchClear.visibility = View.GONE
@@ -181,34 +190,10 @@ public class SearchActivity : BaseSoftKeyBoardActivity<SearchViewModel, Activity
         binding.editSearch.text = null
     }
 
-    /**
-     * 热点
-     */
-    override fun onClick(position: Int, t: String) {
-        mViewModel.keyWords = t
-        isUserSet = true
-        setEditText(binding.editSearch, t)
-        turnToSearchListFragment()
-    }
-
-    /**
-     * 搜索历史
-     */
-    override fun onItemClick(t: String) {
-        mViewModel.keyWords = t
-        isUserSet = true
-        binding.editSearch.text = Editable.Factory.getInstance().newEditable(t)
-        turnToSearchListFragment()
-    }
-
     private fun clear() {
 
         //mFragment.clear()
         binding.editSearch.text = null
         binding.editSearch.isCursorVisible = false
-    }
-
-    override fun turnToSearchListFragment() {
-        turnToSearchResultFragment()
     }
 }

@@ -28,14 +28,21 @@ import com.example.pandas.utils.StatusBarUtils
  * @date: 3/11/22 12:05 上午
  * @version: v1.0
  */
-public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBinding>(),
-    HistoryAdapter.HistoryListener {
+public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBinding>() {
 
     private var selectAll: Boolean = false
     private var popWindow: PopupWindow? = null
 
     private val mHandler = LifecycleHandler(Looper.getMainLooper(), this)
-    private val mAdapter: HistoryAdapter by lazy { HistoryAdapter(listener = this) }
+    private val mAdapter: HistoryAdapter by lazy {
+        HistoryAdapter(mutableListOf(), {
+            binding.clayoutHistoryBottom.visibility = View.VISIBLE
+            binding.txtHistoryManager.text = resources.getString(R.string.str_cancel)
+        }, {
+            binding.imgSelectAll.setImageResource(R.mipmap.img_history_unselect)
+            selectAll = false
+        })
+    }
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -192,16 +199,4 @@ public class HistoryActivity : BaseActivity<HistoryViewModeL, ActivityHistoryBin
             popWindow?.dismiss()
         }
     }
-
-    override fun onLongClick() {
-
-        binding.clayoutHistoryBottom.visibility = View.VISIBLE
-        binding.txtHistoryManager.text = resources.getString(R.string.str_cancel)
-    }
-
-    override fun cancelAllSelected() {
-        binding.imgSelectAll.setImageResource(R.mipmap.img_history_unselect)
-        selectAll = false
-    }
-
 }

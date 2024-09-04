@@ -27,8 +27,7 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @version: v1.0
  */
 public class ShortAttentionFragment() :
-    BaseFragment<ShortVideoViewModel, FragmentListShortVideoBinding>(),
-    FallsShortVideoAdapter.ItemListener {
+    BaseFragment<ShortVideoViewModel, FragmentListShortVideoBinding>() {
 
     private val loginStatus: Boolean
         get() = AppInstance.instance.isLoginSuccess
@@ -49,7 +48,9 @@ public class ShortAttentionFragment() :
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         //1,条目闪动
         layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
-        mAdapter = FallsShortVideoAdapter(listener = this)
+        mAdapter = FallsShortVideoAdapter(updataVideoData = { videoData: VideoData ->
+            mViewModel.addOrUpdateVideoData(videoData)
+        }, updatePetVideo = {})
         binding.recyclerLayout.init(
             FallsItemDecoration(2, padding, padding, padding, padding),
             mAdapter!!,
@@ -129,7 +130,9 @@ public class ShortAttentionFragment() :
             if (it.isSuccess) {
                 binding.recyclerLayout.visibility = View.VISIBLE
                 if (mAdapter == null) {
-                    mAdapter = FallsShortVideoAdapter(listener = this)
+                    mAdapter = FallsShortVideoAdapter(updataVideoData = { videoData: VideoData ->
+                        mViewModel.addOrUpdateVideoData(videoData)
+                    }, updatePetVideo = {})
                     binding.recyclerLayout.adapter = mAdapter
                 }
                 when {
@@ -172,12 +175,5 @@ public class ShortAttentionFragment() :
             binding.swipLayout.isRefreshing = true
             binding.recyclerLayout.smoothScrollToPosition(0)
         }
-    }
-
-    override fun updataVideoData(videoData: VideoData) {
-        mViewModel.addOrUpdateVideoData(videoData)
-    }
-
-    override fun updatePetVideo(video: PetVideo) {
     }
 }

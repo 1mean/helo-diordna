@@ -44,7 +44,7 @@ public abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragm
 
     private var isFirstShow: Boolean = true//第一次加载
 
-    private val mHandler: Handler = Handler(Looper.getMainLooper())
+    val mHandler: Handler = Handler(Looper.getMainLooper())
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

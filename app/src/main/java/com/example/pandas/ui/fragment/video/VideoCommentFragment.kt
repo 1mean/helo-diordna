@@ -1,9 +1,9 @@
 package com.example.pandas.ui.fragment.video
 
+import AppInstance
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -13,11 +13,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.android_sqlite.bean.ReplyInfo
 import com.android.android_sqlite.entity.PetVideo
+import com.android.base.manager.SoftInputManager
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.interaction.CommentsListener
-import com.android.base.manager.SoftInputManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.FragmentCommentBinding
 import com.example.pandas.ui.activity.LoginActivity
@@ -26,7 +26,6 @@ import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
-import kotlinx.coroutines.flow.collect
 
 
 /**
@@ -35,8 +34,7 @@ import kotlinx.coroutines.flow.collect
  * @date: 12/29/21 11:42 下午
  * @version: v1.0
  */
-public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentCommentBinding>(),
-    CommentAdapter.OnCommentClickListener {
+public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentCommentBinding>() {
 
     private val loginSuccess: Boolean
         get() = AppInstance.instance.isLoginSuccess
@@ -51,7 +49,15 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
 
     private val km: SoftInputManager by lazy { SoftInputManager(mActivity) }
 
-    private val mAdapter: CommentAdapter by lazy { CommentAdapter(mutableListOf(), this) }
+    private val mAdapter: CommentAdapter by lazy {
+        CommentAdapter(mutableListOf(), { isOrderByTime: Boolean ->
+            orderClcik(isOrderByTime)
+        }, { replyInfo: ReplyInfo ->
+            addItemReply(replyInfo)
+        }, { commentId: Int ->
+            showAllComment(commentId)
+        })
+    }
 
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
 
@@ -227,12 +233,12 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
      *  - true: 当前按照时间排序，切换到按热度排序
      *  - false: 当前按照热度排序，切换到按时间排序
      */
-    override fun orderClcik(isOrderByTime: Boolean) {
+    private fun orderClcik(isOrderByTime: Boolean) {
         binding.refreshComment.isRefreshing = true
         mViewModel.getCommentsByOrder(code, true, !isOrderByTime)
     }
 
-    override fun addItemReply(replyInfo: ReplyInfo) {
+    private fun addItemReply(replyInfo: ReplyInfo) {
         this.replyInfo = replyInfo
         binding.editVideo.isFocusable = true
         binding.editVideo.isFocusableInTouchMode = true
@@ -241,7 +247,7 @@ public class VideoCommentFragment : BaseFragment<VideoViewModel, FragmentComment
         km.showKeyBoard(mActivity, binding.editVideo)
     }
 
-    override fun showAllComment(commentId: Int) {
+    private fun showAllComment(commentId: Int) {
         commentListener?.showCommentsFragment(commentId)
     }
 

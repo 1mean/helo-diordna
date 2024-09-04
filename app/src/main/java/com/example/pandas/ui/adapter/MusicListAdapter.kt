@@ -1,4 +1,5 @@
 package com.example.pandas.ui.adapter
+
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +20,7 @@ import com.example.pandas.biz.interaction.OnItemmmmClickListener
  */
 public class MusicListAdapter(
     private val list: MutableList<MusicVo>,
-    private val listener: OnItemmmmClickListener<String>
+    private val onClick: (position: Int, t: String) -> Unit
 ) :
     BaseCommonAdapter<MusicVo>(list) {
 
@@ -37,7 +38,7 @@ public class MusicListAdapter(
         audioName.text = music.audioName
         singerName.text = music.singerName
         holder.itemView.setOnClickListener {
-            data.fileName?.let { it1 -> listener.onClick(position, it1) }
+            data.fileName?.let { it1 -> onClick(position, it1) }
         }
     }
 

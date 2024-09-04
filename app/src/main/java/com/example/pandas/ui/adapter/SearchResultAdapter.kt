@@ -20,7 +20,7 @@ import com.example.pandas.databinding.ItemTopSearchListBinding
 public class SearchResultAdapter(
     private var keyWord: String = "",
     private val list: MutableList<SearchInfo> = mutableListOf(),
-    private val listener: SearchItemSelectedListener
+    private val turnToSearchListFragment: () -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -34,7 +34,7 @@ public class SearchResultAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun clear(){
+    fun clear() {
         if (list.isNotEmpty()) {
             list.clear()
             notifyDataSetChanged()
@@ -88,9 +88,9 @@ public class SearchResultAdapter(
 
         fun handle(position: Int) {
             val data = list[position - 1]
-            name.text = StringColorUtil.fillColor(data.title,keyWord,color)
+            name.text = StringColorUtil.fillColor(data.title, keyWord, color)
             itemView.setOnClickListener {
-                listener.turnToSearchListFragment()
+                turnToSearchListFragment()
             }
         }
     }
@@ -101,9 +101,5 @@ public class SearchResultAdapter(
         fun handle() {
             title.text = "本地搜索"
         }
-    }
-
-    public interface SearchItemSelectedListener {
-        fun turnToSearchListFragment()
     }
 }

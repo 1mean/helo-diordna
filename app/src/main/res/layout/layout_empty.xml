@@ -26,6 +26,8 @@
             android:layout_marginTop="12dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/str_no_data"
+            android:letterSpacing="0.05"
+            android:includeFontPadding="false"
             android:textColor="@color/gray"
             android:textSize="13sp" />
 </androidx.appcompat.widget.LinearLayoutCompat>

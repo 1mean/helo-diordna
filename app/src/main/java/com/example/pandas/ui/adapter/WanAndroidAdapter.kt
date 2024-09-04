@@ -19,8 +19,9 @@ import com.example.pandas.ui.activity.WanContentActivity
  * @version: v1.0
  */
 public class WanAndroidAdapter(
-    private val list: MutableList<WxPageArticleResponse.Data.WxPageArticle> = mutableListOf(),
-    private val listener: CollectListener
+    list: MutableList<WxPageArticleResponse.Data.WxPageArticle> = mutableListOf(),
+    private val collect: (id: Int) -> Unit,
+    private val removeCollect: (id: Int, originId: Int) -> Unit
 ) :
     BaseCommonAdapter<WxPageArticleResponse.Data.WxPageArticle>(list) {
 
@@ -65,10 +66,10 @@ public class WanAndroidAdapter(
         loveImg.setOnClickListener {
             if (data.collect) {
                 loveImg.setImageResource(R.mipmap.img_music_item_like1)
-                listener.removeCollect(data.id, -1)
+                removeCollect(data.id, -1)
             } else {
                 loveImg.setImageResource(R.mipmap.img_music_item_liked1)
-                listener.collect(data.id)
+                collect(data.id)
             }
             data.collect = !data.collect
         }
@@ -79,10 +80,4 @@ public class WanAndroidAdapter(
             holder.itemView.context.startActivity(intent)
         }
     }
-
-    interface CollectListener {
-        fun collect(id: Int)
-        fun removeCollect(id: Int, originId: Int)
-    }
-
 }

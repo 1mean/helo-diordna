@@ -8,10 +8,10 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.android.android_sqlite.bean.ReplyInfo
 import com.android.android_sqlite.entity.PetVideo
-import com.example.pandas.R
-import com.android.base.ui.fragment.BaseFragment
-import com.example.pandas.biz.interaction.CommentsListener
 import com.android.base.manager.SoftInputManager
+import com.android.base.ui.fragment.BaseFragment
+import com.example.pandas.R
+import com.example.pandas.biz.interaction.CommentsListener
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.FragmentCommentListBinding
 import com.example.pandas.ui.adapter.CommentListAdapter
@@ -27,8 +27,7 @@ import com.lxj.xpopup.impl.LoadingPopupView
  * @date: 6/9/22 4:53 下午
  * @version: v1.0
  */
-public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentListBinding>(),
-    CommentListAdapter.ItemClickListener {
+public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentListBinding>() {
 
     private var commentId: Int? = null
     private var commentListener: CommentsListener? = null
@@ -37,7 +36,16 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
     private var isKeyBoardShow = false
 
     private var code = -1
-    private val mAdapter: CommentListAdapter by lazy { CommentListAdapter(mutableListOf(), this) }
+    private val mAdapter: CommentListAdapter by lazy {
+        CommentListAdapter(mutableListOf()) { reply: ReplyInfo ->
+            this.replyInfo = reply
+            binding.editVideo.isFocusable = true
+            binding.editVideo.isFocusableInTouchMode = true
+            binding.editVideo.requestFocus()
+            binding.editVideo.hint = "回复 @${reply.replyUserName} :"
+            km.showKeyBoard(mActivity, binding.editVideo)
+        }
+    }
 
     private val km: SoftInputManager by lazy { SoftInputManager(mActivity) }
 
@@ -192,16 +200,6 @@ public class CommentListFragment : BaseFragment<VideoViewModel, FragmentCommentL
                 }
             }
         }
-    }
-
-    override fun reply(reply: ReplyInfo) {
-
-        this.replyInfo = reply
-        binding.editVideo.isFocusable = true
-        binding.editVideo.isFocusableInTouchMode = true
-        binding.editVideo.requestFocus()
-        binding.editVideo.hint = "回复 @${reply.replyUserName} :"
-        km.showKeyBoard(mActivity, binding.editVideo)
     }
 
     override fun onPause() {

@@ -16,7 +16,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
  */
 public class VideoMoreBottomSheetDialog(
     context: Context,
-    private val listener: VideoMoreSelectListener
+    private val addPlayLater: () -> Unit,
+    private val setPlaySpeed: () -> Unit
 ) :
     BottomSheetDialog(context) {
 
@@ -40,11 +41,11 @@ public class VideoMoreBottomSheetDialog(
         }
 
         binding.clayoutVideoMoreLater.setOnClickListener {
-            listener.addPlayLater()
+            addPlayLater()
         }
 
         binding.clayoutVideoMoreSpeed.setOnClickListener {
-            listener.setPlaySpeed()
+            setPlaySpeed()
         }
     }
 

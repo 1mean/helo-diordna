@@ -178,14 +178,12 @@ public class ShortCommentAdapter(
                 mRecyclerView.run {
                     layoutManager = LinearLayoutManager(mContext)
                     isNestedScrollingEnabled = false
-                    adapter = ShortReplyCommentAdapter(mutableListOf(comment), object :
-                        ShortReplyCommentAdapter.ReplyItemClickListener {
-                        override fun reply(commentUser: CommentAndUser) {
+                    adapter =
+                        ShortReplyCommentAdapter(mutableListOf(comment)) { commentUser: CommentAndUser ->
                             val curPos = comparePosition(position, commentUser.comment)
                             Log.e("1mean", "item click position: $position")
                             listener.showInputToReply(commentUser, curPos, false)
                         }
-                    })
                 }
                 replyRecyclerViews[topCommentId] = mRecyclerView
             } else {
@@ -244,14 +242,11 @@ public class ShortCommentAdapter(
                 mRecyclerView.run {
                     layoutManager = LinearLayoutManager(mContext)
                     isNestedScrollingEnabled = false
-                    adapter = ShortReplyCommentAdapter(replies, object :
-                        ShortReplyCommentAdapter.ReplyItemClickListener {
-                        override fun reply(commentUser: CommentAndUser) {
-                            val curPos = comparePosition(position, commentUser.comment)
-                            Log.e("1mean", "item click position: $position")
-                            listener.showInputToReply(commentUser, curPos, false)
-                        }
-                    })
+                    adapter = ShortReplyCommentAdapter(replies) { commentUser: CommentAndUser ->
+                        val curPos = comparePosition(position, commentUser.comment)
+                        Log.e("1mean", "item click position: $position")
+                        listener.showInputToReply(commentUser, curPos, false)
+                    }
                 }
                 replyRecyclerViews[topComment.id] = mRecyclerView
             } else {
@@ -369,14 +364,12 @@ public class ShortCommentAdapter(
                             recyclerView.run {
                                 layoutManager = LinearLayoutManager(mContext)
                                 isNestedScrollingEnabled = false
-                                adapter = ShortReplyCommentAdapter(currentPageList, object :
-                                    ShortReplyCommentAdapter.ReplyItemClickListener {
-                                    override fun reply(commentUser: CommentAndUser) {
+                                adapter =
+                                    ShortReplyCommentAdapter(currentPageList) { commentUser: CommentAndUser ->
                                         val curPos = comparePosition(position, commentUser.comment)
                                         Log.e("1mean", "item click position: $position")
                                         listener.showInputToReply(commentUser, curPos, false)
                                     }
-                                })
                             }
                             replyRecyclerViews[comment.id] = recyclerView
 
@@ -391,14 +384,13 @@ public class ShortCommentAdapter(
                             }
                         } else {
                             mRecyclerView.run {
-                                adapter = ShortReplyCommentAdapter(currentPageList, object :
-                                    ShortReplyCommentAdapter.ReplyItemClickListener {
-                                    override fun reply(commentUser: CommentAndUser) {
-                                        val curPos = comparePosition(position, commentUser.comment)
-                                        Log.e("1mean", "item click position: $position")
-                                        listener.showInputToReply(commentUser, curPos, false)
-                                    }
-                                })
+                                adapter = ShortReplyCommentAdapter(
+                                    currentPageList
+                                ) { commentUser: CommentAndUser ->
+                                    val curPos = comparePosition(position, commentUser.comment)
+                                    Log.e("1mean", "item click position: $position")
+                                    listener.showInputToReply(commentUser, curPos, false)
+                                }
                             }
                             replyLayout.addView(mRecyclerView)
                             replyLayout.visibility = View.VISIBLE

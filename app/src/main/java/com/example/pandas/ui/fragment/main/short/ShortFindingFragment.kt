@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.VideoData
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.databinding.FragmentListShortVideoBinding
 import com.example.pandas.ui.adapter.FallsShortVideoAdapter
@@ -27,10 +27,17 @@ import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
  * @version: v1.0
  */
 public class ShortFindingFragment() :
-    BaseFragment<ShortVideoViewModel, FragmentListShortVideoBinding>(),
-    FallsShortVideoAdapter.ItemListener {
+    BaseFragment<ShortVideoViewModel, FragmentListShortVideoBinding>() {
 
-    private val mAdapter: FallsShortVideoAdapter by lazy { FallsShortVideoAdapter(listener = this) }
+    private val mAdapter: FallsShortVideoAdapter by lazy {
+        FallsShortVideoAdapter(mutableListOf(),
+            { videoData: VideoData ->
+                mViewModel.addOrUpdateVideoData(videoData)
+            },
+            { video: PetVideo ->
+                mViewModel.updatePetVideo(video)
+            })
+    }
 
     override fun lazyLoadTime(): Long = 0
 
@@ -121,13 +128,5 @@ public class ShortFindingFragment() :
         mViewModel.getFallsShortVideos(true)
         binding.swipLayout.isRefreshing = true
         binding.recyclerLayout.smoothScrollToPosition(0)
-    }
-
-    override fun updataVideoData(videoData: VideoData) {
-        mViewModel.addOrUpdateVideoData(videoData)
-    }
-
-    override fun updatePetVideo(video: PetVideo) {
-        mViewModel.updatePetVideo(video)
     }
 }

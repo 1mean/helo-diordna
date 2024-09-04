@@ -2,28 +2,20 @@ package com.example.pandas.ui.fragment.main.mine
 
 import AppInstance
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.pandas.app.appViewModel
 import com.android.base.ui.fragment.BaseFragment
-import com.android.base.vm.BaseViewModel
 import com.example.pandas.R
+import com.example.pandas.app.appViewModel
 import com.example.pandas.biz.viewmodel.WanAndroidViewModel
-import com.example.pandas.databinding.FragmentAuthenBinding
-import com.example.pandas.databinding.LayoutOnlyLoadmoreBinding
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.WanAndroidAdapter
 import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
-import com.example.pandas.ui.adapter.decoration.RecommendDecoration
-import com.example.pandas.ui.ext.*
-import com.example.pandas.ui.fragment.main.home.MusicFragment
+import com.example.pandas.ui.ext.init
+import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.toastTopShow
+import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
-import com.example.pandas.ui.view.recyclerview.SwipRecyclerView2
 import kotlinx.coroutines.launch
 
 /**
@@ -32,13 +24,19 @@ import kotlinx.coroutines.launch
  * @date: 10/8/23 11:12 PM
  * @version: v1.0
  */
-public class WanAndroidFragment : BaseFragment<WanAndroidViewModel, LayoutSwipRefreshBinding>(),
-    WanAndroidAdapter.CollectListener {
+public class WanAndroidFragment : BaseFragment<WanAndroidViewModel, LayoutSwipRefreshBinding>() {
 
     private var currentPage = 0
     private var cardNo = 0
     private var position = 0
-    private val mAdapter: WanAndroidAdapter by lazy { WanAndroidAdapter(listener = this) }
+
+    private val mAdapter: WanAndroidAdapter by lazy {
+        WanAndroidAdapter(mutableListOf(), { id: Int ->
+            mViewModel.collectInnerArticle(id)
+        }, { id: Int, originId: Int ->
+            mViewModel.removeCollectedArticle(id, originId)
+        })
+    }
 
     companion object {
         fun newInstance(position: Int, card: Int) = WanAndroidFragment().apply {
@@ -175,14 +173,5 @@ public class WanAndroidFragment : BaseFragment<WanAndroidViewModel, LayoutSwipRe
         } else {
             mViewModel.wxPageArticles(cardNo, currentPage++)
         }
-    }
-
-    override fun collect(id: Int) {
-        mViewModel.collectInnerArticle(id)
-    }
-
-    override fun removeCollect(id: Int, originId: Int) {
-        Log.e("1mean", "id:$id")
-        mViewModel.removeCollectedArticle(id, originId)
     }
 }

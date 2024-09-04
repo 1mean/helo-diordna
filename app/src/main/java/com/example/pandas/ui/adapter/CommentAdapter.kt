@@ -33,7 +33,9 @@ import com.example.pandas.utils.SpannableStringUtils
  */
 public class CommentAdapter(
     private val list: MutableList<CommentAndUser>,
-    private val listener: OnCommentClickListener
+    private val orderClcik: (isOrderByTime: Boolean) -> Unit,
+    private val addItemReply: (replyInfo: ReplyInfo) -> Unit,
+    private val showAllComment: (commentId: Int) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -87,7 +89,7 @@ public class CommentAdapter(
                 settingText.text = itemView.context.getString(R.string.str_by_hot)
             }
             settingLayout.setOnClickListener {
-                listener.orderClcik(isOrderByTime)
+                orderClcik(isOrderByTime)
                 isOrderByTime = !isOrderByTime
             }
         }
@@ -254,7 +256,7 @@ public class CommentAdapter(
             commentSendView.setOnClickListener {
 
                 replyPosition = position
-                listener.addItemReply(
+                addItemReply(
                     ReplyInfo(
                         videoComment.commentId,
                         videoComment.videoCode,
@@ -271,7 +273,7 @@ public class CommentAdapter(
 
             content.setOnClickListener {
                 replyPosition = position
-                listener.addItemReply(
+                addItemReply(
                     ReplyInfo(
                         videoComment.commentId,
                         videoComment.videoCode,
@@ -285,7 +287,7 @@ public class CommentAdapter(
             comment1.setOnClickListener {
                 replyPosition = position
                 val comment1_user = videoComment.replyComments[0].user
-                listener.addItemReply(
+                addItemReply(
                     ReplyInfo(
                         videoComment.commentId,
                         videoComment.videoCode,
@@ -298,7 +300,7 @@ public class CommentAdapter(
             comment2.setOnClickListener {
                 replyPosition = position
                 val comment2_user = videoComment.replyComments[1].user
-                listener.addItemReply(
+                addItemReply(
                     ReplyInfo(
                         videoComment.commentId,
                         videoComment.videoCode,
@@ -334,7 +336,7 @@ public class CommentAdapter(
             }
 
             layoutAll.setOnClickListener {
-                listener.showAllComment(videoComment.commentId)
+                showAllComment(videoComment.commentId)
             }
 
             name.setOnClickListener {
@@ -345,15 +347,6 @@ public class CommentAdapter(
                 startUserInfoActivity(context, user.userCode)
             }
         }
-    }
-
-    interface OnCommentClickListener {
-
-        fun orderClcik(isOrderByTime: Boolean)
-
-        fun addItemReply(replyInfo: ReplyInfo)
-
-        fun showAllComment(commentId: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

@@ -23,16 +23,25 @@ import com.google.android.exoplayer2.util.Util
  * @date: 2/23/22 10:20 下午
  * @version: v1.0
  */
-public class VerticalVideoActivity : BaseActivity<VerticalVideoModel, ActivityVerticalVideoplayBinding>(),
-    VerticalVideoAdapter.VideoCallBack {
+public class VerticalVideoActivity :
+    BaseActivity<VerticalVideoModel, ActivityVerticalVideoplayBinding>() {
 
     private var mPlayer: ExoPlayer? = null
     private var video: EyepetozerItem? = null
     private val mAdapter: VerticalVideoAdapter by lazy {
-        VerticalVideoAdapter(
-            mutableListOf(),
-            this
-        )
+        VerticalVideoAdapter(mutableListOf()) { url: String?, playerView: PlayerView ->
+            if (url != null) {
+                playerView.player = mPlayer
+                val firstLocalMediaItem = MediaItem.fromUri(url)
+                mPlayer?.run {
+                    //clearMediaItems()
+                    addMediaItem(firstLocalMediaItem)
+                    playWhenReady = true
+                    prepare()
+                    play()
+                }
+            }
+        }
     }
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -80,22 +89,6 @@ public class VerticalVideoActivity : BaseActivity<VerticalVideoModel, ActivityVe
                 }
             }
         }
-    }
-
-    override fun play(url: String?, playerView: PlayerView) {
-
-        if (url != null) {
-            playerView.player = mPlayer
-            val firstLocalMediaItem = MediaItem.fromUri(url)
-            mPlayer?.run {
-                //clearMediaItems()
-                addMediaItem(firstLocalMediaItem)
-                playWhenReady = true
-                prepare()
-                play()
-            }
-        }
-
     }
 
     private fun initPlayer() {

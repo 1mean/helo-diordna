@@ -11,7 +11,9 @@ import com.android.base.utils.TimeUtils
 import com.example.pandas.R
 import com.android.base.ui.adapter.BaseCommonAdapter
 import com.android.base.ui.adapter.BaseViewHolder
+import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
+import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.ui.ext.startVideoPlayingActivity
 
 /**
@@ -59,7 +61,7 @@ public class SearchResultAdapter(
         val video = data.video
 
         video.cover?.let {
-            loadCenterRoundedCornerImage(context, 20, it, cover)
+            loadCenterImage(context, it, cover)
         }
         duration.text = TimeUtils.getDuration(video.duration.toLong())
         video.title?.let {

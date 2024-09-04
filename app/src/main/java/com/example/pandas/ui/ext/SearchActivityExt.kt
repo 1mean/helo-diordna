@@ -2,6 +2,7 @@ package com.example.pandas.ui.ext;
 
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.example.pandas.R
 import com.example.pandas.ui.activity.NewSearchActivity
 import com.example.pandas.ui.activity.SearchActivity
@@ -95,8 +96,9 @@ fun NewSearchActivity.turnToSearchResultFragment() {
 
     keyBoardInvisible(binding.editSearch)
     binding.editSearch.isCursorVisible = false
-    Log.e("1mean","key = " + mViewModel.keyWords)
-    mViewModel.insertSearchHistory(0, mViewModel.keyWords)
+    if (keyWords.isNotEmpty()) {
+        mViewModel.insertSearchHistory(0, keyWords)
+    }
 
     addOrShowFragment()
 }

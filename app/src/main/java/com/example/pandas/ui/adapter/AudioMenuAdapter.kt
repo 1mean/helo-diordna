@@ -1,4 +1,5 @@
 package com.example.pandas.ui.adapter
+
 import android.graphics.Typeface
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
@@ -20,7 +21,7 @@ import com.example.pandas.biz.interaction.OnItemmmmClickListener
  */
 public class AudioMenuAdapter(
     list: MutableList<MusicVo>, private var fileName: String,
-    private val listener: OnItemmmmClickListener<MusicVo>
+    private val listener: (position: Int, t: MusicVo) -> Unit
 ) :
     BaseCommonAdapter<MusicVo>(list) {
 
@@ -84,7 +85,7 @@ public class AudioMenuAdapter(
 
         holder.itemView.setOnClickListener {
             if (!isPlaying) {
-                listener.onClick(position, data)
+                listener.invoke(position, data)
             }
         }
     }

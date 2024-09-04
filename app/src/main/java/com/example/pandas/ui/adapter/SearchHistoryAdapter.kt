@@ -17,8 +17,8 @@ import com.example.pandas.biz.interaction.ItemClickListener
  * @version: v1.0
  */
 public class SearchHistorydapter(
-    private val list: MutableList<SearchHistory> = mutableListOf(),
-    private val listener: ItemClickListener<String>
+    list: MutableList<SearchHistory> = mutableListOf(),
+    private val onItemClick: (t: String) -> Unit
 ) :
     BaseCommonAdapter<SearchHistory>(list) {
 
@@ -31,14 +31,13 @@ public class SearchHistorydapter(
 
         content.text = data.reservedString
 
-        if (position in 5..9) {
+        if (position in 2..3 || position in 7..10) {
             updateTime.visibility = View.VISIBLE
             val time = TimeUtils.descriptiveData(data.updateTime) + "搜索"
             updateTime.text = time.toString()
 
             holder.itemView.post {
                 val totalWidth = holder.itemView.width - 48
-                Log.e("1maaaaean", "totalWidth:$totalWidth")
                 val space = totalWidth - updateTime.width
                 val contentParams = content.layoutParams
                 contentParams.width = space
@@ -48,7 +47,6 @@ public class SearchHistorydapter(
             updateTime.visibility = View.GONE
             holder.itemView.post {
                 val totalWidth = holder.itemView.width - 48
-                Log.e("1maaaaean", "totalWidth:$totalWidth")
                 val contentParams = content.layoutParams
                 contentParams.width = totalWidth
                 content.layoutParams = contentParams
@@ -57,7 +55,7 @@ public class SearchHistorydapter(
 
         holder.itemView.setOnClickListener {
             data.reservedString?.let {
-                listener.onItemClick(it)
+                onItemClick.invoke(it)
             }
         }
     }

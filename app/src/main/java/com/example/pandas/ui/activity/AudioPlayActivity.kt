@@ -17,7 +17,6 @@ import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.ext.loadLayoutBackGround
 import com.example.pandas.biz.interaction.AudioServiceListener
-import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.viewmodel.AudioViewModel
 import com.example.pandas.databinding.ActivityAudioBinding
 import com.example.pandas.ui.adapter.AudioMenuAdapter
@@ -34,8 +33,7 @@ import java.util.*
  * @date: 3/1/22 6:41 下午
  * @version: v1.0
  */
-public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBinding>(),
-    OnItemmmmClickListener<MusicVo> {
+public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBinding>() {
 
     private var isTimeBarMoving = false //正在拖动时间bar
 
@@ -120,16 +118,13 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
             val list = mViewModel.musicsResult.value
             val adapter =
                 list?.let {
-                    AudioMenuAdapter(it, fileName!!, object : OnItemmmmClickListener<MusicVo> {
-                        override fun onClick(position: Int, t: MusicVo) {
-
-                            mService?.seekToMediaItem(position)
-                            (mRecyclerView?.adapter as AudioMenuAdapter).updateSelectItem(
-                                t.fileName!!,
-                                position
-                            )
-                        }
-                    })
+                    AudioMenuAdapter(it, fileName!!) { position: Int, t: MusicVo ->
+                        mService?.seekToMediaItem(position)
+                        (mRecyclerView?.adapter as AudioMenuAdapter).updateSelectItem(
+                            t.fileName!!,
+                            position
+                        )
+                    }
                 }
             mRecyclerView!!.adapter = adapter
             mDialog!!.setContentView(menuView)
@@ -138,12 +133,6 @@ public class AudioPlayActivity : BaseActivity<AudioViewModel, ActivityAudioBindi
         }
         mLayoutManager?.scrollToPositionWithOffset(position, 200)
         mDialog?.show()
-    }
-
-    //menu item click
-    override fun onClick(position: Int, t: MusicVo) {
-
-        //mService?.dispatchPause()
     }
 
     private val audiolistener = object : AudioServiceListener {

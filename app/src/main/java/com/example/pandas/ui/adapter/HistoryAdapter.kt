@@ -23,7 +23,8 @@ import com.example.pandas.ui.ext.startVideoPlayingActivity
  */
 public class HistoryAdapter(
     private var list: MutableList<HistoryItem> = mutableListOf(),
-    private val listener: HistoryListener
+    private val onLongClick:()->Unit,
+    private val cancelAllSelected:()->Unit
 ) : Adapter<ViewHolder>() {
 
     private val TYPE_ITEM = 0
@@ -34,12 +35,6 @@ public class HistoryAdapter(
     private var isSelectAll: Boolean = false
 
     private var selectMaps: MutableMap<Int, History> = mutableMapOf()
-
-    interface HistoryListener {
-        fun onLongClick()
-
-        fun cancelAllSelected()
-    }
 
     fun getSelectList(): MutableList<History> {
         if (selectMaps.isNotEmpty()) {
@@ -226,7 +221,7 @@ public class HistoryAdapter(
                         historyItem.selected = true
                         historyItem.history?.let { it1 -> selectMaps.put(position, it1) }
                         isShow = true
-                        listener.onLongClick()
+                        onLongClick.invoke()
                         notifyAdapter()
                     }
                     true
@@ -236,7 +231,7 @@ public class HistoryAdapter(
                     if (isShow) {
                         if (isSelectAll) {
                             isSelectAll = false
-                            listener.cancelAllSelected()
+                            cancelAllSelected.invoke()
                         }
                         if (historyItem.selected) {
                             if (selectMaps.containsKey(position)) {

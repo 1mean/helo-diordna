@@ -47,8 +47,6 @@ public class LiveVideoFragment : BaseFragment<LiveViewModel, LayoutSwipRefreshBi
 
     override fun lazyLoadTime(): Long = 0
 
-    private val mHandler = Handler(Looper.getMainLooper())
-
     override fun initView(savedInstanceState: Bundle?) {
 
         val status = appViewModel.appColorType.value

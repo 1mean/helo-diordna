@@ -136,9 +136,30 @@ public class UserRepository : BaseRepository() {
         }
     }
 
+    suspend fun attention(isFollow: Boolean, userCode: Int): Int {
+        return withContext(Dispatchers.IO) {
+            val user = userDao.queryUserByCode(userCode)
+            user.attention = isFollow
+            userDao.update(user)
+        }
+    }
+
+    fun attention1(isFollow: Boolean, userCode: Int): Flow<Int> = flow {
+        val user = userDao.queryUserByCode(userCode)
+        user.attention = isFollow
+        emit(userDao.update(user))
+    }.catch { e -> e.printStackTrace() }.flowOn(Dispatchers.IO)
+
     fun getAllFollowUsers(): Flow<MutableList<User>> = flowInDelay(userDao.queryAllAttentionUsers())
     fun getAllFollowCounts(): Flow<Int> = flowIn(userDao.queryAllAttentionCounts())
 
+    suspend fun getLikedUser1(key: String, startIndex: Int, pageCount: Int): MutableList<User> {
+        return withContext(Dispatchers.IO) {
+            delay(500L)
+            userDao.getLikedPageUser(key, startIndex, pageCount)
+        }
+    }
+
     fun getLikedUser(key: String, startIndex: Int, pageCount: Int): Flow<MutableList<User>> =
-        flowInDelay(userDao.queryLikedPageUser(key, startIndex, pageCount))
+        flowIn(userDao.queryLikedPageUser(key, startIndex, pageCount))
 }

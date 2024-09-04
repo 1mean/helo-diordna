@@ -16,7 +16,7 @@ import android.util.Log
  */
 object StringColorUtil {
 
-    private val spBuilder: SpannableStringBuilder by lazy { SpannableStringBuilder() }
+    private val spBuilder: SpannableStringBuilder by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { SpannableStringBuilder() }
 
     /**
      * <单个关键字>
@@ -24,6 +24,9 @@ object StringColorUtil {
      *     - wholeStr  全部文字
      *     - keyStr  关键字
      *     - keyStrColor 关键字的颜色
+     *
+     *      BUG:多个界面使用这个方法时，切到新的viewpager界面后，出现全部都是上一个界面的最后一个SpannableStringBuilder的内容
+     *
      * @author: dongyiming
      * @date: 7/20/22 10:13 下午
      * @version: v1.0
@@ -34,12 +37,11 @@ object StringColorUtil {
             && !TextUtils.isEmpty(keyStr)
             && wholeStr.contains(keyStr)
         ) {
-            Log.e("SearchListFragment","wholeStr: $wholeStr")
+            Log.e("SearchListFragment", "wholeStr: $wholeStr")
             val start = wholeStr.indexOf(keyStr)
             val end = start + keyStr.length
 
             val foregroundColorSpan = ForegroundColorSpan(keyStrColor)
-
             spBuilder.run {
                 clear()
                 clearSpans()
@@ -48,6 +50,30 @@ object StringColorUtil {
             }
         }
         return spBuilder
+    }
+
+    fun fillColor2(
+        sb: SpannableStringBuilder,
+        wholeStr: String,
+        keyStr: String,
+        keyStrColor: Int
+    ): String {
+        if (!TextUtils.isEmpty(wholeStr)
+            && !TextUtils.isEmpty(keyStr)
+            && wholeStr.contains(keyStr)
+        ) {
+            Log.e("SearchListFragment", "wholeStr: $wholeStr")
+            val start = wholeStr.indexOf(keyStr)
+            val end = start + keyStr.length
+            val foregroundColorSpan = ForegroundColorSpan(keyStrColor)
+            sb.run {
+                clear()
+                clearSpans()
+                append(wholeStr)
+                setSpan(foregroundColorSpan, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+            }
+        }
+        return sb.toString()
     }
 
     /**

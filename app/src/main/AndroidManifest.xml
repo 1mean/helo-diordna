@@ -104,10 +104,12 @@
         <activity android:name=".ui.activity.CollectListActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
         <activity android:name=".ui.activity.FaceActivity" />
-        <activity android:name=".ui.activity.CommonBannerActivity" />
         <!--<activity android:name=".ui.activity.Face2Activity" />-->
         <activity android:name=".ui.activity.ShortVideoActivity" />
-        <activity android:name=".ui.activity.NewSearchActivity" />
+        <!--BUG:解决了关闭软键盘后，会在界面底部留下一片空白，把界面遮挡住了 adjustPan|stateAlwaysVisible-->
+        <activity
+            android:name=".ui.activity.NewSearchActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysVisible" />
         <activity
             android:name=".ui.activity.VideoPlayingActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
@@ -131,13 +133,6 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             tools:replace="android:configChanges" />-->
-
-        <activity
-            android:name=".ui.activity.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!--分享7.1.7SDK适配微信官方的v6.8.0版本，需要在工程AndroidManifest.xml清单文件中增加-->
         <activity

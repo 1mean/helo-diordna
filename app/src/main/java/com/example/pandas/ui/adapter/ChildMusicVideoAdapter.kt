@@ -17,7 +17,7 @@ import com.example.pandas.ui.ext.startVideoPlayingActivity
  * @version: v1.0
  */
 public class ChildMusicVideoAdapter(
-    private val list: MutableList<VideoAndUser> = mutableListOf()
+    list: MutableList<VideoAndUser> = mutableListOf()
 ) :
     BaseCommonAdapter<VideoAndUser>(list) {
 

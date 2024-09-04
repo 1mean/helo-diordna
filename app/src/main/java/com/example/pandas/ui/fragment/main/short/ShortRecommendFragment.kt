@@ -56,7 +56,6 @@ public class ShortRecommendFragment :
 
     private var manager: ShortManager? = null
     var popupView: ShortRightPopuWindow? = null
-    private val mHandler: Handler = Handler(Looper.getMainLooper())
 
     override fun lazyLoadTime(): Long = 0
 

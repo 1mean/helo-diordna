@@ -1,5 +1,7 @@
 package com.example.pandas.ui.adapter
 
+import android.text.SpannableStringBuilder
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -10,32 +12,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.android_sqlite.entity.User
 import com.android.base.ui.adapter.BaseCommonAdapter
 import com.android.base.ui.adapter.BaseViewHolder
+import com.android.base.utils.StringColorUtil
 import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCircleImage
+import com.example.pandas.biz.ext.loadImage
+import com.example.pandas.ui.ext.startUserInfoActivity
+import de.hdodenhof.circleimageview.CircleImageView
 
 /**
- * @description: FollowFragmentAdapter
+ * @description: SearchUserAdapter
  * @author: dongyiming
- * @date: 5/10/22 3:16 下午
+ * @date: 9/2/24 12:44 PM
  * @version: v1.0
  */
-public class FollowFragmentAdapter(
-    private val list: MutableList<User>,
-    private val followViewClick: (position: Int, userCode: Int) -> Unit,
-    private val unFollowViewClick: (position: Int, userCode: Int) -> Unit
-) :
-    BaseCommonAdapter<User>(list) {
+public class SearchUserAdapter(
+    private val list: MutableList<User> = mutableListOf(),
+    private val listener: (position: Int, userCode: Int, isFollow: Boolean) -> Unit
+) : BaseCommonAdapter<User>(list) {
 
-    private var vipColor: Int? = null
     override fun getLayoutId(): Int = R.layout.adapter_follow
-
-    fun setVipColor(vipColor: Int) {
-        this.vipColor = vipColor
-    }
 
     fun updateItem(position: Int, hd: RecyclerView.ViewHolder?) {
         val data = list[position]
-        data.reservedInt = 1
+        data.attention = false
 
         hd?.let {
             val followView =
@@ -53,7 +52,7 @@ public class FollowFragmentAdapter(
     override fun convert(holder: BaseViewHolder, data: User, position: Int) {
 
         val context = holder.itemView.context
-        val cover = holder.getWidget<AppCompatImageView>(R.id.img_follow)
+        val cover = holder.getWidget<CircleImageView>(R.id.img_follow)
         val name = holder.getWidget<AppCompatTextView>(R.id.txt_follow_name)
         val desc = holder.getWidget<AppCompatTextView>(R.id.txt_follow_desc)
         val follow = holder.getWidget<ConstraintLayout>(R.id.rlayout_follow)
@@ -61,20 +60,17 @@ public class FollowFragmentAdapter(
         val unFollowView = holder.getWidget<LinearLayoutCompat>(R.id.llayout_unfollow)
 
         data.headUrl?.let {
-            loadCircleImage(context, it, cover)
+            loadImage(context, it, cover)
         }
-        desc.text = data.signature
-
-        if (data.vip == 1) {
-            if (vipColor != null) {
-                name.setTextColor(vipColor!!)
-            } else {
-                name.setTextColor(ContextCompat.getColor(context, R.color.color_tab_text_selected))
-            }
+        if (data.signature == null || data.signature!!.isEmpty()) {
+            desc.text = data.userName
         } else {
-            name.setTextColor(ContextCompat.getColor(context, R.color.color_txt_follow_name))
+            desc.text = data.signature
         }
-        name.text = data.userName
+
+        data.userName?.let {
+            name.text = it
+        }
 
         if (data.attention) {//已经关注
             follow.setBackgroundResource(R.drawable.shape_follow_followed)
@@ -87,15 +83,22 @@ public class FollowFragmentAdapter(
         }
 
         follow.setOnClickListener {
-            if (data.attention) {
-                followViewClick(position, data.userCode)
+            if (!data.attention) {
+                listener.invoke(position, data.userCode, true)
+                follow.setBackgroundResource(R.drawable.shape_follow_followed)
+                followView.visibility = View.VISIBLE
+                unFollowView.visibility = View.GONE
+                data.attention = !data.attention
             } else {
-                unFollowViewClick(position, data.userCode)
-                data.reservedInt = 0
+                listener.invoke(position, data.userCode, false)
                 follow.setBackgroundResource(R.drawable.shape_follow_followed)
                 followView.visibility = View.VISIBLE
                 unFollowView.visibility = View.GONE
             }
+        }
+
+        holder.itemView.setOnClickListener {
+            startUserInfoActivity(context, data.userCode)
         }
     }
 }

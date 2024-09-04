@@ -60,7 +60,6 @@ public class HomeFragment : BaseFragment<MainFragmentViewModel, FragmentHomeBind
     private val searchInfos
         get() = arrayOf("大熊猫和花", "刘亦菲", "快乐足球四天王")
     private var searchIndex = 0
-    private val mHandler = Handler(Looper.getMainLooper())
 
     private var verticalOffset: Int = 0 //Appbar偏移
     override fun lazyLoadTime(): Long = 0

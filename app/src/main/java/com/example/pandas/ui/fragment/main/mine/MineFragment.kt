@@ -65,8 +65,6 @@ public class MineFragment : BaseFragment<SelfViewModel, FragmentSetting2Binding>
         get() = AppInstance.instance.isLoginSuccess
     private var loadingPopup: LoadingPopupView? = null
 
-    private val mHandler: Handler = Handler(Looper.getMainLooper())
-
     override fun getCurrentLifeOwner(): ViewModelStoreOwner = mActivity
 
     override fun initView(savedInstanceState: Bundle?) {

@@ -21,7 +21,8 @@ import com.example.pandas.ui.ext.startVideoPlayingActivity
  */
 public class LaterAdapter(
     private val list: MutableList<PetVideo> = mutableListOf(),
-    private val listener: LaterListener
+    private val onLongClick:()->Unit,
+    private val cancelAllSelected:()->Unit
 ) :
     BaseCommonAdapter<PetVideo>(list) {
 
@@ -29,12 +30,6 @@ public class LaterAdapter(
     private var isSelectAll: Boolean = false
 
     private var selectMaps: MutableMap<Int, PetVideo> = mutableMapOf()
-
-    interface LaterListener {
-        fun onLongClick()
-
-        fun cancelAllSelected()
-    }
 
     fun getSelectList(): MutableList<PetVideo> {
         if (selectMaps.isNotEmpty()) {
@@ -164,7 +159,7 @@ public class LaterAdapter(
                 data.booleanFlag = true
                 selectMaps.put(position, data)
                 isShow = true
-                listener.onLongClick()
+                onLongClick.invoke()
                 notifyAdapter()
             }
             true
@@ -174,7 +169,7 @@ public class LaterAdapter(
             if (isShow) {
                 if (isSelectAll) {
                     isSelectAll = false
-                    listener.cancelAllSelected()
+                    cancelAllSelected.invoke()
                 }
                 if (data.booleanFlag) {
                     if (selectMaps.containsKey(position)) {

@@ -1,6 +1,7 @@
 package com.example.pandas.ui.fragment.search
+
+import AppInstance
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
@@ -15,7 +16,6 @@ import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
 import com.example.pandas.ui.ext.toastTopShow
 import com.example.pandas.ui.ext.viewColors
-import com.example.pandas.ui.fragment.main.mine.WanAndroidFragment
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import kotlinx.coroutines.launch
 
@@ -25,10 +25,16 @@ import kotlinx.coroutines.launch
  * @date: 8/25/24 2:27 AM
  * @version: v1.0
  */
-public class WanSearchListFragment : BaseFragment<SearchViewModel, LayoutSwipRefreshBinding>(),
-    WanAndroidAdapter.CollectListener {
+public class WanSearchListFragment : BaseFragment<SearchViewModel, LayoutSwipRefreshBinding>() {
     private var currentPage = 0
-    private val mAdapter: WanAndroidAdapter by lazy { WanAndroidAdapter(listener = this) }
+
+    private val mAdapter: WanAndroidAdapter by lazy {
+        WanAndroidAdapter(mutableListOf(), { id: Int ->
+            mViewModel.collectInnerArticle(id)
+        }, { id: Int, originId: Int ->
+            mViewModel.removeCollectedArticle(id, originId)
+        })
+    }
 
     override fun initView(savedInstanceState: Bundle?) {
 
@@ -117,15 +123,6 @@ public class WanSearchListFragment : BaseFragment<SearchViewModel, LayoutSwipRef
     override fun firstOnResume() {
         binding.swipLayout.isRefreshing = true
         mViewModel.pageSearch(currentPage, mViewModel.keyWords)
-    }
-
-    override fun collect(id: Int) {
-        mViewModel.collectInnerArticle(id)
-    }
-
-    override fun removeCollect(id: Int, originId: Int) {
-        Log.e("1mean", "id:$id")
-        mViewModel.removeCollectedArticle(id, originId)
     }
 
     override fun getCurrentLifeOwner(): ViewModelStoreOwner {
