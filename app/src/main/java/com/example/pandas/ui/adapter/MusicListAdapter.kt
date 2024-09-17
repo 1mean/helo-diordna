@@ -10,7 +10,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.R
 import com.android.base.ui.adapter.BaseCommonAdapter
 import com.android.base.ui.adapter.BaseViewHolder
-import com.example.pandas.biz.interaction.OnItemmmmClickListener
 
 /**
  * @description: MusicListAdapter

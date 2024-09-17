@@ -17,13 +17,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.VideoData
+import com.android.base.manager.SoftInputManager
 import com.android.base.ui.activity.BaseActivity
+import com.android.base.ui.lifecycle.LifecycleHandler
 import com.android.base.utils.VibrateUtils
 import com.example.pandas.R
-import com.android.base.ui.lifecycle.LifecycleHandler
 import com.example.pandas.biz.interaction.CommentWindowListener
-import com.example.pandas.biz.interaction.ExoPlayerListener
-import com.android.base.manager.SoftInputManager
 import com.example.pandas.biz.manager.VerticalPlayManager
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.data.qq.QqEmoticons
@@ -47,7 +46,7 @@ import kotlinx.coroutines.launch
  * @version: v1.0
  */
 public class ShortVideoActivity2 :
-    BaseActivity<ShortVideoViewModel, ActivityVerticalVideoplayBinding>(), ExoPlayerListener,
+    BaseActivity<ShortVideoViewModel, ActivityVerticalVideoplayBinding>(),
     VideoPagerAdapter.VerticalVideoListener {
 
     private var startX: Float = 0f
@@ -85,7 +84,9 @@ public class ShortVideoActivity2 :
         initStatusView()
         //bug:一句代码解决了两天的bug，关闭popuwindow时，edittext仍然有焦点，会反复弹出
         //window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
-        manager = VerticalPlayManager(this, this)
+        manager = VerticalPlayManager(this) {
+            isPlayingChanged(it)
+        }
 
         keyBoardManager = SoftInputManager(this)
         keyBoardManager!!.setOnSoftKeyBoardChangeListener(keyBoardListener)
@@ -144,7 +145,7 @@ public class ShortVideoActivity2 :
     override fun createObserver() {
 
         lifecycleScope.launch {
-            mViewModel.verticalVideosFlow.collect{
+            mViewModel.verticalVideosFlow.collect {
                 if (it.isSuccess) {
                     when {
                         it.isRefresh -> {
@@ -481,8 +482,7 @@ public class ShortVideoActivity2 :
         }
     }
 
-    override fun isPlayingChanged(isPlaying: Boolean) {
-        super.isPlayingChanged(isPlaying)
+    private fun isPlayingChanged(isPlaying: Boolean) {
         if (isPlaying) {
             mAdapter.recyclerView?.let {
 

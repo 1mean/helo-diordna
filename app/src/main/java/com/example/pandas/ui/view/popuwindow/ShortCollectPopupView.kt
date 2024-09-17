@@ -6,7 +6,6 @@ import androidx.appcompat.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.android.android_sqlite.entity.Group
-import com.android.base.interaction.AdapterListener
 import com.example.pandas.R
 import com.example.pandas.ui.adapter.CollectItemAdapter
 import com.example.pandas.ui.ext.initBase
@@ -22,10 +21,11 @@ import com.lxj.xpopup.core.BottomPopupView
 public class ShortCollectPopupView(
     context: Context,
     list: MutableList<Group>,
-    private val listener: AdapterListener<Group>
+    itemClick: (position: Int, t: Group) -> Unit,
+    private val viewClick: () -> Unit,
 ) : BottomPopupView(context) {
 
-    val mAdapter = CollectItemAdapter(list, listener)
+    val mAdapter = CollectItemAdapter(list, itemClick)
 
     override fun getImplLayoutId(): Int = R.layout.dialog_short_collect
 
@@ -45,10 +45,10 @@ public class ShortCollectPopupView(
         groupRv.initBase(adapter = mAdapter)
 
         bottomView.setOnClickListener {
-            listener.viewClick()
+            viewClick()
         }
         btnAdd.setOnClickListener {
-            listener.viewClick()
+            viewClick()
         }
     }
 }

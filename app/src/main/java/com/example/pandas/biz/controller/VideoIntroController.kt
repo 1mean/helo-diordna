@@ -2,7 +2,6 @@ package com.example.pandas.biz.controller
 
 import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.http.invoker.EyepetozerHttpInvoker
-import com.example.pandas.biz.interaction.CommonResultListener
 import io.reactivex.rxjava3.observers.ResourceObserver
 
 /**
@@ -11,7 +10,10 @@ import io.reactivex.rxjava3.observers.ResourceObserver
  * @date: 12/30/21 10:53 下午
  * @version: v1.0
  */
-public class VideoIntroController(private val listener: CommonResultListener<MutableList<EyepetozerItem>>) {
+public class VideoIntroController(
+    private val onResult: (data: MutableList<EyepetozerItem>) -> Unit,
+    private val onFailure: (errorMessage: String) -> Unit
+) {
 
     private var invoker: EyepetozerHttpInvoker? = null
 
@@ -23,12 +25,11 @@ public class VideoIntroController(private val listener: CommonResultListener<Mut
 
         val observer = object : ResourceObserver<MutableList<EyepetozerItem>>() {
             override fun onNext(list: MutableList<EyepetozerItem>) {
-
-                listener.onResult(list)
+                onResult(list)
             }
 
             override fun onError(e: Throwable) {
-                listener.onFailure(e.toString())
+                onFailure(e.toString())
             }
 
             override fun onComplete() {

@@ -106,6 +106,7 @@
         <activity android:name=".ui.activity.FaceActivity" />
         <!--<activity android:name=".ui.activity.Face2Activity" />-->
         <activity android:name=".ui.activity.ShortVideoActivity" />
+        <activity android:name="com.helo.video.VideoPlayingActivity" />
         <!--BUG:解决了关闭软键盘后，会在界面底部留下一片空白，把界面遮挡住了 adjustPan|stateAlwaysVisible-->
         <activity
             android:name=".ui.activity.NewSearchActivity"

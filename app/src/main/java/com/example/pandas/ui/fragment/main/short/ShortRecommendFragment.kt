@@ -4,8 +4,6 @@ import ShortManager
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.*
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,23 +14,18 @@ import androidx.viewpager2.widget.ViewPager2
 import com.android.android_sqlite.entity.Group
 import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.VideoData
-import com.android.base.interaction.AdapterListener
-import com.android.base.interaction.ViewClickListener
-import com.example.pandas.R
 import com.android.base.ui.fragment.BaseFragment
+import com.example.pandas.R
 import com.example.pandas.biz.interaction.CommentWindowListener
-import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.viewmodel.ShortVideoViewModel
 import com.example.pandas.databinding.FragmentVerticalVideoplayBinding
 import com.example.pandas.ui.activity.UserInfoActivity
-import com.example.pandas.ui.adapter.CollectItemAdapter
 import com.example.pandas.ui.adapter.VideoPagerAdapter
 import com.example.pandas.ui.ext.toastTopShow
 import com.example.pandas.ui.view.popuwindow.CreateGroupPopupView
 import com.example.pandas.ui.view.popuwindow.ShortCollectPopupView
 import com.example.pandas.ui.view.popuwindow.ShortRightPopuWindow
 import com.google.android.exoplayer2.util.Util
-import com.google.android.material.snackbar.Snackbar
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
 import com.lxj.xpopup.interfaces.XPopupCallback
@@ -46,7 +39,7 @@ import kotlinx.coroutines.launch
  * @version: v1.0
  */
 public class ShortRecommendFragment :
-    BaseFragment<ShortVideoViewModel, FragmentVerticalVideoplayBinding>(), ExoPlayerListener,
+    BaseFragment<ShortVideoViewModel, FragmentVerticalVideoplayBinding>(),
     VideoPagerAdapter.VerticalVideoListener {
 
     private var collectPopupView: ShortCollectPopupView? = null
@@ -81,7 +74,9 @@ public class ShortRecommendFragment :
 
     @SuppressLint("Recycle")
     override fun initView(savedInstanceState: Bundle?) {
-        manager = ShortManager(mActivity, this)
+        manager = ShortManager(mActivity) {
+            isPlayingChanged(it)
+        }
         binding.vp2VideoVertical.run {
             orientation = ViewPager2.ORIENTATION_VERTICAL
             adapter = mAdapter
@@ -125,32 +120,26 @@ public class ShortRecommendFragment :
             mViewModel.groupFlow.collect {
                 Log.e("1111mean", "mViewModel.groupFlow")
                 collectPopupView =
-                    ShortCollectPopupView(mActivity, it, object : AdapterListener<Group> {
-                        override fun itemClick(position: Int, t: Group) {
-                            petVideo?.let {video->
-                                mViewModel.addGroupItem(video, t)
-                            }
-                            collectPopupView?.dismiss()
+                    ShortCollectPopupView(mActivity, it, { position: Int, t: Group ->
+                        petVideo?.let { video ->
+                            mViewModel.addGroupItem(video, t)
                         }
-
-                        override fun viewClick() {//创建新的group
-                            collectPopupView?.dismiss()
-                            val coverUrl = mAdapter.getPetVide(currentPosition).cover
-                            val createPopupView = CreateGroupPopupView(mActivity, coverUrl, object :
-                                ViewClickListener<Group> {
-                                override fun viewClick(t: Group) {
-                                    petVideo?.let {
-                                        mViewModel.createNewGroupAndIn(it.code, t)
-                                    }
+                        collectPopupView?.dismiss()
+                    }, {
+                        collectPopupView?.dismiss()
+                        val coverUrl = mAdapter.getPetVide(currentPosition).cover
+                        val createPopupView =
+                            CreateGroupPopupView(mActivity, coverUrl) { t: Group ->
+                                petVideo?.let {
+                                    mViewModel.createNewGroupAndIn(it.code, t)
                                 }
-                            })
-                            XPopup.Builder(context)
-                                .moveUpToKeyboard(true) //如果不加这个，评论弹窗会移动到软键盘上面
-                                .dismissOnTouchOutside(true)
-                                .animationDuration(600)
-                                .asCustom(createPopupView)
-                                .show()
-                        }
+                            }
+                        XPopup.Builder(context)
+                            .moveUpToKeyboard(true) //如果不加这个，评论弹窗会移动到软键盘上面
+                            .dismissOnTouchOutside(true)
+                            .animationDuration(600)
+                            .asCustom(createPopupView)
+                            .show()
                     })
                 XPopup.setShadowBgColor(
                     ContextCompat.getColor(
@@ -269,9 +258,7 @@ public class ShortRecommendFragment :
         }
     }
 
-    override fun isPlayingChanged(isPlaying: Boolean) {
-        super.isPlayingChanged(isPlaying)
-        Log.e("2mean", "ShortRecommendFragment isPlayingChanged:$isPlaying")
+    private fun isPlayingChanged(isPlaying: Boolean) {
         if (isPlaying) {
             mAdapter.recyclerView?.let {
                 val viewHolder =

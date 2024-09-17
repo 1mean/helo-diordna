@@ -16,7 +16,6 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.controller.VideoIntroController
-import com.example.pandas.biz.interaction.CommonResultListener
 import com.example.pandas.databinding.FragmentVideoIntroBinding
 
 /**
@@ -25,7 +24,7 @@ import com.example.pandas.databinding.FragmentVideoIntroBinding
  * @date: 12/29/21 11:39 下午
  * @version: v1.0
  */
-public class VideoIntroFragment : Fragment(), CommonResultListener<MutableList<EyepetozerItem>> {
+public class VideoIntroFragment : Fragment() {
 
     var eyepetozerBean: EyepetozerItem? = null
 
@@ -53,7 +52,12 @@ public class VideoIntroFragment : Fragment(), CommonResultListener<MutableList<E
     ): View {
         _binding = FragmentVideoIntroBinding.inflate(inflater, container, false)
 
-        val controller = VideoIntroController(this)
+        val controller = VideoIntroController({
+            val recyclerView = binding.rvVideo
+            recyclerView.layoutManager = LinearLayoutManager(context)
+        }, {
+            Log.e("pandas_error", "Failed to get recommend video for: $it")
+        })
         val videoId = eyepetozerBean?.videoId
         videoId?.let { controller.getRecommendVideos(it) }
         return binding.root
@@ -81,17 +85,5 @@ public class VideoIntroFragment : Fragment(), CommonResultListener<MutableList<E
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onResult(data: MutableList<EyepetozerItem>) {
-
-        //val adapter = VideoRecommendAdapter(data)
-        val recyclerView = binding.rvVideo
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        //recyclerView.adapter = adapter
-    }
-
-    override fun onFailure(errorMessage: String) {
-        Log.e("pandas_error", "Failed to get recommend video for: $errorMessage")
     }
 }

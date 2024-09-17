@@ -4,7 +4,6 @@ import android.net.Uri
 import android.util.Log
 import com.android.android_sqlite.entity.PetVideo
 import com.example.pandas.biz.ext.getLocalFilePath
-import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.ui.ext.toastTopShow
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.analytics.AnalyticsListener
@@ -22,7 +21,7 @@ import java.io.IOException
  */
 public class ShortManager(
     private val context: Context,
-    private val exoListener: ExoPlayerListener
+    private val isPlayingChanged: (isPlaying: Boolean) -> Unit
 ) {
 
     private var _mPlayer: ExoPlayer? = null
@@ -165,16 +164,16 @@ public class ShortManager(
         override fun onPlaybackStateChanged(playbackState: Int) {
             when (playbackState) {
                 Player.STATE_BUFFERING -> {//可以通过isPlaying和seek动作来处理界面相关
-                    Log.e("RecoPlayManager", "STATE_BUFFERING")
+                    Log.e("ExoMediaManager", "STATE_BUFFERING")
                 }
                 Player.STATE_READY -> {//视频已经准备好，此时isPlaying=true
-                    Log.e("RecoPlayManager", "STATE_READY")
+                    Log.e("ExoMediaManager", "STATE_READY")
                 }
                 Player.STATE_IDLE -> {//暂停不会触发
-                    Log.e("RecoPlayManager", "STATE_IDLE")
+                    Log.e("ExoMediaManager", "STATE_IDLE")
                 }
                 Player.STATE_ENDED -> {//播放结束
-                    Log.e("RecoPlayManager", "STATE_ENDED")
+                    Log.e("ExoMediaManager", "STATE_ENDED")
                 }
             }
         }
@@ -195,7 +194,7 @@ public class ShortManager(
         //当 #{isPlaying()} 的值改变时调用 ，是否player正在播放中
         override fun onIsPlayingChanged(isPlaying: Boolean) {
             super.onIsPlayingChanged(isPlaying)
-            exoListener.isPlayingChanged(isPlaying)
+            isPlayingChanged(isPlaying)
         }
 
         //player开始/停止加载资源文件,每隔7秒就会回调两次，先true后false，可能是先加载缓冲，加载完了请求网络

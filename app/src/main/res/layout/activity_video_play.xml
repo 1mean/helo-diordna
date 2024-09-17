@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp2_video_play"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="58dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_vertical_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_gravity="bottom"
+        android:background="@color/black">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_vertical_input_send"
+            android:layout_width="52dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/shape_bg_edit_send"
+            android:text="发送"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintRight_toRightOf="@id/clayout_vertical_bottom"
+            app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_video_input"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/shape_bottom_input"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_vertical_bottom"
+            app:layout_constraintRight_toLeftOf="@id/btn_vertical_input_send"
+            app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom">
+
+            <!-- android:background="@drawable/shape_vertical_edit" -->
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_short_at"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@mipmap/img_short_eit"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_video_input"
+                app:layout_constraintRight_toLeftOf="@id/btn_short_emotion"
+                app:layout_constraintTop_toTopOf="@id/clayout_video_input" />
+
+            <!--必须设置focus，才能主动和被动地弹起软键盘-->
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_short_emotion"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:background="@null"
+                android:src="@mipmap/img_short_emotion"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_video_input"
+                app:layout_constraintEnd_toEndOf="@id/clayout_video_input"
+                app:layout_constraintTop_toTopOf="@id/clayout_video_input" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginStart="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:hint="@string/str_hint_edit_short"
+                android:includeFontPadding="false"
+                android:inputType="none"
+                android:singleLine="true"
+                android:textColor="#E6E6E6"
+                android:textColorHint="#939393"
+                android:textCursorDrawable="@drawable/shape_edit_comment"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_video_input"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_video_input"
+                app:layout_constraintTop_toTopOf="@id/clayout_video_input" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

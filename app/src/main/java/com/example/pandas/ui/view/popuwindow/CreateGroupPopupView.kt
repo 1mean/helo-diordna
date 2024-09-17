@@ -2,20 +2,12 @@ package com.example.pandas.ui.view.popuwindow
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.appcompat.widget.*
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
-import androidx.recyclerview.widget.RecyclerView
 import com.android.android_sqlite.entity.Group
-import com.android.base.interaction.AdapterListener
-import com.android.base.interaction.ViewClickListener
 import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCenterImage
-import com.example.pandas.biz.ext.loadImage
-import com.example.pandas.ui.adapter.CollectItemAdapter
-import com.example.pandas.ui.ext.initBase
 import com.example.pandas.ui.ext.toast
 import com.github.iielse.switchbutton.SwitchView
 import com.lxj.xpopup.core.BottomPopupView
@@ -30,7 +22,7 @@ import com.lxj.xpopup.core.BottomPopupView
 public class CreateGroupPopupView(
     context: Context,
     private val coverUrl: String?,
-    private val listener: ViewClickListener<Group>
+    private val viewClick: (t: Group) -> Unit
 ) : BottomPopupView(context) {
 
     override fun getImplLayoutId(): Int = R.layout.dialog_group_create
@@ -67,7 +59,7 @@ public class CreateGroupPopupView(
                 open = switchView.isOpened,
                 groupCover = coverUrl
             )
-            listener.viewClick(group)
+            viewClick(group)
             dismiss()
         }
 

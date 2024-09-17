@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,8 +18,7 @@ import com.example.pandas.app.appViewModel
 import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
-import com.example.pandas.biz.interaction.ExoPlayerListener
-import com.example.pandas.biz.manager.RecoPlayManager
+import com.example.pandas.biz.manager.ExoMediaManager
 import com.example.pandas.biz.viewmodel.HomePageViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
 import com.example.pandas.ui.adapter.RecommendAdapter
@@ -39,11 +39,14 @@ import com.google.android.exoplayer2.util.Util
  * @version: v1.0
  */
 public class RecommendFragment : BaseFragment<HomePageViewModel, LayoutSwipRefreshBinding>(),
-    RecommendAdapter.RecoViewListener, ExoPlayerListener {
+    RecommendAdapter.RecoViewListener, ExoMediaManager.ExoListener {
 
     private var startActivity = false
+    private var playingPosition = -1
     private val mAdapter: RecommendAdapter by lazy { RecommendAdapter(lifecycle, listener = this) }
-    private val recoManager: RecoPlayManager by lazy { RecoPlayManager(mActivity, this) }
+
+    //这里不能使用by lazy延迟，因为manager会加入生命周期的监听，如果等使用再加载，ExoMediaManager——OnStart会很晚执行，导致崩溃
+    private var recoManager: ExoMediaManager? = null
 
     //onStart -> 返回数据后 -> 然后执行onResume()
     private val requestLauncher =
@@ -81,14 +84,17 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, LayoutSwipRefre
                     }
                 })
         }
+        recoManager = ExoMediaManager(mActivity, this, this)
 
         with(binding.recyclerLayout) {
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     when (newState) {
                         RecyclerView.SCROLL_STATE_IDLE -> {
+                            Log.e("1mesdadan", "idle")
                             startPlay()
                         }
+
                         RecyclerView.SCROLL_STATE_DRAGGING -> {
                         }
                     }
@@ -115,17 +121,6 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, LayoutSwipRefre
         }
     }
 
-    /**
-     * - 跳转到其他activity回来，会执行onStart()和onResume()
-     * - 切换到其他fragment，只会执行onPause()和onResume()
-     */
-    override fun onStart() {
-        super.onStart()
-        if (Util.SDK_INT > 23) {
-            recoManager.initPlayer()
-        }
-    }
-
     override fun firstOnResume() {
         binding.swipLayout.isRefreshing = true
         mViewModel.getRecommendData(true)
@@ -148,13 +143,14 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, LayoutSwipRefre
      */
     override fun onPause() {
         super.onPause()
-        if (recoManager.isPlaying()) {
-            updatePlayerView(true, recoManager.getCurListPos())
+        if (recoManager!!.isPlaying()) {
+            updatePlayerView(true)
         }
         if (startActivity) {
-            recoManager.releasePlayer()
+            recoManager!!.releasePlayer()
+            playingPosition = -1
         } else {
-            recoManager.pausePlayer()
+            recoManager!!.pausePlayer()
         }
         startActivity = false
     }
@@ -178,6 +174,7 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, LayoutSwipRefre
                         mAdapter.refreshData(it.recoData)
                         binding.recyclerLayout.isRefreshing(false)
                     }
+
                     else -> {
                         mAdapter.addData(it.recoData)
                     }
@@ -198,6 +195,29 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, LayoutSwipRefre
         startActivity = true
     }
 
+    override fun updatePlayerVoice(isOpen: Boolean) {
+        recoManager?.updateVolume(isOpen)
+    }
+
+    override fun addLaterPLay(videoCode: Int) {
+        mViewModel.addLaterPlayer(videoCode)
+        Toast.makeText(mActivity, "添加成功", Toast.LENGTH_SHORT).show()
+    }
+
+    /**
+     * 划入，准备播放时，item里的PlayerView已绑定播放器，此时不应该使用notifyItemChanged进行item里视图的修改
+     *      - 会解除播放器的绑定，导致没有画面只有声音
+     * 划出，可使用刷新，视图重新绑定
+     */
+    private fun updatePlayerView(hidePlayer: Boolean) {
+        if (playingPosition >= 0) {
+            val holder = binding.recyclerLayout.findViewHolderForLayoutPosition(playingPosition)
+            if (holder is RecommendAdapter.VideoHolder) {
+                (holder as RecommendAdapter.VideoHolder).updateItemView(hidePlayer)
+            }
+        }
+    }
+
     /**
      * <Detached触发问题>
      *     当目标item完全从屏幕消失时，才会触发，但是其他对item的操作会导致，该回调不按预期触发,如刷新item时，明明还在屏幕内却触发了detach
@@ -213,9 +233,8 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, LayoutSwipRefre
 
             override fun onChildViewDetachedFromWindow(view: View) {
                 val position = binding.recyclerLayout.getChildAdapterPosition(view)
-                val pos = recoManager.getCurListPos()
-                if (position == pos) {
-                    recoManager.pausePlayer()
+                if (position == playingPosition) {
+                    recoManager?.pausePlayer()
                     val holder = binding.recyclerLayout.findViewHolderForLayoutPosition(position)
                     if (holder is RecommendAdapter.VideoHolder) {
                         (holder as RecommendAdapter.VideoHolder).updateItemView(true)
@@ -223,27 +242,6 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, LayoutSwipRefre
                 }
             }
         }
-
-    override fun updatePlayerVoice(isOpen: Boolean) {
-        recoManager.updateVolume(isOpen)
-    }
-
-    override fun addLaterPLay(videoCode: Int) {
-        mViewModel.addLaterPlayer(videoCode)
-        Toast.makeText(mActivity, "添加成功", Toast.LENGTH_SHORT).show()
-    }
-
-    /**
-     * 划入，准备播放时，item里的PlayerView已绑定播放器，此时不应该使用notifyItemChanged进行item里视图的修改
-     *      - 会解除播放器的绑定，导致没有画面只有声音
-     * 划出，可使用刷新，视图重新绑定
-     */
-    override fun updatePlayerView(hidePlayer: Boolean, curPos: Int) {
-        val holder = binding.recyclerLayout.findViewHolderForLayoutPosition(curPos)
-        if (holder is RecommendAdapter.VideoHolder) {
-            (holder as RecommendAdapter.VideoHolder).updateItemView(hidePlayer)
-        }
-    }
 
     /**
      * 处理滑动，超过一半才播放，因最底部加载更多时type问题
@@ -256,21 +254,22 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, LayoutSwipRefre
         val manager = mRecyclerView.layoutManager as LinearLayoutManager
         val firstPos = manager.findFirstVisibleItemPosition()
         val lastPos = manager.findLastVisibleItemPosition()
-        val playPos = recoManager.getCurListPos()
-        if (playPos != -1 && playPos in firstPos..lastPos) {
-            val itemView = mRecyclerView.getChildAt(playPos - firstPos) ?: return
+        //当前播放的item在屏幕内，我们继续播放或暂停
+        Log.e("1mesdadan", "1111111")
+        if (playingPosition != -1 && playingPosition in firstPos..lastPos) {
+            val itemView = mRecyclerView.getChildAt(playingPosition - firstPos) ?: return
             if (itemView !is CardView) return
             val childView = (itemView as CardView).getChildAt(0) ?: return
             if (childView is StyledPlayerView) {
                 val isOverHalf = ScreenUtil.isOverHalfViewVisiable(childView)
                 if (isOverHalf) {
-                    if (!recoManager.isPlaying()) {
-                        recoManager.resumePlay()
+                    if (!recoManager!!.isPlaying()) {
+                        recoManager!!.resumePlay()
                     }
                 } else {
-                    if (recoManager.isPlaying()) {
-                        recoManager.pausePlayer()
-                        updatePlayerView(true, playPos)
+                    if (recoManager!!.isPlaying()) {
+                        recoManager!!.pausePlayer()
+                        updatePlayerView(true)
                     }
                 }
             }
@@ -285,15 +284,23 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, LayoutSwipRefre
                         val isOverHalf = ScreenUtil.isOverHalfViewVisiable(childView)
                         if (isOverHalf) {
                             val file = getLocalFilePath(mActivity, petVideo.fileName!!)
-                            Log.e("recoooooooo", "333")
+                            Log.e("1mesdadan", "2222222")
                             val playInfo =
                                 MediaInfo(petVideo.code, file.absolutePath, 0)
-                            recoManager.play(childView, playInfo, position)
+                            recoManager?.play(childView, playInfo)
+                            playingPosition = position
                         }
                     }
                     return
                 }
             }
+        }
+    }
+
+    override fun OnPlayerViewShow(isShow: Boolean) {
+        val holder = binding.recyclerLayout.findViewHolderForLayoutPosition(playingPosition)
+        if (holder is RecommendAdapter.VideoHolder) {
+            (holder as RecommendAdapter.VideoHolder).updateItemView(!isShow)
         }
     }
 }

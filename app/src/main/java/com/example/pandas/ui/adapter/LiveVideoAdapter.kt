@@ -1,6 +1,5 @@
 package com.example.pandas.ui.adapter
 
-import android.animation.Animator
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
@@ -21,7 +20,6 @@ import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.biz.ext.loadImage
-import com.example.pandas.biz.interaction.AnimationListener
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.databinding.Item1AdapterLiveVideoBinding
 import com.example.pandas.databinding.Item2AdapterLiveVideoBinding
@@ -229,7 +227,12 @@ public class LiveVideoAdapter(
                 if (it.vip == 1) {
                     userName.setTextColor(ContextCompat.getColor(context, R.color.color_live_vip))
                 } else {
-                    userName.setTextColor(ContextCompat.getColor(context, R.color.color_txt_video_info_name))
+                    userName.setTextColor(
+                        ContextCompat.getColor(
+                            context,
+                            R.color.color_txt_video_info_name
+                        )
+                    )
                 }
             }
 
@@ -309,18 +312,16 @@ public class LiveVideoAdapter(
                     videoData.like = !videoData.like
                     listener.updateVideoData(videoData)
                 } else {
-                    setLikeAnimation(likeImg, object : AnimationListener {
-                        override fun onAnimationEnd(animation: Animator?) {
-                            videoData.likes += 1
-                            if (videoData.likes > 0) {
-                                likeTxt.text = videoData.likes.toString()
-                            } else {
-                                likeTxt.text = "点赞"
-                            }
-                            videoData.like = !videoData.like
-                            listener.updateVideoData(videoData)
+                    setLikeAnimation(likeImg) {
+                        videoData.likes += 1
+                        if (videoData.likes > 0) {
+                            likeTxt.text = videoData.likes.toString()
+                        } else {
+                            likeTxt.text = "点赞"
                         }
-                    })
+                        videoData.like = !videoData.like
+                        listener.updateVideoData(videoData)
+                    }
                     if (status == null || status == 0) {
                         likeImg.setImageResource(liveLikeRes[APP_COLOR_STATUS])
                     } else {
@@ -346,6 +347,10 @@ public class LiveVideoAdapter(
             }
 
             itemView.setOnClickListener {
+                listener.startVideoPLayActivity(video)
+            }
+
+            player.setOnClickListener {
                 listener.startVideoPLayActivity(video)
             }
 

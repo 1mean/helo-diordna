@@ -3,13 +3,10 @@ package com.example.pandas.ui.adapter
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.android.android_sqlite.entity.Group
-import com.android.base.interaction.AdapterListener
 import com.android.base.ui.adapter.BaseCommonAdapter
 import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCenterImage
-import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
-import com.example.pandas.biz.ext.loadImage
 
 /**
  * @description: CollectItemAdapter
@@ -19,7 +16,7 @@ import com.example.pandas.biz.ext.loadImage
  */
 public class CollectItemAdapter(
     list: MutableList<Group> = mutableListOf(),
-    private val listener: AdapterListener<Group>
+    private val itemClick: (position: Int, t: Group) -> Unit
 ) :
     BaseCommonAdapter<Group>(list) {
 
@@ -43,7 +40,7 @@ public class CollectItemAdapter(
         desc.text = "$counts 个内容 $str"
 
         holder.itemView.setOnClickListener {
-            listener.itemClick(position, data)
+            itemClick(position, data)
         }
 
     }

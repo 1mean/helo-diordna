@@ -4,12 +4,11 @@ import android.animation.Animator
 import android.animation.Animator.AnimatorListener
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.text.Editable
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.view.animation.OvershootInterpolator
@@ -20,12 +19,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.User
-import com.example.pandas.biz.interaction.AnimationListener
 import com.example.pandas.ui.activity.AudioPlayActivity
 import com.example.pandas.ui.activity.ShortVideoActivity
 import com.example.pandas.ui.activity.UserInfoActivity
 import com.example.pandas.ui.activity.VideoPlayingActivity
-import com.just.agentweb.AgentWeb
 import kotlin.math.abs
 
 
@@ -95,6 +92,21 @@ fun AppCompatActivity.popBack(tag: String) {
 
 //-------------------<Activity相关 开始>-------------------------------------------------------------
 
+//class DetailActivity : AppCompatActivity() {
+//    companion object {
+//        fun start(context: Context, itemId: String) {
+//            val intent = Intent(context, DetailActivity::class.java).apply {
+//                putExtra("ITEM_ID", itemId)
+//            }
+//            context.startActivity(intent)
+//        }
+//    }
+//}
+//
+//// 调用方法
+//DetailActivity.start(context, "item_id")
+
+
 fun startAnyActivity(context: Context, cls: Class<*>) {
     context.startActivity(Intent(context, cls))
 }
@@ -148,6 +160,16 @@ fun launcherActivity(
     launcher.launch(intent)
 }
 
+/**
+ * 获取解码后的数据 SDK版本33之后使用getParcelableExtra(name,class)
+ */
+fun <T> getParcelableExtra(intent: Intent, name: String, cls: Class<T>): T? {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        intent.getParcelableExtra(name, cls)
+    } else {
+        intent.getParcelableExtra(name)
+    }
+}
 
 //-------------------<Activity相关 结束>-------------------------------------------------------------
 
@@ -259,7 +281,7 @@ fun addRefreshAnimation(view: View, offSet: Float, listener: Animator.AnimatorLi
     animationSet.addListener(listener)
 }
 
-fun setLikeAnimation(view: View, listener: AnimationListener) {
+fun setLikeAnimation(view: View, onAnimationEnd: (animation: Animator) -> Unit) {
 
     val starScaleYAnimator = ObjectAnimator.ofFloat(view, "scaleY", 0.2f, 1f)
     starScaleYAnimator.interpolator = OvershootInterpolator(4f)
@@ -274,7 +296,7 @@ fun setLikeAnimation(view: View, listener: AnimationListener) {
         }
 
         override fun onAnimationEnd(animation: Animator) {
-            listener.onAnimationEnd(animation)
+            onAnimationEnd(animation)
         }
 
         override fun onAnimationCancel(animation: Animator) {

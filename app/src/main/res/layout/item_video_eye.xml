@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="337dp"
+    android:layout_marginStart="7dp"
+    android:layout_marginEnd="7dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/color_bg_live_video_item"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="0.5dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="337dp"
-        android:background="@color/color_bg_live_video_item"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_eye_top"
             android:layout_width="match_parent"
             android:layout_height="64dp">
 
-        <androidx.appcompat.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_user"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -20,7 +31,7 @@
                 android:layout_marginTop="14dp"
                 android:layout_marginStart="12dp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -32,7 +43,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/color_txt_live_item_name" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_eye_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,14 +54,14 @@
                 android:includeFontPadding="false"
                 android:textColor="@color/color_eye_txt_time" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_eye_more"
                 android:layout_width="40dp"
                 android:layout_height="58dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/img_eye_more"
@@ -58,16 +69,16 @@
                     app:layout_constraintBottom_toBottomOf="@id/clayout_eye_more"
                     app:layout_constraintLeft_toLeftOf="@id/clayout_eye_more"
                     app:layout_constraintRight_toRightOf="@id/clayout_eye_more" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_eye_item_mid"
             android:layout_width="match_parent"
             android:layout_height="225dp">
 
-        <androidx.cardview.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="189dp"
                 app:layout_constraintTop_toTopOf="@id/clayout_eye_item_mid"
@@ -79,10 +90,10 @@
                 app:cardCornerRadius="5dp"
                 app:cardElevation="0dp">
 
-            <!-- app:keep_content_on_player_reset="true"
-                    app:shutter_background_color="@color/color_white_lucency" 暂时没看出来作用，解决黑屏-->
-            <!--show_timeout="0" 才能保证永远显示controller-->
-            <com.google.android.exoplayer2.ui.StyledPlayerView
+                <!-- app:keep_content_on_player_reset="true"
+                        app:shutter_background_color="@color/color_white_lucency" 暂时没看出来作用，解决黑屏-->
+                <!--show_timeout="0" 才能保证永远显示controller-->
+                <com.google.android.exoplayer2.ui.StyledPlayerView
                     android:id="@+id/player_eye"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -94,27 +105,27 @@
                     app:shutter_background_color="@color/color_white_lucency"
                     app:controller_layout_id="@layout/item_reco_player" />
 
-            <androidx.appcompat.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_video"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clayout_eye_item"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#11000000">
 
-                <!--<androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/img_eye_item_play"
-                        app:layout_constraintTop_toTopOf="@id/clayout_eye_item"
-                        app:layout_constraintBottom_toBottomOf="@id/clayout_eye_item"
-                        app:layout_constraintLeft_toLeftOf="@id/clayout_eye_item"
-                        app:layout_constraintRight_toRightOf="@id/clayout_eye_item" />-->
-                <androidx.appcompat.widget.AppCompatImageView
+                    <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/img_eye_item_play"
+                            app:layout_constraintTop_toTopOf="@id/clayout_eye_item"
+                            app:layout_constraintBottom_toBottomOf="@id/clayout_eye_item"
+                            app:layout_constraintLeft_toLeftOf="@id/clayout_eye_item"
+                            app:layout_constraintRight_toRightOf="@id/clayout_eye_item" />-->
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/img_eye_item_play"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -124,7 +135,7 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="6dp" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_eye_item_duration"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -141,10 +152,10 @@
                         android:background="@drawable/shape_eye_item_duration"
                         android:gravity="center"
                         android:includeFontPadding="false" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_descripetion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -158,52 +169,53 @@
                 android:maxEms="20"
                 android:layout_gravity="bottom"
                 android:textColor="@color/color_txt_live_item_des" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/llayout_eye_item_share"
                 style="@style/style_eye_item_bottom">
 
-            <androidx.appcompat.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     style="@style/style_eye_item_bottom_img"
                     android:src="@mipmap/img_eye_item_forward" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     style="@style/style_eye_item_bottom_text"
                     android:text="@string/str_share" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/llayout_eye_item_comments"
                 style="@style/style_eye_item_bottom">
 
-            <androidx.appcompat.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     style="@style/style_eye_item_bottom_img"
                     android:src="@mipmap/img_eye_item_comment" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_eye_item_comments"
                     style="@style/style_eye_item_bottom_text" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/llayout_eye_item_like"
                 style="@style/style_eye_item_bottom">
 
-            <androidx.appcompat.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_eye_item_Like"
                     style="@style/style_eye_item_bottom_img" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_eye_item_like"
                     style="@style/style_eye_item_bottom_text" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.cardview.widget.CardView>

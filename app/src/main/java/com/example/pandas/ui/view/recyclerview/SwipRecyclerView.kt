@@ -119,7 +119,6 @@ open class SwipRecyclerView : RecyclerView {
     override fun onScrollStateChanged(state: Int) {
         super.onScrollStateChanged(state)
 
-        Log.e("1mean","state:$state")
         if (state == SCROLL_STATE_IDLE && mListener != null && !isRefreshing && !isLoadingData && autoLoadMore) {
 
             val lastVisibleItemPosition = if (layoutManager is GridLayoutManager) {

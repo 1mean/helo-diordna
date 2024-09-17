@@ -8,7 +8,6 @@ import android.widget.PopupWindow
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.pandas.R
-import com.example.pandas.biz.interaction.OnSureListener
 
 /**
  * @description: DeletePopuWindow
@@ -17,8 +16,7 @@ import com.example.pandas.biz.interaction.OnSureListener
  * @version: v1.0
  */
 public class DeletePopuWindow(
-    private val activity: Activity,
-    private val listener: OnSureListener
+    private val activity: Activity
 ) : PopupWindow() {
 
     private var title: AppCompatTextView? = null
@@ -50,7 +48,6 @@ public class DeletePopuWindow(
 
         sure.setOnClickListener {
             dismiss()
-            listener.onSure()
         }
     }
 

@@ -1,6 +1,7 @@
 package com.example.pandas.biz.manager
 
 import com.example.pandas.bean.MediaItemWrapper
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * @description: 播放器相关
@@ -19,14 +20,14 @@ public class PlayerConfig private constructor() {
     }
 
     //缓存所有创建的mediaItems。该创建是相对耗时的操作，缓存起来重用<videoCode,mediaItem>
-    private val mediaItems: MutableMap<Int, MediaItemWrapper> by lazy { mutableMapOf() }
+    private val mediaItems: ConcurrentHashMap<Int, MediaItemWrapper> by lazy { ConcurrentHashMap() }
 
     fun hasMediaItem(videoCode: Int): Boolean {
         return mediaItems.containsKey(videoCode)
     }
 
     fun addMediaItem(videoCode: Int, mMedia: MediaItemWrapper) {
-        mediaItems.put(videoCode, mMedia)
+        mediaItems[videoCode] = mMedia
     }
 
     fun getMediaItem(videoCode: Int): MediaItemWrapper? {

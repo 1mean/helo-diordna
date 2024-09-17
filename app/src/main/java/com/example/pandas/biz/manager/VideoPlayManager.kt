@@ -5,7 +5,7 @@ import android.net.Uri
 import android.util.Log
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.bean.MediaItemWrapper
-import com.example.pandas.biz.interaction.ExoPlayerListener
+import com.example.pandas.biz.interaction.CommentsListener
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.PlaybackException
@@ -15,7 +15,7 @@ import com.google.android.exoplayer2.ui.StyledPlayerView
 import java.io.File
 
 /**
- * @description: RecoPlayManager
+ * @description: ExoMediaManager
  * @author: dongyiming
  * @date: 8/28/22 4:20 下午
  * @version: v1.0
@@ -30,7 +30,6 @@ public class VideoPlayManager(
     private val mPlayer get() = _mPlayer!!
 
     fun initPlayer() {
-
         if (_mPlayer == null) {
             _mPlayer = ExoPlayer.Builder(context).build()
             mPlayer.addListener(mListener)
@@ -96,21 +95,21 @@ public class VideoPlayManager(
                  */
                 Player.STATE_BUFFERING -> {//可以通过isPlaying和seek动作来处理界面相关
                     Log.e(
-                        "RecoPlayManager",
+                        "ExoMediaManager",
                         "buuffering cost time: " + (System.currentTimeMillis() - startTime)
                     )
                 }
                 Player.STATE_READY -> {//视频已经准备好，此时isPlaying=true
                     Log.e(
-                        "RecoPlayManager",
+                        "ExoMediaManager",
                         "ready cost time: " + (System.currentTimeMillis() - startTime)
                     )
                 }
                 Player.STATE_IDLE -> {//暂停不会触发
-                    Log.e("RecoPlayManager", "STATE_IDLE")
+                    Log.e("ExoMediaManager", "STATE_IDLE")
                 }
                 Player.STATE_ENDED -> {//播放结束
-                    Log.e("RecoPlayManager", "STATE_ENDED")
+                    Log.e("ExoMediaManager", "STATE_ENDED")
                 }
             }
         }
@@ -129,7 +128,7 @@ public class VideoPlayManager(
             super.onIsPlayingChanged(isPlaying)
             isPlayingChanged(isPlaying)
             Log.e(
-                "RecoPlayManager",
+                "ExoMediaManager",
                 "$isPlaying cost time: " + (System.currentTimeMillis() - startTime)
             )
         }

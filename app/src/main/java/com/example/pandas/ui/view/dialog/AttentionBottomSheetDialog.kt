@@ -17,7 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
  */
 public class AttentionBottomSheetDialog(
     context: Context,
-    private val listener: ItemClickListener<Int>
+    private val onItemClick: (t: Int) -> Unit
 ) :
     BottomSheetDialog(context) {
 
@@ -37,17 +37,17 @@ public class AttentionBottomSheetDialog(
     private fun initWidget() {
 
         binding.rlayoutAdd.setOnClickListener {
-            listener.onItemClick(0)
+            onItemClick(0)
             dismiss()
         }
 
         binding.rlayoutGroup.setOnClickListener {
-            listener.onItemClick(1)
+            onItemClick(1)
             dismiss()
         }
 
         binding.rlayoutCancel.setOnClickListener {
-            listener.onItemClick(2)
+            onItemClick(2)
             dismiss()
         }
 

@@ -42,6 +42,12 @@ data class User(
     @ColumnInfo
     var ipAddress: String? = null,//用户的ip地址
 
+    //TODO:添加时间
+    @Ignore
+    var createTime:Long = 0,
+    @Ignore
+    var updateTime:Long = 0,
+
     @ColumnInfo
     var reservedInt: Int = 0,//预留int字段
     @ColumnInfo

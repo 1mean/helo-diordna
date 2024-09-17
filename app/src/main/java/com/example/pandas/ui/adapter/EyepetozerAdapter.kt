@@ -1,23 +1,24 @@
 package com.example.pandas.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.recyclerview.widget.RecyclerView
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.VideoData
 import com.android.base.utils.NumUtils
 import com.android.base.utils.TimeUtils
 import com.example.pandas.R
-import com.android.base.ui.adapter.BaseCommonAdapter
-import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.bean.eyes.EyepetozerItem
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadEmptyCircleImage
 import com.example.pandas.biz.ext.loadImage
+import com.example.pandas.databinding.ItemVideoEyeBinding
 import com.example.pandas.ui.activity.EyePlayingActivity
-import com.google.android.exoplayer2.ui.StyledPlayerView
 
 /**
  * @description: EyepetozerAdapter
@@ -25,135 +26,198 @@ import com.google.android.exoplayer2.ui.StyledPlayerView
  * @date: 2021/12/23 10:28 上午
  * @version: v1.0
  */
-public class EyepetozerAdapter(private val list: MutableList<EyepetozerItem>) :
-    BaseCommonAdapter<EyepetozerItem>(list) {
+public class EyepetozerAdapter(
+    private var list: MutableList<PetVideo>,
+    private val listener: EyeAdapterListener
+) :
+    Adapter<ViewHolder>() {
 
-    fun getItemData(position: Int): EyepetozerItem {
+    fun getItemData(position: Int): PetVideo {
         return list[position]
     }
 
-    fun updateItemView(position: Int, isPlaying: Boolean,holder: RecyclerView.ViewHolder?) {
+    @SuppressLint("NotifyDataSetChanged")
+    fun refresh(data: MutableList<PetVideo>) {
+        list.clear()
+        this.list = data
+        notifyDataSetChanged()
+    }
 
-        holder?.let {
+    fun loadMore(data: MutableList<PetVideo>) {
 
-            val hd = holder as BaseViewHolder
-            val playshelter = hd.getWidget<ConstraintLayout>(R.id.clayout_eye_item)
-            val cover = hd.getWidget<AppCompatImageView>(R.id.img_video)
-            val player = hd.getWidget<StyledPlayerView>(R.id.player_eye)
-            if (isPlaying) {
-                playshelter.visibility = View.GONE
-                cover.visibility = View.GONE
-                player.showController()
-            } else {
-                playshelter.visibility = View.VISIBLE
-                cover.visibility = View.VISIBLE
-            }
-            val data = list[position]
-            data.isPlaying = isPlaying
+        if (data.isNotEmpty()) {
+            val size = list.size
+            list.addAll(data)
+            notifyItemRangeInserted(size, data.size)
         }
     }
 
-    override fun getLayoutId(): Int = R.layout.item_video_eye
+//    fun updateItemView(position: Int, isPlaying: Boolean, holder: ViewHolder?) {
+//
+//        holder?.let {
+//
+//            val hd = holder as BaseViewHolder
+//            val playshelter = hd.getWidget<ConstraintLayout>(R.id.clayout_eye_item)
+//            val cover = hd.getWidget<AppCompatImageView>(R.id.img_video)
+//            val player = hd.getWidget<StyledPlayerView>(R.id.player_eye)
+//            if (isPlaying) {
+//                playshelter.visibility = View.GONE
+//                cover.visibility = View.GONE
+//                player.showController()
+//            } else {
+//                playshelter.visibility = View.VISIBLE
+//                cover.visibility = View.VISIBLE
+//            }
+//            val data = list[position]
+//            data.isPlaying = isPlaying
+//        }
+//    }
 
-    override fun convert(holder: BaseViewHolder, data: EyepetozerItem, position: Int) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding = ItemVideoEyeBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return EyeViewHolder(binding)
+    }
 
-        val cover = holder.getWidget<AppCompatImageView>(R.id.img_video)
-        val userIcon = holder.getWidget<AppCompatImageView>(R.id.img_user)
-        val descripetion = holder.getWidget<AppCompatTextView>(R.id.txt_descripetion)
-        val time = holder.getWidget<AppCompatTextView>(R.id.txt_eye_time)
-        val userName = holder.getWidget<AppCompatTextView>(R.id.txt_user)
-        val duration = holder.getWidget<AppCompatTextView>(R.id.txt_eye_item_duration)
-        val shareView = holder.getWidget<LinearLayoutCompat>(R.id.llayout_eye_item_share)
-        val commentView = holder.getWidget<LinearLayoutCompat>(R.id.llayout_eye_item_comments)
-        val likeView = holder.getWidget<LinearLayoutCompat>(R.id.llayout_eye_item_like)
-        val likeImg = holder.getWidget<AppCompatImageView>(R.id.img_eye_item_Like)
-        val likeTxt = holder.getWidget<AppCompatTextView>(R.id.txt_eye_item_like)
-        val comments = holder.getWidget<AppCompatTextView>(R.id.txt_eye_item_comments)
-        val playImg = holder.getWidget<AppCompatImageView>(R.id.img_eye_item_play)
-        val playshelter = holder.getWidget<ConstraintLayout>(R.id.clayout_eye_item)
-        val player = holder.getWidget<StyledPlayerView>(R.id.player_eye)
+    override fun getItemCount(): Int = list.size
 
-        if (data.isPlaying) {
-            //player.visibility = View.VISIBLE
-            playshelter.visibility = View.GONE
-            cover.visibility = View.GONE
-        } else {
-            //player.visibility = View.GONE
-            playshelter.visibility = View.VISIBLE
-            cover.visibility = View.VISIBLE
-        }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        (holder as EyeViewHolder).handle(position)
+    }
 
-        val context = holder.itemView.context
-        val user = data.user
+    inner class EyeViewHolder(binding: ItemVideoEyeBinding) : ViewHolder(binding.root) {
 
-        if (data.isLiked) {
-            likeImg.setImageResource(R.mipmap.img_eye_item_liked)
-        } else {
-            likeImg.setImageResource(R.mipmap.img_eye_item_like)
-        }
-        descripetion.text = data.title
-        duration.text = TimeUtils.getMMDuration(data.duration.toLong())
+        val cover = binding.imgVideo
+        val userIcon = binding.imgUser
+        val descripetion = binding.txtDescripetion
+        val time = binding.txtEyeTime
+        val userName = binding.txtUser
+        val duration = binding.txtEyeItemDuration
+        val shareView = binding.llayoutEyeItemShare
+        val commentView = binding.llayoutEyeItemComments
+        val likeView = binding.llayoutEyeItemLike
+        val comments = binding.txtEyeItemComments
+        val playshelter = binding.clayoutEyeItem
+        val likeImg = binding.imgEyeItemLike
+        val likeTxt = binding.txtEyeItemLike
+        val playImg = binding.imgEyeItemPlay
+        val player = binding.playerEye
+        val context = itemView.context
 
-        data.coverUrl?.let {
-            loadImage(context, it, cover)
-        }
-
-        if (user == null) {
-            loadEmptyCircleImage(context, userIcon)
-            userName.text = "开眼视频"
-            val cTime = TimeUtils.getMdTime(System.currentTimeMillis())
-            time.text = StringBuilder(cTime).append(" · 投稿了视频").toString()
-        } else {
-            user.let {
-                it.userIcon?.let { url ->
-                    loadCircleImage(context, url, userIcon)
-                }
-                val cTime = TimeUtils.getMdTime(it.latestReleaseTime)
-                time.text = StringBuilder(cTime).append(" · 投稿了视频").toString()
-                userName.text = it.userName
+        fun updateItemView(hidePlayer: Boolean) {
+            if (hidePlayer) {
+                playshelter.visibility = View.VISIBLE
+                cover.visibility = View.VISIBLE
+            } else {
+                playshelter.visibility = View.GONE
+                cover.visibility = View.GONE
+                player.showController()
             }
         }
 
-        if (data.collectionCount == 0) {
-            likeTxt.text = "赞"
-        } else {
-            likeTxt.text = NumUtils.getShortNum(data.collectionCount)
-        }
+        fun handle(position: Int) {
 
-        comments.text = NumUtils.getShortNum(data.replyCount)
-
-        holder.itemView.setOnClickListener {
-            val intent = Intent(context, EyePlayingActivity::class.java)
-            intent.putExtra("EyepetozerItem", data)
-            context.startActivity(intent)
-        }
-
-        shareView.setOnClickListener {
+            val data = list[position]
+            if (data.booleanFlag) {
+                //player.visibility = View.VISIBLE
+                playshelter.visibility = View.GONE
+                cover.visibility = View.GONE
+            } else {
+                //player.visibility = View.GONE
+                playshelter.visibility = View.VISIBLE
+                cover.visibility = View.VISIBLE
+            }
 
 
-        }
+            val user = data.user
+            val vd = data.videoData
 
-        commentView.setOnClickListener {
+            vd?.let { videoData ->
+                if (videoData.like) {
+                    likeImg.setImageResource(R.mipmap.img_eye_item_liked)
+                } else {
+                    likeImg.setImageResource(R.mipmap.img_eye_item_like)
+                }
+            }
 
-        }
+            descripetion.text = data.title
+            duration.text = TimeUtils.getMMDuration(data.duration.toLong())
 
-        likeView.setOnClickListener {
+            data.cover?.let {
+                loadImage(context, it, cover)
+            }
 
-            if (data.isLiked) {
-                data.isLiked = false
-                data.collectionCount -= 1
-                if (data.collectionCount == 0) {
+            if (user == null) {
+                loadEmptyCircleImage(context, userIcon)
+                userName.text = "开眼视频"
+                val cTime = TimeUtils.getMdTime(System.currentTimeMillis())
+                time.text = StringBuilder(cTime).append(" · 投稿了视频").toString()
+            } else {
+                user.let {
+                    it.headUrl?.let { url ->
+                        loadCircleImage(context, url, userIcon)
+                    }
+                    userName.text = it.userName
+                }
+            }
+
+            val cTime = TimeUtils.getMdTime(data.releaseTime)
+            time.text = StringBuilder(cTime).append(" · 投稿了视频").toString()
+
+            vd?.let { videoData ->
+
+                if (videoData.collects == 0) {
                     likeTxt.text = "赞"
                 } else {
-                    likeTxt.text = NumUtils.getShortNum(data.collectionCount)
+                    likeTxt.text = NumUtils.getShortNum(videoData.collects)
                 }
-                likeImg.setImageResource(R.mipmap.img_eye_item_like)
-            } else {
-                data.isLiked = true
-                data.collectionCount += 1
-                likeTxt.text = NumUtils.getShortNum(data.collectionCount)
-                likeImg.setImageResource(R.mipmap.img_eye_item_liked)
+                comments.text = NumUtils.getShortNum(videoData.comments)
+            }
+
+            itemView.setOnClickListener {
+                listener.startVideoPLayActivity(data)
+            }
+
+            shareView.setOnClickListener {
+
+            }
+
+            commentView.setOnClickListener {
+                listener.startVideoCommentActivity(data)
+            }
+
+            likeView.setOnClickListener {
+
+                vd?.let { videoData ->
+                    if (videoData.like) {
+                        videoData.like = false
+                        videoData.collects -= 1
+                        if (videoData.collects == 0) {
+                            likeTxt.text = "赞"
+                        } else {
+                            likeTxt.text = NumUtils.getShortNum(videoData.collects)
+                        }
+                        likeImg.setImageResource(R.mipmap.img_eye_item_like)
+                    } else {
+                        videoData.like = true
+                        videoData.collects += 1
+                        likeTxt.text = NumUtils.getShortNum(videoData.collects)
+                        likeImg.setImageResource(R.mipmap.img_eye_item_liked)
+                    }
+                }
             }
         }
+    }
+
+    interface EyeAdapterListener {
+
+        fun startVideoPLayActivity(eyepetozerItem: PetVideo)
+
+        fun startVideoCommentActivity(eyepetozerItem: PetVideo)
+
+        fun addLater(videoCode: Int)
     }
 }

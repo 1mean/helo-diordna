@@ -1,6 +1,5 @@
 package com.example.pandas.ui.activity
 
-import AppInstance
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
@@ -19,18 +18,16 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.android.android_sqlite.entity.PetVideo
-import com.android.base.ui.activity.BaseActivity
-import com.android.base.utils.ScreenUtil
 import com.android.base.custom_tablayout.commonnavigator.CommonNavigator
 import com.android.base.custom_tablayout.commonnavigator.abs.CommonNavigatorAdapter
+import com.android.base.ui.activity.BaseActivity
+import com.android.base.utils.ScreenUtil
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
 import com.example.pandas.biz.interaction.CommentsListener
-import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.example.pandas.biz.interaction.PlayerDoubleTapListener
-import com.example.pandas.biz.interaction.VideoMoreSelectListener
 import com.example.pandas.biz.manager.VideoPlayManager
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.ActivityVideoBinding
@@ -54,7 +51,8 @@ import kotlin.math.abs
  * @date: 12/29/21 3:48 下午
  * @version: v1.0
  */
-public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBinding>() {
+public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBinding>(),
+    CommentsListener {
 
     val tabNames = arrayListOf("简介", "评论")
 
@@ -496,5 +494,22 @@ public class VideoPlayingActivity : BaseActivity<VideoViewModel, ActivityVideoBi
             )
             .show()
         moreDialog.dismiss()
+    }
+
+    override fun showCommentsFragment(commentId: Int) {
+        val fragments = supportFragmentManager.fragments
+        addFragment(
+            "comment_list", R.id.llayout_video_info, CommentListFragment.newInstance(commentId),
+            intArrayOf(
+                R.anim.animate_fragment_in,
+                R.anim.animate_fragment_out,
+                R.anim.animate_fragment_in,
+                R.anim.animate_fragment_out
+            )
+        )
+    }
+
+    override fun closeCommentFragment() {
+        popBack("comment_list")
     }
 }

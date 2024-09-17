@@ -5,7 +5,6 @@ import android.net.Uri
 import android.util.Log
 import android.widget.TextView
 import com.example.pandas.bean.MediaInfo
-import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.util.DebugTextViewHelper
@@ -34,8 +33,6 @@ public class PlayerManager private constructor() {
     private var mCurPos: Int = -1 //当前视频播放的位置
 
     private var recoPlayPos: Int = -1//推荐界面播放的item的位置
-
-    private var playerListener: ExoPlayerListener? = null
 
     private val tempRecoMediaIndexMap = MediaIndexMap()//存储资源文件信息,目前只用于推荐界面
 
@@ -88,17 +85,6 @@ public class PlayerManager private constructor() {
         Log.e("asdjasjdaksd", "3")
         addPlayerView(playerView)
         mPlayer.playWhenReady = true
-    }
-
-    /**
-     * 添加界面操作的回调
-     */
-    fun addPlayerListener(mListener: ExoPlayerListener): PlayerManager {
-
-        Log.e("asdjasjdaksd", "4")
-        playerListener = null
-        this.playerListener = mListener
-        return this
     }
 
     /**
@@ -379,7 +365,6 @@ public class PlayerManager private constructor() {
             mPlayer.release()
             tempRecoMediaIndexMap.clear()
             _mPlayer = null
-            playerListener = null
             mCurPos = -1
         }
     }
@@ -483,12 +468,11 @@ public class PlayerManager private constructor() {
         override fun onIsPlayingChanged(isPlaying: Boolean) {
             super.onIsPlayingChanged(isPlaying)
             Log.e("asdjasjdaksd", "26")
-            Log.e("PlayerManager", "isPlaying: $isPlaying, playerListener: $playerListener")
             mPlayer.currentMediaItem?.let {
                 val code = it.mediaId.toInt()
                 Log.e("PlayerManager", "code: ::$code")
             }
-            playerListener?.updatePlayerView(isPlaying, mCurPos)
+            //playerListener?.updatePlayerView(isPlaying, mCurPos)
         }
 
         //player开始/停止加载资源文件,每隔7秒就会回调两次，先true后false，可能是先加载缓冲，加载完了请求网络

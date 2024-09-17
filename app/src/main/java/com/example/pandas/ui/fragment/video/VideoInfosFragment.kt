@@ -1,5 +1,6 @@
 package com.example.pandas.ui.fragment.video
 
+import AppInstance
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,9 +10,9 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.android_sqlite.entity.PetVideo
 import com.android.android_sqlite.entity.VideoData
+import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.android.base.ui.fragment.BaseFragment
 import com.example.pandas.biz.interaction.ItemClickListener
 import com.example.pandas.biz.viewmodel.VideoViewModel
 import com.example.pandas.databinding.FragmentInformationBinding
@@ -48,10 +49,40 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
     override fun lazyLoadTime(): Long = 0
 
     private val bottomSheetDialog: AttentionBottomSheetDialog by lazy {
-        AttentionBottomSheetDialog(
-            mActivity,
-            itemClickListener
-        )
+        AttentionBottomSheetDialog(mActivity) {
+            when (it) {
+                0 -> {//加入特别关注
+                    Toast.makeText(mActivity, "加入特别关注", Toast.LENGTH_SHORT).show()
+                }
+                1 -> {//设置分组
+                    Toast.makeText(mActivity, "加入默认分组", Toast.LENGTH_SHORT).show()
+                }
+                2 -> {//取消关注
+                    mViewModel.updateAttention(userCode)
+
+                    val status = appViewModel.appColorType.value
+                    binding.txtVideoAttention.text = "关注"
+                    if (status == null || status == 0) {
+                        binding.clayoutVideoInfoFollow.setBackgroundResource(shape_20_drawables[APP_COLOR_STATUS])
+                        binding.txtVideoAttention.setTextColor(
+                            ContextCompat.getColor(
+                                mActivity, R.color.white
+                            )
+                        )
+                    } else {
+                        binding.clayoutVideoInfoFollow.setBackgroundResource(shape_20_drawables[status])
+                        binding.txtVideoAttention.setTextColor(
+                            ContextCompat.getColor(
+                                mActivity, R.color.white
+                            )
+                        )
+                    }
+
+                    Toast.makeText(mActivity, "已取消关注", Toast.LENGTH_SHORT).show()
+                    isAttention = false
+                }
+            }
+        }
     }
 
     private val shareDialog by lazy { ShareBottomSheetDialog(mActivity, {}) }
@@ -178,44 +209,6 @@ public class VideoInfosFragment : BaseFragment<VideoViewModel, FragmentInformati
             }
             mAdapter.refreshAdapter(it.recoVideos)
             binding.viewVideoInfo.visibility = View.VISIBLE
-        }
-    }
-
-    val itemClickListener: ItemClickListener<Int> = object : ItemClickListener<Int> {
-        override fun onItemClick(t: Int) {
-
-            when (t) {
-                0 -> {//加入特别关注
-                    Toast.makeText(mActivity, "加入特别关注", Toast.LENGTH_SHORT).show()
-                }
-                1 -> {//设置分组
-                    Toast.makeText(mActivity, "加入默认分组", Toast.LENGTH_SHORT).show()
-                }
-                2 -> {//取消关注
-                    mViewModel.updateAttention(userCode)
-
-                    val status = appViewModel.appColorType.value
-                    binding.txtVideoAttention.text = "关注"
-                    if (status == null || status == 0) {
-                        binding.clayoutVideoInfoFollow.setBackgroundResource(shape_20_drawables[APP_COLOR_STATUS])
-                        binding.txtVideoAttention.setTextColor(
-                            ContextCompat.getColor(
-                                mActivity, R.color.white
-                            )
-                        )
-                    } else {
-                        binding.clayoutVideoInfoFollow.setBackgroundResource(shape_20_drawables[status])
-                        binding.txtVideoAttention.setTextColor(
-                            ContextCompat.getColor(
-                                mActivity, R.color.white
-                            )
-                        )
-                    }
-
-                    Toast.makeText(mActivity, "已取消关注", Toast.LENGTH_SHORT).show()
-                    isAttention = false
-                }
-            }
         }
     }
 

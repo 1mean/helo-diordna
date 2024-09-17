@@ -1,6 +1,7 @@
 package com.example.pandas.biz.manager
 
 import android.util.Log
+import com.android.android_sqlite.entity.PetVideo
 import com.example.pandas.bean.eyes.Eyepetozer
 import com.example.pandas.bean.eyes.EyepetozerData
 import com.example.pandas.bean.eyes.EyepetozerItem
@@ -26,6 +27,15 @@ public class HttpInvokerManager {
 
             val list = httpService.getHotList(startIndex, num)
             EyepetozerConvert.convertOnlyVideo(list)
+        }
+    }
+
+    suspend fun getHots(startIndex: Int, num: Int): MutableList<PetVideo> {
+
+        return withContext(Dispatchers.IO) {
+
+            val list = httpService.getHotList(startIndex, num)
+            EyepetozerConvert.convertOnlyPetVideo(list)
         }
     }
 

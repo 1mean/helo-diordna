@@ -14,8 +14,6 @@ import com.android.base.ui.activity.BaseSoftKeyBoardActivity
 import com.android.base.utils.KeyboardUtils
 import com.example.pandas.R
 import com.example.pandas.app.appViewModel
-import com.example.pandas.biz.interaction.ItemClickListener
-import com.example.pandas.biz.interaction.OnItemmmmClickListener
 import com.example.pandas.biz.viewmodel.SearchViewModel
 import com.example.pandas.databinding.ActivitySearchBinding
 import com.example.pandas.ui.adapter.HotSearchAdapter

@@ -3,6 +3,7 @@ package com.example.pandas.biz.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.android.android_sqlite.entity.PetVideo
 import com.android.base.vm.BaseViewModel
 import com.example.pandas.bean.UIDataWrapper
 import com.example.pandas.bean.eyes.EyepetozerData
@@ -19,13 +20,15 @@ import kotlinx.coroutines.launch
 public class EyepetozerViewModel : BaseViewModel() {
 
     private var startIndex = 0
-    private var num = 20
+    private var startHotIndex = 0
+    private var num = 10
 
     private var tabNum = 0
     private var tabPage = 0
     private var date = 0L
 
     val eyepetozerWrapper: MutableLiveData<UIDataWrapper<EyepetozerItem>> by lazy { MutableLiveData() }
+    val eyeHotList: MutableLiveData<UIDataWrapper<PetVideo>> by lazy { MutableLiveData() }
     val tabSelects: MutableLiveData<UIDataWrapper<EyepetozerItem>> by lazy { MutableLiveData() }
     val recoResult: MutableLiveData<MutableList<EyepetozerItem>> by lazy { MutableLiveData() }
 
@@ -37,15 +40,12 @@ public class EyepetozerViewModel : BaseViewModel() {
      * @version: v1.0
      */
     fun initData(isRefresh: Boolean) {
-
-
         Log.e("eyeFragment", "initData")
         if (isRefresh) {
             startIndex = 0
         }
         request({ httpManager.getHotList(startIndex, num) },
             {
-                startIndex += num
                 val dataList = UIDataWrapper(
                     isSuccess = true,
                     isRefresh = isRefresh,
@@ -55,6 +55,7 @@ public class EyepetozerViewModel : BaseViewModel() {
                     listData = it
                 )
                 eyepetozerWrapper.value = dataList
+                startIndex += num
             },
             {
                 val dataList = UIDataWrapper(
@@ -64,6 +65,35 @@ public class EyepetozerViewModel : BaseViewModel() {
                     listData = mutableListOf<EyepetozerItem>()
                 )
                 eyepetozerWrapper.value = dataList
+            })
+    }
+
+    fun getHots(isRefresh: Boolean) {
+        Log.e("eyeFragment", "initData")
+        if (isRefresh) {
+            startHotIndex = 0
+        }
+        request({ httpManager.getHots(startHotIndex, num) },
+            {
+                val dataList = UIDataWrapper(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    isEmpty = it.isEmpty(),
+                    hasMore = it.size > 0,
+                    isFirstEmpty = isRefresh && it.isEmpty(),
+                    listData = it
+                )
+                eyeHotList.value = dataList
+                startHotIndex += num
+            },
+            {
+                val dataList = UIDataWrapper(
+                    isSuccess = false,
+                    errMessage = it.errorMsg,
+                    isRefresh = isRefresh,
+                    listData = mutableListOf<PetVideo>()
+                )
+                eyeHotList.value = dataList
             })
     }
 

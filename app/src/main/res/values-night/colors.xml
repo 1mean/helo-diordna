@@ -213,6 +213,7 @@
     <color name="color_item_bg_mine_info">#11000000</color>
     <color name="color_self_txt_setting">#484D54</color>
     <color name="color_self_txt_coin">#262626</color>
+    <color name="color_bg_bottom_input">#262626</color>
     <color name="color_self_txt_log">#818892</color>
     <color name="color_self_tab_indicator">#00BBFF</color>
     <color name="color_self_cache_title">#1e2121</color>

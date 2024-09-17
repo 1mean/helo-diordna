@@ -1,5 +1,8 @@
 package com.example.pandas.biz.http
 
+import com.android.android_sqlite.entity.PetVideo
+import com.android.android_sqlite.entity.User
+import com.android.android_sqlite.entity.VideoData
 import com.example.pandas.bean.eyes.*
 
 /**
@@ -21,12 +24,15 @@ object EyepetozerConvert {
                         "horizontalScrollCard" -> {
                             list.add(buildScrollCard(item))
                         }
+
                         "textHeader" -> {
                             list.add(buildHeader(item))
                         }
+
                         "video" -> {
                             list.add(buildVideo(item, true))
                         }
+
                         "videoSmallCard" -> {
                             list.add(buildVideo(item, false))
                         }
@@ -48,8 +54,31 @@ object EyepetozerConvert {
                         "video" -> {
                             list.add(buildVideo(item, true))
                         }
+
                         "videoSmallCard" -> {
                             list.add(buildVideo(item, false))
+                        }
+                    }
+                }
+            }
+        }
+        return list
+    }
+
+    fun convertOnlyPetVideo(eyepetozer: Eyepetozer?): MutableList<PetVideo> {
+        val list: MutableList<PetVideo> = mutableListOf()
+        val itemList = eyepetozer?.itemList
+        itemList?.let {
+            if (it.isNotEmpty()) {
+                for (item in it) {
+                    //目前界面展示三种item_type
+                    when (item.type) {
+                        "video" -> {
+                            list.add(buildPetVideo(item, true))
+                        }
+
+                        "videoSmallCard" -> {
+                            list.add(buildPetVideo(item, false))
                         }
                     }
                 }
@@ -69,6 +98,7 @@ object EyepetozerConvert {
                         "textHeader" -> {
                             list.add(buildHeader(item))
                         }
+
                         "video" -> {
                             list.add(buildVideo(item, true))
                         }
@@ -98,6 +128,7 @@ object EyepetozerConvert {
                         "textHeader" -> {
                             list.add(buildHeader(item))
                         }
+
                         "video" -> {
                             list.add(buildVideo(item, true))
                         }
@@ -180,6 +211,51 @@ object EyepetozerConvert {
     }
 
     /**
+     * 重构Video
+     *
+     * @date: 2021/12/22 10:18 下午
+     * @version: v1.0
+     */
+    private fun buildPetVideo(item: Item, flag: Boolean): PetVideo {
+
+        val eyeBean = PetVideo()
+        val vd = VideoData()
+        val data = item.data
+        val consumption = data.consumption
+        val author = data.author
+        val playList = data.playInfo
+        val cover = data.cover
+        if (flag) eyeBean.videoType = 3 else eyeBean.type = 4
+        eyeBean.title = data.title
+        eyeBean.cover = cover.feed
+        eyeBean.code = data.id
+        eyeBean.description = data.description
+
+        vd.videoCode = data.id
+        vd.collects = consumption.collectionCount
+        vd.shares = consumption.shareCount
+        vd.comments = consumption.replyCount
+        //eyeBean.realCollectionCount = consumption.realCollectionCount
+        author?.let {
+            //eyeBean.userCode = it.id
+            eyeBean.user = createUser(it)
+        }
+        //eyeBean.category = data.category
+        eyeBean.url = data.playUrl
+        eyeBean.duration = data.duration
+        //eyeBean.videoType = data.type
+        eyeBean.releaseTime = data.releaseTime
+//        for (playInfo in playList) {
+//            when (playInfo.type) {
+//                "normal" -> eyeBean.normalUrl = playInfo.url
+//                "high" -> eyeBean.highUrl = playInfo.url
+//            }
+//        }
+        eyeBean.videoData = vd
+        return eyeBean
+    }
+
+    /**
      * 创建EyepetozerUser
      * @param:
      * @return:
@@ -192,5 +268,20 @@ object EyepetozerConvert {
         author.description,
         author.latestReleaseTime,
         author.videoNum
+    )
+
+    /**
+     * 创建User
+     * @param:
+     * @return:
+     * @version: v1.0
+     */
+    private fun createUser(author: Author): User = User(
+        userCode = author.id,
+        userName = author.name,
+        headUrl = author.icon,
+        signature = author.description,
+        updateTime = author.latestReleaseTime,
+        videoCounts = author.videoNum
     )
 }

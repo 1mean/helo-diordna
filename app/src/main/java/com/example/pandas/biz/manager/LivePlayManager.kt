@@ -7,7 +7,6 @@ import com.android.android_sqlite.entity.PetVideo
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.bean.MediaItemWrapper
 import com.example.pandas.biz.ext.getLocalFilePath
-import com.example.pandas.biz.interaction.ExoPlayerListener
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.PlaybackParameters
@@ -23,7 +22,7 @@ import java.io.File
  */
 public class LivePlayManager(
     private val context: Context,
-    private val playerListener: ExoPlayerListener
+    private val isPlayingChanged: (isPlaying: Boolean) -> Unit
 ) {
 
     private var playPos = -1
@@ -33,7 +32,7 @@ public class LivePlayManager(
 
     private var oldPlayerView: StyledPlayerView? = null //上一个加载的Playerview
 
-    private val mediaIndexs = RecoPlayManager.MediaIndexMap()//存储资源文件信息,目前只用于推荐界面
+    private val mediaIndexs = ExoMediaManager.MediaIndexMap()//存储资源文件信息,目前只用于推荐界面
 
     //一、播放器初始化
     fun initPlayer(context: Context): LivePlayManager {
@@ -243,7 +242,7 @@ public class LivePlayManager(
 
         override fun onIsPlayingChanged(isPlaying: Boolean) {
             super.onIsPlayingChanged(isPlaying)
-            playerListener.isPlayingChanged(isPlaying)
+            isPlayingChanged(isPlaying)
         }
     }
 

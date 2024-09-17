@@ -11,7 +11,6 @@ import com.example.pandas.R
 import com.android.base.ui.adapter.BaseCommonAdapter
 import com.android.base.ui.adapter.BaseViewHolder
 import com.example.pandas.biz.ext.loadCircleImage
-import com.example.pandas.biz.interaction.OnItemmmmClickListener
 
 /**
  * @description: AudioMenuAdapter

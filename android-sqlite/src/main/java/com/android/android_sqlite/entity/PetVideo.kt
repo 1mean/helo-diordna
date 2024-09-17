@@ -49,7 +49,7 @@ data class PetVideo(
     var star: Boolean = false,//视频分类（普通+精彩），不归属到counts表
     @ColumnInfo
     var hot: Boolean = false,//热门视频
-    //视频展示类型 0为普通视频，1为轮播图视频，2为横屏视频  3为cutepet页面轮播图
+    //视频展示类型 0为普通视频，1为轮播图视频，2为横屏视频   3和4是开眼视频类型
     @ColumnInfo
     var videoType: Int = 0,
     @ColumnInfo

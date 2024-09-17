@@ -61,9 +61,15 @@ dependencies {
     api("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
     kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")//lifecycle
     api 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'//google下拉刷新
-    api 'com.google.android.exoplayer:exoplayer-core:2.18.0'
-    api 'com.google.android.exoplayer:exoplayer-dash:2.18.0'
-    api 'com.google.android.exoplayer:exoplayer-ui:2.18.0'//google视频播放
+    //ExoPlayer最新版已经废弃，升级为AndroidX Media3，统一之前分散的多个媒体库（如ExoPlayer，Media2等）
+    api 'com.google.android.exoplayer:exoplayer-core:2.19.1'
+    api 'com.google.android.exoplayer:exoplayer-dash:2.19.1'
+    api 'com.google.android.exoplayer:exoplayer-ui:2.19.1'//google视频播放
+//    def media3_version = "1.4.1"
+//    api "androidx.media3:media3-exoplayer:$media3_version"
+//    api "androidx.media3:media3-exoplayer-dash:$media3_version"
+//    api "androidx.media3:media3-ui:$media3_version"
+
     api 'de.hdodenhof:circleimageview:3.1.0'//CircleImageView
     api 'com.geyifeng.immersionbar:immersionbar:3.2.2'
     api 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'//android 4.4以上沉浸式实现
