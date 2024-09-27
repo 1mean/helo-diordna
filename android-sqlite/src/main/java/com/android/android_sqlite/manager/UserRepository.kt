@@ -131,8 +131,10 @@ public class UserRepository : BaseRepository() {
     suspend fun updateAttention(userCode: Int) {
         withContext(Dispatchers.IO) {
             val user = userDao.queryUserByCode(userCode)
-            user.attention = !user.attention
-            userDao.update(user)
+            if (user != null) {
+                user.attention = !user.attention
+                userDao.update(user)
+            }
         }
     }
 

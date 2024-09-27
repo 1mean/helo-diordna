@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import com.android.android_sqlite.entity.User
 import com.android.base.ui.activity.BaseActivity
 import com.android.base.utils.ScreenUtil
 import com.android.base.custom_tablayout.ViewPagerHelper
@@ -49,6 +50,7 @@ public class UserInfoActivity : BaseActivity<UserInfoViewModel, ActivityUserBind
         get() = AppInstance.instance.isLoginSuccess
 
     private var userCode: Int = -1
+    private var user: User? = null
 
     private var attentionUpdateCounts = 0
 
@@ -60,6 +62,7 @@ public class UserInfoActivity : BaseActivity<UserInfoViewModel, ActivityUserBind
 
         StatusBarUtils.updataStatus(this, false, true, R.color.color_white_lucency)
         userCode = intent.getIntExtra("userCode", -1)
+        user = intent.getParcelableExtra<User>("user")
 
         binding.vpUser.run {
             offscreenPageLimit = tabList.size
@@ -202,8 +205,8 @@ public class UserInfoActivity : BaseActivity<UserInfoViewModel, ActivityUserBind
     }
 
     override fun createObserver() {
-        mViewModel.user.observe(this) {
-            //setLevelImageResourse(it.level, binding.imgUserLevel)
+
+        user?.let {
             binding.txtUserName.text = it.userName
             binding.txtUserDesc.text = it.signature
 
@@ -272,6 +275,81 @@ public class UserInfoActivity : BaseActivity<UserInfoViewModel, ActivityUserBind
                     }
                 } else {
                     startAnyActivity(this, LoginActivity::class.java)
+                }
+            }
+        }
+        mViewModel.user.observe(this) {
+            if (it != null) {
+                //setLevelImageResourse(it.level, binding.imgUserLevel)
+                binding.txtUserName.text = it.userName
+                binding.txtUserDesc.text = it.signature
+
+                val provinces = AppInfos.provinces.random()
+                binding.txtUserId.text = "IP属地：$provinces"
+
+                it.headUrl?.let {
+                    loadImage(this, it, binding.imgUserHeader)
+                    //loadImage(this, it, binding.imgUserShelter)
+                }
+
+                val status = appViewModel.appColorType.value
+                if (status == null || status == 0) {
+                    binding.clayoutUserFollow.setBackgroundResource(shape_20_drawables[APP_COLOR_STATUS])
+                } else {
+                    binding.clayoutUserFollow.setBackgroundResource(shape_20_drawables[status])
+                }
+
+                if (it.attention) {
+                    binding.clayoutUserFollow.setBackgroundResource(R.drawable.shape_user_unattention)
+                }
+
+                binding.clayoutUserFollow.setOnClickListener { _ ->
+
+                    if (loginSuccess) {
+
+                        if (!it.attention) {
+                            attentionUpdateCounts += 1
+                            mViewModel.updateAttention(it.userCode)
+                            binding.clayoutUserFollow.setBackgroundResource(R.drawable.shape_user_unattention)
+                            Toast.makeText(this, "已关注", Toast.LENGTH_SHORT).show()
+                            it.attention = true
+                        } else {
+                            bottomSheetDialog = BottomSheetDialog(this)
+                            val dBinding =
+                                DialogAttentionCancelBinding.inflate(LayoutInflater.from(this))
+
+                            dBinding.rlayoutAdd.setOnClickListener {
+                                Toast.makeText(this, "加入特别关注", Toast.LENGTH_SHORT).show()
+                                bottomSheetDialog.dismiss()
+                            }
+                            dBinding.rlayoutGroup.setOnClickListener {
+                                Toast.makeText(this, "加入默认分组", Toast.LENGTH_SHORT).show()
+                                bottomSheetDialog.dismiss()
+                            }
+                            dBinding.rlayoutCancel.setOnClickListener { _ ->
+                                mViewModel.updateAttention(it.userCode)
+                                attentionUpdateCounts += 1
+                                val status1 = appViewModel.appColorType.value
+                                if (status1 == null || status1 == 0) {
+                                    binding.clayoutUserFollow.setBackgroundResource(shape_20_drawables[APP_COLOR_STATUS])
+                                } else {
+                                    binding.clayoutUserFollow.setBackgroundResource(shape_20_drawables[status1])
+                                }
+                                Toast.makeText(this, "已取消关注", Toast.LENGTH_SHORT).show()
+                                it.attention = false
+                                bottomSheetDialog.dismiss()
+                            }
+                            dBinding.txtCancel.setOnClickListener {
+                                bottomSheetDialog.dismiss()
+                            }
+                            bottomSheetDialog.setContentView(dBinding.root)
+                            bottomSheetDialog.setCancelable(true)
+                            bottomSheetDialog.setCanceledOnTouchOutside(true)
+                            bottomSheetDialog.show()
+                        }
+                    } else {
+                        startAnyActivity(this, LoginActivity::class.java)
+                    }
                 }
             }
         }

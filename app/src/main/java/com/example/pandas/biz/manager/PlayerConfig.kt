@@ -1,5 +1,8 @@
 package com.example.pandas.biz.manager
 
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import com.example.pandas.bean.MediaItemWrapper
 import java.util.concurrent.ConcurrentHashMap
 
@@ -21,6 +24,13 @@ public class PlayerConfig private constructor() {
 
     //缓存所有创建的mediaItems。该创建是相对耗时的操作，缓存起来重用<videoCode,mediaItem>
     private val mediaItems: ConcurrentHashMap<Int, MediaItemWrapper> by lazy { ConcurrentHashMap() }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun getAll(){
+        mediaItems.forEach { (t, u) ->
+            Log.e("1mean","videoCode=$t, MediaItemWrapper=$u")
+        }
+    }
 
     fun hasMediaItem(videoCode: Int): Boolean {
         return mediaItems.containsKey(videoCode)

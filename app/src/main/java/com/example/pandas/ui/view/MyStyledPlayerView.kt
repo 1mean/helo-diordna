@@ -129,6 +129,11 @@ public class MyStyledPlayerView : StyledPlayerView {
             controls?.onDoubleTapFinished()
         }
 
+        override fun onLongPress(e: MotionEvent) {
+            super.onLongPress(e)
+            controls?.onLongPress(e)
+        }
+
         override fun onDown(e: MotionEvent): Boolean {
             // Used to override the other methods
             controls?.onDown()
@@ -156,6 +161,7 @@ public class MyStyledPlayerView : StyledPlayerView {
             // to hide and show on single tap
             if (isDoubleTapping) return true
             if (DEBUG) Log.d(TAG, "onSingleTapConfirmed: isDoubleTap = false")
+            controls?.onSingleTapConfirmed()
             return rootView.performClick()
         }
 

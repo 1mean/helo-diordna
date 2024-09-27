@@ -2,18 +2,20 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/black">
 
     <!-- app:resize_mode="fit" -->
     <!--bug:app:keep_content_on_player_reset="true"设置后，第二次进入时会从0开始铺满屏幕导致闪屏-->
-    <com.example.pandas.ui.view.MyStyledPlayerView2
+    <com.example.pandas.ui.view.MyStyledPlayerView
             android:id="@+id/player_vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:hide_on_touch="false"
+            app:hide_on_touch="true"
             app:show_timeout="0"
             app:resize_mode="zoom"
-            app:show_buffering="always"
+            app:show_buffering="never"
+            app:auto_show="false"
             app:shutter_background_color="#34373c"
             android:layout_gravity="center_horizontal"
             app:controller_layout_id="@layout/controller_vertical_player" />

@@ -185,4 +185,5 @@ dependencies {
     //AAR默认不会打包第三方依赖，必须app自己依赖，否则报错找不到aar里的第三方类
     implementation 'com.github.li-xiaojun:EasyAdapter:1.2.8'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
+
 }

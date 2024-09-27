@@ -42,7 +42,7 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
     private var networkService: ConnectivityManager? = null
 
     private var toast: Toast? = null
-    private val HANDLER: Handler = Handler(Looper.getMainLooper())
+    val HANDLER: Handler = Handler(Looper.getMainLooper())
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +54,7 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
         //initStatusView()
         initView(savedInstanceState)
         createObserver()
+        clickFunction()
 
         if (netWorkFlag) {
             networkService = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -142,6 +143,9 @@ public abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCo
     open fun netLost() {}
 
     open fun netAvailable() {}
+
+    open fun clickFunction() {}
+
 
     /**
      * 创建观察者

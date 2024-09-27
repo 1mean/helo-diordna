@@ -1,5 +1,7 @@
 package com.example.pandas.biz.interaction;
 
+import android.view.MotionEvent;
+
 public interface PlayerDoubleTapListener {
 
     default void onDoubleTapStarted(float posX, float posY) {
@@ -34,4 +36,7 @@ public interface PlayerDoubleTapListener {
 
     }
 
+    default void onLongPress(MotionEvent event) {
+
+    }
 }

@@ -24,6 +24,7 @@ import com.example.pandas.biz.ext.loadCenterImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.ui.ext.addScaleAnimation
 import com.example.pandas.ui.ext.startShortVideoActivity
+import com.example.pandas.ui.ext.startVideoActivity
 import de.hdodenhof.circleimageview.CircleImageView
 
 
@@ -150,6 +151,7 @@ public class FallsShortVideoAdapter(
 
 
             holder.itemView.setOnClickListener {
+//                startVideoActivity(context, data)
                 startShortVideoActivity(context, data.code)
             }
         }

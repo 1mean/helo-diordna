@@ -52,7 +52,7 @@
                 style="?android:attr/progressBarStyleSmall"
                 android:indeterminate="true"
                 android:layout_gravity="center"
-                android:indeterminateTint="@color/color_progress_loadmore" />
+                android:indeterminateTint="@color/green" />
 
         <TextView android:id="@id/exo_error_message"
                 android:layout_width="wrap_content"

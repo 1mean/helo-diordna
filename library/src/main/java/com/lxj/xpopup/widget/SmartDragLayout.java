@@ -3,6 +3,7 @@ package com.lxj.xpopup.widget;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -170,6 +171,7 @@ public class SmartDragLayout extends LinearLayout implements NestedScrollingPare
 
     @Override
     public void scrollTo(int x, int y) {
+        //Log.e("1masdasdasdean","x="+x + ", y="+y);
         if (y > maxY) y = maxY;
         if (y < minY) y = minY;
         float fraction = (y - minY) * 1f / (maxY - minY);
@@ -190,6 +192,7 @@ public class SmartDragLayout extends LinearLayout implements NestedScrollingPare
     @Override
     public void computeScroll() {
         super.computeScroll();
+        Log.e("1masdasdasdean","computeScroll x="+scroller.getCurrX() + ", y=" + scroller.getCurrY() + ", offset="+scroller.computeScrollOffset());
         if (scroller.computeScrollOffset()) {
             scrollTo(scroller.getCurrX(), scroller.getCurrY());
             ViewCompat.postInvalidateOnAnimation(this);

@@ -274,7 +274,7 @@ public class VideoPagerAdapter(
         fun init() {
             //playerCover.visibility = View.GONE
             play.visibility = View.GONE
-            playerView.showController()
+            //playerView.showController()
 //            timebar.setPlayedColor(
 //                ContextCompat.getColor(
 //                    context,
@@ -494,6 +494,7 @@ public class VideoPagerAdapter(
             playerView.controller(object : PlayerDoubleTapListener {
 
                 override fun onSingleTapConfirmed() {
+                    Log.e("1me11222an","-----onSingleTapConfirmed------")
                     listener.onSingleTap()
                     if (play.isVisible) {
                         play.visibility = View.GONE
@@ -514,7 +515,8 @@ public class VideoPagerAdapter(
                     }
                 }
 
-                override fun onDoubleTap() {
+                override fun onDoubleTapFinished() {
+                    super.onDoubleTapFinished()
                     listener.onDoubleTap()
                     list[position].videoData?.let {
                         if (it.like) {
@@ -523,8 +525,6 @@ public class VideoPagerAdapter(
                     }
                     handleItemLike(position)
                 }
-
-
             })
 
 //            timebar.addListener(object : TimeBar.OnScrubListener {

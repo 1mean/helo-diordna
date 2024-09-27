@@ -22,7 +22,7 @@ import com.android.android_sqlite.entity.User
 import com.example.pandas.ui.activity.AudioPlayActivity
 import com.example.pandas.ui.activity.ShortVideoActivity
 import com.example.pandas.ui.activity.UserInfoActivity
-import com.example.pandas.ui.activity.VideoPlayingActivity
+import com.helo.video.VideoPlayingActivity
 import kotlin.math.abs
 
 
@@ -147,6 +147,13 @@ fun startVideoPlayingActivity(context: Context, video: PetVideo) {
 fun startShortVideoActivity(context: Context, videoCode: Int) {
     val intent = Intent(context, ShortVideoActivity::class.java).apply {
         putExtra("videoCode", videoCode)
+    }
+    context.startActivity(intent)
+}
+
+fun startVideoActivity(context: Context, petVideo: PetVideo) {
+    val intent = Intent(context, VideoPlayingActivity::class.java).apply {
+        putExtra("PetVideo", petVideo)
     }
     context.startActivity(intent)
 }

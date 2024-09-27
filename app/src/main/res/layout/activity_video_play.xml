@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vp2_video_play"
+    <com.life.publish.lib_selector.widget.RoundCornerRelativeLayout
+        android:id="@+id/rlayout_video_vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="58dp" />
+        android:layout_marginBottom="58dp"
+        app:psCorners="10dp">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp2_video_play"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.life.publish.lib_selector.widget.RoundCornerRelativeLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clayout_vertical_bottom"
@@ -18,74 +26,132 @@
         android:layout_gravity="bottom"
         android:background="@color/black">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_vertical_input_send"
-            android:layout_width="52dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/shape_bg_edit_send"
-            android:text="发送"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintRight_toRightOf="@id/clayout_vertical_bottom"
-            app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clayout_video_input"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
+            app:layout_constraintWidth_percent="0.5"
+            android:clickable="true"
+            android:focusable="true"
             android:background="@drawable/shape_bottom_input"
             app:layout_constraintBottom_toBottomOf="@id/clayout_vertical_bottom"
             app:layout_constraintLeft_toLeftOf="@id/clayout_vertical_bottom"
-            app:layout_constraintRight_toLeftOf="@id/btn_vertical_input_send"
             app:layout_constraintTop_toTopOf="@id/clayout_vertical_bottom">
 
-            <!-- android:background="@drawable/shape_vertical_edit" -->
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_short_at"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:src="@mipmap/img_short_eit"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_video_input"
-                app:layout_constraintRight_toLeftOf="@id/btn_short_emotion"
-                app:layout_constraintTop_toTopOf="@id/clayout_video_input" />
-
-            <!--必须设置focus，才能主动和被动地弹起软键盘-->
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_short_emotion"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:background="@null"
-                android:src="@mipmap/img_short_emotion"
-                app:layout_constraintBottom_toBottomOf="@id/clayout_video_input"
-                app:layout_constraintEnd_toEndOf="@id/clayout_video_input"
-                app:layout_constraintTop_toTopOf="@id/clayout_video_input" />
-
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_video_input"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:layout_marginStart="16dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:hint="@string/str_hint_edit_short"
+                android:hint="发条评论吧..."
                 android:includeFontPadding="false"
                 android:inputType="none"
                 android:singleLine="true"
+                android:gravity="center_vertical"
                 android:textColor="#E6E6E6"
                 android:textColorHint="#939393"
                 android:textCursorDrawable="@drawable/shape_edit_comment"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@id/clayout_video_input"
                 app:layout_constraintLeft_toLeftOf="@id/clayout_video_input"
                 app:layout_constraintTop_toTopOf="@id/clayout_video_input" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageButton
+            android:id="@+id/btn_bottom_comments"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/img_bottom_comments"
+            android:background="@null"
+            app:layout_constraintRight_toRightOf="@id/clayout_vertical_bottom"
+            />
+
+        <ImageButton
+            android:id="@+id/btn_bottom_like"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/img_bottom_like"
+            android:background="@null"
+            app:layout_constraintRight_toLeftOf="@id/btn_bottom_collect"
+            />
+
+        <ImageButton
+            android:id="@+id/btn_bottom_collect"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/img_bottom_collect"
+            android:background="@null"
+            app:layout_constraintRight_toLeftOf="@id/btn_bottom_comments"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_video_top"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_gravity="top">
+
+        <ImageButton
+            android:layout_width="58dp"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_video_top"
+            android:src="@mipmap/img_setting_top_back_white"
+            android:background="@null"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--android:layout_height="14dp"-->
+    <!--app:played_color="#4c4c4c"-->
+    <com.helo.video.MyDefaultTimeBar
+        android:id="@+id/exo_progress"
+        android:layout_width="match_parent"
+        android:layout_height="14dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="52dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:bar_height="2dp"
+        app:unplayed_color="#22ffffff"
+        app:played_color="@color/white"
+        app:buffered_color="#22ffffff"
+        android:focusable="false"
+        android:clickable="false"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_bottom_function_info"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_gravity="bottom"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_bottom_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.45"
+            android:textSize="15sp"
+            android:letterSpacing="0.05"
+            android:includeFontPadding="false"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_bottom_speedup"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            android:background="@drawable/list_anim_speedup"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

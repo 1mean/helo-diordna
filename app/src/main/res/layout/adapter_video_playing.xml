@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <!--MyStyledPlayerView android:layout_gravity="center"保证视频在中间显示，不然会跑到顶部-->
+    <!--<com.google.android.exoplayer2.ui.AspectRatioFrameLayout
+        android:id="@+id/aspectRatioLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">-->
+        <!--shutter_background_color：是播放器播放时的背景-->
+        <!--白屏BUG:点开视频，会出现一帧的白屏，然后再是shutter_background_color-->
+        <!--buffer的样式在布局R.layout.exo_styled_player_view里-->
+        <!--目前的解决：添加show_buffering的背景颜色并显示，同时clayout_short_video_cover不要设置背景，不然盖住了-->
+        <!--根源应该是img_short_video_cover加载会出现一次白屏，不加载就不会出现-->
+        <com.example.pandas.ui.view.MyStyledPlayerView
+            android:id="@+id/player_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:hide_on_touch="false"
+            app:show_buffering="always"
+            app:resize_mode="zoom"
+            android:layout_gravity="center_horizontal"
+            app:shutter_background_color="@color/black"
+            app:use_controller="false" />
+    <!--</com.google.android.exoplayer2.ui.AspectRatioFrameLayout>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_video_switch"
+        android:layout_width="96dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="200dp"
+        android:visibility="gone"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@drawable/shape_video_switch">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/clayout_video_switch"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_video_switch"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_video_switch"
+            android:layout_marginStart="12dp"
+            android:src="@mipmap/img_video_switch_horizontal"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全屏观看"
+            android:textColor="#e7e7e7"
+            app:layout_constraintTop_toTopOf="@id/clayout_video_switch"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_video_switch"
+            app:layout_constraintRight_toRightOf="@id/clayout_video_switch"
+            android:layout_marginEnd="12dp"
+            android:textSize="12sp"
+            android:includeFontPadding="false"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- app:resize_mode="fit" -->
+    <!--bug:app:keep_content_on_player_reset="true"设置后，第二次进入时会从0开始铺满屏幕导致闪屏-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_short_video_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_short_video_cover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_short_video_cover"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_short_video_cover"
+            app:layout_constraintRight_toRightOf="@id/clayout_short_video_cover"
+            app:layout_constraintTop_toTopOf="@id/clayout_short_video_cover" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_vertical_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.3"
+        android:src="@mipmap/img_short_video_play"
+        android:visibility="gone"
+        android:layout_gravity="center"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayouut_vertical_infos"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/shape_vertical_bottom_shelter"
+        android:layout_gravity="bottom">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_video_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/img_video_header"
+            app:layout_constraintLeft_toRightOf="@id/img_video_header"
+            app:layout_constraintTop_toTopOf="@id/img_video_header" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_video_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.85"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:letterSpacing="0.03"
+            android:textSize="14sp"
+            android:fontFamily="@font/kaiti"
+            app:layout_constraintLeft_toLeftOf="@id/img_video_header"
+            app:layout_constraintTop_toBottomOf="@id/img_video_header" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_video_attention"
+            android:layout_width="64dp"
+            android:layout_height="24dp"
+            app:layout_constraintTop_toTopOf="@id/img_video_header"
+            app:layout_constraintBottom_toBottomOf="@id/img_video_header"
+            app:layout_constraintLeft_toRightOf="@id/txt_video_name"
+            android:text="@string/txt_follow"
+            android:textSize="12sp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:background="@drawable/shape_video_bg_attention" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_video_header"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="9dp"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp"
+            app:layout_constraintLeft_toLeftOf="@id/clayouut_vertical_infos"
+            app:layout_constraintTop_toTopOf="@id/clayouut_vertical_infos" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

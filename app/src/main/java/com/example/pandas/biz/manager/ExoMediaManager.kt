@@ -5,8 +5,10 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import com.android.android_sqlite.entity.PetVideo
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.bean.MediaItemWrapper
+import com.example.pandas.biz.ext.getLocalFilePath
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.PlaybackException
@@ -14,9 +16,7 @@ import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.Player.STATE_READY
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.util.Util
-import com.helo.video.ExoMedia
 import java.io.File
-import java.util.concurrent.ConcurrentHashMap
 
 /**
  * @description: ExoPlayer统一处理，后续升级成Media3
@@ -31,11 +31,11 @@ public class ExoMediaManager(
 ) : DefaultLifecycleObserver {
 
     private var isOpenVoice = false
-    private var _mPlayer: ExoPlayer? = null
-    private val mPlayer get() = _mPlayer!!
+    private var mPlayer: ExoPlayer? = null
 
     private var startTime: Long = 0
     private var oldPlayerView: StyledPlayerView? = null
+
 
     //private val mediaItemsCache: ConcurrentHashMap<Int, MediaItemInfo> = ConcurrentHashMap()
     private val mediaIndexs = MediaIndexMap()
@@ -43,6 +43,7 @@ public class ExoMediaManager(
     init {
         lifecycleOwner.lifecycle.addObserver(this)
     }
+
 
     /**
      * - 跳转到其他activity回来，会执行onStart()和onResume()
@@ -52,10 +53,10 @@ public class ExoMediaManager(
     override fun onStart(owner: LifecycleOwner) {
         super.onStart(owner)
         if (Util.SDK_INT > 23) {
-            if (_mPlayer == null) {
-                Log.e("1mesdadan", "life onstart")
-                _mPlayer = ExoPlayer.Builder(context).build()
-                _mPlayer?.addListener(mListener)
+            if (mPlayer == null) {
+                Log.e("1mean", "life onstart")
+                mPlayer = ExoPlayer.Builder(context).build()
+                mPlayer?.addListener(mListener)
             }
         }
     }
@@ -75,58 +76,112 @@ public class ExoMediaManager(
         lifecycleOwner.lifecycle.removeObserver(this)
     }
 
-    fun play(playerView: StyledPlayerView, mediaInfo: MediaInfo) {
 
+    fun play(playerView: StyledPlayerView) {
         startTime = System.currentTimeMillis()
-        mPlayer.repeatMode = Player.REPEAT_MODE_ONE
+        mPlayer?.let {
+            it.repeatMode = Player.REPEAT_MODE_ONE
+            StyledPlayerView.switchTargetView(it, oldPlayerView, playerView)
+            oldPlayerView = playerView
+            it.seekTo(0, 0)
+            it.playWhenReady = true
+            it.prepare()
+        }
 //        if (isOpenVoice) {
 //            mPlayer.volume = mPlayer.deviceVolume.toFloat() / 16
 //        } else {
 //            mPlayer.volume = 0f
 //        }
-        StyledPlayerView.switchTargetView(mPlayer, oldPlayerView, playerView)
-        oldPlayerView = playerView
 
-        val videoCode = mediaInfo.videoCode
-        val playPos = mediaInfo.playPos
 
-        if (mediaIndexs.exist(mediaInfo.videoCode)) {
-            Log.e("1mean","manager 777")
-            mediaIndexs.get(mediaInfo.videoCode)?.let {
-                mPlayer.seekTo(mediaIndexs.indexOf(videoCode), it.playPos)
-            }
-        } else {
-            synchronized(this) {
-                if (PlayerConfig.instance.hasMediaItem(videoCode)) {
-                    Log.e("1mean","manager 888")
-                    PlayerConfig.instance.getMediaItem(videoCode)?.let {
-                        it.mediaItem?.let { item ->
-                            mPlayer.addMediaItem(item)
+//        val videoCode = mediaInfo.videoCode
+//        val playPos = mediaInfo.playPos
+//
+//        if (mediaIndexs.exist(mediaInfo.videoCode)) {
+//            Log.e("1mean", "manager 777")
+//            mediaIndexs.get(mediaInfo.videoCode)?.let {
+//                mPlayer.seekTo(mediaIndexs.indexOf(videoCode), it.playPos)
+//            }
+//        } else {
+//            synchronized(this) {
+//                if (PlayerConfig.instance.hasMediaItem(videoCode)) {
+//                    Log.e("1mean", "manager 888")
+//                    PlayerConfig.instance.getMediaItem(videoCode)?.let {
+//                        it.mediaItem?.let { item ->
+//                            mPlayer.addMediaItem(item)
+//                        }
+//                        val index = mediaIndexs.add(mediaInfo)
+//                        mPlayer.seekTo(index, it.playPosition)
+//                    }
+//                } else {
+//                    Log.e("1mean", "manager 999")
+//                    val mediaItem = if (mediaInfo.playUrl.startsWith("http")) {
+//                        MediaItem.Builder().setUri(mediaInfo.playUrl)
+//                            .setMediaId(mediaInfo.videoCode.toString()).build()
+//                    } else {
+//                        MediaItem.Builder().setUri(Uri.fromFile(File(mediaInfo.playUrl)))
+//                            .setMediaId(mediaInfo.videoCode.toString()).build()
+//                    }
+//                    val index = mediaIndexs.add(mediaInfo)
+//                    PlayerConfig.instance.addMediaItem(
+//                        videoCode,
+//                        MediaItemWrapper(playPos, mediaItem)
+//                    )
+//                    mPlayer.addMediaItem(mediaItem)
+//                    mPlayer.seekTo(index, playPos)
+//                }
+//            }
+//        }
+    }
+
+    fun play(playerView: StyledPlayerView, mediaInfo: MediaInfo) {
+
+        mPlayer?.let {
+            it.repeatMode = Player.REPEAT_MODE_ONE
+            StyledPlayerView.switchTargetView(it, oldPlayerView, playerView)
+            oldPlayerView = playerView
+
+            val videoCode = mediaInfo.videoCode
+            val playPos = mediaInfo.playPos
+
+            if (mediaIndexs.exist(mediaInfo.videoCode)) {
+                Log.e("1mean", "manager 777")
+                mediaIndexs.get(mediaInfo.videoCode)?.let { mediaInfo ->
+                    it.seekTo(mediaIndexs.indexOf(videoCode), mediaInfo.playPos)
+                }
+            } else {
+                synchronized(this) {
+                    if (PlayerConfig.instance.hasMediaItem(videoCode)) {
+                        Log.e("1mean", "manager 888")
+                        PlayerConfig.instance.getMediaItem(videoCode)?.let { media ->
+                            media.mediaItem?.let { item ->
+                                it.addMediaItem(item)
+                            }
+                            val index = mediaIndexs.add(mediaInfo)
+                            it.seekTo(index, media.playPosition)
+                        }
+                    } else {
+                        Log.e("1mean", "manager 999")
+                        val mediaItem = if (mediaInfo.playUrl.startsWith("http")) {
+                            MediaItem.Builder().setUri(mediaInfo.playUrl)
+                                .setMediaId(mediaInfo.videoCode.toString()).build()
+                        } else {
+                            MediaItem.Builder().setUri(Uri.fromFile(File(mediaInfo.playUrl)))
+                                .setMediaId(mediaInfo.videoCode.toString()).build()
                         }
                         val index = mediaIndexs.add(mediaInfo)
-                        mPlayer.seekTo(index, it.playPosition)
+                        PlayerConfig.instance.addMediaItem(
+                            videoCode,
+                            MediaItemWrapper(playPos, mediaItem)
+                        )
+                        it.addMediaItem(mediaItem)
+                        it.seekTo(index, playPos)
                     }
-                } else {
-                    Log.e("1mean","manager 999")
-                    val mediaItem = if (mediaInfo.playUrl.startsWith("http")) {
-                        MediaItem.Builder().setUri(mediaInfo.playUrl)
-                            .setMediaId(mediaInfo.videoCode.toString()).build()
-                    } else {
-                        MediaItem.Builder().setUri(Uri.fromFile(File(mediaInfo.playUrl)))
-                            .setMediaId(mediaInfo.videoCode.toString()).build()
-                    }
-                    val index = mediaIndexs.add(mediaInfo)
-                    PlayerConfig.instance.addMediaItem(
-                        videoCode,
-                        MediaItemWrapper(playPos, mediaItem)
-                    )
-                    mPlayer.addMediaItem(mediaItem)
-                    mPlayer.seekTo(index, playPos)
                 }
             }
+            it.playWhenReady = true
+            it.prepare()
         }
-        mPlayer.playWhenReady = true
-        mPlayer.prepare()
     }
 
 
@@ -155,7 +210,7 @@ public class ExoMediaManager(
                 }
 
                 Player.STATE_READY -> {//视频已经准备好，此时isPlaying=true
-                    Log.e("ExoMediaManager", "STATE_READY: ${mPlayer.isPlaying}")
+                    Log.e("ExoMediaManager", "STATE_READY: ${mPlayer?.isPlaying}")
                 }
 
                 Player.STATE_IDLE -> {//暂停不会触发
@@ -180,7 +235,7 @@ public class ExoMediaManager(
         //当 #{isPlaying()} 的值改变时调用 ，是否player正在播放中
         override fun onIsPlayingChanged(isPlaying: Boolean) {
             super.onIsPlayingChanged(isPlaying)
-            Log.e("1mean","onIsPlayingChanged isPlaying=$isPlaying")
+            Log.e("1mean", "onIsPlayingChanged isPlaying=$isPlaying")
             listener.OnPlayerViewShow(isPlaying)
         }
 
@@ -214,10 +269,11 @@ public class ExoMediaManager(
 
         fun updatePlayingPosition(videoCode: Int, playPos: Long) {
 
-            val playInfo =
-                playInfoMap[videoCode] ?: throw Exception("playInfoMap no key: $videoCode")
-            playInfo.playPos = playPos
-            playInfoMap[videoCode] = playInfo
+            val playInfo = playInfoMap[videoCode]
+            if (playInfo != null) {
+                playInfo.playPos = playPos
+                playInfoMap[videoCode] = playInfo
+            }
         }
 
         fun exist(videoCode: Int): Boolean = playInfoMap.containsKey(videoCode)
@@ -232,55 +288,170 @@ public class ExoMediaManager(
 
     //***对外方法*********************************************************************************
 
-    fun pausePlayer() {
-        if (mPlayer.isPlaying) {
-            synchronized(this) {
-                mPlayer.currentMediaItem?.mediaId?.let { code ->
-                    if (PlayerConfig.instance.hasMediaItem(code.toInt())) {
-                        PlayerConfig.instance.updatePosition(code.toInt(), mPlayer.currentPosition)
-                    } else {
-                        Log.e("1mean", "Pause Error: 当前播放的MediaItem，并未存储 .")
+    fun getCurrentPos(): Long = mPlayer?.currentPosition ?: 0
+    fun getDuration(): Long = mPlayer?.duration ?: 0
+    fun bufferedPos(): Long = mPlayer?.bufferedPosition ?: 0
+
+    //arrayOf("2.0", "1.5", "1.25", "1.0", "0.75", "0.5")
+    fun setPlaySpeed(speed: Float) {
+        mPlayer?.let {
+            if (!it.isPlaying && it.playbackState == STATE_READY) {
+                it.playWhenReady = true
+            }
+            it.setPlaybackSpeed(speed)
+        }
+    }
+
+    fun seekTo(position: Long) {
+        mPlayer?.seekTo(position)
+    }
+
+    fun seekTo(mediaItemIndex: Int, positionMs: Long) {
+        mPlayer?.seekTo(mediaItemIndex, positionMs)
+    }
+
+    fun seekTo(position: Int, playerView: StyledPlayerView) {
+        mPlayer?.let {
+            it.repeatMode = Player.REPEAT_MODE_ONE
+            StyledPlayerView.switchTargetView(it, oldPlayerView, playerView)
+            this.oldPlayerView = playerView
+            it.seekTo(position, 0)
+            it.playWhenReady = true
+            it.prepare()
+        }
+    }
+
+    fun seekTo(position: Int, videoCode: Int, playerView: StyledPlayerView) {
+        mPlayer?.let {
+            it.repeatMode = Player.REPEAT_MODE_ONE
+            StyledPlayerView.switchTargetView(it, oldPlayerView, playerView)
+            this.oldPlayerView = playerView
+
+            if (PlayerConfig.instance.hasMediaItem(videoCode)) {
+                PlayerConfig.instance.getMediaItem(videoCode)?.let { media ->
+                    media.mediaItem?.let { item ->
+                        it.addMediaItem(item)
                     }
-                    mediaIndexs.updatePlayingPosition(code.toInt(), mPlayer.currentPosition)
+                    it.seekTo(position, media.playPosition)
                 }
             }
-            mPlayer.pause()
+            it.playWhenReady = true
+            it.prepare()
+        }
+    }
+
+    fun refreshPlayer(list: MutableList<PetVideo>) {
+        mPlayer?.let {
+            it.clearMediaItems()
+            if (list.isNotEmpty()) {
+                val mediaItems = mutableListOf<MediaItem>()
+                list.forEach {
+                    val file = getLocalFilePath(context, it.fileName!!)
+                    val mediaItem =
+                        MediaItem.Builder().setUri(Uri.fromFile(file))
+                            .setMediaId(it.code.toString()).build()
+                    mediaItems.add(mediaItem)
+                }
+                it.addMediaItems(mediaItems)
+                it.seekTo(0, 0)
+                it.playWhenReady = true
+                it.prepare()
+            }
+        }
+    }
+
+    fun addMedidItems(list: MutableList<PetVideo>): MutableList<MediaItem> {
+        val mediaItems = mutableListOf<MediaItem>()
+        if (list.isNotEmpty()) {
+            list.forEach { petVideo ->
+                val mediaItem = if (petVideo.url != null) {
+                    MediaItem.Builder().setUri(petVideo.url)
+                        .setMediaId(petVideo.code.toString()).build()
+                } else {
+                    val file = getLocalFilePath(context, petVideo.fileName!!)
+                    MediaItem.Builder().setUri(Uri.fromFile(file))
+                        .setMediaId(petVideo.code.toString()).build()
+                }
+                if (!PlayerConfig.instance.hasMediaItem(petVideo.code)) {
+                    PlayerConfig.instance.addMediaItem(
+                        petVideo.code,
+                        MediaItemWrapper(0, mediaItem)
+                    )
+                }
+                mediaItems.add(mediaItem)
+                mPlayer?.addMediaItem(mediaItem)
+            }
+        }
+        return mediaItems
+    }
+
+    fun pausePlayer() {
+        mPlayer?.let {
+            if (it.isPlaying) {
+                synchronized(this) {
+                    it.currentMediaItem?.mediaId?.let { code ->
+                        if (PlayerConfig.instance.hasMediaItem(code.toInt())) {
+                            PlayerConfig.instance.updatePosition(code.toInt(), it.currentPosition)
+                        } else {
+                            Log.e("1mean", "Pause Error: 当前播放的MediaItem，并未存储 .")
+                        }
+                        mediaIndexs.updatePlayingPosition(code.toInt(), it.currentPosition)
+                    }
+                }
+                it.pause()
+            }
         }
     }
 
     fun refreshPlayer() {
-        if (mPlayer.isPlaying) {
-            mPlayer.pause()
-            //因为要刷新数据，同时再次播放也要执行mPlayer.seekTo(index)。如果媒体库数据不清空会播放之前的老数据
-            mPlayer.clearMediaItems()
+        mPlayer?.let {
+            if (it.isPlaying) {
+                it.pause()
+                //因为要刷新数据，同时再次播放也要执行mPlayer.seekTo(index)。如果媒体库数据不清空会播放之前的老数据
+                it.clearMediaItems()
+            }
+            mediaIndexs.clear()
         }
-        mediaIndexs.clear()
     }
 
     fun releasePlayer() {
-        mPlayer.currentMediaItem?.mediaId?.let {
-            val videoCode = it.toInt()
-            synchronized(this) {
-                if (PlayerConfig.instance.hasMediaItem(videoCode)) {
-                    PlayerConfig.instance.updatePosition(videoCode, mPlayer.currentPosition)
-                } else {
-                    Log.e("1mean", "Pause Error: 当前播放的MediaItem，并未存储 .")
+        mPlayer?.let {
+            it.currentMediaItem?.mediaId?.let { code ->
+                val videoCode = code.toInt()
+                Log.e("1mean", "videoCode=$videoCode")
+                synchronized(this) {
+                    if (PlayerConfig.instance.hasMediaItem(videoCode)) {
+                        PlayerConfig.instance.updatePosition(videoCode, it.currentPosition)
+                    } else {
+                        Log.e("1mean", "Pause Error: 当前播放的MediaItem，并未存储 .")
+                    }
                 }
             }
-            mediaIndexs.updatePlayingPosition(videoCode, mPlayer.currentPosition)
+            it.removeListener(mListener)
+            it.release()
+            mediaIndexs.clear()
+            oldPlayerView = null
+            mPlayer = null
         }
-        mPlayer.removeListener(mListener)
-        mPlayer.release()
-        mediaIndexs.clear()
-        oldPlayerView = null
-        _mPlayer = null
     }
 
-    fun isPlaying(): Boolean = mPlayer.isPlaying
+    fun isPlaying(): Boolean = mPlayer?.isPlaying ?: false
 
     fun resumePlay() {
-        if (!mPlayer.isPlaying && mPlayer.playbackState == STATE_READY) {
-            mPlayer.playWhenReady = true
+        mPlayer?.let {
+            if (!it.isPlaying && it.playbackState == STATE_READY) {
+                it.playWhenReady = true
+            }
+        }
+    }
+
+    fun singleClick(){
+        mPlayer?.let {
+            if (it.isPlaying) {
+                it.pause()
+            } else {
+                it.playWhenReady = true
+            }
         }
     }
 
@@ -291,11 +462,13 @@ public class ExoMediaManager(
      */
     fun updateVolume(isOpen: Boolean) {
 
-        this.isOpenVoice = isOpen
-        if (isOpen) {//打开视频声音
-            mPlayer.volume = mPlayer.deviceVolume.toFloat() / 16
-        } else {
-            mPlayer.volume = 0f
+        mPlayer?.let {
+            this.isOpenVoice = isOpen
+            if (isOpen) {//打开视频声音
+                it.volume = it.deviceVolume.toFloat() / 16
+            } else {
+                it.volume = 0f
+            }
         }
     }
 

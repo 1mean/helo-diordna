@@ -1,39 +1,33 @@
 package com.example.pandas.ui.adapter
 
 import AppInstance
-import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
+import android.view.ViewConfiguration
 import android.view.ViewGroup
-import android.view.animation.LinearInterpolator
+import android.view.animation.DecelerateInterpolator
+import android.widget.FrameLayout
+import androidx.core.view.ViewConfigurationCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.android.android_sqlite.entity.PetVideo
-import com.android.android_sqlite.entity.VideoComment
+import com.android.android_sqlite.entity.User
 import com.android.android_sqlite.entity.VideoData
-import com.android.base.utils.TimeUtils
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
+import com.android.base.utils.TextUtil
 import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCircleImage
 import com.example.pandas.biz.ext.loadImage
 import com.example.pandas.biz.interaction.PlayerDoubleTapListener
-import com.example.pandas.databinding.AdapterVideoVerticalBinding
+import com.example.pandas.databinding.AdapterVideoPlayingBinding
 import com.example.pandas.ui.activity.LoginActivity
-import com.example.pandas.ui.ext.addShortEndAnimation
-import com.example.pandas.ui.ext.addShortStartAnimation
 import com.example.pandas.ui.ext.startAnyActivity
-import com.example.pandas.ui.view.dialog.ShareBottomSheetDialog
-import jp.wasabeef.glide.transformations.BlurTransformation
+import com.lxj.xpopup.XPopup
 import java.util.*
 
 /**
@@ -49,7 +43,6 @@ public class VideoPlayingAdapter(
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var recyclerView: RecyclerView? = null
-    var hideView: Boolean = false
 
     @SuppressLint("NotifyDataSetChanged")
     fun refreshAdapter(data: MutableList<PetVideo>) {
@@ -68,20 +61,6 @@ public class VideoPlayingAdapter(
         }
     }
 
-    fun getPetVide(position: Int) = list[position]
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val binding =
-            AdapterVideoVerticalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as MyViewHolder).handle(position)
-    }
-
-    override fun getItemCount(): Int = list.size
-
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         this.recyclerView = recyclerView
@@ -92,96 +71,67 @@ public class VideoPlayingAdapter(
         this.recyclerView = null
     }
 
-    /**
-     * 方法为什么不写在viewHolder里，因为viewholder的预加载导致position不对
-     *  handle(position)执行
-     *  第一次加载0 1
-     *  第二次加载2
-     *  第三次加载3
-     *
-     */
-    private var animationList: MutableMap<Int, ObjectAnimator> = mutableMapOf()
-    fun startAnimation(position: Int) {
+    fun getPetVide(position: Int) = list[position]
 
-        val animatom = animationList[position]
-        if (animatom == null) {
-            val vh = recyclerView?.findViewHolderForAdapterPosition(position)
-            vh?.let {
-                if (it is MyViewHolder) {
-                    val music = (it as MyViewHolder).musicImg
-                    val transRotation = ObjectAnimator.ofFloat(music, "rotation", 0f, 360f)
-                    transRotation.interpolator = LinearInterpolator()
-                    transRotation.repeatCount = -1 //动画永不停止
-                    transRotation.duration = 7000
-                    transRotation.start()
-                    list[position].booleanFlag = true
-                    animationList[position] = transRotation
-                }
-            }
+    fun likedClick(position: Int) {
+        val video = list[position]
+        val data = video.videoData
+        if (data == null) {
+            val vd = VideoData(
+                videoCode = video.code,
+                like = true,
+            )
+            video.videoData = vd
+            listener.updateLikedView(true, vd)
         } else {
-            if (animatom.isPaused) {
-                animatom.resume()
-            } else {
-                animatom.start()
-            }
+            listener.updateLikedView(!data.like, data)
+            data.like = !data.like
         }
     }
 
-    //通过获取musicImg(同一个对象)，通过clearAnimation()/animation.cancel()方法都无效，只能通过transRotation对象
-    fun pauseAnimation(position: Int) {
-        val transRotation = animationList.get(position)
-        if (transRotation != null && transRotation.isRunning) {
-            transRotation.pause()
+    fun collectedClick(position: Int) {
+        val video = list[position]
+        val data = video.videoData
+        if (data == null) {
+            val vd = VideoData(
+                videoCode = video.code,
+                collect = true,
+                collectTime = System.currentTimeMillis()
+            )
+            video.videoData = vd
+            listener.updateCollectedView(true, video)
+        } else {
+            listener.updateCollectedView(!data.collect, video)
+            data.collect = !data.collect
         }
     }
 
-    fun clearAnimation() {
-        if (animationList.isNotEmpty()) {
-            animationList.values.forEach {
-                it.cancel()
-            }
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val binding =
+            AdapterVideoPlayingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
-    inner class MyViewHolder(binding: AdapterVideoVerticalBinding) :
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as MyViewHolder).handle(position)
+    }
+
+    override fun getItemCount(): Int = list.size
+
+    inner class MyViewHolder(binding: AdapterVideoPlayingBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         val context = itemView.context
-        val name = binding.txtVerticalName
-        val header = binding.imgVerticalHead
-        val time = binding.txtVerticalTime
-        val title = binding.txtVerticalTitle
-
-        //val rightView = binding.layoutVerticalRight
-        val rightView = binding.clayoutShortRight
-        val bottomView = binding.clayoutVerticalVideoInfo
-        val likeItem = binding.llayoutVerticalLike
-        val likeImg = binding.ibnVerticalLike
-        val likes = binding.txtVerticalLike
-        val commentItem = binding.llayoutVerticalComment
-        val comments = binding.txtVerticalComment
-        val collectItem = binding.llayoutVerticalCollect
-        val collectImg = binding.ibnVerticalCollect
-        val collects = binding.txtVerticalCollect
-        val shareItem = binding.llayoutVerticalShare
-        val shareImg = binding.ibnVerticalShare
-        val shares = binding.txtVerticalShare
+        val name = binding.txtVideoName
+        val header = binding.imgVideoHeader
+        val title = binding.txtVideoTitle
         val play = binding.imgVerticalPlay
-        val musicImg = binding.imgVerticalMusic
-        val attentionView = binding.btnVerticalAttention
-
-        //val clear = binding.ibnVerticalEmpty
-        //val reduce = binding.ibnVerticalReduce
         val playerView = binding.playerVertical
         val coverImage = binding.imgShortVideoCover
         val coverLayout = binding.clayoutShortVideoCover
-        //val timebar = playerView.findViewById<DefaultTimeBar>(R.id.exo_progress)
-        //val music = binding.txtVerticalMusic
-
-        fun hidePlayerView() {
-            rightView.visibility = View.GONE
-            bottomView.visibility = View.GONE
-        }
+        val attentionView = binding.txtVideoAttention
+        val switchToHorizontal = binding.clayoutVideoSwitch
+        val videoInfosLayout = binding.clayouutVerticalInfos
 
         /**
          * 弹窗被拖拽时执行，适用于能拖拽的弹窗，比如Bottom弹窗和Drawer弹窗
@@ -195,8 +145,9 @@ public class VideoPlayingAdapter(
 
         //private val lastHeightPercent = 0.3747
         private var lastPercent = 0f
-        fun playerChanged(value: Int, percent: Float, upOrLeft: Boolean) {
+        fun playerChanged(position: Int, value: Int, percent: Float, upOrLeft: Boolean) {
 
+            Log.e("1meaadasdadn", "value=$value,percent=$percent,upOrLeft=$upOrLeft")
             //bug:经常出现两次偏移的value值相同回调，会导致通过位移来判断上还是下的upOrLeft出现问题，
             // 导致在一系列up中出现几次down，导致屏幕抖动，所以相同数值的结果规避掉
             if (lastPercent == percent) {
@@ -204,52 +155,56 @@ public class VideoPlayingAdapter(
             }
             lastPercent = percent
 
-            if (!upOrLeft && percent == 0f) {
-                rightView.visibility = View.VISIBLE
-                bottomView.visibility = View.VISIBLE
-            }
-
-            val params = playerView.layoutParams
-            val with = 1080 * (1 - lastWidthPercent * percent)
-            val height = 2226 * (1 - lastHeightPercent * percent)
-            //val height = 2125 * (1 - lastHeightPercent * percent)
-            params.width = with.toInt()
-            params.height = height.toInt()
-            playerView.layoutParams = params
-        }
-
-        fun hidePlerView() {
-            if (play.isVisible) {
-                play.visibility = View.GONE
-            }
-        }
-
-        fun updateCommentCounts(currentPosition: Int, count: Int) {
-            val petVideo = list[currentPosition]
-            val vd = petVideo.videoData
-            if (vd == null) {
-                val videoData = VideoData(videoCode = petVideo.code, comments = count)
-                petVideo.videoData = videoData
+            val video = list[position]
+            if (video.vertical) {
+                val params = playerView.layoutParams as FrameLayout.LayoutParams
+                val with = 1080 * (1 - lastWidthPercent * percent)
+                val height = 2125 * (1 - lastHeightPercent * percent)
+                params.width = with.toInt()
+                params.height = height.toInt()
+                playerView.layoutParams = params
             } else {
-                vd.comments = count
-            }
-            if (count > 0) {
-                comments.text = count.toString()
-            } else {
-                comments.text = "抢首评"
+                val params = playerView.layoutParams as FrameLayout.LayoutParams
+                params.topMargin = ((1 - percent) * 750).toInt()
+                playerView.layoutParams = params
             }
         }
 
-        fun updateComments(currentPosition: Int, videoComment: VideoComment) {
-            val petVideo = list[currentPosition]
-            if (petVideo.code == videoComment.videoCode) {
-                val videoData = list[currentPosition].videoData
-                if (videoData == null) {
-                    petVideo.videoData = VideoData(videoCode = petVideo.code, comments = 1)
-                    comments.text = "1"
+        fun playerChanged(position: Int, isOpen: Boolean) {
+            val video = list[position]
+            if (isOpen) {//弹出
+                if (video.vertical) {//2125-1080 变成  733-x    ---> 比例0.3449 ---> 733x373
+                    val animationSet = AnimatorSet()
+                    animationSet.duration = 300
+                    animationSet.interpolator = DecelerateInterpolator()
+                    val transScaleX = ObjectAnimator.ofFloat(playerView, "scaleX", 1f, 0.3449f)
+                    val transScaleY = ObjectAnimator.ofFloat(playerView, "scaleY", 1f, 0.3449f)
+                    animationSet.play(transScaleX).with(transScaleY)
+                    animationSet.start()
                 } else {
-                    videoData.comments += 1
-                    comments.text = videoData.comments.toString()
+                    val animationSet = AnimatorSet()
+                    animationSet.duration = 300
+                    animationSet.interpolator = DecelerateInterpolator()
+                    val transScaleX = ObjectAnimator.ofFloat(playerView, "translationY", 0f, -750f)
+                    animationSet.play(transScaleX)
+                    animationSet.start()
+                }
+            } else {//关闭
+                if (video.vertical) {
+                    val animationSet = AnimatorSet()
+                    animationSet.duration = 100
+                    animationSet.interpolator = DecelerateInterpolator()
+                    val transScaleX = ObjectAnimator.ofFloat(playerView, "scaleX", 0.3449f, 1f)
+                    val transScaleY = ObjectAnimator.ofFloat(playerView, "scaleY", 0.3449f, 1f)
+                    animationSet.play(transScaleX).with(transScaleY)
+                    animationSet.start()
+                } else {
+                    val animationSet = AnimatorSet()
+                    animationSet.duration = 100
+                    animationSet.interpolator = DecelerateInterpolator()
+                    val transScaleX = ObjectAnimator.ofFloat(playerView, "translationY", -750f, 0f)
+                    animationSet.play(transScaleX)
+                    animationSet.start()
                 }
             }
         }
@@ -260,36 +215,37 @@ public class VideoPlayingAdapter(
             user?.let {
                 if (it.userCode == userCode) {
                     if (it.attention) {
-                        attentionView.setBackgroundResource(R.drawable.shape_bg_vertical_attention)
-                        attentionView.setImageResource(R.mipmap.img_vertical_attention_add)
-                        attentionView.visibility = View.VISIBLE
+                        attentionView.setBackgroundResource(R.drawable.shape_video_bg_attention)
+                        attentionView.text = "关注"
                     } else {
-                        attentionView.visibility = View.GONE
+                        attentionView.setBackgroundResource(R.drawable.shape_video_bg_unattention)
+                        attentionView.text = "已关注"
                     }
                     it.attention = !it.attention
                 }
             }
         }
 
-        fun init() {
-            //playerCover.visibility = View.GONE
-            play.visibility = View.GONE
-            playerView.showController()
-//            timebar.setPlayedColor(
-//                ContextCompat.getColor(
-//                    context,
-//                    R.color.color_vertical_played
-//                )
-//            )
-            rightView.visibility = View.VISIBLE
-            bottomView.visibility = View.VISIBLE
+        fun updateVideoInfos(isHide: Boolean) {
+            if (isHide) {
+                videoInfosLayout.visibility = View.GONE
+            } else {
+                videoInfosLayout.visibility = View.VISIBLE
+            }
         }
 
-        fun coverShow(isCoverShow: Boolean, position: Int) {
+        fun hidePlerView() {
+            if (play.isVisible) {
+                play.visibility = View.GONE
+            }
+        }
+
+        fun coverShow(isCoverShow: Boolean) {
             if (isCoverShow) {
                 if (!coverLayout.isVisible) {
                     coverLayout.visibility = View.VISIBLE
                 }
+                play.visibility = View.GONE
             } else {
                 if (coverLayout.isVisible) {
                     coverLayout.visibility = View.GONE
@@ -297,366 +253,165 @@ public class VideoPlayingAdapter(
             }
         }
 
-        fun updateCollectView(isCollect: Boolean, position: Int) {
-            if (isCollect) {
-                collectImg.setImageResource(R.mipmap.img_vertical_collected1)
-            } else {
-                collectImg.setImageResource(R.mipmap.img_vertical_collect)
-            }
-            if (list[position].videoData == null) {
-                collectImg.setImageResource(R.mipmap.img_vertical_collected1)
-                collects.text = "1"
-                val vd = VideoData(
-                    videoCode = list[position].code,
-                    collect = true,
-                    collects = 1,
-                    collectTime = System.currentTimeMillis()
-                )
-                list[position].videoData = vd
-            } else {
-                list[position].videoData?.let {
-                    if (isCollect) {
-                        if (!it.collect) {
-                            collects.text = "1"
-                            it.collectTime = System.currentTimeMillis()
-                            it.collect = true
-                        }
-                    } else {
-                        if (it.collect) {
-                            collects.text = "收藏"
-                            it.collect = false
-                        }
-                    }
-                }
-            }
-        }
-
         fun handle(position: Int) {
             val video = list[position]
             val user = video.user
-            val videoData = video.videoData
 
-            hideView = false
+            //BUG:不同长短视频尺寸的实现
+            //app:resize_mode="zoom" + playerView.post{}实现短视频和长视频的不同尺寸的切换
+            //如果只修改width和height是无效的，因为这是播放器的尺寸，播放器内视频的尺寸仍然不会是全屏
+            playerView.post {
+                if (video.vertical) {
+                    val params = playerView.layoutParams
+                    params.width = 1080
+                    params.height = 2125
+                    playerView.layoutParams = params
+                } else {
+                    val topMargin = (itemView.height - 624) / 2
+                    val params = playerView.layoutParams as FrameLayout.LayoutParams
+                    params.width = 1080
+                    params.height = 624
+                    params.topMargin = topMargin
+                    playerView.layoutParams = params
+                }
+            }
 
-            time.text = TimeUtils.getStringDate2(video.releaseTime * 1000)
-            title.text = video.title
+            if (video.vertical) {
+                switchToHorizontal.visibility = View.GONE
+            } else {
+                switchToHorizontal.visibility = View.VISIBLE
+            }
+
+            TextUtil.toggleEllipsize(
+                context,
+                title,
+                1,
+                video.title!!,
+                "展开",
+                R.color.color_video_bottom_zhankai,
+                false
+            )
+
+            with(title) {
+                maxLines = 1
+                minLines = 1
+            }
 
             list[position].cover?.let {
                 loadImage(context, it, coverImage)
-                Glide.with(context).asBitmap().load(it)
-                    .apply(RequestOptions.bitmapTransform(BlurTransformation(50, 10)))
-                    .into(object : CustomTarget<Bitmap>() {
-                        override fun onResourceReady(
-                            resource: Bitmap,
-                            transition: Transition<in Bitmap>?
-                        ) {
-                            coverLayout.background =
-                                BitmapDrawable(context.resources, resource)
-                        }
-
-                        override fun onLoadCleared(placeholder: Drawable?) {
-                        }
-                    })
             }
+            coverLayout.visibility = View.VISIBLE
 
-            coverShow(true, position)
+            val params = playerView.layoutParams
+            //coverShow(true)
 
+            Log.e("1mean", "user=$user")
             user?.let {
-                name.text = "@" + it.userName
+                name.text = it.userName
                 loadCircleImage(context, it.headUrl!!, header)
-                loadCircleImage(context, it.headUrl!!, musicImg)
+                //loadCircleImage(context, it.headUrl!!, musicImg)
 
                 if (it.attention) {
-                    attentionView.visibility = View.GONE
+                    attentionView.setBackgroundResource(R.drawable.shape_video_bg_unattention)
+                    //attentionView.setTextColor(ContextCompat.getColor(context,R.color.white))
                 } else {
-                    attentionView.setBackgroundResource(R.drawable.shape_bg_vertical_attention)
-                    attentionView.setImageResource(R.mipmap.img_vertical_attention_add)
-                    attentionView.visibility = View.VISIBLE
-                }
-            }
-
-            if (videoData == null) {
-                likeImg.setImageResource(R.mipmap.img_vertical_like)
-                collectImg.setImageResource(R.mipmap.img_vertical_collect)
-                likes.text = "点赞"
-                comments.text = "抢首评"
-                collects.text = "收藏"
-                shares.text = "分享"
-            }
-
-            //listener.startMusicAnimation(musicImg)
-
-            videoData?.let {
-
-                if (it.like) {
-                    likeImg.setImageResource(R.mipmap.img_vertical_liked)
-                } else {
-                    likeImg.setImageResource(R.mipmap.img_vertical_like)
-                }
-
-                if (it.likes == 0) {
-                    likes.text = "点赞"
-                } else {
-                    likes.text = it.likes.toString()
-                }
-
-                if (it.collect) {
-                    collects.text = "1"
-                    collectImg.setImageResource(R.mipmap.img_vertical_collected1)
-                } else {
-                    collects.text = "收藏"
-                    collectImg.setImageResource(R.mipmap.img_vertical_collect)
-                }
-
-                if (it.comments == 0) {
-                    comments.text = "抢首评"
-                } else {
-                    comments.text = it.comments.toString()
-                }
-
-                if (it.shares == 0) {
-                    shares.text = "分享"
-                } else {
-                    shares.text = it.shares.toString()
-                }
-            }
-
-            likeItem.setOnClickListener {
-                handleItemLike(position)
-            }
-
-            collectItem.setOnLongClickListener {
-                listener.collectItemLongClick(list[position])
-                true
-            }
-            collectItem.setOnClickListener {
-                if (AppInstance.instance.isLoginSuccess) {
-                    val data = list[position]
-                    if (data.videoData == null) {
-                        addShortStartAnimation(collectImg)
-                        collectImg.setImageResource(R.mipmap.img_vertical_collected1)
-                        collects.text = "1"
-                        val vd = VideoData(
-                            videoCode = data.code,
-                            collect = true,
-                            collects = 1,
-                            collectTime = System.currentTimeMillis()
-                        )
-                        data.videoData = vd
-                        listener.updataVideoData(vd)
-                        listener.collect(true, data)
-                    } else {
-                        data.videoData?.let { vd ->
-                            if (vd.collect) {
-                                addShortEndAnimation(collectImg)
-                                collectImg.setImageResource(R.mipmap.img_vertical_collect)
-                                collects.text = "收藏"
-                                listener.collect(false, data)
-                            } else {
-                                addShortStartAnimation(collectImg)
-                                collectImg.setImageResource(R.mipmap.img_vertical_collected1)
-                                collects.text = "1"
-                                vd.collectTime = System.currentTimeMillis()
-                                listener.collect(true, data)
-                            }
-                            vd.collect = !vd.collect
-                            listener.updataVideoData(vd)
-                        }
-                    }
-                } else {
-                    startAnyActivity(context, LoginActivity::class.java)
-                }
-            }
-
-            shareItem.setOnClickListener {
-
-                val dialog = ShareBottomSheetDialog(context) {}
-                dialog.addData().onShow()
-            }
-
-            musicImg.setOnClickListener {
-                user?.let {
-                    listener.startUserActivity(it.userCode)
+                    attentionView.setBackgroundResource(R.drawable.shape_video_bg_attention)
                 }
             }
 
             header.setOnClickListener {
                 user?.let {
-                    listener.startUserActivity(it.userCode)
+                    if (video.videoType == 3 || video.videoType == 4) {
+                        listener.startUserActivity(it.userCode, it)
+                    } else {
+                        listener.startUserActivity(it.userCode, null)
+                    }
                 }
             }
             name.setOnClickListener {
                 user?.let {
-                    listener.startUserActivity(it.userCode)
+                    if (video.videoType == 3 || video.videoType == 4) {
+                        listener.startUserActivity(it.userCode, it)
+                    } else {
+                        listener.startUserActivity(it.userCode, null)
+                    }
+                }
+            }
+
+            //长视频没有铺满播放器，会导致播放器外的区域无法点击暂停/播放
+            itemView.setOnClickListener {
+                if (!video.vertical) {
+                    Log.e("1mean","点击了播放界面外的其他区域")
+                    listener.onSingleTap()
+                    if (play.isVisible) {
+                        play.visibility = View.GONE
+                    } else {
+                        Log.e("1mean","22222222222")
+                        play.visibility = View.VISIBLE
+                    }
                 }
             }
 
             playerView.controller(object : PlayerDoubleTapListener {
 
+                override fun onLongPress(event: MotionEvent) {
+                    super.onLongPress(event)
+                    val action = event.action
+                    Log.e("1mean","playerview longClick x = " + event.x)
+
+                }
+
                 override fun onSingleTapConfirmed() {
+                    Log.e("1mean","player onSingleTapConfirmed")
                     listener.onSingleTap()
                     if (play.isVisible) {
                         play.visibility = View.GONE
-//                        timebar.setPlayedColor(
-//                            ContextCompat.getColor(
-//                                context,
-//                                R.color.color_vertical_played
-//                            )
-//                        )
                     } else {
+                        Log.e("1mean","1111111111111")
                         play.visibility = View.VISIBLE
-//                        timebar.setPlayedColor(
-//                            ContextCompat.getColor(
-//                                context,
-//                                R.color.color_home_tab_text_selected
-//                            )
-//                        )
                     }
                 }
 
-                override fun onDoubleTap() {
-                    listener.onDoubleTap()
-                    list[position].videoData?.let {
-                        if (it.like) {
-                            return
+                override fun onDoubleTapFinished() {
+                    super.onDoubleTapFinished()
+                    val data = list[position].videoData
+                    if (data == null) {
+                        val vd = VideoData(
+                            videoCode = video.code,
+                            like = true
+                        )
+                        list[position].videoData = vd
+                        listener.onDoubleTap(vd)
+                    } else {
+                        if (!data.like) {
+                            data.like = true
+                            listener.onDoubleTap(data)
                         }
                     }
-                    handleItemLike(position)
                 }
-
-
             })
-
-//            timebar.addListener(object : TimeBar.OnScrubListener {
-//                override fun onScrubStart(timeBar: TimeBar, position: Long) {
-//
-//                    (timeBar as DefaultTimeBar).setPlayedColor(
-//                        ContextCompat.getColor(
-//                            context,
-//                            R.color.color_home_tab_text_selected
-//                        )
-//                    )
-//                }
-//
-//                override fun onScrubMove(timeBar: TimeBar, position: Long) {
-//                }
-//
-//                override fun onScrubStop(timeBar: TimeBar, position: Long, canceled: Boolean) {
-//                    (timeBar as DefaultTimeBar).setPlayedColor(
-//                        ContextCompat.getColor(
-//                            context,
-//                            R.color.color_vertical_played
-//                        )
-//                    )
-//                }
-//            })
-
-            commentItem.setOnClickListener {
-                if (AppInstance.instance.isLoginSuccess) {
-                    val commentCounts = videoData?.comments ?: 0
-                    listener.showComments(video.code, commentCounts)
-                } else {
-                    startAnyActivity(context, LoginActivity::class.java)
-                }
-            }
 
             attentionView.setOnClickListener {
                 if (AppInstance.instance.isLoginSuccess) {
-                    val alphaAnimation = ObjectAnimator.ofFloat(attentionView, "alpha", 1f, 0f)
-                    alphaAnimation.duration = 200
-                    alphaAnimation.addListener(object : Animator.AnimatorListener {
-                        override fun onAnimationStart(animation: Animator) {
-                        }
-
-                        override fun onAnimationEnd(animation: Animator) {
-
-                            attentionView.setBackgroundResource(R.drawable.shape_bg_vertical_attentioned)
-                            attentionView.setImageResource(R.mipmap.img_short_attentioned)
-
-                            val alphaAnimation1 =
-                                ObjectAnimator.ofFloat(attentionView, "alpha", 0f, 1f)
-                            val transScaleX =
-                                ObjectAnimator.ofFloat(attentionView, "scaleX", 0f, 1.3f, 1f)
-                            val transScaleY =
-                                ObjectAnimator.ofFloat(attentionView, "scaleY", 0f, 1.3f, 1f)
-
-                            val animatorSet = AnimatorSet()
-                            animatorSet.play(alphaAnimation1).with(transScaleX).with(transScaleY)
-                            animatorSet.duration = 500
-                            animatorSet.start()
-
-                            val alphaAnimation2 =
-                                ObjectAnimator.ofFloat(attentionView, "alpha", 1f, 0f)
-                            alphaAnimation2.duration = 200
-                            alphaAnimation2.startDelay = 2000
-                            alphaAnimation2.start()
-
-                            alphaAnimation2.addListener(object : Animator.AnimatorListener {
-                                override fun onAnimationStart(animation: Animator) {
-                                }
-
-                                override fun onAnimationEnd(animation: Animator) {
-                                    attentionView.visibility = View.GONE
-                                }
-
-                                override fun onAnimationCancel(animation: Animator) {
-                                }
-
-                                override fun onAnimationRepeat(animation: Animator) {
-                                }
-                            })
-                        }
-
-                        override fun onAnimationCancel(animation: Animator) {
-                        }
-
-                        override fun onAnimationRepeat(animation: Animator) {
-                        }
-                    })
-                    alphaAnimation.start()
-
                     user?.let {
-                        it.attention = true
-                        listener.addAttention(it.userCode)
+                        if (it.attention) {
+                            XPopup.Builder(context).asConfirm(null, "确定不再关注？", "取消", "确认",
+                                {
+                                    attentionView.setBackgroundResource(R.drawable.shape_video_bg_attention)
+                                    attentionView.text = "关注"
+                                    listener.updateUserAttention(it.userCode)
+                                    it.attention = !it.attention
+                                }, { }, false, R.layout.dialog_login_out
+                            ).show()
+                        } else {
+                            attentionView.setBackgroundResource(R.drawable.shape_video_bg_unattention)
+                            attentionView.text = "已关注"
+                            it.attention = !it.attention
+                            listener.updateUserAttention(it.userCode)
+                        }
                     }
                 } else {
                     startAnyActivity(context, LoginActivity::class.java)
-                }
-            }
-        }
-
-        fun handleItemLike(position: Int) {
-            val data = list[position]
-            if (data.videoData == null) {
-                addShortStartAnimation(likeImg)
-                likeImg.setImageResource(R.mipmap.img_vertical_liked)
-                likes.text = "1"
-                val vd = VideoData(videoCode = data.code, like = true, likes = 1)
-                data.videoData = vd
-                listener.updataVideoData(vd)
-            } else {
-                data.videoData?.let {
-                    var likeCount: Int
-                    if (!it.like) {
-                        addShortStartAnimation(likeImg)
-                        likeImg.setImageResource(R.mipmap.img_vertical_liked)
-                        likeCount = it.likes + 1
-                        likes.text = likeCount.toString()
-                        it.likes = likeCount
-                    } else {
-                        addShortEndAnimation(likeImg)
-                        likeImg.setImageResource(R.mipmap.img_vertical_like)
-                        likeCount = it.likes - 1
-                        if (likeCount > 0) {
-                            likes.text = likeCount.toString()
-                        } else {
-                            likeCount = 0
-                            likes.text = "点赞"
-                        }
-                    }
-                    it.likes = likeCount
-                    it.like = !it.like
-                    listener.updataVideoData(data.videoData!!)
                 }
             }
         }
@@ -664,7 +419,7 @@ public class VideoPlayingAdapter(
 
     interface VerticalVideoListener {
 
-        fun onDoubleTap()
+        fun onDoubleTap(videoData: VideoData)
 
         fun onSingleTap()
 
@@ -676,10 +431,15 @@ public class VideoPlayingAdapter(
 
         fun updateUserAttention(userCode: Int)
 
-        fun startUserActivity(userCode: Int)
+        fun startUserActivity(userCode: Int, user: User?)
 
         fun showComments(videoCode: Int, commentCounts: Int)
 
         fun addAttention(userCode: Int)
+
+        fun updateLikedView(liked: Boolean, videoData: VideoData)
+
+        fun updateCollectedView(collected: Boolean, petVideo: PetVideo)
+
     }
 }

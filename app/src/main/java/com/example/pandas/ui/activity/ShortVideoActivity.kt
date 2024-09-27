@@ -513,14 +513,14 @@ public class ShortVideoActivity :
                     mViewModel.getVerticalVideos(false, videoCode)
                 }
 
-                mAdapter.recyclerView?.let {
-                    val viewHolder =
-                        it.findViewHolderForAdapterPosition(position) as? VideoPagerAdapter.MyViewHolder
-                    viewHolder?.let { vh ->
-                        vh.init()
-                        manager?.seekTo(position, vh.playerView)
-                    }
-                }
+//                mAdapter.recyclerView?.let {
+//                    val viewHolder =
+//                        it.findViewHolderForAdapterPosition(position) as? VideoPagerAdapter.MyViewHolder
+//                    viewHolder?.let { vh ->
+//                        vh.init()
+//                        manager?.seekTo(position, vh.playerView)
+//                    }
+//                }
             }
         }
     }

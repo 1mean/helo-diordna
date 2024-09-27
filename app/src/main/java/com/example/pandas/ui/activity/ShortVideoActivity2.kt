@@ -442,7 +442,6 @@ public class ShortVideoActivity2 :
             super.onPageSelected(position)
 
             mAdapter.recyclerView?.let {
-
                 val viewHolder =
                     it.findViewHolderForAdapterPosition(currentPosition) as? VideoPagerAdapter.MyViewHolder
                 viewHolder?.coverShow(false, currentPosition)

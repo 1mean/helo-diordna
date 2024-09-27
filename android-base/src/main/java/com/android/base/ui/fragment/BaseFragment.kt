@@ -95,6 +95,7 @@ public abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragm
         mViewModel = ViewModelProvider(getCurrentLifeOwner())[aClass]
         initView(savedInstanceState)
         createObserver()
+        clickFunction()
     }
 
     override fun onResume() {
@@ -206,7 +207,7 @@ public abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragm
     open fun againOnResume() {}
 
     open fun refresh() {}
-
+    open fun clickFunction() {}
 
     //要习惯这种书写风格，获取关键字
     fun TextView.textWatcherFlow(): Flow<String> = callbackFlow {

@@ -147,27 +147,27 @@ public class ShortBottomDialog(
             }
         }
         val images = QqEmoticons.sQqEmoticonHashMap
-        emojiView?.run {
-            layoutManager = GridLayoutManager(activity, 7)
-            addItemDecoration(ShortEmoji2Decoration(activity))
-            adapter = object : BaseCommonAdapter<EmotionItem>(images) {
-                override fun getLayoutId(): Int = R.layout.adapter_emoji_gride
-
-                override fun convert(holder: BaseViewHolder, data: EmotionItem, position: Int) {
-                    val mContext = holder.itemView.context
-                    val emoji = holder.getWidget<AppCompatImageButton>(R.id.btn_emoji)
-                    emoji.setImageResource(data.emotionIcon)
-                    holder.itemView.setOnClickListener {
-                        val spannableString = QqEmoticons.convertEmotion2String(mContext, data)
-                        spannableString?.let {
-                            //selectionStart没有值时为-1。比较取大于0的值
-                            val startIndex = editText.selectionStart.coerceAtLeast(0)
-                            editText.text?.insert(startIndex, it)
-                        }
-                    }
-                }
-            }
-        }
+//        emojiView?.run {
+//            layoutManager = GridLayoutManager(activity, 7)
+//            addItemDecoration(ShortEmoji2Decoration(activity))
+//            adapter = object : BaseCommonAdapter<EmotionItem>(images) {
+//                override fun getLayoutId(): Int = R.layout.adapter_emoji_gride
+//
+//                override fun convert(holder: BaseViewHolder, data: EmotionItem, position: Int) {
+//                    val mContext = holder.itemView.context
+//                    val emoji = holder.getWidget<AppCompatImageButton>(R.id.btn_emoji)
+//                    emoji.setImageResource(data.emotionIcon)
+//                    holder.itemView.setOnClickListener {
+//                        val spannableString = QqEmoticons.convertEmotion2String(mContext, data)
+//                        spannableString?.let {
+//                            //selectionStart没有值时为-1。比较取大于0的值
+//                            val startIndex = editText.selectionStart.coerceAtLeast(0)
+//                            editText.text?.insert(startIndex, it)
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
         btnFace.setOnClickListener {
             if (emojiView != null && emojiView!!.isVisible) {
