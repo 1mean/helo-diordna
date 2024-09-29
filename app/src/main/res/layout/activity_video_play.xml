@@ -90,15 +90,24 @@
         android:id="@+id/clayout_video_top"
         android:layout_width="match_parent"
         android:layout_height="58dp"
+        android:background="@drawable/shape_vertical_video_top"
         android:layout_gravity="top">
 
-        <ImageButton
-            android:layout_width="58dp"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_leave"
+            android:layout_width="45dp"
             android:layout_height="match_parent"
             app:layout_constraintLeft_toLeftOf="@id/clayout_video_top"
-            android:src="@mipmap/img_setting_top_back_white"
-            android:background="@null"
-            />
+            android:src="@mipmap/img_video_top_leave"
+            android:background="@null" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_function"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toRightOf="@id/clayout_video_top"
+            android:src="@mipmap/img_top_function"
+            android:background="@null" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

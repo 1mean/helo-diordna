@@ -579,6 +579,7 @@
     <color name="color_bg_collect_add">#f3f3f3</color>
     <color name="color_bg_footer_divider">#cccccc</color>
     <color name="color_txt_footer_message">#666666</color>
+    <color name="color_video_fun_divider">#e4e4e4</color>
 
     <!--通用-->
     <color name="color_bg_layout_background">#F6F7FB</color>

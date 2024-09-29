@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/shape_more_fun_dialog"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="32dp"
+        android:layout_height="4dp"
+        android:background="@drawable/shape_bg_view_dialog_more"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center_horizontal" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_top"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_top_item_like"
+            android:layout_width="74dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="@id/clayout_top"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_top"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_top"
+            app:layout_constraintRight_toRightOf="@id/clayout_top"
+            android:background="@drawable/shape_video_fun_later"
+            app:layout_constraintHorizontal_bias="0">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/img_video_up"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_top_item_like"
+                app:layout_constraintRight_toRightOf="@id/clayout_top_item_like"
+                app:layout_constraintTop_toTopOf="@id/clayout_top_item_like"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_top_item_like"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_top_item_like"
+                app:layout_constraintRight_toRightOf="@id/clayout_top_item_like"
+                app:layout_constraintTop_toTopOf="@id/clayout_top_item_like"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_top_item_like"
+                android:text="助力视频"
+                android:letterSpacing="0.03"
+                android:textSize="13sp"
+                android:textColor="@color/color_video_name_txt"
+                app:layout_constraintVertical_bias="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_top_item_download"
+            android:layout_width="74dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="@id/clayout_top"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_top"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_top"
+            app:layout_constraintRight_toRightOf="@id/clayout_top"
+            android:background="@drawable/shape_video_fun_later"
+            app:layout_constraintHorizontal_bias="0.34">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/img_video_download"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_top_item_download"
+                app:layout_constraintRight_toRightOf="@id/clayout_top_item_download"
+                app:layout_constraintTop_toTopOf="@id/clayout_top_item_download"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_top_item_download"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_top_item_download"
+                app:layout_constraintRight_toRightOf="@id/clayout_top_item_download"
+                app:layout_constraintTop_toTopOf="@id/clayout_top_item_download"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_top_item_download"
+                android:text="下载"
+                android:letterSpacing="0.03"
+                android:textSize="13sp"
+                android:textColor="@color/color_video_name_txt"
+                app:layout_constraintVertical_bias="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_top_item_unlike"
+            android:layout_width="74dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="@id/clayout_top"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_top"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_top"
+            app:layout_constraintRight_toRightOf="@id/clayout_top"
+            android:background="@drawable/shape_video_fun_later"
+            app:layout_constraintHorizontal_bias="0.67">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/img_video_unlike"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_top_item_unlike"
+                app:layout_constraintRight_toRightOf="@id/clayout_top_item_unlike"
+                app:layout_constraintTop_toTopOf="@id/clayout_top_item_unlike"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_top_item_unlike"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_top_item_unlike"
+                app:layout_constraintRight_toRightOf="@id/clayout_top_item_unlike"
+                app:layout_constraintTop_toTopOf="@id/clayout_top_item_unlike"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_top_item_unlike"
+                android:text="不感兴趣"
+                android:letterSpacing="0.03"
+                android:textSize="13sp"
+                android:textColor="@color/color_video_name_txt"
+                app:layout_constraintVertical_bias="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_top_item_later"
+            android:layout_width="74dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="@id/clayout_top"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_top"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_top"
+            app:layout_constraintRight_toRightOf="@id/clayout_top"
+            android:background="@drawable/shape_video_fun_later"
+            app:layout_constraintHorizontal_bias="1">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/img_video_top_later"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_top_item_later"
+                app:layout_constraintRight_toRightOf="@id/clayout_top_item_later"
+                app:layout_constraintTop_toTopOf="@id/clayout_top_item_later"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_top_item_later"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_top_item_later"
+                app:layout_constraintRight_toRightOf="@id/clayout_top_item_later"
+                app:layout_constraintTop_toTopOf="@id/clayout_top_item_later"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_top_item_later"
+                android:text="稍后再看"
+                android:letterSpacing="0.03"
+                android:textSize="13sp"
+                android:textColor="@color/color_video_name_txt"
+                app:layout_constraintVertical_bias="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/shape_video_fun_later">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_item_speed"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_speed"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                app:layout_constraintTop_toTopOf="@id/clayout_item_speed"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_item_speed"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_item_speed"
+                android:layout_marginStart="18dp"
+                android:src="@mipmap/img_speed"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_item_speed"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_item_speed"
+                app:layout_constraintLeft_toRightOf="@id/img_speed"
+                android:layout_marginStart="14dp"
+                android:text="倍速"
+                android:includeFontPadding="false"
+                android:textSize="13sp"
+                android:textColor="@color/color_video_name_txt"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                app:layout_constraintLeft_toRightOf="@id/txt_speed"
+                android:layout_marginStart="27dp"
+                app:layout_constraintTop_toTopOf="@id/clayout_item_speed"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_item_speed" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/color_video_fun_divider"
+            android:layout_marginStart="47dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_play_type"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_play_type"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                app:layout_constraintTop_toTopOf="@id/clayout_play_type"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_play_type"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_play_type"
+                android:layout_marginStart="18dp"
+                android:src="@mipmap/img_play_type"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_play_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_play_type"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_play_type"
+                app:layout_constraintLeft_toRightOf="@id/img_play_type"
+                android:layout_marginStart="14dp"
+                android:text="自动连播"
+                android:includeFontPadding="false"
+                android:textSize="13sp"
+                android:textColor="@color/color_video_name_txt"/>
+
+            <com.github.iielse.switchbutton.SwitchView
+                android:id="@+id/switch_play"
+                android:layout_width="38dp"
+                android:layout_height="25dp"
+                app:hasShadow="false"
+                app:layout_constraintTop_toTopOf="@id/clayout_play_type"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_play_type"
+                app:layout_constraintRight_toRightOf="@id/clayout_play_type"
+                android:layout_marginEnd="16dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/color_video_fun_divider"
+            android:layout_marginStart="47dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_screen_clean"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_screen_clean"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                app:layout_constraintTop_toTopOf="@id/clayout_screen_clean"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_screen_clean"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_screen_clean"
+                android:layout_marginStart="18dp"
+                android:src="@mipmap/img_screen_clean"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_screen_clean"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_screen_clean"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_screen_clean"
+                app:layout_constraintLeft_toRightOf="@id/img_screen_clean"
+                android:layout_marginStart="14dp"
+                android:text="清屏播放"
+                android:includeFontPadding="false"
+                android:textSize="13sp"
+                android:textColor="@color/color_video_name_txt"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/shape_video_fun_later">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_item_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_item_recommend"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:layout_constraintTop_toTopOf="@id/clayout_item_recommend"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_item_recommend"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_item_recommend"
+                android:layout_marginStart="18dp"
+                android:src="@mipmap/img_video_recommend"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_item_recommend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_item_recommend"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_item_recommend"
+                app:layout_constraintLeft_toRightOf="@id/img_item_recommend"
+                android:layout_marginStart="14dp"
+                android:text="推荐"
+                android:includeFontPadding="false"
+                android:textSize="13sp"
+                android:textColor="@color/color_video_name_txt"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/color_video_fun_divider"
+            android:layout_marginStart="47dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_item_share"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_item_share"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:layout_constraintTop_toTopOf="@id/clayout_item_share"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_item_share"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_item_share"
+                android:layout_marginStart="18dp"
+                android:src="@mipmap/img_video_share"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_item_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/clayout_item_share"
+                app:layout_constraintBottom_toBottomOf="@id/clayout_item_share"
+                app:layout_constraintLeft_toRightOf="@id/img_item_share"
+                android:layout_marginStart="14dp"
+                android:text="分享"
+                android:includeFontPadding="false"
+                android:textSize="13sp"
+                android:textColor="@color/color_video_name_txt"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

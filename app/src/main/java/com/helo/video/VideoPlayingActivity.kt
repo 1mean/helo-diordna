@@ -329,6 +329,7 @@ public class VideoPlayingActivity : BaseActivity<ShortVideoViewModel, ActivityVi
         //界面初始化，第一次注册时也会被调用，所以要注意为null的判断
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
+            moreFunDialog = null
             binding.exoProgress.visibility = View.VISIBLE
             Log.e("1mean", "onPageSelected : position=$position")
             Log.e("22222222", "selected")

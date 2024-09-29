@@ -464,7 +464,7 @@
     <color name="color_bg_collect_add">#f3f3f3</color>
     <color name="color_bg_footer_divider">#464a50</color>
     <color name="color_txt_footer_message">#92999e</color>
-
+    <color name="color_video_fun_divider">#161919</color>
 
     <!--通用-->
     <color name="color_bg_layout_background">#090c0c</color>
