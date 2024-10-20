@@ -108,6 +108,7 @@
         <activity android:name=".ui.activity.ShortVideoActivity" />
         <!--adjustPan软键盘在上面-->
         <activity android:name="com.helo.video.VideoPlayingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan"/>
         <!--BUG:解决了关闭软键盘后，会在界面底部留下一片空白，把界面遮挡住了 adjustPan|stateAlwaysVisible-->
         <activity

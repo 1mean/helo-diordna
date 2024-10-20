@@ -4,11 +4,12 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.android.android_sqlite.entity.User
-import com.example.pandas.R
 import com.android.base.ui.adapter.BaseCommonAdapter
 import com.android.base.ui.adapter.BaseViewHolder
+import com.example.pandas.R
 import com.example.pandas.biz.ext.loadCenterRoundedCornerImage
 import com.example.pandas.ui.ext.startUserInfoActivity
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 
 /**
  * @description: LiveVisitorAdapter

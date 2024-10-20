@@ -134,14 +134,10 @@ fun startMusicActivity(context: Context, fileName: String, position: Int = 0) {
 }
 
 fun startVideoPlayingActivity(context: Context, video: PetVideo) {
-    if (video.vertical) {
-        startShortVideoActivity(context, video.code)
-    } else {
-        val intent = Intent(context, VideoPlayingActivity::class.java).apply {
-            putExtra("petVideo", video)
-        }
-        context.startActivity(intent)
+    val intent = Intent(context, VideoPlayingActivity::class.java).apply {
+        putExtra("PetVideo", video)
     }
+    context.startActivity(intent)
 }
 
 fun startShortVideoActivity(context: Context, videoCode: Int) {

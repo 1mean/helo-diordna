@@ -22,6 +22,7 @@ import com.example.pandas.ui.adapter.decoration.CommonItemDecoration
 import com.example.pandas.ui.ext.APP_COLOR_STATUS
 import com.example.pandas.ui.ext.init
 import com.example.pandas.ui.ext.setRefreshColor
+import com.example.pandas.ui.ext.startVideoPlayingActivity
 import com.example.pandas.ui.ext.viewColors
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
 import com.google.android.exoplayer2.ui.StyledPlayerView
@@ -310,23 +311,14 @@ public class EyepetozerFragment : BaseFragment<EyepetozerViewModel, LayoutSwipRe
         }
     }
 
-    override fun OnPlayerViewShow(isShow: Boolean) {
-        val holder =
-            binding.recyclerLayout.findViewHolderForLayoutPosition(playingPosition)
-        if (holder is EyepetozerAdapter.EyeViewHolder) {
-            (holder as EyepetozerAdapter.EyeViewHolder).updateItemView(!isShow)
-        }
-    }
-
     override fun startVideoPLayActivity(eyepetozerItem: PetVideo) {
         startActivity = true
-        val intent = Intent(mActivity, VideoPlayingActivity::class.java)
-        intent.putExtra("PetVideo", eyepetozerItem)
-        mActivity.startActivity(intent)
+        startVideoPlayingActivity(mActivity, eyepetozerItem)
     }
 
     override fun startVideoCommentActivity(eyepetozerItem: PetVideo) {
-
+        startActivity = true
+        startVideoPlayingActivity(mActivity, eyepetozerItem)
     }
 
     override fun addLater(videoCode: Int) {
@@ -371,5 +363,16 @@ public class EyepetozerFragment : BaseFragment<EyepetozerViewModel, LayoutSwipRe
             }
         }
         return null
+    }
+
+    override fun OnIsPlayingChanged(isPlaying: Boolean) {
+        val holder =
+            binding.recyclerLayout.findViewHolderForLayoutPosition(playingPosition)
+        if (holder is EyepetozerAdapter.EyeViewHolder) {
+            (holder as EyepetozerAdapter.EyeViewHolder).updateItemView(!isPlaying)
+        }
+    }
+
+    override fun playingEnd() {
     }
 }

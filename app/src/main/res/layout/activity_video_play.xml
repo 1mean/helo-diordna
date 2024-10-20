@@ -163,4 +163,225 @@
             android:background="@drawable/list_anim_speedup"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/img_showall"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/shape_video_allshow"
+        android:layout_gravity="right|bottom"
+        android:src="@mipmap/img_screenshow"
+        android:visibility="gone"
+        android:layout_marginBottom="75dp"
+        android:layout_marginEnd="15dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_video_switch"
+        android:layout_width="96dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="258dp"
+        android:visibility="gone"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@drawable/shape_video_switch">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/clayout_video_switch"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_video_switch"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_video_switch"
+            android:layout_marginStart="12dp"
+            android:src="@mipmap/img_video_switch_horizontal"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全屏观看"
+            android:textColor="#e7e7e7"
+            app:layout_constraintTop_toTopOf="@id/clayout_video_switch"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_video_switch"
+            app:layout_constraintRight_toRightOf="@id/clayout_video_switch"
+            android:layout_marginEnd="12dp"
+            android:textSize="12sp"
+            android:includeFontPadding="false"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_video_controller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_fullvideo_top"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            app:layout_constraintTop_toTopOf="@id/clayout_video_controller"
+            android:background="@drawable/shape_video_controller_top">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_video_leave"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                app:layout_constraintTop_toTopOf="@id/clayout_fullvideo_top"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_fullvideo_top"
+                android:layout_marginTop="12dp"
+                android:background="@null"
+                android:src="@mipmap/img_full_back" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_video_full_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/btn_video_leave"
+                app:layout_constraintBottom_toBottomOf="@id/btn_video_leave"
+                app:layout_constraintLeft_toLeftOf="@id/clayout_fullvideo_top"
+                app:layout_constraintRight_toRightOf="@id/clayout_fullvideo_top"
+                android:layout_marginStart="44dp"
+                android:includeFontPadding="true"
+                android:layout_marginEnd="320dp"
+                android:textSize="15sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_video_more"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                app:layout_constraintTop_toTopOf="@id/clayout_fullvideo_top"
+                app:layout_constraintRight_toRightOf="@id/clayout_fullvideo_top"
+                android:layout_marginTop="12dp"
+                android:background="@null"
+                android:visibility="gone"
+                android:src="@mipmap/img_video_top_more1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/view_bottom"
+            android:layout_width="0dp"
+            android:layout_height="92dp"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_video_controller"
+            app:layout_constraintRight_toRightOf="@id/clayout_video_controller"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_video_controller"
+            android:background="@drawable/shape_video_controller_bottom">
+
+            <!--img_video_pausing2-->
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_video_pause"
+                android:layout_width="44dp"
+                android:layout_height="48dp"
+                app:layout_constraintBottom_toBottomOf="@id/view_bottom"
+                app:layout_constraintLeft_toLeftOf="@id/view_bottom"
+                android:background="@null"
+                android:src="@mipmap/img_video_full_pause1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_video_full_speed"
+                android:layout_width="44dp"
+                android:layout_height="48dp"
+                android:text="倍速"
+                android:textSize="14sp"
+                android:layout_marginEnd="22dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:includeFontPadding="true"
+                app:layout_constraintBottom_toBottomOf="@id/view_bottom"
+                app:layout_constraintRight_toRightOf="@id/view_bottom" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_fullview_like"
+                android:layout_width="44dp"
+                android:layout_height="48dp"
+                android:src="@mipmap/img_bottom_like"
+                android:background="@null"
+                android:visibility="gone"
+                app:layout_constraintRight_toLeftOf="@id/txt_video_full_speed"
+                app:layout_constraintBottom_toBottomOf="@id/view_bottom" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_fullview_collect"
+                android:layout_width="44dp"
+                android:layout_height="48dp"
+                android:src="@mipmap/img_bottom_collect"
+                android:background="@null"
+                android:visibility="gone"
+                app:layout_constraintHorizontal_bias="0.55"
+                app:layout_constraintRight_toLeftOf="@id/btn_fullview_like"
+                app:layout_constraintBottom_toBottomOf="@id/view_bottom" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_video_position"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                app:layout_constraintTop_toTopOf="@id/view_bottom"
+                app:layout_constraintLeft_toLeftOf="@id/view_bottom"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textColor="@color/white"
+                android:text="00:00" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_video_duration"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                app:layout_constraintTop_toTopOf="@id/view_bottom"
+                app:layout_constraintRight_toRightOf="@id/view_bottom"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:layout_marginEnd="22dp"
+                android:includeFontPadding="false"
+                android:textColor="@color/white"
+                android:text="00:00" />
+
+            <!--app:scrubber_color="@color/color_bg_green"
+                app:scrubber_drawable="@mipmap/img_scrubber"-->
+            <com.google.android.exoplayer2.ui.DefaultTimeBar
+                android:id="@+id/timeBar_video_full"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                app:bar_height="4dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginEnd="66dp"
+                app:layout_constraintRight_toRightOf="@id/view_bottom"
+                app:layout_constraintTop_toTopOf="@id/view_bottom"
+
+                android:background="@drawable/shape_bg_exoprogress"
+
+                app:unplayed_color="#22ffffff"
+                app:played_color="#99ffffff"
+                app:buffered_color="#55ffffff"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clayout_full_speedup"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:visibility="gone"
+        android:background="@drawable/shape_bg_full_speedup">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/clayout_full_speedup"
+            app:layout_constraintRight_toRightOf="@id/clayout_full_speedup"
+            app:layout_constraintTop_toTopOf="@id/clayout_full_speedup"
+            app:layout_constraintBottom_toBottomOf="@id/clayout_full_speedup"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textSize="13sp"
+            android:letterSpacing="0.02"
+            android:text="2x倍速快进中.."
+            android:textColor="@color/white"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -2802,22 +2802,22 @@ object PetGroupPandaData {
         panda165.vertical = false
         list.add(panda165)
 
-        val panda166 = PetVideo()
-        panda166.type = VideoType.PANDA.ordinal
-        panda166.fileName = "panda_group_panda166"
-        panda166.code = 641
-        panda166.duration = 125
-        panda166.star = true
-        panda166.title = "【大熊猫乔包包&乔兜兜】大脸兄弟，脸一个比一个大，萌感十足"
-        panda166.releaseTime = 1606412104
-        panda166.period = PeriodType.GROUP.ordinal
-        panda166.originalUrl = "https://www.bilibili.com/video/BV1At4y1Y7sE"
-        panda166.tags = "月亮四熊,和花，和叶，润玥，艾玖"
-        panda166.authorId = 34677299
-        panda166.cover =
-            "https://i2.hdslb.com/bfs/archive/a6c7c4aa0e5ee061e9682945a2a5491cc048197a.jpg"
-        panda166.vertical = false
-        list.add(panda166)
+//        val panda166 = PetVideo()
+//        panda166.type = VideoType.PANDA.ordinal
+//        panda166.fileName = "panda_group_panda166"
+//        panda166.code = 641
+//        panda166.duration = 125
+//        panda166.star = true
+//        panda166.title = "【大熊猫乔包包&乔兜兜】大脸兄弟，脸一个比一个大，萌感十足"
+//        panda166.releaseTime = 1606412104
+//        panda166.period = PeriodType.GROUP.ordinal
+//        panda166.originalUrl = "https://www.bilibili.com/video/BV1At4y1Y7sE"
+//        panda166.tags = "月亮四熊,和花，和叶，润玥，艾玖"
+//        panda166.authorId = 34677299
+//        panda166.cover =
+//            "https://i2.hdslb.com/bfs/archive/a6c7c4aa0e5ee061e9682945a2a5491cc048197a.jpg"
+//        panda166.vertical = false
+//        list.add(panda166)
 
         val panda167 = PetVideo()
         panda167.type = VideoType.PANDA.ordinal

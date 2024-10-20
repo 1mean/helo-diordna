@@ -380,21 +380,21 @@ object DouyinData {
             "https://p3-pc-sign.douyinpic.com/tos-cn-p-0015/5764892abf9744f8ae93dc4ec77c6bcd_1687321162~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=2003454000&x-signature=goZ%2FFoXjrm%2BdICZPYf0j8KdsAkU%3D"
         list.add(short23)
 
-        val short24 = PetVideo()
-        short24.type = VideoType.SHORT.ordinal
-        short24.fileName = "short24"
-        short24.code = 3837
-        short24.duration = 10
-        short24.star = true
-        short24.vertical = true
-        short24.title = "小可怜🤒😮‍💨#人类幼崽"
-        short24.releaseTime = 1687000092
-        short24.authorId = 36468971
-        short24.width = 323
-        short24.height = 430
-        short24.cover =
-            "https://p3-pc-sign.douyinpic.com/tos-cn-p-0015/oc58Icef7qNHyrJlACnAQMkP9PkghB8A3sDubp~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=2003454000&x-signature=ITW5NgC%2Buasjj8P6MAOG7jIJ8Yc%3D"
-        list.add(short24)
+//        val short24 = PetVideo()
+//        short24.type = VideoType.SHORT.ordinal
+//        short24.fileName = "short24"
+//        short24.code = 3837
+//        short24.duration = 10
+//        short24.star = true
+//        short24.vertical = true
+//        short24.title = "小可怜🤒😮‍💨#人类幼崽"
+//        short24.releaseTime = 1687000092
+//        short24.authorId = 36468971
+//        short24.width = 323
+//        short24.height = 430
+//        short24.cover =
+//            "https://p3-pc-sign.douyinpic.com/tos-cn-p-0015/oc58Icef7qNHyrJlACnAQMkP9PkghB8A3sDubp~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=2003454000&x-signature=ITW5NgC%2Buasjj8P6MAOG7jIJ8Yc%3D"
+//        list.add(short24)
 
         val short25 = PetVideo()
         short25.type = VideoType.SHORT.ordinal
@@ -1212,7 +1212,7 @@ object DouyinData {
         short75.width = 323
         short75.height = 430
         short75.cover =
-            "https://p6-pc-sign.douyinpic.com/tos-cn-i-0813/e2f1284ec1484686bfa2e86c4e1460f1~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=1689310800&x-signature=cdey885F%2FuMYmd04lwVyAmokzRQ%3D"
+            "https://p3-pc-sign.douyinpic.com/tos-cn-p-0015/214e1713e01a4bb6966f86f7234d7b85_1685929776~tplv-dy-360p.jpeg?biz_tag=pcweb_cover&from=327834062&s=PackSourceEnum_SEARCH&sc=origin_cover&se=false&x-expires=1730563200&x-signature=HI2wk67sP2cnRkII2PmHqXv2%2FQc%3D"
         list.add(short75)
 
         val short76 = PetVideo()
@@ -1615,21 +1615,21 @@ object DouyinData {
             "https://p9-pc-sign.douyinpic.com/tos-cn-p-0015/daceb268d24f43c7bc5b75c459276634_1686221026~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=2003461200&x-signature=l9zdPlP78qnZrkHXOPN45nLtk6E%3D"
         list.add(short100)
 
-        val short101 = PetVideo()
-        short101.type = VideoType.SHORT.ordinal
-        short101.fileName = "short101"
-        short101.code = 3914
-        short101.duration = 15
-        short101.star = true
-        short101.vertical = true
-        short101.title = "一只爱美的粉红琵鹭在梳洗漂亮的羽毛,连翅膀都是爱你的形状 #神奇动物在抖音 #野生动物零距离 #爱护大自然保护野生动物 #治愈系风景"
-        short101.releaseTime = 1684762972
-        short101.authorId = 36468996
-        short101.width = 323
-        short101.height = 430
-        short101.cover =
-            "https://p3-pc-sign.douyinpic.com/tos-cn-i-0813c001/84f8d7ca1f7a42b2946858ea6e7861ea~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=1689310800&x-signature=ZEqvDQcsd2p%2Fr12fWzZ6uEaRkqo%3D"
-        list.add(short101)
+//        val short101 = PetVideo()
+//        short101.type = VideoType.SHORT.ordinal
+//        short101.fileName = "short101"
+//        short101.code = 3914
+//        short101.duration = 15
+//        short101.star = true
+//        short101.vertical = true
+//        short101.title = "一只爱美的粉红琵鹭在梳洗漂亮的羽毛,连翅膀都是爱你的形状 #神奇动物在抖音 #野生动物零距离 #爱护大自然保护野生动物 #治愈系风景"
+//        short101.releaseTime = 1684762972
+//        short101.authorId = 36468996
+//        short101.width = 323
+//        short101.height = 430
+//        short101.cover =
+//            "https://p3-pc-sign.douyinpic.com/tos-cn-i-0813c001/84f8d7ca1f7a42b2946858ea6e7861ea~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=1689310800&x-signature=ZEqvDQcsd2p%2Fr12fWzZ6uEaRkqo%3D"
+//        list.add(short101)
 
 
         val short102 = PetVideo()
@@ -2227,21 +2227,21 @@ object DouyinData {
             "https://p6-pc-sign.douyinpic.com/tos-cn-p-0015/oMNyD7eFAyzNbrLhSXf8KE68AA0rIgBNaPBD4A~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=2003464800&x-signature=kHKAOQKpwfU%2BZWVpQJSKJA6TJj0%3D"
         list.add(short138)
 
-        val short139 = PetVideo()
-        short139.type = VideoType.SHORT.ordinal
-        short139.fileName = "short139"
-        short139.code = 3952
-        short139.duration = 15
-        short139.star = true
-        short139.vertical = true
-        short139.title = "#人间仙境天界山#新乡南太行旅游大使 #太行山风景"
-        short139.releaseTime = 1684753352
-        short139.authorId = 652192271
-        short139.width = 323
-        short139.height = 430
-        short139.cover =
-            "https://p6-pc-sign.douyinpic.com/tos-cn-i-0813c001/e90d022c9f3143d4bea1825d105e6dae~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=1689314400&x-signature=IaBBOzrtO%2FhnXXbC3AlZeyCbHoo%3D"
-        list.add(short139)
+//        val short139 = PetVideo()
+//        short139.type = VideoType.SHORT.ordinal
+//        short139.fileName = "short139"
+//        short139.code = 3952
+//        short139.duration = 15
+//        short139.star = true
+//        short139.vertical = true
+//        short139.title = "#人间仙境天界山#新乡南太行旅游大使 #太行山风景"
+//        short139.releaseTime = 1684753352
+//        short139.authorId = 652192271
+//        short139.width = 323
+//        short139.height = 430
+//        short139.cover =
+//            "https://p6-pc-sign.douyinpic.com/tos-cn-i-0813c001/e90d022c9f3143d4bea1825d105e6dae~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=3213915784&s=PackSourceEnum_COLLECTION&sc=cover&se=true&sh=323_430&x-expires=1689314400&x-signature=IaBBOzrtO%2FhnXXbC3AlZeyCbHoo%3D"
+//        list.add(short139)
 
         val short140 = PetVideo()
         short140.type = VideoType.SHORT.ordinal

@@ -35,10 +35,12 @@ public class ExoMediaManager(
 
     private var startTime: Long = 0
     private var oldPlayerView: StyledPlayerView? = null
+    //private val mediaItemList: ConcurrentHashMap<Int, MediaItem> by lazy { ConcurrentHashMap() }
 
 
     //private val mediaItemsCache: ConcurrentHashMap<Int, MediaItemInfo> = ConcurrentHashMap()
     private val mediaIndexs = MediaIndexMap()
+    private var playMode: Int = Player.REPEAT_MODE_ONE
 
     init {
         lifecycleOwner.lifecycle.addObserver(this)
@@ -76,62 +78,51 @@ public class ExoMediaManager(
         lifecycleOwner.lifecycle.removeObserver(this)
     }
 
+    fun addMedidItems(list: MutableList<PetVideo>) {
+        if (list.isNotEmpty()) {
+            list.forEach { petVideo ->
+                val mediaItem = if (petVideo.url != null) {
+                    MediaItem.Builder().setUri(petVideo.url)
+                        .setMediaId(petVideo.code.toString()).build()
+                } else {
+                    val file = getLocalFilePath(context, petVideo.fileName!!)
+                    MediaItem.Builder().setUri(Uri.fromFile(file))
+                        .setMediaId(petVideo.code.toString()).build()
+                }
 
-    fun play(playerView: StyledPlayerView) {
-        startTime = System.currentTimeMillis()
-        mPlayer?.let {
-            it.repeatMode = Player.REPEAT_MODE_ONE
-            StyledPlayerView.switchTargetView(it, oldPlayerView, playerView)
-            oldPlayerView = playerView
-            it.seekTo(0, 0)
-            it.playWhenReady = true
-            it.prepare()
+                if (!PlayerConfig.instance.hasMediaItem(petVideo.code)) {
+                    PlayerConfig.instance.addMediaItem(
+                        petVideo.code,
+                        MediaItemWrapper(0, mediaItem)
+                    )
+                }
+                //mediaItemList[petVideo.code] = mediaItem
+            }
         }
-//        if (isOpenVoice) {
-//            mPlayer.volume = mPlayer.deviceVolume.toFloat() / 16
-//        } else {
-//            mPlayer.volume = 0f
-//        }
+    }
 
-
-//        val videoCode = mediaInfo.videoCode
-//        val playPos = mediaInfo.playPos
-//
-//        if (mediaIndexs.exist(mediaInfo.videoCode)) {
-//            Log.e("1mean", "manager 777")
-//            mediaIndexs.get(mediaInfo.videoCode)?.let {
-//                mPlayer.seekTo(mediaIndexs.indexOf(videoCode), it.playPos)
-//            }
-//        } else {
-//            synchronized(this) {
-//                if (PlayerConfig.instance.hasMediaItem(videoCode)) {
-//                    Log.e("1mean", "manager 888")
-//                    PlayerConfig.instance.getMediaItem(videoCode)?.let {
-//                        it.mediaItem?.let { item ->
-//                            mPlayer.addMediaItem(item)
-//                        }
-//                        val index = mediaIndexs.add(mediaInfo)
-//                        mPlayer.seekTo(index, it.playPosition)
-//                    }
-//                } else {
-//                    Log.e("1mean", "manager 999")
-//                    val mediaItem = if (mediaInfo.playUrl.startsWith("http")) {
-//                        MediaItem.Builder().setUri(mediaInfo.playUrl)
-//                            .setMediaId(mediaInfo.videoCode.toString()).build()
-//                    } else {
-//                        MediaItem.Builder().setUri(Uri.fromFile(File(mediaInfo.playUrl)))
-//                            .setMediaId(mediaInfo.videoCode.toString()).build()
-//                    }
-//                    val index = mediaIndexs.add(mediaInfo)
-//                    PlayerConfig.instance.addMediaItem(
-//                        videoCode,
-//                        MediaItemWrapper(playPos, mediaItem)
-//                    )
-//                    mPlayer.addMediaItem(mediaItem)
-//                    mPlayer.seekTo(index, playPos)
-//                }
-//            }
-//        }
+    /**
+     * 短视频，还是别把所有数据直接加入到播放器的list里，因为无法触发STATE_ENDED，无法处理一个视频结束后的界面变化
+     * - 1，转换list数据成MediaItem，然后存储起来，不直接添加到播放器里
+     * - 2，viewpager切换到某个item时，再从集合里获取数据
+     */
+    fun play(playerView: StyledPlayerView, videoCode: Int) {
+        synchronized(this) {
+            PlayerConfig.instance.getMediaItem(videoCode)?.let { mediaItemWrapper ->
+                mediaItemWrapper.mediaItem?.let { item ->
+                    mPlayer?.let {
+                        it.clearMediaItems()
+                        it.repeatMode = playMode
+                        StyledPlayerView.switchTargetView(it, oldPlayerView, playerView)
+                        oldPlayerView = playerView
+                        it.addMediaItem(item)
+                        it.seekTo(0, 0)
+                        it.playWhenReady = true
+                        it.prepare()
+                    }
+                }
+            }
+        }
     }
 
     fun play(playerView: StyledPlayerView, mediaInfo: MediaInfo) {
@@ -218,6 +209,7 @@ public class ExoMediaManager(
                 }
 
                 Player.STATE_ENDED -> {//播放结束
+                    listener.playingEnd()
                     Log.e("ExoMediaManager", "STATE_ENDED")
                 }
             }
@@ -236,7 +228,7 @@ public class ExoMediaManager(
         override fun onIsPlayingChanged(isPlaying: Boolean) {
             super.onIsPlayingChanged(isPlaying)
             Log.e("1mean", "onIsPlayingChanged isPlaying=$isPlaying")
-            listener.OnPlayerViewShow(isPlaying)
+            listener.OnIsPlayingChanged(isPlaying)
         }
 
         //player开始/停止加载资源文件,每隔7秒就会回调两次，先true后false，可能是先加载缓冲，加载完了请求网络
@@ -302,8 +294,21 @@ public class ExoMediaManager(
         }
     }
 
+    fun updateSpeed(speed: Float) {
+        mPlayer?.setPlaybackSpeed(speed)
+    }
+
     fun seekTo(position: Long) {
-        mPlayer?.seekTo(position)
+        mPlayer?.let {
+            if (it.isPlaying) {
+                it.seekTo(position)
+            } else {
+                if (it.playbackState == STATE_READY) {
+                    it.seekTo(position)
+                    it.playWhenReady = true
+                }
+            }
+        }
     }
 
     fun seekTo(mediaItemIndex: Int, positionMs: Long) {
@@ -312,10 +317,11 @@ public class ExoMediaManager(
 
     fun seekTo(position: Int, playerView: StyledPlayerView) {
         mPlayer?.let {
-            it.repeatMode = Player.REPEAT_MODE_ONE
+            it.repeatMode = Player.REPEAT_MODE_OFF
             StyledPlayerView.switchTargetView(it, oldPlayerView, playerView)
             this.oldPlayerView = playerView
             it.seekTo(position, 0)
+            Log.e("1medasdasddan", "222222222222")
             it.playWhenReady = true
             it.prepare()
         }
@@ -335,6 +341,7 @@ public class ExoMediaManager(
                     it.seekTo(position, media.playPosition)
                 }
             }
+            Log.e("1medasdasddan", "33333333333")
             it.playWhenReady = true
             it.prepare()
         }
@@ -360,29 +367,11 @@ public class ExoMediaManager(
         }
     }
 
-    fun addMedidItems(list: MutableList<PetVideo>): MutableList<MediaItem> {
-        val mediaItems = mutableListOf<MediaItem>()
-        if (list.isNotEmpty()) {
-            list.forEach { petVideo ->
-                val mediaItem = if (petVideo.url != null) {
-                    MediaItem.Builder().setUri(petVideo.url)
-                        .setMediaId(petVideo.code.toString()).build()
-                } else {
-                    val file = getLocalFilePath(context, petVideo.fileName!!)
-                    MediaItem.Builder().setUri(Uri.fromFile(file))
-                        .setMediaId(petVideo.code.toString()).build()
-                }
-                if (!PlayerConfig.instance.hasMediaItem(petVideo.code)) {
-                    PlayerConfig.instance.addMediaItem(
-                        petVideo.code,
-                        MediaItemWrapper(0, mediaItem)
-                    )
-                }
-                mediaItems.add(mediaItem)
-                mPlayer?.addMediaItem(mediaItem)
-            }
-        }
-        return mediaItems
+    /**
+     * 只针对连续存入的短视频，直接从playlist里删除
+     */
+    fun removeCurrentItem(currentPosition: Int) {
+        mPlayer?.removeMediaItem(currentPosition)
     }
 
     fun pausePlayer() {
@@ -437,19 +426,43 @@ public class ExoMediaManager(
 
     fun isPlaying(): Boolean = mPlayer?.isPlaying ?: false
 
+    fun isPauseing():Boolean  {
+        mPlayer?.let {
+            if (!it.isPlaying && it.playbackState == STATE_READY) {
+                return true
+            }
+        }
+        return false
+    }
+
     fun resumePlay() {
         mPlayer?.let {
             if (!it.isPlaying && it.playbackState == STATE_READY) {
+                Log.e("1medasdasddan", "444444444444")
                 it.playWhenReady = true
             }
         }
     }
 
-    fun singleClick(){
+    fun getRepeatMode(): Int = playMode
+
+    fun updatePlayType(isAutio: Boolean) {
+        mPlayer?.let {
+            if (isAutio) {
+                it.repeatMode = Player.REPEAT_MODE_OFF
+            } else {
+                it.repeatMode = Player.REPEAT_MODE_ONE
+            }
+            playMode = it.repeatMode
+        }
+    }
+
+    fun singleClick() {
         mPlayer?.let {
             if (it.isPlaying) {
                 it.pause()
             } else {
+                Log.e("1medasdasddan", "11111111111")
                 it.playWhenReady = true
             }
         }
@@ -473,6 +486,8 @@ public class ExoMediaManager(
     }
 
     interface ExoListener {
-        fun OnPlayerViewShow(isShow: Boolean)
+        fun OnIsPlayingChanged(isPlaying: Boolean)
+
+        fun playingEnd()
     }
 }

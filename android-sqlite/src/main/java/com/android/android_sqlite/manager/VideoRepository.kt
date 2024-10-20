@@ -28,6 +28,22 @@ public class VideoRepository : BaseRepository() {
         AppDataBase.getInstance().petVideoDao()
     }
 
+    suspend fun getVideoByCode(videoCode: Int): PetVideo {
+        return withContext(Dispatchers.IO) {
+            petDao.getVideoByCode(videoCode)
+        }
+    }
+
+    suspend fun deleteVideoByCode(videoCode: Int): PetVideo {
+        return withContext(Dispatchers.IO) {
+            val video = petDao.getVideoByCode(videoCode)
+            if (video != null) {
+                petDao.delete(video)
+            }
+            petDao.getVideoByCode(videoCode)
+        }
+    }
+
     fun getPetByPage(startIndex: Int, counts: Int): Flow<MutableList<VideoAndUser>> =
         flowInDelay(petDao.getPageVideoByType(0, 1, startIndex, counts))
 
@@ -441,18 +457,23 @@ public class VideoRepository : BaseRepository() {
         "熊猫宝宝" -> {
             flowIn(petDao.queryByPeried(PeriodType.BABY.ordinal, startIndex, counts))
         }
+
         "熊猫妈妈" -> {
             flowIn(petDao.queryByPeried(PeriodType.MOM.ordinal, startIndex, counts))
         }
+
         "幼年班" -> {
             flowIn(petDao.queryByPeried(PeriodType.GROUP.ordinal, startIndex, counts))
         }
+
         "成长记" -> {
             flowIn(petDao.queryByPeried(PeriodType.ALL.ordinal, startIndex, counts))
         }
+
         "科普" -> {
             flowIn(petDao.queryByPeried(PeriodType.KNOWLEDGE.ordinal, startIndex, counts))
         }
+
         else -> {
             flowIn(petDao.queryPandaByName("%$name%", startIndex, counts))
         }

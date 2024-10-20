@@ -187,11 +187,7 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, LayoutSwipRefre
     }
 
     override fun onClick(video: PetVideo) {
-        if (video.vertical) {
-            startShortVideoActivity(mActivity, video.code)
-        } else {
-            startVideoPlayingActivity(mActivity, video)
-        }
+        startVideoPlayingActivity(mActivity, video)
         startActivity = true
     }
 
@@ -297,10 +293,13 @@ public class RecommendFragment : BaseFragment<HomePageViewModel, LayoutSwipRefre
         }
     }
 
-    override fun OnPlayerViewShow(isShow: Boolean) {
+    override fun OnIsPlayingChanged(isPlaying: Boolean) {
         val holder = binding.recyclerLayout.findViewHolderForLayoutPosition(playingPosition)
         if (holder is RecommendAdapter.VideoHolder) {
-            (holder as RecommendAdapter.VideoHolder).updateItemView(!isShow)
+            (holder as RecommendAdapter.VideoHolder).updateItemView(!isPlaying)
         }
+    }
+
+    override fun playingEnd() {
     }
 }

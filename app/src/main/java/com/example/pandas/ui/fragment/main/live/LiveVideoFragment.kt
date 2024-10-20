@@ -2,10 +2,8 @@ package com.example.pandas.ui.fragment.main.live
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,16 +17,14 @@ import com.example.pandas.app.appViewModel
 import com.example.pandas.bean.MediaInfo
 import com.example.pandas.biz.ext.getLocalFilePath
 import com.example.pandas.biz.manager.ExoMediaManager
-import com.example.pandas.biz.manager.LivePlayManager
 import com.example.pandas.biz.viewmodel.LiveViewModel
 import com.example.pandas.databinding.LayoutSwipRefreshBinding
-import com.example.pandas.ui.activity.VideoPlayingActivity
 import com.example.pandas.ui.adapter.LiveVideoAdapter
 import com.example.pandas.ui.adapter.RecommendAdapter
 import com.example.pandas.ui.ext.*
 import com.example.pandas.ui.view.recyclerview.SwipRecyclerView
-import com.google.android.exoplayer2.Player.REPEAT_MODE_ONE
 import com.google.android.exoplayer2.ui.StyledPlayerView
+import com.helo.video.VideoPlayingActivity
 
 /**
  * @description: 动态-综合
@@ -316,11 +312,14 @@ public class LiveVideoFragment : BaseFragment<LiveViewModel, LayoutSwipRefreshBi
         }
     }
 
-    override fun OnPlayerViewShow(isShow: Boolean) {
+    override fun OnIsPlayingChanged(isPlaying: Boolean) {
         val holder =
             binding.recyclerLayout.findViewHolderForLayoutPosition(playingPosition)
         if (holder is LiveVideoAdapter.LiveViewHolder) {
-            (holder as LiveVideoAdapter.LiveViewHolder).updateItemView(!isShow)
+            (holder as LiveVideoAdapter.LiveViewHolder).updateItemView(!isPlaying)
         }
+    }
+
+    override fun playingEnd() {
     }
 }

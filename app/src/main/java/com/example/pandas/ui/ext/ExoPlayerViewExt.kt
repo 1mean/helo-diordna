@@ -1,6 +1,7 @@
 package com.example.pandas.ui.ext;
 
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Build
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +23,9 @@ fun VideoPlayingActivity.fullScreen() {
                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
     }
-    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+    if (resources.configuration.orientation != Configuration.ORIENTATION_LANDSCAPE) {
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+    }
     val params = binding.playView.layoutParams
     params.width = ViewGroup.LayoutParams.MATCH_PARENT
     params.height = ViewGroup.LayoutParams.MATCH_PARENT

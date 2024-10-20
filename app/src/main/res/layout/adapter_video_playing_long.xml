@@ -15,7 +15,7 @@
         <com.example.pandas.ui.view.MyStyledPlayerView
             android:id="@+id/player_vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="208dp"
             app:hide_on_touch="false"
             app:show_buffering="always"
             app:resize_mode="zoom"

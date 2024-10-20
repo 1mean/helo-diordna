@@ -9,11 +9,13 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import com.android.android_sqlite.app.AppDataBase
 import com.android.android_sqlite.app.SqliteApplication
 import com.android.android_sqlite.entity.GroupVideoItem
 import com.android.android_sqlite.manager.groupRepository
 import com.android.android_sqlite.manager.searchHistoryRepository
 import com.android.android_sqlite.manager.userRepository
+import com.android.android_sqlite.manager.videoRepository
 import com.android.base.ModuleApplication
 import com.android.base.app.CrashHandler
 import com.example.pandas.biz.viewmodel.EventViewModel
@@ -166,6 +168,15 @@ class DiorApplication : Application(), ViewModelStoreOwner {
 
         GlobalScope.launch {
             //searchHistoryRepository.deleteHistoryById(69)
+
+            //删除
+            val result = videoRepository.deleteVideoByCode(3914)
+            Log.e("DiorApplication","删除结果-result:$result")
+
+            //更新
+//            val result = videoRepository.getVideoByCode(3888)
+//            result.cover = "https://p3-pc-sign.douyinpic.com/tos-cn-p-0015/214e1713e01a4bb6966f86f7234d7b85_1685929776~tplv-dy-360p.jpeg?biz_tag=pcweb_cover&from=327834062&s=PackSourceEnum_SEARCH&sc=origin_cover&se=false&x-expires=1730563200&x-signature=HI2wk67sP2cnRkII2PmHqXv2%2FQc%3D"
+//            videoRepository.updatePetVideo(result)
         }
 
         Thread {

@@ -250,6 +250,12 @@ public class ShortVideoViewModel : BaseViewModel() {
         }
     }
 
+    fun addLaterPlayer(videoCode: Int) {
+        viewModelScope.launch {
+            videoRepository.addLater(videoCode)
+        }
+    }
+
     fun updatePetVideo(video: PetVideo) {
         viewModelScope.launch {
             videoRepository.updatePetVideo(video)
